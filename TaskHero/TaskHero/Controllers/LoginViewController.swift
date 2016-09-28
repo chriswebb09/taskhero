@@ -31,20 +31,26 @@ class LoginViewController: UIViewController {
     }
     
     func didTapSignIn() {
-        // Sign In with credentials.
-        guard let email = loginView.usernameTextField.text, let password = loginView.passwordTextField.text else { return }
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-            if error == nil {
-                let tabBar = TabBarController()
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = tabBar
-            }
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-        }
+        let tabBar = TabBarController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = tabBar
     }
+    
+//    func didTapSignIn() {
+//        // Sign In with credentials.
+//        guard let email = loginView.usernameTextField.text, let password = loginView.passwordTextField.text else { return }
+//        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+//            if error == nil {
+//                let tabBar = TabBarController()
+//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                appDelegate.window?.rootViewController = tabBar
+//            }
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            }
+//        }
+//    }
     
     func signUpNewUserTapped() {
         let signUpVC = SignupViewController()

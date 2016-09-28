@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF5107411D9C5DD3001928B7 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107401D9C5DD3001928B7 /* ProfileHeaderCell.swift */; };
+		AF5107451D9C5DFA001928B7 /* ProfileDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107441D9C5DFA001928B7 /* ProfileDataCell.swift */; };
+		AF5107471D9C5E0E001928B7 /* TeamBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107461D9C5E0E001928B7 /* TeamBannerCell.swift */; };
+		AF51074F1D9C5E78001928B7 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF51074E1D9C5E78001928B7 /* AddTaskView.swift */; };
+		AF5107511D9C5EAB001928B7 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107501D9C5EAB001928B7 /* AddTaskViewController.swift */; };
+		AF5107531D9C5EEB001928B7 /* ProfileBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107521D9C5EEB001928B7 /* ProfileBannerCell.swift */; };
+		AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107541D9C5F00001928B7 /* TeamHeaderCell.swift */; };
+		AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107561D9C5F0F001928B7 /* TeamDataCell.swift */; };
 		AF9162B71D9C40430054233B /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9162B61D9C40430054233B /* DataStore.swift */; };
 		AF9162B91D9C434C0054233B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9162B81D9C434C0054233B /* HomeView.swift */; };
 		AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB4D1D9C3B9200EF7BDE /* AppDelegate.swift */; };
@@ -30,6 +38,14 @@
 		2125BFD0DDB85B432979C79D /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
 		477E0ECEDA5D1BAB97892981 /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB09A64859F9A95DA45F2FD /* Pods-TaskHero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.debug.xcconfig"; sourceTree = "<group>"; };
+		AF5107401D9C5DD3001928B7 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileHeaderCell.swift; path = Views/Cells/ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		AF5107441D9C5DFA001928B7 /* ProfileDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDataCell.swift; path = Views/Cells/ProfileDataCell.swift; sourceTree = "<group>"; };
+		AF5107461D9C5E0E001928B7 /* TeamBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamBannerCell.swift; path = Views/Cells/TeamBannerCell.swift; sourceTree = "<group>"; };
+		AF51074E1D9C5E78001928B7 /* AddTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskView.swift; path = Views/AddTaskView.swift; sourceTree = "<group>"; };
+		AF5107501D9C5EAB001928B7 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskViewController.swift; path = Controllers/AddTaskViewController.swift; sourceTree = "<group>"; };
+		AF5107521D9C5EEB001928B7 /* ProfileBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileBannerCell.swift; path = Views/Cells/ProfileBannerCell.swift; sourceTree = "<group>"; };
+		AF5107541D9C5F00001928B7 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamHeaderCell.swift; path = Views/Cells/TeamHeaderCell.swift; sourceTree = "<group>"; };
+		AF5107561D9C5F0F001928B7 /* TeamDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamDataCell.swift; path = Views/Cells/TeamDataCell.swift; sourceTree = "<group>"; };
 		AF9162B61D9C40430054233B /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = Models/DataStore.swift; sourceTree = "<group>"; };
 		AF9162B81D9C434C0054233B /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = Views/HomeView.swift; sourceTree = "<group>"; };
 		AF96FB4A1D9C3B9200EF7BDE /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +84,44 @@
 				477E0ECEDA5D1BAB97892981 /* Pods_TaskHero.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF51073F1D9C5DB5001928B7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AF5107581D9C5F1C001928B7 /* Task */,
+				AF51074C1D9C5E37001928B7 /* Profile */,
+				AF51074D1D9C5E3F001928B7 /* Team */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		AF51074C1D9C5E37001928B7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AF5107401D9C5DD3001928B7 /* ProfileHeaderCell.swift */,
+				AF5107521D9C5EEB001928B7 /* ProfileBannerCell.swift */,
+				AF5107441D9C5DFA001928B7 /* ProfileDataCell.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		AF51074D1D9C5E3F001928B7 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				AF5107461D9C5E0E001928B7 /* TeamBannerCell.swift */,
+				AF5107541D9C5F00001928B7 /* TeamHeaderCell.swift */,
+				AF5107561D9C5F0F001928B7 /* TeamDataCell.swift */,
+			);
+			name = Team;
+			sourceTree = "<group>";
+		};
+		AF5107581D9C5F1C001928B7 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				AF96FB6F1D9C3D3E00EF7BDE /* TaskCell.swift */,
+			);
+			name = Task;
 			sourceTree = "<group>";
 		};
 		AF96FB411D9C3B9200EF7BDE = {
@@ -110,6 +164,7 @@
 				AF96FB671D9C3C8F00EF7BDE /* TabBarController.swift */,
 				AF96FB6B1D9C3CEB00EF7BDE /* SignupViewController.swift */,
 				AF96FB6D1D9C3D0000EF7BDE /* LoginViewController.swift */,
+				AF5107501D9C5EAB001928B7 /* AddTaskViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -117,11 +172,12 @@
 		AF96FB641D9C3C3700EF7BDE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AF51074E1D9C5E78001928B7 /* AddTaskView.swift */,
+				AF9162B81D9C434C0054233B /* HomeView.swift */,
 				AF96FB651D9C3C7400EF7BDE /* Constants.swift */,
 				AF96FB621D9C3C2D00EF7BDE /* LoginView.swift */,
 				AF96FB691D9C3CD400EF7BDE /* SignupView.swift */,
-				AF96FB6F1D9C3D3E00EF7BDE /* TaskCell.swift */,
-				AF9162B81D9C434C0054233B /* HomeView.swift */,
+				AF51073F1D9C5DB5001928B7 /* Cells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -271,17 +327,25 @@
 			files = (
 				AF9162B71D9C40430054233B /* DataStore.swift in Sources */,
 				AF96FB6A1D9C3CD400EF7BDE /* SignupView.swift in Sources */,
+				AF5107411D9C5DD3001928B7 /* ProfileHeaderCell.swift in Sources */,
+				AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */,
 				AF9162B91D9C434C0054233B /* HomeView.swift in Sources */,
 				AF96FB6C1D9C3CEB00EF7BDE /* SignupViewController.swift in Sources */,
 				AF96FB631D9C3C2D00EF7BDE /* LoginView.swift in Sources */,
 				AF96FB601D9C3C0C00EF7BDE /* HomeViewController.swift in Sources */,
 				AF96FB751D9C3D6E00EF7BDE /* Task.swift in Sources */,
 				AF96FB6E1D9C3D0000EF7BDE /* LoginViewController.swift in Sources */,
+				AF51074F1D9C5E78001928B7 /* AddTaskView.swift in Sources */,
+				AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */,
 				AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */,
+				AF5107511D9C5EAB001928B7 /* AddTaskViewController.swift in Sources */,
+				AF5107451D9C5DFA001928B7 /* ProfileDataCell.swift in Sources */,
+				AF5107471D9C5E0E001928B7 /* TeamBannerCell.swift in Sources */,
 				AF96FB681D9C3C8F00EF7BDE /* TabBarController.swift in Sources */,
 				AF96FB701D9C3D3E00EF7BDE /* TaskCell.swift in Sources */,
 				AF96FB721D9C3D5000EF7BDE /* User.swift in Sources */,
 				AF96FB661D9C3C7400EF7BDE /* Constants.swift in Sources */,
+				AF5107531D9C5EEB001928B7 /* ProfileBannerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

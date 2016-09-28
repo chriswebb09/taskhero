@@ -14,12 +14,14 @@ class HomeViewController: UIViewController {
     let homeView = HomeView()
     
     override func viewDidLoad() {
-        if FIRAuth.auth()?.currentUser?.uid == nil {
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-        } else {
-            super.viewDidLoad()
-            view.addSubview(homeView)
-        }
+        super.viewDidLoad()
+        view.addSubview(homeView)
+//        if FIRAuth.auth()?.currentUser?.uid == nil {
+//            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+//        } else {
+//            super.viewDidLoad()
+//            view.addSubview(homeView)
+//        }
         
         
         // Do any additional setup after loading the view, typically from a nib.
