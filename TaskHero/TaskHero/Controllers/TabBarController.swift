@@ -57,7 +57,7 @@ class TabBarController: UITabBarController {
         profileTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
         profileTab.navigationBar.barTintColor = UIColor.white
         profileTab.navigationBar.topItem?.title = "Profile"
-    
+        
         let controllers = [homeTab, profileTab]
         
         viewControllers = controllers
@@ -78,4 +78,4 @@ class TabBarController: UITabBarController {
         //...
     }
 }
-    
+

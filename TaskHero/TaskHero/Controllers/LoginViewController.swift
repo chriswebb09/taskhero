@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     let store = DataStore.sharedInstance
     
     let loginView = LoginView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
         loginView.loginButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
         loginView.newUserButton.addTarget(self, action: #selector(signUpNewUserTapped), for: .touchUpInside)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,15 +51,15 @@ class LoginViewController: UIViewController {
         let signUpVC = SignupViewController()
         navigationController?.pushViewController(signUpVC, animated: false)
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -32,6 +32,8 @@
 		AF96FB721D9C3D5000EF7BDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB711D9C3D5000EF7BDE /* User.swift */; };
 		AF96FB751D9C3D6E00EF7BDE /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB741D9C3D6E00EF7BDE /* Task.swift */; };
 		AF96FB771D9C3E2900EF7BDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */; };
+		AFB9E0331D9CF1300085FB9B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */; };
+		AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */; };
 		AFE617CD1D9CC3D7000FF4EE /* TempProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */; };
 		AFE617CF1D9CC413000FF4EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */; };
 		B717E050803E656AD1ABBD0C /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 477E0ECEDA5D1BAB97892981 /* Pods_TaskHero.framework */; };
@@ -68,6 +70,8 @@
 		AF96FB711D9C3D5000EF7BDE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		AF96FB741D9C3D6E00EF7BDE /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Models/Task.swift; sourceTree = "<group>"; };
 		AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Extensions/UIColorExtension.swift; sourceTree = "<group>"; };
 		AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TempProfileView.swift; path = Views/TempProfileView.swift; sourceTree = "<group>"; };
 		AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Controllers/ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +163,7 @@
 				AF96FB591D9C3B9200EF7BDE /* Info.plist */,
 				AF96FB641D9C3C3700EF7BDE /* Views */,
 				AF96FB731D9C3D5700EF7BDE /* Models */,
+				AFB9E0361D9CF1F80085FB9B /* Extensions */,
 			);
 			path = TaskHero;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 		AF96FB611D9C3C1B00EF7BDE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */,
 				AF96FB5F1D9C3C0C00EF7BDE /* HomeViewController.swift */,
 				AF96FB671D9C3C8F00EF7BDE /* TabBarController.swift */,
 				AF96FB6B1D9C3CEB00EF7BDE /* SignupViewController.swift */,
@@ -199,6 +205,14 @@
 				AF9162B61D9C40430054233B /* DataStore.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		AFB9E0361D9CF1F80085FB9B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		E7015F98836F0AEE77F48D10 /* Pods */ = {
@@ -279,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF96FB771D9C3E2900EF7BDE /* GoogleService-Info.plist in Resources */,
+				AFB9E0331D9CF1300085FB9B /* Default-568h@2x.png in Resources */,
 				AF96FB581D9C3B9200EF7BDE /* LaunchScreen.storyboard in Resources */,
 				AF96FB551D9C3B9200EF7BDE /* Assets.xcassets in Resources */,
 			);
@@ -356,6 +371,7 @@
 				AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */,
 				AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */,
 				AF5107511D9C5EAB001928B7 /* AddTaskViewController.swift in Sources */,
+				AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */,
 				AF5107451D9C5DFA001928B7 /* ProfileDataCell.swift in Sources */,
 				AF5107471D9C5E0E001928B7 /* TeamBannerCell.swift in Sources */,
 				AF96FB681D9C3C8F00EF7BDE /* TabBarController.swift in Sources */,
