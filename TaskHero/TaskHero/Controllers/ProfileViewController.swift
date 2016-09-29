@@ -8,13 +8,21 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UITableViewController {
     
     var profileView = TempProfileView()
     
     override func viewDidLoad() {
         navigationController?.navigationBar.isHidden = false
         view.backgroundColor = UIColor.white
+        
+        tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
+        tableView.separatorStyle = .singleLine
+        tableView.allowsSelection = false
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
     }
     
     override func didReceiveMemoryWarning() {
@@ -23,3 +31,5 @@ class ProfileViewController: UIViewController {
     }
     
 }
+
+

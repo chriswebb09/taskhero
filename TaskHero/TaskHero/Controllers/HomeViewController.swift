@@ -35,6 +35,20 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
 
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.searchBar.placeholder = "Search Tasks"
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barTintColor = UIColor.black
+    }
+    
+    deinit {
+        searchController.loadViewIfNeeded()
+        let _ = searchController.view
     }
     
     override func didReceiveMemoryWarning() {
