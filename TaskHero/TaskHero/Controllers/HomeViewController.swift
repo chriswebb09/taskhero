@@ -44,10 +44,11 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-gray")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
         
-        let barButton = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        barButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.font, size: 20)!], for: .normal)
+//        let barButton = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+//        barButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.font, size: 20)!], for: .normal)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
         
         
@@ -81,33 +82,25 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         databaseRef.observe(.childAdded, with: { (snapshot) -> Void in
             let data = snapshot.value
             let task = Task()
-            
             guard let snapshotValue = data as? NSDictionary else { return }
-            
             if let taskDescription = snapshotValue["taskDescription"] as? String {
                 task.taskDescription = taskDescription
             }
-            
             if let taskName = snapshotValue["taskName"] as? String {
                 task.taskName = taskName
             }
-            
             if let taskDue = snapshotValue["taskDue"] as? String {
                 task.taskDue = taskDue
             }
-            
             if let taskCompleted = snapshotValue["completed"] as? Bool {
                 task.completed = taskCompleted
             }
-            
             if let taskID = snapshotValue["taskID"] as? String {
                 task.taskID = taskID
             }
-            
             self.tasks.insert(task, at: 0)
             self.tableView.reloadData()
         })
-        
     }
     
     
@@ -133,22 +126,32 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+            
             cell.layoutSubviews()
             cell.usernameLabel.text = "filler text"
             cell.profilePicture.backgroundColor = UIColor.blue
+            cell.profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped)))
             return cell
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
+            
             taskCell.layoutSubviews()
-            taskCell.taskLabel.text = tasks[indexPath.row].taskName
+            taskCell.taskNameLabel.text = tasks[indexPath.row].taskName
             taskCell.taskDetailLabel.text = tasks[indexPath.row].taskDescription
             taskCell.taskDue.text =  tasks[indexPath.row].taskDue
+            
             if tasks[indexPath.row].completed == true {
+                
                 taskCell.taskCompletedLabel.image = UIImage(named: "checked")
+                
             } else if tasks[indexPath.row].completed == false {
+                
                 taskCell.taskCompletedLabel.image = UIImage(named: "cancel")
+                
             }
+            
             return taskCell
         }
     }
@@ -161,14 +164,17 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
 extension HomeViewController: ProfileHeaderCellDelegate {
     
     func logoutButtonPressed() {
+        
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         appDelegate.window?.rootViewController = loginVC
     }
     
     func profilePictureTapped() {
-        //        let profilePicVC = ProfilePictureViewController()
-        //        navigationController?.pushViewController(profilePicVC, animated:false)
+        print("profile picture tapped")
+        let profilePicVC = ProfilePictureViewController()
+        navigationController?.pushViewController(profilePicVC, animated:false)
     }
     
     func addTaskButtonTapped() {

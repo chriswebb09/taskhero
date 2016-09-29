@@ -4,7 +4,7 @@ class TaskCell: UITableViewCell {
     
     static let cellIdentifier = "TaskCell"
     
-    var taskLabel = UILabel()
+    var taskNameLabel = UILabel()
     var taskDetailLabel = UILabel()
     var taskDue = UILabel()
     var taskCompletedLabel = UIImageView()
@@ -17,12 +17,12 @@ class TaskCell: UITableViewCell {
     
     func setupConstraints() {
         
-        contentView.addSubview(taskLabel)
-        taskLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
-        taskLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
-        taskLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        taskLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        contentView.addSubview(taskNameLabel)
+        taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        taskNameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
+        taskNameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+        taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
         
         contentView.addSubview(taskDetailLabel)
         taskDetailLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -39,8 +39,8 @@ class TaskCell: UITableViewCell {
     }
     
     func setupCell() {
-        taskLabel.textColor = UIColor.black
-        taskLabel.font = UIFont(name: Constants.helveticaLight, size: 20)
+        taskNameLabel.textColor = UIColor.black
+        taskNameLabel.font = UIFont(name: Constants.helveticaLight, size: 20)
         taskDetailLabel.textColor = UIColor.black
         taskDetailLabel.font = UIFont(name:Constants.helveticaThin, size:20)
         

@@ -24,7 +24,15 @@ protocol ProfileHeaderCellDelegate: class {
 class ProfileHeaderCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileHeaderCell"
-    let usernameLabel = UILabel()
+    
+    lazy var usernameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.textColor = UIColor.black
+        nameLabel.layer.masksToBounds = true
+        nameLabel.textAlignment = .center
+        return nameLabel
+    }()
+    
     let profilePicture = UIImageView()
     
     override func layoutSubviews() {
@@ -37,8 +45,8 @@ class ProfileHeaderCell: UITableViewCell {
         
         contentView.addSubview(profilePicture)
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         
         profilePicture.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         profilePicture.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
@@ -55,5 +63,11 @@ class ProfileHeaderCell: UITableViewCell {
         usernameLabel.font = UIFont(name: Constants.helveticaLight, size: 30)
         usernameLabel.sizeToFit()
         profilePicture.isUserInteractionEnabled = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        usernameLabel.text = ""
+        profilePicture = nil
     }
 }

@@ -19,9 +19,19 @@ class ProfileBannerCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileBannerCell"
     
-    var userNameLabel = UILabel()
+    lazy var userNameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.textColor = UIColor.black
+        nameLabel.layer.masksToBounds = true
+        nameLabel.textAlignment = .center
+        return nameLabel
+    }()
     
-    var bannerImageView = UIImageView()
+    lazy var bannerImageView: UIImageView? = {
+        let imageView = UIImageView()
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -37,13 +47,13 @@ class ProfileBannerCell: UITableViewCell {
         //  userNameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.25).isActive = true
         
         //userNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        backgroundView?.addSubview(bannerImageView)
+        backgroundView?.addSubview(bannerImageView!)
         //backgroundView?.backgroundColor = UIColor.purple
         
-        bannerImageView.translatesAutoresizingMaskIntoConstraints = false
-        bannerImageView.center = contentView.center
-        bannerImageView.heightAnchor.constraint(equalTo:backgroundView!.heightAnchor).isActive = true
-        bannerImageView.widthAnchor.constraint(equalTo:backgroundView!.widthAnchor).isActive = true
+        bannerImageView?.translatesAutoresizingMaskIntoConstraints = false
+        bannerImageView?.center = contentView.center
+        bannerImageView?.heightAnchor.constraint(equalTo:backgroundView!.heightAnchor).isActive = true
+        bannerImageView?.widthAnchor.constraint(equalTo:backgroundView!.widthAnchor).isActive = true
         // bannerImageView.heightAnchor.constraint(equalTo: (backgroundView?.heightAnchor)!).isActive = true
         // bannerImageView.widthAnchor.constraint(equalTo: (backgroundView?.widthAnchor)!).isActive = true
     }
@@ -52,8 +62,12 @@ class ProfileBannerCell: UITableViewCell {
         userNameLabel.font = UIFont(name: Constants.font, size: 40)
         userNameLabel.textColor = UIColor.black
         userNameLabel.sizeToFit()
-        //userNameLabel.textAlignment = .center
-        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bannerImageView?.image = nil
+        userNameLabel.text = ""
     }
     
 }

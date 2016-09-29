@@ -37,6 +37,7 @@ class TabBarController: UITabBarController {
         
         let homeVC = HomeViewController()
         let profileVC = ProfileViewController()
+        let settingsVC = SettingsViewController()
         
         homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "home-unselected-gray")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "home-selected")?.withRenderingMode(.alwaysTemplate))
         
@@ -58,12 +59,23 @@ class TabBarController: UITabBarController {
         profileTab.navigationBar.barTintColor = UIColor.white
         profileTab.navigationBar.topItem?.title = "Profile"
         
-        let controllers = [homeTab, profileTab]
+        
+        settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-1-unselected-gray")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "settings-1-selected")?.withRenderingMode(.alwaysTemplate))
+        
+        settingsVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
+        let settingsTab = UINavigationController(rootViewController: settingsVC)
+        settingsTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
+        settingsTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
+        settingsTab.navigationBar.barTintColor = UIColor.white
+        settingsTab.navigationBar.topItem?.title = "Profile"
+        
+        let controllers = [homeTab, profileTab, settingsTab]
         
         viewControllers = controllers
         
         tabBar.items?[0].title = "Home"
         tabBar.items?[1].title = "Profile"
+        tabBar.items?[2].title = "Settings"
         
         selectedIndex = 0
     }

@@ -36,6 +36,9 @@
 		AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */; };
 		AFE617CD1D9CC3D7000FF4EE /* TempProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */; };
 		AFE617CF1D9CC413000FF4EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */; };
+		AFE874111D9DC3FF006B3CFA /* ProfilePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE874101D9DC3FF006B3CFA /* ProfilePicViewController.swift */; };
+		AFE874131D9DC4B3006B3CFA /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE874121D9DC4B3006B3CFA /* ProfilePictureView.swift */; };
+		AFE874151D9DD3B2006B3CFA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE874141D9DD3B2006B3CFA /* SettingsViewController.swift */; };
 		B717E050803E656AD1ABBD0C /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 477E0ECEDA5D1BAB97892981 /* Pods_TaskHero.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +77,9 @@
 		AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Extensions/UIColorExtension.swift; sourceTree = "<group>"; };
 		AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TempProfileView.swift; path = Views/TempProfileView.swift; sourceTree = "<group>"; };
 		AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Controllers/ProfileViewController.swift; sourceTree = "<group>"; };
+		AFE874101D9DC3FF006B3CFA /* ProfilePicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilePicViewController.swift; path = Controllers/ProfilePicViewController.swift; sourceTree = "<group>"; };
+		AFE874121D9DC4B3006B3CFA /* ProfilePictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilePictureView.swift; path = Views/ProfilePictureView.swift; sourceTree = "<group>"; };
+		AFE874141D9DD3B2006B3CFA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Controllers/SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,7 @@
 				AF96FB4D1D9C3B9200EF7BDE /* AppDelegate.swift */,
 				AF96FB611D9C3C1B00EF7BDE /* Controllers */,
 				AF96FB541D9C3B9200EF7BDE /* Assets.xcassets */,
+				AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */,
 				AF96FB561D9C3B9200EF7BDE /* LaunchScreen.storyboard */,
 				AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */,
 				AF96FB591D9C3B9200EF7BDE /* Info.plist */,
@@ -171,13 +178,14 @@
 		AF96FB611D9C3C1B00EF7BDE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */,
+				AFE874101D9DC3FF006B3CFA /* ProfilePicViewController.swift */,
 				AF96FB5F1D9C3C0C00EF7BDE /* HomeViewController.swift */,
 				AF96FB671D9C3C8F00EF7BDE /* TabBarController.swift */,
 				AF96FB6B1D9C3CEB00EF7BDE /* SignupViewController.swift */,
 				AF96FB6D1D9C3D0000EF7BDE /* LoginViewController.swift */,
 				AF5107501D9C5EAB001928B7 /* AddTaskViewController.swift */,
 				AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */,
+				AFE874141D9DD3B2006B3CFA /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -185,6 +193,7 @@
 		AF96FB641D9C3C3700EF7BDE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AFE874121D9DC4B3006B3CFA /* ProfilePictureView.swift */,
 				AF51074E1D9C5E78001928B7 /* AddTaskView.swift */,
 				AF5107591D9C5FC9001928B7 /* InitialView.swift */,
 				AF9162B81D9C434C0054233B /* HomeView.swift */,
@@ -355,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF9162B71D9C40430054233B /* DataStore.swift in Sources */,
+				AFE874131D9DC4B3006B3CFA /* ProfilePictureView.swift in Sources */,
 				AF96FB6A1D9C3CD400EF7BDE /* SignupView.swift in Sources */,
 				AF5107411D9C5DD3001928B7 /* ProfileHeaderCell.swift in Sources */,
 				AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */,
@@ -369,12 +379,14 @@
 				AF51074F1D9C5E78001928B7 /* AddTaskView.swift in Sources */,
 				AF51075A1D9C5FC9001928B7 /* InitialView.swift in Sources */,
 				AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */,
+				AFE874111D9DC3FF006B3CFA /* ProfilePicViewController.swift in Sources */,
 				AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */,
 				AF5107511D9C5EAB001928B7 /* AddTaskViewController.swift in Sources */,
 				AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */,
 				AF5107451D9C5DFA001928B7 /* ProfileDataCell.swift in Sources */,
 				AF5107471D9C5E0E001928B7 /* TeamBannerCell.swift in Sources */,
 				AF96FB681D9C3C8F00EF7BDE /* TabBarController.swift in Sources */,
+				AFE874151D9DD3B2006B3CFA /* SettingsViewController.swift in Sources */,
 				AF96FB701D9C3D3E00EF7BDE /* TaskCell.swift in Sources */,
 				AF96FB721D9C3D5000EF7BDE /* User.swift in Sources */,
 				AF96FB661D9C3C7400EF7BDE /* Constants.swift in Sources */,
