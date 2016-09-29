@@ -30,28 +30,28 @@ class AddTaskView: UIView {
         taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
         taskNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -260).isActive = true
+        taskNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -210).isActive = true
         
         addSubview(taskNameTextField)
         taskNameTextField.translatesAutoresizingMaskIntoConstraints = false
         taskNameTextField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameTextField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
         taskNameTextField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -200).isActive = true
+        taskNameTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -170).isActive = true
         
         addSubview(taskDescriptionLabel)
         taskDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
         taskDescriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -140).isActive = true
+        taskDescriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -100).isActive = true
         
         addSubview(taskDescriptionTextView)
         taskDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionTextView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionTextView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         taskDescriptionTextView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionTextView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20).isActive = true
+        taskDescriptionTextView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
         
         
         

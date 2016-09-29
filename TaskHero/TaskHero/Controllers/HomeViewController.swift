@@ -13,10 +13,26 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     
     var parentNavigationController: UINavigationController?
     var searchController = UISearchController(searchResultsController: nil)
-
+    var databaseRef: FIRDatabaseReference!
+   // var tasksDataSnapshot = [FIRDataSnapshot]()
+    var tasks = [Task]()
+    let uid = FIRAuth.auth()!.currentUser!.uid
+    //var databaseRef: FIRDatabaseReference!
+    //var storageRef: FIRStorageReference!
+    
+   
+    
+    
+    
     override func viewDidLoad() {
+        
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        
+        self.databaseRef = FIRDatabase.database().reference(withPath:"users/\(uid)/tasks/")
         navigationController?.navigationBar.isHidden = false
         view.backgroundColor = UIColor.white
+        
+        getAllTasks()
         
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
@@ -24,7 +40,6 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         tableView.allowsSelection = false
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = view.frame.height / 4
-        // Do any additional setup after loading the view, typically from a nib.
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-gray")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
@@ -34,7 +49,7 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
-
+        
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -56,6 +71,45 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        tableView.reloadData()
+    }
+    
+    func getAllTasks() {
+        tasks.removeAll()
+        databaseRef.observe(.childAdded, with: { (snapshot) -> Void in
+            let data = snapshot.value
+            let task = Task()
+            
+            guard let snapshotValue = data as? NSDictionary else { return }
+            
+            if let taskDescription = snapshotValue["taskDescription"] as? String {
+                task.taskDescription = taskDescription
+            }
+            
+            if let taskName = snapshotValue["taskName"] as? String {
+                task.taskName = taskName
+            }
+            
+            if let taskDue = snapshotValue["taskDue"] as? String {
+                task.taskDue = taskDue
+            }
+            
+            if let taskCompleted = snapshotValue["completed"] as? Bool {
+                task.completed = taskCompleted
+            }
+            
+            if let taskID = snapshotValue["taskID"] as? String {
+                task.taskID = taskID
+            }
+            
+            self.tasks.insert(task, at: 0)
+            self.tableView.reloadData()
+        })
+        
+    }
+    
     
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
@@ -70,10 +124,10 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return tasks.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,16 +141,19 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             taskCell.layoutSubviews()
-            taskCell.taskLabel.text = "task filler"
-            taskCell.taskDue.text =  "task due filler"
-//            if store.currentUser.tasks[indexPath.row].completed == true {
-//                taskCell.taskCompletedLabel.backgroundColor = UIColor.blue
-//            }
+            taskCell.taskLabel.text = tasks[indexPath.row].taskName
+            taskCell.taskDetailLabel.text = tasks[indexPath.row].taskDescription
+            taskCell.taskDue.text =  tasks[indexPath.row].taskDue
+            if tasks[indexPath.row].completed == true {
+                taskCell.taskCompletedLabel.image = UIImage(named: "checked")
+            } else if tasks[indexPath.row].completed == false {
+                taskCell.taskCompletedLabel.image = UIImage(named: "cancel")
+            }
             return taskCell
         }
     }
     
-
+    
     
     
 }

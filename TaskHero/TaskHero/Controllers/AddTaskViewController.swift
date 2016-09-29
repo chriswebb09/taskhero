@@ -26,6 +26,7 @@ class AddTaskViewController: UIViewController {
         let backButton = UIBarButtonItem(image:UIImage(named:"back-1"), style: .done, target:self, action: #selector(backTapped))
         
         backButton.title = "Back"
+        backButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
         backButton.tintColor = UIColor.black
         
         navigationItem.leftBarButtonItem = backButton
