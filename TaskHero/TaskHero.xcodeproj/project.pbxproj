@@ -15,6 +15,7 @@
 		AF5107531D9C5EEB001928B7 /* ProfileBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107521D9C5EEB001928B7 /* ProfileBannerCell.swift */; };
 		AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107541D9C5F00001928B7 /* TeamHeaderCell.swift */; };
 		AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107561D9C5F0F001928B7 /* TeamDataCell.swift */; };
+		AF51075A1D9C5FC9001928B7 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107591D9C5FC9001928B7 /* InitialView.swift */; };
 		AF9162B71D9C40430054233B /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9162B61D9C40430054233B /* DataStore.swift */; };
 		AF9162B91D9C434C0054233B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9162B81D9C434C0054233B /* HomeView.swift */; };
 		AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB4D1D9C3B9200EF7BDE /* AppDelegate.swift */; };
@@ -31,6 +32,8 @@
 		AF96FB721D9C3D5000EF7BDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB711D9C3D5000EF7BDE /* User.swift */; };
 		AF96FB751D9C3D6E00EF7BDE /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB741D9C3D6E00EF7BDE /* Task.swift */; };
 		AF96FB771D9C3E2900EF7BDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */; };
+		AFE617CD1D9CC3D7000FF4EE /* TempProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */; };
+		AFE617CF1D9CC413000FF4EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */; };
 		B717E050803E656AD1ABBD0C /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 477E0ECEDA5D1BAB97892981 /* Pods_TaskHero.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +49,7 @@
 		AF5107521D9C5EEB001928B7 /* ProfileBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileBannerCell.swift; path = Views/Cells/ProfileBannerCell.swift; sourceTree = "<group>"; };
 		AF5107541D9C5F00001928B7 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamHeaderCell.swift; path = Views/Cells/TeamHeaderCell.swift; sourceTree = "<group>"; };
 		AF5107561D9C5F0F001928B7 /* TeamDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamDataCell.swift; path = Views/Cells/TeamDataCell.swift; sourceTree = "<group>"; };
+		AF5107591D9C5FC9001928B7 /* InitialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialView.swift; path = Views/InitialView.swift; sourceTree = "<group>"; };
 		AF9162B61D9C40430054233B /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = Models/DataStore.swift; sourceTree = "<group>"; };
 		AF9162B81D9C434C0054233B /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = Views/HomeView.swift; sourceTree = "<group>"; };
 		AF96FB4A1D9C3B9200EF7BDE /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +68,8 @@
 		AF96FB711D9C3D5000EF7BDE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		AF96FB741D9C3D6E00EF7BDE /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Models/Task.swift; sourceTree = "<group>"; };
 		AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TempProfileView.swift; path = Views/TempProfileView.swift; sourceTree = "<group>"; };
+		AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Controllers/ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 				AF96FB6B1D9C3CEB00EF7BDE /* SignupViewController.swift */,
 				AF96FB6D1D9C3D0000EF7BDE /* LoginViewController.swift */,
 				AF5107501D9C5EAB001928B7 /* AddTaskViewController.swift */,
+				AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -173,9 +180,11 @@
 			isa = PBXGroup;
 			children = (
 				AF51074E1D9C5E78001928B7 /* AddTaskView.swift */,
+				AF5107591D9C5FC9001928B7 /* InitialView.swift */,
 				AF9162B81D9C434C0054233B /* HomeView.swift */,
 				AF96FB651D9C3C7400EF7BDE /* Constants.swift */,
 				AF96FB621D9C3C2D00EF7BDE /* LoginView.swift */,
+				AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */,
 				AF96FB691D9C3CD400EF7BDE /* SignupView.swift */,
 				AF51073F1D9C5DB5001928B7 /* Cells */,
 			);
@@ -238,6 +247,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4SZP4Q326F;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -329,13 +343,16 @@
 				AF96FB6A1D9C3CD400EF7BDE /* SignupView.swift in Sources */,
 				AF5107411D9C5DD3001928B7 /* ProfileHeaderCell.swift in Sources */,
 				AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */,
+				AFE617CD1D9CC3D7000FF4EE /* TempProfileView.swift in Sources */,
 				AF9162B91D9C434C0054233B /* HomeView.swift in Sources */,
+				AFE617CF1D9CC413000FF4EE /* ProfileViewController.swift in Sources */,
 				AF96FB6C1D9C3CEB00EF7BDE /* SignupViewController.swift in Sources */,
 				AF96FB631D9C3C2D00EF7BDE /* LoginView.swift in Sources */,
 				AF96FB601D9C3C0C00EF7BDE /* HomeViewController.swift in Sources */,
 				AF96FB751D9C3D6E00EF7BDE /* Task.swift in Sources */,
 				AF96FB6E1D9C3D0000EF7BDE /* LoginViewController.swift in Sources */,
 				AF51074F1D9C5E78001928B7 /* AddTaskView.swift in Sources */,
+				AF51075A1D9C5FC9001928B7 /* InitialView.swift in Sources */,
 				AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */,
 				AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */,
 				AF5107511D9C5EAB001928B7 /* AddTaskViewController.swift in Sources */,

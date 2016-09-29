@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 
+
 class LoginViewController: UIViewController {
     
     let store = DataStore.sharedInstance
@@ -22,7 +23,6 @@ class LoginViewController: UIViewController {
         loginView.layoutSubviews()
         loginView.loginButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
         loginView.newUserButton.addTarget(self, action: #selector(signUpNewUserTapped), for: .touchUpInside)
-                
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,26 +31,21 @@ class LoginViewController: UIViewController {
     }
     
     func didTapSignIn() {
-        let tabBar = TabBarController()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = tabBar
+        // Sign In with credentials.
+        guard let email = loginView.usernameTextField.text, let password = loginView.passwordTextField.text else { return }
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            if error == nil {
+                let tabBar = TabBarController()
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController = tabBar
+            }
+            
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+        }
     }
-    
-//    func didTapSignIn() {
-//        // Sign In with credentials.
-//        guard let email = loginView.usernameTextField.text, let password = loginView.passwordTextField.text else { return }
-//        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-//            if error == nil {
-//                let tabBar = TabBarController()
-//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                appDelegate.window?.rootViewController = tabBar
-//            }
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            }
-//        }
-//    }
     
     func signUpNewUserTapped() {
         let signUpVC = SignupViewController()

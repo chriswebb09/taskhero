@@ -9,19 +9,30 @@
 import UIKit
 import Firebase
 
+
 class SignupViewController: UIViewController {
     
+    var databaseRef: FIRDatabaseReference!
+    
+    var signedIn = false
+    var displayName: String?
+
     let signupView = SignupView()
-    let store = DataStore.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.databaseRef = FIRDatabase.database().reference(withPath:"users")
+        
+        //self.ref = self.database?.reference(withPath:"users")
+
         
         view.addSubview(signupView)
         signupView.layoutSubviews()
         signupView.signUpButton.addTarget(self, action: #selector(createUserButtonTapped), for: .touchUpInside)
         
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -33,13 +44,13 @@ class SignupViewController: UIViewController {
         guard let email = signupView.emailAddressTextField.text, let password = signupView.passwordTextField.text else { return }
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
-            let uid = NSUUID().uuidString
+           // let uid = NSUUID().uuidString
             if let error = error {
                 print(error.localizedDescription)
             } else {
+                guard let uid = user?.uid else { return }
                 print("User signed in!")
-                self.store.ref?.child("data/users").updateChildValues(["\(FIRAuth.auth()!.currentUser!.uid)":["userID":uid]])
-                
+                self.databaseRef?.child("\(uid)/email").setValue(FIRAuth.auth()!.currentUser!.email)
                 let tabBar = TabBarController()
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.window?.rootViewController = tabBar

@@ -6,45 +6,61 @@
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
 
-//
-//  AddViewController.swift
-//  TaskTiger
-//
-//  Created by Christopher Webb-Orenstein on 9/24/16.
-//  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
-//
-
 import UIKit
+import Firebase
 
 class AddTaskViewController: UIViewController {
     
+    var databaseRef: FIRDatabaseReference!
     let addTaskView = AddTaskView()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         view.addSubview(addTaskView)
+        
         addTaskView.layoutSubviews()
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
+        
         let backButton = UIBarButtonItem(image:UIImage(named:"back-1"), style: .done, target:self, action: #selector(backTapped))
+        
         backButton.title = "Back"
         backButton.tintColor = UIColor.black
+        
         navigationItem.leftBarButtonItem = backButton
         
-        // Do any additional setup after loading the view.
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        
+        self.databaseRef = FIRDatabase.database().reference(withPath:"users/\(uid)/tasks/")
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
         // Dispose of any resources that can be recreated.
     }
     
     func addTaskButtonTapped() {
-        navigationController?.popViewController(animated: false)
+        let uid = NSUUID().uuidString
+        let newTask = Task()
+        newTask.taskID = uid
+        newTask.taskName = addTaskView.taskNameTextField.text!
+        newTask.taskDue = "unknown"
+        newTask.taskDescription = addTaskView.taskDescriptionTextView.text
+        //self.databaseRef?.child("\(uid)/email").setValue(FIRAuth.auth()!.currentUser!.email)
+        self.databaseRef?.child("/taskID").setValue(newTask.taskID)
+        self.databaseRef?.child("\(newTask.taskID)/taskName").setValue(newTask.taskName)
+        self.databaseRef?.child("\(newTask.taskID)/taskDue").setValue(newTask.taskDue)
+        self.databaseRef?.child("\(newTask.taskID)/taskDescription").setValue(newTask.taskDescription)
+        navigationController?.popToRootViewController(animated: false)
         //self.navigationController?.popToRootViewController(animated: false)
     }
     
+    
     func backTapped(sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: false)
+        navigationController?.popToRootViewController(animated: false)
+       // navigationController?.popViewController(animated: false)
     }
     
     
