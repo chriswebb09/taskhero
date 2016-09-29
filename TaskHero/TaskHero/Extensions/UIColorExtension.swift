@@ -6,6 +6,8 @@
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
 
+import UIKit
+
 extension UIColor {
     class func midnightBlueColor()-> UIColor {
         return UIColor(red:0.44, green:0.62, blue:0.80, alpha: 1.0)

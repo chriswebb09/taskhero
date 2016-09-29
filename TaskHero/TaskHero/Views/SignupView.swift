@@ -52,21 +52,21 @@ class SignupView: UIView {
         emailAddressLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginTextFieldWidth).isActive = true
         emailAddressLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
         emailAddressLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        emailAddressLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -230).isActive = true
+        emailAddressLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -210).isActive = true
         
         addSubview(emailAddressTextField)
         emailAddressTextField.translatesAutoresizingMaskIntoConstraints = false
         emailAddressTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginTextFieldWidth).isActive = true
         emailAddressTextField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
         emailAddressTextField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        emailAddressTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant:-180).isActive = true
+        emailAddressTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant:-170).isActive = true
         
         addSubview(confirmEmailAddressLabel)
         confirmEmailAddressLabel.translatesAutoresizingMaskIntoConstraints = false
         confirmEmailAddressLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginTextFieldWidth).isActive = true
         confirmEmailAddressLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
         confirmEmailAddressLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        confirmEmailAddressLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -120).isActive = true
+        confirmEmailAddressLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -110).isActive = true
         
         addSubview(confirmEmailAddressTextField)
         confirmEmailAddressTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +80,7 @@ class SignupView: UIView {
         passwordLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginTextFieldWidth).isActive = true
         passwordLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
         passwordLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        passwordLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20).isActive = true
+        passwordLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
         
         addSubview(passwordTextField)
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ class SignupView: UIView {
         confirmPasswordTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginTextFieldWidth).isActive = true
         confirmPasswordTextField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
         confirmPasswordTextField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        confirmPasswordTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 140).isActive = true
+        confirmPasswordTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 130).isActive = true
         
         addSubview(signUpButton)
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
