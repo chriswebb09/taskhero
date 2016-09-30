@@ -74,7 +74,9 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        tableView.reloadData()
+        DispatchQueue.main.async { [unowned self] in
+            self.tableView.reloadData()
+        }
     }
     
     func getAllTasks() {
@@ -99,8 +101,11 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
                 task.taskID = taskID
             }
             self.tasks.insert(task, at: 0)
-            self.tableView.reloadData()
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
+            }
         })
+        
     }
     
     
@@ -130,6 +135,7 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
             let cell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             
             cell.layoutSubviews()
+            
             cell.usernameLabel.text = "filler text"
             cell.profilePicture.backgroundColor = UIColor.blue
             cell.profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped)))

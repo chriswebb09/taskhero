@@ -10,15 +10,17 @@ import UIKit
 
 
 class InitialView: UIView {
+    
     let containerView = UIView()
-    let logoLabel = UILabel()
+    let logoLabel = UIImageView()
     let welcomeLabel = UILabel()
     
-    
-   
     override func layoutSubviews() {
         super.layoutSubviews()
-       
+        backgroundColor = UIColor.white
+        frame = UIScreen.main.bounds
+        setupConstraints()
+        setupView()
     }
     
     func setupConstraints() {
@@ -35,6 +37,7 @@ class InitialView: UIView {
     }
     
     func setupView() {
-        logoLabel.font = UIFont(name: Constants.font, size: 20)
+        logoLabel.image = UIImage(named: "logo")
+        welcomeLabel.font = UIFont(name: Constants.font, size: 20)
     }
 }

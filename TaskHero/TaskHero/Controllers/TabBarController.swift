@@ -67,7 +67,7 @@ class TabBarController: UITabBarController {
         settingsTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
         settingsTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
         settingsTab.navigationBar.barTintColor = UIColor.white
-        settingsTab.navigationBar.topItem?.title = "Profile"
+        settingsTab.navigationBar.topItem?.title = "Settings"
         
         let controllers = [homeTab, profileTab, settingsTab]
         

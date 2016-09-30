@@ -17,6 +17,7 @@ class LoginView: UIView {
     var passwordLabel = UILabel()
     var passwordTextField = UITextField()
     var loginButton = UIButton()
+    var logoImage = UIImageView()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -27,6 +28,14 @@ class LoginView: UIView {
     }
     
     func setupConstraints() {
+        
+        
+        addSubview(logoImage)
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        logoImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginTextFieldHeight).isActive = true
+        logoImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        logoImage.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -200).isActive = true
         
         addSubview(loginLabel)
         
@@ -120,6 +129,10 @@ class LoginView: UIView {
         
         newUserButton.titleLabel?.font = UIFont(name: Constants.font, size: 16)
         newUserButton.setAttributedTitle(userAttributedString, for: .normal)
+        
+        logoImage.image = UIImage(named: "logo")
+        
+        logoImage.isHidden = true 
     }
     
 }

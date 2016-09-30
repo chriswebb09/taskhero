@@ -33,7 +33,7 @@ class ProfileHeaderCell: UITableViewCell {
         return nameLabel
     }()
     
-    let profilePicture = UIImageView()
+    var profilePicture = UIImageView()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -68,6 +68,6 @@ class ProfileHeaderCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         usernameLabel.text = ""
-        profilePicture = nil
+        profilePicture.image = nil
     }
 }

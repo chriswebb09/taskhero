@@ -22,4 +22,5 @@ struct Constants {
     static let settingsViewLabelHeight = CGFloat(0.2)
     static let settingsFont = UIFont(name:"AvenirNext-Regular", size:20)
     static let loginButtonWidth = CGFloat(0.5)
+    static let kAnimationDuration: TimeInterval = 3.0
 }

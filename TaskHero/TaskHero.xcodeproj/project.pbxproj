@@ -32,6 +32,12 @@
 		AF96FB721D9C3D5000EF7BDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB711D9C3D5000EF7BDE /* User.swift */; };
 		AF96FB751D9C3D6E00EF7BDE /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB741D9C3D6E00EF7BDE /* Task.swift */; };
 		AF96FB771D9C3E2900EF7BDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */; };
+		AF980C0F1D9E016D00A7F644 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C0E1D9E016D00A7F644 /* Animations.swift */; };
+		AF980C111D9E163400A7F644 /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C101D9E163400A7F644 /* RootContainerViewController.swift */; };
+		AF980C131D9E17A900A7F644 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C121D9E17A900A7F644 /* SplashViewController.swift */; };
+		AF980C151D9E183900A7F644 /* TileGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C141D9E183900A7F644 /* TileGridView.swift */; };
+		AF980C171D9E188100A7F644 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C161D9E188100A7F644 /* TileView.swift */; };
+		AF980C191D9E192300A7F644 /* AnimatedULogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C181D9E192300A7F644 /* AnimatedULogoView.swift */; };
 		AFB9E0331D9CF1300085FB9B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */; };
 		AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */; };
 		AFE617CD1D9CC3D7000FF4EE /* TempProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */; };
@@ -73,6 +79,12 @@
 		AF96FB711D9C3D5000EF7BDE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		AF96FB741D9C3D6E00EF7BDE /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Models/Task.swift; sourceTree = "<group>"; };
 		AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AF980C0E1D9E016D00A7F644 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Animations.swift; path = Views/Animations.swift; sourceTree = "<group>"; };
+		AF980C101D9E163400A7F644 /* RootContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootContainerViewController.swift; path = Controllers/RootContainerViewController.swift; sourceTree = "<group>"; };
+		AF980C121D9E17A900A7F644 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = Controllers/SplashViewController.swift; sourceTree = "<group>"; };
+		AF980C141D9E183900A7F644 /* TileGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileGridView.swift; sourceTree = "<group>"; };
+		AF980C161D9E188100A7F644 /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileView.swift; path = Views/TileView.swift; sourceTree = "<group>"; };
+		AF980C181D9E192300A7F644 /* AnimatedULogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedULogoView.swift; path = Views/AnimatedULogoView.swift; sourceTree = "<group>"; };
 		AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Extensions/UIColorExtension.swift; sourceTree = "<group>"; };
 		AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TempProfileView.swift; path = Views/TempProfileView.swift; sourceTree = "<group>"; };
@@ -186,6 +198,8 @@
 				AF5107501D9C5EAB001928B7 /* AddTaskViewController.swift */,
 				AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */,
 				AFE874141D9DD3B2006B3CFA /* SettingsViewController.swift */,
+				AF980C101D9E163400A7F644 /* RootContainerViewController.swift */,
+				AF980C121D9E17A900A7F644 /* SplashViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -201,6 +215,10 @@
 				AF96FB621D9C3C2D00EF7BDE /* LoginView.swift */,
 				AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */,
 				AF96FB691D9C3CD400EF7BDE /* SignupView.swift */,
+				AF980C0E1D9E016D00A7F644 /* Animations.swift */,
+				AF980C181D9E192300A7F644 /* AnimatedULogoView.swift */,
+				AF980C141D9E183900A7F644 /* TileGridView.swift */,
+				AF980C161D9E188100A7F644 /* TileView.swift */,
 				AF51073F1D9C5DB5001928B7 /* Cells */,
 			);
 			name = Views;
@@ -367,6 +385,7 @@
 				AFE874131D9DC4B3006B3CFA /* ProfilePictureView.swift in Sources */,
 				AF96FB6A1D9C3CD400EF7BDE /* SignupView.swift in Sources */,
 				AF5107411D9C5DD3001928B7 /* ProfileHeaderCell.swift in Sources */,
+				AF980C171D9E188100A7F644 /* TileView.swift in Sources */,
 				AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */,
 				AFE617CD1D9CC3D7000FF4EE /* TempProfileView.swift in Sources */,
 				AF9162B91D9C434C0054233B /* HomeView.swift in Sources */,
@@ -379,17 +398,22 @@
 				AF51074F1D9C5E78001928B7 /* AddTaskView.swift in Sources */,
 				AF51075A1D9C5FC9001928B7 /* InitialView.swift in Sources */,
 				AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */,
+				AF980C0F1D9E016D00A7F644 /* Animations.swift in Sources */,
 				AFE874111D9DC3FF006B3CFA /* ProfilePicViewController.swift in Sources */,
 				AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */,
 				AF5107511D9C5EAB001928B7 /* AddTaskViewController.swift in Sources */,
+				AF980C111D9E163400A7F644 /* RootContainerViewController.swift in Sources */,
 				AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */,
 				AF5107451D9C5DFA001928B7 /* ProfileDataCell.swift in Sources */,
 				AF5107471D9C5E0E001928B7 /* TeamBannerCell.swift in Sources */,
 				AF96FB681D9C3C8F00EF7BDE /* TabBarController.swift in Sources */,
 				AFE874151D9DD3B2006B3CFA /* SettingsViewController.swift in Sources */,
+				AF980C131D9E17A900A7F644 /* SplashViewController.swift in Sources */,
 				AF96FB701D9C3D3E00EF7BDE /* TaskCell.swift in Sources */,
+				AF980C151D9E183900A7F644 /* TileGridView.swift in Sources */,
 				AF96FB721D9C3D5000EF7BDE /* User.swift in Sources */,
 				AF96FB661D9C3C7400EF7BDE /* Constants.swift in Sources */,
+				AF980C191D9E192300A7F644 /* AnimatedULogoView.swift in Sources */,
 				AF5107531D9C5EEB001928B7 /* ProfileBannerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
