@@ -26,12 +26,20 @@ class InitialView: UIView {
     func setupConstraints() {
         addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         containerView.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.75).isActive = true
         containerView.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
+        //containerView.backgroundColor = UIColor.red
         
         containerView.addSubview(logoLabel)
-        logoLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.25).isActive = true
-        logoLabel.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.25).isActive = true
+        logoLabel.translatesAutoresizingMaskIntoConstraints = false
+        //logoLabel.backgroundColor = UIColor.purple
+        logoLabel.centerXAnchor.constraint(equalTo:centerXAnchor).isActive = true
+        logoLabel.centerYAnchor.constraint(equalTo:centerYAnchor).isActive = true
+        logoLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3).isActive = true
+        logoLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.08).isActive = true
+        containerView.bringSubview(toFront: logoLabel)
         
         containerView.addSubview(welcomeLabel)
     }

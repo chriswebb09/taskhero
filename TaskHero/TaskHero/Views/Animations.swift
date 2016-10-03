@@ -16,13 +16,9 @@ class Animations {
     var velocity = 0.7
     
     func springWithDelay(duration: TimeInterval, delay: TimeInterval, animations: (() -> Void)!) {
-        
         UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
-            
             animations()
-            
             }, completion: { finished in
-                
         })
     }
     
