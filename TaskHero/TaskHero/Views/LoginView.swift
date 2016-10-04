@@ -113,10 +113,16 @@ class LoginView: UIView {
         
         usernameTextField.layer.borderColor = UIColor.black.cgColor
         usernameTextField.layer.borderWidth = 1
-        //usernameTextField.layer.cornerRadius = 4
+        usernameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+        usernameTextField.placeholder = "Email Address"
+        usernameTextField.autocapitalizationType = .none
+        ///usernameTextField.drawText(CGRect(x: bounds.origin.x + 30, y: bounds.origin.y, width: bounds.width, height: bounds.height))
         
         passwordTextField.layer.borderColor = UIColor.black.cgColor
         passwordTextField.layer.borderWidth = 1
+        passwordTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+        passwordTextField.placeholder = "Password"
+        passwordTextField.isSecureTextEntry = true
         //passwordTextField.layer.cornerRadius = 4
         
         loginButton.layer.borderWidth = 1

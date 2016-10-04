@@ -16,8 +16,6 @@ class ProfilePictureViewController: UIViewController {
     var databaseRef: FIRDatabaseReference!
     let uid = FIRAuth.auth()!.currentUser!.uid
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,12 +52,6 @@ class ProfilePictureViewController: UIViewController {
         navigationController?.popToRootViewController(animated: false)
     }
     
- //   func backTapped(sender: UIBarButtonItem) {
-       // navigationController?.navigationBar.backItem?.backBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
-            //.setTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!]
-       // navigationController?.popToRootViewController(animated: false)
-//}
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         profilePictureView.profilePicture.image = image
         self.dismiss(animated: true, completion: nil)
@@ -83,16 +75,5 @@ class ProfilePictureViewController: UIViewController {
             
        // }
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

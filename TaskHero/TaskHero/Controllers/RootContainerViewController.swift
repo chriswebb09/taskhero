@@ -23,17 +23,20 @@ class RootContainerViewController: UIViewController {
 
     
     func showSplashViewController() {
+        
         rootViewController.willMove(toParentViewController: nil)
         rootViewController.removeFromParentViewController()
         rootViewController.view.removeFromSuperview()
         rootViewController.didMove(toParentViewController: nil)
         
         let splashViewController = SplashViewController()
+        
         rootViewController = splashViewController
         splashViewController.willMove(toParentViewController: self)
         addChildViewController(splashViewController)
         view.addSubview(splashViewController.view)
         splashViewController.didMove(toParentViewController: self)
+        
         delay(6.00) {
             self.showLoginViewController()
         }
@@ -44,9 +47,7 @@ class RootContainerViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let loginVC = LoginViewController()
         appDelegate.window?.rootViewController = loginVC
-   
     }
-
     
     public func delay(_ delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(

@@ -14,15 +14,8 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     var parentNavigationController: UINavigationController?
     var searchController = UISearchController(searchResultsController: nil)
     var databaseRef: FIRDatabaseReference!
-    // var tasksDataSnapshot = [FIRDataSnapshot]()
     var tasks = [Task]()
     let uid = FIRAuth.auth()!.currentUser!.uid
-    //var databaseRef: FIRDatabaseReference!
-    //var storageRef: FIRStorageReference!
-    
-    
-    
-    
     
     override func viewDidLoad() {
         
@@ -80,7 +73,9 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     func getAllTasks() {
+        
         tasks.removeAll()
+        
         databaseRef.observe(.childAdded, with: { (snapshot) -> Void in
             let data = snapshot.value
             let task = Task()
@@ -105,7 +100,6 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
                 self.tableView.reloadData()
             }
         })
-        
     }
     
     
@@ -125,7 +119,6 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         return 1
     }
     
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
@@ -141,8 +134,10 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
             cell.usernameLabel.text = "filler text"
             cell.profilePicture.backgroundColor = UIColor.blue
             cell.profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped)))
+            
             return cell
         } else {
+            
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             
             taskCell.layoutSubviews()
@@ -151,22 +146,13 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
             taskCell.taskDue.text =  tasks[indexPath.row].taskDue
             
             if tasks[indexPath.row].completed == true {
-                
                 taskCell.taskCompletedLabel.image = UIImage(named: "checked")
-                
             } else if tasks[indexPath.row].completed == false {
-                
                 taskCell.taskCompletedLabel.image = UIImage(named: "cancel")
-                
             }
-            
             return taskCell
         }
     }
-    
-    
-    
-    
 }
 
 extension HomeViewController: ProfileHeaderCellDelegate {

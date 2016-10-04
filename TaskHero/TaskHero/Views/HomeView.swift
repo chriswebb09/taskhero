@@ -27,6 +27,7 @@ class HomeView: UIView {
     }
     
     func setupConstraints() {
+        
         addSubview(settingsViewLabel)
         settingsViewLabel.translatesAutoresizingMaskIntoConstraints = false
         settingsViewLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.settingsViewLabelWidth).isActive = true

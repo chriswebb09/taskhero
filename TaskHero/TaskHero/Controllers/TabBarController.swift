@@ -86,8 +86,6 @@ class TabBarController: UITabBarController {
         } catch let logoutError {
             print(logoutError)
         }
-        
-        //...
     }
 }
 

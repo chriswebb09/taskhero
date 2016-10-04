@@ -17,7 +17,6 @@ class SplashViewController: UIViewController {
         
         view.addSubview(initialView)
         initialView.layoutSubviews()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

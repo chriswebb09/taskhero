@@ -125,7 +125,8 @@ class SignupView: UIView {
         emailAddressLabel.text = "Email"
         emailAddressLabel.textAlignment = .center
         emailAddressLabel.font = Constants.settingsFont
-        
+    
+        emailAddressTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         emailAddressTextField.placeholder = "Enter your email address"
         emailAddressTextField.layer.borderWidth = 1
         emailAddressTextField.layer.cornerRadius = 4
@@ -136,6 +137,7 @@ class SignupView: UIView {
         confirmEmailAddressLabel.textAlignment = .center
         confirmEmailAddressLabel.font = Constants.settingsFont
         
+        confirmEmailAddressTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         confirmEmailAddressTextField.placeholder = "Confirm your email address"
         confirmEmailAddressTextField.layer.borderWidth = 1
         confirmEmailAddressTextField.layer.cornerRadius = 4
@@ -145,6 +147,7 @@ class SignupView: UIView {
         passwordLabel.textAlignment = .center
         passwordLabel.font = Constants.settingsFont
         
+        passwordTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         passwordTextField.placeholder = "Choose a password"
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 4
@@ -155,6 +158,7 @@ class SignupView: UIView {
         confirmPasswordLabel.textAlignment = .center
         confirmPasswordLabel.font = Constants.settingsFont
         
+        confirmPasswordTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         confirmPasswordTextField.placeholder = "Confirm your password"
         confirmPasswordTextField.layer.borderWidth = 1
         confirmPasswordTextField.layer.borderColor = UIColor.black.cgColor
