@@ -126,6 +126,7 @@ class SignupView: UIView {
         emailAddressLabel.textAlignment = .center
         emailAddressLabel.font = Constants.settingsFont
         
+        emailAddressTextField.placeholder = "Enter your email address"
         emailAddressTextField.layer.borderWidth = 1
         emailAddressTextField.layer.cornerRadius = 4
         emailAddressTextField.layer.borderColor = UIColor.black.cgColor
@@ -135,6 +136,7 @@ class SignupView: UIView {
         confirmEmailAddressLabel.textAlignment = .center
         confirmEmailAddressLabel.font = Constants.settingsFont
         
+        confirmEmailAddressTextField.placeholder = "Confirm your email address"
         confirmEmailAddressTextField.layer.borderWidth = 1
         confirmEmailAddressTextField.layer.cornerRadius = 4
         confirmEmailAddressTextField.layer.borderColor = UIColor.black.cgColor
@@ -143,19 +145,21 @@ class SignupView: UIView {
         passwordLabel.textAlignment = .center
         passwordLabel.font = Constants.settingsFont
         
+        passwordTextField.placeholder = "Choose a password"
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 4
         passwordTextField.layer.borderColor = UIColor.black.cgColor
-        
+        passwordTextField.isSecureTextEntry = true
         
         confirmPasswordLabel.text = "Confirm Password"
         confirmPasswordLabel.textAlignment = .center
         confirmPasswordLabel.font = Constants.settingsFont
         
+        confirmPasswordTextField.placeholder = "Confirm your password"
         confirmPasswordTextField.layer.borderWidth = 1
         confirmPasswordTextField.layer.borderColor = UIColor.black.cgColor
         confirmPasswordTextField.layer.cornerRadius = 4
-        
+        confirmPasswordTextField.isSecureTextEntry = true
         
         signUpButton.layer.borderWidth = 1
         signUpButton.layer.cornerRadius = 4

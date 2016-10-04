@@ -76,6 +76,7 @@ class LoginView: UIView {
         passwordTextField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.searchTextFieldHeight).isActive = true
         passwordTextField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         passwordTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+        passwordTextField.isSecureTextEntry = true
         
         addSubview(loginButton)
         

@@ -22,10 +22,6 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.databaseRef = FIRDatabase.database().reference(withPath:"users")
-        
-        //self.ref = self.database?.reference(withPath:"users")
-        
-        
         view.addSubview(signupView)
         signupView.layoutSubviews()
         signupView.signUpButton.addTarget(self, action: #selector(createUserButtonTapped), for: .touchUpInside)
@@ -44,7 +40,6 @@ class SignupViewController: UIViewController {
         guard let email = signupView.emailAddressTextField.text, let password = signupView.passwordTextField.text else { return }
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
-            // let uid = NSUUID().uuidString
             if let error = error {
                 print(error.localizedDescription)
             } else {
@@ -57,14 +52,5 @@ class SignupViewController: UIViewController {
             }
         }
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

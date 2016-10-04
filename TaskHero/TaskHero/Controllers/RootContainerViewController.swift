@@ -20,22 +20,7 @@ class RootContainerViewController: UIViewController {
         super.viewDidLoad()
         showSplashViewController()
     }
-    
-    
-//    func check() {
-//        rootViewController.willMove(toParentViewController: nil)
-//        rootViewController.removeFromParentViewController()
-//        rootViewController.view.removeFromSuperview()
-//        rootViewController.didMove(toParentViewController: nil)
-//    
-//        let splashViewController = SplashViewController()
-//        rootViewController = splashViewController
-//        splashViewController.willMove(toParentViewController: self)
-//        addChildViewController(splashViewController)
-//        view.addSubview(splashViewController.view)
-//        splashViewController.didMove(toParentViewController: self)
-//
-//    }
+
     
     func showSplashViewController() {
         rootViewController.willMove(toParentViewController: nil)
@@ -53,9 +38,6 @@ class RootContainerViewController: UIViewController {
             self.showLoginViewController()
         }
     }
-    
-    
-    
     
     func showLoginViewController() {
         guard !(rootViewController is LoginViewController) else { return }

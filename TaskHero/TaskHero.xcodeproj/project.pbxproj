@@ -38,6 +38,7 @@
 		AF980C1B1D9E345000A7F644 /* SwiftCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C1A1D9E345000A7F644 /* SwiftCamera.swift */; };
 		AFB9E0331D9CF1300085FB9B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */; };
 		AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */; };
+		AFC8AB971DA33EF700252E44 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC8AB961DA33EF700252E44 /* Helpers.swift */; };
 		AFE617CD1D9CC3D7000FF4EE /* TempProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */; };
 		AFE617CF1D9CC413000FF4EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */; };
 		AFE874111D9DC3FF006B3CFA /* ProfilePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE874101D9DC3FF006B3CFA /* ProfilePicViewController.swift */; };
@@ -83,6 +84,7 @@
 		AF980C1A1D9E345000A7F644 /* SwiftCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftCamera.swift; path = Utilities/SwiftCamera.swift; sourceTree = "<group>"; };
 		AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Extensions/UIColorExtension.swift; sourceTree = "<group>"; };
+		AFC8AB961DA33EF700252E44 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = Extensions/Helpers.swift; sourceTree = "<group>"; };
 		AFE617CC1D9CC3D7000FF4EE /* TempProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TempProfileView.swift; path = Views/TempProfileView.swift; sourceTree = "<group>"; };
 		AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Controllers/ProfileViewController.swift; sourceTree = "<group>"; };
 		AFE874101D9DC3FF006B3CFA /* ProfilePicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilePicViewController.swift; path = Controllers/ProfilePicViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		AFB9E0361D9CF1F80085FB9B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AFC8AB961DA33EF700252E44 /* Helpers.swift */,
 				AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */,
 			);
 			name = Extensions;
@@ -379,6 +382,7 @@
 				AFE874131D9DC4B3006B3CFA /* ProfilePictureView.swift in Sources */,
 				AF980C1B1D9E345000A7F644 /* SwiftCamera.swift in Sources */,
 				AF96FB6A1D9C3CD400EF7BDE /* SignupView.swift in Sources */,
+				AFC8AB971DA33EF700252E44 /* Helpers.swift in Sources */,
 				AF5107411D9C5DD3001928B7 /* ProfileHeaderCell.swift in Sources */,
 				AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */,
 				AFE617CD1D9CC3D7000FF4EE /* TempProfileView.swift in Sources */,

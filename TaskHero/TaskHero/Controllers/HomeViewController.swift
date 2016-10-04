@@ -14,13 +14,13 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     var parentNavigationController: UINavigationController?
     var searchController = UISearchController(searchResultsController: nil)
     var databaseRef: FIRDatabaseReference!
-   // var tasksDataSnapshot = [FIRDataSnapshot]()
+    // var tasksDataSnapshot = [FIRDataSnapshot]()
     var tasks = [Task]()
     let uid = FIRAuth.auth()!.currentUser!.uid
     //var databaseRef: FIRDatabaseReference!
     //var storageRef: FIRStorageReference!
     
-   
+    
     
     
     
@@ -44,8 +44,8 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-gray")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
         
-//        let barButton = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-//        barButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.font, size: 20)!], for: .normal)
+        //        let barButton = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        //        barButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.font, size: 20)!], for: .normal)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         
@@ -112,7 +112,9 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filterContentForSearchText(searchText: searchText)
-            tableView.reloadData()
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
+            }
         }
     }
     
