@@ -1,9 +1,9 @@
-# Task Hero Application
+<h1 align="center">Task Hero Application</h1>
 
 - Work in progress 
 
 
-## Login 
+<h2 align="center">Log In</h2>
 ___
 
 <p align="center">
@@ -13,7 +13,7 @@ ___
 
 
 
-## Add Task 
+<h2 align="center">Add Task</h2>
 ___
 
 <p align="center">
