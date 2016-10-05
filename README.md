@@ -1,4 +1,4 @@
-<h1>Task Hero Application</h1>
+<h1 align="center">Task Hero Application</h1>
 
 <ul>
   <li type="circle">Work in progress </li>
