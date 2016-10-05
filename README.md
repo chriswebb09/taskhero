@@ -1,7 +1,8 @@
 <h1 align="center">Task Hero Application</h1>
 
-- Work in progress 
-
+<ul align="center">
+  <li type="circle">Work in progress </li>
+</ul>
 
 <h2 align="center">Log In</h2>
 ___
