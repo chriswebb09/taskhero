@@ -6,10 +6,17 @@
 ## Login 
 ___
 
-![login](https://github.com/chriswebb09/taskhero/blob/master/login.jpg)
+<p align="center">
+  <br><br>
+  <img src="https://github.com/chriswebb09/taskhero/blob/master/login.jpg">
+</p>
+
 
 
 ## Add Task 
 ___
 
-![task](https://github.com/chriswebb09/taskhero/blob/master/task.jpg)
+<p align="center">
+  <br><br>
+  <img src="https://github.com/chriswebb09/taskhero/blob/master/task.jpg">
+</p>
