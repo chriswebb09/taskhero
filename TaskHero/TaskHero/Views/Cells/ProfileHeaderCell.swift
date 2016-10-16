@@ -71,6 +71,8 @@ class ProfileHeaderCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.contentView.layoutIfNeeded()
+        
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
@@ -98,10 +100,10 @@ class ProfileHeaderCell: UITableViewCell {
         contentView.addSubview(profilePicture)
         
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        profilePicture.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        profilePicture.widthAnchor.constraint(equalToConstant: 160).isActive = true
+        profilePicture.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        profilePicture.widthAnchor.constraint(equalToConstant: 140).isActive = true
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         
         contentView.addSubview(levelLabel)
         

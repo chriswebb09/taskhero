@@ -98,8 +98,8 @@ class Database {
     
     
     func removeTask(ref:String) {
-//        self.tasksRef = self.userRef.child(self.store.currentUserString).child("Tasks")
-//        self.tasksRef.child(ref).removeValue()
+        self.tasksRef = self.userRef.child(self.store.currentUserString).child("Tasks")
+        self.tasksRef.child(ref).removeValue()
     }
     
     

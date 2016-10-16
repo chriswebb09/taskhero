@@ -33,7 +33,8 @@ class TabBarController: UITabBarController {
         
         tabBar.frame = tabFrame
         tabBar.tintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
-        tabBar.barTintColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
+        tabBar.barTintColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:0.5)
+        tabBar.isTranslucent = true
     }
     
     func setupControllers() {

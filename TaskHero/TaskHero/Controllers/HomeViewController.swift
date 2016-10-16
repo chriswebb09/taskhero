@@ -61,6 +61,7 @@ class HomeViewController: UITableViewController {
             }
             
         })
+        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,7 +74,11 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.store.tasks.count + 1
+        if self.store.tasks.count < 1 {
+            return 1
+        } else {
+            return self.store.tasks.count + 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,6 +89,7 @@ class HomeViewController: UITableViewController {
             headerCell.layoutMargins = UIEdgeInsets.zero
             headerCell.preservesSuperviewLayoutMargins = false
             headerCell.layoutSubviews()
+            headerCell.layoutIfNeeded()
             
             headerCell.usernameLabel.text = "Username: \(self.store.currentUser.username)"
             headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
@@ -98,6 +104,7 @@ class HomeViewController: UITableViewController {
             taskCell.preservesSuperviewLayoutMargins = false
             taskCell.layoutSubviews()
             
+            
             taskCell.contentView.backgroundColor = UIColor.clear
             let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:self.view.frame.size.width, height:height))
             
@@ -107,14 +114,16 @@ class HomeViewController: UITableViewController {
             cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.35)
             cellView.layer.shadowOpacity = 0.1
             
+            
+            let cellindex = (indexPath.row) - 1
             taskCell.contentView.addSubview(cellView)
             taskCell.contentView.sendSubview(toBack: cellView)
             
-            taskCell.taskNameLabel.text = self.store.tasks[indexPath.row - 1].taskName
-            taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[indexPath.row - 1].taskDescription)"
-            taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[indexPath.row - 1].taskDue)"
+            taskCell.taskNameLabel.text = self.store.tasks[cellindex].taskName
+            taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[cellindex].taskDescription)"
+            taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[cellindex].taskDue)"
             
-            if self.store.tasks[indexPath.row - 1].taskCompleted {
+            if self.store.tasks[cellindex].taskCompleted {
                 taskCell.taskCompletedView.image = UIImage(named:"checked")
             }
             
@@ -123,17 +132,39 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
+            tableView.beginUpdates()
+    
             
-            let removeTaskID = self.store.tasks[indexPath.row].taskID
+            
+            print("ROWS \(self.tableView.numberOfRows(inSection: 0))")
+            
+           
             
             
             DispatchQueue.main.async {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                self.tableView.reloadData()
+                var removeTaskID: String
+                if (indexPath.row) == 0 {
+                    print("top")
+                    print(indexPath.row)
+                    return
+                } else {
+                    print(indexPath.row)
+                    removeTaskID = self.store.tasks[indexPath.row - 1].taskID
+                }
+                print("INDEX PATH \(indexPath.row)")
+                print(removeTaskID)
+                self.schema.removeTask(ref: removeTaskID)
+                self.store.tasks.remove(at: indexPath.row - 1)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
             }
-            self.schema.removeTask(ref: removeTaskID)
-            //self.store.tasks.remove(at: indexPath.row)
+            tableView.reloadData()
+            
+            
+            
+            
             
            
         } else if editingStyle == .insert {
