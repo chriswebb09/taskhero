@@ -20,7 +20,7 @@ class ProfileHeaderCell: UITableViewCell {
     let joinDateLabel: UITextView = {
         let joinDateLabel = UITextView()
         joinDateLabel.textColor = UIColor.black
-        joinDateLabel.font = UIFont(name: Constants.helveticaLight, size: 18)
+        joinDateLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         joinDateLabel.textAlignment = .right
         joinDateLabel.layer.masksToBounds = true
         joinDateLabel.isScrollEnabled = false
@@ -31,12 +31,35 @@ class ProfileHeaderCell: UITableViewCell {
     lazy var usernameLabel: UILabel = {
         let usernameLabel = UILabel()
         usernameLabel.textColor = UIColor.black
-        usernameLabel.font = UIFont(name: Constants.helveticaLight, size: 18)
+        usernameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         usernameLabel.textAlignment = .center
         usernameLabel.sizeToFit()
         usernameLabel.layer.masksToBounds = true
         return usernameLabel
     }()
+    
+    lazy var experiencePointsLabel: UILabel = {
+        let experiencePointsLabel = UILabel()
+        experiencePointsLabel.textColor = UIColor.black
+        experiencePointsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        experiencePointsLabel.textAlignment = .center
+        experiencePointsLabel.sizeToFit()
+        experiencePointsLabel.layer.masksToBounds = true
+        return experiencePointsLabel
+    }()
+    
+    
+    lazy var levelLabel: UILabel = {
+        let levelLabel = UILabel()
+        levelLabel.textColor = UIColor.black
+        levelLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        levelLabel.textAlignment = .right
+        levelLabel.sizeToFit()
+        levelLabel.layer.masksToBounds = true
+        return levelLabel
+    }()
+    
+    
     
     
     lazy var profilePicture: UIImageView = {
@@ -79,6 +102,15 @@ class ProfileHeaderCell: UITableViewCell {
         profilePicture.widthAnchor.constraint(equalToConstant: 160).isActive = true
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        
+        contentView.addSubview(levelLabel)
+        
+        levelLabel.translatesAutoresizingMaskIntoConstraints = false
+        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
+        levelLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
+        levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true 
+        
         
     }
     

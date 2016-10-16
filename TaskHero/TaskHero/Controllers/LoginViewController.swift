@@ -42,6 +42,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
+        textField.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
     func handleLogin() {
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             

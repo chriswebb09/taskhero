@@ -15,7 +15,7 @@ class ProfileDataCell: UITableViewCell {
     lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.textColor = UIColor.black
-        levelLabel.font = UIFont(name: Constants.helveticaLight, size: 18)
+        levelLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         levelLabel.textAlignment = .center
         return levelLabel
     }()

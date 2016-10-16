@@ -55,7 +55,8 @@ class ProfileViewController: UITableViewController {
             bannerCell.layoutSubviews()
             bannerCell.layoutMargins = UIEdgeInsets.zero
             bannerCell.preservesSuperviewLayoutMargins = false
-            bannerCell.bannerImage.image = UIImage(named: "banner")
+            bannerCell.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+            //bannerCell.bannerImage.image = UIImage(named: "banner")
             
             return bannerCell
         } else if indexPath.row == 1 {

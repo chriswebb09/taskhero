@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     override init() {
-        super.init()
         FIRApp.configure()
     }
     

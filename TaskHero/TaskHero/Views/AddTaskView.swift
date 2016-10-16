@@ -14,7 +14,8 @@ class AddTaskView: UIView {
         let taskNameLabel = UITextView()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
-        taskNameLabel.font = UIFont(name: Constants.helveticaLight, size: 18)
+         "HelveticaNeue-Thin"
+        taskNameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         taskNameLabel.textAlignment = .center
         taskNameLabel.layer.masksToBounds = true
         taskNameLabel.isScrollEnabled = false
@@ -42,6 +43,8 @@ class AddTaskView: UIView {
         taskDescriptionBox.layer.borderWidth = 1
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
         taskDescriptionBox.layer.cornerRadius = 2
+        taskDescriptionBox.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        taskDescriptionBox.contentInset = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0)
         return taskDescriptionBox
     }()
     

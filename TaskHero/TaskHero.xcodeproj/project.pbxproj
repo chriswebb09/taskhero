@@ -19,8 +19,9 @@
 		AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107541D9C5F00001928B7 /* TeamHeaderCell.swift */; };
 		AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107561D9C5F0F001928B7 /* TeamDataCell.swift */; };
 		AF51075A1D9C5FC9001928B7 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107591D9C5FC9001928B7 /* InitialView.swift */; };
+		AF5A451B1DB31D6F004A05D7 /* CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5A451A1DB31D6F004A05D7 /* CustomAlertController.swift */; };
+		AF5A451D1DB321CC004A05D7 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5A451C1DB321CC004A05D7 /* String+Extension.swift */; };
 		AF9162B71D9C40430054233B /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9162B61D9C40430054233B /* DataStore.swift */; };
-		AF9162B91D9C434C0054233B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9162B81D9C434C0054233B /* HomeView.swift */; };
 		AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB4D1D9C3B9200EF7BDE /* AppDelegate.swift */; };
 		AF96FB581D9C3B9200EF7BDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF96FB561D9C3B9200EF7BDE /* LaunchScreen.storyboard */; };
 		AF96FB601D9C3C0C00EF7BDE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB5F1D9C3C0C00EF7BDE /* HomeViewController.swift */; };
@@ -54,6 +55,7 @@
 		5FB09A64859F9A95DA45F2FD /* Pods-TaskHero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.debug.xcconfig"; sourceTree = "<group>"; };
 		AF2C759A1DB30FF8002E1DDF /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskListViewController.swift; path = Controllers/TaskListViewController.swift; sourceTree = "<group>"; };
 		AF3AF2DA1DB31413008C378B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AF3AF2DC1DB31731008C378B /* TaskHero.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskHero.entitlements; sourceTree = "<group>"; };
 		AF5107401D9C5DD3001928B7 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileHeaderCell.swift; path = Views/Cells/ProfileHeaderCell.swift; sourceTree = "<group>"; };
 		AF5107441D9C5DFA001928B7 /* ProfileDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDataCell.swift; path = Views/Cells/ProfileDataCell.swift; sourceTree = "<group>"; };
 		AF5107461D9C5E0E001928B7 /* TeamBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamBannerCell.swift; path = Views/Cells/TeamBannerCell.swift; sourceTree = "<group>"; };
@@ -63,8 +65,9 @@
 		AF5107541D9C5F00001928B7 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamHeaderCell.swift; path = Views/Cells/TeamHeaderCell.swift; sourceTree = "<group>"; };
 		AF5107561D9C5F0F001928B7 /* TeamDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamDataCell.swift; path = Views/Cells/TeamDataCell.swift; sourceTree = "<group>"; };
 		AF5107591D9C5FC9001928B7 /* InitialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialView.swift; path = Views/InitialView.swift; sourceTree = "<group>"; };
+		AF5A451A1DB31D6F004A05D7 /* CustomAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAlertController.swift; path = Controllers/CustomAlertController.swift; sourceTree = "<group>"; };
+		AF5A451C1DB321CC004A05D7 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Extension.swift"; path = "Extensions/String+Extension.swift"; sourceTree = "<group>"; };
 		AF9162B61D9C40430054233B /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = Models/DataStore.swift; sourceTree = "<group>"; };
-		AF9162B81D9C434C0054233B /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = Views/HomeView.swift; sourceTree = "<group>"; };
 		AF96FB4A1D9C3B9200EF7BDE /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF96FB4D1D9C3B9200EF7BDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF96FB541D9C3B9200EF7BDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 		AF96FB4C1D9C3B9200EF7BDE /* TaskHero */ = {
 			isa = PBXGroup;
 			children = (
+				AF3AF2DC1DB31731008C378B /* TaskHero.entitlements */,
 				AF96FB4D1D9C3B9200EF7BDE /* AppDelegate.swift */,
 				AF96FB611D9C3C1B00EF7BDE /* Controllers */,
 				AF96FB541D9C3B9200EF7BDE /* Assets.xcassets */,
@@ -203,6 +207,7 @@
 				AF980C101D9E163400A7F644 /* RootContainerViewController.swift */,
 				AF980C121D9E17A900A7F644 /* SplashViewController.swift */,
 				AF2C759A1DB30FF8002E1DDF /* TaskListViewController.swift */,
+				AF5A451A1DB31D6F004A05D7 /* CustomAlertController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -213,7 +218,6 @@
 				AFE874121D9DC4B3006B3CFA /* ProfilePictureView.swift */,
 				AF51074E1D9C5E78001928B7 /* AddTaskView.swift */,
 				AF5107591D9C5FC9001928B7 /* InitialView.swift */,
-				AF9162B81D9C434C0054233B /* HomeView.swift */,
 				AF96FB651D9C3C7400EF7BDE /* Constants.swift */,
 				AF96FB621D9C3C2D00EF7BDE /* LoginView.swift */,
 				AF96FB691D9C3CD400EF7BDE /* SignupView.swift */,
@@ -248,6 +252,7 @@
 				AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */,
 				AFB067901DB30DCF0016D8B3 /* UserDefaults+Extension.swift */,
 				AFB067921DB30DF00016D8B3 /* NSDate+Extension.swift */,
+				AF5A451C1DB321CC004A05D7 /* String+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -300,7 +305,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -396,7 +401,6 @@
 				AFC8AB971DA33EF700252E44 /* Helpers.swift in Sources */,
 				AF5107411D9C5DD3001928B7 /* ProfileHeaderCell.swift in Sources */,
 				AF5107551D9C5F00001928B7 /* TeamHeaderCell.swift in Sources */,
-				AF9162B91D9C434C0054233B /* HomeView.swift in Sources */,
 				AFE617CF1D9CC413000FF4EE /* ProfileViewController.swift in Sources */,
 				AF96FB6C1D9C3CEB00EF7BDE /* SignupViewController.swift in Sources */,
 				AFB0678E1DB30D4B0016D8B3 /* DB.swift in Sources */,
@@ -411,6 +415,7 @@
 				AF5107571D9C5F0F001928B7 /* TeamDataCell.swift in Sources */,
 				AF980C0F1D9E016D00A7F644 /* Animations.swift in Sources */,
 				AFE874111D9DC3FF006B3CFA /* ProfilePicViewController.swift in Sources */,
+				AF5A451B1DB31D6F004A05D7 /* CustomAlertController.swift in Sources */,
 				AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */,
 				AF5107511D9C5EAB001928B7 /* AddTaskViewController.swift in Sources */,
 				AF980C111D9E163400A7F644 /* RootContainerViewController.swift in Sources */,
@@ -423,6 +428,7 @@
 				AF980C131D9E17A900A7F644 /* SplashViewController.swift in Sources */,
 				AF96FB701D9C3D3E00EF7BDE /* TaskCell.swift in Sources */,
 				AF96FB721D9C3D5000EF7BDE /* User.swift in Sources */,
+				AF5A451D1DB321CC004A05D7 /* String+Extension.swift in Sources */,
 				AF96FB661D9C3C7400EF7BDE /* Constants.swift in Sources */,
 				AF5107531D9C5EEB001928B7 /* ProfileBannerCell.swift in Sources */,
 			);
@@ -543,6 +549,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TaskHero/TaskHero.entitlements;
 				DEVELOPMENT_TEAM = 4SZP4Q326F;
 				INFOPLIST_FILE = TaskHero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -558,6 +565,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TaskHero/TaskHero.entitlements;
 				DEVELOPMENT_TEAM = 4SZP4Q326F;
 				INFOPLIST_FILE = TaskHero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -86,8 +86,9 @@ class HomeViewController: UITableViewController {
             headerCell.layoutSubviews()
             
             headerCell.usernameLabel.text = "Username: \(self.store.currentUser.username)"
-            headerCell.profilePicture.image = UIImage(named: "profileImage")
+            headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
             headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
+            headerCell.levelLabel.text = "Level Reached: Task Goat"
             return headerCell
         } else {
             
@@ -112,8 +113,49 @@ class HomeViewController: UITableViewController {
             taskCell.taskNameLabel.text = self.store.tasks[indexPath.row - 1].taskName
             taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[indexPath.row - 1].taskDescription)"
             taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[indexPath.row - 1].taskDue)"
+            
+            if self.store.tasks[indexPath.row - 1].taskCompleted {
+                taskCell.taskCompletedView.image = UIImage(named:"checked")
+            }
+            
             return taskCell
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let removeTaskID = self.store.tasks[indexPath.row].taskID
+            
+            
+            DispatchQueue.main.async {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                self.tableView.reloadData()
+            }
+            self.schema.removeTask(ref: removeTaskID)
+            //self.store.tasks.remove(at: indexPath.row)
+            
+           
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
+    
+    
+    func setupAlert() {
+        let alertController = UIAlertController(title: "Delete", message: "Edit\nor Delete Task?", preferredStyle: .alert)
+        
+        let actionYes = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction) in
+            print("delete")
+        }
+        
+        let actionNo = UIAlertAction(title: "No", style: .default) { (action:UIAlertAction) in
+            print("dont delete")
+        }
+        
+        alertController.addAction(actionYes)
+        alertController.addAction(actionNo)
+        self.present(alertController, animated: true, completion:nil)
     }
     
     

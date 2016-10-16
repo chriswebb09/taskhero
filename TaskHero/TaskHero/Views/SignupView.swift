@@ -14,7 +14,7 @@ class SignupView: UIView {
         let signupViewLabel = UILabel()
         signupViewLabel.textColor = UIColor.black
         signupViewLabel.text = "Become a Member"
-        signupViewLabel.font = UIFont(name: Constants.font, size: 30)
+        signupViewLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30)
         signupViewLabel.textAlignment = .center
         return signupViewLabel
     }()
@@ -22,6 +22,7 @@ class SignupView: UIView {
     lazy var usernameField: LeftPaddedTextField = {
         let usernameField = LeftPaddedTextField()
         usernameField.placeholder = "Choose your username"
+        usernameField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
         usernameField.layer.borderColor = UIColor.lightGray.cgColor
         usernameField.layer.borderWidth = 1
         usernameField.keyboardType = .emailAddress
@@ -31,6 +32,7 @@ class SignupView: UIView {
     lazy var emailField: LeftPaddedTextField = {
         let emailField = LeftPaddedTextField()
         emailField.placeholder = "Enter email"
+        emailField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
         emailField.layer.borderColor = UIColor.lightGray.cgColor
         emailField.layer.borderWidth = 1
         emailField.keyboardType = .emailAddress
@@ -49,6 +51,7 @@ class SignupView: UIView {
     lazy var passwordField: LeftPaddedTextField = {
         let passwordField = LeftPaddedTextField()
         passwordField.placeholder = "Enter password"
+        passwordField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
         passwordField.layer.borderColor = UIColor.lightGray.cgColor
         passwordField.layer.borderWidth = 1
         passwordField.isSecureTextEntry = true
@@ -60,6 +63,7 @@ class SignupView: UIView {
         button.backgroundColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
         return button
     }()
     
