@@ -16,8 +16,18 @@ class ProfileDataCell: UITableViewCell {
         let levelLabel = UILabel()
         levelLabel.textColor = UIColor.black
         levelLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
-        levelLabel.textAlignment = .center
+        levelLabel.textAlignment = .left
         return levelLabel
+    }()
+    
+    lazy var experiencePointsLabel: UILabel = {
+        let experiencePointsLabel = UILabel()
+        experiencePointsLabel.textColor = UIColor.black
+        experiencePointsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        experiencePointsLabel.textAlignment = .left
+        experiencePointsLabel.sizeToFit()
+        experiencePointsLabel.layer.masksToBounds = true
+        return experiencePointsLabel
     }()
     
     override func layoutSubviews() {
@@ -30,13 +40,21 @@ class ProfileDataCell: UITableViewCell {
         contentView.addSubview(levelLabel)
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
-        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.65).isActive = true
+        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
-        levelLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 60).isActive = true
+        levelLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+        
+        contentView.addSubview(experiencePointsLabel)
+        experiencePointsLabel.translatesAutoresizingMaskIntoConstraints = false
+        experiencePointsLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        experiencePointsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
+        experiencePointsLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        experiencePointsLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80).isActive = true
     }
     
     
     override func prepareForReuse() {
+        experiencePointsLabel.text = " "
         levelLabel.text = ""
     }
     

@@ -32,21 +32,13 @@ class ProfileHeaderCell: UITableViewCell {
         let usernameLabel = UILabel()
         usernameLabel.textColor = UIColor.black
         usernameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
-        usernameLabel.textAlignment = .center
+        usernameLabel.textAlignment = .right
         usernameLabel.sizeToFit()
         usernameLabel.layer.masksToBounds = true
         return usernameLabel
     }()
     
-    lazy var experiencePointsLabel: UILabel = {
-        let experiencePointsLabel = UILabel()
-        experiencePointsLabel.textColor = UIColor.black
-        experiencePointsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
-        experiencePointsLabel.textAlignment = .center
-        experiencePointsLabel.sizeToFit()
-        experiencePointsLabel.layer.masksToBounds = true
-        return experiencePointsLabel
-    }()
+   
     
     
     lazy var levelLabel: UILabel = {

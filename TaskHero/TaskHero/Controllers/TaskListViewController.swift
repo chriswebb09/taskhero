@@ -31,6 +31,11 @@ class TaskListViewController: UITableViewController {
         tableView.separatorInset = UIEdgeInsets.zero
         
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaLight, size: 18)!], for: .normal)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
 
 
     }
@@ -56,6 +61,17 @@ class TaskListViewController: UITableViewController {
         taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[indexPath.row].taskDescription)"
         taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[indexPath.row].taskDue)"
         return taskCell
+    }
+    
+    func logoutButtonPressed() {
+        UserDefaults.standard.setIsLoggedIn(value: false)
+        let loginVC = UINavigationController(rootViewController:LoginViewController())
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = loginVC
+    }
+    
+    func addTaskButtonTapped() {
+        navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
 }

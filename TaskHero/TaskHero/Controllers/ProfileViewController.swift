@@ -32,6 +32,12 @@ class ProfileViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = view.frame.height / 3
         tableView.reloadData()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaLight, size: 18)!], for: .normal)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,26 +62,43 @@ class ProfileViewController: UITableViewController {
             bannerCell.layoutMargins = UIEdgeInsets.zero
             bannerCell.preservesSuperviewLayoutMargins = false
             bannerCell.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-            //bannerCell.bannerImage.image = UIImage(named: "banner")
-            
             return bannerCell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.layoutSubviews()
             headerCell.layoutMargins = UIEdgeInsets.zero
             headerCell.preservesSuperviewLayoutMargins = false
+            
             headerCell.profilePicture.image = UIImage(named: "profileImage")
             headerCell.usernameLabel.text = self.store.currentUser.username
-            headerCell.joinDateLabel.text = "Today"
+            headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
+//            headerCell.levelLabel.text = self.store.currentUser.level
+//            headerCell.experiencePointsLabel.text = String(describing:self.store.currentUser.experiencePoints)
+            
             return headerCell
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.layoutSubviews()
             dataCell.layoutMargins = UIEdgeInsets.zero
             dataCell.preservesSuperviewLayoutMargins = false
-            dataCell.levelLabel.text = "Level 10"
+            dataCell.levelLabel.text = "Level of Taskiness Acheived So Far: \(self.store.currentUser.level)"
+           
+            dataCell.experiencePointsLabel.text = "Hard Won Experience Gained: \(String(describing: self.store.currentUser.experiencePoints))"
+            
             return dataCell
         }
+    }
+    
+    
+    func logoutButtonPressed() {
+        UserDefaults.standard.setIsLoggedIn(value: false)
+        let loginVC = UINavigationController(rootViewController:LoginViewController())
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = loginVC
+    }
+    
+    func addTaskButtonTapped() {
+        navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
     
