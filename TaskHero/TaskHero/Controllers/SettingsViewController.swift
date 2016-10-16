@@ -10,16 +10,23 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
-    var settings = ["Privacy", "Tasks", "Profile Information", "Application Settings"]
+    let settings = ["User Settings", "Profile", "Application Settings"]
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        edgesForExtendedLayout = []
+        
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = false
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = view.frame.height / 4
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,23 +35,21 @@ class SettingsViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return settings.count
+        return settings.count
     }
     
-    
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
-        cell.layoutSubviews()
-        cell.taskDetailLabel.text = settings[indexPath.row]
-        return cell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let settingsCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
+        
+        settingsCell.layoutSubviews()
+        settingsCell.taskNameLabel.text = settings[indexPath.row]
+        return settingsCell
     }
-    
-    
-    
-    
     
 }
+

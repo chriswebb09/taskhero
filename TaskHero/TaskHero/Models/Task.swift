@@ -8,22 +8,26 @@
 
 import UIKit
 
-class Task: NSObject {
+struct Task {
+    
     var taskID: String
     var taskName: String
-    var taskDescription: String
+    var taskDescription:String
+    var taskCreated: String
     var taskDue: String
-    var completed: Bool
+    var taskCompleted: Bool
     
-    init(taskID: String, taskName:String, taskDescription: String, dueDate: String) {
+    init(taskID: String, taskName: String, taskDescription: String, taskCreated: String, taskDue: String, taskCompleted: Bool) {
         self.taskID = taskID
         self.taskName = taskName
         self.taskDescription = taskDescription
-        self.taskDue = dueDate
-        self.completed = false
+        self.taskCreated = taskCreated
+        self.taskDue = taskDue
+        self.taskCompleted = taskCompleted
     }
     
-    convenience override init() {
-        self.init(taskID: "", taskName:"", taskDescription: "", dueDate: "")
+    init() {
+        self.init(taskID: "", taskName: "", taskDescription:"", taskCreated:NSDate().dateWithFormat(), taskDue:"", taskCompleted:false)
     }
+    
 }

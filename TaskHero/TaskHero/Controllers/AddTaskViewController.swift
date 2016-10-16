@@ -9,31 +9,28 @@
 import UIKit
 import Firebase
 
-class AddTaskViewController: UIViewController {
+class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
-    var databaseRef: FIRDatabaseReference!
+    let store = DataStore.sharedInstance
+    let schema = Database.sharedInstance
     let addTaskView = AddTaskView()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         view.addSubview(addTaskView)
+        edgesForExtendedLayout = []
         
         addTaskView.layoutSubviews()
+        addTaskView.taskNameField.delegate = self
+        addTaskView.taskDescriptionBox.delegate = self
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(image:UIImage(named:"back-1"), style: .done, target:self, action: #selector(backTapped))
-        
         backButton.title = "Back"
-        backButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
+        backButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
         backButton.tintColor = UIColor.black
-        
         navigationItem.leftBarButtonItem = backButton
-        
-        let uid = FIRAuth.auth()!.currentUser!.uid
-        
-        self.databaseRef = FIRDatabase.database().reference(withPath:"users/\(uid)/tasks/")
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,27 +39,36 @@ class AddTaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func addTaskButtonTapped() {
-        let uid = NSUUID().uuidString
-        let newTask = Task()
-        newTask.taskID = uid
-        newTask.taskName = addTaskView.taskNameTextField.text!
-        newTask.taskDue = "unknown"
-        newTask.taskDescription = addTaskView.taskDescriptionTextView.text
-        //self.databaseRef?.child("\(uid)/email").setValue(FIRAuth.auth()!.currentUser!.email)
-        self.databaseRef?.child("/taskID").setValue(newTask.taskID)
-        self.databaseRef?.child("\(newTask.taskID)/taskName").setValue(newTask.taskName)
-        self.databaseRef?.child("\(newTask.taskID)/taskDue").setValue(newTask.taskDue)
-        self.databaseRef?.child("\(newTask.taskID)/taskDescription").setValue(newTask.taskDescription)
-        navigationController?.popToRootViewController(animated: false)
-        //self.navigationController?.popToRootViewController(animated: false)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
+        if(replacementText.isEqual("\n")) {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    
+    func addTaskButtonTapped() {
+        let uid = NSUUID().uuidString
+        guard let taskName = addTaskView.taskNameField.text else { return }
+        
+        guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
+        let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:NSDate().dateWithFormat(), taskCompleted: false)
+        
+        
+        schema.addTasks(task: newTask)
+        
+        navigationController?.popToRootViewController(animated: false)
+    }
     
     func backTapped(sender: UIBarButtonItem) {
         navigationController?.popToRootViewController(animated: false)
-       // navigationController?.popViewController(animated: false)
     }
     
 }
-

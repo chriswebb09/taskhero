@@ -46,7 +46,7 @@ class RootContainerViewController: UIViewController {
         guard !(rootViewController is LoginViewController) else { return }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let loginVC = LoginViewController()
-        appDelegate.window?.rootViewController = loginVC
+        appDelegate.window?.rootViewController = UINavigationController(rootViewController:loginVC)
     }
     
     public func delay(_ delay:Double, closure:@escaping ()->()) {

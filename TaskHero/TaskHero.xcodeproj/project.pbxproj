@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF2C759B1DB30FF8002E1DDF /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C759A1DB30FF8002E1DDF /* TaskListViewController.swift */; };
+		AF3AF2D71DB310FC008C378B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF96FB541D9C3B9200EF7BDE /* Assets.xcassets */; };
+		AF3AF2DB1DB31413008C378B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF3AF2DA1DB31413008C378B /* GoogleService-Info.plist */; };
 		AF5107411D9C5DD3001928B7 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107401D9C5DD3001928B7 /* ProfileHeaderCell.swift */; };
 		AF5107451D9C5DFA001928B7 /* ProfileDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107441D9C5DFA001928B7 /* ProfileDataCell.swift */; };
 		AF5107471D9C5E0E001928B7 /* TeamBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5107461D9C5E0E001928B7 /* TeamBannerCell.swift */; };
@@ -19,7 +22,6 @@
 		AF9162B71D9C40430054233B /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9162B61D9C40430054233B /* DataStore.swift */; };
 		AF9162B91D9C434C0054233B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9162B81D9C434C0054233B /* HomeView.swift */; };
 		AF96FB4E1D9C3B9200EF7BDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB4D1D9C3B9200EF7BDE /* AppDelegate.swift */; };
-		AF96FB551D9C3B9200EF7BDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF96FB541D9C3B9200EF7BDE /* Assets.xcassets */; };
 		AF96FB581D9C3B9200EF7BDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF96FB561D9C3B9200EF7BDE /* LaunchScreen.storyboard */; };
 		AF96FB601D9C3C0C00EF7BDE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB5F1D9C3C0C00EF7BDE /* HomeViewController.swift */; };
 		AF96FB631D9C3C2D00EF7BDE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB621D9C3C2D00EF7BDE /* LoginView.swift */; };
@@ -31,11 +33,12 @@
 		AF96FB701D9C3D3E00EF7BDE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB6F1D9C3D3E00EF7BDE /* TaskCell.swift */; };
 		AF96FB721D9C3D5000EF7BDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB711D9C3D5000EF7BDE /* User.swift */; };
 		AF96FB751D9C3D6E00EF7BDE /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96FB741D9C3D6E00EF7BDE /* Task.swift */; };
-		AF96FB771D9C3E2900EF7BDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */; };
 		AF980C0F1D9E016D00A7F644 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C0E1D9E016D00A7F644 /* Animations.swift */; };
 		AF980C111D9E163400A7F644 /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C101D9E163400A7F644 /* RootContainerViewController.swift */; };
 		AF980C131D9E17A900A7F644 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF980C121D9E17A900A7F644 /* SplashViewController.swift */; };
-		AFB9E0331D9CF1300085FB9B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */; };
+		AFB0678E1DB30D4B0016D8B3 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0678D1DB30D4B0016D8B3 /* DB.swift */; };
+		AFB067911DB30DCF0016D8B3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB067901DB30DCF0016D8B3 /* UserDefaults+Extension.swift */; };
+		AFB067931DB30DF00016D8B3 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB067921DB30DF00016D8B3 /* NSDate+Extension.swift */; };
 		AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */; };
 		AFC8AB971DA33EF700252E44 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC8AB961DA33EF700252E44 /* Helpers.swift */; };
 		AFE617CF1D9CC413000FF4EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE617CE1D9CC413000FF4EE /* ProfileViewController.swift */; };
@@ -49,6 +52,8 @@
 		2125BFD0DDB85B432979C79D /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
 		477E0ECEDA5D1BAB97892981 /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB09A64859F9A95DA45F2FD /* Pods-TaskHero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.debug.xcconfig"; sourceTree = "<group>"; };
+		AF2C759A1DB30FF8002E1DDF /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskListViewController.swift; path = Controllers/TaskListViewController.swift; sourceTree = "<group>"; };
+		AF3AF2DA1DB31413008C378B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AF5107401D9C5DD3001928B7 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileHeaderCell.swift; path = Views/Cells/ProfileHeaderCell.swift; sourceTree = "<group>"; };
 		AF5107441D9C5DFA001928B7 /* ProfileDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDataCell.swift; path = Views/Cells/ProfileDataCell.swift; sourceTree = "<group>"; };
 		AF5107461D9C5E0E001928B7 /* TeamBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamBannerCell.swift; path = Views/Cells/TeamBannerCell.swift; sourceTree = "<group>"; };
@@ -75,10 +80,12 @@
 		AF96FB6F1D9C3D3E00EF7BDE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = Views/Cells/TaskCell.swift; sourceTree = "<group>"; };
 		AF96FB711D9C3D5000EF7BDE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		AF96FB741D9C3D6E00EF7BDE /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Models/Task.swift; sourceTree = "<group>"; };
-		AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AF980C0E1D9E016D00A7F644 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Animations.swift; path = Views/Animations.swift; sourceTree = "<group>"; };
 		AF980C101D9E163400A7F644 /* RootContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootContainerViewController.swift; path = Controllers/RootContainerViewController.swift; sourceTree = "<group>"; };
 		AF980C121D9E17A900A7F644 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = Controllers/SplashViewController.swift; sourceTree = "<group>"; };
+		AFB0678D1DB30D4B0016D8B3 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DB.swift; path = Utilties/DB.swift; sourceTree = "<group>"; };
+		AFB067901DB30DCF0016D8B3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserDefaults+Extension.swift"; path = "Extensions/UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		AFB067921DB30DF00016D8B3 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
 		AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Extensions/UIColorExtension.swift; sourceTree = "<group>"; };
 		AFC8AB961DA33EF700252E44 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = Extensions/Helpers.swift; sourceTree = "<group>"; };
@@ -172,11 +179,12 @@
 				AF96FB541D9C3B9200EF7BDE /* Assets.xcassets */,
 				AFB9E0321D9CF1300085FB9B /* Default-568h@2x.png */,
 				AF96FB561D9C3B9200EF7BDE /* LaunchScreen.storyboard */,
-				AF96FB761D9C3E2900EF7BDE /* GoogleService-Info.plist */,
+				AF3AF2DA1DB31413008C378B /* GoogleService-Info.plist */,
 				AF96FB591D9C3B9200EF7BDE /* Info.plist */,
 				AF96FB641D9C3C3700EF7BDE /* Views */,
 				AF96FB731D9C3D5700EF7BDE /* Models */,
 				AFB9E0361D9CF1F80085FB9B /* Extensions */,
+				AFB0678F1DB30D580016D8B3 /* Utilities */,
 			);
 			path = TaskHero;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 				AFE874141D9DD3B2006B3CFA /* SettingsViewController.swift */,
 				AF980C101D9E163400A7F644 /* RootContainerViewController.swift */,
 				AF980C121D9E17A900A7F644 /* SplashViewController.swift */,
+				AF2C759A1DB30FF8002E1DDF /* TaskListViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -224,11 +233,21 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		AFB0678F1DB30D580016D8B3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AFB0678D1DB30D4B0016D8B3 /* DB.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		AFB9E0361D9CF1F80085FB9B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				AFC8AB961DA33EF700252E44 /* Helpers.swift */,
 				AFB9E0341D9CF1EA0085FB9B /* UIColorExtension.swift */,
+				AFB067901DB30DCF0016D8B3 /* UserDefaults+Extension.swift */,
+				AFB067921DB30DF00016D8B3 /* NSDate+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -310,10 +329,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF96FB771D9C3E2900EF7BDE /* GoogleService-Info.plist in Resources */,
-				AFB9E0331D9CF1300085FB9B /* Default-568h@2x.png in Resources */,
+				AF3AF2D71DB310FC008C378B /* Assets.xcassets in Resources */,
 				AF96FB581D9C3B9200EF7BDE /* LaunchScreen.storyboard in Resources */,
-				AF96FB551D9C3B9200EF7BDE /* Assets.xcassets in Resources */,
+				AF3AF2DB1DB31413008C378B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,9 +399,12 @@
 				AF9162B91D9C434C0054233B /* HomeView.swift in Sources */,
 				AFE617CF1D9CC413000FF4EE /* ProfileViewController.swift in Sources */,
 				AF96FB6C1D9C3CEB00EF7BDE /* SignupViewController.swift in Sources */,
+				AFB0678E1DB30D4B0016D8B3 /* DB.swift in Sources */,
 				AF96FB631D9C3C2D00EF7BDE /* LoginView.swift in Sources */,
 				AF96FB601D9C3C0C00EF7BDE /* HomeViewController.swift in Sources */,
+				AFB067931DB30DF00016D8B3 /* NSDate+Extension.swift in Sources */,
 				AF96FB751D9C3D6E00EF7BDE /* Task.swift in Sources */,
+				AF2C759B1DB30FF8002E1DDF /* TaskListViewController.swift in Sources */,
 				AF96FB6E1D9C3D0000EF7BDE /* LoginViewController.swift in Sources */,
 				AF51074F1D9C5E78001928B7 /* AddTaskView.swift in Sources */,
 				AF51075A1D9C5FC9001928B7 /* InitialView.swift in Sources */,
@@ -396,6 +417,7 @@
 				AFB9E0351D9CF1EA0085FB9B /* UIColorExtension.swift in Sources */,
 				AF5107451D9C5DFA001928B7 /* ProfileDataCell.swift in Sources */,
 				AF5107471D9C5E0E001928B7 /* TeamBannerCell.swift in Sources */,
+				AFB067911DB30DCF0016D8B3 /* UserDefaults+Extension.swift in Sources */,
 				AF96FB681D9C3C8F00EF7BDE /* TabBarController.swift in Sources */,
 				AFE874151D9DD3B2006B3CFA /* SettingsViewController.swift in Sources */,
 				AF980C131D9E17A900A7F644 /* SplashViewController.swift in Sources */,
@@ -520,10 +542,11 @@
 			baseConfigurationReference = 5FB09A64859F9A95DA45F2FD /* Pods-TaskHero.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 4SZP4Q326F;
 				INFOPLIST_FILE = TaskHero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = froleeyo.TaskHero;
+				PRODUCT_BUNDLE_IDENTIFIER = com.froleeyo.TaskHero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -534,10 +557,11 @@
 			baseConfigurationReference = 2125BFD0DDB85B432979C79D /* Pods-TaskHero.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 4SZP4Q326F;
 				INFOPLIST_FILE = TaskHero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = froleeyo.TaskHero;
+				PRODUCT_BUNDLE_IDENTIFIER = com.froleeyo.TaskHero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -9,30 +9,23 @@
 import UIKit
 import Firebase
 
-
-
-class LoginViewController: UIViewController {
-    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    
-    let store = DataStore.sharedInstance
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
     
+    let store = DataStore.sharedInstance
+    let schema = Database.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        spinner.hidesWhenStopped = true
         view.addSubview(loginView)
-        
         loginView.layoutSubviews()
-        loginView.loginButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
-        loginView.newUserButton.addTarget(self, action: #selector(signUpNewUserTapped), for: .touchUpInside)
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
         
-        spinner.hidesWhenStopped = true
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(spinner)
-        
-        spinner.centered(inView:view)
-        
+        loginView.emailField.delegate = self
+        loginView.passwordField.delegate = self
+        loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
+        loginView.loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,39 +33,40 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(false)
-        
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
-    func didTapSignIn() {
-        // Sign In with credentials.
-        spinner.startAnimating()
-        guard let email = loginView.usernameTextField.text, let password = loginView.passwordTextField.text else { return }
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-            if error == nil {
-                DispatchQueue.main.async {
-                    self.spinner.stopAnimating()
-                    
-                    let tabBar = TabBarController()
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.window?.rootViewController = tabBar
-                }
-                
-            }
+    func signupButtonTapped() {
+        navigationController?.pushViewController(SignupViewController(), animated: false)
+    }
+    
+    func handleLogin() {
+        guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             
-            if let error = error {
-                print(error.localizedDescription)
+            return
+        }
+        
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            
+            if error != nil {
+                print(error ?? "error")
                 return
             }
-        }
+            
+            //login sucessful
+            self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+            
+            self.schema.fetchUser(completion: { (user) in
+                print(user)
+            })
+            
+            let tabBar = TabBarController()
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = tabBar
+        })
+        
     }
-    
-    func signUpNewUserTapped() {
-        let signUpVC = SignupViewController()
-        navigationController?.pushViewController(signUpVC, animated: false)
-    }
-    
-    
     
 }

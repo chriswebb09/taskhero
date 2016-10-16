@@ -7,57 +7,42 @@
 //
 
 import UIKit
-import Firebase
 
-class HomeViewController: UITableViewController, UISearchResultsUpdating {
+class HomeViewController: UITableViewController {
     
-    var parentNavigationController: UINavigationController?
-    var searchController = UISearchController(searchResultsController: nil)
-    var databaseRef: FIRDatabaseReference!
+    let store = DataStore.sharedInstance
+    let schema = Database.sharedInstance
     var tasks = [Task]()
-    let uid = FIRAuth.auth()!.currentUser!.uid
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let uid = FIRAuth.auth()!.currentUser!.uid
-        
-        self.databaseRef = FIRDatabase.database().reference(withPath:"users/\(uid)/tasks/")
         navigationController?.navigationBar.isHidden = false
-        view.backgroundColor = UIColor.white
         
-        getAllTasks()
+        let leftButton =  UIBarButtonItem(title: "Left Button", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        
+        navigationItem.leftBarButtonItem = leftButton
+        
+        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        edgesForExtendedLayout = []
         
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = false
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = view.frame.height / 4
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
         
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-gray")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
-        
-        //        let barButton = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        //        barButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.font, size: 20)!], for: .normal)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaLight, size: 18)!], for: .normal)
         
-        
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
-        
-        searchController.searchBar.placeholder = "Search Tasks"
-        searchController.searchBar.tintColor = UIColor.white
-        searchController.searchBar.barTintColor = UIColor.black
-    }
-    
-    deinit {
-        searchController.loadViewIfNeeded()
-        let _ = searchController.view
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,53 +51,21 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(false)
-        DispatchQueue.main.async { [unowned self] in
-            self.tableView.reloadData()
-        }
-    }
-    
-    func getAllTasks() {
-        
-        tasks.removeAll()
-        
-        databaseRef.observe(.childAdded, with: { (snapshot) -> Void in
-            let data = snapshot.value
-            let task = Task()
-            guard let snapshotValue = data as? NSDictionary else { return }
-            if let taskDescription = snapshotValue["taskDescription"] as? String {
-                task.taskDescription = taskDescription
-            }
-            if let taskName = snapshotValue["taskName"] as? String {
-                task.taskName = taskName
-            }
-            if let taskDue = snapshotValue["taskDue"] as? String {
-                task.taskDue = taskDue
-            }
-            if let taskCompleted = snapshotValue["completed"] as? Bool {
-                task.completed = taskCompleted
-            }
-            if let taskID = snapshotValue["taskID"] as? String {
-                task.taskID = taskID
-            }
-            self.tasks.insert(task, at: 0)
-            DispatchQueue.main.async { [unowned self] in
+        self.store.tasks.removeAll()
+        schema.fetchTasks(completion: { (task) in
+            self.store.tasks.append(task)
+            DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            
         })
     }
     
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text {
-            filterContentForSearchText(searchText: searchText)
-            DispatchQueue.main.async { [unowned self] in
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    func filterContentForSearchText(searchText: String) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        schema.tasksRef.removeObserver(withHandle: schema.refHandle)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -120,60 +73,59 @@ class HomeViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return self.store.tasks.count + 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.row == 0 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             
-            cell.layoutSubviews()
+            headerCell.layoutMargins = UIEdgeInsets.zero
+            headerCell.preservesSuperviewLayoutMargins = false
+            headerCell.layoutSubviews()
             
-            cell.usernameLabel.text = "filler text"
-            cell.profilePicture.backgroundColor = UIColor.blue
-            cell.profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped)))
-            
-            return cell
+            headerCell.usernameLabel.text = "Username: \(self.store.currentUser.username)"
+            headerCell.profilePicture.image = UIImage(named: "profileImage")
+            headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
+            return headerCell
         } else {
             
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
-            
+            let height = tableView.rowHeight - 5
+            taskCell.layoutMargins = UIEdgeInsets.zero
+            taskCell.preservesSuperviewLayoutMargins = false
             taskCell.layoutSubviews()
-            taskCell.taskNameLabel.text = tasks[indexPath.row].taskName
-            taskCell.taskDetailLabel.text = tasks[indexPath.row].taskDescription
-            taskCell.taskDue.text =  tasks[indexPath.row].taskDue
             
-            if tasks[indexPath.row].completed == true {
-                taskCell.taskCompletedLabel.image = UIImage(named: "checked")
-            } else if tasks[indexPath.row].completed == false {
-                taskCell.taskCompletedLabel.image = UIImage(named: "cancel")
-            }
+            taskCell.contentView.backgroundColor = UIColor.clear
+            let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:self.view.frame.size.width, height:height))
+            
+            cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+            cellView.layer.masksToBounds = false
+            cellView.layer.cornerRadius = 2.0
+            cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.35)
+            cellView.layer.shadowOpacity = 0.1
+            
+            taskCell.contentView.addSubview(cellView)
+            taskCell.contentView.sendSubview(toBack: cellView)
+            
+            taskCell.taskNameLabel.text = self.store.tasks[indexPath.row - 1].taskName
+            taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[indexPath.row - 1].taskDescription)"
+            taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[indexPath.row - 1].taskDue)"
             return taskCell
         }
     }
-}
-
-extension HomeViewController: ProfileHeaderCellDelegate {
+    
     
     func logoutButtonPressed() {
-        
+        UserDefaults.standard.setIsLoggedIn(value: false)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         appDelegate.window?.rootViewController = loginVC
     }
     
-    func profilePictureTapped() {
-        print("profile picture tapped")
-        let profilePicVC = ProfilePictureViewController()
-        navigationController?.pushViewController(profilePicVC, animated:false)
+    func addTaskButtonTapped() {
+        navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
-    func addTaskButtonTapped() {
-        let addTaskVC = AddTaskViewController()
-        navigationController?.pushViewController(addTaskVC, animated:false)
-    }
 }
-

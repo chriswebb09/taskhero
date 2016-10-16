@@ -6,32 +6,36 @@
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
 
-import UIKit 
+import UIKit
 
 class User: NSObject {
+    
     var uid: String
     var email: String
-    var password: String
+    var username: String
     var firstName: String?
-    let lastName: String?
-    var profilePicture: UIImage?
+    var lastName: String?
+    var profilePicture: String?
+    var experiencePoints: Int
+    var level: String
+    var joinDate: String
     var tasks: [Task]?
     
-    
-    init(uid: String, email: String, password: String, firstName: String?, lastName: String?, profilePicture: UIImage?, tasks: [Task]?) {
+    init(uid: String,  email: String, firstName: String?, lastName: String?, profilePicture: String?, username: String, experiencePoints: Int, level: String, joinDate: String, tasks: [Task]?) {
         self.uid = uid
+        self.username = username
         self.email = email
-        self.password = password
         self.firstName = firstName
         self.lastName = lastName
         self.profilePicture = profilePicture
+        self.experiencePoints = experiencePoints
+        self.level = level
+        self.joinDate = joinDate
         self.tasks = tasks
         super.init()
     }
     
     override convenience init() {
-        self.init(uid:"", email:"", password: "", firstName: nil, lastName:nil, profilePicture: nil, tasks:nil)
+        self.init(uid:" ", email:" ", firstName: " ", lastName:" ", profilePicture: "None", username: " ", experiencePoints: 0, level: "TaskToad", joinDate: NSDate().dateWithFormat(), tasks:[Task]())
     }
-    
-    
 }

@@ -6,15 +6,6 @@
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
 
-//
-//  ProfileHeaderCell.swift
-//  TaskTiger
-//
-//  Created by Christopher Webb-Orenstein on 9/24/16.
-//  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
-//
-
-
 import UIKit
 
 protocol ProfileHeaderCellDelegate: class {
@@ -25,47 +16,74 @@ class ProfileHeaderCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileHeaderCell"
     
-    lazy var usernameLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.textColor = UIColor.black
-        nameLabel.layer.masksToBounds = true
-        nameLabel.textAlignment = .center
-        return nameLabel
+    
+    let joinDateLabel: UITextView = {
+        let joinDateLabel = UITextView()
+        joinDateLabel.textColor = UIColor.black
+        joinDateLabel.font = UIFont(name: Constants.helveticaLight, size: 18)
+        joinDateLabel.textAlignment = .right
+        joinDateLabel.layer.masksToBounds = true
+        joinDateLabel.isScrollEnabled = false
+        return joinDateLabel
     }()
     
-    var profilePicture = UIImageView()
+    
+    lazy var usernameLabel: UILabel = {
+        let usernameLabel = UILabel()
+        usernameLabel.textColor = UIColor.black
+        usernameLabel.font = UIFont(name: Constants.helveticaLight, size: 18)
+        usernameLabel.textAlignment = .center
+        usernameLabel.sizeToFit()
+        usernameLabel.layer.masksToBounds = true
+        return usernameLabel
+    }()
+    
+    
+    lazy var profilePicture: UIImageView = {
+        let imageView = UIImageView()
+        //imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
-        setupCell()
+        contentView.layer.masksToBounds = true
     }
+    
     
     func setupConstraints() {
         
-        contentView.addSubview(profilePicture)
-        profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
-        
-        profilePicture.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        profilePicture.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        
         contentView.addSubview(usernameLabel)
+        
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
-        usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25).isActive = true
-        usernameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
-    }
-    
-    func setupCell() {
-        usernameLabel.textColor = UIColor.black
-        usernameLabel.font = UIFont(name: Constants.helveticaLight, size: 30)
-        usernameLabel.sizeToFit()
-        profilePicture.isUserInteractionEnabled = true
+        usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
+        usernameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
+        usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        
+        contentView.addSubview(joinDateLabel)
+        
+        joinDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
+        joinDateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
+        joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        
+        
+        contentView.addSubview(profilePicture)
+        
+        profilePicture.translatesAutoresizingMaskIntoConstraints = false
+        profilePicture.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        profilePicture.widthAnchor.constraint(equalToConstant: 160).isActive = true
+        profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        
     }
     
     override func prepareForReuse() {
+        
         super.prepareForReuse()
         usernameLabel.text = ""
         profilePicture.image = nil
