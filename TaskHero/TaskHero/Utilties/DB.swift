@@ -48,9 +48,15 @@ class Database {
                                       "TasksCompleted": user.numberOfTasksCompleted]
         print(userData)
         
-        self.userRef.updateChildValues(["/\(user.uid)": userData])
+        self.userRef.updateChildValues(["/\(self.store.currentUserString)!": userData])
     }
     
+    
+//    func updateUserScore(score:Int) {
+//        let scoreData: NSDictionary = ["ExperiencePoints":score]
+//        self.userRef.child("/\(self.store.currentUserString)").updateChildValues([scoreData])
+//    }
+//    
     func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
         
         
@@ -120,6 +126,7 @@ class Database {
                 user.level =  (dictionary["Level"] as? String)!
                 user.joinDate = (dictionary["JoinDate"] as? String)!
                 user.profilePicture = dictionary["ProfilePicture"] as? String
+                user.numberOfTasksCompleted = (dictionary["TasksCompleted"] as? Int)!
                 self.store.currentUser = user
             }
             

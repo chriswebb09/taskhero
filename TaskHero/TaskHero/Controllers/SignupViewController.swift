@@ -90,11 +90,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             newUser.experiencePoints = 0
             newUser.tasks = [Task]()
             
-            //11
+            
             
             let usersReference = ref.child("Users").child(uid)
             
-            let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName, "LastName": newUser.lastName, "ProfilePicture": newUser.profilePicture, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate] as [String : Any] as NSDictionary
+            let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
             
             print(values)
             print(values as NSDictionary)

@@ -88,14 +88,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     func showActivityIndicatory(mainView: UIView) {
-        var container: UIView = UIView()
-        container.frame = mainView.frame
-        container.center = mainView.center
-        container.backgroundColor = UIColor.clear
-        //container.alpha = 0.1
+        
+        let containerView: UIView = UIView()
+        containerView.frame = mainView.frame
+        containerView.center = mainView.center
+        containerView.backgroundColor = UIColor.clear
         
         
-        var loadingView: UIView = UIView()
+        let loadingView: UIView = UIView()
         loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
         loadingView.center = mainView.center
         loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.7)
@@ -109,8 +109,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
                                            y:loadingView.frame.size.height / 2)
         loadingView.addSubview(activityIndicator)
-        container.addSubview(loadingView)
-        mainView.addSubview(container)
+        containerView.addSubview(loadingView)
+        mainView.addSubview(containerView)
         activityIndicator.startAnimating()
     }
     

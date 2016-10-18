@@ -72,7 +72,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         navigationController?.popToRootViewController(animated: false)
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Describe what you want to get done."
             textView.textColor = UIColor.lightGray

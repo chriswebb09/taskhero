@@ -154,6 +154,8 @@ class HomeViewController: UITableViewController {
                     print(indexPath.row)
                     removeTaskID = self.store.tasks[indexPath.row - 1].taskID
                     self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
+                    self.store.currentUser.numberOfTasksCompleted += 1
+                    self.schema.insertUser(user: self.store.currentUser)
                 }
                 print("INDEX PATH \(indexPath.row)")
                 print(removeTaskID)

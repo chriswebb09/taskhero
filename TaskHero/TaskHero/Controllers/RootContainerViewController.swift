@@ -37,7 +37,7 @@ class RootContainerViewController: UIViewController {
         view.addSubview(splashViewController.view)
         
         
-        delay(6.00) {
+        delay(1.00) {
             splashViewController.didMove(toParentViewController: self)
             self.showLoginViewController()
         }
