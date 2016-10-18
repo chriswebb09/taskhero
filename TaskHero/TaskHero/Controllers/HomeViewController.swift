@@ -40,7 +40,7 @@ class HomeViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaLight, size: 18)!], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 18)!], for: .normal)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
@@ -91,10 +91,10 @@ class HomeViewController: UITableViewController {
             headerCell.layoutSubviews()
             headerCell.layoutIfNeeded()
             
-            headerCell.usernameLabel.text = "Username: \(self.store.currentUser.username)"
+            headerCell.usernameLabel.text = self.store.currentUser.username
             headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
             headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
-            headerCell.levelLabel.text = "Level Reached: Task Goat"
+            headerCell.levelLabel.text = self.store.currentUser.level
             return headerCell
         } else {
             
@@ -135,12 +135,12 @@ class HomeViewController: UITableViewController {
         
         if editingStyle == .delete {
             tableView.beginUpdates()
-    
+            
             
             
             print("ROWS \(self.tableView.numberOfRows(inSection: 0))")
             
-           
+            
             
             
             DispatchQueue.main.async {
@@ -152,6 +152,7 @@ class HomeViewController: UITableViewController {
                 } else {
                     print(indexPath.row)
                     removeTaskID = self.store.tasks[indexPath.row - 1].taskID
+                    self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
                 }
                 print("INDEX PATH \(indexPath.row)")
                 print(removeTaskID)
@@ -166,7 +167,7 @@ class HomeViewController: UITableViewController {
             
             
             
-           
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }

@@ -41,7 +41,7 @@ struct Constants {
     static let logoImageHeight = CGFloat(0.06)
     
     static let signupFieldHeight = CGFloat(0.07)
-    static let signupFieldWidth = CGFloat(0.9)
+    static let signupFieldWidth = CGFloat(0.94)
     
     
     static let barColor = UIColor(red:0.00, green:0.49, blue:0.76, alpha:1.0)

@@ -59,7 +59,8 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         guard let taskName = addTaskView.taskNameField.text else { return }
         
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
-        let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:NSDate().dateWithFormat(), taskCompleted: false)
+        let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:NSDate().dateWithFormat(), taskCompleted: false, pointValue:5)
+        
         
         
         schema.addTasks(task: newTask)
@@ -69,6 +70,13 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     func backTapped(sender: UIBarButtonItem) {
         navigationController?.popToRootViewController(animated: false)
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Describe what you want to get done."
+            textView.textColor = UIColor.lightGray
+        }
     }
     
 }

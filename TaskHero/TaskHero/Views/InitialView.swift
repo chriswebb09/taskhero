@@ -47,7 +47,7 @@ class InitialView: UIView {
         logoLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.08).isActive = true
         containerView.bringSubview(toFront: logoLabel)
         
-
+        
     }
     
     func setupView() {

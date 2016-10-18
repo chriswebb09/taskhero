@@ -14,8 +14,7 @@ class AddTaskView: UIView {
         let taskNameLabel = UITextView()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
-         "HelveticaNeue-Thin"
-        taskNameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        taskNameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
         taskNameLabel.textAlignment = .center
         taskNameLabel.layer.masksToBounds = true
         taskNameLabel.isScrollEnabled = false
@@ -26,16 +25,11 @@ class AddTaskView: UIView {
     lazy var taskNameField: LeftPaddedTextField = {
         let taskNameField = LeftPaddedTextField()
         taskNameField.placeholder = "Task name"
+        taskNameField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
         taskNameField.layer.cornerRadius = 2
         taskNameField.layer.borderWidth = 1
         return taskNameField
-    }()
-    
-    
-    var taskDescriptionLabel: UILabel = {
-        let taskDescriptionLabel = UILabel()
-        return taskDescriptionLabel
     }()
     
     var taskDescriptionBox: UITextView = {
@@ -79,24 +73,14 @@ class AddTaskView: UIView {
         taskNameField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         taskNameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -240).isActive = true
+        taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -180).isActive = true
         
-        
-        addSubview(taskDescriptionLabel)
-        taskDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
-        taskDescriptionLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
-        taskDescriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -145).isActive = true
-        
+    
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        //
-        //taskDescriptionBox.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
-        
         taskDescriptionBox.topAnchor.constraint(equalTo: topAnchor, constant: 200).isActive = true
         
         addSubview(addTaskButton)

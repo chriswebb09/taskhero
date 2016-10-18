@@ -11,5 +11,6 @@ target 'TaskHero' do
   pod 'Firebase/Auth'
   pod 'FirebaseDatabase'
   pod 'Firebase/Storage'
+  pod 'Firebase/Crash'
 
 end

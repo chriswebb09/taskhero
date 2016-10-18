@@ -32,7 +32,7 @@ class TaskCell: UITableViewCell {
         textView.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
         textView.textColor = UIColor.white
         textView.layer.cornerRadius = 4
-        textView.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
+        textView.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isScrollEnabled = false
@@ -43,7 +43,7 @@ class TaskCell: UITableViewCell {
     let taskDueLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
-        textView.font = UIFont(name:"HelveticaNeue-Thin", size: 18)
+        textView.font = UIFont(name:"HelveticaNeue-Thin", size: 16)
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isScrollEnabled = false
@@ -91,7 +91,7 @@ class TaskCell: UITableViewCell {
         //taskDescriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDescriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 110).isActive = true
         
-       
+        
         
         contentView.addSubview(taskCompletedView)
         taskCompletedView.translatesAutoresizingMaskIntoConstraints = false

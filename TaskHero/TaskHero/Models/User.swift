@@ -20,8 +20,9 @@ class User: NSObject {
     var level: String
     var joinDate: String
     var tasks: [Task]?
+    var numberOfTasksCompleted: Int
     
-    init(uid: String,  email: String, firstName: String?, lastName: String?, profilePicture: String?, username: String, experiencePoints: Int, level: String, joinDate: String, tasks: [Task]?) {
+    init(uid: String,  email: String, firstName: String?, lastName: String?, profilePicture: String?, username: String, experiencePoints: Int, level: String, joinDate: String, tasks: [Task]?, numberOfTasksCompleted: Int) {
         self.uid = uid
         self.username = username
         self.email = email
@@ -32,10 +33,13 @@ class User: NSObject {
         self.level = level
         self.joinDate = joinDate
         self.tasks = tasks
+        self.numberOfTasksCompleted = numberOfTasksCompleted
         super.init()
     }
     
     override convenience init() {
-        self.init(uid:" ", email:" ", firstName: " ", lastName:" ", profilePicture: "None", username: " ", experiencePoints: 0, level: "TaskToad", joinDate: NSDate().dateWithFormat(), tasks:[Task]())
+        self.init(uid:" ", email:" ", firstName: " ", lastName:" ", profilePicture: "None", username: " ", experiencePoints: 0, level: "Task Goat", joinDate: NSDate().dateWithFormat(), tasks:[Task](), numberOfTasksCompleted: 0)
     }
+    
+    
 }

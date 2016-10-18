@@ -14,7 +14,7 @@ class SignupView: UIView {
         let signupViewLabel = UILabel()
         signupViewLabel.textColor = UIColor.black
         signupViewLabel.text = "Become a Member"
-        signupViewLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30)
+        signupViewLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
         signupViewLabel.textAlignment = .center
         return signupViewLabel
     }()
@@ -22,7 +22,7 @@ class SignupView: UIView {
     lazy var usernameField: LeftPaddedTextField = {
         let usernameField = LeftPaddedTextField()
         usernameField.placeholder = "Choose your username"
-        usernameField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
+        usernameField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
         usernameField.layer.borderColor = UIColor.lightGray.cgColor
         usernameField.layer.borderWidth = 1
         usernameField.keyboardType = .emailAddress
@@ -32,7 +32,7 @@ class SignupView: UIView {
     lazy var emailField: LeftPaddedTextField = {
         let emailField = LeftPaddedTextField()
         emailField.placeholder = "Enter email"
-        emailField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
+        emailField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
         emailField.layer.borderColor = UIColor.lightGray.cgColor
         emailField.layer.borderWidth = 1
         emailField.keyboardType = .emailAddress
@@ -42,6 +42,7 @@ class SignupView: UIView {
     lazy var confirmEmailField: LeftPaddedTextField = {
         let confirmEmailField = LeftPaddedTextField()
         confirmEmailField.placeholder = "Confirm your email address"
+        confirmEmailField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
         confirmEmailField.layer.borderColor = UIColor.lightGray.cgColor
         confirmEmailField.layer.borderWidth = 1
         confirmEmailField.keyboardType = .emailAddress
@@ -51,7 +52,7 @@ class SignupView: UIView {
     lazy var passwordField: LeftPaddedTextField = {
         let passwordField = LeftPaddedTextField()
         passwordField.placeholder = "Enter password"
-        passwordField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
+        passwordField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
         passwordField.layer.borderColor = UIColor.lightGray.cgColor
         passwordField.layer.borderWidth = 1
         passwordField.isSecureTextEntry = true
@@ -63,7 +64,7 @@ class SignupView: UIView {
         button.backgroundColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin" , size: 18)
         return button
     }()
     
@@ -82,7 +83,7 @@ class SignupView: UIView {
         signupViewLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         signupViewLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         signupViewLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        signupViewLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -240).isActive = true
+        signupViewLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -180).isActive = true
         
         
         addSubview(usernameField)
@@ -90,28 +91,28 @@ class SignupView: UIView {
         usernameField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         usernameField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         usernameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        usernameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -150).isActive = true
+        usernameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -110).isActive = true
         
         addSubview(emailField)
         emailField.translatesAutoresizingMaskIntoConstraints = false
         emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         emailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         emailField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        emailField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -50).isActive = true
+        emailField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -40).isActive = true
         
         addSubview(confirmEmailField)
         confirmEmailField.translatesAutoresizingMaskIntoConstraints = false
         confirmEmailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         confirmEmailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         confirmEmailField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        confirmEmailField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 50).isActive = true
+        confirmEmailField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 30).isActive = true
         
         addSubview(passwordField)
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         passwordField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         passwordField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        passwordField.centerYAnchor.constraint(equalTo: centerYAnchor, constant:150).isActive = true
+        passwordField.centerYAnchor.constraint(equalTo: centerYAnchor, constant:100).isActive = true
         passwordField.isSecureTextEntry = true
         
         addSubview(signupButton)
@@ -119,6 +120,6 @@ class SignupView: UIView {
         signupButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor, multiplier:Constants.loginButtonWidth).isActive = true
         signupButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        signupButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 250).isActive = true
+        signupButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 190).isActive = true
     }
 }

@@ -54,6 +54,10 @@ class ProfileViewController: UITableViewController {
         return 3
     }
     
+    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -64,26 +68,30 @@ class ProfileViewController: UITableViewController {
             bannerCell.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
             return bannerCell
         } else if indexPath.row == 1 {
+            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+            
             headerCell.layoutSubviews()
             headerCell.layoutMargins = UIEdgeInsets.zero
             headerCell.preservesSuperviewLayoutMargins = false
-            
-            headerCell.profilePicture.image = UIImage(named: "profileImage")
+            headerCell.emailLabel.isHidden = false
+            headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
             headerCell.usernameLabel.text = self.store.currentUser.username
+            
+            headerCell.emailLabel.text = self.store.currentUser.email
             headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
-//            headerCell.levelLabel.text = self.store.currentUser.level
-//            headerCell.experiencePointsLabel.text = String(describing:self.store.currentUser.experiencePoints)
             
             return headerCell
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
+            
             dataCell.layoutSubviews()
             dataCell.layoutMargins = UIEdgeInsets.zero
-            dataCell.preservesSuperviewLayoutMargins = false
-            dataCell.levelLabel.text = "Level of Taskiness Acheived So Far: \(self.store.currentUser.level)"
-           
-            dataCell.experiencePointsLabel.text = "Hard Won Experience Gained: \(String(describing: self.store.currentUser.experiencePoints))"
+            //dataCell.preservesSuperviewLayoutMargins = false
+            
+            dataCell.levelLabel.text = "Level: \(self.store.currentUser.level)"
+            dataCell.experiencePointsLabel.text = "Experience: \(String(describing: self.store.currentUser.experiencePoints))"
+            dataCell.tasksCompletedLabel.text = "Tasks completed: \(String(describing: self.store.currentUser.numberOfTasksCompleted))"
             
             return dataCell
         }

@@ -20,7 +20,7 @@ class RootContainerViewController: UIViewController {
         super.viewDidLoad()
         showSplashViewController()
     }
-
+    
     
     func showSplashViewController() {
         
@@ -35,9 +35,10 @@ class RootContainerViewController: UIViewController {
         splashViewController.willMove(toParentViewController: self)
         addChildViewController(splashViewController)
         view.addSubview(splashViewController.view)
-        splashViewController.didMove(toParentViewController: self)
+        
         
         delay(6.00) {
+            splashViewController.didMove(toParentViewController: self)
             self.showLoginViewController()
         }
     }

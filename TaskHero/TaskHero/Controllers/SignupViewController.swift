@@ -94,9 +94,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             
             let usersReference = ref.child("Users").child(uid)
             
-            let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName, "LastName": newUser.lastName, "ProfilePicture": newUser.profilePicture, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate] as [String : Any]
+            let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName, "LastName": newUser.lastName, "ProfilePicture": newUser.profilePicture, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate] as [String : Any] as NSDictionary
             
-            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+            print(values)
+            print(values as NSDictionary)
+            
+            usersReference.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
                 
                 if err != nil {
                     print(err ?? "unable to get specific error")

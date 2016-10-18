@@ -10,25 +10,45 @@ import UIKit
 
 
 class SplashViewController: UIViewController {
-    var initialView = InitialView()
+    //var initialView = InitialView()
+    
+    var initialView = LoginView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //loginLabel.center.y -= view.bounds.width
+        self.initialView.emailField.center.x -= view.bounds.width
+        self.initialView.passwordField.center.x += view.bounds.width
+        
         view.addSubview(initialView)
         initialView.layoutSubviews()
+        //initialView.emailField.isHidden = true
+        initialView.loginButton.isHidden = true
+        // initialView.passwordField.isHidden = true
+        initialView.registerLabel.isHidden = true
+        initialView.viewDivider.isHidden = true
+        initialView.signupButton.isHidden = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        self.initialView.logoLabel.center.x -= view.bounds.width
+        self.initialView.logoImageView.center.x -= view.bounds.width
+        
+        //logoLabel.center.x -= view.bounds.width
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        UIView.animate(withDuration: 0.5, delay: 0.1,
-                       options: [.curveEaseIn], animations: {
-                        self.initialView.logoLabel.center.x += self.view.bounds.width
+        UIView.animate(withDuration: 3, delay: 0.5,
+                       usingSpringWithDamping: 0.3,
+                       initialSpringVelocity: 0.5,
+                       options: [], animations: {
+                        self.initialView.emailField.center.x += self.view.bounds.width
+                        self.initialView.passwordField.center.x -= self.view.bounds.width
             }, completion: nil)
     }
+    
+    
 }

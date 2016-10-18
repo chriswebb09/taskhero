@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.addSubview(loginView)
         loginView.layoutSubviews()
+        
         navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
         
         loginView.emailField.delegate = self
@@ -77,6 +78,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             appDelegate.window?.rootViewController = tabBar
         })
         
+        
     }
+    
+    
     
 }

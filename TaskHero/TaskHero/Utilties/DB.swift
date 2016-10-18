@@ -36,6 +36,7 @@ class Database {
     }
     
     func insertUser(user:User) {
+        print(user)
         let userData: NSDictionary = ["Email": user.email,
                                       "FirstName": user.firstName ?? " ",
                                       "LastName": user.lastName ?? " ",
@@ -43,8 +44,9 @@ class Database {
                                       "ExperiencePoints": user.experiencePoints,
                                       "Level": user.level,
                                       "JoinDate": user.joinDate,
-                                      "Username": user.username]
-        
+                                      "Username": user.username,
+                                      "TasksCompleted": user.numberOfTasksCompleted]
+        print(userData)
         
         self.userRef.updateChildValues(["/\(user.uid)": userData])
     }
@@ -109,7 +111,7 @@ class Database {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User()
                 
-            
+                
                 user.username = (dictionary["Username"] as? String)!
                 user.email = (dictionary["Email"] as? String)!
                 user.firstName =  dictionary["FirstName"] as? String
@@ -120,9 +122,9 @@ class Database {
                 user.profilePicture = dictionary["ProfilePicture"] as? String
                 self.store.currentUser = user
             }
-        
             
-        }, withCancel: nil)
+            
+            }, withCancel: nil)
         
     }
 }
