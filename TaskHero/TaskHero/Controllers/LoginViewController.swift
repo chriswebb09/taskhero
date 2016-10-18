@@ -13,12 +13,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     let store = DataStore.sharedInstance
     let schema = Database.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
+        
         loginView.layoutSubviews()
         
         navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
@@ -54,6 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func handleLogin() {
+        showActivityIndicatory(mainView:view)
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             
             return
@@ -66,7 +70,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            //login sucessful
+            
+            self.activityIndicator.stopAnimating()
             self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
             
             self.schema.fetchUser(completion: { (user) in
@@ -79,6 +84,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
         
         
+    }
+    
+    
+    func showActivityIndicatory(mainView: UIView) {
+        var container: UIView = UIView()
+        container.frame = mainView.frame
+        container.center = mainView.center
+        container.backgroundColor = UIColor.clear
+        //container.alpha = 0.1
+        
+        
+        var loadingView: UIView = UIView()
+        loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
+        loadingView.center = mainView.center
+        loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.7)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        
+        activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
+        activityIndicator.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
+                                           y:loadingView.frame.size.height / 2)
+        loadingView.addSubview(activityIndicator)
+        container.addSubview(loadingView)
+        mainView.addSubview(container)
+        activityIndicator.startAnimating()
     }
     
     

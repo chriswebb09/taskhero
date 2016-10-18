@@ -51,17 +51,18 @@ class HomeViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        let taskQueue = OperationQueue()
+        taskQueue.qualityOfService = .userInitiated
+        taskQueue.name = "come.taskhero.tasks"
+        taskQueue.maxConcurrentOperationCount = 2
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
-        schema.fetchTasks(completion: { (task) in
-            self.store.tasks.append(task)
-            DispatchQueue.main.async {
+        taskQueue.addOperation {
+            self.schema.fetchTasks(completion: { (task) in
+                self.store.tasks.append(task)
                 self.tableView.reloadData()
-            }
-            
-        })
-        self.tableView.reloadData()
+            })
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
