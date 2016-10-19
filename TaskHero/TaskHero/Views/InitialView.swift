@@ -16,13 +16,9 @@ class InitialView: UIView {
     let welcomeLabel = UILabel()
     
     override func layoutSubviews() {
-        
         super.layoutSubviews()
-        
         backgroundColor = UIColor.white
-        
         frame = UIScreen.main.bounds
-        
         setupConstraints()
         setupView()
     }
@@ -37,7 +33,6 @@ class InitialView: UIView {
         containerView.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.75).isActive = true
         containerView.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         
-        
         containerView.addSubview(logoLabel)
         
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -46,8 +41,6 @@ class InitialView: UIView {
         logoLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3).isActive = true
         logoLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.08).isActive = true
         containerView.bringSubview(toFront: logoLabel)
-        
-        
     }
     
     func setupView() {

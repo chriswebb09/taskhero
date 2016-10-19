@@ -19,10 +19,10 @@ class LoginView: UIView {
     lazy var emailField: LeftPaddedTextField = {
         let emailField = LeftPaddedTextField()
         emailField.placeholder = "Enter email"
-        emailField.layer.borderColor = UIColor.lightGray.cgColor
+        emailField.layer.borderColor = Constants.signupFieldColor
         emailField.layer.borderWidth = 1
         emailField.layer.cornerRadius = 2
-        emailField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
+        emailField.font = Constants.signupFieldFont
         emailField.keyboardType = .emailAddress
         return emailField
     }()
@@ -30,8 +30,8 @@ class LoginView: UIView {
     lazy var passwordField: LeftPaddedTextField = {
         let passwordField = LeftPaddedTextField()
         passwordField.placeholder = "Enter password"
-        passwordField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
-        passwordField.layer.borderColor = UIColor.lightGray.cgColor
+        passwordField.font = Constants.signupFieldFont
+        passwordField.layer.borderColor = Constants.signupFieldColor
         passwordField.layer.borderWidth = 1
         passwordField.layer.cornerRadius = 2
         passwordField.isSecureTextEntry = true
@@ -40,7 +40,6 @@ class LoginView: UIView {
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        //button.backgroundColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
         button.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
         button.setAttributedTitle( NSAttributedString(string: "Log In", attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin" , size: 18)!]), for: .normal)
         button.layer.cornerRadius = 2
@@ -72,6 +71,7 @@ class LoginView: UIView {
     }()
     
     override func layoutSubviews() {
+        
         super.layoutSubviews()
         
         backgroundColor = UIColor.white
@@ -123,7 +123,6 @@ class LoginView: UIView {
         registerLabel.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         registerLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         registerLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 150).isActive = true
-        
         
         addSubview(signupButton)
         signupButton.translatesAutoresizingMaskIntoConstraints = false

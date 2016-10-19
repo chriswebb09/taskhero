@@ -21,7 +21,6 @@ class AddTaskView: UIView {
         return taskNameLabel
     }()
     
-    
     lazy var taskNameField: LeftPaddedTextField = {
         let taskNameField = LeftPaddedTextField()
         taskNameField.placeholder = "Task name"
@@ -53,7 +52,6 @@ class AddTaskView: UIView {
         return addTaskButton
     }()
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
@@ -74,7 +72,6 @@ class AddTaskView: UIView {
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         taskNameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -180).isActive = true
-        
     
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false

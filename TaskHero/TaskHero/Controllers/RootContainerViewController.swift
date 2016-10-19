@@ -21,7 +21,6 @@ class RootContainerViewController: UIViewController {
         showSplashViewController()
     }
     
-    
     func showSplashViewController() {
         
         rootViewController.willMove(toParentViewController: nil)
@@ -35,7 +34,6 @@ class RootContainerViewController: UIViewController {
         splashViewController.willMove(toParentViewController: self)
         addChildViewController(splashViewController)
         view.addSubview(splashViewController.view)
-        
         
         delay(1.00) {
             splashViewController.didMove(toParentViewController: self)

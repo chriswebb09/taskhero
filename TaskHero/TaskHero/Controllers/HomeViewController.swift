@@ -23,7 +23,7 @@ class HomeViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = leftButton
         
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        view.backgroundColor = Constants.tableViewBackgroundColor
         edgesForExtendedLayout = []
         
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
@@ -51,8 +51,9 @@ class HomeViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         let taskQueue = OperationQueue()
-        taskQueue.qualityOfService = .userInitiated
+        taskQueue.qualityOfService = .userInteractive
         taskQueue.name = "come.taskhero.tasks"
         taskQueue.maxConcurrentOperationCount = 2
         super.viewWillAppear(false)
@@ -63,6 +64,7 @@ class HomeViewController: UITableViewController {
                 self.tableView.reloadData()
             })
         }
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,7 +121,8 @@ class HomeViewController: UITableViewController {
             let cellindex = (indexPath.row) - 1
             taskCell.contentView.addSubview(cellView)
             taskCell.contentView.sendSubview(toBack: cellView)
-            
+            print(self.store.tasks.count)
+            print(cellindex)
             taskCell.taskNameLabel.text = self.store.tasks[cellindex].taskName
             taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[cellindex].taskDescription)"
             taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[cellindex].taskDue)"

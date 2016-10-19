@@ -13,7 +13,6 @@ class TaskListViewController: UITableViewController {
     let store = DataStore.sharedInstance
     let schema = Database.sharedInstance
     
-    
     override func viewDidLoad() {
         
         print("task list view controller")
@@ -34,14 +33,11 @@ class TaskListViewController: UITableViewController {
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 18)!], for: .normal)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,25 +46,28 @@ class TaskListViewController: UITableViewController {
     }
     
     
+    
     override func viewWillAppear(_ animated: Bool) {
-        let taskQueue = OperationQueue()
-        taskQueue.qualityOfService = .userInitiated
-        taskQueue.name = "come.taskhero.tasks"
-        taskQueue.maxConcurrentOperationCount = 2
-        super.viewWillAppear(false)
-        self.store.tasks.removeAll()
-        taskQueue.addOperation {
-            self.schema.fetchTasks(completion: { (task) in
-                self.store.tasks.append(task)
-                self.tableView.reloadData()
-            })
-        }
+        tableView.reloadData()
+        print(self.store.tasks.count)
+        print(self.store.tasks)
+//        let taskQueue = OperationQueue()
+//        taskQueue.qualityOfService = .userInitiated
+//        taskQueue.name = "come.taskhero.tasks"
+//        taskQueue.maxConcurrentOperationCount = 2
+//        super.viewWillAppear(false)
+//        self.store.tasks.removeAll()
+//        taskQueue.addOperation {
+//            self.schema.fetchTasks(completion: { (task) in
+//                self.store.tasks.append(task)
+//            })
+//        }
+//        tableView.reloadData()
     }
     
-  
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        schema.tasksRef.removeObserver(withHandle: schema.refHandle)
+        //schema.tasksRef.removeObserver(withHandle: schema.refHandle)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,18 +99,21 @@ class TaskListViewController: UITableViewController {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         
         if editingStyle == .delete {
             tableView.beginUpdates()
             
+            
+            
             print("ROWS \(self.tableView.numberOfRows(inSection: 0))")
+            
+            
+            
             
             DispatchQueue.main.async {
                 var removeTaskID: String
-               
-                print("top")
                 print(indexPath.row)
                 removeTaskID = self.store.tasks[indexPath.row].taskID
                 self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row].pointValue
@@ -124,9 +126,11 @@ class TaskListViewController: UITableViewController {
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
             }
+            
             tableView.reloadData()
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
-        
     }
-    
 }

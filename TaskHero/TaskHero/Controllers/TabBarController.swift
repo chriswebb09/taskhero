@@ -25,15 +25,13 @@ class TabBarController: UITabBarController {
         
         super.viewWillLayoutSubviews()
         
-        let tabBarHeight = view.frame.height * 0.09
+        let tabBarHeight = view.frame.height * Constants.tabbarFrameHeight
         var tabFrame = tabBar.frame
-        
         tabFrame.size.height = tabBarHeight
         tabFrame.origin.y = view.frame.size.height - tabBarHeight
-        
         tabBar.frame = tabFrame
-        tabBar.tintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
-        tabBar.barTintColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:0.5)
+        tabBar.tintColor = Constants.tabbarTintColor
+        tabBar.barTintColor = Constants.tabbarColor
         tabBar.isTranslucent = true
     }
     
@@ -49,12 +47,10 @@ class TabBarController: UITabBarController {
         let homeTab = UINavigationController(rootViewController: homeVC)
         homeTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
         homeTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
-        homeTab.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
+        homeTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         //homeTab.navigationBar.barTintColor = UIColor(red:0.16, green:0.58, blue:0.83, alpha:1.0)
-        
         //homeTab.navigationBar.barTintColor = UIColor(red:0.94, green:0.94, blue:0.94, alpha:1.0)
         homeTab.navigationBar.topItem?.title = "TaskHero"
-        
         
         
         let profileVC = ProfileViewController()
@@ -67,9 +63,8 @@ class TabBarController: UITabBarController {
         let profileTab = UINavigationController(rootViewController: profileVC)
         profileTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
         profileTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
-        profileTab.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
+        profileTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         profileTab.navigationBar.topItem?.title = "Profile"
-        
         
         let taskListVC = TaskListViewController()
         
@@ -81,11 +76,8 @@ class TabBarController: UITabBarController {
         let taskListTab = UINavigationController(rootViewController: taskListVC)
         taskListTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
         taskListTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
-        taskListTab.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
+        taskListTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         taskListTab.navigationBar.topItem?.title = "TaskList"
-        
-        
-        
         
         //        let settingsVC = SettingsViewController()
         //        settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-2-white-1")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "settings-lightblue")?.withRenderingMode(.alwaysTemplate))
@@ -99,13 +91,6 @@ class TabBarController: UITabBarController {
         //        settingsTab.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
         //        settingsTab.navigationBar.topItem?.title = "Settings"
         
-        
-        
-        
-        
-        
-        
-        
         let controllers = [homeTab, profileTab, taskListTab]
         viewControllers = controllers
         
@@ -114,7 +99,6 @@ class TabBarController: UITabBarController {
         tabBar.items?[2].title = "Tasks"
         selectedIndex = 0
     }
-    
     
     fileprivate func isLoggedIn() -> Bool {
         return UserDefaults.standard.isLoggedIn()

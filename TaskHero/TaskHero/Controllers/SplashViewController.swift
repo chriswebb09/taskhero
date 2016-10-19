@@ -29,7 +29,6 @@ class SplashViewController: UIViewController {
         initialView.registerLabel.isHidden = true
         initialView.viewDivider.isHidden = true
         initialView.signupButton.isHidden = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

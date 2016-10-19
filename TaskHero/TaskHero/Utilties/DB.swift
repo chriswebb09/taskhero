@@ -9,11 +9,9 @@
 import UIKit
 import Firebase
 
-
 class Database {
     
     static let sharedInstance = Database()
-    
     let store = DataStore.sharedInstance
     
     var dataSnapshot = [FIRDataSnapshot]()
@@ -26,7 +24,6 @@ class Database {
     deinit {
         self.ref.removeObserver(withHandle: self.refHandle)
     }
-    
     
     init() {
         
@@ -47,50 +44,36 @@ class Database {
                                       "Username": user.username,
                                       "TasksCompleted": user.numberOfTasksCompleted]
         print(userData)
-        
         self.userRef.updateChildValues(["/\(self.store.currentUserString!)": userData])
     }
-    
-    
-//    func updateUserScore(score:Int) {
-//        let scoreData: NSDictionary = ["ExperiencePoints":score]
-//        self.userRef.child("/\(self.store.currentUserString)").updateChildValues([scoreData])
-//    }
-//    
+    //    func updateUserScore(score:Int) {
+    //        let scoreData: NSDictionary = ["ExperiencePoints":score]
+    //        self.userRef.child("/\(self.store.currentUserString)").updateChildValues([scoreData])
+    //    }
+    //
     func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
-        
-        
         self.tasksRef = self.userRef.child(self.store.currentUserString).child("Tasks")
         self.refHandle = self.tasksRef.observe(.childAdded, with: { (snapshot) in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             //print(snapshotValue)
             var newTask = Task()
-            
-            
             newTask.taskID = snapshot.key
             print(newTask.taskID)
-            
             if let fetchName = snapshotValue["TaskName"] as? String {
                 newTask.taskName = fetchName
             }
-            
             if let fetchDescription = snapshotValue["TaskDescription"] as? String {
                 newTask.taskDescription = fetchDescription
             }
-            
             if let fetchCreated = snapshotValue["TaskCreated"] as? String {
                 newTask.taskCreated = fetchCreated
             }
-            
-            
             if let fetchDue = snapshotValue["TaskDue"] as? String {
                 newTask.taskDue = fetchDue
             }
-            
             if let fetchCompleted = snapshotValue["TaskCompleted"] as? Bool {
                 newTask.taskCompleted = fetchCompleted
             }
-            
             completion(newTask)
         })
     }
@@ -104,20 +87,16 @@ class Database {
         self.tasksRef.child("\(task.taskID)/TaskCompleted").setValue(task.taskDue)
     }
     
-    
     func removeTask(ref:String) {
         self.tasksRef = self.userRef.child(self.store.currentUserString).child("Tasks")
         self.tasksRef.child(ref).removeValue()
     }
-    
     
     func fetchUser(completion:@escaping (_ user:User) -> Void) {
         FIRDatabase.database().reference().child("Users").child(self.store.currentUserString).observeSingleEvent(of: .value, with: { (snapshot) in
             print(snapshot)
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User()
-                
-                
                 user.username = (dictionary["Username"] as? String)!
                 user.email = (dictionary["Email"] as? String)!
                 user.firstName =  dictionary["FirstName"] as? String
@@ -129,10 +108,7 @@ class Database {
                 user.numberOfTasksCompleted = (dictionary["TasksCompleted"] as? Int)!
                 self.store.currentUser = user
             }
-            
-            
             }, withCancel: nil)
-        
     }
 }
 

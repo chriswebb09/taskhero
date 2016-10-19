@@ -61,10 +61,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        
         validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!)
-        
-        
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
             
@@ -89,9 +86,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             newUser.lastName = "N/A"
             newUser.experiencePoints = 0
             newUser.tasks = [Task]()
-            
-            
-            
+        
             let usersReference = ref.child("Users").child(uid)
             
             let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
@@ -144,8 +139,4 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             return false
         }
     }
-    
-
-
-    
 }

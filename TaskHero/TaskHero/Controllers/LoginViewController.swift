@@ -82,26 +82,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
         })
-        
-        
     }
     
     
     func showActivityIndicatory(mainView: UIView) {
         
         let containerView: UIView = UIView()
+        
         containerView.frame = mainView.frame
         containerView.center = mainView.center
         containerView.backgroundColor = UIColor.clear
         
-        
         let loadingView: UIView = UIView()
+        
         loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
         loadingView.center = mainView.center
         loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
-        
         
         activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
         activityIndicator.activityIndicatorViewStyle =

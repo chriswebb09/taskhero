@@ -22,8 +22,8 @@ class SignupView: UIView {
     lazy var usernameField: LeftPaddedTextField = {
         let usernameField = LeftPaddedTextField()
         usernameField.placeholder = "Choose your username"
-        usernameField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
-        usernameField.layer.borderColor = UIColor.lightGray.cgColor
+        usernameField.font = Constants.signupFieldFont
+        usernameField.layer.borderColor = Constants.signupFieldColor
         usernameField.layer.borderWidth = 1
         usernameField.keyboardType = .emailAddress
         return usernameField
@@ -32,8 +32,8 @@ class SignupView: UIView {
     lazy var emailField: LeftPaddedTextField = {
         let emailField = LeftPaddedTextField()
         emailField.placeholder = "Enter email"
-        emailField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
-        emailField.layer.borderColor = UIColor.lightGray.cgColor
+        emailField.font = Constants.signupFieldFont
+        emailField.layer.borderColor = Constants.signupFieldColor
         emailField.layer.borderWidth = 1
         emailField.keyboardType = .emailAddress
         return emailField
@@ -42,8 +42,8 @@ class SignupView: UIView {
     lazy var confirmEmailField: LeftPaddedTextField = {
         let confirmEmailField = LeftPaddedTextField()
         confirmEmailField.placeholder = "Confirm your email address"
-        confirmEmailField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
-        confirmEmailField.layer.borderColor = UIColor.lightGray.cgColor
+        confirmEmailField.font = Constants.signupFieldFont
+        confirmEmailField.layer.borderColor = Constants.signupFieldColor
         confirmEmailField.layer.borderWidth = 1
         confirmEmailField.keyboardType = .emailAddress
         return confirmEmailField
@@ -52,8 +52,8 @@ class SignupView: UIView {
     lazy var passwordField: LeftPaddedTextField = {
         let passwordField = LeftPaddedTextField()
         passwordField.placeholder = "Enter password"
-        passwordField.font = UIFont(name: "HelveticaNeue-Thin" , size: 16)
-        passwordField.layer.borderColor = UIColor.lightGray.cgColor
+        passwordField.font = Constants.signupFieldFont
+        passwordField.layer.borderColor = Constants.signupFieldColor
         passwordField.layer.borderWidth = 1
         passwordField.isSecureTextEntry = true
         return passwordField

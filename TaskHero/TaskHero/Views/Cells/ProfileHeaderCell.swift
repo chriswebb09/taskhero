@@ -58,7 +58,6 @@ class ProfileHeaderCell: UITableViewCell {
     
     lazy var profilePicture: UIImageView = {
         let imageView = UIImageView()
-        //imageView.layer.masksToBounds = true
         return imageView
     }()
     
@@ -76,7 +75,7 @@ class ProfileHeaderCell: UITableViewCell {
         contentView.addSubview(usernameLabel)
         
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
-        usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
         usernameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
@@ -84,17 +83,15 @@ class ProfileHeaderCell: UITableViewCell {
         contentView.addSubview(emailLabel)
         
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        emailLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         emailLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
         emailLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         emailLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        //emailLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40).isActive = true
-        
         
         contentView.addSubview(joinDateLabel)
         
         joinDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
         joinDateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
@@ -111,16 +108,13 @@ class ProfileHeaderCell: UITableViewCell {
         contentView.addSubview(levelLabel)
         
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
-        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
         levelLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
-        
     }
     
     override func prepareForReuse() {
-        
         super.prepareForReuse()
         usernameLabel.text = ""
         profilePicture.image = nil
