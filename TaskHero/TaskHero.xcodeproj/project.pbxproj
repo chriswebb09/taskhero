@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7244712A81FA9B4EA164A8FA /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */; };
+		AF5CCF931DB735E900F5351C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CCF921DB735E900F5351C /* LoadingView.swift */; };
 		AFA3CE831DB58DCC003266CA /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CE7C1DB58DCC003266CA /* AddTaskView.swift */; };
 		AFA3CE851DB58DCC003266CA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CE7E1DB58DCC003266CA /* Constants.swift */; };
 		AFA3CE861DB58DCC003266CA /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CE7F1DB58DCC003266CA /* InitialView.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91CD8A86197BE8140B3FABF1 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
+		AF5CCF921DB735E900F5351C /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Views/LoadingView.swift; sourceTree = "<group>"; };
 		AFA3CE7C1DB58DCC003266CA /* AddTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskView.swift; path = Views/AddTaskView.swift; sourceTree = "<group>"; };
 		AFA3CE7E1DB58DCC003266CA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Views/Constants.swift; sourceTree = "<group>"; };
 		AFA3CE7F1DB58DCC003266CA /* InitialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialView.swift; path = Views/InitialView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				AFA3CE801DB58DCC003266CA /* LoginView.swift */,
 				AFA3CE811DB58DCC003266CA /* ProfilePictureView.swift */,
 				AFA3CE821DB58DCC003266CA /* SignupView.swift */,
+				AF5CCF921DB735E900F5351C /* LoadingView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				AFA3CE831DB58DCC003266CA /* AddTaskView.swift in Sources */,
 				AFA3CEA81DB58E28003266CA /* User.swift in Sources */,
 				AFA3CE891DB58DCC003266CA /* SignupView.swift in Sources */,
+				AF5CCF931DB735E900F5351C /* LoadingView.swift in Sources */,
 				AFA3CE9D1DB58E0E003266CA /* SettingsViewController.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,
 				AFA3CEA61DB58E28003266CA /* DataStore.swift in Sources */,

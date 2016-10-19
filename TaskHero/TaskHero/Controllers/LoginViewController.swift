@@ -13,8 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
     
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    
+        
     let store = DataStore.sharedInstance
     let schema = Database.sharedInstance
     
@@ -29,7 +28,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
         loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
-        loginView.loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        
+        let operationQueue = OperationQueue()
+        
+        
+        let operation = BlockOperation(block: { () -> Void in
+            self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
+        })
+        
+        operationQueue.addOperation(operation)
+        
+        operationQueue.maxConcurrentOperationCount = 2
+        
+        operationQueue.qualityOfService = .userInitiated
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,7 +69,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func handleLogin() {
-        showActivityIndicatory(mainView:view)
+        
+        var loadingView = LoadingView()
+        
+        loadingView.showActivityIndicator(viewController: self)
+        
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             
             return
@@ -66,12 +82,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if error != nil {
+                
+                loadingView.hideActivityIndicator(viewController:self)
+                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                    
+                    switch errCode {
+                    case .errorCodeInvalidEmail:
+                        print("invalid email")
+                    case .errorCodeEmailAlreadyInUse:
+                        print("in use")
+                    default:
+                        print("Create User Error: \(error)")
+                    }    
+                }
                 print(error ?? "error")
                 return
             }
             
             
-            self.activityIndicator.stopAnimating()
+            loadingView.hideActivityIndicator(viewController: self)
             self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
             
             self.schema.fetchUser(completion: { (user) in
@@ -85,33 +114,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func showActivityIndicatory(mainView: UIView) {
-        
-        let containerView: UIView = UIView()
-        
-        containerView.frame = mainView.frame
-        containerView.center = mainView.center
-        containerView.backgroundColor = UIColor.clear
-        
-        let loadingView: UIView = UIView()
-        
-        loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
-        loadingView.center = mainView.center
-        loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
-        loadingView.clipsToBounds = true
-        loadingView.layer.cornerRadius = 10
-        
-        activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
-        activityIndicator.activityIndicatorViewStyle =
-            UIActivityIndicatorViewStyle.whiteLarge
-        activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
-                                           y:loadingView.frame.size.height / 2)
-        loadingView.addSubview(activityIndicator)
-        containerView.addSubview(loadingView)
-        mainView.addSubview(containerView)
-        activityIndicator.startAnimating()
-    }
-    
-    
-    
+//    func showActivityIndicatory(mainView: UIView) {
+//        
+//        let containerView: UIView = UIView()
+//        
+//        containerView.frame = mainView.frame
+//        containerView.center = mainView.center
+//        containerView.backgroundColor = UIColor.clear
+//        
+//        let loadingView: UIView = UIView()
+//        
+//        loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
+//        loadingView.center = mainView.center
+//        loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
+//        loadingView.clipsToBounds = true
+//        loadingView.layer.cornerRadius = 10
+//        
+//        activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
+//        activityIndicator.activityIndicatorViewStyle =
+//            UIActivityIndicatorViewStyle.whiteLarge
+//        activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
+//                                           y:loadingView.frame.size.height / 2)
+//        loadingView.addSubview(activityIndicator)
+//        containerView.addSubview(loadingView)
+//        mainView.addSubview(containerView)
+//        activityIndicator.startAnimating()
+//    }
 }

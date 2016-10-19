@@ -59,4 +59,10 @@ struct Constants {
     static let loginFieldHeight = CGFloat(0.07)
     static let loginFieldWidth = CGFloat(0.85)
     static let loginButtonWidth = CGFloat(0.6)
+    
+    
+    public func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+    }
 }

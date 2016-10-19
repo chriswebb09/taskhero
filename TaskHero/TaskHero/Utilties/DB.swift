@@ -92,9 +92,9 @@ class Database {
         self.tasksRef.child(ref).removeValue()
     }
     
+    
     func fetchUser(completion:@escaping (_ user:User) -> Void) {
-        FIRDatabase.database().reference().child("Users").child(self.store.currentUserString).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot)
+        FIRDatabase.database().reference().child("Users").child(self.store.currentUserString).observe(.value, with: { snapshot in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User()
                 user.username = (dictionary["Username"] as? String)!
@@ -110,5 +110,24 @@ class Database {
             }
             }, withCancel: nil)
     }
+    
+//    func fetchUser(completion:@escaping (_ user:User) -> Void) {
+//        FIRDatabase.database().reference().child("Users").child(self.store.currentUserString).observeSingleEvent(of: .value, with: { (snapshot) in
+//            print(snapshot)
+//            if let dictionary = snapshot.value as? [String: AnyObject] {
+//                let user = User()
+//                user.username = (dictionary["Username"] as? String)!
+//                user.email = (dictionary["Email"] as? String)!
+//                user.firstName =  dictionary["FirstName"] as? String
+//                user.lastName = dictionary["LastName"] as? String
+//                user.experiencePoints = (dictionary["ExperiencePoints"] as? Int)!
+//                user.level =  (dictionary["Level"] as? String)!
+//                user.joinDate = (dictionary["JoinDate"] as? String)!
+//                user.profilePicture = dictionary["ProfilePicture"] as? String
+//                user.numberOfTasksCompleted = (dictionary["TasksCompleted"] as? Int)!
+//                self.store.currentUser = user
+//            }
+//            }, withCancel: nil)
+//    }
 }
 

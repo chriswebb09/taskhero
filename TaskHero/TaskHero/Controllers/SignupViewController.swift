@@ -55,8 +55,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     func handleRegister() {
         
+        var loadingView = LoadingView()
+        
+        loadingView.showActivityIndicator(viewController: self)
         
         guard let email = signupView.emailField.text, let password = signupView.passwordField.text, let username = signupView.usernameField.text else {
+            loadingView.hideActivityIndicator(viewController:self)
             print("Form is not valid")
             return
         }
@@ -66,11 +70,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
             
             if error != nil {
+                loadingView.hideActivityIndicator(viewController: self)
                 print(error ?? "unable to get specific error")
                 return
             }
             
             guard let uid = user?.uid else {
+                loadingView.hideActivityIndicator(viewController: self)
                 return
             }
             
@@ -97,6 +103,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             usersReference.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
                 
                 if err != nil {
+                    loadingView.hideActivityIndicator(viewController: self)
                     print(err ?? "unable to get specific error")
                     return
                 }

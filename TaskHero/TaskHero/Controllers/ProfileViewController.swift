@@ -18,6 +18,8 @@ class ProfileViewController: UITableViewController {
         
         super.viewDidLoad()
         
+       // schema.user()
+        
         edgesForExtendedLayout = []
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -45,6 +47,15 @@ class ProfileViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        self.schema.fetchUser(completion: { (user) in
+            print(user)
+        })
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

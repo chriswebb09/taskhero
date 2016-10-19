@@ -39,11 +39,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         // Dispose of any resources that can be recreated.
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(false)
-//        schema.tasksRef.removeObserver(withHandle: schema.refHandle)
-//    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

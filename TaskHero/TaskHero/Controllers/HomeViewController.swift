@@ -38,9 +38,17 @@ class HomeViewController: UITableViewController {
         tableView.separatorInset = UIEdgeInsets.zero
         
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        let navButton = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        navButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 18)!], for: .normal)
+        navButton.customView?.layer.borderWidth = 1
+        navButton.customView?.layer.borderColor = UIColor.white.cgColor
         
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 18)!], for: .normal)
+        
+        navigationItem.leftBarButtonItem = navButton
+        //UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        
+        
+        //navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 18)!], for: .normal)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
@@ -52,19 +60,20 @@ class HomeViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let taskQueue = OperationQueue()
-        taskQueue.qualityOfService = .userInteractive
-        taskQueue.name = "come.taskhero.tasks"
-        taskQueue.maxConcurrentOperationCount = 2
+ //       let taskQueue = OperationQueue()
+//        taskQueue.qualityOfService = .userInteractive
+//        taskQueue.name = "come.taskhero.tasks"
+//        taskQueue.maxConcurrentOperationCount = 2
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
-        taskQueue.addOperation {
-            self.schema.fetchTasks(completion: { (task) in
-                self.store.tasks.append(task)
-                self.tableView.reloadData()
-            })
-        }
-        tableView.reloadData()
+        self.schema.fetchTasks(completion: { (task) in
+            self.store.tasks.append(task)
+            self.tableView.reloadData()
+        })
+
+        //taskQueue.addOperation {
+       //             }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
