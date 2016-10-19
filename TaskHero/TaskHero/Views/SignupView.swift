@@ -14,7 +14,7 @@ class SignupView: UIView {
         let signupViewLabel = UILabel()
         signupViewLabel.textColor = UIColor.black
         signupViewLabel.text = "Become a Member"
-        signupViewLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
+        signupViewLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
         signupViewLabel.textAlignment = .center
         return signupViewLabel
     }()

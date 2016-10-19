@@ -40,7 +40,7 @@ class ProfileHeaderCell: UITableViewCell {
         let emailLabel = UITextView()
         emailLabel.textColor = UIColor.black
         emailLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 12)
-        emailLabel.textAlignment = .left
+        emailLabel.textAlignment = .right
         emailLabel.layer.masksToBounds = true
         emailLabel.isScrollEnabled = false
         return emailLabel

@@ -16,7 +16,7 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.isHidden = true
         //loginLabel.center.y -= view.bounds.width
         self.initialView.emailField.center.x -= view.bounds.width
         self.initialView.passwordField.center.x += view.bounds.width
@@ -44,7 +44,7 @@ class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        UIView.animate(withDuration: 2, delay: 0.5,
+        UIView.animate(withDuration: 1, delay: 0.1,
                        usingSpringWithDamping: 0.3,
                        initialSpringVelocity: 0.5,
                        options: [], animations: {

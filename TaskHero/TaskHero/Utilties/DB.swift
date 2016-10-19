@@ -48,7 +48,7 @@ class Database {
                                       "TasksCompleted": user.numberOfTasksCompleted]
         print(userData)
         
-        self.userRef.updateChildValues(["/\(self.store.currentUserString)!": userData])
+        self.userRef.updateChildValues(["/\(self.store.currentUserString!)": userData])
     }
     
     
