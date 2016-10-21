@@ -58,7 +58,9 @@ class AddTaskView: UIView {
     }
     
     func setupConstraints() {
+        
         addSubview(taskNameLabel)
+        
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
         taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
@@ -66,6 +68,7 @@ class AddTaskView: UIView {
         taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 40).isActive = true
         
         addSubview(taskNameField)
+        
         taskNameField.translatesAutoresizingMaskIntoConstraints = false
         taskNameField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
@@ -73,15 +76,15 @@ class AddTaskView: UIView {
         taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -200).isActive = true
     
         addSubview(taskDescriptionBox)
+        
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        //taskDescriptionBox.topAnchor.constraint(equalTo: topAnchor, constant: 200).isActive = true
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: 200).isActive = true
         
-        
         addSubview(addTaskButton)
+        
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true

@@ -28,7 +28,6 @@ class TaskCell: UITableViewCell {
     
     let taskDescriptionLabel: UITextView = {
         let textView = UITextView()
-        
         textView.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
         textView.textColor = UIColor.white
         textView.layer.cornerRadius = 2
@@ -39,7 +38,6 @@ class TaskCell: UITableViewCell {
         return textView
     }()
     
-    
     let taskDueLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
@@ -49,7 +47,6 @@ class TaskCell: UITableViewCell {
         textView.isScrollEnabled = false
         return textView
     }()
-    
     
     lazy var taskCompletedView: UIImageView = {
         let taskCompletedImageView = UIImageView()
@@ -80,30 +77,24 @@ class TaskCell: UITableViewCell {
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 60).isActive = true
         
-        
         contentView.addSubview(taskDescriptionLabel)
         
         taskDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         taskDescriptionLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.38).isActive = true
         taskDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.94).isActive = true
         taskDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        //taskDescriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDescriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 110).isActive = true
         
-        
-        
         contentView.addSubview(taskCompletedView)
+        
         taskCompletedView.translatesAutoresizingMaskIntoConstraints = false
         taskCompletedView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         taskCompletedView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         taskCompletedView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
         taskCompletedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        //taskCompletedView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
     override func prepareForReuse() {
-        
         super.prepareForReuse()
         taskNameLabel.text = ""
         taskDescriptionLabel.text = ""

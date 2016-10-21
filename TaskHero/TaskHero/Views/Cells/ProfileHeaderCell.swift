@@ -69,7 +69,6 @@ class ProfileHeaderCell: UITableViewCell {
         contentView.layer.masksToBounds = true
     }
     
-    
     func setupConstraints() {
         
         contentView.addSubview(usernameLabel)
@@ -95,7 +94,6 @@ class ProfileHeaderCell: UITableViewCell {
         joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
         joinDateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-        
         
         contentView.addSubview(profilePicture)
         

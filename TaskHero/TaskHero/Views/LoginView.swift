@@ -82,6 +82,7 @@ class LoginView: UIView {
     func setupConstraints() {
         
         addSubview(logoImageView)
+        
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.logoImageWidth).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.logoImageHeight).isActive = true
@@ -89,6 +90,7 @@ class LoginView: UIView {
         logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -180).isActive = true
         
         addSubview(emailField)
+        
         emailField.translatesAutoresizingMaskIntoConstraints = false
         emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         emailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
@@ -96,6 +98,7 @@ class LoginView: UIView {
         emailField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -110).isActive = true
         
         addSubview(passwordField)
+        
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         passwordField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
@@ -104,6 +107,7 @@ class LoginView: UIView {
         passwordField.isSecureTextEntry = true
         
         addSubview(loginButton)
+        
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.loginFieldWidth).isActive = true
         loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
@@ -111,6 +115,7 @@ class LoginView: UIView {
         loginButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 50).isActive = true
         
         addSubview(viewDivider)
+        
         viewDivider.translatesAutoresizingMaskIntoConstraints = false
         viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
         viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier: 0.02).isActive = true
@@ -118,6 +123,7 @@ class LoginView: UIView {
         viewDivider.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 110).isActive = true
         
         addSubview(registerLabel)
+        
         registerLabel.translatesAutoresizingMaskIntoConstraints = false
         registerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         registerLabel.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
@@ -125,6 +131,7 @@ class LoginView: UIView {
         registerLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 150).isActive = true
         
         addSubview(signupButton)
+        
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         signupButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
