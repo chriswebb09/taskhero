@@ -10,14 +10,16 @@ import UIKit
 import Firebase
 
 class TabBarController: UITabBarController {
-    
+    let store = DataStore.sharedInstance
     override func viewDidLoad() {
-        if FIRAuth.auth()?.currentUser?.uid == nil {
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-        } else {
-            super.viewDidLoad()
-            view.backgroundColor = UIColor.white
-            setupControllers()
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if user != nil && (self.store.currentUser != nil) {
+                super.viewDidLoad()
+                self.view.backgroundColor = UIColor.white
+                self.setupControllers()
+            } else {
+                self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
+            }
         }
     }
     
@@ -100,16 +102,18 @@ class TabBarController: UITabBarController {
         selectedIndex = 0
     }
     
-    fileprivate func isLoggedIn() -> Bool {
-        return UserDefaults.standard.isLoggedIn()
-    }
+
     
     func handleLogout() {
+        
         do {
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)
         }
         
+        let loginController = LoginViewController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = loginController
     }
 }

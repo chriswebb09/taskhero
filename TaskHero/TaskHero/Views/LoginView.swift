@@ -16,8 +16,8 @@ class LoginView: UIView {
         return imageView
     }()
     
-    lazy var emailField: LeftPaddedTextField = {
-        let emailField = LeftPaddedTextField()
+    lazy var emailField: TextFieldExtension = {
+        let emailField = TextFieldExtension()
         emailField.placeholder = "Enter email"
         emailField.layer.borderColor = Constants.signupFieldColor
         emailField.layer.borderWidth = 1
@@ -27,8 +27,8 @@ class LoginView: UIView {
         return emailField
     }()
     
-    lazy var passwordField: LeftPaddedTextField = {
-        let passwordField = LeftPaddedTextField()
+    lazy var passwordField: TextFieldExtension = {
+        let passwordField = TextFieldExtension()
         passwordField.placeholder = "Enter password"
         passwordField.font = Constants.signupFieldFont
         passwordField.layer.borderColor = Constants.signupFieldColor
@@ -133,14 +133,4 @@ class LoginView: UIView {
     }
 }
 
-class LeftPaddedTextField: UITextField {
-    
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width + 10, height: bounds.height)
-    }
-    
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width + 10, height: bounds.height)
-    }
-    
-}
+

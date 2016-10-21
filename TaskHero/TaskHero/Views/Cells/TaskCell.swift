@@ -31,7 +31,7 @@ class TaskCell: UITableViewCell {
         
         textView.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
         textView.textColor = UIColor.white
-        textView.layer.cornerRadius = 8
+        textView.layer.cornerRadius = 2
         textView.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         textView.textAlignment = .left
         textView.layer.masksToBounds = true

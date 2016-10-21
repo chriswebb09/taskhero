@@ -19,8 +19,8 @@ class SignupView: UIView {
         return signupViewLabel
     }()
     
-    lazy var usernameField: LeftPaddedTextField = {
-        let usernameField = LeftPaddedTextField()
+    lazy var usernameField: TextFieldExtension = {
+        let usernameField = TextFieldExtension()
         usernameField.placeholder = "Choose your username"
         usernameField.font = Constants.signupFieldFont
         usernameField.layer.borderColor = Constants.signupFieldColor
@@ -29,8 +29,8 @@ class SignupView: UIView {
         return usernameField
     }()
     
-    lazy var emailField: LeftPaddedTextField = {
-        let emailField = LeftPaddedTextField()
+    lazy var emailField: TextFieldExtension = {
+        let emailField = TextFieldExtension()
         emailField.placeholder = "Enter email"
         emailField.font = Constants.signupFieldFont
         emailField.layer.borderColor = Constants.signupFieldColor
@@ -39,8 +39,8 @@ class SignupView: UIView {
         return emailField
     }()
     
-    lazy var confirmEmailField: LeftPaddedTextField = {
-        let confirmEmailField = LeftPaddedTextField()
+    lazy var confirmEmailField: TextFieldExtension = {
+        let confirmEmailField = TextFieldExtension()
         confirmEmailField.placeholder = "Confirm your email address"
         confirmEmailField.font = Constants.signupFieldFont
         confirmEmailField.layer.borderColor = Constants.signupFieldColor
@@ -49,8 +49,8 @@ class SignupView: UIView {
         return confirmEmailField
     }()
     
-    lazy var passwordField: LeftPaddedTextField = {
-        let passwordField = LeftPaddedTextField()
+    lazy var passwordField: TextFieldExtension = {
+        let passwordField = TextFieldExtension()
         passwordField.placeholder = "Enter password"
         passwordField.font = Constants.signupFieldFont
         passwordField.layer.borderColor = Constants.signupFieldColor

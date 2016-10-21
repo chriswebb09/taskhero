@@ -17,7 +17,10 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         
         let leftButton =  UIBarButtonItem(title: "Left Button", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         
@@ -59,21 +62,12 @@ class HomeViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
- //       let taskQueue = OperationQueue()
-//        taskQueue.qualityOfService = .userInteractive
-//        taskQueue.name = "come.taskhero.tasks"
-//        taskQueue.maxConcurrentOperationCount = 2
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
         self.schema.fetchTasks(completion: { (task) in
             self.store.tasks.append(task)
             self.tableView.reloadData()
         })
-
-        //taskQueue.addOperation {
-       //             }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -97,7 +91,7 @@ class HomeViewController: UITableViewController {
         if indexPath.row == 0 {
             
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
-            
+            headerCell.isUserInteractionEnabled = false
             headerCell.layoutMargins = UIEdgeInsets.zero
             headerCell.preservesSuperviewLayoutMargins = false
             headerCell.layoutSubviews()
@@ -136,6 +130,8 @@ class HomeViewController: UITableViewController {
             taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[cellindex].taskDescription)"
             taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[cellindex].taskDue)"
             
+            
+
             if self.store.tasks[cellindex].taskCompleted {
                 taskCell.taskCompletedView.image = UIImage(named:"checked")
             }
@@ -153,7 +149,29 @@ class HomeViewController: UITableViewController {
             
             print("ROWS \(self.tableView.numberOfRows(inSection: 0))")
             
-            
+//            let userOperation = Operation()
+//            
+//            userOperation.queuePriority = .veryHigh
+//            
+//            userOperation.qualityOfService = .userInitiated
+//            
+//            
+//            operation.completionBlock {
+//                
+//            }
+//            
+//            let taskQueue = OperationQueue.main
+//            taskQueue.addOperation {
+//                userOperation
+//            }
+//            
+//            
+//            //            let backgroundOperation = NSOperation()
+//            //            backgroundOperation.queuePriority = .Low
+//            //            backgroundOperation.qualityOfService = .Background
+//            //            let operationQueue = OperationQueue.mainQueue()
+//            //            operationQueue.addOperation(backgroundOperation)
+//            
             
             
             DispatchQueue.main.async {

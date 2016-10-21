@@ -10,19 +10,18 @@ import UIKit
 
 class AddTaskView: UIView {
     
-    let taskNameLabel: UITextView = {
-        let taskNameLabel = UITextView()
+    let taskNameLabel: UILabel = {
+        let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
         taskNameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
         taskNameLabel.textAlignment = .center
         taskNameLabel.layer.masksToBounds = true
-        taskNameLabel.isScrollEnabled = false
         return taskNameLabel
     }()
     
-    lazy var taskNameField: LeftPaddedTextField = {
-        let taskNameField = LeftPaddedTextField()
+    lazy var taskNameField: TextFieldExtension = {
+        let taskNameField = TextFieldExtension()
         taskNameField.placeholder = "Task name"
         taskNameField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
@@ -36,7 +35,7 @@ class AddTaskView: UIView {
         taskDescriptionBox.layer.borderWidth = 1
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
         taskDescriptionBox.layer.cornerRadius = 2
-        taskDescriptionBox.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        taskDescriptionBox.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
         taskDescriptionBox.contentInset = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0)
         return taskDescriptionBox
     }()
@@ -71,7 +70,7 @@ class AddTaskView: UIView {
         taskNameField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         taskNameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -180).isActive = true
+        taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -200).isActive = true
     
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false

@@ -20,7 +20,10 @@ class ProfileViewController: UITableViewController {
         
        // schema.user()
         
+        self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
+        
         edgesForExtendedLayout = []
+        
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
@@ -52,7 +55,7 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        self.schema.fetchUser(completion: { (user) in
+        self.store.fetchUser(completion: { (user) in
             print(user)
         })
         tableView.reloadData()
@@ -77,6 +80,7 @@ class ProfileViewController: UITableViewController {
             
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.layoutSubviews()
+            bannerCell.isUserInteractionEnabled = false
             bannerCell.layoutMargins = UIEdgeInsets.zero
             bannerCell.preservesSuperviewLayoutMargins = false
             bannerCell.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
@@ -87,6 +91,7 @@ class ProfileViewController: UITableViewController {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             
             headerCell.layoutSubviews()
+            headerCell.isUserInteractionEnabled = false
             headerCell.layoutMargins = UIEdgeInsets.zero
             headerCell.preservesSuperviewLayoutMargins = false
             headerCell.emailLabel.isHidden = false

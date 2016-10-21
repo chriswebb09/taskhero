@@ -40,6 +40,4 @@ class User: NSObject {
     override convenience init() {
         self.init(uid:" ", email:" ", firstName: " ", lastName:" ", profilePicture: "None", username: " ", experiencePoints: 0, level: "Task Goat", joinDate: NSDate().dateWithFormat(), tasks:[Task](), numberOfTasksCompleted: 0)
     }
-    
-    
 }

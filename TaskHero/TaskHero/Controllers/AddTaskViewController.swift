@@ -26,6 +26,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         addTaskView.taskDescriptionBox.delegate = self
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
         let backButton = UIBarButtonItem(image:UIImage(named:"back-1"), style: .done, target:self, action: #selector(backTapped))
         backButton.title = "Back"
         backButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
@@ -38,6 +41,15 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         // Dispose of any resources that can be recreated.
     }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    //override func viewWillDisappear(_ animated: Bool) {
+    //    super.viewWillDisappear(false)
+    //    schema.tasksRef.removeObserver(withHandle: schema.refHandle)
+    //}
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -55,6 +67,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     
     func addTaskButtonTapped() {
+        view.endEditing(true)
         let uid = NSUUID().uuidString
         guard let taskName = addTaskView.taskNameField.text else { return }
         
@@ -66,11 +79,11 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         schema.addTasks(task: newTask)
         self.store.tasks.append(newTask)
         
-        navigationController?.popToRootViewController(animated: false)
+        _ = navigationController?.popToRootViewController(animated: false)
     }
     
     func backTapped(sender: UIBarButtonItem) {
-        navigationController?.popToRootViewController(animated: false)
+       _ = navigationController?.popToRootViewController(animated: false)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

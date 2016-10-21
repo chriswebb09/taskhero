@@ -23,12 +23,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         loginView.layoutSubviews()
         
+        
         navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
         
+        
+        self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
         loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
         let operationQueue = OperationQueue()
         
         
@@ -54,6 +59,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
@@ -69,8 +78,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func handleLogin() {
-        
-        var loadingView = LoadingView()
+        view.endEditing(true)
+        let loadingView = LoadingView()
         
         loadingView.showActivityIndicator(viewController: self)
         
@@ -78,6 +87,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             return
         }
+        
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             
@@ -95,49 +105,46 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         print("Create User Error: \(error)")
                     }    
                 }
+            
                 print(error ?? "error")
                 return
             }
             
             
-            loadingView.hideActivityIndicator(viewController: self)
-            self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
             
-            self.schema.fetchUser(completion: { (user) in
+            //self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+            loadingView.hideActivityIndicator(viewController: self)
+            Constants().delay(0.9) {
+                print("here 2")
+                self.loginView.emailField.layer.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
+                self.loginView.emailField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+                
+                self.loginView.passwordField.layer.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
+                self.loginView.passwordField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+            }
+
+            
+            guard let userID = user?.uid else { return }
+        
+            self.store.currentUserString = userID
+            self.store.fetchUser(completion: { user in
+                self.store.currentUser = user
                 print(user)
             })
-            
             let tabBar = TabBarController()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
         })
     }
+}
+
+
+extension UINavigationBar {
     
-    
-//    func showActivityIndicatory(mainView: UIView) {
-//        
-//        let containerView: UIView = UIView()
-//        
-//        containerView.frame = mainView.frame
-//        containerView.center = mainView.center
-//        containerView.backgroundColor = UIColor.clear
-//        
-//        let loadingView: UIView = UIView()
-//        
-//        loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
-//        loadingView.center = mainView.center
-//        loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
-//        loadingView.clipsToBounds = true
-//        loadingView.layer.cornerRadius = 10
-//        
-//        activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
-//        activityIndicator.activityIndicatorViewStyle =
-//            UIActivityIndicatorViewStyle.whiteLarge
-//        activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
-//                                           y:loadingView.frame.size.height / 2)
-//        loadingView.addSubview(activityIndicator)
-//        containerView.addSubview(loadingView)
-//        mainView.addSubview(containerView)
-//        activityIndicator.startAnimating()
-//    }
+    func setBottomBorderColor(color: UIColor, height: CGFloat) {
+        let bottomBorderRect = CGRect(x: 0, y: frame.height, width: frame.width, height: height)
+        let bottomBorderView = UIView(frame: bottomBorderRect)
+        bottomBorderView.backgroundColor = color
+        addSubview(bottomBorderView)
+    }
 }
