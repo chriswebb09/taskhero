@@ -20,33 +20,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
-        
         loginView.layoutSubviews()
-        
-        
         navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
-        
-        
         self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
         loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         let operationQueue = OperationQueue()
-        
-        
         let operation = BlockOperation(block: { () -> Void in
             self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
         })
-        
         operationQueue.addOperation(operation)
-        
         operationQueue.maxConcurrentOperationCount = 2
-        
         operationQueue.qualityOfService = .userInitiated
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,7 +43,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
+        nextField.becomeFirstResponder()
         return true
     }
     
@@ -73,29 +62,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         textField.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     func handleLogin() {
+        checkForValidEmailInput()
         view.endEditing(true)
         let loadingView = LoadingView()
-        
         loadingView.showActivityIndicator(viewController: self)
-        
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
-            
             return
         }
-        
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if error != nil {
-                
                 loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
-                    
                     switch errCode {
                     case .errorCodeInvalidEmail:
                         print("invalid email")
@@ -105,27 +88,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         print("Create User Error: \(error)")
                     }    
                 }
-            
                 print(error ?? "error")
                 return
             }
-            
-            
-            
             //self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
             loadingView.hideActivityIndicator(viewController: self)
             Constants().delay(0.9) {
                 print("here 2")
                 self.loginView.emailField.layer.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
                 self.loginView.emailField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-                
                 self.loginView.passwordField.layer.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
                 self.loginView.passwordField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
             }
-
-            
             guard let userID = user?.uid else { return }
-        
             self.store.currentUserString = userID
             self.store.fetchUser(completion: { user in
                 self.store.currentUser = user
@@ -136,11 +111,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             appDelegate.window?.rootViewController = tabBar
         })
     }
+    
+    func checkForValidEmailInput() {
+        if self.loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
+            UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0,
+                           animations: {
+                            self.loginView.emailField.layer.borderWidth = 2
+                            self.loginView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
+                }, completion: { _ in
+                    self.loginView.emailField.layer.borderColor = Constants.signupFieldColor
+                    self.loginView.emailField.layer.borderWidth = 1
+            })
+        }
+    }
 }
 
-
 extension UINavigationBar {
-    
     func setBottomBorderColor(color: UIColor, height: CGFloat) {
         let bottomBorderRect = CGRect(x: 0, y: frame.height, width: frame.width, height: height)
         let bottomBorderView = UIView(frame: bottomBorderRect)

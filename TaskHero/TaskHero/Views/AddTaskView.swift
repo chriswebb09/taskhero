@@ -77,7 +77,9 @@ class AddTaskView: UIView {
         taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionBox.topAnchor.constraint(equalTo: topAnchor, constant: 200).isActive = true
+        //taskDescriptionBox.topAnchor.constraint(equalTo: topAnchor, constant: 200).isActive = true
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: 200).isActive = true
+        
         
         addSubview(addTaskButton)
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false

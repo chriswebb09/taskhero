@@ -16,19 +16,15 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     let addTaskView = AddTaskView()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         view.addSubview(addTaskView)
         edgesForExtendedLayout = []
-        
         addTaskView.layoutSubviews()
         addTaskView.taskNameField.delegate = self
         addTaskView.taskDescriptionBox.delegate = self
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
         let backButton = UIBarButtonItem(image:UIImage(named:"back-1"), style: .done, target:self, action: #selector(backTapped))
         backButton.title = "Back"
         backButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
@@ -56,7 +52,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         return true
     }
     
-    
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
         if(replacementText.isEqual("\n")) {
             textView.resignFirstResponder()
@@ -65,20 +60,14 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         return true
     }
     
-    
     func addTaskButtonTapped() {
         view.endEditing(true)
         let uid = NSUUID().uuidString
         guard let taskName = addTaskView.taskNameField.text else { return }
-        
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
         let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:NSDate().dateWithFormat(), taskCompleted: false, pointValue:5)
-        
-        
-        
         schema.addTasks(task: newTask)
         self.store.tasks.append(newTask)
-        
         _ = navigationController?.popToRootViewController(animated: false)
     }
     

@@ -35,9 +35,7 @@ class TabBarController: UITabBarController {
     }
     
     override func viewDidLayoutSubviews() {
-        
         super.viewWillLayoutSubviews()
-        
         let tabBarHeight = view.frame.height * Constants.tabbarFrameHeight
         var tabFrame = tabBar.frame
         tabFrame.size.height = tabBarHeight
@@ -51,12 +49,10 @@ class TabBarController: UITabBarController {
     func setupControllers() {
         
         let homeVC = HomeViewController()
-        
         homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house-white-2")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "house-lightblue")?.withRenderingMode(.alwaysTemplate))
         homeVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
         homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
-        
         let homeTab = UINavigationController(rootViewController: homeVC)
         homeTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
         homeTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
@@ -64,7 +60,6 @@ class TabBarController: UITabBarController {
         //homeTab.navigationBar.barTintColor = UIColor(red:0.16, green:0.58, blue:0.83, alpha:1.0)
         //homeTab.navigationBar.barTintColor = UIColor(red:0.94, green:0.94, blue:0.94, alpha:1.0)
         homeTab.navigationBar.topItem?.title = "TaskHero"
-        
         
         let profileVC = ProfileViewController()
         
@@ -113,10 +108,7 @@ class TabBarController: UITabBarController {
         selectedIndex = 0
     }
     
-
-    
     func handleLogout() {
-        
         do {
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {

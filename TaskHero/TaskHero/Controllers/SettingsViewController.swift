@@ -14,13 +14,9 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         edgesForExtendedLayout = []
-        
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = false
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -45,7 +41,6 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
-        
         settingsCell.layoutSubviews()
         settingsCell.taskNameLabel.text = settings[indexPath.row]
         return settingsCell

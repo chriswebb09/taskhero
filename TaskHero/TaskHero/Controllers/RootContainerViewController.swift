@@ -22,19 +22,15 @@ class RootContainerViewController: UIViewController {
     }
     
     func showSplashViewController() {
-        
         rootViewController.willMove(toParentViewController: nil)
         rootViewController.removeFromParentViewController()
         rootViewController.view.removeFromSuperview()
         rootViewController.didMove(toParentViewController: nil)
-        
         let splashViewController = SplashViewController(coder:NSCoder.empty())
-        
         rootViewController = splashViewController!
         splashViewController?.willMove(toParentViewController: self)
         addChildViewController(splashViewController!)
         view.addSubview((splashViewController?.view)!)
-        
         delay(0.9) {
             splashViewController?.didMove(toParentViewController: self)
             self.showLoginViewController()

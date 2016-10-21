@@ -130,19 +130,13 @@ class TaskListViewController: UITableViewController {
         taskCell.layoutMargins = UIEdgeInsets.zero
         taskCell.preservesSuperviewLayoutMargins = false
         taskCell.layoutSubviews()
-        
-        
         taskCell.contentView.backgroundColor = UIColor.clear
         let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:self.view.frame.size.width, height:height))
-        
         cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
         cellView.layer.masksToBounds = false
         cellView.layer.cornerRadius = 2.0
         cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.35)
         cellView.layer.shadowOpacity = 0.1
-        
-        
-        
         taskCell.contentView.addSubview(cellView)
         taskCell.contentView.sendSubview(toBack: cellView)
         print("Task count \(self.store.tasks.count)")
@@ -150,13 +144,9 @@ class TaskListViewController: UITableViewController {
         taskCell.taskNameLabel.text = self.store.tasks[indexPath.row].taskName
         taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[indexPath.row].taskDescription)"
         taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[indexPath.row].taskDue)"
-        
-        
-        
         if self.store.tasks[indexPath.row].taskCompleted {
             taskCell.taskCompletedView.image = UIImage(named:"checked")
         }
-        
         return taskCell
     }
     
@@ -172,18 +162,8 @@ class TaskListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        
         if editingStyle == .delete {
             tableView.beginUpdates()
-            
-            
-            
-            print("ROWS \(self.tableView.numberOfRows(inSection: 0))")
-            
-            
-            
-            
             DispatchQueue.main.async {
                 var removeTaskID: String
                 print(indexPath.row)
@@ -198,9 +178,7 @@ class TaskListViewController: UITableViewController {
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
             }
-            
             tableView.reloadData()
-            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
