@@ -18,21 +18,13 @@ class TaskListViewController: UITableViewController {
         addTasksLabel.font = UIFont(name:"HelveticaNeue-Thin", size: 18)
         addTasksLabel.textColor = UIColor.gray
         addTasksLabel.textAlignment = .center
-        
         return addTasksLabel
     }()
     
     override func viewDidLoad() {
-        
-        print("task list view controller")
-        
-        print("tasks inside task list view controller \(self.store.tasks)")
         super.viewDidLoad()
-        
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        
         if (self.store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             self.view.addSubview(addTasksLabel)
             addTasksLabel.center = self.view.center
@@ -45,9 +37,7 @@ class TaskListViewController: UITableViewController {
         } else if self.store.tasks.count < 1 {
             self.addTasksLabel.isHidden = false
         }
-        
         edgesForExtendedLayout = []
-        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = false
@@ -57,9 +47,7 @@ class TaskListViewController: UITableViewController {
         tableView.separatorInset = UIEdgeInsets.zero
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 18)!], for: .normal)
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
         tableView.reloadData()
         
@@ -70,49 +58,22 @@ class TaskListViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
-        //
-        print("task count view will appear \(self.store.tasks.count)")
-        print(self.store.tasks)
-        
         if self.store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
         }
-        
-       
         self.store.tasks.removeAll()
         self.schema.fetchTasks(completion: { (task) in
             self.store.tasks.append(task)
             self.tableView.reloadData()
         })
-        
-        
-        
-        
-        
-//        let taskQueue = OperationQueue()
-//        taskQueue.qualityOfService = .userInitiated
-//        taskQueue.name = "come.taskhero.tasks"
-//        taskQueue.maxConcurrentOperationCount = 2
-//        super.viewWillAppear(false)
-//        self.store.tasks.removeAll()
-//        taskQueue.addOperation {
-//            self.schema.fetchTasks(completion: { (task) in
-//                self.store.tasks.append(task)
-//            })
-//        }
-//        tableView.reloadData()
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         schema.tasksRef.removeObserver(withHandle: schema.refHandle)
     }
-
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -139,8 +100,6 @@ class TaskListViewController: UITableViewController {
         cellView.layer.shadowOpacity = 0.1
         taskCell.contentView.addSubview(cellView)
         taskCell.contentView.sendSubview(toBack: cellView)
-        print("Task count \(self.store.tasks.count)")
-        print("Index path \(indexPath.row)")
         taskCell.taskNameLabel.text = self.store.tasks[indexPath.row].taskName
         taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[indexPath.row].taskDescription)"
         taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[indexPath.row].taskDue)"
@@ -171,8 +130,6 @@ class TaskListViewController: UITableViewController {
                 self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row].pointValue
                 self.store.currentUser.numberOfTasksCompleted += 1
                 self.schema.insertUser(user: self.store.currentUser)
-                print("INDEX PATH \(indexPath.row)")
-                print(removeTaskID)
                 self.schema.removeTask(ref: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)

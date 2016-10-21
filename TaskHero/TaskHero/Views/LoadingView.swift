@@ -10,13 +10,10 @@ import UIKit
 
 class LoadingView: UIView {
     
-    
     var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         return activityIndicator
     }()
-    
-    
     
     let containerView: UIView = {
         let containerView = UIView()
@@ -31,22 +28,19 @@ class LoadingView: UIView {
         return loadingView
     }()
     
-    
-    
     func showActivityIndicator(viewController: UIViewController) {
+        
         containerView.frame = viewController.view.frame
         containerView.center = viewController.view.center
         
         loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
         loadingView.center = viewController.view.center
-        
         loadingView.clipsToBounds = true
         
         activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
                                            y:loadingView.frame.size.height / 2)
-        
         loadingView.addSubview(activityIndicator)
         containerView.addSubview(loadingView)
         viewController.view.addSubview(containerView)
