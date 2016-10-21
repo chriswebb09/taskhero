@@ -33,11 +33,13 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
-        let leftButton =  UIBarButtonItem(title: "Left Button", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
+        
+        
+        
         view.backgroundColor = Constants.tableViewBackgroundColor
         edgesForExtendedLayout = []
+        
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -47,6 +49,8 @@ class HomeViewController: UITableViewController {
         tableView.estimatedRowHeight = view.frame.height / 4
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
+        
+        
         
         let navButton = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 18)!], for: .normal)
