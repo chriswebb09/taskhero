@@ -72,8 +72,13 @@ class AddTaskView: UIView {
         taskNameField.translatesAutoresizingMaskIntoConstraints = false
         taskNameField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
-        taskNameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -200).isActive = true
+        //taskNameField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+        taskNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
+        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: 30).isActive = true
+        //taskNameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
+        
+        //taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -200).isActive = true
     
         addSubview(taskDescriptionBox)
         
@@ -81,7 +86,7 @@ class AddTaskView: UIView {
         taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: 200).isActive = true
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: 50).isActive = true
         
         addSubview(addTaskButton)
         
@@ -89,7 +94,8 @@ class AddTaskView: UIView {
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        addTaskButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 140).isActive = true
+        //addTaskButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 140).isActive = true
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: 40).isActive = true
     }
     
 }

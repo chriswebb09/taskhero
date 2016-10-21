@@ -13,7 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
     
-        
+    
     let store = DataStore.sharedInstance
     let schema = Database.sharedInstance
     
@@ -75,7 +75,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-            
             if error != nil {
                 loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
@@ -86,7 +85,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         print("in use")
                     default:
                         print("Create User Error: \(error)")
-                    }    
+                    }
                 }
                 print(error ?? "error")
                 return

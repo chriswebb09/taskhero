@@ -102,6 +102,8 @@ class ProfileViewController: UITableViewController {
     }
     
     func addTaskButtonTapped() {
+        
+        //navigationController?.pushViewController(SignupViewController(), animated: false)
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     

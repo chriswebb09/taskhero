@@ -47,4 +47,3 @@ class SettingsViewController: UITableViewController {
     }
     
 }
-

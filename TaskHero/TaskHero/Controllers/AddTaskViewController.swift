@@ -18,6 +18,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(addTaskView)
+        navigationController?.navigationBar.tintColor = UIColor.white
         edgesForExtendedLayout = []
         addTaskView.layoutSubviews()
         addTaskView.taskNameField.delegate = self
@@ -25,11 +26,11 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-        let backButton = UIBarButtonItem(image:UIImage(named:"back-1"), style: .done, target:self, action: #selector(backTapped))
-        backButton.title = "Back"
-        backButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
-        backButton.tintColor = UIColor.black
-        navigationItem.leftBarButtonItem = backButton
+        //let backButton = UIBarButtonItem(image:UIImage(named:"back-1"), style: .done, target:self, action: #selector(backTapped))
+       // backButton.title = "Back"
+        //backButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 18)!], for: .normal)
+        //backButton.tintColor = UIColor.black
+       // navigationItem.leftBarButtonItem = backButton
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,9 +72,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         _ = navigationController?.popToRootViewController(animated: false)
     }
     
-    func backTapped(sender: UIBarButtonItem) {
-       _ = navigationController?.popToRootViewController(animated: false)
-    }
+   // func backTapped(sender: UIBarButtonItem) {
+   //    _ = navigationController?.popToRootViewController(animated: false)
+   // }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
