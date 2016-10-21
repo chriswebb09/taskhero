@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7244712A81FA9B4EA164A8FA /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */; };
 		AF02C3681DB9CDB400E1496E /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF02C3671DB9CDB400E1496E /* TextfieldExtension.swift */; };
+		AF5CA4531DBA132F002E4787 /* ProfileDataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CA4521DBA132F002E4787 /* ProfileDataCellModel.swift */; };
 		AF5CCF931DB735E900F5351C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CCF921DB735E900F5351C /* LoadingView.swift */; };
 		AFA3CE831DB58DCC003266CA /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CE7C1DB58DCC003266CA /* AddTaskView.swift */; };
 		AFA3CE851DB58DCC003266CA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CE7E1DB58DCC003266CA /* Constants.swift */; };
@@ -51,6 +52,7 @@
 		6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91CD8A86197BE8140B3FABF1 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
 		AF02C3671DB9CDB400E1496E /* TextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextfieldExtension.swift; path = Extensions/TextfieldExtension.swift; sourceTree = "<group>"; };
+		AF5CA4521DBA132F002E4787 /* ProfileDataCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDataCellModel.swift; path = ViewModel/ProfileDataCellModel.swift; sourceTree = "<group>"; };
 		AF5CCF921DB735E900F5351C /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Views/LoadingView.swift; sourceTree = "<group>"; };
 		AFA3CE7C1DB58DCC003266CA /* AddTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskView.swift; path = Views/AddTaskView.swift; sourceTree = "<group>"; };
 		AFA3CE7E1DB58DCC003266CA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Views/Constants.swift; sourceTree = "<group>"; };
@@ -119,6 +121,14 @@
 				91CD8A86197BE8140B3FABF1 /* Pods-TaskHero.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AF5CA4541DBA133A002E4787 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AF5CA4521DBA132F002E4787 /* ProfileDataCellModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		AFA3CE8A1DB58DDB003266CA /* Views */ = {
@@ -224,6 +234,7 @@
 				AFA3CE8D1DB58DF7003266CA /* Utilties */,
 				AFA3CE8A1DB58DDB003266CA /* Views */,
 				AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */,
+				AF5CA4541DBA133A002E4787 /* ViewModel */,
 				AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */,
 				AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */,
 				AFE277C01DB58CA2005C9AB5 /* Info.plist */,
@@ -359,6 +370,7 @@
 				AFA3CE9A1DB58E0E003266CA /* LoginViewController.swift in Sources */,
 				AFA3CE871DB58DCC003266CA /* LoginView.swift in Sources */,
 				AFA3CEC01DB58F16003266CA /* TeamBannerCell.swift in Sources */,
+				AF5CA4531DBA132F002E4787 /* ProfileDataCellModel.swift in Sources */,
 				AFA3CEA11DB58E0E003266CA /* TaskListViewController.swift in Sources */,
 				AFA3CE9C1DB58E0E003266CA /* RootContainerViewController.swift in Sources */,
 				AFA3CEAE1DB58E43003266CA /* NSDate+Extension.swift in Sources */,

@@ -19,7 +19,8 @@ class DataStore {
     
     
     func fetchUser(completion:@escaping (User)-> ()) {
-        FIRDatabase.database().reference().child("Users").child(self.currentUserString).observeSingleEvent(of: .value, with: { (snapshot) in
+        let database = FIRDatabase.database()
+        database.reference().child("Users").child(self.currentUserString).observeSingleEvent(of: .value, with: { (snapshot) in
             //guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             let user = User()

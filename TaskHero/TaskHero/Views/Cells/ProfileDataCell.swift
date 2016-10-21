@@ -9,7 +9,7 @@
 import UIKit
 
 class ProfileDataCell: UITableViewCell {
-    
+
     static let cellIdentifier = "ProfileDataCell"
     
     lazy var levelLabel: UILabel = {
@@ -48,6 +48,7 @@ class ProfileDataCell: UITableViewCell {
         return taskCompletedLabel
     }()
     
+   
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()

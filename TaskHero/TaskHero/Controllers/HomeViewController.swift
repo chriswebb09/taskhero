@@ -12,7 +12,24 @@ class HomeViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
     let schema = Database.sharedInstance
-    var tasks = [Task]()
+    var tasksList = [Task]()
+    
+    
+    var tasks: [Task]? {
+        set {
+            if let tasks = tasks {
+                tasksList = tasks
+                tableView.reloadData()
+            }
+        }
+        get {
+            if tasksList.isEmpty {
+                return nil
+            } else {
+                return tasksList
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
