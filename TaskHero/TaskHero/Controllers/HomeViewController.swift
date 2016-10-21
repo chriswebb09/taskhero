@@ -9,7 +9,6 @@
 import UIKit
 
 class HomeViewController: UITableViewController {
-    
     let store = DataStore.sharedInstance
     let schema = Database.sharedInstance
     var tasksList = [Task]()
@@ -20,7 +19,6 @@ class HomeViewController: UITableViewController {
                 tableView.reloadData()
             }
         }
-        
         get {
             if tasksList.isEmpty {
                 return nil
@@ -32,30 +30,31 @@ class HomeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
-        
-        
         
         view.backgroundColor = Constants.tableViewBackgroundColor
         edgesForExtendedLayout = []
         
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
-        tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 4
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
+        tableView.allowsSelection = false
         
-        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
         
         let navButton = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 18)!], for: .normal)
+        
         navButton.customView?.layer.borderWidth = 1
         navButton.customView?.layer.borderColor = UIColor.white.cgColor
+        
         navigationItem.leftBarButtonItem = navButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
@@ -66,16 +65,21 @@ class HomeViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
+        
         self.schema.fetchTasks(completion: { (task) in
+            
             self.store.tasks.append(task)
             self.tableView.reloadData()
         })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         super.viewWillDisappear(false)
+        
         schema.tasksRef.removeObserver(withHandle: schema.refHandle)
     }
     
@@ -93,39 +97,51 @@ class HomeViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
+            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+            
             headerCell.isUserInteractionEnabled = false
             headerCell.layoutMargins = UIEdgeInsets.zero
             headerCell.preservesSuperviewLayoutMargins = false
             headerCell.layoutSubviews()
             headerCell.layoutIfNeeded()
+            
             headerCell.usernameLabel.text = self.store.currentUser.username
             headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
             headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
             headerCell.levelLabel.text = self.store.currentUser.level
+            
             return headerCell
+            
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
+            
             taskCell.layoutMargins = UIEdgeInsets.zero
             taskCell.preservesSuperviewLayoutMargins = false
             taskCell.layoutSubviews()
             taskCell.contentView.backgroundColor = UIColor.clear
+            
             let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:self.view.frame.size.width, height:height))
+            
             cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
             cellView.layer.masksToBounds = false
             cellView.layer.cornerRadius = 2.0
             cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.35)
             cellView.layer.shadowOpacity = 0.1
+            
             let cellindex = (indexPath.row) - 1
+            
             taskCell.contentView.addSubview(cellView)
             taskCell.contentView.sendSubview(toBack: cellView)
+            
             taskCell.taskNameLabel.text = self.store.tasks[cellindex].taskName
             taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[cellindex].taskDescription)"
             taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[cellindex].taskDue)"
             if self.store.tasks[cellindex].taskCompleted {
                 taskCell.taskCompletedView.image = UIImage(named:"checked")
             }
+            
             return taskCell
         }
     }
@@ -133,27 +149,33 @@ class HomeViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
+            
             DispatchQueue.main.async {
                 var removeTaskID: String
+                
                 if (indexPath.row) == 0 {
                     return
+                    
                 } else {
                     removeTaskID = self.store.tasks[indexPath.row - 1].taskID
+                    
                     self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
                     self.store.currentUser.numberOfTasksCompleted += 1
                     self.schema.insertUser(user: self.store.currentUser)
                 }
+                
                 self.schema.removeTask(ref: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
+                
                 tableView.endUpdates()
             }
             tableView.reloadData()
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-    
     
     func setupAlert() {
         let alertController = UIAlertController(title: "Delete", message: "Edit\nor Delete Task?", preferredStyle: .alert)
@@ -171,8 +193,10 @@ class HomeViewController: UITableViewController {
     
     func logoutButtonPressed() {
         UserDefaults.standard.setIsLoggedIn(value: false)
+        
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         appDelegate.window?.rootViewController = loginVC
     }
     
