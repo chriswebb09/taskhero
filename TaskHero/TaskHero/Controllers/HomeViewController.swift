@@ -63,13 +63,20 @@ class HomeViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(false)
-        self.store.tasks.removeAll()
-        
-        self.store.fetchTasks(completion: { (task) in
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 2
+        let blockOp = BlockOperation {
+            self.store.tasks.removeAll()
             
-            self.store.tasks.append(task)
-            self.tableView.reloadData()
-        })
+            self.store.fetchTasks(completion: { (task) in
+                self.store.tasks.append(task)
+                
+                OperationQueue.main.addOperation {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+        queue.addOperation(blockOp)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

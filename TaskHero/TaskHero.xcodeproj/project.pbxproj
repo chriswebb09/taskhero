@@ -219,8 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				AF18D86C1DBD8165002A3372 /* Profile */,
-				AFA3CEB81DB58F15003266CA /* TaskCell.swift */,
-				AF18D86E1DBD81BA002A3372 /* TaskHeaderCell.swift */,
+				AFE9E6BF1DBDA76E0023C232 /* Task */,
 				AF18D86D1DBD816E002A3372 /* Team */,
 			);
 			name = Cells;
@@ -260,6 +259,15 @@
 				AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */,
 			);
 			path = TaskHero;
+			sourceTree = "<group>";
+		};
+		AFE9E6BF1DBDA76E0023C232 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				AFA3CEB81DB58F15003266CA /* TaskCell.swift */,
+				AF18D86E1DBD81BA002A3372 /* TaskHeaderCell.swift */,
+			);
+			name = Task;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

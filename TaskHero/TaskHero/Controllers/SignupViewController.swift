@@ -56,7 +56,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     func handleRegister() {
         view.endEditing(true)
-        var loadingView = LoadingView()
+        let loadingView = LoadingView()
         guard let email = signupView.emailField.text, let password = signupView.passwordField.text, let username = signupView.usernameField.text else {
             loadingView.hideActivityIndicator(viewController:self)
             print("Form is not valid")
@@ -85,33 +85,26 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 newUser.experiencePoints = 0
                 newUser.tasks = [Task]()
                 let usersReference = ref.child("Users").child(uid)
-                
                 let usernamesReference = ref.child("Usernames")
                 let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
                 usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
-                    
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
                         print(err ?? "unable to get specific error i")
                         return
-                        
                     }
                     print("sucessfully saved username email reference")
                 })
                 
-                
-                
-
                 let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
                 
                 usersReference.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
-                    
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
                         print(err ?? "unable to get specific error")
                         return
-                        
                     }
+                    
                     print("Saved user successfully into Firebase db")
                     self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                     self.store.currentUser = newUser
@@ -123,13 +116,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             })
         } else {
             let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
-            let DestructiveAction = UIAlertAction(title: "Done", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
-                print("Destructive")
-            }
+//            let DestructiveAction = UIAlertAction(title: "Done", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+//                print("Destructive")
+//            }
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
                 print("OK")
             }
-            alertController.addAction(DestructiveAction)
+            //alertController.addAction(DestructiveAction)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
             return
