@@ -21,7 +21,10 @@ class DataStore {
     var ref: FIRDatabaseReference!
     var refHandle: FIRDatabaseHandle!
     var validUsernames = [String]()
+    var validUserData = [String]()
+    var userData = Dictionary<String, AnyObject>()
     var usernameEmailDict = Dictionary<String, AnyObject>()
+    var tasksDict = Dictionary<String, AnyObject>()
     var dataSnapshot = [FIRDataSnapshot]()
     var dbRef: FIRDatabaseReference!
     var userRef: FIRDatabaseReference!
@@ -47,6 +50,122 @@ class DataStore {
             //print (self.validUsernames)
         })
     }
+    
+    func fetchUserData() {
+        userRef.child(currentUserString!).observe(.childAdded, with: { (snapshot) in
+            //self.validUserData.append(snapshot.key)
+            self.userData[snapshot.key] = snapshot.value as AnyObject?
+            let user = User()
+            if let snapshotName = self.userData["Username"] as? String {
+                user.username = snapshotName
+            }
+            if let snapshotEmail = self.userData["Email"] as? String {
+                user.email = snapshotEmail
+            }
+            if let snapshotFirstName = self.userData["FirstName"] as? String {
+                user.firstName = snapshotFirstName
+            }
+            if let snapshotLastName = self.userData["LastName"] as? String {
+                user.lastName = snapshotLastName
+            }
+            if let snapshotLevel = self.userData["Level"] as? String {
+                user.level = snapshotLevel
+            }
+            if let snapshotJoinDate = self.userData["JoinDate"] as? String {
+                user.joinDate = snapshotJoinDate
+            }
+            if let snapshotProfilePicture = self.userData["ProfilePicture"] as? String {
+                user.profilePicture = snapshotProfilePicture
+            }
+            if let snapshotTasksCompleted = self.userData["TasksCompleted"] as? Int {
+                user.numberOfTasksCompleted = snapshotTasksCompleted
+            }
+            if let snapshotExperiencePoints = self.userData["ExperiencePoints"] as? Int {
+                user.experiencePoints = snapshotExperiencePoints
+            }
+            
+            self.currentUser = user
+            
+        })
+    }
+    
+    
+//    func fetchUserData() {
+//        
+//        userRef.child(currentUserString!).observe(.childAdded, with: { (snapshot) in
+//            //self.validUserData.append(snapshot.key)
+//            self.userData[snapshot.key] = snapshot.value as AnyObject?
+//            let user = User()
+//            if let snapshotName = self.userData["Username"] as? String {
+//                user.username = snapshotName
+//            }
+//            if let snapshotEmail = self.userData["Email"] as? String {
+//                user.email = snapshotEmail
+//            }
+//            if let snapshotFirstName = self.userData["FirstName"] as? String {
+//                user.firstName = snapshotFirstName
+//            }
+//            if let snapshotLastName = self.userData["LastName"] as? String {
+//                user.lastName = snapshotLastName
+//            }
+//            if let snapshotLevel = self.userData["Level"] as? String {
+//                user.level = snapshotLevel
+//            }
+//            if let snapshotJoinDate = self.userData["JoinDate"] as? String {
+//                user.joinDate = snapshotJoinDate
+//            }
+//            if let snapshotProfilePicture = self.userData["ProfilePicture"] as? String {
+//                user.profilePicture = snapshotProfilePicture
+//            }
+//            if let snapshotTasksCompleted = self.userData["TasksCompleted"] as? Int {
+//                user.numberOfTasksCompleted = snapshotTasksCompleted
+//            }
+//            if let snapshotExperiencePoints = self.userData["ExperiencePoints"] as? Int {
+//                user.experiencePoints = snapshotExperiencePoints
+//            }
+//            
+//            self.currentUser = user
+//            
+//        })
+//    }
+
+    
+    
+    func fetchUserTasks() {
+        //userRef.child(currentUserString!).child(<#T##pathString: String##String#>)
+            //.observe(.childAdded, with: { (snapshot) in
+        self.tasks.removeAll()
+        self.tasksRef = self.userRef.child(self.currentUserString).child("Tasks")
+        self.refHandle = self.tasksRef.observe(.childAdded, with: { (snapshot) in
+            self.tasksDict[snapshot.key] = snapshot.value as AnyObject?
+            //guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
+            var newTask = Task()
+            
+            newTask.taskID = snapshot.key
+            
+            if let fetchName = self.tasksDict["TaskName"] as? String {
+                newTask.taskName = fetchName
+            }
+            
+            if let fetchDescription = self.tasksDict["TaskDescription"] as? String {
+                newTask.taskDescription = fetchDescription
+            }
+            if let fetchCreated = self.tasksDict["TaskCreated"] as? String {
+                newTask.taskCreated = fetchCreated
+            }
+            if let fetchDue = self.tasksDict["TaskDue"] as? String {
+                newTask.taskDue = fetchDue
+            }
+            if let fetchCompleted = self.tasksDict["TaskCompleted"] as? Bool {
+                newTask.taskCompleted = fetchCompleted
+            }
+            self.tasks.insert(newTask, at:0)
+        })
+
+    }
+    
+    
+    
     
     //func fetchValidUsernames() {
     //    validUsernames.removeAll()
@@ -147,7 +266,7 @@ class DataStore {
     }
     
     func addTasks(task:Task) {
-        self.tasksRef = self.userRef.child(self.currentUserString).child("Tasks")
+        self.tasksRef = self.userRef.child(self.currentUserString!).child("Tasks")
         self.tasksRef.child("\(task.taskID)/TaskName").setValue(task.taskName)
         self.tasksRef.child("\(task.taskID)/TaskDescription").setValue(task.taskDescription)
         self.tasksRef.child("\(task.taskID)/TaskCreated").setValue(task.taskCreated)

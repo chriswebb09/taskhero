@@ -60,17 +60,40 @@ class TaskListViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        store.fetchUserData()
         if self.store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
         }
+        
         self.store.tasks.removeAll()
         self.store.fetchTasks(completion: { (task) in
             self.store.tasks.append(task)
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         })
+
+        
+//        let queue = OperationQueue()
+//        queue.maxConcurrentOperationCount = 2
+//        let blockOp = BlockOperation {
+//            self.store.tasks.removeAll()
+//            
+//            self.store.fetchTasks(completion: { (task) in
+//                self.store.tasks.append(task)
+//                
+//                OperationQueue.main.addOperation {
+//                    self.tableView.reloadData()
+//                }
+//            })
+//        }
+//        queue.addOperation(blockOp)
     }
+
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)

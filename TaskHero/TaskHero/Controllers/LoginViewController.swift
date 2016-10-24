@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
+        edgesForExtendedLayout = []
         loginView.layoutSubviews()
         navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
         self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
@@ -115,8 +116,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             self.store.currentUserString = userID
             
+            
+            
             let queue = OperationQueue()
             queue.maxConcurrentOperationCount = 2
+            
             let blockOp = BlockOperation {
                 self.store.tasks.removeAll()
                 self.store.fetchUser(completion: { user in

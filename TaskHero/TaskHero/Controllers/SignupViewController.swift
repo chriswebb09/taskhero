@@ -19,6 +19,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(signupView)
+        edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
         signupView.layoutSubviews()
         signupView.emailField.delegate = self
@@ -143,9 +144,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }
         
         else if textField == signupView.passwordField {
-            let nextField = (textField === signupView.passwordField) ? signupView.usernameField : signupView.emailField
-            nextField.becomeFirstResponder()
+            textField.resignFirstResponder()
         }
+        
+        
+//        else if textField == signupView.passwordField {
+//            let nextField = (textField === signupView.passwordField) ? signupView.usernameField : signupView.emailField
+//            nextField.becomeFirstResponder()
+//        }
         
         
         return true

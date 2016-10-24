@@ -12,7 +12,6 @@ import Firebase
 class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     let store = DataStore.sharedInstance
-    let schema = Database.sharedInstance
     let addTaskView = AddTaskView()
     
     override func viewDidLoad() {
@@ -67,7 +66,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
         let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:NSDate().dateWithFormat(), taskCompleted: false, pointValue:5)
-        schema.addTasks(task: newTask)
+        store.addTasks(task: newTask)
         self.store.tasks.append(newTask)
         _ = navigationController?.popToRootViewController(animated: false)
     }

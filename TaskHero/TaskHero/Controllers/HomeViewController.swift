@@ -61,23 +61,19 @@ class HomeViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        store.fetchUserData()
         super.viewWillAppear(false)
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 2
-        let blockOp = BlockOperation {
-            self.store.tasks.removeAll()
-            
-            self.store.fetchTasks(completion: { (task) in
-                self.store.tasks.append(task)
-                
-                OperationQueue.main.addOperation {
-                    self.tableView.reloadData()
-                }
-            })
-        }
-        queue.addOperation(blockOp)
+        self.store.tasks.removeAll()
+        self.store.fetchTasks(completion: { (task) in
+            self.store.tasks.append(task)
+            DispatchQueue.main.async {
+                 self.tableView.reloadData()
+            }
+        })
     }
+    
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         
@@ -101,9 +97,9 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return (self.view.frame.height/4)
-        }
+//        if indexPath.row == 0 {
+//            return (self.view.frame.height/4)
+//        }
         return tableView.rowHeight
     }
     

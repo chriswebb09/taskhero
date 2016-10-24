@@ -18,6 +18,7 @@ class TabBarController: UITabBarController {
                 self.view.backgroundColor = UIColor.white
                 self.setupControllers()
             } else if self.store.currentUser == nil {
+                
                 self.store.fetchUser { user in
                     if user != nil {
                         self.store.currentUser = user

@@ -46,9 +46,10 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        self.store.fetchUser(completion: { (user) in
-            print(user)
-        })
+        store.fetchUserData()
+//        self.store.fetchUser(completion: { (user) in
+//            print(user)
+//        })
         tableView.reloadData()
     }
     
