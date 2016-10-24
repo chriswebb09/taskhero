@@ -26,14 +26,12 @@ class Database {
     }
     
     init() {
-        
         self.dbRef = FIRDatabase.database().reference()
         self.userRef = self.dbRef.child("Users")
         self.tasksRef = self.userRef
     }
     
     func insertUser(user:User) {
-        print(user)
         let userData: NSDictionary = ["Email": user.email,
                                       "FirstName": user.firstName ?? " ",
                                       "LastName": user.lastName ?? " ",
@@ -43,7 +41,6 @@ class Database {
                                       "JoinDate": user.joinDate,
                                       "Username": user.username,
                                       "TasksCompleted": user.numberOfTasksCompleted]
-        print(userData)
         self.userRef.updateChildValues(["/\(self.store.currentUserString!)": userData])
     }
 

@@ -15,7 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     let store = DataStore.sharedInstance
-    let schema = Database.sharedInstance
+    //et schema = Database.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        store.fetchValidUsernames()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -67,9 +72,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func handleLogin() {
         checkForValidEmailInput()
+        //print(store.usernameEmailDict[loginView.emailField.text!]!)
         view.endEditing(true)
+        
         let loadingView = LoadingView()
+        
         loadingView.showActivityIndicator(viewController: self)
+        
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             return
         }
@@ -90,8 +99,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print(error ?? "error")
                 return
             }
+            
             //self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
             loadingView.hideActivityIndicator(viewController: self)
+            
             Constants().delay(0.9) {
                 print("here 2")
                 self.loginView.emailField.layer.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
@@ -99,13 +110,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.loginView.passwordField.layer.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
                 self.loginView.passwordField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
             }
+            
             guard let userID = user?.uid else { return }
+            
             self.store.currentUserString = userID
             self.store.fetchUser(completion: { user in
                 self.store.currentUser = user
                 print(user)
             })
+            
             let tabBar = TabBarController()
+            
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
         })

@@ -35,6 +35,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        self.store.fetchValidUsernames()
+    }
+    
     func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -80,16 +85,37 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 newUser.experiencePoints = 0
                 newUser.tasks = [Task]()
                 let usersReference = ref.child("Users").child(uid)
+                
+                let usernamesReference = ref.child("Usernames")
+                let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
+                usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
+                    
+                    if err != nil {
+                        loadingView.hideActivityIndicator(viewController: self)
+                        print(err ?? "unable to get specific error i")
+                        return
+                        
+                    }
+                    print("sucessfully saved username email reference")
+                })
+                
+                
+                
+
                 let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
+                
                 usersReference.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
+                    
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
                         print(err ?? "unable to get specific error")
                         return
+                        
                     }
                     print("Saved user successfully into Firebase db")
                     self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                     self.store.currentUser = newUser
+                   // self.store.insertUsername()
                     let tabBar = TabBarController()
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window?.rootViewController = tabBar
@@ -110,6 +136,29 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == signupView.usernameField {
+            let nextField = (textField === signupView.usernameField) ? signupView.emailField : signupView.confirmEmailField
+            nextField.becomeFirstResponder()
+        } else if textField == signupView.emailField {
+            let nextField = (textField === signupView.emailField) ? signupView.confirmEmailField : signupView.passwordField
+
+            nextField.becomeFirstResponder()
+        } else if textField == signupView.confirmEmailField {
+            let nextField = (textField === signupView.confirmEmailField) ? signupView.passwordField : signupView.usernameField
+            nextField.becomeFirstResponder()
+        }
+        
+        else if textField == signupView.passwordField {
+            let nextField = (textField === signupView.passwordField) ? signupView.usernameField : signupView.emailField
+            nextField.becomeFirstResponder()
+        }
+        
+        
+        return true
+    }
+
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         //        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
         //        textField.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
@@ -117,6 +166,21 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkTextField(textField)
+        if textField == self.signupView.usernameField {
+            
+            print(store.validUsernames)
+            if store.validUsernames.contains(self.signupView.usernameField.text!) {
+               
+                self.signupView.usernameField.layer.borderColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0).cgColor
+                self.signupView.usernameField.textColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0)
+                self.signupView.signupButton.isEnabled = false
+            } else if !store.validUsernames.contains(self.signupView.usernameField.text!) {
+                self.signupView.usernameField.layer.borderColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
+                self.signupView.usernameField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+                self.signupView.signupButton.isEnabled = true
+            }
+        }
+        
         if textField == self.signupView.emailField {
             if !(textField.text?.isValidEmail())! {
                 self.signupView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor

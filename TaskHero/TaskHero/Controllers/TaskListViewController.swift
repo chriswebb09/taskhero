@@ -11,7 +11,7 @@ import UIKit
 class TaskListViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
-    let schema = Database.sharedInstance
+    //et schema = Database.sharedInstance
     
     let addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
@@ -64,7 +64,7 @@ class TaskListViewController: UITableViewController {
             addTasksLabel.isEnabled = false
         }
         self.store.tasks.removeAll()
-        self.schema.fetchTasks(completion: { (task) in
+        self.store.fetchTasks(completion: { (task) in
             self.store.tasks.append(task)
             self.tableView.reloadData()
         })
@@ -72,7 +72,7 @@ class TaskListViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        schema.tasksRef.removeObserver(withHandle: schema.refHandle)
+        store.tasksRef.removeObserver(withHandle: store.refHandle)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -129,8 +129,8 @@ class TaskListViewController: UITableViewController {
                 removeTaskID = self.store.tasks[indexPath.row].taskID
                 self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row].pointValue
                 self.store.currentUser.numberOfTasksCompleted += 1
-                self.schema.insertUser(user: self.store.currentUser)
-                self.schema.removeTask(ref: removeTaskID)
+                self.store.insertUser(user: self.store.currentUser)
+                self.store.removeTask(ref: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
@@ -141,3 +141,20 @@ class TaskListViewController: UITableViewController {
         }
     }
 }
+
+
+extension TaskListViewController: TaskHeaderCellDelegate {
+    func changeView(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+            case 0:
+                print("Tasks To Do")
+            
+            default:
+                print("Tasks Completed")
+            
+            }
+            tableView.reloadData()
+    }
+    
+}
+

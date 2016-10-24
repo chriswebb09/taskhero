@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UITableViewController {
     let store = DataStore.sharedInstance
-    let schema = Database.sharedInstance
+    //let schema = Database.sharedInstance
     var tasksList = [Task]()
     var tasks: [Task]? {
         set {
@@ -30,6 +30,7 @@ class HomeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.store.insertUsername()
         
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
@@ -69,7 +70,7 @@ class HomeViewController: UITableViewController {
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
         
-        self.schema.fetchTasks(completion: { (task) in
+        self.store.fetchTasks(completion: { (task) in
             
             self.store.tasks.append(task)
             self.tableView.reloadData()
@@ -80,7 +81,7 @@ class HomeViewController: UITableViewController {
         
         super.viewWillDisappear(false)
         
-        schema.tasksRef.removeObserver(withHandle: schema.refHandle)
+        store.tasksRef.removeObserver(withHandle: store.refHandle)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -134,7 +135,7 @@ class HomeViewController: UITableViewController {
             
             taskCell.contentView.addSubview(cellView)
             taskCell.contentView.sendSubview(toBack: cellView)
-            
+            print(indexPath.row)
             taskCell.taskNameLabel.text = self.store.tasks[cellindex].taskName
             taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[cellindex].taskDescription)"
             taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[cellindex].taskDue)"
@@ -161,10 +162,10 @@ class HomeViewController: UITableViewController {
                     
                     self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
                     self.store.currentUser.numberOfTasksCompleted += 1
-                    self.schema.insertUser(user: self.store.currentUser)
+                    self.store.insertUser(user: self.store.currentUser)
                 }
                 
-                self.schema.removeTask(ref: removeTaskID)
+                self.store.removeTask(ref: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 

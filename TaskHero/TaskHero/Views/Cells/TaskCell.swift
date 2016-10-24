@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol TaskCellCellDelegate: class {
-    func profilePictureTapped()
-}
-
 class TaskCell: UITableViewCell {
     
     static let cellIdentifier = "TaskCell"
@@ -23,6 +19,8 @@ class TaskCell: UITableViewCell {
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.isUserInteractionEnabled = false
         return textView
     }()
     
@@ -34,6 +32,8 @@ class TaskCell: UITableViewCell {
         textView.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
+        textView.isEditable = false
+        textView.isUserInteractionEnabled = false
         textView.isScrollEnabled = false
         return textView
     }()
@@ -45,6 +45,8 @@ class TaskCell: UITableViewCell {
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.isUserInteractionEnabled = false
         return textView
     }()
     

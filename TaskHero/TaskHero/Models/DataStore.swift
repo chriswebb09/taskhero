@@ -17,6 +17,67 @@ class DataStore {
     
     static let sharedInstance = DataStore()
     
+    var tasksRef: FIRDatabaseReference!
+    var ref: FIRDatabaseReference!
+    var refHandle: FIRDatabaseHandle!
+    var validUsernames = [String]()
+    var usernameEmailDict = Dictionary<String, AnyObject>()
+    var dataSnapshot = [FIRDataSnapshot]()
+    var dbRef: FIRDatabaseReference!
+    var userRef: FIRDatabaseReference!
+    var usernameRef: FIRDatabaseReference!
+
+    deinit {
+        self.ref.removeObserver(withHandle: self.refHandle)
+    }
+    
+    init() {
+        self.dbRef = FIRDatabase.database().reference()
+        self.userRef = self.dbRef.child("Users")
+        self.usernameRef = self.dbRef.child("Usernames")
+        self.tasksRef = self.userRef
+    }
+    
+    func fetchValidUsernames() {
+        validUsernames.removeAll()
+        usernameRef.observe(.childAdded, with: { (snapshot) in
+            self.validUsernames.append(snapshot.key)
+            self.usernameEmailDict[snapshot.key] = snapshot.value as AnyObject?
+           //print (self.userDataDict)
+            //print (self.validUsernames)
+        })
+    }
+    
+    //func fetchValidUsernames() {
+    //    validUsernames.removeAll()
+   //     usersRef.observe(.childAdded, with: { (snapshot) in
+   //         self.validUsernames.append(snapshot.key)
+  //          self.userDataDict[snapshot.key] = snapshot.value as AnyObject?
+ //           print (self.userDataDict)
+ //           print (self.validUsernames)
+ //       })
+  //  }
+    
+    //func insertUsername() {
+    //    print(FIRAuth.auth()?.currentUser?.displayName)
+     //   let userData: NSDictionary = [FIRAuth.auth()?.currentUser?.uid:FIRAuth.auth()?.currentUser?.email]
+    //    self.usernameRef.updateChildValues([(FIRAuth.auth()?.currentUser?.displayName)!:userData])
+   // }
+    
+    func insertUser(user:User) {
+        let userData: NSDictionary = ["Email": user.email,
+                                      "FirstName": user.firstName ?? " ",
+                                      "LastName": user.lastName ?? " ",
+                                      "ProfilePicture": user.profilePicture ?? " ",
+                                      "ExperiencePoints": user.experiencePoints,
+                                      "Level": user.level,
+                                      "JoinDate": user.joinDate,
+                                      "Username": user.username,
+                                      "TasksCompleted": user.numberOfTasksCompleted]
+        self.userRef.updateChildValues(["/\(self.currentUserString!)": userData])
+        self.usernameRef.updateChildValues([user.username:user.email])
+    }
+    
     
     func fetchUser(completion:@escaping (User)-> ()) {
         let database = FIRDatabase.database()
@@ -56,4 +117,47 @@ class DataStore {
             completion(user)
         })
     }
+    
+    
+    func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
+        self.tasksRef = self.userRef.child(self.currentUserString).child("Tasks")
+        self.refHandle = self.tasksRef.observe(.childAdded, with: { (snapshot) in
+            guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
+            //print(snapshotValue)
+            var newTask = Task()
+            newTask.taskID = snapshot.key
+            print(newTask.taskID)
+            if let fetchName = snapshotValue["TaskName"] as? String {
+                newTask.taskName = fetchName
+            }
+            if let fetchDescription = snapshotValue["TaskDescription"] as? String {
+                newTask.taskDescription = fetchDescription
+            }
+            if let fetchCreated = snapshotValue["TaskCreated"] as? String {
+                newTask.taskCreated = fetchCreated
+            }
+            if let fetchDue = snapshotValue["TaskDue"] as? String {
+                newTask.taskDue = fetchDue
+            }
+            if let fetchCompleted = snapshotValue["TaskCompleted"] as? Bool {
+                newTask.taskCompleted = fetchCompleted
+            }
+            completion(newTask)
+        })
+    }
+    
+    func addTasks(task:Task) {
+        self.tasksRef = self.userRef.child(self.currentUserString).child("Tasks")
+        self.tasksRef.child("\(task.taskID)/TaskName").setValue(task.taskName)
+        self.tasksRef.child("\(task.taskID)/TaskDescription").setValue(task.taskDescription)
+        self.tasksRef.child("\(task.taskID)/TaskCreated").setValue(task.taskCreated)
+        self.tasksRef.child("\(task.taskID)/TaskDue").setValue(task.taskDue)
+        self.tasksRef.child("\(task.taskID)/TaskCompleted").setValue(task.taskDue)
+    }
+    
+    func removeTask(ref:String) {
+        self.tasksRef = self.userRef.child(self.currentUserString).child("Tasks")
+        self.tasksRef.child(ref).removeValue()
+    }
+
 }

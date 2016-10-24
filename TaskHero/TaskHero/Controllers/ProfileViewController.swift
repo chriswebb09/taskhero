@@ -12,11 +12,10 @@ import Firebase
 class ProfileViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
-    let schema = Database.sharedInstance
+    //let schema = Database.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // schema.user()
         self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
         edgesForExtendedLayout = []
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -70,7 +69,6 @@ class ProfileViewController: UITableViewController {
             bannerCell.preservesSuperviewLayoutMargins = false
             bannerCell.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
             return bannerCell
-            
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.layoutSubviews()
@@ -102,7 +100,6 @@ class ProfileViewController: UITableViewController {
     }
     
     func addTaskButtonTapped() {
-        
         //navigationController?.pushViewController(SignupViewController(), animated: false)
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
