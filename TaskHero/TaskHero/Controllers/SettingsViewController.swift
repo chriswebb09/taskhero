@@ -82,10 +82,10 @@ class SettingsViewController: UITableViewController {
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            print("Segment Changed to Said By")
+            
             settings = userSettings
         default:
-            print("Segment Changed to Heard By")
+            
             settings = applicationSettings
         }
         tableView.reloadData()
