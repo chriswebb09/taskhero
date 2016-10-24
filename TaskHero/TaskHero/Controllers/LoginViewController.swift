@@ -115,25 +115,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             guard let userID = user?.uid else { return }
             
             self.store.currentUserString = userID
+            self.store.fetchUser(completion: { user in
+                self.store.currentUser = user
+                print(user)
+            })
             
-            
-            
-            let queue = OperationQueue()
-            queue.maxConcurrentOperationCount = 2
-            
-            let blockOp = BlockOperation {
-                self.store.tasks.removeAll()
-                self.store.fetchUser(completion: { user in
-                    self.store.currentUser = user
-                    print(user)
-                    OperationQueue.main.addOperation {
-                        let tabBar = TabBarController()
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.window?.rootViewController = tabBar
-                    }
-                })
-            }
-            queue.addOperation(blockOp)
+            let tabBar = TabBarController()
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = tabBar
+
         })
         
     }

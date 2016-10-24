@@ -65,7 +65,7 @@ class AddTaskView: UIView {
         taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         taskNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 40).isActive = true
+        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.04).isActive = true
         
         addSubview(taskNameField)
         
@@ -74,7 +74,7 @@ class AddTaskView: UIView {
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         //taskNameField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         taskNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
-        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: 30).isActive = true
+        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.04).isActive = true
         //taskNameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         
@@ -86,7 +86,7 @@ class AddTaskView: UIView {
         taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: 50).isActive = true
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * 0.05).isActive = true
         
         addSubview(addTaskButton)
         
@@ -95,7 +95,7 @@ class AddTaskView: UIView {
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         //addTaskButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 140).isActive = true
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: 40).isActive = true
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * 0.04).isActive = true
     }
     
 }

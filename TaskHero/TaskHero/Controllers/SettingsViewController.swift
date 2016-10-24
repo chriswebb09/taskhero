@@ -15,7 +15,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = false
@@ -40,7 +40,7 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let settingsCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
+        let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
         settingsCell.layoutSubviews()
         settingsCell.taskNameLabel.text = settings[indexPath.row]
         return settingsCell

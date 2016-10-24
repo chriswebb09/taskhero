@@ -44,6 +44,8 @@
 		AFA3CEC01DB58F16003266CA /* TeamBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEB91DB58F15003266CA /* TeamBannerCell.swift */; };
 		AFA3CEC11DB58F16003266CA /* TeamDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEBA1DB58F16003266CA /* TeamDataCell.swift */; };
 		AFA3CEC21DB58F16003266CA /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEBB1DB58F16003266CA /* TeamHeaderCell.swift */; };
+		AFDBAE191DBE328A00EAD483 /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDBAE181DBE328A00EAD483 /* PopMenu.swift */; };
+		AFDBAE1B1DBE369700EAD483 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDBAE1A1DBE369700EAD483 /* SettingsCell.swift */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
 		AFE277BF1DB58CA2005C9AB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */; };
@@ -88,6 +90,8 @@
 		AFA3CEB91DB58F15003266CA /* TeamBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamBannerCell.swift; path = Views/Cells/TeamBannerCell.swift; sourceTree = "<group>"; };
 		AFA3CEBA1DB58F16003266CA /* TeamDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamDataCell.swift; path = Views/Cells/TeamDataCell.swift; sourceTree = "<group>"; };
 		AFA3CEBB1DB58F16003266CA /* TeamHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamHeaderCell.swift; path = Views/Cells/TeamHeaderCell.swift; sourceTree = "<group>"; };
+		AFDBAE181DBE328A00EAD483 /* PopMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopMenu.swift; path = Views/PopMenu.swift; sourceTree = "<group>"; };
+		AFDBAE1A1DBE369700EAD483 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCell.swift; path = Views/Cells/SettingsCell.swift; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 			children = (
 				AFA3CEC31DB58F1C003266CA /* Cells */,
 				AFA3CE7C1DB58DCC003266CA /* AddTaskView.swift */,
+				AFDBAE181DBE328A00EAD483 /* PopMenu.swift */,
 				AFA3CE7E1DB58DCC003266CA /* Constants.swift */,
 				AFA3CE7F1DB58DCC003266CA /* InitialView.swift */,
 				AFA3CE801DB58DCC003266CA /* LoginView.swift */,
@@ -221,6 +226,7 @@
 				AF18D86C1DBD8165002A3372 /* Profile */,
 				AFE9E6BF1DBDA76E0023C232 /* Task */,
 				AF18D86D1DBD816E002A3372 /* Team */,
+				AFDBAE1A1DBE369700EAD483 /* SettingsCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -397,6 +403,7 @@
 				AFA3CE9A1DB58E0E003266CA /* LoginViewController.swift in Sources */,
 				AFA3CE871DB58DCC003266CA /* LoginView.swift in Sources */,
 				AFA3CEC01DB58F16003266CA /* TeamBannerCell.swift in Sources */,
+				AFDBAE191DBE328A00EAD483 /* PopMenu.swift in Sources */,
 				AF5CA4531DBA132F002E4787 /* ProfileDataCellModel.swift in Sources */,
 				AFA3CEA11DB58E0E003266CA /* TaskListViewController.swift in Sources */,
 				AFA3CE9C1DB58E0E003266CA /* RootContainerViewController.swift in Sources */,
@@ -409,6 +416,7 @@
 				AFA3CE8C1DB58DF1003266CA /* DB.swift in Sources */,
 				AFA3CE831DB58DCC003266CA /* AddTaskView.swift in Sources */,
 				AFA3CEA81DB58E28003266CA /* User.swift in Sources */,
+				AFDBAE1B1DBE369700EAD483 /* SettingsCell.swift in Sources */,
 				AFA3CE891DB58DCC003266CA /* SignupView.swift in Sources */,
 				AF5CCF931DB735E900F5351C /* LoadingView.swift in Sources */,
 				AFA3CE9D1DB58E0E003266CA /* SettingsViewController.swift in Sources */,
