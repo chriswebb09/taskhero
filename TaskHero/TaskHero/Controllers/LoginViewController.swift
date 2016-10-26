@@ -106,10 +106,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             Constants().delay(0.9) {
                 print("here 2")
-                self.loginView.emailField.layer.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
-                self.loginView.emailField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-                self.loginView.passwordField.layer.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
-                self.loginView.passwordField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+                self.loginView.emailField.layer.backgroundColor = Constants.Login.loginSuccessColor.cgColor
+                self.loginView.emailField.textColor = Constants.Login.loginSuccessColor
+                self.loginView.passwordField.layer.backgroundColor = Constants.Login.loginSuccessColor.cgColor
+                self.loginView.passwordField.textColor = Constants.Login.loginSuccessColor
             }
             
             guard let userID = user?.uid else { return }

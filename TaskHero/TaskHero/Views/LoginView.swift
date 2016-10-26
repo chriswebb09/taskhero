@@ -40,15 +40,15 @@ class LoginView: UIView {
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-        button.setAttributedTitle( NSAttributedString(string: "Log In", attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin" , size: 18)!]), for: .normal)
+        button.backgroundColor = Constants.Login.loginButtonColor
+        button.setAttributedTitle( NSAttributedString(string: "Log In", attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight , size: 18)!]), for: .normal)
         button.layer.cornerRadius = 2
         return button
     }()
     
     lazy var signupButton: UIButton = {
         let button = UIButton()
-        button.setAttributedTitle( NSAttributedString(string: "Register Now", attributes: [NSForegroundColorAttributeName: UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0), NSFontAttributeName:UIFont(name: "HelveticaNeue-Thin" , size: 18)!]), for: .normal)
+        button.setAttributedTitle( NSAttributedString(string: "Register Now", attributes: [NSForegroundColorAttributeName: UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0), NSFontAttributeName:UIFont(name: Constants.Font.helveticaThin , size: 18)!]), for: .normal)
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 2
         button.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
@@ -65,7 +65,7 @@ class LoginView: UIView {
         let registerLabel = UILabel()
         registerLabel.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
         registerLabel.text = "Don't have an account?"
-        registerLabel.font = UIFont(name: "HelveticaNeue-Thin" , size: 18)
+        registerLabel.font = UIFont(name: Constants.Font.helveticaThin , size: 18)
         registerLabel.textAlignment = .center
         return registerLabel
     }()
@@ -87,47 +87,32 @@ class LoginView: UIView {
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.logoImageWidth).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.logoImageHeight).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.05).isActive = true
-        
-        //logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -180).isActive = true
+        logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
         
         addSubview(emailField)
         
         emailField.translatesAutoresizingMaskIntoConstraints = false
-        emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
-        emailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
+        emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        emailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         emailField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * 0.05).isActive = true
-        //emailField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -110).isActive = true
-        
-//        var emailTopConstraint = NSLayoutConstraint(item: logoImageView,
-//                           attribute: .bottom,
-//                           relatedBy: .equal,
-//                           toItem: emailField,
-//                           attribute: .top,
-//                           multiplier: 1,
-//                           constant: bounds.width * 0.05)
-//        
-//        addConstraint(emailTopConstraint)
+        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         
         addSubview(passwordField)
         
         passwordField.translatesAutoresizingMaskIntoConstraints = false
-        passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
-        passwordField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
+        passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        passwordField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         passwordField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.08).isActive = true
-        //passwordField.centerYAnchor.constraint(equalTo: centerYAnchor, constant:-30).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         passwordField.isSecureTextEntry = true
         
         addSubview(loginButton)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.loginFieldWidth).isActive = true
-        loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
+        loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
+        loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * 0.07).isActive = true
-        //loginButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 50).isActive = true
+        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         
         addSubview(viewDivider)
         
@@ -135,26 +120,23 @@ class LoginView: UIView {
         viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
         viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier: 0.02).isActive = true
         viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * 0.08).isActive = true
-        //viewDivider.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 110).isActive = true
+        viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         
         addSubview(registerLabel)
         
         registerLabel.translatesAutoresizingMaskIntoConstraints = false
-        registerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
+        registerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         registerLabel.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         registerLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * 0.04).isActive = true
-        //registerLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 150).isActive = true
+        registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         
         addSubview(signupButton)
         
         signupButton.translatesAutoresizingMaskIntoConstraints = false
-        signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
+        signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         signupButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * 0.05).isActive = true
-        //signupButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 210).isActive = true
+        signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
     }
 }
 

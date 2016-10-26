@@ -37,13 +37,13 @@ class TabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let tabBarHeight = view.frame.height * Constants.tabbarFrameHeight
+        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
         var tabFrame = tabBar.frame
         tabFrame.size.height = tabBarHeight
         tabFrame.origin.y = view.frame.size.height - tabBarHeight
         tabBar.frame = tabFrame
-        tabBar.tintColor = Constants.tabbarTintColor
-        tabBar.barTintColor = Constants.tabbarColor
+        tabBar.tintColor = Constants.Tabbar.tabbarTintColor
+        tabBar.barTintColor = Constants.Tabbar.tabbarColor
         tabBar.isTranslucent = true
     }
     
@@ -56,7 +56,7 @@ class TabBarController: UITabBarController {
         homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
         let homeTab = UINavigationController(rootViewController: homeVC)
         homeTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        homeTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
+        homeTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
         homeTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         //homeTab.navigationBar.barTintColor = UIColor(red:0.16, green:0.58, blue:0.83, alpha:1.0)
         //homeTab.navigationBar.barTintColor = UIColor(red:0.94, green:0.94, blue:0.94, alpha:1.0)
@@ -71,7 +71,7 @@ class TabBarController: UITabBarController {
         
         let profileTab = UINavigationController(rootViewController: profileVC)
         profileTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        profileTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
+        profileTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
         profileTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         profileTab.navigationBar.topItem?.title = "Profile"
         
@@ -84,7 +84,7 @@ class TabBarController: UITabBarController {
         
         let taskListTab = UINavigationController(rootViewController: taskListVC)
         taskListTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        taskListTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
+        taskListTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
         taskListTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         taskListTab.navigationBar.topItem?.title = "TaskList"
         
@@ -96,7 +96,7 @@ class TabBarController: UITabBarController {
 
         let settingsTab = UINavigationController(rootViewController: settingsVC)
         settingsTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        settingsTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.helveticaThin, size: 22)!]
+        settingsTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
         settingsTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         settingsTab.navigationBar.topItem?.title = "Settings"
         

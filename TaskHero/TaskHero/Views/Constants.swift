@@ -26,9 +26,49 @@ import UIKit
 //}
 
 
+//struct Constants {
+//    
+//    struct FoursquareApi {
+//        static let BaseUrl = "https://api.foursquare.com/v2/"
+//    }
+//    
+//    struct TwitterApi {
+//        static let BaseUrl = "https://api.twitter.com/1.1/"
+//    }
+//    
+//    struct Configuration {
+//        static let UseWorkaround = true
+//    }
+//    
+//}
+
 import UIKit
 
 struct Constants {
+    
+    struct Font {
+        static let helveticaThin = "HelveticaNeue-Thin"
+        static let helveticaLight = "HelveticaNeue-Light"
+        static let headerFont = "AvenirNext-Medium"
+        static let font = "AvenirNext-Regular"
+    }
+    
+    struct Tabbar {
+        static let tabbarFrameHeight: CGFloat = 0.09
+        static let tabbarColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:0.5)
+        static let tabbarTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
+    }
+    
+    struct Login {
+        static let loginSuccessColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+        static let loginFieldHeight = CGFloat(0.07)
+        static let loginFieldWidth = CGFloat(0.85)
+        static let loginButtonWidth = CGFloat(0.6)
+        static let loginButtonColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+        static let loginLogoTopSpacing:CGFloat =  0.1
+        static let loginElementSpacing:CGFloat =  0.035
+        //static let loginCenterElementSpacing:CGFloat = 0.08
+    }
     
     static let tableViewBackgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
     
@@ -42,6 +82,7 @@ struct Constants {
     
     static let headerFont = "AvenirNext-Medium"
     static let font = "AvenirNext-Regular"
+    
     
     
     static let logoImageWidth = CGFloat(0.6)
