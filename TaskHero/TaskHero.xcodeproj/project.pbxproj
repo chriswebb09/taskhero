@@ -35,7 +35,6 @@
 		AFA3CEAE1DB58E43003266CA /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEAA1DB58E43003266CA /* NSDate+Extension.swift */; };
 		AFA3CEAF1DB58E43003266CA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEAB1DB58E43003266CA /* String+Extension.swift */; };
 		AFA3CEB01DB58E43003266CA /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEAC1DB58E43003266CA /* UIColorExtension.swift */; };
-		AFA3CEB11DB58E43003266CA /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEAD1DB58E43003266CA /* UserDefaults+Extension.swift */; };
 		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFA3CEBC1DB58F16003266CA /* ProfileBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEB51DB58F15003266CA /* ProfileBannerCell.swift */; };
 		AFA3CEBD1DB58F16003266CA /* ProfileDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3CEB61DB58F15003266CA /* ProfileDataCell.swift */; };
@@ -81,7 +80,6 @@
 		AFA3CEAA1DB58E43003266CA /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
 		AFA3CEAB1DB58E43003266CA /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Extension.swift"; path = "Extensions/String+Extension.swift"; sourceTree = "<group>"; };
 		AFA3CEAC1DB58E43003266CA /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Extensions/UIColorExtension.swift; sourceTree = "<group>"; };
-		AFA3CEAD1DB58E43003266CA /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserDefaults+Extension.swift"; path = "Extensions/UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFA3CEB51DB58F15003266CA /* ProfileBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileBannerCell.swift; path = Views/Cells/ProfileBannerCell.swift; sourceTree = "<group>"; };
 		AFA3CEB61DB58F15003266CA /* ProfileDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDataCell.swift; path = Views/Cells/ProfileDataCell.swift; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 				AFA3CEAA1DB58E43003266CA /* NSDate+Extension.swift */,
 				AFA3CEAB1DB58E43003266CA /* String+Extension.swift */,
 				AFA3CEAC1DB58E43003266CA /* UIColorExtension.swift */,
-				AFA3CEAD1DB58E43003266CA /* UserDefaults+Extension.swift */,
 				AF02C3671DB9CDB400E1496E /* TextfieldExtension.swift */,
 			);
 			name = Extensions;
@@ -432,7 +429,6 @@
 				AFA3CEC11DB58F16003266CA /* TeamDataCell.swift in Sources */,
 				AFA3CE9B1DB58E0E003266CA /* ProfileViewController.swift in Sources */,
 				AF02C3681DB9CDB400E1496E /* TextfieldExtension.swift in Sources */,
-				AFA3CEB11DB58E43003266CA /* UserDefaults+Extension.swift in Sources */,
 				AFA3CE851DB58DCC003266CA /* Constants.swift in Sources */,
 				AFA3CEA71DB58E28003266CA /* Task.swift in Sources */,
 				AFA3CEBD1DB58F16003266CA /* ProfileDataCell.swift in Sources */,

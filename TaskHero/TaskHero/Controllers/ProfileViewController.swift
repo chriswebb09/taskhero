@@ -104,7 +104,7 @@ class ProfileViewController: UITableViewController {
     }
     
     func logoutButtonPressed() {
-        UserDefaults.standard.setIsLoggedIn(value: false)
+
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
