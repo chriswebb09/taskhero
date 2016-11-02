@@ -14,6 +14,24 @@
 - Persist user data with Realm. 
 
 
+# Next up 
+
+- Bug fixes 
+
+- Allow users to communicate with each other 
+
+- Build out task scoring system 
+
+- Build messenger service
+
+
+# Nice to have
+
+- Set up ubuntu web server on AWS for transition to Realm Object server.
+
+
+
+
 <h2>Log In</h2>
 ___
 
