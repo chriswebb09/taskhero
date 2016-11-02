@@ -27,7 +27,9 @@
 
 # Nice to have
 
-- Set up ubuntu web server on AWS for transition to Realm Object server.
+- Set up Ubuntu web server on AWS for transition to Realm Object server.
+
+- Transfer data
 
 
 
