@@ -112,6 +112,15 @@ class ProfileHeaderCell: UITableViewCell {
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
+    
+    func configureCell(user: User) {
+        usernameLabel.text = user.username
+        emailLabel.text = user.email
+        joinDateLabel.text = user.joinDate
+        levelLabel.text = user.level
+        profilePicture.image = UIImage(named: "defaultUserImage")
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         usernameLabel.text = ""

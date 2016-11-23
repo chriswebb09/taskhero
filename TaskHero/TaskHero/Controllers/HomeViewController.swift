@@ -105,10 +105,11 @@ class HomeViewController: UITableViewController {
             headerCell.layoutSubviews()
             headerCell.layoutIfNeeded()
             
-            headerCell.usernameLabel.text = self.store.currentUser.username
-            headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
-            headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
-            headerCell.levelLabel.text = self.store.currentUser.level
+            headerCell.configureCell(user: self.store.currentUser)
+//            headerCell.usernameLabel.text = self.store.currentUser.username
+//            headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
+//            headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
+//            headerCell.levelLabel.text = self.store.currentUser.level
             
             return headerCell
             
