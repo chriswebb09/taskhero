@@ -68,6 +68,7 @@ extension SignupViewController {
             print("Form is not valid")
             return
         }
+        
         if (validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!)) {
             
             loadingView.showActivityIndicator(viewController: self)
@@ -136,6 +137,10 @@ extension SignupViewController {
             return
         }
     }
+
+}
+
+extension SignupViewController {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == signupView.usernameField {

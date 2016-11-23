@@ -49,8 +49,7 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
-        settingsCell.layoutSubviews()
-        settingsCell.taskDescriptionLabel.text = settings[indexPath.row]
+        settingsCell.configureCell(setting: settings[indexPath.row])
         return settingsCell
     }
     
