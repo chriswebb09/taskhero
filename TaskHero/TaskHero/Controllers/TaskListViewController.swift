@@ -113,24 +113,9 @@ class TaskListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
         let height = tableView.rowHeight - 5
-        taskCell.layoutMargins = UIEdgeInsets.zero
-        taskCell.preservesSuperviewLayoutMargins = false
-        taskCell.layoutSubviews()
-        taskCell.contentView.backgroundColor = UIColor.clear
-        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:self.view.frame.size.width, height:height))
-        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
-        cellView.layer.masksToBounds = false
-        cellView.layer.cornerRadius = 2.0
-        cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.35)
-        cellView.layer.shadowOpacity = 0.1
-        taskCell.contentView.addSubview(cellView)
-        taskCell.contentView.sendSubview(toBack: cellView)
-        taskCell.taskNameLabel.text = self.store.tasks[indexPath.row].taskName
-        taskCell.taskDescriptionLabel.text = "Task Description: \(self.store.tasks[indexPath.row].taskDescription)"
-        taskCell.taskDueLabel.text = "Task was added: \(self.store.tasks[indexPath.row].taskDue)"
-        if self.store.tasks[indexPath.row].taskCompleted {
-            taskCell.taskCompletedView.image = UIImage(named:"checked")
-        }
+        let cellindex = (indexPath.row)
+        taskCell.configureCell(task: self.store.tasks[cellindex])
+        taskCell.setupCellView(width: self.view.frame.size.width, height:height)
         return taskCell
     }
     

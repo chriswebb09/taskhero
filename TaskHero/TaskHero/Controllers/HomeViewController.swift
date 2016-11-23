@@ -168,8 +168,6 @@ class HomeViewController: UITableViewController {
     
     
     func logoutButtonPressed() {
-        
-        
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
