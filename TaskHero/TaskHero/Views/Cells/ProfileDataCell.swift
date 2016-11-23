@@ -85,8 +85,8 @@ class ProfileDataCell: UITableViewCell {
         levelLabel.text = "Level: \(user.level)"
         experiencePointsLabel.text = "Experience: \(String(describing: user.experiencePoints))"
         tasksCompletedLabel.text = "Tasks completed: \(String(describing: user.numberOfTasksCompleted))"
-        dataCell.layoutSubviews()
-        dataCell.layoutMargins = UIEdgeInsets.zero
+        layoutSubviews()
+        layoutMargins = UIEdgeInsets.zero
     }
     
     override func prepareForReuse() {
