@@ -29,7 +29,6 @@ class LoadingView: UIView {
     }()
     
     func showActivityIndicator(viewController: UIViewController) {
-        
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
         

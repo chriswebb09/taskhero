@@ -58,19 +58,19 @@ class ProfileHeaderCell: UITableViewCell {
     
     lazy var profilePicture: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderWidth = 1
         return imageView
     }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.contentView.layoutIfNeeded()
-        
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
     
     func setupConstraints() {
-        
         contentView.addSubview(usernameLabel)
         
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +111,6 @@ class ProfileHeaderCell: UITableViewCell {
         levelLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
-    
     
     func configureCell(user: User) {
         usernameLabel.text = user.username

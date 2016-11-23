@@ -62,7 +62,6 @@ class TaskCell: UITableViewCell {
     }
     
     func setupConstraints() {
-        
         contentView.addSubview(taskNameLabel)
         
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -90,12 +89,11 @@ class TaskCell: UITableViewCell {
         contentView.addSubview(taskCompletedView)
         
         taskCompletedView.translatesAutoresizingMaskIntoConstraints = false
-        taskCompletedView.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        taskCompletedView.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        taskCompletedView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        taskCompletedView.widthAnchor.constraint(equalToConstant: 25).isActive = true
         taskCompletedView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
-        taskCompletedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        taskCompletedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30).isActive = true
     }
-    
     
     func configureCell(task:Task) {
         taskNameLabel.text = task.taskName
@@ -103,13 +101,14 @@ class TaskCell: UITableViewCell {
         taskDescriptionLabel.text = task.taskDescription
         if task.taskCompleted {
             taskCompletedView.image = UIImage(named:"checked")
+        } else {
+            taskCompletedView.image = UIImage(named:"edit")
         }
         layoutSubviews()
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         contentView.backgroundColor = UIColor.clear
     }
-    
     
     func setupCellView(width: CGFloat, height: CGFloat) {
         let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))

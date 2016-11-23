@@ -24,7 +24,6 @@ class ProfileBannerCell: UITableViewCell {
         contentView.layer.masksToBounds = true
     }
     
-    
     func setupConstraints() {
         contentView.addSubview(bannerImage)
         bannerImage.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +32,6 @@ class ProfileBannerCell: UITableViewCell {
         bannerImage.heightAnchor.constraint(equalToConstant: 400).isActive = true
     }
     
-    
     func configureCell() {
         layoutSubviews()
         isUserInteractionEnabled = false
@@ -41,7 +39,6 @@ class ProfileBannerCell: UITableViewCell {
         preservesSuperviewLayoutMargins = false
         backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
     }
-    
     
     override func prepareForReuse() {
         bannerImage.image = nil

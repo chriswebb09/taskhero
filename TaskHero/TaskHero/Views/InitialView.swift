@@ -24,7 +24,6 @@ class InitialView: UIView {
     }
     
     func setupConstraints() {
-        
         addSubview(containerView)
         
         containerView.translatesAutoresizingMaskIntoConstraints = false

@@ -77,8 +77,8 @@ class SignupView: UIView {
     }
     
     func setupConstraints() {
-        
         addSubview(signupViewLabel)
+        
         signupViewLabel.translatesAutoresizingMaskIntoConstraints = false
         signupViewLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         signupViewLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
@@ -107,9 +107,9 @@ class SignupView: UIView {
         confirmEmailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         confirmEmailField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * 0.05).isActive = true
-        
-        
+
         addSubview(passwordField)
+        
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
         passwordField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true

@@ -71,16 +71,13 @@ class LoginView: UIView {
     }()
     
     override func layoutSubviews() {
-        
         super.layoutSubviews()
-        
         backgroundColor = UIColor.white
         frame = UIScreen.main.bounds
         setupConstraints()
     }
     
     func setupConstraints() {
-        
         addSubview(logoImageView)
         
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
