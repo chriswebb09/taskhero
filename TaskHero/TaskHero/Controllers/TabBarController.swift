@@ -49,26 +49,9 @@ class TabBarController: UITabBarController {
     func setupControllers() {
         
         let homeTab = setupHomeTab(homeVC: HomeViewController())
-        
         let profileTab = setupProfileTab(profileVC: ProfileViewController())
-        
-        
-        let taskListVC = TaskListViewController()
-        
-        taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
-        taskListVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
-        taskListVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
-        taskListVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
-        
-        let taskListTab = UINavigationController(rootViewController: taskListVC)
-        taskListTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        taskListTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
-        taskListTab.navigationBar.barTintColor = Constants.navbarBarTintColor
-        taskListTab.navigationBar.topItem?.title = "TaskList"
-        
+        let taskListTab = setupTaskTab(taskListVC: TaskListViewController())
         let settingsTab = setupSettingsTab(settingsVC: SettingsViewController())
-        
-        
         let controllers = [homeTab, profileTab, taskListTab, settingsTab]
         viewControllers = controllers
         
@@ -110,6 +93,21 @@ extension TabBarController {
         profileTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         profileTab.navigationBar.topItem?.title = "Profile"
         return profileTab
+    }
+    
+    func setupTaskTab(taskListVC:TaskListViewController) -> UINavigationController {
+        
+        taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
+        taskListVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
+        taskListVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
+        taskListVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
+        
+        let taskListTab = UINavigationController(rootViewController: taskListVC)
+        taskListTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
+        taskListTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
+        taskListTab.navigationBar.barTintColor = Constants.navbarBarTintColor
+        taskListTab.navigationBar.topItem?.title = "TaskList"
+        return taskListTab
     }
     
     

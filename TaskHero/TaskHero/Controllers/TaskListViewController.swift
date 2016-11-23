@@ -23,18 +23,12 @@ class TaskListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         emptyTableViewState()
         edgesForExtendedLayout = []
-        
         setupTableView()
-        
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
+        setupNavItems()
         tableView.reloadData()
         
     }
@@ -103,8 +97,6 @@ class TaskListViewController: UITableViewController {
         return taskCell
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
@@ -127,23 +119,26 @@ class TaskListViewController: UITableViewController {
     }
 }
 
-
 extension TaskListViewController: TaskHeaderCellDelegate {
     
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             print("Tasks To Do")
-            
         default:
             print("Tasks Completed")
-            
         }
         tableView.reloadData()
     }
     
+    func setupNavItems() {
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
+    }
+    
     func logoutButtonPressed() {
-        
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
