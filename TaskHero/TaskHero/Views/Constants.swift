@@ -8,42 +8,6 @@
 
 import UIKit
 
-//struct Constants {
-//    static let helveticaThin = "HelveticaNeue-Thin"
-//    static let helveticaLight = "HelveticaNeue-Light"
-//    static let headerFont = "AvenirNext-Medium"
-//    static let font = "AvenirNext-Regular"
-//    static let barColor = UIColor(red:0.00, green:0.49, blue:0.76, alpha:1.0)
-//    static let loginTextFieldHeight = CGFloat(0.06)
-//    static let loginTextFieldWidth = CGFloat(0.7)
-//    static let searchTextFieldHeight = CGFloat(0.06)
-//    static let searchTextFieldWidth = CGFloat(0.7)
-//    static let settingsViewLabelWidth = CGFloat(0.5)
-//    static let settingsViewLabelHeight = CGFloat(0.2)
-//    static let settingsFont = UIFont(name:"AvenirNext-Regular", size:20)
-//    static let loginButtonWidth = CGFloat(0.5)
-//    static let kAnimationDuration: TimeInterval = 3.0
-//}
-
-
-//struct Constants {
-//    
-//    struct FoursquareApi {
-//        static let BaseUrl = "https://api.foursquare.com/v2/"
-//    }
-//    
-//    struct TwitterApi {
-//        static let BaseUrl = "https://api.twitter.com/1.1/"
-//    }
-//    
-//    struct Configuration {
-//        static let UseWorkaround = true
-//    }
-//    
-//}
-
-import UIKit
-
 struct Constants {
     
     struct Font {
@@ -65,8 +29,9 @@ struct Constants {
         static let loginFieldWidth = CGFloat(0.85)
         static let loginButtonWidth = CGFloat(0.6)
         static let loginButtonColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-        static let loginLogoTopSpacing:CGFloat =  0.1
-        static let loginElementSpacing:CGFloat =  0.035
+        static let loginLogoTopSpacing:CGFloat =  0.045
+        static let loginElementSpacing:CGFloat =  0.07
+        static let loginSignupElementSpacing:CGFloat =  0.035
         //static let loginCenterElementSpacing:CGFloat = 0.08
     }
     

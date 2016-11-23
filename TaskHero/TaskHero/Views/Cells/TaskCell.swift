@@ -96,6 +96,32 @@ class TaskCell: UITableViewCell {
         taskCompletedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
     }
     
+    
+    func configureCell(task:Task) {
+        taskNameLabel.text = task.taskName
+        taskDueLabel.text = task.taskDue
+        taskDescriptionLabel.text = task.taskDescription
+        if task.taskCompleted {
+            taskCompletedView.image = UIImage(named:"checked")
+        }
+        layoutSubviews()
+        layoutMargins = UIEdgeInsets.zero
+        preservesSuperviewLayoutMargins = false
+        contentView.backgroundColor = UIColor.clear
+    }
+    
+    
+    func setupCellView(width: CGFloat, height: CGFloat) {
+        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
+        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+        cellView.layer.masksToBounds = false
+        cellView.layer.cornerRadius = 2.0
+        cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.35)
+        cellView.layer.shadowOpacity = 0.1
+        contentView.addSubview(cellView)
+        contentView.sendSubview(toBack: cellView)
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         taskNameLabel.text = ""
