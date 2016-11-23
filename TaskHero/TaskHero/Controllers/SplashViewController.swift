@@ -53,9 +53,9 @@ class SplashViewController: UIViewController {
                         //self.initialView.logoImageView.center.y += 78
                         self.initialView.logoImageView.frame.size = CGSize(width: self.initialView.logoImageView.frame.width * 1.1, height: self.initialView.logoImageView.frame.height * 1.1)
                         // self.initialView.logoImageView.center.y += 0
-            }, completion: { _ in
-                self.initialView.logoImageView.frame.size = CGSize(width: self.initialView.logoImageView.frame.width, height: self.initialView.logoImageView.frame.height)
-                //self.initialView.logoImageView.frame.width
+        }, completion: { _ in
+            self.initialView.logoImageView.frame.size = CGSize(width: self.initialView.logoImageView.frame.width, height: self.initialView.logoImageView.frame.height)
+            //self.initialView.logoImageView.frame.width
         })
         UIView.animate(withDuration: 2, delay: 0.0,
                        usingSpringWithDamping: 0.6,
@@ -72,7 +72,7 @@ class SplashViewController: UIViewController {
                         self.navigationController?.navigationBar.barTintColor = Constants.navbarBarTintColor
                         //self.initialView.logoImageView.center.y += 48
                         // self.initialView.logoImageView.center.y += 0
-            }, completion: nil)
+        }, completion: nil)
     }
     // UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0,
     // animations: {

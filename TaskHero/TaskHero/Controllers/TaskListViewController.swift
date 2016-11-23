@@ -76,24 +76,24 @@ class TaskListViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         })
-
         
-//        let queue = OperationQueue()
-//        queue.maxConcurrentOperationCount = 2
-//        let blockOp = BlockOperation {
-//            self.store.tasks.removeAll()
-//            
-//            self.store.fetchTasks(completion: { (task) in
-//                self.store.tasks.append(task)
-//                
-//                OperationQueue.main.addOperation {
-//                    self.tableView.reloadData()
-//                }
-//            })
-//        }
-//        queue.addOperation(blockOp)
+        
+        //        let queue = OperationQueue()
+        //        queue.maxConcurrentOperationCount = 2
+        //        let blockOp = BlockOperation {
+        //            self.store.tasks.removeAll()
+        //
+        //            self.store.fetchTasks(completion: { (task) in
+        //                self.store.tasks.append(task)
+        //
+        //                OperationQueue.main.addOperation {
+        //                    self.tableView.reloadData()
+        //                }
+        //            })
+        //        }
+        //        queue.addOperation(blockOp)
     }
-
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -156,14 +156,14 @@ class TaskListViewController: UITableViewController {
 extension TaskListViewController: TaskHeaderCellDelegate {
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-            case 0:
-                print("Tasks To Do")
+        case 0:
+            print("Tasks To Do")
             
-            default:
-                print("Tasks Completed")
+        default:
+            print("Tasks Completed")
             
-            }
-            tableView.reloadData()
+        }
+        tableView.reloadData()
     }
     
 }
