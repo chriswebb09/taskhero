@@ -98,7 +98,7 @@ extension HomeViewController {
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
             return headerCell
-
+            
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
@@ -140,6 +140,20 @@ extension HomeViewController {
         }
     }
     
+}
+
+extension HomeViewController {
+    func setupTableView() {
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.separatorStyle = .singleLine
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.allowsSelection = false
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
+    }
+    
     func setupAlert() {
         let alertController = UIAlertController(title: "Delete", message: "Edit\nor Delete Task?", preferredStyle: .alert)
         let actionYes = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction) in
@@ -163,19 +177,5 @@ extension HomeViewController {
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
-    
-}
-
-extension HomeViewController {
-    func setupTableView() {
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.allowsSelection = false
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 4
     }
 }
