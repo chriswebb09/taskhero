@@ -27,6 +27,8 @@ class HomeViewController: UITableViewController {
         }
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,14 +41,7 @@ class HomeViewController: UITableViewController {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.allowsSelection = false
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 4
+        setupTableView()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
@@ -74,6 +69,9 @@ class HomeViewController: UITableViewController {
         super.viewWillDisappear(false)
         store.tasksRef.removeObserver(withHandle: store.refHandle)
     }
+}
+
+extension HomeViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -100,6 +98,7 @@ class HomeViewController: UITableViewController {
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
             return headerCell
+
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
@@ -166,4 +165,17 @@ class HomeViewController: UITableViewController {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
+}
+
+extension HomeViewController {
+    func setupTableView() {
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.separatorStyle = .singleLine
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.allowsSelection = false
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
+    }
 }
