@@ -48,7 +48,7 @@ class TaskListViewController: UITableViewController {
             addTasksLabel.isEnabled = false
         }
         store.tasks.removeAll()
-        store.fetchTasks(completion: { (task) in
+        store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
             DispatchQueue.main.async {
                 self.tableView.reloadData()

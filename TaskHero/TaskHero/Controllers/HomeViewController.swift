@@ -13,10 +13,10 @@ class HomeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = []
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         view.backgroundColor = Constants.tableViewBackgroundColor
-        edgesForExtendedLayout = []
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         setupTableView()
@@ -73,9 +73,8 @@ extension HomeViewController {
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
-            let cellindex = (indexPath.row) - 1
-            taskCell.configureCell(task: self.store.tasks[cellindex])
-            taskCell.setupCellView(width: self.view.frame.size.width, height:height)
+            taskCell.configureCell(task: store.tasks[indexPath.row - 1])
+            taskCell.setupCellView(width: view.frame.size.width, height:height)
             return taskCell
         }
     }
@@ -130,7 +129,7 @@ extension HomeViewController {
         }
         alertController.addAction(actionYes)
         alertController.addAction(actionNo)
-        self.present(alertController, animated: true, completion:nil)
+        present(alertController, animated: true, completion:nil)
     }
     
     func logoutButtonPressed() {

@@ -21,9 +21,9 @@ class SettingsViewController: UITableViewController {
         edgesForExtendedLayout = []
         view.addSubview(segmentControl)
         setupSegment()
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
         setupTableView()
         settings = userSettings
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,7 +32,6 @@ class SettingsViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     

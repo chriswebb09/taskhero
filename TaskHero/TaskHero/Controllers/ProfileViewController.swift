@@ -17,10 +17,10 @@ class ProfileViewController: UITableViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         setupTableView()
+        setupNavItems()
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
-        setupNavItems()
         tableView.reloadData()
     }
     
