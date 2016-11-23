@@ -25,14 +25,7 @@ class SettingsViewController: UITableViewController {
         setupSegment()
         
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        //tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 40
-        //tableView.estimatedRowHeight = view.frame.height / 2
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
+        setupTableView()
         settings = userSettings
     }
     
@@ -77,6 +70,7 @@ class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
+    
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -85,6 +79,15 @@ extension SettingsViewController {
             settings = applicationSettings
         }
         tableView.reloadData()
+    }
+    
+    func setupTableView() {
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.separatorStyle = .singleLine
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 40
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
     }
     
     func setupSegment() {

@@ -23,14 +23,8 @@ class ProfileViewController: UITableViewController {
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
-        
-        
+        setupNavItems()
         tableView.reloadData()
-        
-        self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,9 +36,6 @@ class ProfileViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         store.fetchUserData()
-        //        self.store.fetchUser(completion: { (user) in
-        //            print(user)
-        //        })
         tableView.reloadData()
     }
     
@@ -92,10 +83,16 @@ extension ProfileViewController {
     }
     
     func logoutButtonPressed() {
-        
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
+    }
+    
+    func setupNavItems() {
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
     func addTaskButtonTapped() {

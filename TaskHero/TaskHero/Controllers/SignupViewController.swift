@@ -12,6 +12,7 @@ import Firebase
 class SignupViewController: UIViewController, UITextFieldDelegate {
     
     let store = DataStore.sharedInstance
+    
     let signupView = SignupView()
     var emailInvalidated = false
     let CharacterLimit = 11
@@ -85,6 +86,7 @@ extension SignupViewController {
                 //successfully authenticated user
                 
                 let ref = FIRDatabase.database().reference()
+                
                 let newUser = User()
                 newUser.username = username
                 newUser.email = email
@@ -146,7 +148,6 @@ extension SignupViewController {
             let nextField = (textField === signupView.confirmEmailField) ? signupView.passwordField : signupView.usernameField
             nextField.becomeFirstResponder()
         }
-            
         else if textField == signupView.passwordField {
             textField.resignFirstResponder()
         }
@@ -204,6 +205,7 @@ extension SignupViewController {
 
 
 extension SignupViewController {
+    
     func validateEmailInput(email:String, confirm:String) -> Bool {
         let emailLower = email.lowercased()
         let confirmLower = confirm.lowercased()

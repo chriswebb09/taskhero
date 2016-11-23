@@ -11,7 +11,6 @@ import UIKit
 class TaskListViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
-    //et schema = Database.sharedInstance
     
     let addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
@@ -23,14 +22,16 @@ class TaskListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        edgesForExtendedLayout = []
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        
         emptyTableViewState()
-        edgesForExtendedLayout = []
         setupTableView()
         setupNavItems()
-        tableView.reloadData()
         
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,35 +42,22 @@ class TaskListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
+        
         store.fetchUserData()
+        
         if self.store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
         }
         
         self.store.tasks.removeAll()
+        
         self.store.fetchTasks(completion: { (task) in
             self.store.tasks.append(task)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         })
-        
-        
-        //        let queue = OperationQueue()
-        //        queue.maxConcurrentOperationCount = 2
-        //        let blockOp = BlockOperation {
-        //            self.store.tasks.removeAll()
-        //
-        //            self.store.fetchTasks(completion: { (task) in
-        //                self.store.tasks.append(task)
-        //
-        //                OperationQueue.main.addOperation {
-        //                    self.tableView.reloadData()
-        //                }
-        //            })
-        //        }
-        //        queue.addOperation(blockOp)
     }
     
     
@@ -101,20 +89,22 @@ class TaskListViewController: UITableViewController {
         if editingStyle == .delete {
             tableView.beginUpdates()
             DispatchQueue.main.async {
+                
                 var removeTaskID: String
-                print(indexPath.row)
                 removeTaskID = self.store.tasks[indexPath.row].taskID
+                
                 self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row].pointValue
                 self.store.currentUser.numberOfTasksCompleted += 1
                 self.store.insertUser(user: self.store.currentUser)
                 self.store.removeTask(ref: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row)
+                
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
             }
             tableView.reloadData()
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            // Not implemented
         }
     }
 }
@@ -151,6 +141,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     func emptyTableViewState() {
         if (self.store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             self.view.addSubview(addTasksLabel)
+            
             addTasksLabel.center = self.view.center
             addTasksLabel.text = "No tasks have been added yet."
             addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
