@@ -12,10 +12,7 @@ import Firebase
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
-    
-    
     let store = DataStore.sharedInstance
-    //et schema = Database.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +122,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             appDelegate.window?.rootViewController = tabBar
 
         })
-        
     }
     
     func checkForValidEmailInput() {

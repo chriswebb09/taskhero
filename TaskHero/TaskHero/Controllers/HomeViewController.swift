@@ -10,7 +10,6 @@ import UIKit
 
 class HomeViewController: UITableViewController {
     let store = DataStore.sharedInstance
-    //let schema = Database.sharedInstance
     var tasksList = [Task]()
     var tasks: [Task]? {
         set {
@@ -30,7 +29,6 @@ class HomeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.store.insertUsername()
         
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
@@ -67,26 +65,19 @@ class HomeViewController: UITableViewController {
         self.store.fetchTasks(completion: { (task) in
             self.store.tasks.append(task)
             DispatchQueue.main.async {
-                 self.tableView.reloadData()
+                self.tableView.reloadData()
             }
         })
     }
     
-    
-    
-    
     override func viewWillDisappear(_ animated: Bool) {
-        
         super.viewWillDisappear(false)
-        
         store.tasksRef.removeObserver(withHandle: store.refHandle)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 {
@@ -97,9 +88,9 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.row == 0 {
-//            return (self.view.frame.height/4)
-//        }
+        //        if indexPath.row == 0 {
+        //            return (self.view.frame.height/4)
+        //        }
         return tableView.rowHeight
     }
     
