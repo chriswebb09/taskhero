@@ -18,15 +18,18 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(signupView)
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
+        
         signupView.layoutSubviews()
         signupView.emailField.delegate = self
         signupView.confirmEmailField.delegate = self
         signupView.usernameField.delegate = self
         signupView.passwordField.delegate = self
         signupView.signupButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -50,17 +53,24 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
+}
+
+extension SignupViewController {
     
     func handleRegister() {
         view.endEditing(true)
+        
         let loadingView = LoadingView()
+        
         guard let email = signupView.emailField.text, let password = signupView.passwordField.text, let username = signupView.usernameField.text else {
             loadingView.hideActivityIndicator(viewController:self)
             print("Form is not valid")
             return
         }
         if (validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!)) {
+            
             loadingView.showActivityIndicator(viewController: self)
+            
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
                 if error != nil {
                     loadingView.hideActivityIndicator(viewController: self)
@@ -71,7 +81,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                     loadingView.hideActivityIndicator(viewController: self)
                     return
                 }
+                
                 //successfully authenticated user
+                
                 let ref = FIRDatabase.database().reference()
                 let newUser = User()
                 newUser.username = username
@@ -81,9 +93,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 newUser.lastName = "N/A"
                 newUser.experiencePoints = 0
                 newUser.tasks = [Task]()
+                
                 let usersReference = ref.child("Users").child(uid)
                 let usernamesReference = ref.child("Usernames")
                 let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
+                
                 usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
@@ -105,7 +119,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                     print("Saved user successfully into Firebase db")
                     self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                     self.store.currentUser = newUser
-                    // self.store.insertUsername()
                     let tabBar = TabBarController()
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window?.rootViewController = tabBar
@@ -113,13 +126,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             })
         } else {
             let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
-            //            let DestructiveAction = UIAlertAction(title: "Done", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
-            //                print("Destructive")
-            //            }
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
                 print("OK")
             }
-            //alertController.addAction(DestructiveAction)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
             return
@@ -132,7 +141,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             nextField.becomeFirstResponder()
         } else if textField == signupView.emailField {
             let nextField = (textField === signupView.emailField) ? signupView.confirmEmailField : signupView.passwordField
-            
             nextField.becomeFirstResponder()
         } else if textField == signupView.confirmEmailField {
             let nextField = (textField === signupView.confirmEmailField) ? signupView.passwordField : signupView.usernameField
@@ -142,24 +150,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         else if textField == signupView.passwordField {
             textField.resignFirstResponder()
         }
-        
-        
-        //        else if textField == signupView.passwordField {
-        //            let nextField = (textField === signupView.passwordField) ? signupView.usernameField : signupView.emailField
-        //            nextField.becomeFirstResponder()
-        //        }
-        
-        
         return true
     }
-    
-    
-   
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkTextField(textField)
         if textField == self.signupView.usernameField {
-            
             print(store.validUsernames)
             if store.validUsernames.contains(self.signupView.usernameField.text!) {
                 
@@ -172,13 +168,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 self.signupView.signupButton.isEnabled = true
             }
         }
-        
         if textField == self.signupView.emailField {
             if !(textField.text?.isValidEmail())! {
                 self.signupView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
                 self.signupView.emailField.textColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0)
             }  else if (textField.text?.isValidEmail() )!{
-                //self.signupView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
                 self.signupView.emailField.textColor = UIColor.blue
             }
         }
@@ -206,9 +200,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-    
-    
 }
 
 
