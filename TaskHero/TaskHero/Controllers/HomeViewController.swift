@@ -119,6 +119,19 @@ extension HomeViewController {
         tableView.estimatedRowHeight = view.frame.height / 4
     }
     
+    func profilePicTapped() {
+        let popoverContent = ProfileViewController()
+        let nav = UINavigationController(rootViewController: popoverContent)
+        nav.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover = nav.popoverPresentationController! as UIPopoverPresentationController
+        //popover.popoverContentSize = CGSize(1000, 300)
+        popover.sourceView = view
+        popover.sourceRect = CGRect(x: 100, y: 100, width: 0, height: 0)
+        self.present(nav, animated: true, completion: nil)
+    }
+    
+    
+    
     func setupAlert() {
         let alertController = UIAlertController(title: "Delete", message: "Edit\nor Delete Task?", preferredStyle: .alert)
         let actionYes = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction) in

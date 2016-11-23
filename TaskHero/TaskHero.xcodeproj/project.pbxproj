@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7244712A81FA9B4EA164A8FA /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */; };
+		A709CAC71DE63C4700877907 /* ProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAC61DE63C4700877907 /* ProfilePictureViewController.swift */; };
 		A72C829D1DE5E9DC00F7179C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72C829C1DE5E9DC00F7179C /* UIView+Extension.swift */; };
 		AF02C3681DB9CDB400E1496E /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF02C3671DB9CDB400E1496E /* TextfieldExtension.swift */; };
 		AF18D86F1DBD81BA002A3372 /* TaskHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF18D86E1DBD81BA002A3372 /* TaskHeaderCell.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91CD8A86197BE8140B3FABF1 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
+		A709CAC61DE63C4700877907 /* ProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilePictureViewController.swift; path = Controllers/ProfilePictureViewController.swift; sourceTree = "<group>"; };
 		A72C829C1DE5E9DC00F7179C /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "Extensions/UIView+Extension.swift"; sourceTree = "<group>"; };
 		A7CF6ACF1DDB8FE700B28A5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF02C3671DB9CDB400E1496E /* TextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextfieldExtension.swift; path = Extensions/TextfieldExtension.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				AFA3CE951DB58E0E003266CA /* SplashViewController.swift */,
 				AFA3CE961DB58E0E003266CA /* TabBarController.swift */,
 				AFA3CE971DB58E0E003266CA /* TaskListViewController.swift */,
+				A709CAC61DE63C4700877907 /* ProfilePictureViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				AFA3CE991DB58E0E003266CA /* HomeViewController.swift in Sources */,
 				AFA3CE861DB58DCC003266CA /* InitialView.swift in Sources */,
 				AFA3CEC11DB58F16003266CA /* TeamDataCell.swift in Sources */,
+				A709CAC71DE63C4700877907 /* ProfilePictureViewController.swift in Sources */,
 				AFA3CE9B1DB58E0E003266CA /* ProfileViewController.swift in Sources */,
 				AF02C3681DB9CDB400E1496E /* TextfieldExtension.swift in Sources */,
 				AFA3CE851DB58DCC003266CA /* Constants.swift in Sources */,
