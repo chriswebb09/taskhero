@@ -34,6 +34,15 @@ class ProfileBannerCell: UITableViewCell {
     }
     
     
+    func configureCell() {
+        layoutSubviews()
+        isUserInteractionEnabled = false
+        layoutMargins = UIEdgeInsets.zero
+        preservesSuperviewLayoutMargins = false
+        backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+    }
+    
+    
     override func prepareForReuse() {
         bannerImage.image = nil
     }

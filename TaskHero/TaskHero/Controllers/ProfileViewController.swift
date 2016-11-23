@@ -63,13 +63,7 @@ class ProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
-            
-            bannerCell.layoutSubviews()
-            bannerCell.isUserInteractionEnabled = false
-            bannerCell.layoutMargins = UIEdgeInsets.zero
-            bannerCell.preservesSuperviewLayoutMargins = false
-            bannerCell.backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-            
+            bannerCell.configureCell()
             return bannerCell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
@@ -78,19 +72,10 @@ class ProfileViewController: UITableViewController {
             return headerCell
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
-            
-            dataCell.layoutSubviews()
-            dataCell.layoutMargins = UIEdgeInsets.zero
-            dataCell.levelLabel.text = "Level: \(self.store.currentUser.level)"
-            dataCell.experiencePointsLabel.text = "Experience: \(String(describing: self.store.currentUser.experiencePoints))"
-            dataCell.tasksCompletedLabel.text = "Tasks completed: \(String(describing: self.store.currentUser.numberOfTasksCompleted))"
-            
+            dataCell.configureCell(user: self.store.currentUser)
             return dataCell
         }
     }
-    
-    
-    
 }
 
 

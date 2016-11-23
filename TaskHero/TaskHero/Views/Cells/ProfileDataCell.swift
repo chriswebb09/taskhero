@@ -80,6 +80,15 @@ class ProfileDataCell: UITableViewCell {
         tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
     }
     
+    
+    func configureCell(user:User) {
+        levelLabel.text = "Level: \(user.level)"
+        experiencePointsLabel.text = "Experience: \(String(describing: user.experiencePoints))"
+        tasksCompletedLabel.text = "Tasks completed: \(String(describing: user.numberOfTasksCompleted))"
+        dataCell.layoutSubviews()
+        dataCell.layoutMargins = UIEdgeInsets.zero
+    }
+    
     override func prepareForReuse() {
         experiencePointsLabel.text = " "
         levelLabel.text = ""

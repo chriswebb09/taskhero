@@ -18,14 +18,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.addSubview(loginView)
         edgesForExtendedLayout = []
+        
         loginView.layoutSubviews()
         navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
-        self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
+        
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
         loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
         let operationQueue = OperationQueue()
         let operation = BlockOperation(block: { () -> Void in
             self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
@@ -49,23 +52,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func signupButtonTapped() {
-        navigationController?.pushViewController(SignupViewController(), animated: false)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
-        textField.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     func handleLogin() {
@@ -125,7 +111,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkForValidEmailInput() {
-        if self.loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
+        if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
             UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0,
                            animations: {
                             self.loginView.emailField.layer.borderWidth = 2
@@ -135,6 +121,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.loginView.emailField.layer.borderWidth = 1
             })
         }
+    }
+}
+
+
+extension LoginViewController {
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func signupButtonTapped() {
+        navigationController?.pushViewController(SignupViewController(), animated: false)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
+        textField.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.lightGray.cgColor
     }
 }
 
