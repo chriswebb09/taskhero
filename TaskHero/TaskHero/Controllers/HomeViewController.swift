@@ -10,22 +10,6 @@ import UIKit
 
 class HomeViewController: UITableViewController {
     let store = DataStore.sharedInstance
-    var tasksList = [Task]()
-    var tasks: [Task]? {
-        set {
-            if let tasks = tasks {
-                tasksList = tasks
-                tableView.reloadData()
-            }
-        }
-        get {
-            if tasksList.isEmpty {
-                return nil
-            } else {
-                return tasksList
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +20,7 @@ class HomeViewController: UITableViewController {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         setupTableView()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
+        setupNavItems()
     }
     
     override func didReceiveMemoryWarning() {
@@ -159,5 +141,11 @@ extension HomeViewController {
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
+    }
+    
+    func setupNavItems() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
 }

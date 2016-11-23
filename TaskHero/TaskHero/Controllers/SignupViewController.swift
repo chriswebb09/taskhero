@@ -41,10 +41,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.store.fetchValidUsernames()
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String)  -> Bool {
         if textField == self.signupView.usernameField {
             let currentUserName = self.signupView.usernameField.text! as NSString
@@ -158,10 +154,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        //        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
-        //        textField.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
-    }
+   
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkTextField(textField)
@@ -237,5 +230,14 @@ extension SignupViewController {
                 textField.layer.borderColor = UIColor.blue.cgColor
             }, completion: nil)
         }
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        //        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
+        //        textField.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
     }
 }
