@@ -18,24 +18,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.addSubview(loginView)
         edgesForExtendedLayout = []
-        
         loginView.layoutSubviews()
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
-        
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
         loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
+        let operationQueue = OperationQueue()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
-        let operationQueue = OperationQueue()
         let operation = BlockOperation(block: { () -> Void in
             self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
         })
-        
         operationConfigure(operationQueue: operationQueue, operation: operation)
-        
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,17 +51,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func handleLogin() {
         checkForValidEmailInput()
-        //print(store.usernameEmailDict[loginView.emailField.text!]!)
         view.endEditing(true)
-        
         let loadingView = LoadingView()
-        
         loadingView.showActivityIndicator(viewController: self)
-        
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             return
         }
-        
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 loadingView.hideActivityIndicator(viewController:self)
@@ -83,10 +73,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print(error ?? "error")
                 return
             }
-            
-            //self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
             loadingView.hideActivityIndicator(viewController: self)
-            
             Constants().delay(0.9) {
                 print("here 2")
                 self.loginView.emailField.layer.backgroundColor = Constants.Login.loginSuccessColor.cgColor
@@ -94,9 +81,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.loginView.passwordField.layer.backgroundColor = Constants.Login.loginSuccessColor.cgColor
                 self.loginView.passwordField.textColor = Constants.Login.loginSuccessColor
             }
-            
             guard let userID = user?.uid else { return }
-            
             self.store.currentUserString = userID
             self.store.fetchUser(completion: { user in
                 self.store.currentUser = user
@@ -148,7 +133,6 @@ extension LoginViewController {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.lightGray.cgColor
     }
-    
 }
 
 extension UINavigationBar {
