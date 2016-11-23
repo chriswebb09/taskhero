@@ -120,7 +120,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let tabBar = TabBarController()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
-
+            
         })
     }
     
@@ -130,9 +130,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                            animations: {
                             self.loginView.emailField.layer.borderWidth = 2
                             self.loginView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
-                }, completion: { _ in
-                    self.loginView.emailField.layer.borderColor = Constants.signupFieldColor
-                    self.loginView.emailField.layer.borderWidth = 1
+            }, completion: { _ in
+                self.loginView.emailField.layer.borderColor = Constants.signupFieldColor
+                self.loginView.emailField.layer.borderWidth = 1
             })
         }
     }

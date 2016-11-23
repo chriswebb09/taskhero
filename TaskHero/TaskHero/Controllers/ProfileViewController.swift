@@ -84,10 +84,11 @@ class ProfileViewController: UITableViewController {
             headerCell.layoutMargins = UIEdgeInsets.zero
             headerCell.preservesSuperviewLayoutMargins = false
             headerCell.emailLabel.isHidden = false
-            headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
-            headerCell.usernameLabel.text = self.store.currentUser.username
-            headerCell.emailLabel.text = self.store.currentUser.email
-            headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
+            headerCell.configureCell(user: self.store.currentUser)
+//            headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
+//            headerCell.usernameLabel.text = self.store.currentUser.username
+//            headerCell.emailLabel.text = self.store.currentUser.email
+//            headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
             
             return headerCell
         } else {
