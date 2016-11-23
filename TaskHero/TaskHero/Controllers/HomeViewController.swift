@@ -96,20 +96,10 @@ class HomeViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
-            
-            headerCell.isUserInteractionEnabled = false
-            headerCell.layoutMargins = UIEdgeInsets.zero
-            headerCell.preservesSuperviewLayoutMargins = false
-            headerCell.layoutSubviews()
-            headerCell.layoutIfNeeded()
-            
+            headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
-            
-            
             return headerCell
-            
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5

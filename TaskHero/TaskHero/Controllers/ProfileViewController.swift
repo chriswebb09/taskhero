@@ -78,18 +78,8 @@ class ProfileViewController: UITableViewController {
             return bannerCell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
-            
-            headerCell.layoutSubviews()
-            headerCell.isUserInteractionEnabled = false
-            headerCell.layoutMargins = UIEdgeInsets.zero
-            headerCell.preservesSuperviewLayoutMargins = false
-            headerCell.emailLabel.isHidden = false
+            headerCell.emailLabel.isHidden = true 
             headerCell.configureCell(user: self.store.currentUser)
-//            headerCell.profilePicture.image = UIImage(named: "defaultUserImage")
-//            headerCell.usernameLabel.text = self.store.currentUser.username
-//            headerCell.emailLabel.text = self.store.currentUser.email
-//            headerCell.joinDateLabel.text = "Member since: \(self.store.currentUser.joinDate)"
-            
             return headerCell
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell

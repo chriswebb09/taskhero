@@ -119,6 +119,11 @@ class ProfileHeaderCell: UITableViewCell {
         joinDateLabel.text = user.joinDate
         levelLabel.text = user.level
         profilePicture.image = UIImage(named: "defaultUserImage")
+        isUserInteractionEnabled = false
+        layoutMargins = UIEdgeInsets.zero
+        preservesSuperviewLayoutMargins = false
+        layoutSubviews()
+        layoutIfNeeded()
     }
     
     override func prepareForReuse() {
