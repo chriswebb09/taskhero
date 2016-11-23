@@ -16,23 +16,16 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if user != nil && (self.store.currentUser != nil) {
-                
                 super.viewDidLoad()
-                
                 self.view.backgroundColor = UIColor.white
                 self.setupControllers()
-                
             } else if self.store.currentUser == nil {
-                
                 self.store.fetchUser { user in
                     if user != nil {
-                        
                         self.store.currentUser = user
                         super.viewDidLoad()
-                        
                         self.view.backgroundColor = UIColor.white
                         self.setupControllers()
-                        
                     } else {
                         self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
                     }
@@ -44,31 +37,17 @@ class TabBarController: UITabBarController {
     }
     
     override func viewDidLayoutSubviews() {
-        
         super.viewWillLayoutSubviews()
-        
-        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
-        
-        var tabFrame = tabBar.frame
-        tabFrame.size.height = tabBarHeight
-        tabFrame.origin.y = view.frame.size.height - tabBarHeight
-        
-        tabBar.frame = tabFrame
-        tabBar.tintColor = Constants.Tabbar.tabbarTintColor
-        tabBar.barTintColor = Constants.Tabbar.tabbarColor
-        tabBar.isTranslucent = true
+        setupTabBar()
     }
     
     func setupControllers() {
-        
         let homeTab = setupHomeTab(homeVC: HomeViewController())
         let profileTab = setupProfileTab(profileVC: ProfileViewController())
         let taskListTab = setupTaskTab(taskListVC: TaskListViewController())
         let settingsTab = setupSettingsTab(settingsVC: SettingsViewController())
         let controllers = [homeTab, profileTab, taskListTab, settingsTab]
-        
         viewControllers = controllers
-        
         tabBar.items?[0].title = "Home"
         tabBar.items?[1].title = "Profile"
         tabBar.items?[2].title = "Tasks"
@@ -77,11 +56,9 @@ class TabBarController: UITabBarController {
     }
 }
 
-
 extension TabBarController {
     
     func setupHomeTab(homeVC:HomeViewController) -> UINavigationController {
-        
         homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house-white-2")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "house-lightblue")?.withRenderingMode(.alwaysTemplate))
         homeVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
@@ -96,7 +73,6 @@ extension TabBarController {
     }
     
     func setupProfileTab(profileVC:ProfileViewController) -> UINavigationController {
-        
         profileVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "avatar-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "avatar-lightblue")?.withRenderingMode(.alwaysTemplate))
         profileVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         profileVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
@@ -111,7 +87,6 @@ extension TabBarController {
     }
     
     func setupTaskTab(taskListVC:TaskListViewController) -> UINavigationController {
-        
         taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
         taskListVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         taskListVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
@@ -127,7 +102,6 @@ extension TabBarController {
     
     
     func setupSettingsTab(settingsVC:SettingsViewController) -> UINavigationController {
-        
         settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-2-white-1")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "settings-lightblue")?.withRenderingMode(.alwaysTemplate))
         settingsVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         settingsVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
@@ -139,6 +113,17 @@ extension TabBarController {
         settingsTab.navigationBar.barTintColor = Constants.navbarBarTintColor
         settingsTab.navigationBar.topItem?.title = "Settings"
         return settingsTab
+    }
+    
+    func setupTabBar() {
+        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
+        var tabFrame = tabBar.frame
+        tabFrame.size.height = tabBarHeight
+        tabFrame.origin.y = view.frame.size.height - tabBarHeight
+        tabBar.frame = tabFrame
+        tabBar.tintColor = Constants.Tabbar.tabbarTintColor
+        tabBar.barTintColor = Constants.Tabbar.tabbarColor
+        tabBar.isTranslucent = true
     }
     
     func handleLogout() {

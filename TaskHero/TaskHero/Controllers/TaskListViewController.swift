@@ -42,17 +42,13 @@ class TaskListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        
         store.fetchUserData()
-        
-        if self.store.tasks.count >= 1 {
+        if store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
         }
-        
-        self.store.tasks.removeAll()
-        
-        self.store.fetchTasks(completion: { (task) in
+        store.tasks.removeAll()
+        store.fetchTasks(completion: { (task) in
             self.store.tasks.append(task)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -72,16 +68,15 @@ class TaskListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("task count \(self.store.tasks.count)")
-        return self.store.tasks.count
+        return store.tasks.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
         let height = tableView.rowHeight - 5
         let cellindex = (indexPath.row)
-        taskCell.configureCell(task: self.store.tasks[cellindex])
-        taskCell.setupCellView(width: self.view.frame.size.width, height:height)
+        taskCell.configureCell(task: store.tasks[cellindex])
+        taskCell.setupCellView(width: view.frame.size.width, height:height)
         return taskCell
     }
     
@@ -89,16 +84,13 @@ class TaskListViewController: UITableViewController {
         if editingStyle == .delete {
             tableView.beginUpdates()
             DispatchQueue.main.async {
-                
                 var removeTaskID: String
                 removeTaskID = self.store.tasks[indexPath.row].taskID
-                
                 self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row].pointValue
                 self.store.currentUser.numberOfTasksCompleted += 1
                 self.store.insertUser(user: self.store.currentUser)
                 self.store.removeTask(ref: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row)
-                
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
             }
@@ -139,9 +131,8 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     }
     
     func emptyTableViewState() {
-        if (self.store.tasks.count < 1) && (!addTasksLabel.isHidden) {
-            self.view.addSubview(addTasksLabel)
-            
+        if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
+            view.addSubview(addTasksLabel)
             addTasksLabel.center = self.view.center
             addTasksLabel.text = "No tasks have been added yet."
             addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -149,8 +140,8 @@ extension TaskListViewController: TaskHeaderCellDelegate {
             addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
             addTasksLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        } else if self.store.tasks.count < 1 {
-            self.addTasksLabel.isHidden = false
+        } else if store.tasks.count < 1 {
+            addTasksLabel.isHidden = false
         }
     }
     

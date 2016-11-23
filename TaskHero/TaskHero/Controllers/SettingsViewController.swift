@@ -9,21 +9,18 @@
 import UIKit
 
 class SettingsViewController: UITableViewController {
+    
     var settings = [String]()
-    ///let settings = ["User Settings", "Profile", "Application Settings"]
     
     let userSettings = ["Username", "Email", "First Name", "Last Name", "Tasks Completed", "Friends"]
-    
     let applicationSettings = ["Notifications", "Log Out", "Stay Logged In"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         edgesForExtendedLayout = []
         view.addSubview(segmentControl)
         setupSegment()
-        
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
         setupTableView()
         settings = userSettings
@@ -64,8 +61,6 @@ class SettingsViewController: UITableViewController {
         //        self.present(alertController, animated: true, completion: nil)
         // return
     }
-    
-    
 }
 
 extension SettingsViewController {

@@ -15,11 +15,8 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         edgesForExtendedLayout = []
-        
         setupTableView()
-        
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
@@ -29,7 +26,6 @@ class ProfileViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
         // Dispose of any resources that can be recreated.
     }
     
@@ -68,7 +64,6 @@ class ProfileViewController: UITableViewController {
         }
     }
 }
-
 
 extension ProfileViewController {
     
