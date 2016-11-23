@@ -13,7 +13,7 @@ extension NSDate {
         let todaysDate = NSDate()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-yyyy"
-        let DateInFormat = dateFormatter.string(from: todaysDate as Date)
-        return DateInFormat
+        let dateInFormat = dateFormatter.string(from: todaysDate as Date)
+        return dateInFormat
     }
 }
