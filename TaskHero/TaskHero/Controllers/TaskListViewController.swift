@@ -22,15 +22,12 @@ class TaskListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         edgesForExtendedLayout = []
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        
         emptyTableViewState()
         setupTableView()
         setupNavItems()
-        
         tableView.reloadData()
     }
     
@@ -38,7 +35,6 @@ class TaskListViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -55,7 +51,6 @@ class TaskListViewController: UITableViewController {
             }
         })
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -154,6 +149,5 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
     }
-    
 }
 

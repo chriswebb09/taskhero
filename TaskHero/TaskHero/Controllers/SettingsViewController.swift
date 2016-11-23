@@ -63,7 +63,6 @@ class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
-    
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:

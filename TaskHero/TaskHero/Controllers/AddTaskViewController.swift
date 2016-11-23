@@ -12,6 +12,7 @@ import Firebase
 class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     let store = DataStore.sharedInstance
+    
     let addTaskView = AddTaskView()
     
     override func viewDidLoad() {
@@ -32,11 +33,11 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         // Dispose of any resources that can be recreated.
     }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
+}
+
+extension AddTaskViewController {
+  
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -50,6 +51,17 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         return true
     }
     
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Describe what you want to get done."
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+}
+
+extension AddTaskViewController {
+    
     func addTaskButtonTapped() {
         view.endEditing(true)
         let uid = NSUUID().uuidString
@@ -61,15 +73,12 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         _ = navigationController?.popToRootViewController(animated: false)
     }
     
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     // func backTapped(sender: UIBarButtonItem) {
     //    _ = navigationController?.popToRootViewController(animated: false)
     // }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Describe what you want to get done."
-            textView.textColor = UIColor.lightGray
-        }
-    }
-    
 }

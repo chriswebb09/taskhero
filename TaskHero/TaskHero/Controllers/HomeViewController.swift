@@ -9,13 +9,12 @@
 import UIKit
 
 class HomeViewController: UITableViewController {
+    
     let store = DataStore.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         view.backgroundColor = Constants.tableViewBackgroundColor
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
@@ -130,8 +129,6 @@ extension HomeViewController {
         self.present(nav, animated: true, completion: nil)
     }
     
-    
-    
     func setupAlert() {
         let alertController = UIAlertController(title: "Delete", message: "Edit\nor Delete Task?", preferredStyle: .alert)
         let actionYes = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction) in
@@ -156,6 +153,8 @@ extension HomeViewController {
     }
     
     func setupNavItems() {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))

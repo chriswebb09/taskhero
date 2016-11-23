@@ -70,9 +70,7 @@ extension SignupViewController {
         }
         
         if (validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!)) {
-            
             loadingView.showActivityIndicator(viewController: self)
-            
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
                 if error != nil {
                     loadingView.hideActivityIndicator(viewController: self)
@@ -83,11 +81,8 @@ extension SignupViewController {
                     loadingView.hideActivityIndicator(viewController: self)
                     return
                 }
-                
                 //successfully authenticated user
-                
                 let ref = FIRDatabase.database().reference()
-                
                 let newUser = User()
                 newUser.username = username
                 newUser.email = email
@@ -100,7 +95,6 @@ extension SignupViewController {
                 let usersReference = ref.child("Users").child(uid)
                 let usernamesReference = ref.child("Usernames")
                 let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
-                
                 usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
@@ -111,14 +105,12 @@ extension SignupViewController {
                 })
                 
                 let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
-                
                 usersReference.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
                         print(err ?? "unable to get specific error")
                         return
                     }
-                    
                     print("Saved user successfully into Firebase db")
                     self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                     self.store.currentUser = newUser
@@ -164,7 +156,6 @@ extension SignupViewController {
         if textField == self.signupView.usernameField {
             print(store.validUsernames)
             if store.validUsernames.contains(signupView.usernameField.text!) {
-                
                 signupView.usernameField.layer.borderColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0).cgColor
                 signupView.usernameField.textColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0)
                 signupView.signupButton.isEnabled = false
@@ -207,7 +198,6 @@ extension SignupViewController {
         }
     }
 }
-
 
 extension SignupViewController {
     

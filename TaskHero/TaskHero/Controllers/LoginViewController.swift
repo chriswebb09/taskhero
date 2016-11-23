@@ -33,9 +33,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let operation = BlockOperation(block: { () -> Void in
             self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
         })
-        operationQueue.addOperation(operation)
-        operationQueue.maxConcurrentOperationCount = 2
-        operationQueue.qualityOfService = .userInitiated
+        
+        operationConfigure(operationQueue: operationQueue, operation: operation)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -130,6 +130,12 @@ extension LoginViewController {
         view.endEditing(true)
     }
     
+    func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
+        operationQueue.addOperation(operation)
+        operationQueue.maxConcurrentOperationCount = 2
+        operationQueue.qualityOfService = .userInitiated
+    }
+    
     func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
@@ -142,6 +148,7 @@ extension LoginViewController {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.lightGray.cgColor
     }
+    
 }
 
 extension UINavigationBar {
