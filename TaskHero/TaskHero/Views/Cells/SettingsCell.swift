@@ -41,7 +41,7 @@ class SettingsCell: UITableViewCell {
     }
     
     func configureCell(setting:String) {
-        settingsCell.layoutSubviews()
+        layoutSubviews()
         settingLabel.text = setting
     }
     
