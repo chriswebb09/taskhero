@@ -18,18 +18,13 @@ class ProfileViewController: UITableViewController {
         
         edgesForExtendedLayout = []
         
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        tableView.allowsSelection = false
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
+        setupTableView()
         
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 3
+        
         tableView.reloadData()
         
         self.navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
@@ -47,9 +42,9 @@ class ProfileViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         store.fetchUserData()
-//        self.store.fetchUser(completion: { (user) in
-//            print(user)
-//        })
+        //        self.store.fetchUser(completion: { (user) in
+        //            print(user)
+        //        })
         tableView.reloadData()
     }
     
@@ -78,7 +73,7 @@ class ProfileViewController: UITableViewController {
             return bannerCell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
-            headerCell.emailLabel.isHidden = true 
+            headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
             return headerCell
         } else {
@@ -94,17 +89,31 @@ class ProfileViewController: UITableViewController {
         }
     }
     
-    func logoutButtonPressed() {
+    
+    
+}
 
+
+extension ProfileViewController {
+    
+    func setupTableView() {
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.separatorStyle = .singleLine
+        tableView.allowsSelection = false
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 3
+    }
+    
+    func logoutButtonPressed() {
+        
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
     }
     
     func addTaskButtonTapped() {
-        //navigationController?.pushViewController(SignupViewController(), animated: false)
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
-    
-    
 }

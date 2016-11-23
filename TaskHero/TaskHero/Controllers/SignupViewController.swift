@@ -109,7 +109,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                     print("Saved user successfully into Firebase db")
                     self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                     self.store.currentUser = newUser
-                   // self.store.insertUsername()
+                    // self.store.insertUsername()
                     let tabBar = TabBarController()
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window?.rootViewController = tabBar
@@ -117,9 +117,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             })
         } else {
             let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
-//            let DestructiveAction = UIAlertAction(title: "Done", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
-//                print("Destructive")
-//            }
+            //            let DestructiveAction = UIAlertAction(title: "Done", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+            //                print("Destructive")
+            //            }
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
                 print("OK")
             }
@@ -136,27 +136,27 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             nextField.becomeFirstResponder()
         } else if textField == signupView.emailField {
             let nextField = (textField === signupView.emailField) ? signupView.confirmEmailField : signupView.passwordField
-
+            
             nextField.becomeFirstResponder()
         } else if textField == signupView.confirmEmailField {
             let nextField = (textField === signupView.confirmEmailField) ? signupView.passwordField : signupView.usernameField
             nextField.becomeFirstResponder()
         }
-        
+            
         else if textField == signupView.passwordField {
             textField.resignFirstResponder()
         }
         
         
-//        else if textField == signupView.passwordField {
-//            let nextField = (textField === signupView.passwordField) ? signupView.usernameField : signupView.emailField
-//            nextField.becomeFirstResponder()
-//        }
+        //        else if textField == signupView.passwordField {
+        //            let nextField = (textField === signupView.passwordField) ? signupView.usernameField : signupView.emailField
+        //            nextField.becomeFirstResponder()
+        //        }
         
         
         return true
     }
-
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         //        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
@@ -169,7 +169,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             
             print(store.validUsernames)
             if store.validUsernames.contains(self.signupView.usernameField.text!) {
-               
+                
                 self.signupView.usernameField.layer.borderColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0).cgColor
                 self.signupView.usernameField.textColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0)
                 self.signupView.signupButton.isEnabled = false
@@ -214,6 +214,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    
+}
+
+
+extension SignupViewController {
     func validateEmailInput(email:String, confirm:String) -> Bool {
         let emailLower = email.lowercased()
         let confirmLower = confirm.lowercased()
@@ -229,7 +235,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         if (textField.text?.characters.count)! > 5 {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 textField.layer.borderColor = UIColor.blue.cgColor
-                }, completion: nil)
+            }, completion: nil)
         }
     }
 }

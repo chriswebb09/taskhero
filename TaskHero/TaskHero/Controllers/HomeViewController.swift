@@ -27,22 +27,15 @@ class HomeViewController: UITableViewController {
         }
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
-        
         view.backgroundColor = Constants.tableViewBackgroundColor
         edgesForExtendedLayout = []
-        
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        
         setupTableView()
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
@@ -86,9 +79,6 @@ extension HomeViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //        if indexPath.row == 0 {
-        //            return (self.view.frame.height/4)
-        //        }
         return tableView.rowHeight
     }
     
@@ -98,7 +88,6 @@ extension HomeViewController {
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
             return headerCell
-            
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
@@ -112,16 +101,12 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            
             DispatchQueue.main.async {
                 var removeTaskID: String
-                
                 if (indexPath.row) == 0 {
                     return
-                    
                 } else {
                     removeTaskID = self.store.tasks[indexPath.row - 1].taskID
-                    
                     self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
                     self.store.currentUser.numberOfTasksCompleted += 1
                     self.store.insertUser(user: self.store.currentUser)
@@ -134,7 +119,6 @@ extension HomeViewController {
                 tableView.endUpdates()
             }
             tableView.reloadData()
-            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
@@ -143,13 +127,13 @@ extension HomeViewController {
 }
 
 extension HomeViewController {
+    
     func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.allowsSelection = false
-        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = view.frame.height / 4
     }
@@ -167,11 +151,9 @@ extension HomeViewController {
         self.present(alertController, animated: true, completion:nil)
     }
     
-    
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         appDelegate.window?.rootViewController = loginVC
     }
     

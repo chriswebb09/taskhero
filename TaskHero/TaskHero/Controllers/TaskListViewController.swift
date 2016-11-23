@@ -26,26 +26,10 @@ class TaskListViewController: UITableViewController {
         
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        if (self.store.tasks.count < 1) && (!addTasksLabel.isHidden) {
-            self.view.addSubview(addTasksLabel)
-            addTasksLabel.center = self.view.center
-            addTasksLabel.text = "No tasks have been added yet."
-            addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
-            addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
-            addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
-            addTasksLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        } else if self.store.tasks.count < 1 {
-            self.addTasksLabel.isHidden = false
-        }
+        emptyTableViewState()
         edgesForExtendedLayout = []
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 4
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
+        
+        setupTableView()
         
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
@@ -119,16 +103,7 @@ class TaskListViewController: UITableViewController {
         return taskCell
     }
     
-    func logoutButtonPressed() {
-        
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginVC
-    }
     
-    func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -154,6 +129,7 @@ class TaskListViewController: UITableViewController {
 
 
 extension TaskListViewController: TaskHeaderCellDelegate {
+    
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -164,6 +140,42 @@ extension TaskListViewController: TaskHeaderCellDelegate {
             
         }
         tableView.reloadData()
+    }
+    
+    func logoutButtonPressed() {
+        
+        let loginVC = UINavigationController(rootViewController:LoginViewController())
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = loginVC
+    }
+    
+    func addTaskButtonTapped() {
+        navigationController?.pushViewController(AddTaskViewController(), animated:false)
+    }
+    
+    func emptyTableViewState() {
+        if (self.store.tasks.count < 1) && (!addTasksLabel.isHidden) {
+            self.view.addSubview(addTasksLabel)
+            addTasksLabel.center = self.view.center
+            addTasksLabel.text = "No tasks have been added yet."
+            addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
+            addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
+            addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
+            addTasksLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        } else if self.store.tasks.count < 1 {
+            self.addTasksLabel.isHidden = false
+        }
+    }
+    
+    func setupTableView() {
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.separatorStyle = .singleLine
+        tableView.allowsSelection = false
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
     }
     
 }
