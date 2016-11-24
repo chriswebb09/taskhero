@@ -38,7 +38,8 @@ class TaskListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        store.fetchUserData()
+        store.fetchData()
+        //store.fetchUserData()
         if store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false

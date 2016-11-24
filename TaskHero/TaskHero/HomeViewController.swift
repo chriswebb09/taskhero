@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UITableViewController {
+final class HomeViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
     
@@ -28,10 +28,11 @@ class HomeViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        store.fetchUserData()
+        store.fetchData()
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
-        self.store.fetchTasks(completion: { (task) in
+        
+        self.store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -129,7 +130,7 @@ extension HomeViewController {
         self.present(nav, animated: true, completion: nil)
     }
     
-    func setupAlert() {
+    fileprivate func setupAlert() {
         let alertController = UIAlertController(title: "Delete", message: "Edit\nor Delete Task?", preferredStyle: .alert)
         let actionYes = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction) in
             print("delete")
@@ -152,7 +153,7 @@ extension HomeViewController {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
-    func setupNavItems() {
+    fileprivate func setupNavItems() {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))

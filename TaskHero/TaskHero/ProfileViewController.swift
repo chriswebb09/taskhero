@@ -31,7 +31,7 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        store.fetchUserData()
+        store.fetchData()
         tableView.reloadData()
     }
     

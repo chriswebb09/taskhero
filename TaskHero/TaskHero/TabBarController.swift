@@ -20,16 +20,10 @@ class TabBarController: UITabBarController {
                 self.view.backgroundColor = UIColor.white
                 self.setupControllers()
             } else if self.store.currentUser == nil {
-                self.store.fetchUser { user in
-                    if user != nil {
-                        self.store.currentUser = user
-                        super.viewDidLoad()
-                        self.view.backgroundColor = UIColor.white
-                        self.setupControllers()
-                    } else {
-                        self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
-                    }
-                }
+                self.store.fetchData()
+                super.viewDidLoad()
+                self.view.backgroundColor = UIColor.white
+                self.setupControllers()
             } else {
                 self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
             }
