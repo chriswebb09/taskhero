@@ -142,15 +142,17 @@
 				A709CACA1DE7718B00877907 /* LoginViewController.swift */,
 			);
 			name = Login;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		A709CB151DE773D200877907 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				A709CB0B1DE7735B00877907 /* SignupViewController.swift */,
 				A709CAFB1DE7730D00877907 /* SignupView.swift */,
+				A709CB0B1DE7735B00877907 /* SignupViewController.swift */,
 			);
 			name = Signup;
+			path = Signup;
 			sourceTree = "<group>";
 		};
 		A709CB161DE7745500877907 /* Home */ = {
@@ -159,34 +161,38 @@
 				A709CACF1DE771B700877907 /* HomeViewController.swift */,
 			);
 			name = Home;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A709CB171DE7748F00877907 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A709CB091DE7735000877907 /* SettingsViewController.swift */,
 				A709CAE51DE7725F00877907 /* SettingsCell.swift */,
+				A709CB091DE7735000877907 /* SettingsViewController.swift */,
 			);
 			name = Settings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A709CB181DE7754600877907 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				A709CB211DE77C1300877907 /* Extensions */,
-				A709CB231DE77C2E00877907 /* Views */,
 				A709CB221DE77C2600877907 /* Variables */,
+				A709CB231DE77C2E00877907 /* Views */,
 			);
 			name = Shared;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		A709CB191DE775A300877907 /* ProfilePicture */ = {
 			isa = PBXGroup;
 			children = (
-				A709CAEF1DE7728B00877907 /* ProfilePictureViewController.swift */,
 				A709CAF11DE772BF00877907 /* ProfilePictureView.swift */,
+				A709CAEF1DE7728B00877907 /* ProfilePictureViewController.swift */,
 			);
 			name = ProfilePicture;
+			path = ProfilePicture;
 			sourceTree = "<group>";
 		};
 		A709CB1A1DE7772900877907 /* Tasks */ = {
@@ -195,6 +201,7 @@
 				A709CB051DE7733C00877907 /* Task.swift */,
 			);
 			name = Tasks;
+			path = Tasks;
 			sourceTree = "<group>";
 		};
 		A709CB1B1DE7773200877907 /* User */ = {
@@ -203,15 +210,17 @@
 				A709CB031DE7733300877907 /* User.swift */,
 			);
 			name = User;
+			path = User;
 			sourceTree = "<group>";
 		};
 		A709CB1C1DE777A900877907 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				A709CB0D1DE7736800877907 /* SplashViewController.swift */,
 				A709CAF91DE7730200877907 /* InitialView.swift */,
+				A709CB0D1DE7736800877907 /* SplashViewController.swift */,
 			);
 			name = Splash;
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		A709CB1F1DE77BC600877907 /* Auth */ = {
@@ -220,6 +229,7 @@
 				A709CB1D1DE777DC00877907 /* Auth.swift */,
 			);
 			name = Auth;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		A709CB201DE77BEB00877907 /* DataServices */ = {
@@ -229,6 +239,7 @@
 				A709CB251DE77DBF00877907 /* DBFetch.swift */,
 			);
 			name = DataServices;
+			path = DataServices;
 			sourceTree = "<group>";
 		};
 		A709CB211DE77C1300877907 /* Extensions */ = {
@@ -236,11 +247,12 @@
 			children = (
 				A709CADB1DE7721300877907 /* NSDate+Extension.swift */,
 				A709CADD1DE7722300877907 /* String+Extension.swift */,
-				A709CADF1DE7722D00877907 /* UIColorExtension.swift */,
 				A709CAE11DE7723800877907 /* TextfieldExtension.swift */,
+				A709CADF1DE7722D00877907 /* UIColorExtension.swift */,
 				A709CAE31DE7724E00877907 /* UIView+Extension.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A709CB221DE77C2600877907 /* Variables */ = {
@@ -249,38 +261,42 @@
 				A709CAFF1DE7731F00877907 /* Constants.swift */,
 			);
 			name = Variables;
+			path = Variables;
 			sourceTree = "<group>";
 		};
 		A709CB231DE77C2E00877907 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				A709CAFD1DE7731500877907 /* LoadingView.swift */,
-				A709CB0F1DE7737100877907 /* TabBarController.swift */,
-				A709CB071DE7734700877907 /* RootContainerViewController.swift */,
 				A709CAF51DE772EC00877907 /* PopMenu.swift */,
+				A709CB071DE7734700877907 /* RootContainerViewController.swift */,
+				A709CB0F1DE7737100877907 /* TabBarController.swift */,
 			);
 			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A709CB241DE77C7700877907 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
-				A709CACD1DE7719E00877907 /* AddTaskViewController.swift */,
 				A709CAF71DE772F700877907 /* AddTaskView.swift */,
+				A709CACD1DE7719E00877907 /* AddTaskViewController.swift */,
 			);
 			name = AddTask;
+			path = AddTask;
 			sourceTree = "<group>";
 		};
 		AF18D86C1DBD8165002A3372 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A709CAED1DE7727E00877907 /* ProfileDataCellModel.swift */,
-				A709CAF31DE772CD00877907 /* ProfileViewController.swift */,
 				A709CAD51DE771F400877907 /* ProfileBannerCell.swift */,
 				A709CAD31DE771EB00877907 /* ProfileDataCell.swift */,
+				A709CAED1DE7727E00877907 /* ProfileDataCellModel.swift */,
 				A709CAD11DE771E100877907 /* ProfileHeaderCell.swift */,
+				A709CAF31DE772CD00877907 /* ProfileViewController.swift */,
 			);
 			name = Profile;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		AF18D86D1DBD816E002A3372 /* Team */ = {
@@ -291,34 +307,37 @@
 				A709CAE91DE7726D00877907 /* TeamHeaderCell.swift */,
 			);
 			name = Team;
+			path = Team;
 			sourceTree = "<group>";
 		};
 		AFA3CE8A1DB58DDB003266CA /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				A709CB241DE77C7700877907 /* AddTask */,
-				A709CB1C1DE777A900877907 /* Splash */,
-				A709CB171DE7748F00877907 /* Settings */,
 				A709CB161DE7745500877907 /* Home */,
-				AFE9E6BF1DBDA76E0023C232 /* Task */,
-				A709CB191DE775A300877907 /* ProfilePicture */,
-				AF18D86D1DBD816E002A3372 /* Team */,
-				AF18D86C1DBD8165002A3372 /* Profile */,
-				A709CB151DE773D200877907 /* Signup */,
 				A709CAC81DE7711900877907 /* Login */,
+				AF18D86C1DBD8165002A3372 /* Profile */,
+				A709CB191DE775A300877907 /* ProfilePicture */,
+				A709CB171DE7748F00877907 /* Settings */,
 				A709CB181DE7754600877907 /* Shared */,
+				A709CB151DE773D200877907 /* Signup */,
+				A709CB1C1DE777A900877907 /* Splash */,
+				AFE9E6BF1DBDA76E0023C232 /* Task */,
+				AF18D86D1DBD816E002A3372 /* Team */,
 			);
 			name = UI;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		AFA3CE8D1DB58DF7003266CA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				A709CB011DE7732800877907 /* DataStore.swift */,
-				A709CB201DE77BEB00877907 /* DataServices */,
 				A709CB1F1DE77BC600877907 /* Auth */,
+				A709CB201DE77BEB00877907 /* DataServices */,
+				A709CB011DE7732800877907 /* DataStore.swift */,
 			);
 			name = Networking;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		AFA3CEA91DB58E2E003266CA /* Models */ = {
@@ -328,15 +347,16 @@
 				A709CB1B1DE7773200877907 /* User */,
 			);
 			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		AFE277A81DB58CA2005C9AB5 = {
 			isa = PBXGroup;
 			children = (
-				AFE277B31DB58CA2005C9AB5 /* TaskHero */,
-				AFE277B21DB58CA2005C9AB5 /* Products */,
-				965D6B7FFE51D9CB52C88246 /* Pods */,
 				32A0D354D912F6F8E761029F /* Frameworks */,
+				965D6B7FFE51D9CB52C88246 /* Pods */,
+				AFE277B21DB58CA2005C9AB5 /* Products */,
+				AFE277B31DB58CA2005C9AB5 /* TaskHero */,
 			);
 			sourceTree = "<group>";
 		};
@@ -356,9 +376,9 @@
 				AFA3CE8A1DB58DDB003266CA /* UI */,
 				AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */,
 				AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */,
-				AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */,
-				A7CF6ACF1DDB8FE700B28A5A /* Info.plist */,
 				AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */,
+				A7CF6ACF1DDB8FE700B28A5A /* Info.plist */,
+				AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */,
 			);
 			path = TaskHero;
 			sourceTree = "<group>";
@@ -367,10 +387,11 @@
 			isa = PBXGroup;
 			children = (
 				A709CAD71DE7720200877907 /* TaskCell.swift */,
-				A709CB111DE7737800877907 /* TaskListViewController.swift */,
 				A709CAD81DE7720200877907 /* TaskHeaderCell.swift */,
+				A709CB111DE7737800877907 /* TaskListViewController.swift */,
 			);
 			name = Task;
+			path = Task;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,6 +571,7 @@
 				AFE277BE1DB58CA2005C9AB5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
