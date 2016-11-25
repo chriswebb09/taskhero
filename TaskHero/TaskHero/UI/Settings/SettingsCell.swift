@@ -12,16 +12,16 @@ class SettingsCell: UITableViewCell {
     
     static let cellIdentifier = "SettingsCell"
 
-    let settingLabel: UITextView = {
-        let textView = UITextView()
-        textView.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
+    let settingLabel: UILabel = {
+        let textView = UILabel()
+        //textView.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
         textView.textColor = UIColor.white
-        textView.layer.cornerRadius = 2
+       // textView.layer.cornerRadius = 2
         textView.font = UIFont(name: Constants.helveticaLight, size: 18)
         textView.textAlignment = .center
         textView.layer.masksToBounds = true
-        textView.isEditable = false
-        textView.isScrollEnabled = false
+        //textView.isEditable = false
+       // textView.isScrollEnabled = false
         return textView
     }()
     
@@ -32,12 +32,14 @@ class SettingsCell: UITableViewCell {
     }
     
     func setupConstraints() {
+        contentView.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
         contentView.addSubview(settingLabel)
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
-        settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
+        settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true
         settingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
         settingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        settingLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        settingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true 
+        //settingLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
     
     func configureCell(setting:String) {

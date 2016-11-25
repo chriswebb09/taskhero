@@ -13,6 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
     let store = DataStore.sharedInstance
+    let loadingView = LoadingView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,14 +53,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func handleLogin() {
         checkForValidEmailInput()
         view.endEditing(true)
-        let loadingView = LoadingView()
         loadingView.showActivityIndicator(viewController: self)
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             return
         }
+        
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                loadingView.hideActivityIndicator(viewController:self)
+                self.loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                     switch errCode {
                     case .errorCodeInvalidEmail:
@@ -73,14 +74,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print(error ?? "error")
                 return
             }
-            loadingView.hideActivityIndicator(viewController: self)
-            Constants().delay(0.9) {
-                print("here 2")
-                self.loginView.emailField.layer.backgroundColor = Constants.Login.loginSuccessColor.cgColor
-                self.loginView.emailField.textColor = Constants.Login.loginSuccessColor
-                self.loginView.passwordField.layer.backgroundColor = Constants.Login.loginSuccessColor.cgColor
-                self.loginView.passwordField.textColor = Constants.Login.loginSuccessColor
-            }
+            self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
             self.store.fetchData()

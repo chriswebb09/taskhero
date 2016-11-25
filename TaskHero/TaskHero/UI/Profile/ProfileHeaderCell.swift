@@ -12,9 +12,11 @@ protocol ProfileHeaderCellDelegate: class {
     func profilePictureTapped()
 }
 
-class ProfileHeaderCell: UITableViewCell {
+class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
     static let cellIdentifier = "ProfileHeaderCell"
+    
+    var delegate: ProfileHeaderCellDelegate?
     
     let joinDateLabel: UITextView = {
         let joinDateLabel = UITextView()
@@ -60,6 +62,7 @@ class ProfileHeaderCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = 1
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -108,18 +111,27 @@ class ProfileHeaderCell: UITableViewCell {
     }
     
     func configureCell(user: User) {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         usernameLabel.text = user.username
         emailLabel.text = user.email
         joinDateLabel.text = user.joinDate
         levelLabel.text = user.level
+        profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
-        isUserInteractionEnabled = false
+        profilePicture.addGestureRecognizer(tap)
+        //isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         layoutSubviews()
         layoutIfNeeded()
     }
     
+    
+    func profilePictureTapped() {
+        print("profile pic tapped\n\n\n\n\n\n")
+        delegate?.profilePictureTapped()
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
         usernameLabel.text = ""

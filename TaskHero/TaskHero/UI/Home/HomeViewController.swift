@@ -8,9 +8,10 @@
 
 import UIKit
 
-final class HomeViewController: UITableViewController {
+final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate  {
     
     let store = DataStore.sharedInstance
+    let pop = PopMenu()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +68,10 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+            headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
+
             return headerCell
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
@@ -118,29 +121,21 @@ extension HomeViewController {
         tableView.estimatedRowHeight = view.frame.height / 4
     }
     
-    func profilePicTapped() {
-        let popoverContent = ProfileViewController()
-        let nav = UINavigationController(rootViewController: popoverContent)
-        nav.modalPresentationStyle = UIModalPresentationStyle.popover
-        let popover = nav.popoverPresentationController! as UIPopoverPresentationController
-        //popover.popoverContentSize = CGSize(1000, 300)
-        popover.sourceView = view
-        popover.sourceRect = CGRect(x: 100, y: 100, width: 0, height: 0)
-        self.present(nav, animated: true, completion: nil)
+    func profilePictureTapped() {
+        print("---------------")
+        print("here")
+        pop.popView.isHidden = false
+        pop.showPopView(viewController: self)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
+        pop.containerView.addGestureRecognizer(tap)
     }
     
-    fileprivate func setupAlert() {
-        let alertController = UIAlertController(title: "Delete", message: "Edit\nor Delete Task?", preferredStyle: .alert)
-        let actionYes = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction) in
-            print("delete")
-        }
-        let actionNo = UIAlertAction(title: "No", style: .default) { (action:UIAlertAction) in
-            print("dont delete")
-        }
-        alertController.addAction(actionYes)
-        alertController.addAction(actionNo)
-        present(alertController, animated: true, completion:nil)
+    func hideView() {
+        pop.popView.isHidden = true
+        pop.hidePopView(viewController: self)
     }
+    
+    
     
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())

@@ -20,10 +20,22 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         settings = userSettings
         edgesForExtendedLayout = []
-        view.addSubview(segmentControl)
+        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        
+        let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
+        header.backgroundColor = UIColor.white
+        //header.sizeThatFits(CGSize(width: view.bounds.width, height: 100))
+        header.addSubview(segmentControl)
+        
+        //tableView.tableHeaderView?.clipsToBounds = true
+        tableView.tableHeaderView = header
+        //tableView.tableHeaderView?.backgroundColor = UIColor.white
+
         setupSegment()
         setupTableView()
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
+//        view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,33 +50,25 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
+        settingsCell.contentView.clipsToBounds = true
         settingsCell.configureCell(setting: settings[indexPath.row])
         return settingsCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pop.popView.isHidden = false 
         pop.showPopView(viewController: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
         pop.containerView.addGestureRecognizer(tap)
-        //   if settings[indexPath.row] ==
-        //        print(settings[indexPath.row])
-        //        let alertController = UIAlertController(title: "Invalid", message: "\(settings[indexPath.row])", preferredStyle: UIAlertControllerStyle.alert)
-        //        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-        //            print("OK")
-        //        }
-        //        alertController.addAction(okAction)
-        //        self.present(alertController, animated: true, completion: nil)
-        // return
+        
     }
     
     func hideView() {
+        pop.popView.isHidden = true
         pop.hidePopView(viewController: self)
     }
 }
@@ -82,9 +86,10 @@ extension SettingsViewController {
     
     func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableHeaderView?.backgroundColor = UIColor.clear
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 40
+        tableView.estimatedRowHeight = 60
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
     }
