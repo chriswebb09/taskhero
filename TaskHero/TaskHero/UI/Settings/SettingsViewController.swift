@@ -14,6 +14,7 @@ class SettingsViewController: UITableViewController {
     let applicationSettings = ["Notifications", "Log Out", "Stay Logged In"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
     var settings = [String]()
+    let pop = PopMenu()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,10 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        pop.showPopView(viewController: self)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
+        pop.containerView.addGestureRecognizer(tap)
         //   if settings[indexPath.row] ==
         //        print(settings[indexPath.row])
         //        let alertController = UIAlertController(title: "Invalid", message: "\(settings[indexPath.row])", preferredStyle: UIAlertControllerStyle.alert)
@@ -60,6 +65,11 @@ class SettingsViewController: UITableViewController {
         //        alertController.addAction(okAction)
         //        self.present(alertController, animated: true, completion: nil)
         // return
+    }
+    
+    
+    func hideView() {
+        pop.hidePopView(viewController: self)
     }
 }
 
