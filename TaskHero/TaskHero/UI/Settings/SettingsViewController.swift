@@ -10,19 +10,20 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
-    var settings = [String]()
-    
     let userSettings = ["Username", "Email", "First Name", "Last Name", "Tasks Completed", "Friends"]
     let applicationSettings = ["Notifications", "Log Out", "Stay Logged In"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
+    var settings = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        settings = userSettings
+        
         edgesForExtendedLayout = []
         view.addSubview(segmentControl)
         setupSegment()
         setupTableView()
-        settings = userSettings
+        
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
     }
     
@@ -64,6 +65,7 @@ class SettingsViewController: UITableViewController {
 
 extension SettingsViewController {
     func changeView(sender: UISegmentedControl) {
+
         switch sender.selectedSegmentIndex {
         case 0:
             settings = userSettings
@@ -83,11 +85,28 @@ extension SettingsViewController {
     }
     
     func setupSegment() {
+        let multipleAttributes: [String : Any] = [
+            NSForegroundColorAttributeName: UIColor.blue]
+        
+        let multipleUnselectedAttributes: [String : Any] = [
+            NSForegroundColorAttributeName: UIColor.lightGray]
+        segmentControl.tintColor = UIColor.clear
+
+        segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
+        segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
+        segmentControl.layer.borderWidth = 1
+        segmentControl.layer.borderColor = UIColor.gray.cgColor
+        segmentControl.layer.cornerRadius = 8
+        
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.01).isActive = true
         segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier:0.96).isActive = true
         segmentControl.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier:Constants.loginFieldHeight).isActive = true
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
+        
+        
     }
+    
+    
 }

@@ -48,6 +48,7 @@
 		A709CB141DE7738C00877907 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB131DE7738C00877907 /* DB.swift */; };
 		A709CB1E1DE777DC00877907 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB1D1DE777DC00877907 /* Auth.swift */; };
 		A709CB261DE77DBF00877907 /* DBFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB251DE77DBF00877907 /* DBFetch.swift */; };
+		A709CB281DE7A7CA00877907 /* SegControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB271DE7A7CA00877907 /* SegControl.swift */; };
 		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
@@ -97,6 +98,7 @@
 		A709CB131DE7738C00877907 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		A709CB1D1DE777DC00877907 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		A709CB251DE77DBF00877907 /* DBFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBFetch.swift; sourceTree = "<group>"; };
+		A709CB271DE7A7CA00877907 /* SegControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegControl.swift; sourceTree = "<group>"; };
 		A7CF6ACF1DDB8FE700B28A5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +143,6 @@
 				A709CAC91DE7718B00877907 /* LoginView.swift */,
 				A709CACA1DE7718B00877907 /* LoginViewController.swift */,
 			);
-			name = Login;
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -151,7 +152,6 @@
 				A709CAFB1DE7730D00877907 /* SignupView.swift */,
 				A709CB0B1DE7735B00877907 /* SignupViewController.swift */,
 			);
-			name = Signup;
 			path = Signup;
 			sourceTree = "<group>";
 		};
@@ -160,7 +160,6 @@
 			children = (
 				A709CACF1DE771B700877907 /* HomeViewController.swift */,
 			);
-			name = Home;
 			path = Home;
 			sourceTree = "<group>";
 		};
@@ -170,7 +169,6 @@
 				A709CAE51DE7725F00877907 /* SettingsCell.swift */,
 				A709CB091DE7735000877907 /* SettingsViewController.swift */,
 			);
-			name = Settings;
 			path = Settings;
 			sourceTree = "<group>";
 		};
@@ -181,7 +179,6 @@
 				A709CB221DE77C2600877907 /* Variables */,
 				A709CB231DE77C2E00877907 /* Views */,
 			);
-			name = Shared;
 			path = Shared;
 			sourceTree = "<group>";
 		};
@@ -191,7 +188,6 @@
 				A709CAF11DE772BF00877907 /* ProfilePictureView.swift */,
 				A709CAEF1DE7728B00877907 /* ProfilePictureViewController.swift */,
 			);
-			name = ProfilePicture;
 			path = ProfilePicture;
 			sourceTree = "<group>";
 		};
@@ -200,7 +196,6 @@
 			children = (
 				A709CB051DE7733C00877907 /* Task.swift */,
 			);
-			name = Tasks;
 			path = Tasks;
 			sourceTree = "<group>";
 		};
@@ -209,7 +204,6 @@
 			children = (
 				A709CB031DE7733300877907 /* User.swift */,
 			);
-			name = User;
 			path = User;
 			sourceTree = "<group>";
 		};
@@ -219,7 +213,6 @@
 				A709CAF91DE7730200877907 /* InitialView.swift */,
 				A709CB0D1DE7736800877907 /* SplashViewController.swift */,
 			);
-			name = Splash;
 			path = Splash;
 			sourceTree = "<group>";
 		};
@@ -228,7 +221,6 @@
 			children = (
 				A709CB1D1DE777DC00877907 /* Auth.swift */,
 			);
-			name = Auth;
 			path = Auth;
 			sourceTree = "<group>";
 		};
@@ -238,7 +230,6 @@
 				A709CB131DE7738C00877907 /* DB.swift */,
 				A709CB251DE77DBF00877907 /* DBFetch.swift */,
 			);
-			name = DataServices;
 			path = DataServices;
 			sourceTree = "<group>";
 		};
@@ -251,7 +242,6 @@
 				A709CADF1DE7722D00877907 /* UIColorExtension.swift */,
 				A709CAE31DE7724E00877907 /* UIView+Extension.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -260,7 +250,6 @@
 			children = (
 				A709CAFF1DE7731F00877907 /* Constants.swift */,
 			);
-			name = Variables;
 			path = Variables;
 			sourceTree = "<group>";
 		};
@@ -271,8 +260,8 @@
 				A709CAF51DE772EC00877907 /* PopMenu.swift */,
 				A709CB071DE7734700877907 /* RootContainerViewController.swift */,
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
+				A709CB271DE7A7CA00877907 /* SegControl.swift */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -282,7 +271,6 @@
 				A709CAF71DE772F700877907 /* AddTaskView.swift */,
 				A709CACD1DE7719E00877907 /* AddTaskViewController.swift */,
 			);
-			name = AddTask;
 			path = AddTask;
 			sourceTree = "<group>";
 		};
@@ -295,7 +283,6 @@
 				A709CAD11DE771E100877907 /* ProfileHeaderCell.swift */,
 				A709CAF31DE772CD00877907 /* ProfileViewController.swift */,
 			);
-			name = Profile;
 			path = Profile;
 			sourceTree = "<group>";
 		};
@@ -306,7 +293,6 @@
 				A709CAE81DE7726D00877907 /* TeamDataCell.swift */,
 				A709CAE91DE7726D00877907 /* TeamHeaderCell.swift */,
 			);
-			name = Team;
 			path = Team;
 			sourceTree = "<group>";
 		};
@@ -325,7 +311,6 @@
 				AFE9E6BF1DBDA76E0023C232 /* Task */,
 				AF18D86D1DBD816E002A3372 /* Team */,
 			);
-			name = UI;
 			path = UI;
 			sourceTree = "<group>";
 		};
@@ -336,7 +321,6 @@
 				A709CB201DE77BEB00877907 /* DataServices */,
 				A709CB011DE7732800877907 /* DataStore.swift */,
 			);
-			name = Networking;
 			path = Networking;
 			sourceTree = "<group>";
 		};
@@ -346,7 +330,6 @@
 				A709CB1A1DE7772900877907 /* Tasks */,
 				A709CB1B1DE7773200877907 /* User */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -390,7 +373,6 @@
 				A709CAD81DE7720200877907 /* TaskHeaderCell.swift */,
 				A709CB111DE7737800877907 /* TaskListViewController.swift */,
 			);
-			name = Task;
 			path = Task;
 			sourceTree = "<group>";
 		};
@@ -545,6 +527,7 @@
 				A709CADC1DE7721300877907 /* NSDate+Extension.swift in Sources */,
 				A709CB041DE7733300877907 /* User.swift in Sources */,
 				A709CAD61DE771F400877907 /* ProfileBannerCell.swift in Sources */,
+				A709CB281DE7A7CA00877907 /* SegControl.swift in Sources */,
 				A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */,
 				A709CB081DE7734700877907 /* RootContainerViewController.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,
