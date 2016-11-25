@@ -86,7 +86,7 @@ extension SettingsViewController {
     
     func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.tableHeaderView?.backgroundColor = UIColor.clear
+        tableView.tableHeaderView?.backgroundColor = UIColor.white
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
@@ -98,8 +98,8 @@ extension SettingsViewController {
         let multipleAttributes: [String : Any] = [
             NSForegroundColorAttributeName: UIColor.blue]
         let multipleUnselectedAttributes: [String : Any] = [
-            NSForegroundColorAttributeName: UIColor.lightGray]
-        segmentControl.tintColor = UIColor.clear
+            NSForegroundColorAttributeName: UIColor.black]
+        segmentControl.tintColor = UIColor.white
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
         segmentControl.layer.borderWidth = 1

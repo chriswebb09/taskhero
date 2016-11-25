@@ -53,38 +53,9 @@ class DataStore {
     
     func fetchValidUsernames() {
         validUsernames.removeAll()
-        usernameRef.observe(.childAdded, with: { (snapshot) in
+        usernameRef.observe(.childAdded, with: { snapshot in
             self.validUsernames.append(snapshot.key)
             self.usernameEmailDict[snapshot.key] = snapshot.value as AnyObject?
-        })
-    }
-    
-    func fetchUserTasks() {
-        tasks.removeAll()
-        tasksRef = userRef.child(currentUserString).child("Tasks")
-        refHandle = self.tasksRef.observe(.childAdded, with: { (snapshot) in
-            self.tasksDict[snapshot.key] = snapshot.value as AnyObject?
-            
-            var newTask = Task()
-            newTask.taskID = snapshot.key
-            
-            if let fetchName = self.tasksDict["TaskName"] as? String {
-                newTask.taskName = fetchName
-            }
-            
-            if let fetchDescription = self.tasksDict["TaskDescription"] as? String {
-                newTask.taskDescription = fetchDescription
-            }
-            if let fetchCreated = self.tasksDict["TaskCreated"] as? String {
-                newTask.taskCreated = fetchCreated
-            }
-            if let fetchDue = self.tasksDict["TaskDue"] as? String {
-                newTask.taskDue = fetchDue
-            }
-            if let fetchCompleted = self.tasksDict["TaskCompleted"] as? Bool {
-                newTask.taskCompleted = fetchCompleted
-            }
-            self.tasks.insert(newTask, at:0)
         })
     }
     
@@ -104,7 +75,7 @@ class DataStore {
     
     func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
         tasksRef = userRef.child(currentUserString).child("Tasks")
-        refHandle = tasksRef.observe(.childAdded, with: { (snapshot) in
+        refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             var newTask = Task()
             newTask.taskID = snapshot.key

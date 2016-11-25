@@ -18,13 +18,12 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
     var delegate: ProfileHeaderCellDelegate?
     
-    let joinDateLabel: UITextView = {
-        let joinDateLabel = UITextView()
+    let joinDateLabel: UILabel = {
+        let joinDateLabel = UILabel()
         joinDateLabel.textColor = UIColor.black
         joinDateLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         joinDateLabel.textAlignment = .right
         joinDateLabel.layer.masksToBounds = true
-        joinDateLabel.isScrollEnabled = false
         return joinDateLabel
     }()
     
@@ -38,13 +37,12 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         return usernameLabel
     }()
     
-    let emailLabel: UITextView = {
-        let emailLabel = UITextView()
+    let emailLabel: UILabel = {
+        let emailLabel = UILabel()
         emailLabel.textColor = UIColor.black
         emailLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 12)
         emailLabel.textAlignment = .right
         emailLabel.layer.masksToBounds = true
-        emailLabel.isScrollEnabled = false
         return emailLabel
     }()
     
@@ -119,7 +117,6 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
         profilePicture.addGestureRecognizer(tap)
-        //isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         layoutSubviews()
