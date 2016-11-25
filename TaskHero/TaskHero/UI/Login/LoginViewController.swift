@@ -98,7 +98,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-
 extension LoginViewController {
     func dismissKeyboard() {
         view.endEditing(true)

@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    
     override init() {
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
@@ -22,6 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "loggedIn") != nil {
+            let userLoggedIn = defaults.object(forKey: "loggedIn") as! Bool
+            
+            if userLoggedIn {
+                print("---------------")
+                print("here")
+            }
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         window?.makeKeyAndVisible()

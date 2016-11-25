@@ -11,6 +11,7 @@ import UIKit
 class TaskListViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
+    let manager = AppManager.sharedInstance
     
     let addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
@@ -116,6 +117,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     }
     
     func logoutButtonPressed() {
+        manager.userIsLoggedIn(loggedIn: false)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC

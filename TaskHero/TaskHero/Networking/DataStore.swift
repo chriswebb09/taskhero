@@ -12,6 +12,8 @@ import Firebase
 class DataStore {
     static let sharedInstance = DataStore()
     
+    let manager = AppManager.sharedInstance
+    
     var currentUser: User!
     var currentUserString: String!
     var tasks = [Task]()
@@ -48,6 +50,7 @@ class DataStore {
     func fetchData() {
         auth.fetchUser(with: currentUserString, handler: { user in
             self.currentUser = user
+            self.manager.userIsLoggedIn(loggedIn: true)
         })
     }
     

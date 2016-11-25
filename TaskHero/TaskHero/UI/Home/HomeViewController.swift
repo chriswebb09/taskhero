@@ -11,6 +11,7 @@ import UIKit
 final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate  {
     
     let store = DataStore.sharedInstance
+    let manager = AppManager.sharedInstance
     let pop = PopMenu()
     
     override func viewDidLoad() {
@@ -32,7 +33,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         store.fetchData()
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
-        
         self.store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
             DispatchQueue.main.async {
@@ -71,7 +71,6 @@ extension HomeViewController {
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
-
             return headerCell
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
@@ -95,11 +94,9 @@ extension HomeViewController {
                     self.store.currentUser.numberOfTasksCompleted += 1
                     self.store.insertUser(user: self.store.currentUser)
                 }
-                
                 self.store.removeTask(ref: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-                
                 tableView.endUpdates()
             }
             tableView.reloadData()
@@ -111,7 +108,7 @@ extension HomeViewController {
 
 extension HomeViewController {
     
-    func setupTableView() {
+    fileprivate func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.layoutMargins = UIEdgeInsets.zero
@@ -134,8 +131,9 @@ extension HomeViewController {
         pop.popView.isHidden = true
         pop.hidePopView(viewController: self)
     }
-
+    
     func logoutButtonPressed() {
+        manager.userIsLoggedIn(loggedIn: false)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC

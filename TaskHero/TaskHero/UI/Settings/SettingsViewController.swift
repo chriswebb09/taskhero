@@ -22,26 +22,25 @@ class SettingsViewController: UITableViewController {
         settings = userSettings
         edgesForExtendedLayout = []
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        
         let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
         header.backgroundColor = UIColor.white
         //header.sizeThatFits(CGSize(width: view.bounds.width, height: 100))
         header.addSubview(segmentControl)
-        
-        //tableView.tableHeaderView?.clipsToBounds = true
         tableView.tableHeaderView = header
         //tableView.tableHeaderView?.backgroundColor = UIColor.white
-
         setupSegment()
         setupTableView()
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
-//        view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        hideView()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,7 +50,6 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
@@ -61,15 +59,17 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pop.popView.isHidden = false 
+        pop.popView.isHidden = false
         pop.showPopView(viewController: self)
-        
+        pop.popView.layer.borderWidth = 1
+        pop.popView.layer.borderColor = UIColor.black.cgColor
+        pop.popView.layer.shadowOffset = CGSize(width:-0.5, height: 0.3)
+        pop.popView.layer.shadowOpacity = 0.1
         label.text = settings[indexPath.row]
         label.sizeToFit()
         pop.popView.addSubview(label)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
         pop.containerView.addGestureRecognizer(tap)
-        
     }
     
     func hideView() {

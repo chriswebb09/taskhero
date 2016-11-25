@@ -48,6 +48,7 @@
 		A709CB141DE7738C00877907 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB131DE7738C00877907 /* DB.swift */; };
 		A709CB1E1DE777DC00877907 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB1D1DE777DC00877907 /* Auth.swift */; };
 		A709CB261DE77DBF00877907 /* DBFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB251DE77DBF00877907 /* DBFetch.swift */; };
+		A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713373C1DE8047E0030DDF2 /* AppManager.swift */; };
 		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
@@ -97,6 +98,7 @@
 		A709CB131DE7738C00877907 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		A709CB1D1DE777DC00877907 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		A709CB251DE77DBF00877907 /* DBFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBFetch.swift; sourceTree = "<group>"; };
+		A713373C1DE8047E0030DDF2 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A7CF6ACF1DDB8FE700B28A5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,6 +361,7 @@
 				AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */,
 				A7CF6ACF1DDB8FE700B28A5A /* Info.plist */,
 				AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */,
+				A713373C1DE8047E0030DDF2 /* AppManager.swift */,
 			);
 			path = TaskHero;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				A709CAF21DE772BF00877907 /* ProfilePictureView.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
 				A709CAEB1DE7726D00877907 /* TeamDataCell.swift in Sources */,
+				A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */,
 				A709CAF01DE7728B00877907 /* ProfilePictureViewController.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,

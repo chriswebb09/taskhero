@@ -47,7 +47,6 @@ class SplashViewController: UIViewController {
                         
         }, completion: { _ in
             self.initialView.logoImageView.frame.size = CGSize(width: self.initialView.logoImageView.frame.width, height: self.initialView.logoImageView.frame.height)
-            
         })
         UIView.animate(withDuration: 2, delay: 0.0,
                        usingSpringWithDamping: 0.6,
