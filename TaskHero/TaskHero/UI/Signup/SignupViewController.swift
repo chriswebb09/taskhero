@@ -19,18 +19,15 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.addSubview(signupView)
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
-        
         signupView.layoutSubviews()
         signupView.emailField.delegate = self
         signupView.confirmEmailField.delegate = self
         signupView.usernameField.delegate = self
         signupView.passwordField.delegate = self
         signupView.signupButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }

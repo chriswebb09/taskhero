@@ -31,11 +31,9 @@ class LoadingView: UIView {
     func showActivityIndicator(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
-        
         loadingView.frame = CGRect(x:0, y:0, width:60, height:60)
         loadingView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         loadingView.clipsToBounds = true
-        
         activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
         activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
@@ -50,7 +48,6 @@ class LoadingView: UIView {
         viewController.view.sendSubview(toBack: containerView)
         activityIndicator.stopAnimating()
     }
-    
 }
 
 

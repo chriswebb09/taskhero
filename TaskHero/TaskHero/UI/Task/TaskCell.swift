@@ -63,7 +63,6 @@ class TaskCell: UITableViewCell {
     
     func setupConstraints() {
         contentView.addSubview(taskNameLabel)
-        
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
         taskNameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
         taskNameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.65).isActive = true
@@ -71,7 +70,6 @@ class TaskCell: UITableViewCell {
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:10).isActive = true
         
         contentView.addSubview(taskDueLabel)
-        
         taskDueLabel.translatesAutoresizingMaskIntoConstraints = false
         taskDueLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
         taskDueLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.65).isActive = true
@@ -79,7 +77,6 @@ class TaskCell: UITableViewCell {
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 60).isActive = true
         
         contentView.addSubview(taskDescriptionLabel)
-        
         taskDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.38).isActive = true
         taskDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.94).isActive = true
@@ -87,7 +84,6 @@ class TaskCell: UITableViewCell {
         taskDescriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 110).isActive = true
         
         contentView.addSubview(taskCompletedView)
-        
         taskCompletedView.translatesAutoresizingMaskIntoConstraints = false
         taskCompletedView.heightAnchor.constraint(equalToConstant: 25).isActive = true
         taskCompletedView.widthAnchor.constraint(equalToConstant: 25).isActive = true

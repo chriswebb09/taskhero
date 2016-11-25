@@ -98,7 +98,6 @@ class TaskListViewController: UITableViewController {
 }
 
 extension TaskListViewController: TaskHeaderCellDelegate {
-    
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:

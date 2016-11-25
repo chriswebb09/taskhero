@@ -94,7 +94,6 @@ extension TabBarController {
         return taskListTab
     }
     
-    
     func setupSettingsTab(settingsVC:SettingsViewController) -> UINavigationController {
         settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-2-white-1")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "settings-lightblue")?.withRenderingMode(.alwaysTemplate))
         settingsVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)

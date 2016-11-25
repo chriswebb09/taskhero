@@ -54,9 +54,7 @@ class ProfileDataCell: UITableViewCell {
     }
     
     func setupConstraints() {
-        
         contentView.addSubview(levelLabel)
-        
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
@@ -64,7 +62,6 @@ class ProfileDataCell: UITableViewCell {
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         contentView.addSubview(experiencePointsLabel)
-        
         experiencePointsLabel.translatesAutoresizingMaskIntoConstraints = false
         experiencePointsLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         experiencePointsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
@@ -72,14 +69,12 @@ class ProfileDataCell: UITableViewCell {
         experiencePointsLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
         contentView.addSubview(tasksCompletedLabel)
-        
         tasksCompletedLabel.translatesAutoresizingMaskIntoConstraints = false
         tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         tasksCompletedLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         tasksCompletedLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
     }
-    
     
     func configureCell(user:User) {
         levelLabel.text = "Level: \(user.level)"
@@ -93,5 +88,4 @@ class ProfileDataCell: UITableViewCell {
         experiencePointsLabel.text = " "
         levelLabel.text = ""
     }
-    
 }

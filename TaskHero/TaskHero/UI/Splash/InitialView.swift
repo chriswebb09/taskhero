@@ -25,15 +25,12 @@ class InitialView: UIView {
     
     func setupConstraints() {
         addSubview(containerView)
-        
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         containerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         containerView.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.75).isActive = true
         containerView.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
-        
         containerView.addSubview(logoLabel)
-        
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
         logoLabel.centerXAnchor.constraint(equalTo:centerXAnchor).isActive = true
         logoLabel.centerYAnchor.constraint(equalTo:centerYAnchor).isActive = true

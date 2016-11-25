@@ -72,7 +72,6 @@ class ProfileHeaderCell: UITableViewCell {
     
     func setupConstraints() {
         contentView.addSubview(usernameLabel)
-        
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
@@ -80,7 +79,6 @@ class ProfileHeaderCell: UITableViewCell {
         usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         
         contentView.addSubview(emailLabel)
-        
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
         emailLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         emailLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
@@ -88,7 +86,6 @@ class ProfileHeaderCell: UITableViewCell {
         emailLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         contentView.addSubview(joinDateLabel)
-        
         joinDateLabel.translatesAutoresizingMaskIntoConstraints = false
         joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
@@ -96,7 +93,6 @@ class ProfileHeaderCell: UITableViewCell {
         joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         
         contentView.addSubview(profilePicture)
-        
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.heightAnchor.constraint(equalToConstant: 130).isActive = true
         profilePicture.widthAnchor.constraint(equalToConstant: 130).isActive = true
@@ -104,7 +100,6 @@ class ProfileHeaderCell: UITableViewCell {
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         
         contentView.addSubview(levelLabel)
-        
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true

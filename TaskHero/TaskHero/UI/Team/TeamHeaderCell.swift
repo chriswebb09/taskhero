@@ -25,15 +25,12 @@ class TeamHeaderCell: UITableViewCell {
     }
     
     func setupConstraints() {
-        
         contentView.addSubview(profilePicture)
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        
         profilePicture.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         profilePicture.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        
         contentView.addSubview(usernameLabel)
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true

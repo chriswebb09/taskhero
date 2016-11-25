@@ -9,7 +9,6 @@
 import UIKit
 
 protocol ProfileDataCellViewViewModel {
-
     var level: String { get }
     var experience: String { get }
     var tasksCompleted: String { get }
