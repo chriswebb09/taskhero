@@ -14,8 +14,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     let loginView = LoginView()
     let store = DataStore.sharedInstance
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
@@ -89,7 +87,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let tabBar = TabBarController()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
-            
         })
     }
     
