@@ -134,9 +134,7 @@ extension HomeViewController {
         pop.popView.isHidden = true
         pop.hidePopView(viewController: self)
     }
-    
-    
-    
+
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

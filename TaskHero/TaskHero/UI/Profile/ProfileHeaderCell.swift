@@ -95,8 +95,8 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         
         contentView.addSubview(profilePicture)
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        profilePicture.heightAnchor.constraint(equalToConstant: 130).isActive = true
-        profilePicture.widthAnchor.constraint(equalToConstant: 130).isActive = true
+        profilePicture.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        profilePicture.widthAnchor.constraint(equalToConstant: 80).isActive = true
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         

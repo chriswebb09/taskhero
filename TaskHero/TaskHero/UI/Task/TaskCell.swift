@@ -111,7 +111,7 @@ class TaskCell: UITableViewCell {
         cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
         cellView.layer.masksToBounds = false
         cellView.layer.cornerRadius = 2.0
-        cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.35)
+        cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.3)
         cellView.layer.shadowOpacity = 0.1
         contentView.addSubview(cellView)
         contentView.sendSubview(toBack: cellView)

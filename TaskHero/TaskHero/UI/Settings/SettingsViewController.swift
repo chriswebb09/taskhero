@@ -15,6 +15,7 @@ class SettingsViewController: UITableViewController {
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
     var settings = [String]()
     let pop = PopMenu()
+    let label = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +63,17 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pop.popView.isHidden = false 
         pop.showPopView(viewController: self)
+        
+        label.text = settings[indexPath.row]
+        label.sizeToFit()
+        pop.popView.addSubview(label)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
         pop.containerView.addGestureRecognizer(tap)
         
     }
     
     func hideView() {
+        label.text = ""
         pop.popView.isHidden = true
         pop.hidePopView(viewController: self)
     }
