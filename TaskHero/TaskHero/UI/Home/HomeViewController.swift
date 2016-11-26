@@ -8,14 +8,18 @@
 
 import UIKit
 
-final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate  {
+final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     let store = DataStore.sharedInstance
     let manager = AppManager.sharedInstance
     let pop = PickerPopMenu()
+    var camera: Cam!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        camera = Cam(delegate_: self)
+       // camera.delegate = self
+        //camera.delegate = self
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.tableViewBackgroundColor
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
@@ -123,6 +127,7 @@ extension HomeViewController {
         print("here")
         pop.popView.isHidden = false
         pop.showPopView(viewController: self)
+        pop.popView.button.addTarget(self, action: #selector(showLib), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
         pop.containerView.addGestureRecognizer(tap)
     }
@@ -130,6 +135,21 @@ extension HomeViewController {
     func hideView() {
         pop.popView.isHidden = true
         pop.hidePopView(viewController: self)
+    }
+    
+    func showLib() {
+        options(sourceView: pop.popView)
+    }
+    
+    func options(sourceView: UIView) {
+        print("here")
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        optionMenu.popoverPresentationController?.sourceView = sourceView
+        let sharePhoto = UIAlertAction(title: "Library", style: .default) { (alert : UIAlertAction) in
+            self.camera.presentPhotoLibrary(target: self, canEdit: true)
+        }
+        optionMenu.addAction(sharePhoto)
+        present(optionMenu, animated: true, completion: nil)
     }
     
     func logoutButtonPressed() {
