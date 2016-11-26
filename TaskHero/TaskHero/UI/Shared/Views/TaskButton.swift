@@ -8,11 +8,6 @@
 
 import UIKit
 
-//class TaskButton: UIButton {
-//    
-//    
-//}
-
 enum ButtonType {
     
     case login(title:String), system(title:String, color: UIColor)
