@@ -7,8 +7,6 @@
 
 # Implementing 
 
-- Add configureCell method to all cell types to streamline tableviews. 
-
 - Add tests to LoginViewController
 
 - Persist user data with Realm. 
