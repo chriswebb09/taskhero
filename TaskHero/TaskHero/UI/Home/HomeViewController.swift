@@ -13,13 +13,11 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     let store = DataStore.sharedInstance
     let manager = AppManager.sharedInstance
     let pop = PickerPopMenu()
-    var camera: Cam!
+    var profilePic: UIImage? = nil
+    let cellSpacingHeight: CGFloat = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        camera = Cam(delegate_: self)
-       // camera.delegate = self
-        //camera.delegate = self
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.tableViewBackgroundColor
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
@@ -57,6 +55,13 @@ extension HomeViewController {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 {
             return 1
@@ -69,18 +74,26 @@ extension HomeViewController {
         return tableView.rowHeight
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
+            if profilePic != nil {
+                headerCell.profilePicture.image = profilePic
+            }
             return headerCell
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
             taskCell.setupCellView(width: view.frame.size.width, height:height)
+            //taskCell.clipsToBounds = true
             return taskCell
         }
     }
@@ -127,7 +140,7 @@ extension HomeViewController {
         print("here")
         pop.popView.isHidden = false
         pop.showPopView(viewController: self)
-        pop.popView.button.addTarget(self, action: #selector(showLib), for: .touchUpInside)
+        //pop.popView.button.addTarget(self, action: #selector(showLib), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
         pop.containerView.addGestureRecognizer(tap)
     }
@@ -137,20 +150,13 @@ extension HomeViewController {
         pop.hidePopView(viewController: self)
     }
     
-    func showLib() {
-        options(sourceView: pop.popView)
+    func addNewPerson() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
     }
     
-    func options(sourceView: UIView) {
-        print("here")
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        optionMenu.popoverPresentationController?.sourceView = sourceView
-        let sharePhoto = UIAlertAction(title: "Library", style: .default) { (alert : UIAlertAction) in
-            self.camera.presentPhotoLibrary(target: self, canEdit: true)
-        }
-        optionMenu.addAction(sharePhoto)
-        present(optionMenu, animated: true, completion: nil)
-    }
     
     func logoutButtonPressed() {
         manager.userIsLoggedIn(loggedIn: false)
@@ -162,6 +168,8 @@ extension HomeViewController {
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
+    
+ 
     
     fileprivate func setupNavItems() {
         navigationController?.navigationBar.isHidden = false

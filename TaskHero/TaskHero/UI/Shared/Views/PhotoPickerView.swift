@@ -12,7 +12,7 @@ import MobileCoreServices
 class PhotoPickerView: UIView {
     
     let button: UIButton = {
-        let button = ButtonType.system(title: "Pick", color: UIColor.green)
+        let button = ButtonType.system(title: "Change Profile Picture", color: UIColor.black)
         return button.newButton
     }()
     
@@ -38,60 +38,11 @@ class PhotoPickerView: UIView {
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
-        button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
+        button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
         button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true 
+        //button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
+        button.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
         //button.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
     }
-}
-//let camera = Camera(delegate_: self)
-class Cam {
-    var delegate: (UINavigationControllerDelegate & UIImagePickerControllerDelegate)?
     
-    init(delegate_: UINavigationControllerDelegate & UIImagePickerControllerDelegate) {
-        delegate = delegate_
-    }
-    func presentPhotoLibrary(target: UIViewController, canEdit: Bool) {
-        
-        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) && !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            
-            return
-        }
-        
-        let type = UIImagePickerControllerMediaType
-        let imagePicker = UIImagePickerController()
-        
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            
-            imagePicker.sourceType = .photoLibrary
-            
-            if let availableTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) {
-                
-                if (availableTypes as NSArray).contains(type) {
-                    
-                    imagePicker.mediaTypes = [type]
-                    imagePicker.allowsEditing = canEdit
-                }
-            }
-        } else if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            
-            imagePicker.sourceType = .savedPhotosAlbum
-            
-            if let availableTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum) {
-                
-                if (availableTypes as NSArray).contains(type) {
-                    
-                    imagePicker.mediaTypes = [type]
-                }
-                
-            }
-        } else {
-            
-            return
-        }
-        
-        imagePicker.allowsEditing = canEdit
-        imagePicker.delegate = delegate
-        target.present(imagePicker, animated: true, completion: nil)
-    }
 }

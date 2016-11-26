@@ -104,6 +104,7 @@ class TaskCell: UITableViewCell {
         layoutSubviews()
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
+        styleAppearance()
         contentView.backgroundColor = UIColor.clear
     }
     
@@ -113,9 +114,18 @@ class TaskCell: UITableViewCell {
         cellView.layer.masksToBounds = false
         cellView.layer.cornerRadius = 2.0
         cellView.layer.shadowOffset = CGSize(width:-0.45, height: 0.2)
-        cellView.layer.shadowOpacity = 0.08
+        cellView.layer.shadowOpacity = 0.0
         contentView.addSubview(cellView)
         contentView.sendSubview(toBack: cellView)
+    }
+    
+    func styleAppearance() {
+        //layer.cornerRadius = 3.0
+        layer.masksToBounds = false
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowColor = #colorLiteral(red: 0.05439098924, green: 0.1344551742, blue: 0.1884709597, alpha: 1).cgColor
+        layer.shadowRadius = 1.0
+        layer.shadowOpacity = 0.3
     }
     
     override func prepareForReuse() {

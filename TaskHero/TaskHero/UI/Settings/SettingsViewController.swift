@@ -10,8 +10,8 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
-    let userSettings = ["Username", "Email", "First Name", "Last Name", "Tasks Completed", "Friends"]
-    let applicationSettings = ["Notifications", "Log Out", "Stay Logged In"]
+    let userSettings = ["Edit Profile", "Tasks Settings", "Friends"]
+    let applicationSettings = ["Notifications", "Stay Logged In"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
     var settings = [String]()
     let pop = PopMenu()
