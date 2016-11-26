@@ -31,35 +31,17 @@ enum ButtonType {
         button.setAttributedTitle( NSAttributedString(string: title, attributes: [NSForegroundColorAttributeName: buttonColor, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
         button.layer.cornerRadius = 2
         button.layer.borderWidth = 1
-        //button.layer.cornerRadius = 2
         return button
     }
     
     var newButton: UIButton {
         switch self {
+            
         case let .login(title):
             return setupLoginButton(with: title)
         
         case let .system(title, color):
             return setupSystemButton(with: title, color: color)
         }
-    
     }
-    
-    
 }
-
-
-
-struct ButtonTitle {
-    let string: String
-}
-
-
-//lazy var loginButton: UIButton = {
-//    let button = UIButton(type: .system)
-//    button.backgroundColor = Constants.Login.loginButtonColor
-//    button.setAttributedTitle( NSAttributedString(string: "Log In", attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
-//    button.layer.cornerRadius = 2
-//    return button
-//}()
