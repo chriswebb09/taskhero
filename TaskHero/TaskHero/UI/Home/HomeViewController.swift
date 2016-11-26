@@ -12,7 +12,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     
     let store = DataStore.sharedInstance
     let manager = AppManager.sharedInstance
-    let pop = PopMenu()
+    let pop = PickerPopMenu()
     
     override func viewDidLoad() {
         super.viewDidLoad()

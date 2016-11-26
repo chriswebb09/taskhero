@@ -14,7 +14,8 @@ class SignupView: UIView {
         let signupViewLabel = UILabel()
         signupViewLabel.textColor = UIColor.black
         signupViewLabel.text = "Become a Member"
-        signupViewLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        //signupViewLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        signupViewLabel.font = Constants.Font.headerFont
         signupViewLabel.textAlignment = .center
         return signupViewLabel
     }()
@@ -61,7 +62,8 @@ class SignupView: UIView {
     
     lazy var signupButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
+        //button.backgroundColor = UIColor.newButtonColor()
+        button.backgroundColor = Constants.Login.loginButtonColor
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin" , size: 18)
@@ -117,7 +119,8 @@ class SignupView: UIView {
         
         addSubview(signupButton)
         signupButton.translatesAutoresizingMaskIntoConstraints = false
-        signupButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor, multiplier:Constants.loginButtonWidth).isActive = true
+        signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
+        //signupButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor, multiplier:Constants.loginButtonWidth).isActive = true
         signupButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         signupButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * 0.06).isActive = true

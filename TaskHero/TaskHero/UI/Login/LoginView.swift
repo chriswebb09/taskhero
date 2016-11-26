@@ -22,7 +22,7 @@ class LoginView: UIView {
         emailField.layer.borderColor = Constants.signupFieldColor
         emailField.layer.borderWidth = 1
         emailField.layer.cornerRadius = 2
-        emailField.font = Constants.signupFieldFont
+        emailField.font = Constants.signupFieldFont //Constants.signupFieldFont
         emailField.keyboardType = .emailAddress
         return emailField
     }()
@@ -41,17 +41,17 @@ class LoginView: UIView {
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = Constants.Login.loginButtonColor
-        button.setAttributedTitle( NSAttributedString(string: "Log In", attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight , size: 18)!]), for: .normal)
+        button.setAttributedTitle( NSAttributedString(string: "Log In", attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
         button.layer.cornerRadius = 2
         return button
     }()
     
     lazy var signupButton: UIButton = {
         let button = UIButton()
-        button.setAttributedTitle( NSAttributedString(string: "Register Now", attributes: [NSForegroundColorAttributeName: UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0), NSFontAttributeName:UIFont(name: Constants.Font.helveticaThin , size: 18)!]), for: .normal)
+        button.setAttributedTitle( NSAttributedString(string: "Register Now", attributes: [NSForegroundColorAttributeName: UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0), NSFontAttributeName:Constants.Font.fontNormal!]), for: .normal)
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 2
-        button.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
+        button.layer.borderColor = UIColor.signupButtonColor().cgColor
         return button
     }()
     
@@ -109,8 +109,8 @@ class LoginView: UIView {
         
         addSubview(viewDivider)
         viewDivider.translatesAutoresizingMaskIntoConstraints = false
-        viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
-        viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier: 0.02).isActive = true
+        viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.dividerWidth).isActive = true
+        viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true
         viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         

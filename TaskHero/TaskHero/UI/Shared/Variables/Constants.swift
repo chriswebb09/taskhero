@@ -13,8 +13,17 @@ struct Constants {
     struct Font {
         static let helveticaThin = "HelveticaNeue-Thin"
         static let helveticaLight = "HelveticaNeue-Light"
-        static let headerFont = "AvenirNext-Medium"
-        static let font = "AvenirNext-Regular"
+        //static let headerFont = "AvenirNext-Medium"
+       // static let font = "AvenirNext-Regular"
+        static let fontNormal = UIFont(name: "HelveticaNeue-Light", size: 18)
+        static let fontSmall = UIFont(name: "HelveticaNeue-Light", size: 12)
+        static let fontMedium = UIFont(name: "HelveticaNeue-Light", size: 20)
+        static let fontLarge = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        static let profileFont = UIFont(name: "HelveticaNeue-Thin", size: 20)
+        static let profileFontSmall = UIFont(name: "HelveticaNeue-Thin", size: 12)
+        static let profileFontMed = UIFont(name: "HelveticaNeue-Thin", size: 16)
+        static let headerFont = UIFont(name: "HelveticaNeue", size: 22)
+        static let taskNameFont = UIFont(name: "HelveticaNeue", size: 18)
     }
     
     struct Tabbar {
@@ -32,6 +41,8 @@ struct Constants {
         static let loginLogoTopSpacing:CGFloat =  0.045
         static let loginElementSpacing:CGFloat =  0.07
         static let loginSignupElementSpacing:CGFloat =  0.035
+        static let dividerHeight: CGFloat = 0.02
+        static let dividerWidth: CGFloat = 0.9
         //static let loginCenterElementSpacing:CGFloat = 0.08
     }
     

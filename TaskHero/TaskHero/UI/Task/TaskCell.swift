@@ -15,7 +15,8 @@ class TaskCell: UITableViewCell {
     let taskNameLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
-        textView.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        //textView.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        textView.font = Constants.Font.taskNameFont
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isScrollEnabled = false
@@ -29,7 +30,7 @@ class TaskCell: UITableViewCell {
         textView.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
         textView.textColor = UIColor.white
         textView.layer.cornerRadius = 2
-        textView.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        textView.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isEditable = false
@@ -85,15 +86,15 @@ class TaskCell: UITableViewCell {
         
         contentView.addSubview(taskCompletedView)
         taskCompletedView.translatesAutoresizingMaskIntoConstraints = false
-        taskCompletedView.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        taskCompletedView.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        taskCompletedView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        taskCompletedView.widthAnchor.constraint(equalToConstant: 20).isActive = true
         taskCompletedView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
         taskCompletedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30).isActive = true
     }
     
     func configureCell(task:Task) {
         taskNameLabel.text = task.taskName
-        taskDueLabel.text = task.taskDue
+        taskDueLabel.text = "Due date: \(task.taskDue)"
         taskDescriptionLabel.text = task.taskDescription
         if task.taskCompleted {
             taskCompletedView.image = UIImage(named:"checked")
@@ -111,8 +112,8 @@ class TaskCell: UITableViewCell {
         cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
         cellView.layer.masksToBounds = false
         cellView.layer.cornerRadius = 2.0
-        cellView.layer.shadowOffset = CGSize(width:-0.5, height: 0.3)
-        cellView.layer.shadowOpacity = 0.1
+        cellView.layer.shadowOffset = CGSize(width:-0.45, height: 0.2)
+        cellView.layer.shadowOpacity = 0.08
         contentView.addSubview(cellView)
         contentView.sendSubview(toBack: cellView)
     }

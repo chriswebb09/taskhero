@@ -30,7 +30,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
         })
         operationConfigure(operationQueue: operationQueue, operation: operation)
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
+        navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
     }
     
@@ -89,8 +89,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0,
                            animations: {
                             self.loginView.emailField.layer.borderWidth = 2
-                            self.loginView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
+                            self.loginView.emailField.layer.borderColor = UIColor.errorColor().cgColor
             }, completion: { _ in
+                //self.loginView.emailField.textColor = UIColor.lightGray
                 self.loginView.emailField.layer.borderColor = Constants.signupFieldColor
                 self.loginView.emailField.layer.borderWidth = 1
             })
@@ -119,6 +120,7 @@ extension LoginViewController {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.textColor = UIColor.lightGray
         textField.layer.borderColor = UIColor.lightGray.cgColor
     }
 }

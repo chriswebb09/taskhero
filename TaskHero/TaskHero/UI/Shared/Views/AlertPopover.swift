@@ -1,14 +1,14 @@
 //
-//  PopMenu.swift
+//  AlertPopover.swift
 //  TaskHero
 //
-//  Created by Christopher Webb-Orenstein on 10/24/16.
+//  Created by Christopher Webb-Orenstein on 11/25/16.
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
 
 import UIKit
 
-class PopMenu: UIView {
+class AlertPopover: UIView {
     
     let containerView: UIView = {
         let containerView = UIView()
@@ -25,11 +25,11 @@ class PopMenu: UIView {
         return searchLabel
     }()
     
-    let popView: AlertView = {
-        let popView = AlertView()
+    let popView: UIView = {
+        let popView = UIView()
         popView.layer.cornerRadius = 10
         popView.backgroundColor = UIColor.white
-       // loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
+        // loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
         return popView
     }()
     
@@ -42,9 +42,9 @@ class PopMenu: UIView {
         popView.clipsToBounds = true
         containerView.addSubview(popView)
         viewController.view.addSubview(containerView)
-       
+        
     }
-
+    
     func hidePopView(viewController:UIViewController){
         viewController.view.sendSubview(toBack: containerView)
     }

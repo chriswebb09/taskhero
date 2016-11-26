@@ -14,9 +14,9 @@ class ProfileDataCell: UITableViewCell {
     
     lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
-        levelLabel.backgroundColor = UIColor(red:0.29, green:0.85, blue:0.39, alpha:1.0)
+        levelLabel.backgroundColor = UIColor.experienceBackground()
         levelLabel.textColor = UIColor.black
-        levelLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 12)
+        levelLabel.font = Constants.Font.fontSmall
         levelLabel.textAlignment = .center
         levelLabel.sizeToFit()
         levelLabel.layer.cornerRadius = 4
@@ -27,8 +27,8 @@ class ProfileDataCell: UITableViewCell {
     lazy var experiencePointsLabel: UILabel = {
         let experiencePointsLabel = UILabel()
         experiencePointsLabel.textColor = UIColor.black
-        experiencePointsLabel.backgroundColor = UIColor(red:0.29, green:0.85, blue:0.39, alpha:1.0)
-        experiencePointsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 12)
+        experiencePointsLabel.backgroundColor = UIColor.experienceBackground()
+        experiencePointsLabel.font = Constants.Font.fontSmall
         experiencePointsLabel.textAlignment = .center
         experiencePointsLabel.sizeToFit()
         experiencePointsLabel.layer.cornerRadius = 4
@@ -38,9 +38,9 @@ class ProfileDataCell: UITableViewCell {
     
     lazy var tasksCompletedLabel: UILabel = {
         let taskCompletedLabel = UILabel()
-        taskCompletedLabel.backgroundColor = UIColor(red:0.29, green:0.85, blue:0.39, alpha:1.0)
+        taskCompletedLabel.backgroundColor = UIColor.experienceBackground()
         taskCompletedLabel.textColor = UIColor.black
-        taskCompletedLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 12)
+        taskCompletedLabel.font = Constants.Font.fontSmall
         taskCompletedLabel.textAlignment = .center
         taskCompletedLabel.layer.cornerRadius = 4
         taskCompletedLabel.sizeToFit()

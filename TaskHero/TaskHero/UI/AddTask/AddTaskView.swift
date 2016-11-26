@@ -14,7 +14,8 @@ class AddTaskView: UIView {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
-        taskNameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        //taskNameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        taskNameLabel.font = Constants.Font.headerFont
         taskNameLabel.textAlignment = .center
         taskNameLabel.layer.masksToBounds = true
         return taskNameLabel
@@ -23,7 +24,8 @@ class AddTaskView: UIView {
     lazy var taskNameField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
         taskNameField.placeholder = "Task name"
-        taskNameField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
+        //taskNameField.font = UIFont(name: "HelveticaNeue-Thin" , size: 20)
+        taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
         taskNameField.layer.cornerRadius = 2
         taskNameField.layer.borderWidth = 1
@@ -35,7 +37,8 @@ class AddTaskView: UIView {
         taskDescriptionBox.layer.borderWidth = 1
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
         taskDescriptionBox.layer.cornerRadius = 2
-        taskDescriptionBox.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
+        taskDescriptionBox.font = Constants.signupFieldFont
+        //taskDescriptionBox.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
         taskDescriptionBox.contentInset = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0)
         return taskDescriptionBox
     }()

@@ -21,7 +21,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     let joinDateLabel: UILabel = {
         let joinDateLabel = UILabel()
         joinDateLabel.textColor = UIColor.black
-        joinDateLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        joinDateLabel.font = Constants.Font.profileFontMed
         joinDateLabel.textAlignment = .right
         joinDateLabel.layer.masksToBounds = true
         return joinDateLabel
@@ -30,7 +30,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     lazy var usernameLabel: UILabel = {
         let usernameLabel = UILabel()
         usernameLabel.textColor = UIColor.black
-        usernameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
+        usernameLabel.font = Constants.Font.profileFont
         usernameLabel.textAlignment = .right
         usernameLabel.sizeToFit()
         usernameLabel.layer.masksToBounds = true
@@ -40,7 +40,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     let emailLabel: UILabel = {
         let emailLabel = UILabel()
         emailLabel.textColor = UIColor.black
-        emailLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 12)
+        emailLabel.font = Constants.Font.fontSmall
         emailLabel.textAlignment = .right
         emailLabel.layer.masksToBounds = true
         return emailLabel
@@ -49,9 +49,10 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.textColor = UIColor.black
-        levelLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        levelLabel.font = Constants.Font.profileFontSmall
         levelLabel.textAlignment = .right
         levelLabel.sizeToFit()
+        //levelLabel.backgroundColor = UIColor.blue
         levelLabel.layer.masksToBounds = true
         return levelLabel
     }()
@@ -76,8 +77,11 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
+        //usernameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
+        //usernameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        //usernameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         usernameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
-        usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 19).isActive = true
         
         contentView.addSubview(emailLabel)
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -95,25 +99,28 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         
         contentView.addSubview(profilePicture)
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        profilePicture.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        profilePicture.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        profilePicture.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        profilePicture.widthAnchor.constraint(equalToConstant: 75).isActive = true
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
         
         contentView.addSubview(levelLabel)
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
-        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
-        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
+        //levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
+        //levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
         levelLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
-        levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        levelLabel.bottomAnchor.constraint(equalTo: profilePicture.bottomAnchor).isActive = true
+        //levelLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+        //levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 30).isActive = true
     }
     
     func configureCell(user: User) {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         usernameLabel.text = user.username
         emailLabel.text = user.email
-        joinDateLabel.text = user.joinDate
-        levelLabel.text = user.level
+        joinDateLabel.text = "Joined: \(user.joinDate)"
+        joinDateLabel.isHidden = true
+        levelLabel.text = "Level: \(user.level)"
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
         profilePicture.addGestureRecognizer(tap)

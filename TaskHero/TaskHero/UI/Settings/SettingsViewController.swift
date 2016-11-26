@@ -21,7 +21,7 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         settings = userSettings
         edgesForExtendedLayout = []
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        view.backgroundColor = UIColor.backgroundColor() //UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
         header.backgroundColor = UIColor.white
         //header.sizeThatFits(CGSize(width: view.bounds.width, height: 100))
@@ -56,6 +56,10 @@ class SettingsViewController: UITableViewController {
         settingsCell.contentView.clipsToBounds = true
         settingsCell.configureCell(setting: settings[indexPath.row])
         return settingsCell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 82
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,7 +99,7 @@ extension SettingsViewController {
         tableView.tableHeaderView?.backgroundColor = UIColor.white
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 60
+        tableView.estimatedRowHeight = 100
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
     }
@@ -108,8 +112,8 @@ extension SettingsViewController {
         segmentControl.tintColor = UIColor.white
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
-        segmentControl.layer.borderWidth = 1
-        segmentControl.layer.borderColor = UIColor.gray.cgColor
+        //segmentControl.layer.borderWidth = 1
+        //segmentControl.layer.borderColor = UIColor.gray.cgColor
         segmentControl.layer.cornerRadius = 8
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.01).isActive = true
