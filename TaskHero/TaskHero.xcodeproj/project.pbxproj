@@ -53,6 +53,7 @@
 		A7346D781DE8EC50005E3A5E /* AlertPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D771DE8EC50005E3A5E /* AlertPopover.swift */; };
 		A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */; };
 		A7346D7C1DE90DF1005E3A5E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7B1DE90DF1005E3A5E /* AlertView.swift */; };
+		A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7D1DE93688005E3A5E /* TaskButton.swift */; };
 		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
@@ -107,6 +108,7 @@
 		A7346D771DE8EC50005E3A5E /* AlertPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPopover.swift; sourceTree = "<group>"; };
 		A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		A7346D7B1DE90DF1005E3A5E /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		A7346D7D1DE93688005E3A5E /* TaskButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
 		A7CF6ACF1DDB8FE700B28A5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -272,6 +274,7 @@
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
 				A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */,
 				A7346D7B1DE90DF1005E3A5E /* AlertView.swift */,
+				A7346D7D1DE93688005E3A5E /* TaskButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				A709CB061DE7733C00877907 /* Task.swift in Sources */,
 				A709CB021DE7732800877907 /* DataStore.swift in Sources */,
 				A709CB101DE7737100877907 /* TabBarController.swift in Sources */,
+				A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */,
 				A709CB141DE7738C00877907 /* DB.swift in Sources */,
 				A709CAFA1DE7730200877907 /* InitialView.swift in Sources */,
 				A709CAF41DE772CD00877907 /* ProfileViewController.swift in Sources */,

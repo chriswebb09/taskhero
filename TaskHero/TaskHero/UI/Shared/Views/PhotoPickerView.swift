@@ -19,10 +19,8 @@ class PhotoPickerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = UIColor.white
-        //backgroundColor = UIColor.lightGray
         setupConstraints()
     }
-    
     
     func setupConstraints() {
         addSubview(headBanner)
@@ -32,6 +30,4 @@ class PhotoPickerView: UIView {
         headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         headBanner.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
     }
-    
-    
 }

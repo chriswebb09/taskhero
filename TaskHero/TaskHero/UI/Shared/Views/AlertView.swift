@@ -13,17 +13,14 @@ class AlertView: UIView {
     let headBanner: UIView = {
         let banner = UIView()
         banner.backgroundColor = UIColor.blue
-        // banner.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width, height:UIScreen.main.bounds.height * 0.25)
         return banner
     }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = UIColor.white
-        //backgroundColor = UIColor.lightGray
         setupConstraints()
     }
-    
     
     func setupConstraints() {
         addSubview(headBanner)
@@ -33,6 +30,4 @@ class AlertView: UIView {
         headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         headBanner.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
     }
-    
-    
 }

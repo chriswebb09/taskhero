@@ -38,21 +38,15 @@ class LoginView: UIView {
         return passwordField
     }()
     
+    
     lazy var loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = Constants.Login.loginButtonColor
-        button.setAttributedTitle( NSAttributedString(string: "Log In", attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
-        button.layer.cornerRadius = 2
-        return button
+        let button = ButtonType.login(title: "Login")
+        return button.newButton
     }()
     
     lazy var signupButton: UIButton = {
-        let button = UIButton()
-        button.setAttributedTitle( NSAttributedString(string: "Register Now", attributes: [NSForegroundColorAttributeName: UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0), NSFontAttributeName:Constants.Font.fontNormal!]), for: .normal)
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 2
-        button.layer.borderColor = UIColor.signupButtonColor().cgColor
-        return button
+        let button = ButtonType.system(title:"Register Now", color:UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0))
+        return button.newButton
     }()
     
     lazy var viewDivider: UIView = {
