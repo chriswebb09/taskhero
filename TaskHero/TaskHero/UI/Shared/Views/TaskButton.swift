@@ -59,13 +59,9 @@ enum ButtonType {
             return TagButton()
         }
     }
-    
-    
 }
 
-
 class TagButton: UIButton {
-    
     var buttonTag: Int?
     var index: IndexPath?
 }

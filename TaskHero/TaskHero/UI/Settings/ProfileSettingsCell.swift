@@ -28,18 +28,14 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     }()
     
     let button: TagButton = {
-        
-        //let button = ButtonType.system(title: "Edit", color: UIColor.blue)
         let button = ButtonType.tag(title: "Edit", color: UIColor.blue, tag: 20, index: IndexPath())
         let uiElement = button.tagButton
-        //uiElement.accessibilityLabel
         uiElement.layer.borderWidth = 0
         return uiElement
     }()
     
     lazy var profileSettingField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
-       //taskNameField.placeholder = "Task name"
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
         taskNameField.layer.cornerRadius = 2
@@ -56,13 +52,11 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     }
     
     func setupConstraints() {
-        //contentView.backgroundColor = UIColor.settingsBackground()
         contentView.addSubview(profileSettingLabel)
         profileSettingLabel.translatesAutoresizingMaskIntoConstraints = false
         profileSettingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true
         profileSettingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
         profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * 0.05).isActive = true
-        //profileSettingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         profileSettingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         contentView.addSubview(button)
@@ -70,7 +64,6 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true
         button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25).isActive = true
         button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        //button.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         contentView.addSubview(profileSettingField)
@@ -78,7 +71,6 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         profileSettingField.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true
         profileSettingField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
         profileSettingField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * 0.05).isActive = true
-        //profileSettingField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         profileSettingField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
@@ -86,7 +78,6 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         layoutSubviews()
         profileSettingField.isHidden = true
         profileSettingLabel.text = setting
-        //button.accessibilityLabel = setting
     }
     
     override func prepareForReuse() {

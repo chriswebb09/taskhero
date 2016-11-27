@@ -17,13 +17,6 @@ class AlertView: UIView {
         return banner
     }()
     
-    
-//    let alertLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "When would you like to complete your task?"
-//        return label
-//    }()
-    
     let cancelButton: UIButton = {
         var button = ButtonType.system(title: "Cancel", color: UIColor.white)
         var uiElement = button.newButton
@@ -44,7 +37,6 @@ class AlertView: UIView {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
         searchLabel.text = "Results"
-        //searchLabel.backgroundColor = UIColor.blue
         searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center
         return searchLabel
@@ -65,8 +57,6 @@ class AlertView: UIView {
         backgroundColor = UIColor.white
         setupConstraints()
     }
-    
-    
     
     func setupConstraints() {
         addSubview(headBanner)
@@ -105,19 +95,7 @@ class AlertView: UIView {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         doneButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        //doneButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        //cancelButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-        
-//        addSubview(cancelButton)
-//        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-//        cancelButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-//        cancelButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: bounds.height * 0.2).isActive = true
-//        cancelButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-//        cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
-
-        
-        
     }
 }

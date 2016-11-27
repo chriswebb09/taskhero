@@ -22,6 +22,7 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        options = [self.store.currentUser.email, "\(self.store.currentUser.firstName) \(self.store.currentUser.lastName)", "Profile Picture", self.store.currentUser.username]
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
         view.addSubview(profileSettingsView)
@@ -61,37 +62,20 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
         cell.delegate = self
         cell.button.tag = indexPath.row
         cell.button.index = indexPath
-        //indexTap = indexPath
-        //button.tag
-        //cell.editButtonTapped()
+
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)
-        
-//        if tapped == true {
-//            cell.
-//        }
-        
-        //let sel = #selector(getter: ProfileSettingsViewController.tableView(_:tableView, cellForRowAt:indexPath))
-        //cell.button.addTarget(self, action: #selector(switchupCell(cell:cell)), for: .touchUpInside)
-       // cell.button.addTarget(self, action: #selector(switchupCell), for: .touchUpInside)
-        //cell.profileSettingLabel.text =
-        //cell.profileSettingField.isHidden = false
+
         return cell
     }
     
-    
-    
-    
     func connected(sender: TagButton){
-        //print(sender.index)
         indexTap = sender.index
         tapEdit()
-        //indexTap = sender.buttonTag
-       // let buttonTag = sender.tag
-        //let cell = tableView(_, cellForRowAt: buttonTag) as! ProfileSettingsCell
-    
     }
     
     func tapEdit() {
+       // options = [self.store.currentUser.email, "\(self.store.currentUser.firstName) \(self.store.currentUser.lastName)", "Profile Picture", self.store.currentUser.username]
+        
         let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
         
         if (tapCell.profileSettingLabel.text?.contains("Email"))! {
@@ -102,8 +86,6 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
         
         if tapped == true {
             tapped = false
-            //self.store.currentUser.
-            //if tapCell.t
             if username != nil {
                 tapCell.profileSettingLabel.text = username
             } else if email != nil {
@@ -117,57 +99,25 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
             tapCell.profileSettingLabel.isHidden = true
             tapCell.profileSettingField.isHidden = false
         }
-        
-        //tapCell.backgroundColor = UIColor.blue
     }
-    
-//    class func switchupCell(cell:ProfileSettingsCell) {
-//       // cell.profileSettingLabel.isHidden = true
-//       // cell.profileSettingField.isHidden = false
-//    }
-////
     
     func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        //tableView.tableHeaderView?.backgroundColor = UIColor.white
         tableView.separatorStyle = .singleLine
-        //tableView.selectio
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath) as! ProfileSettingsCell
-//        
-//        cell.profileSettingField.delegate = self
-//        cell.profileSettingLabel.isHidden = true
-//        cell.profileSettingField.isHidden = false
-//        //options[indexPath.row] = cell.profileSettingField.text!
-//        //print("Index: \(options[indexPath.row])")
-//       // print(cell.profileSettingField.text)
-//        //UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:nowIndex];
-//    }
-//    
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath) as! ProfileSettingsCell
-//        print("Index: \(options[indexPath.row])")
-//        print(cell.profileSettingField.text)
-//        options[indexPath.row] = cell.profileSettingField.text!
-//        //guard let setting = options[indexPath.row] else { return }
-//        cell.profileSettingLabel.text = options[indexPath.row]
-//        print("Index: \(options[indexPath.row])")
-//        print(cell.profileSettingField.text)
-//        cell.profileSettingLabel.isHidden = false
-//        cell.profileSettingField.isHidden = true
-//        tableView.reloadData()
-//    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    func separateNames(name:String) -> [String] {
+        var nameArray = name.components(separatedBy: " ")
+        return nameArray
+    }
     
     func editButtonTapped() {
         tapped = true
