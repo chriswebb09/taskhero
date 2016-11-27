@@ -20,6 +20,7 @@ final class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         settings = userSettings
         edgesForExtendedLayout = []
         view.backgroundColor = UIColor.backgroundColor() //UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
@@ -42,6 +43,10 @@ final class SettingsViewController: UITableViewController {
         hide()
     }
     
+}
+
+extension SettingsViewController {
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -51,6 +56,7 @@ final class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
         settingsCell.contentView.clipsToBounds = true
         settingsCell.configureCell(setting: settings[indexPath.row])
@@ -62,95 +68,92 @@ final class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if settings[indexPath.row] == "Edit Profile" {
             navigationController?.pushViewController(ProfileSettingsViewController(), animated: true)
         } else if settings[indexPath.row] == "Friends" {
             navigationController?.pushViewController(FriendsSettingsViewController(), animated: true)
         } else if settings[indexPath.row] == "Notifications" {
             notificationPopup()
-            //notifyPop.showPopView(viewController: self)
-            //notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
-            //notifyPop.sh
         }
     }
     
+}
+
+
+extension SettingsViewController {
+    
+
     func popup() {
+        
         alertPop.popView.isHidden = false
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = 0
         alertPop.popView.layer.opacity = 0
         alertPop.showPopView(viewController: self)
-        UIView.animate(withDuration: 0.2, animations: {
+        
+        UIView.animate(withDuration: 0.1, animations: {
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
         })
-        //alertPop.popView.resultLabel.text = friendsSettingsView.taskNameField.text!
+        
         alertPop.popView.resultLabel.text = "Try Again Later."
         alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
         alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
     
     func notificationPopup() {
+        
         notifyPop.popView.isHidden = false
         notifyPop.containerView.isHidden = false
         notifyPop.containerView.layer.opacity = 0
         notifyPop.popView.layer.opacity = 0
         notifyPop.showPopView(viewController: self)
-        UIView.animate(withDuration: 0.2, animations: {
+        
+        UIView.animate(withDuration: 0.1, animations: {
             self.notifyPop.popView.layer.opacity = 1
             self.notifyPop.containerView.layer.opacity = 0.1
         })
-        //alertPop.popView.resultLabel.text = friendsSettingsView.taskNameField.text!
-        //notifyPop.popView.resultLabel.text = "Try Again Later."
         notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
-        //alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
     
     func dismissNotificationButton() {
+        
         notifyPop.containerView.isHidden = true
         notifyPop.popView.isHidden = true
         notifyPop.hidePopView(viewController: self)
-        //        alertPop.containerView.isHidden = true
-        //        alertPop.popView.isHidden = true
-        //        alertPop.hidePopView(viewController: self)
-        //        navigationController?.popViewController(animated: false)
     }
     
     func dismissButton() {
+        
         alertPop.containerView.isHidden = true
         alertPop.popView.isHidden = true
         alertPop.hidePopView(viewController: self)
-//        alertPop.containerView.isHidden = true
-//        alertPop.popView.isHidden = true
-//        alertPop.hidePopView(viewController: self)
-//        navigationController?.popViewController(animated: false)
     }
     
     func hide() {
+        
         alertPop.containerView.isHidden = true
         alertPop.popView.isHidden = true
         alertPop.hidePopView(viewController: self)
     }
-    
-//    func hideView() {
-//        label.text = ""
-//        pop.popView.isHidden = true
-//        pop.hidePopView(viewController: self)
-//    }
 }
 
 extension SettingsViewController {
     func changeView(sender: UISegmentedControl) {
+        
         switch sender.selectedSegmentIndex {
         case 0:
             settings = userSettings
         default:
             settings = applicationSettings
         }
+        
         tableView.reloadData()
     }
     
     func setupTableView() {
+        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.tableHeaderView?.backgroundColor = UIColor.white
         tableView.separatorStyle = .singleLineEtched
@@ -161,10 +164,12 @@ extension SettingsViewController {
     }
     
     func setupSegment() {
+        
         let multipleAttributes: [String : Any] = [
             NSForegroundColorAttributeName: UIColor.blue]
         let multipleUnselectedAttributes: [String : Any] = [
             NSForegroundColorAttributeName: UIColor.black]
+        
         segmentControl.tintColor = UIColor.white
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)

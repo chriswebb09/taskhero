@@ -13,6 +13,7 @@ class ProfileBannerCell: UITableViewCell {
     static let cellIdentifier = "ProfileBannerCell"
     
     lazy var bannerImage: UIImageView = {
+        
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
         return imageView
@@ -20,11 +21,13 @@ class ProfileBannerCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
     
     fileprivate func setupConstraints() {
+        
         contentView.addSubview(bannerImage)
         bannerImage.translatesAutoresizingMaskIntoConstraints = false
         bannerImage.center = contentView.center
@@ -33,7 +36,9 @@ class ProfileBannerCell: UITableViewCell {
     }
     
     func configureCell() {
+        
         layoutSubviews()
+        
         isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false

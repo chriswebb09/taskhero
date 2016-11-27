@@ -8,14 +8,7 @@
 
 import UIKit
 
-class NotificationPopover: UIView {
-    
-    let containerView: UIView = {
-        let containerView = UIView()
-        containerView.backgroundColor = UIColor.black
-        containerView.layer.opacity = 0.1
-        return containerView
-    }()
+class NotificationPopover: BasePopoverAlert {
     
     var popView: NotificationView = {
         let popView = NotificationView()
@@ -26,21 +19,12 @@ class NotificationPopover: UIView {
         return popView
     }()
     
-    
-    public func showPopView(viewController: UIViewController) {
-        containerView.frame = UIScreen.main.bounds
-        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
+    public override func showPopView(viewController: UIViewController) {
+        super.showPopView(viewController: viewController)
         popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
         popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY - 180)
         popView.clipsToBounds = true
-        //containerView.addSubview(popView)
-        //containerView.bringSubview(toFront: popView)
-        viewController.view.addSubview(popView)
-        viewController.view.addSubview(containerView)
-        viewController.view.bringSubview(toFront: popView)
-    }
-    
-    public func hidePopView(viewController:UIViewController){
-        viewController.view.sendSubview(toBack: containerView)
+        containerView.addSubview(popView)
+        containerView.bringSubview(toFront: popView)
     }
 }

@@ -14,12 +14,14 @@ class ProfilePictureView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         frame = UIScreen.main.bounds
         setupConstraints()
         setupView()
     }
     
     fileprivate func setupConstraints() {
+        
         addSubview(profilePicture)
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true

@@ -12,13 +12,14 @@ protocol ProfileSettingsCellDelegate: class {
     func editButtonTapped()
 }
 
-class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
+final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     static let cellIdentifier = "ProfileSettingsCell"
     
     var delegate: ProfileSettingsCellDelegate?
     
     let profileSettingLabel: UILabel = {
+        
         let profileLabel = UILabel()
         profileLabel.textColor = UIColor.settingsBackground()
         profileLabel.font = Constants.Font.fontNormal
@@ -28,6 +29,7 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     }()
     
     let button: TagButton = {
+        
         let button = ButtonType.tag(title: "Edit", color: UIColor.blue, tag: 20, index: IndexPath())
         let uiElement = button.tagButton
         uiElement.layer.borderWidth = 0
@@ -35,6 +37,7 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     }()
     
     lazy var profileSettingField: TextFieldExtension = {
+        
         let taskNameField = TextFieldExtension()
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
@@ -46,12 +49,14 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         setupConstraints()
         selectionStyle = UITableViewCellSelectionStyle.none
         contentView.layer.masksToBounds = true
     }
     
     fileprivate func setupConstraints() {
+        
         contentView.addSubview(profileSettingLabel)
         profileSettingLabel.translatesAutoresizingMaskIntoConstraints = false
         profileSettingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true
@@ -75,6 +80,7 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     }
     
     func configureCell(setting:String) {
+        
         layoutSubviews()
         profileSettingLabel.text = setting
         if setting.contains("N/A") {
@@ -89,6 +95,7 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     }
     
     func editButtonTapped() {
+        
         delegate?.editButtonTapped()
         profileSettingLabel.isHidden = true
         profileSettingField.isHidden = false 

@@ -25,6 +25,7 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(addTaskView)
         navigationController?.navigationBar.tintColor = UIColor.white
         edgesForExtendedLayout = []
@@ -45,12 +46,14 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
 }
 
 extension AddTaskViewController {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
+        
         if(replacementText.isEqual("\n")) {
             textView.resignFirstResponder()
             return false
@@ -59,6 +62,7 @@ extension AddTaskViewController {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        
         if textView.text.isEmpty {
             textView.text = "Describe what you want to get done."
             textView.textColor = UIColor.lightGray
@@ -67,6 +71,7 @@ extension AddTaskViewController {
 }
 
 extension AddTaskViewController {
+    
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
@@ -105,7 +110,12 @@ extension AddTaskViewController {
         }
     }
     
+}
+
+extension AddTaskViewController {
+    
     func addTaskButtonTapped() {
+        
         view.endEditing(true)
         pop.popView.isHidden = false
         pick.showsSelectionIndicator = true
@@ -117,19 +127,23 @@ extension AddTaskViewController {
     }
     
     func formatTaskWithDate() {
+        
         let newDate = "\(month)-\(day)-\(year)"
         let uid = NSUUID().uuidString
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
+        
         let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:newDate, taskCompleted: false, pointValue:5)
         store.addTasks(task: newTask)
         store.currentUser.tasks!.append(newTask)
+        
         pop.hidePopView(viewController: self)
         pop.popView.isHidden = true
         _ = navigationController?.popToRootViewController(animated: false)
     }
     
     fileprivate func addTask() {
+        
         pop.hidePopView(viewController: self)
         pop.popView.isHidden = true
         _ = navigationController?.popToRootViewController(animated: false)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, ProfileSettingsCellDelegate {
+final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let store = DataStore.sharedInstance
     let profileSettingsView = ProfileSettingsView()
     var tapped: Bool = false
@@ -22,6 +22,7 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
@@ -40,23 +41,29 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
+
+extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCellDelegate {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
     
     fileprivate func setupViews() {
+        
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
         profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
+        profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.75).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
         cell.configureCell(setting: options[indexPath.row])
         cell.delegate = self
@@ -67,13 +74,18 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         
         return cell
     }
-    
+}
+
+extension ProfileSettingsViewController {
+
     func connected(sender: TagButton){
+        
         indexTap = sender.index
         tapEdit()
     }
     
     fileprivate func tapEdit() {
+        
         let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
         if tapped == true {
             tapped = false
@@ -92,6 +104,7 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     }
     
     fileprivate func setupTableView() {
+        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -100,11 +113,8 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         tableView.separatorInset = UIEdgeInsets.zero
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     fileprivate func separateNames(name:String) -> [String] {
+        
         var nameArray = name.components(separatedBy: " ")
         return nameArray
     }

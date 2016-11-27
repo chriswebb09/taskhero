@@ -23,7 +23,7 @@ class InitialView: UIView {
         setupView()
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true

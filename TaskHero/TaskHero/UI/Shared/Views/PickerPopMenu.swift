@@ -8,17 +8,10 @@
 
 import UIKit
 
-class PickerPopMenu: UIView {
-    
-    let containerView: UIView = {
-        let containerView = UIView()
-        containerView.backgroundColor = UIColor.clear
-        return containerView
-    }()
-    
-
+class PickerPopMenu: BasePopoverAlert {
     
     lazy var searchLabel: UILabel = {
+        
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
         searchLabel.text = "Become a Member"
@@ -28,15 +21,16 @@ class PickerPopMenu: UIView {
     }()
     
     let popView: PhotoPickerView = {
+        
         let popView = PhotoPickerView()
         popView.layoutSubviews()
         popView.layer.cornerRadius = 10
         return popView
     }()
     
-    public func showPopView(viewController: UIViewController) {
-        containerView.frame = UIScreen.main.bounds
-        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
+    public override func showPopView(viewController: UIViewController) {
+        super.showPopView(viewController: viewController)
+        
         popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.75, height:UIScreen.main.bounds.height * 0.35)
         popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         popView.layer.borderColor = UIColor.black.cgColor
@@ -45,9 +39,5 @@ class PickerPopMenu: UIView {
         containerView.addSubview(popView)
         viewController.view.addSubview(containerView)
         
-    }
-    
-    public func hidePopView(viewController:UIViewController){
-        viewController.view.sendSubview(toBack: containerView)
     }
 }

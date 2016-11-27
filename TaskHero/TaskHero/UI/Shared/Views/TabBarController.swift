@@ -109,7 +109,7 @@ extension TabBarController {
         return settingsTab
     }
     
-    fileprivate func setupTabBar() {
+    func setupTabBar() {
         let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
         var tabFrame = tabBar.frame
         tabFrame.size.height = tabBarHeight
@@ -120,7 +120,7 @@ extension TabBarController {
         tabBar.isTranslucent = true
     }
     
-    public func handleLogout() {
+    func handleLogout() {
         do {
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {

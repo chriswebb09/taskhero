@@ -13,6 +13,7 @@ class SettingsCell: UITableViewCell {
     static let cellIdentifier = "SettingsCell"
     
     let settingLabel: UILabel = {
+        
         let textView = UILabel()
         textView.textColor = UIColor.white
         textView.font = Constants.Font.fontNormal
@@ -23,13 +24,16 @@ class SettingsCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
     
     fileprivate func setupConstraints() {
+        
         contentView.backgroundColor = UIColor.settingsBackground()
         contentView.addSubview(settingLabel)
+        
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
         settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true
         settingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true

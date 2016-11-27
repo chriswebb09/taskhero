@@ -67,20 +67,26 @@ extension SignupViewController {
         }
         
         if (validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!)) {
+            
             loadingView.showActivityIndicator(viewController: self)
+            
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
+                
                 if error != nil {
                     loadingView.hideActivityIndicator(viewController: self)
                     print(error ?? "unable to get specific error")
                     return
                 }
+                
                 guard let uid = user?.uid else {
                     loadingView.hideActivityIndicator(viewController: self)
                     return
                 }
+                
                 //successfully authenticated user
                 let ref = FIRDatabase.database().reference()
                 let newUser = User()
+                
                 newUser.username = username
                 newUser.email = email
                 newUser.profilePicture = "None"
@@ -92,12 +98,15 @@ extension SignupViewController {
                 let usersReference = ref.child("Users").child(uid)
                 let usernamesReference = ref.child("Usernames")
                 let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
+                
                 usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
+                    
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
                         print(err ?? "unable to get specific error i")
                         return
                     }
+                    
                     print("sucessfully saved username email reference")
                 })
                 
@@ -105,14 +114,18 @@ extension SignupViewController {
                 
                 
                 usersReference.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
+                    
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
                         print(err ?? "unable to get specific error")
                         return
                     }
+                    
                     print("Saved user successfully into Firebase db")
+                    
                     self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                     self.store.currentUser = newUser
+                    
                     let tabBar = TabBarController()
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window?.rootViewController = tabBar
@@ -133,7 +146,7 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == signupView.usernameField {
             let nextField = (textField === signupView.usernameField) ? signupView.emailField : signupView.confirmEmailField
             nextField.becomeFirstResponder()
@@ -151,13 +164,18 @@ extension SignupViewController {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
         checkTextField(textField)
+        
         if textField == self.signupView.usernameField {
+            
             print(store.validUsernames)
+            
             if store.validUsernames.contains(signupView.usernameField.text!) {
                 signupView.usernameField.layer.borderColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0).cgColor
                 signupView.usernameField.textColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0)
                 signupView.signupButton.isEnabled = false
+                
             } else if !store.validUsernames.contains(signupView.usernameField.text!) {
                 signupView.usernameField.layer.borderColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
                 signupView.usernameField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
@@ -165,20 +183,26 @@ extension SignupViewController {
             }
         }
         if textField == signupView.emailField {
+            
             if !(textField.text?.isValidEmail())! {
                 signupView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
                 signupView.emailField.textColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0)
+                
             }  else if (textField.text?.isValidEmail() )!{
                 signupView.emailField.textColor = UIColor.blue
             }
         }
         if (validateEmailInput(email: signupView.emailField.text!, confirm: signupView.confirmEmailField.text!)) && (emailInvalidated) {
+            
             signupView.emailField.layer.borderColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0).cgColor
             signupView.emailField.textColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0)
             signupView.confirmEmailField.layer.borderColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0).cgColor
             signupView.confirmEmailField.textColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0)
+            
             Constants().delay(0.9) {
+                
                 UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                    
                     self.signupView.usernameField.layer.borderColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
                     self.signupView.usernameField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
                     self.signupView.emailField.layer.borderColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
@@ -188,6 +212,7 @@ extension SignupViewController {
                 })
             }
         } else if textField == signupView.confirmEmailField {
+            
             if (!validateEmailInput(email: signupView.emailField.text!, confirm: self.signupView.confirmEmailField.text!)) {
                 signupView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
                 signupView.emailField.textColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0)
@@ -200,9 +225,11 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    fileprivate func validateEmailInput(email:String, confirm:String) -> Bool {
+    func validateEmailInput(email:String, confirm:String) -> Bool {
+        
         let emailLower = email.lowercased()
         let confirmLower = confirm.lowercased()
+        
         if (email.isValidEmail()) && (emailLower == confirmLower) {
             return true
         } else {
@@ -212,6 +239,7 @@ extension SignupViewController {
     }
     
     func checkTextField(_ textField: UITextField) {
+        
         if (textField.text?.characters.count)! > 5 {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 textField.layer.borderColor = UIColor.blue.cgColor

@@ -118,14 +118,14 @@ class TaskCell: UITableViewCell {
         contentView.sendSubview(toBack: cellView)
     }
     
-        func styleAppearance() {
-            //layer.cornerRadius = 3.0
-            layer.masksToBounds = false
-            layer.shadowOffset = CGSize(width: 0, height: 0)
-            layer.shadowColor = UIColor.black.cgColor
-            layer.shadowRadius = 1.0
-            layer.shadowOpacity = 0.3
-        }
+    func styleAppearance() {
+        //layer.cornerRadius = 3.0
+        layer.masksToBounds = false
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowRadius = 1.0
+        layer.shadowOpacity = 0.3
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

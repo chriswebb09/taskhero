@@ -78,7 +78,7 @@ class SignupView: UIView {
         setupConstraints()
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         addSubview(signupViewLabel)
         signupViewLabel.translatesAutoresizingMaskIntoConstraints = false
         signupViewLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true

@@ -9,32 +9,19 @@
 import UIKit
 import MobileCoreServices
 
-class PhotoPickerView: UIView {
+class PhotoPickerView: BasePopView {
     
     let button: UIButton = {
         let button = ButtonType.system(title: "Change Profile Picture", color: UIColor.black)
         return button.newButton
     }()
     
-    let headBanner: UIView = {
-        let banner = UIView()
-        banner.backgroundColor = UIColor.babyBlueColor()
-        return banner
-    }()
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = UIColor.white
+        
         setupConstraints()
-    }
-    
-    fileprivate func setupConstraints() {
-        addSubview(headBanner)
-        headBanner.translatesAutoresizingMaskIntoConstraints = false
-        headBanner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        headBanner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true 
-        headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-        headBanner.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
@@ -42,5 +29,4 @@ class PhotoPickerView: UIView {
         button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
     }
-    
 }

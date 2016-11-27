@@ -11,6 +11,7 @@ import UIKit
 class ProfileSettingsView: UIView {
     
     let taskNameLabel: UILabel = {
+        
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "User Settings"
@@ -22,11 +23,13 @@ class ProfileSettingsView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         frame = UIScreen.main.bounds
         setupConstraints()
     }
     
     func setupConstraints() {
+        
         addSubview(taskNameLabel)
         
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false

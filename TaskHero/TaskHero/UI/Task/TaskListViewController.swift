@@ -13,7 +13,7 @@ class TaskListViewController: UITableViewController {
     let store = DataStore.sharedInstance
     //let manager = AppManager.sharedInstance
     
-    let addTasksLabel:UILabel = {
+    fileprivate let addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
         addTasksLabel.font = UIFont(name:"HelveticaNeue-Thin", size: 18)
         addTasksLabel.textColor = UIColor.gray
@@ -36,7 +36,10 @@ class TaskListViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
+
+extension TaskListViewController {
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.store.fetchUserData()
@@ -100,6 +103,7 @@ class TaskListViewController: UITableViewController {
 }
 
 extension TaskListViewController: TaskHeaderCellDelegate {
+    
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -127,6 +131,11 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
+}
+
+extension TaskListViewController {
+    
+
     func emptyTableViewState() {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             view.addSubview(addTasksLabel)

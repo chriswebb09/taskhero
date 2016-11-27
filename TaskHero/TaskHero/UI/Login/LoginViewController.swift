@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(loginView)
         edgesForExtendedLayout = []
         loginView.layoutSubviews()
@@ -46,12 +47,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true
     }
     
-    public func handleLogin() {
+    func handleLogin() {
+        
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
@@ -88,14 +91,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    func checkForValidEmailInput() {
+    fileprivate func checkForValidEmailInput() {
+        
         if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
+            
             UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0,
                            animations: {
+                            
                             self.loginView.emailField.layer.borderWidth = 2
                             self.loginView.emailField.layer.borderColor = UIColor.errorColor().cgColor
             }, completion: { _ in
-                //self.loginView.emailField.textColor = UIColor.lightGray
+                
                 self.loginView.emailField.layer.borderColor = Constants.signupFieldColor
                 self.loginView.emailField.layer.borderWidth = 1
             })
@@ -108,7 +114,8 @@ extension LoginViewController {
         view.endEditing(true)
     }
     
-    public func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
+    func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
+        
         operationQueue.addOperation(operation)
         operationQueue.maxConcurrentOperationCount = 2
         operationQueue.qualityOfService = .userInitiated
@@ -130,7 +137,8 @@ extension LoginViewController {
 }
 
 extension UINavigationBar {
-    public func setBottomBorderColor(color: UIColor, height: CGFloat) {
+    func setBottomBorderColor(color: UIColor, height: CGFloat) {
+        
         let bottomBorderRect = CGRect(x: 0, y: frame.height, width: frame.width, height: height)
         let bottomBorderView = UIView(frame: bottomBorderRect)
         bottomBorderView.backgroundColor = color

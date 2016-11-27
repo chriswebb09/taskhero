@@ -8,22 +8,7 @@
 
 import UIKit
 
-class PopMenu: UIView {
-    
-    let containerView: UIView = {
-        let containerView = UIView()
-        containerView.backgroundColor = UIColor.clear
-        return containerView
-    }()
-    
-    lazy var searchLabel: UILabel = {
-        let searchLabel = UILabel()
-        searchLabel.textColor = UIColor.black
-        searchLabel.text = "Become a Member"
-        searchLabel.font = Constants.Font.fontLarge
-        searchLabel.textAlignment = .center
-        return searchLabel
-    }()
+class PopMenu: BasePopoverAlert {
     
     let popView: DataPickerView = {
         let pick = DataPickerView()
@@ -31,19 +16,14 @@ class PopMenu: UIView {
     }()
     
     public func showPopView(viewController: UIViewController, pick: UIPickerView?) {
-        containerView.frame = UIScreen.main.bounds
-        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
+        super.showPopView(viewController: viewController)
+        
         popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width / 1.05, height:UIScreen.main.bounds.height / 3)
         popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         popView.picker.dataSource = viewController as! AddTaskViewController
         popView.picker.delegate = viewController as! AddTaskViewController
         popView.picker.showsSelectionIndicator = true
         popView.clipsToBounds = true
-        containerView.addSubview(popView)
-        viewController.view.addSubview(containerView)
-    }
-
-    public func hidePopView(viewController:UIViewController){
-        viewController.view.sendSubview(toBack: containerView)
+        viewController.view.addSubview(popView)
     }
 }
