@@ -86,36 +86,37 @@ extension HomeViewController {
         return cellSpacingHeight
     }
     
+}
+
+extension HomeViewController {
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
-            
             if profilePic != nil {
                 headerCell.profilePicture.image = profilePic
             }
             return headerCell
             
         } else {
+            
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
             taskCell.setupCellView(width: view.frame.size.width, height:height)
-            
             return taskCell
         }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-      
         if editingStyle == .delete {
             tableView.beginUpdates()
+            
             DispatchQueue.main.async {
                 var removeTaskID: String
-                
                 if (indexPath.row) == 0 {
                     return
                 } else {
@@ -124,7 +125,6 @@ extension HomeViewController {
                     self.store.currentUser.numberOfTasksCompleted += 1
                     self.store.insertUser(user: self.store.currentUser)
                 }
-                
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
