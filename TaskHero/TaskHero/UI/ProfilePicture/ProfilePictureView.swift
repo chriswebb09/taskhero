@@ -19,7 +19,7 @@ class ProfilePictureView: UIView {
         setupView()
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         addSubview(profilePicture)
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true

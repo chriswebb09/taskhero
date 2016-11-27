@@ -27,7 +27,7 @@ class SettingsCell: UITableViewCell {
         contentView.layer.masksToBounds = true
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         contentView.backgroundColor = UIColor.settingsBackground()
         contentView.addSubview(settingLabel)
         settingLabel.translatesAutoresizingMaskIntoConstraints = false

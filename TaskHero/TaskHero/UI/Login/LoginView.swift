@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginView: UIView {
+final class LoginView: UIView {
     
     lazy var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
@@ -89,7 +89,7 @@ class LoginView: UIView {
         })
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.logoImageWidth).isActive = true

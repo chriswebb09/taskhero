@@ -133,7 +133,7 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == signupView.usernameField {
             let nextField = (textField === signupView.usernameField) ? signupView.emailField : signupView.confirmEmailField
             nextField.becomeFirstResponder()
@@ -200,7 +200,7 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    func validateEmailInput(email:String, confirm:String) -> Bool {
+    fileprivate func validateEmailInput(email:String, confirm:String) -> Bool {
         let emailLower = email.lowercased()
         let confirmLower = confirm.lowercased()
         if (email.isValidEmail()) && (emailLower == confirmLower) {

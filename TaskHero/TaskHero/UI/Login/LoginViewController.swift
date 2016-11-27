@@ -51,7 +51,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func handleLogin() {
+    public func handleLogin() {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
@@ -108,7 +108,7 @@ extension LoginViewController {
         view.endEditing(true)
     }
     
-    func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
+    public func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
         operationQueue.addOperation(operation)
         operationQueue.maxConcurrentOperationCount = 2
         operationQueue.qualityOfService = .userInitiated
@@ -130,7 +130,7 @@ extension LoginViewController {
 }
 
 extension UINavigationBar {
-    func setBottomBorderColor(color: UIColor, height: CGFloat) {
+    public func setBottomBorderColor(color: UIColor, height: CGFloat) {
         let bottomBorderRect = CGRect(x: 0, y: frame.height, width: frame.width, height: height)
         let bottomBorderView = UIView(frame: bottomBorderRect)
         bottomBorderView.backgroundColor = color

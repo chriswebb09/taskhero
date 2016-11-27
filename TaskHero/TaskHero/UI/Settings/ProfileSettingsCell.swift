@@ -51,7 +51,7 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         contentView.layer.masksToBounds = true
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         contentView.addSubview(profileSettingLabel)
         profileSettingLabel.translatesAutoresizingMaskIntoConstraints = false
         profileSettingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true

@@ -27,7 +27,7 @@ class NotificationPopover: UIView {
     }()
     
     
-    func showPopView(viewController: UIViewController) {
+    public func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
         popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
@@ -40,7 +40,7 @@ class NotificationPopover: UIView {
         viewController.view.bringSubview(toFront: popView)
     }
     
-    func hidePopView(viewController:UIViewController){
+    public func hidePopView(viewController:UIViewController){
         viewController.view.sendSubview(toBack: containerView)
     }
 }

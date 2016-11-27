@@ -34,7 +34,7 @@ class PickerPopMenu: UIView {
         return popView
     }()
     
-    func showPopView(viewController: UIViewController) {
+    public func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
         popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.75, height:UIScreen.main.bounds.height * 0.35)
@@ -47,7 +47,7 @@ class PickerPopMenu: UIView {
         
     }
     
-    func hidePopView(viewController:UIViewController){
+    public func hidePopView(viewController:UIViewController){
         viewController.view.sendSubview(toBack: containerView)
     }
 }

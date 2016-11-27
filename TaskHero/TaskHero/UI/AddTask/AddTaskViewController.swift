@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+final class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let store = DataStore.sharedInstance
     let addTaskView = AddTaskView()
@@ -129,7 +129,7 @@ extension AddTaskViewController {
         _ = navigationController?.popToRootViewController(animated: false)
     }
     
-    func addTask() {
+    fileprivate func addTask() {
         pop.hidePopView(viewController: self)
         pop.popView.isHidden = true
         _ = navigationController?.popToRootViewController(animated: false)

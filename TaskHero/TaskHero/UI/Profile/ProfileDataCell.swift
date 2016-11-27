@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileDataCell: UITableViewCell {
+final class ProfileDataCell: UITableViewCell {
 
     static let cellIdentifier = "ProfileDataCell"
     
@@ -53,7 +53,7 @@ class ProfileDataCell: UITableViewCell {
         setupConstraints()
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         contentView.addSubview(levelLabel)
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true

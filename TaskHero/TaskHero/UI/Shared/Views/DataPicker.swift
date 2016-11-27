@@ -39,7 +39,7 @@ class DataPickerView: UIView {
         setupConstraints()
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true

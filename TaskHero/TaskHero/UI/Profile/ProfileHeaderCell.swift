@@ -71,7 +71,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         contentView.layer.masksToBounds = true
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         contentView.addSubview(usernameLabel)
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true

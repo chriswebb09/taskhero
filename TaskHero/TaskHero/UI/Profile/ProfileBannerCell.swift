@@ -24,7 +24,7 @@ class ProfileBannerCell: UITableViewCell {
         contentView.layer.masksToBounds = true
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         contentView.addSubview(bannerImage)
         bannerImage.translatesAutoresizingMaskIntoConstraints = false
         bannerImage.center = contentView.center

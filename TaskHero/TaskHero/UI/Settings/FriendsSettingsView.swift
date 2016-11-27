@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendsSettingsView: UIView {
+final class FriendsSettingsView: UIView {
     
     let taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
@@ -47,7 +47,7 @@ class FriendsSettingsView: UIView {
         setupConstraints()
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         addSubview(taskNameLabel)
         
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false

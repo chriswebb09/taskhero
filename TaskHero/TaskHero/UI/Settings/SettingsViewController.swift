@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+final class SettingsViewController: UITableViewController {
     
     let userSettings = ["Edit Profile", "Friends"]
     let applicationSettings = ["Notifications"]

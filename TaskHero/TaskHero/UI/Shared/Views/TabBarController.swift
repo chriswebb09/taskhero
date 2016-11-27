@@ -36,7 +36,7 @@ class TabBarController: UITabBarController {
         setupTabBar()
     }
     
-    func setupControllers() {
+    fileprivate func setupControllers() {
         let homeTab = setupHomeTab(homeVC: HomeViewController())
         let profileTab = setupProfileTab(profileVC: ProfileViewController())
         let taskListTab = setupTaskTab(taskListVC: TaskListViewController())
@@ -53,7 +53,7 @@ class TabBarController: UITabBarController {
 
 extension TabBarController {
     
-    func setupHomeTab(homeVC:HomeViewController) -> UINavigationController {
+    fileprivate func setupHomeTab(homeVC:HomeViewController) -> UINavigationController {
         homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house-white-2")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "house-lightblue")?.withRenderingMode(.alwaysTemplate))
         homeVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
@@ -67,7 +67,7 @@ extension TabBarController {
         return homeTab
     }
     
-    func setupProfileTab(profileVC:ProfileViewController) -> UINavigationController {
+    fileprivate func setupProfileTab(profileVC:ProfileViewController) -> UINavigationController {
         profileVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "avatar-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "avatar-lightblue")?.withRenderingMode(.alwaysTemplate))
         profileVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         profileVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
@@ -81,7 +81,7 @@ extension TabBarController {
         return profileTab
     }
     
-    func setupTaskTab(taskListVC:TaskListViewController) -> UINavigationController {
+    fileprivate func setupTaskTab(taskListVC:TaskListViewController) -> UINavigationController {
         taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
         taskListVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         taskListVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
@@ -95,7 +95,7 @@ extension TabBarController {
         return taskListTab
     }
     
-    func setupSettingsTab(settingsVC:SettingsViewController) -> UINavigationController {
+    fileprivate func setupSettingsTab(settingsVC:SettingsViewController) -> UINavigationController {
         settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-2-white-1")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "settings-lightblue")?.withRenderingMode(.alwaysTemplate))
         settingsVC.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         settingsVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
@@ -109,7 +109,7 @@ extension TabBarController {
         return settingsTab
     }
     
-    func setupTabBar() {
+    fileprivate func setupTabBar() {
         let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
         var tabFrame = tabBar.frame
         tabFrame.size.height = tabBarHeight
@@ -120,7 +120,7 @@ extension TabBarController {
         tabBar.isTranslucent = true
     }
     
-    func handleLogout() {
+    public func handleLogout() {
         do {
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {

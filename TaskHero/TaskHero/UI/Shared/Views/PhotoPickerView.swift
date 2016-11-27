@@ -28,7 +28,7 @@ class PhotoPickerView: UIView {
         setupConstraints()
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         headBanner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

@@ -8,14 +8,14 @@
 
 import UIKit
 
-class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, ProfileSettingsCellDelegate {
+final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, ProfileSettingsCellDelegate {
     let store = DataStore.sharedInstance
     let profileSettingsView = ProfileSettingsView()
     var tapped: Bool = false
     var indexTap: IndexPath?
     let tableView = UITableView()
     
-    var options = ["Email Address", "Name", "Profile Picture", "Username"]
+    fileprivate var options = ["Email Address", "Name", "Profile Picture", "Username"]
     
     var username: String?
     var email: String?
@@ -45,7 +45,7 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
         return options.count
     }
     
-    func setupViews() {
+    fileprivate func setupViews() {
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
         profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +73,7 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
         tapEdit()
     }
     
-    func tapEdit() {
+    fileprivate func tapEdit() {
         let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
         if tapped == true {
             tapped = false
@@ -91,7 +91,7 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    func setupTableView() {
+    fileprivate func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -104,7 +104,7 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
         return 1
     }
     
-    func separateNames(name:String) -> [String] {
+    fileprivate func separateNames(name:String) -> [String] {
         var nameArray = name.components(separatedBy: " ")
         return nameArray
     }

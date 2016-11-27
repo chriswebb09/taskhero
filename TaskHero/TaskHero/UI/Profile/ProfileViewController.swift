@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UITableViewController {
+final class ProfileViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
     
@@ -66,7 +66,7 @@ class ProfileViewController: UITableViewController {
 }
 
 extension ProfileViewController {
-    func setupTableView() {
+    fileprivate func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = false
@@ -82,7 +82,7 @@ extension ProfileViewController {
         appDelegate.window?.rootViewController = loginVC
     }
     
-    func setupNavItems() {
+    fileprivate func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)

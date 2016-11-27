@@ -151,7 +151,7 @@ extension HomeViewController {
         pop.hidePopView(viewController: self)
     }
     
-    func addNewPerson() {
+    fileprivate func addNewPerson() {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self
