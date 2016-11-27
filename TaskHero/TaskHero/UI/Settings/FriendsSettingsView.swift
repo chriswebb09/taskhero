@@ -46,7 +46,6 @@ final class FriendsSettingsView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         frame = UIScreen.main.bounds
         setupConstraints()
     }
@@ -54,7 +53,6 @@ final class FriendsSettingsView: UIView {
     fileprivate func setupConstraints() {
         
         addSubview(taskNameLabel)
-        
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
         taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
@@ -62,7 +60,6 @@ final class FriendsSettingsView: UIView {
         taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.2).isActive = true
         
         addSubview(taskNameField)
-        
         taskNameField.translatesAutoresizingMaskIntoConstraints = false
         taskNameField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
@@ -70,7 +67,6 @@ final class FriendsSettingsView: UIView {
         taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * 0.1).isActive = true
         
         addSubview(addTaskButton)
-        
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true

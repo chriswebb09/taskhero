@@ -14,7 +14,6 @@ class ProfilePictureView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         frame = UIScreen.main.bounds
         setupConstraints()
         setupView()
