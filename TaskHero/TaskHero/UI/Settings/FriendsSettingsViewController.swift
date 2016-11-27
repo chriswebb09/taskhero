@@ -36,7 +36,8 @@ class FriendsSettingsViewController: UIViewController {
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
         })
-        alertPop.popView.resultLabel.text = friendsSettingsView.taskNameField.text!
+        //alertPop.popView.resultLabel.text = friendsSettingsView.taskNameField.text!
+        alertPop.popView.resultLabel.text = "No results found. Please try again later."
         alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
         alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }

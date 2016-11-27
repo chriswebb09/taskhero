@@ -14,7 +14,8 @@ class SettingsViewController: UITableViewController {
     let applicationSettings = ["Notifications"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
     var settings = [String]()
-    let pop = PopMenu()
+    let alertPop = AlertPopover()
+    let notifyPop = NotificationPopover()
     let label = UILabel()
     
     override func viewDidLoad() {
@@ -38,7 +39,7 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        hideView()
+        hide()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,14 +66,77 @@ class SettingsViewController: UITableViewController {
             navigationController?.pushViewController(ProfileSettingsViewController(), animated: true)
         } else if settings[indexPath.row] == "Friends" {
             navigationController?.pushViewController(FriendsSettingsViewController(), animated: true)
+        } else if settings[indexPath.row] == "Notifications" {
+            notificationPopup()
+            //notifyPop.showPopView(viewController: self)
+            //notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
+            //notifyPop.sh
         }
     }
     
-    func hideView() {
-        label.text = ""
-        pop.popView.isHidden = true
-        pop.hidePopView(viewController: self)
+    func popup() {
+        alertPop.popView.isHidden = false
+        alertPop.containerView.isHidden = false
+        alertPop.containerView.layer.opacity = 0
+        alertPop.popView.layer.opacity = 0
+        alertPop.showPopView(viewController: self)
+        UIView.animate(withDuration: 0.2, animations: {
+            self.alertPop.popView.layer.opacity = 1
+            self.alertPop.containerView.layer.opacity = 0.1
+        })
+        //alertPop.popView.resultLabel.text = friendsSettingsView.taskNameField.text!
+        alertPop.popView.resultLabel.text = "Try Again Later."
+        alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
+        alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
+    
+    func notificationPopup() {
+        notifyPop.popView.isHidden = false
+        notifyPop.containerView.isHidden = false
+        notifyPop.containerView.layer.opacity = 0
+        notifyPop.popView.layer.opacity = 0
+        notifyPop.showPopView(viewController: self)
+        UIView.animate(withDuration: 0.2, animations: {
+            self.notifyPop.popView.layer.opacity = 1
+            self.notifyPop.containerView.layer.opacity = 0.1
+        })
+        //alertPop.popView.resultLabel.text = friendsSettingsView.taskNameField.text!
+        //notifyPop.popView.resultLabel.text = "Try Again Later."
+        notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
+        //alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
+    }
+    
+    func dismissNotificationButton() {
+        notifyPop.containerView.isHidden = true
+        notifyPop.popView.isHidden = true
+        notifyPop.hidePopView(viewController: self)
+        //        alertPop.containerView.isHidden = true
+        //        alertPop.popView.isHidden = true
+        //        alertPop.hidePopView(viewController: self)
+        //        navigationController?.popViewController(animated: false)
+    }
+    
+    func dismissButton() {
+        alertPop.containerView.isHidden = true
+        alertPop.popView.isHidden = true
+        alertPop.hidePopView(viewController: self)
+//        alertPop.containerView.isHidden = true
+//        alertPop.popView.isHidden = true
+//        alertPop.hidePopView(viewController: self)
+//        navigationController?.popViewController(animated: false)
+    }
+    
+    func hide() {
+        alertPop.containerView.isHidden = true
+        alertPop.popView.isHidden = true
+        alertPop.hidePopView(viewController: self)
+    }
+    
+//    func hideView() {
+//        label.text = ""
+//        pop.popView.isHidden = true
+//        pop.hidePopView(viewController: self)
+//    }
 }
 
 extension SettingsViewController {

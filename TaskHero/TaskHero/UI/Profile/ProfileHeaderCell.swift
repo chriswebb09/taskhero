@@ -30,7 +30,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     lazy var usernameLabel: UILabel = {
         let usernameLabel = UILabel()
         usernameLabel.textColor = UIColor.black
-        usernameLabel.font = Constants.Font.profileFont
+        usernameLabel.font = Constants.Font.taskNameFont
         usernameLabel.textAlignment = .right
         usernameLabel.sizeToFit()
         usernameLabel.layer.masksToBounds = true
@@ -40,7 +40,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     let emailLabel: UILabel = {
         let emailLabel = UILabel()
         emailLabel.textColor = UIColor.black
-        emailLabel.font = Constants.Font.fontSmall
+        emailLabel.font = Constants.Font.profileFontMed
         emailLabel.textAlignment = .right
         emailLabel.layer.masksToBounds = true
         return emailLabel
@@ -49,7 +49,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.textColor = UIColor.black
-        levelLabel.font = Constants.Font.profileFontSmall
+        levelLabel.font = Constants.Font.profileFontMed
         levelLabel.textAlignment = .right
         levelLabel.sizeToFit()
         levelLabel.layer.masksToBounds = true

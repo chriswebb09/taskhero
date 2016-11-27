@@ -80,7 +80,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.store.currentUserString = userID
             self.store.fetchUser(completion: { user in
                 self.store.currentUser = user
-                print(user)
             })
             
             let tabBar = TabBarController()

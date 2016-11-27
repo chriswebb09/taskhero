@@ -55,9 +55,6 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.0)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.0)
   - GTMSessionFetcher/Core (1.1.7)
-  - RxCocoa (3.0.1):
-    - RxSwift (~> 3.0)
-  - RxSwift (3.0.1)
 
 DEPENDENCIES:
   - Firebase
@@ -65,8 +62,6 @@ DEPENDENCIES:
   - Firebase/Crash
   - Firebase/Storage
   - FirebaseDatabase
-  - RxCocoa
-  - RxSwift
 
 SPEC CHECKSUMS:
   Firebase: 387f37c7dca894a02708da9ff35ba147040eae9e
@@ -81,9 +76,7 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
-  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
-  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
 
-PODFILE CHECKSUM: 6879456f993f9127810894ac0b67f6f0b5c878b5
+PODFILE CHECKSUM: bb2ba7c141334b6c516a7f5f21a2ccd846c981e0
 
 COCOAPODS: 1.1.1

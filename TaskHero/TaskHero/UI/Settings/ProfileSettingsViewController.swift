@@ -14,7 +14,7 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
     var tapped: Bool = false
     var indexTap: IndexPath?
     let tableView = UITableView()
-
+    
     var options = ["Email Address", "Name", "Profile Picture", "Username"]
     
     var username: String?
@@ -22,7 +22,7 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        options = [self.store.currentUser.email, "\(self.store.currentUser.firstName) \(self.store.currentUser.lastName)", "Profile Picture", self.store.currentUser.username]
+        options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
         view.addSubview(profileSettingsView)
@@ -48,7 +48,7 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
     func setupViews() {
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
         profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
-        tableView.translatesAutoresizingMaskIntoConstraints = false 
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.75).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -62,9 +62,9 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
         cell.delegate = self
         cell.button.tag = indexPath.row
         cell.button.index = indexPath
-
+        
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)
-
+        
         return cell
     }
     
@@ -74,24 +74,14 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tapEdit() {
-       // options = [self.store.currentUser.email, "\(self.store.currentUser.firstName) \(self.store.currentUser.lastName)", "Profile Picture", self.store.currentUser.username]
-        
         let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
-        
-        if (tapCell.profileSettingLabel.text?.contains("Email"))! {
-            email = tapCell.profileSettingLabel.text!
-        } else if (tapCell.profileSettingLabel.text?.contains("Username"))! {
-            username = tapCell.profileSettingLabel.text!
-        }
-        
         if tapped == true {
             tapped = false
-            if username != nil {
-                tapCell.profileSettingLabel.text = username
-            } else if email != nil {
-                tapCell.profileSettingLabel.text = email
+            if (tapCell.profileSettingField.text?.characters.count)! > 0 {
+                tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
+            } else {
+                tapCell.profileSettingLabel.text = options[(indexTap?.row)!]
             }
-            tapCell.profileSettingLabel.text = tapCell.profileSettingField.text!
             tapCell.profileSettingLabel.isHidden = false
             tapCell.profileSettingField.isHidden = true
         } else if tapped == false {
@@ -121,9 +111,5 @@ class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITa
     
     func editButtonTapped() {
         tapped = true
-        print("profile pic tapped\n\n\n\n\n\n")
     }
-    
-    
-    
 }

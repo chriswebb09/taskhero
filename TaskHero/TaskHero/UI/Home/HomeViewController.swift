@@ -38,7 +38,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
             self.store.currentUser.tasks?.removeAll()
         }
         self.store.fetchTasks(completion: { task in
-            print(task)
             self.store.tasks.append(task)
             self.store.currentUser.tasks!.append(task)
             DispatchQueue.main.async {
@@ -160,7 +159,6 @@ extension HomeViewController {
     }
     
     func logoutButtonPressed() {
-        //manager.userIsLoggedIn(loggedIn: false, uid: nil)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC

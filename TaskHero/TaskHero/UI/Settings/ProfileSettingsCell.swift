@@ -55,7 +55,7 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         contentView.addSubview(profileSettingLabel)
         profileSettingLabel.translatesAutoresizingMaskIntoConstraints = false
         profileSettingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true
-        profileSettingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
+        profileSettingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.75).isActive = true
         profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * 0.05).isActive = true
         profileSettingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
@@ -76,8 +76,11 @@ class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     func configureCell(setting:String) {
         layoutSubviews()
-        profileSettingField.isHidden = true
         profileSettingLabel.text = setting
+        if setting.contains("N/A") {
+            profileSettingLabel.text = "FirstName LastName"
+        }
+        profileSettingField.isHidden = true
     }
     
     override func prepareForReuse() {

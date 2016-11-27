@@ -130,6 +130,4 @@ extension TabBarController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginController
     }
-    
-    
 }
