@@ -18,13 +18,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.addSubview(loginView)
         edgesForExtendedLayout = []
+        
         loginView.layoutSubviews()
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
         loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
+        
         let operationQueue = OperationQueue()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -54,14 +55,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func handleLogin() {
-        
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
+        
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             return
         }
-        
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
@@ -79,12 +79,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             self.loadingView.hideActivityIndicator(viewController: self)
+            
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
+            
             self.store.fetchUser(completion: { user in
                 self.store.currentUser = user
             })
-            
             let tabBar = TabBarController()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar

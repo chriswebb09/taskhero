@@ -84,8 +84,7 @@ extension SettingsViewController {
 extension SettingsViewController {
     
 
-    func popup() {
-        
+    func launchPopupView() {
         alertPop.popView.isHidden = false
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = 0

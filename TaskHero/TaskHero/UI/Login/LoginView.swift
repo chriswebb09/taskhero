@@ -69,6 +69,7 @@ final class LoginView: UIView {
         backgroundColor = UIColor.white
         frame = UIScreen.main.bounds
         setupConstraints()
+        
         loginButton.layer.opacity = 0
         emailField.layer.opacity = 0
         passwordField.layer.opacity = 0
@@ -76,6 +77,7 @@ final class LoginView: UIView {
         signupButton.layer.opacity = 0
         viewDivider.layer.opacity = 0
         logoImageView.layer.opacity = 0
+        
         UIView.animate(withDuration: 0.5, animations: {
             self.logoImageView.layer.opacity = 1
         })
