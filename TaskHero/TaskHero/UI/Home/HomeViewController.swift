@@ -119,15 +119,16 @@ extension HomeViewController {
                 if (indexPath.row) == 0 {
                     return
                 } else {
+                    
                     removeTaskID = self.store.tasks[indexPath.row - 1].taskID
                     self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
                     self.store.currentUser.numberOfTasksCompleted += 1
                     self.store.insertUser(user: self.store.currentUser)
                 }
+                
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-                
                 tableView.endUpdates()
             }
             tableView.reloadData()
