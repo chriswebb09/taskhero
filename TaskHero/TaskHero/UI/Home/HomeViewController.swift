@@ -17,7 +17,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.tableViewBackgroundColor
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
@@ -36,15 +35,13 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         
         self.store.fetchUserData()
         self.store.tasks.removeAll()
-        
         if self.store.currentUser.tasks != nil {
             self.store.currentUser.tasks?.removeAll()
         }
+        
         self.store.fetchTasks(completion: { task in
-            
             self.store.tasks.append(task)
             self.store.currentUser.tasks!.append(task)
-            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -53,7 +50,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        
         if store.refHandle != nil {
             store.tasksRef.removeObserver(withHandle: store.refHandle)
         }
@@ -68,14 +64,12 @@ extension HomeViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if self.store.tasks.count < 1 {
             return 1
         } else {
@@ -94,8 +88,8 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+            
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
@@ -103,10 +97,9 @@ extension HomeViewController {
             if profilePic != nil {
                 headerCell.profilePicture.image = profilePic
             }
-            
             return headerCell
-        } else {
             
+        } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
