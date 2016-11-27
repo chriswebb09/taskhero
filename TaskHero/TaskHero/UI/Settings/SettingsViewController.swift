@@ -62,9 +62,9 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if settings[indexPath.row] == "Edit Profile" {
-            navigationController?.pushViewController(ProfileSettingsViewController(), animated: false)
+            navigationController?.pushViewController(ProfileSettingsViewController(), animated: true)
         } else if settings[indexPath.row] == "Friends" {
-            navigationController?.pushViewController(FriendsSettingsViewController(), animated: false)
+            navigationController?.pushViewController(FriendsSettingsViewController(), animated: true)
         }
 //        pop.popView.isHidden = false
 //        pop.showPopView(viewController: self, pick: nil)

@@ -28,7 +28,7 @@ class AlertView: UIView {
         var button = ButtonType.system(title: "Cancel", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
-        uiElement.backgroundColor = UIColor.red
+        uiElement.backgroundColor = UIColor(red:0.88, green:0.35, blue:0.35, alpha:1.0)
         return uiElement
     }()
     
@@ -36,15 +36,25 @@ class AlertView: UIView {
         var button = ButtonType.system(title: "Add", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
-        uiElement.backgroundColor = UIColor.blue
+        uiElement.backgroundColor = Constants.Login.loginButtonColor
         return uiElement
+    }()
+    
+    lazy var resultLabel: UILabel = {
+        let searchLabel = UILabel()
+        searchLabel.textColor = UIColor.black
+        searchLabel.text = "Results"
+        //searchLabel.backgroundColor = UIColor.blue
+        searchLabel.font = Constants.Font.fontNormal
+        searchLabel.textAlignment = .center
+        return searchLabel
     }()
     
     
     lazy var alertLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
-        searchLabel.text = "Become a Member"
+        searchLabel.text = "Find Your Friends"
         searchLabel.font = Constants.Font.fontLarge
         searchLabel.textAlignment = .center
         return searchLabel
@@ -72,6 +82,16 @@ class AlertView: UIView {
         alertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         alertLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         alertLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        
+        addSubview(resultLabel)
+        resultLabel.translatesAutoresizingMaskIntoConstraints = false
+        //alertLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        resultLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: bounds.height / 3).isActive = true
+        //alertLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        resultLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        resultLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
+        resultLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+
         
         addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false

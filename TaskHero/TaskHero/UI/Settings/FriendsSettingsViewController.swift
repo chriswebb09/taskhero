@@ -29,6 +29,7 @@ class FriendsSettingsViewController: UIViewController {
     func popup() {
         alertPop.popView.isHidden = false
         alertPop.showPopView(viewController: self)
+        alertPop.popView.resultLabel.text = friendsSettingsView.taskNameField.text!
         alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
         alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
