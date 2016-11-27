@@ -11,7 +11,6 @@ import UIKit
 final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     let store = DataStore.sharedInstance
-    //let manager = AppManager.sharedInstance
     let pop = PickerPopMenu()
     var profilePic: UIImage? = nil
     let cellSpacingHeight: CGFloat = 5
@@ -32,12 +31,13 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        store.fetchData(handler: { _ in
-//            
-//        })
         super.viewWillAppear(false)
+        self.store.fetchUserData()
         self.store.tasks.removeAll()
-      //  self.store.currentUser.tasks!.removeAll()
+        if self.store.currentUser.tasks != nil {
+            self.store.currentUser.tasks?.removeAll()
+        }
+        //
         self.store.fetchTasks(completion: { task in
             print(task)
             self.store.tasks.append(task)
@@ -68,7 +68,6 @@ extension HomeViewController {
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
-
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 {
@@ -143,8 +142,6 @@ extension HomeViewController {
     }
     
     func profilePictureTapped() {
-        print("---------------")
-        print("here")
         pop.popView.isHidden = false
         pop.showPopView(viewController: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))

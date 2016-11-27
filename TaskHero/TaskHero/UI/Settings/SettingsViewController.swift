@@ -10,8 +10,8 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
-    let userSettings = ["Edit Profile", "Tasks Settings", "Friends"]
-    let applicationSettings = ["Notifications", "Stay Logged In"]
+    let userSettings = ["Edit Profile", "Friends"]
+    let applicationSettings = ["Notifications"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
     var settings = [String]()
     let pop = PopMenu()
@@ -61,17 +61,22 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pop.popView.isHidden = false
-        pop.showPopView(viewController: self, pick: nil)
-        pop.popView.layer.borderWidth = 1
-        pop.popView.layer.borderColor = UIColor.black.cgColor
-        pop.popView.layer.shadowOffset = CGSize(width:-0.5, height: 0.3)
-        pop.popView.layer.shadowOpacity = 0.1
-        label.text = settings[indexPath.row]
-        label.sizeToFit()
-        pop.popView.addSubview(label)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
-        pop.containerView.addGestureRecognizer(tap)
+        if settings[indexPath.row] == "Edit Profile" {
+            navigationController?.pushViewController(ProfileSettingsViewController(), animated: false)
+        } else if settings[indexPath.row] == "Friends" {
+            navigationController?.pushViewController(FriendsSettingsViewController(), animated: false)
+        }
+//        pop.popView.isHidden = false
+//        pop.showPopView(viewController: self, pick: nil)
+//        pop.popView.layer.borderWidth = 1
+//        pop.popView.layer.borderColor = UIColor.black.cgColor
+//        pop.popView.layer.shadowOffset = CGSize(width:-0.5, height: 0.3)
+//        pop.popView.layer.shadowOpacity = 0.1
+//        label.text = settings[indexPath.row]
+//        label.sizeToFit()
+//        pop.popView.addSubview(label)
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
+//        pop.containerView.addGestureRecognizer(tap)
     }
     
     func hideView() {
@@ -95,7 +100,7 @@ extension SettingsViewController {
     func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.tableHeaderView?.backgroundColor = UIColor.white
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .singleLineEtched
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.layoutMargins = UIEdgeInsets.zero

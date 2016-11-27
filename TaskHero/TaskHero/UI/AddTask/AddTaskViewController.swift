@@ -45,7 +45,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 }
 
 extension AddTaskViewController {
-  
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -68,7 +68,7 @@ extension AddTaskViewController {
 }
 
 extension AddTaskViewController {
-  
+    
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
@@ -110,12 +110,10 @@ extension AddTaskViewController {
     func addTaskButtonTapped() {
         view.endEditing(true)
         pop.popView.isHidden = false
-        
         pick.showsSelectionIndicator = true
         pick.frame = pop.popView.frame
         pick.layer.borderWidth = 1
         pop.showPopView(viewController: self, pick: pick)
-        
         stringDate = "\(month)-\(day)-\(year)"
         pop.popView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
@@ -123,12 +121,9 @@ extension AddTaskViewController {
     func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"
         let uid = NSUUID().uuidString
-        
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
-        
         let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:newDate, taskCompleted: false, pointValue:5)
-        
         store.addTasks(task: newTask)
         store.currentUser.tasks!.append(newTask)
         pop.hidePopView(viewController: self)

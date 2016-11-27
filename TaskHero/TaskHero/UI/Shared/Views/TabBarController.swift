@@ -14,25 +14,19 @@ class TabBarController: UITabBarController {
     let store = DataStore.sharedInstance
     override func viewDidLoad() {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if auth.currentUser != nil {
+            if user != nil && (self.store.currentUser != nil) {
                 super.viewDidLoad()
                 self.view.backgroundColor = UIColor.white
                 self.setupControllers()
-            } else {
-                if user != nil && (self.store.currentUser != nil) {
+            } else if self.store.currentUser == nil {
+                self.store.fetchUser { user in
+                    self.store.currentUser = user
                     super.viewDidLoad()
                     self.view.backgroundColor = UIColor.white
                     self.setupControllers()
-                } else if self.store.currentUser == nil {
-                    self.store.fetchUser { user in
-                        self.store.currentUser = user
-                        super.viewDidLoad()
-                        self.view.backgroundColor = UIColor.white
-                        self.setupControllers()
-                    }
-                } else {
-                    self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
                 }
+            } else {
+                self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
             }
         }
     }

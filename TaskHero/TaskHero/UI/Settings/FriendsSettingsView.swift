@@ -13,7 +13,7 @@ class FriendsSettingsView: UIView {
     let taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
-        taskNameLabel.text = "Add A New Task"
+        taskNameLabel.text = "Add Friends"
         taskNameLabel.font = Constants.Font.headerFont
         taskNameLabel.textAlignment = .center
         taskNameLabel.layer.masksToBounds = true
@@ -22,7 +22,7 @@ class FriendsSettingsView: UIView {
     
     lazy var taskNameField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
-        taskNameField.placeholder = "Task name"
+        taskNameField.placeholder = "Search by email"
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
         taskNameField.layer.cornerRadius = 2
@@ -30,15 +30,15 @@ class FriendsSettingsView: UIView {
         return taskNameField
     }()
     
-    var taskDescriptionBox: UITextView = {
-        let taskDescriptionBox = UITextView()
-        taskDescriptionBox.layer.borderWidth = 1
-        taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
-        taskDescriptionBox.layer.cornerRadius = 2
-        taskDescriptionBox.font = Constants.signupFieldFont
-        taskDescriptionBox.contentInset = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0)
-        return taskDescriptionBox
-    }()
+//    var taskDescriptionBox: UITextView = {
+//        let taskDescriptionBox = UITextView()
+//        taskDescriptionBox.layer.borderWidth = 1
+//        taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
+//        taskDescriptionBox.layer.cornerRadius = 2
+//        taskDescriptionBox.font = Constants.signupFieldFont
+//        taskDescriptionBox.contentInset = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0)
+//        return taskDescriptionBox
+//    }()
     
     lazy var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
@@ -46,7 +46,7 @@ class FriendsSettingsView: UIView {
         addTaskButton.layer.borderColor = UIColor.white.cgColor
         addTaskButton.backgroundColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
         addTaskButton.layer.cornerRadius = 2
-        addTaskButton.setTitle("Add Task", for: .normal)
+        addTaskButton.setTitle("Search", for: .normal)
         addTaskButton.setTitleColor(UIColor.white, for: .normal)
         return addTaskButton
     }()
@@ -65,7 +65,7 @@ class FriendsSettingsView: UIView {
         taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         taskNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.04).isActive = true
+        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.2).isActive = true
         
         addSubview(taskNameField)
         
@@ -73,15 +73,16 @@ class FriendsSettingsView: UIView {
         taskNameField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         taskNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
-        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.04).isActive = true
+        taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * 0.1).isActive = true
+        //taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.04).isActive = true
         
-        addSubview(taskDescriptionBox)
-        
-        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
-        taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * 0.05).isActive = true
+//        addSubview(taskDescriptionBox)
+//        
+//        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
+//        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
+//        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
+//        taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * 0.05).isActive = true
         
         addSubview(addTaskButton)
         
@@ -89,7 +90,8 @@ class FriendsSettingsView: UIView {
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * 0.04).isActive = true
+        addTaskButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * 0.1).isActive = true
+        //addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * 0.04).isActive = true
     }
     
 }

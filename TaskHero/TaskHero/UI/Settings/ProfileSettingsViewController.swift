@@ -14,7 +14,9 @@ class ProfileSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor.white
         view.addSubview(profileSettingsView)
+        profileSettingsView.layoutSubviews()
     }
     
     override func didReceiveMemoryWarning() {
