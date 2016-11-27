@@ -17,10 +17,12 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.tableViewBackgroundColor
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        
         setupTableView()
         setupNavItems()
     }
@@ -34,10 +36,10 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         super.viewWillAppear(false)
         self.store.fetchUserData()
         self.store.tasks.removeAll()
-        
         if self.store.currentUser.tasks != nil {
             self.store.currentUser.tasks?.removeAll()
         }
+        
         self.store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
             self.store.currentUser.tasks!.append(task)
@@ -106,6 +108,7 @@ extension HomeViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+      
         if editingStyle == .delete {
             tableView.beginUpdates()
             DispatchQueue.main.async {
@@ -123,9 +126,11 @@ extension HomeViewController {
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
+                
                 tableView.endUpdates()
             }
             tableView.reloadData()
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
