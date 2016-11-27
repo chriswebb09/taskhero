@@ -30,16 +30,6 @@ class FriendsSettingsView: UIView {
         return taskNameField
     }()
     
-//    var taskDescriptionBox: UITextView = {
-//        let taskDescriptionBox = UITextView()
-//        taskDescriptionBox.layer.borderWidth = 1
-//        taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
-//        taskDescriptionBox.layer.cornerRadius = 2
-//        taskDescriptionBox.font = Constants.signupFieldFont
-//        taskDescriptionBox.contentInset = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0)
-//        return taskDescriptionBox
-//    }()
-    
     lazy var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = 1
@@ -58,7 +48,6 @@ class FriendsSettingsView: UIView {
     }
     
     func setupConstraints() {
-        
         addSubview(taskNameLabel)
         
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -74,15 +63,6 @@ class FriendsSettingsView: UIView {
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
         taskNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
         taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * 0.1).isActive = true
-        //taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.04).isActive = true
-        
-//        addSubview(taskDescriptionBox)
-//        
-//        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-//        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
-//        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
-//        taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * 0.05).isActive = true
         
         addSubview(addTaskButton)
         
@@ -91,7 +71,6 @@ class FriendsSettingsView: UIView {
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         addTaskButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * 0.1).isActive = true
-        //addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * 0.04).isActive = true
     }
     
 }

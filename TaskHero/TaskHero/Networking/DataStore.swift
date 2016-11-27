@@ -48,6 +48,8 @@ class DataStore {
 
     
     func fetchUserData() {
+        let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(self.currentUserString)/LastOnline")
+        userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         userRef.child(currentUserString!).observe(.childAdded, with: { (snapshot) in
             self.userData[snapshot.key] = snapshot.value as AnyObject?
             let user = User()

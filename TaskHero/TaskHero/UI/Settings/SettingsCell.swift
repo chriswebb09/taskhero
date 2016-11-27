@@ -32,7 +32,6 @@ class SettingsCell: UITableViewCell {
         contentView.addSubview(settingLabel)
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
         settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:0.5).isActive = true
-        
         settingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
         settingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         settingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true

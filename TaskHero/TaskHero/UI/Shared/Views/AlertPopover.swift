@@ -30,8 +30,8 @@ class AlertPopover: UIView {
     func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
-        popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.9, height:UIScreen.main.bounds.height * 0.40)
-        popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY - 50)
+        popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
+        popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         popView.clipsToBounds = true
         //containerView.addSubview(popView)
         //containerView.bringSubview(toFront: popView)

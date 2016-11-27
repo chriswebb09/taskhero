@@ -55,7 +55,7 @@ class AlertView: UIView {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
         searchLabel.text = "Find Your Friends"
-        searchLabel.font = Constants.Font.fontLarge
+        searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center
         return searchLabel
     }()

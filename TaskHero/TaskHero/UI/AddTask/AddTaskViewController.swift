@@ -45,7 +45,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 }
 
 extension AddTaskViewController {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -68,7 +67,6 @@ extension AddTaskViewController {
 }
 
 extension AddTaskViewController {
-    
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }

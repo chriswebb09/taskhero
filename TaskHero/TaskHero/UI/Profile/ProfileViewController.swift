@@ -12,7 +12,6 @@ import Firebase
 class ProfileViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
-    //let manager = AppManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +66,6 @@ class ProfileViewController: UITableViewController {
 }
 
 extension ProfileViewController {
-    
     func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
@@ -79,7 +77,6 @@ extension ProfileViewController {
     }
     
     func logoutButtonPressed() {
-       // manager.userIsLoggedIn(loggedIn: false, uid: nil)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC

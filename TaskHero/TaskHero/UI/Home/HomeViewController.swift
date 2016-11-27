@@ -37,7 +37,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         if self.store.currentUser.tasks != nil {
             self.store.currentUser.tasks?.removeAll()
         }
-        //
         self.store.fetchTasks(completion: { task in
             print(task)
             self.store.tasks.append(task)

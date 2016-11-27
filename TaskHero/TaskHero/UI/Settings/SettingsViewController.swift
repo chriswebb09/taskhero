@@ -66,17 +66,6 @@ class SettingsViewController: UITableViewController {
         } else if settings[indexPath.row] == "Friends" {
             navigationController?.pushViewController(FriendsSettingsViewController(), animated: true)
         }
-//        pop.popView.isHidden = false
-//        pop.showPopView(viewController: self, pick: nil)
-//        pop.popView.layer.borderWidth = 1
-//        pop.popView.layer.borderColor = UIColor.black.cgColor
-//        pop.popView.layer.shadowOffset = CGSize(width:-0.5, height: 0.3)
-//        pop.popView.layer.shadowOpacity = 0.1
-//        label.text = settings[indexPath.row]
-//        label.sizeToFit()
-//        pop.popView.addSubview(label)
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
-//        pop.containerView.addGestureRecognizer(tap)
     }
     
     func hideView() {
