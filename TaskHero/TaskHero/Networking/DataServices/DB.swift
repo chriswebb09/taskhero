@@ -54,7 +54,7 @@ class Database {
         refHandle = tasksRef.observe(.childAdded, with: { (snapshot) in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             //print(snapshotValue)
-            let newTask = Task()
+            var newTask = Task()
             newTask.taskID = snapshot.key
             print(newTask.taskID)
             if let fetchName = snapshotValue["TaskName"] as? String {

@@ -14,7 +14,9 @@ class Auth {
     
     func fetchUser(with currentUserString: String, handler: @escaping (User) -> Void) {
         let database = FIRDatabase.database()
-        database.reference().child("Users").child(currentUserString).observeSingleEvent(of: .value, with: { snapshot in
+        let fetchData = database.reference().child("Users")
+        fetchData.keepSynced(true)
+        fetchData.child(currentUserString).observeSingleEvent(of: .value, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             let user = User()
             if let snapshotName = snapshotValue["Username"] as? String {

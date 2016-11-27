@@ -222,7 +222,6 @@ extension SignupViewController {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        //        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
-        //        textField.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
+       
     }
 }

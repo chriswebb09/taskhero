@@ -52,7 +52,6 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         levelLabel.font = Constants.Font.profileFontSmall
         levelLabel.textAlignment = .right
         levelLabel.sizeToFit()
-        //levelLabel.backgroundColor = UIColor.blue
         levelLabel.layer.masksToBounds = true
         return levelLabel
     }()
@@ -77,9 +76,6 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
-        //usernameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
-        //usernameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-        //usernameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         usernameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 19).isActive = true
         
@@ -106,12 +102,8 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         
         contentView.addSubview(levelLabel)
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
-        //levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
-        //levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
         levelLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         levelLabel.bottomAnchor.constraint(equalTo: profilePicture.bottomAnchor).isActive = true
-        //levelLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        //levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 30).isActive = true
     }
     
     func configureCell(user: User) {

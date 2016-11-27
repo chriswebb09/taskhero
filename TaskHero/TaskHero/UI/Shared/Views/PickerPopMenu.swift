@@ -34,16 +34,6 @@ class PickerPopMenu: UIView {
         return popView
     }()
     
-//    let popView: UIView = {
-//        let popView = UIView()
-//        popView.layer.cornerRadius = 10
-//        popView.backgroundColor = UIColor.white
-//        let ovalRect = CGRect(x: 10, y: popView.layer.bounds.height + 15, width: popView.layer.bounds.width - 20, height: 15)
-//        let path = UIBezierPath(roundedRect: ovalRect, cornerRadius: 10)
-//        return popView
-//    }()
-    
-    
     func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)

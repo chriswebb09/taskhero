@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 
 class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     let store = DataStore.sharedInstance
-    let alert = AlertPopover()
     let addTaskView = AddTaskView()
     let pop = PopMenu()
     var stringDate = ""
@@ -40,14 +40,12 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
         // Dispose of any resources that can be recreated.
     }
 }
 
 extension AddTaskViewController {
   
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -67,7 +65,6 @@ extension AddTaskViewController {
             textView.textColor = UIColor.lightGray
         }
     }
-    
 }
 
 extension AddTaskViewController {
@@ -75,7 +72,6 @@ extension AddTaskViewController {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
-    
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
@@ -111,44 +107,34 @@ extension AddTaskViewController {
         }
     }
     
-
-    
     func addTaskButtonTapped() {
+        view.endEditing(true)
         pop.popView.isHidden = false
         
-        view.endEditing(true)
-        
-       
-
         pick.showsSelectionIndicator = true
-        
         pick.frame = pop.popView.frame
         pick.layer.borderWidth = 1
         pop.showPopView(viewController: self, pick: pick)
         
-        //var datePicked = NSDate()
-        
-        self.stringDate = "\(month)-\(day)-\(year)"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MMM-dd"
-        //formatTaskWithDate(date: stringDate)
+        stringDate = "\(month)-\(day)-\(year)"
         pop.popView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
-    
     
     func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"
         let uid = NSUUID().uuidString
+        
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
+        
         let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:newDate, taskCompleted: false, pointValue:5)
+        
         store.addTasks(task: newTask)
-        self.store.tasks.append(newTask)
+        store.currentUser.tasks!.append(newTask)
         pop.hidePopView(viewController: self)
         pop.popView.isHidden = true
         _ = navigationController?.popToRootViewController(animated: false)
     }
-    
     
     func addTask() {
         pop.hidePopView(viewController: self)

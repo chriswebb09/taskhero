@@ -15,7 +15,6 @@ class TaskCell: UITableViewCell {
     let taskNameLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
-        //textView.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
         textView.font = Constants.Font.taskNameFont
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
@@ -102,9 +101,9 @@ class TaskCell: UITableViewCell {
             taskCompletedView.image = UIImage(named:"edit")
         }
         layoutSubviews()
+        styleAppearance()
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        styleAppearance()
         contentView.backgroundColor = UIColor.clear
     }
     
@@ -119,14 +118,14 @@ class TaskCell: UITableViewCell {
         contentView.sendSubview(toBack: cellView)
     }
     
-    func styleAppearance() {
-        //layer.cornerRadius = 3.0
-        layer.masksToBounds = false
-        layer.shadowOffset = CGSize(width: 0, height: 0)
-        layer.shadowColor = #colorLiteral(red: 0.05439098924, green: 0.1344551742, blue: 0.1884709597, alpha: 1).cgColor
-        layer.shadowRadius = 1.0
-        layer.shadowOpacity = 0.3
-    }
+        func styleAppearance() {
+            //layer.cornerRadius = 3.0
+            layer.masksToBounds = false
+            layer.shadowOffset = CGSize(width: 0, height: 0)
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowRadius = 1.0
+            layer.shadowOpacity = 0.3
+        }
     
     override func prepareForReuse() {
         super.prepareForReuse()

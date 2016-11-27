@@ -11,7 +11,7 @@ import UIKit
 final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     let store = DataStore.sharedInstance
-    let manager = AppManager.sharedInstance
+    //let manager = AppManager.sharedInstance
     let pop = PickerPopMenu()
     var profilePic: UIImage? = nil
     let cellSpacingHeight: CGFloat = 5
@@ -32,16 +32,16 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        store.fetchData(handler: { _ in
-            
-        })
+//        store.fetchData(handler: { _ in
+//            
+//        })
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
-        self.store.currentUser.tasks.removeAll()
+      //  self.store.currentUser.tasks!.removeAll()
         self.store.fetchTasks(completion: { task in
             print(task)
             self.store.tasks.append(task)
-            self.store.currentUser.tasks.append(task)
+            self.store.currentUser.tasks!.append(task)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -101,7 +101,6 @@ extension HomeViewController {
             let height = tableView.rowHeight - 5
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
             taskCell.setupCellView(width: view.frame.size.width, height:height)
-            //taskCell.clipsToBounds = true
             return taskCell
         }
     }
@@ -114,28 +113,9 @@ extension HomeViewController {
                 if (indexPath.row) == 0 {
                     return
                 } else {
-                    let points = self.store.tasks[indexPath.row - 1].pointValue
-                    
                     removeTaskID = self.store.tasks[indexPath.row - 1].taskID
-                    self.store.currentUser.experiencePoints += 1
+                    self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
                     self.store.currentUser.numberOfTasksCompleted += 1
-//                    if let userExperiencePoints = self.store.currentUser.experiencePoints {
-//                        var point = userExperiencePoints
-//                        point += points
-//                        self.store.currentUser.experiencePoints = point
-//                    }
-                    
-                   // var tasknumber = self.store.currentUser.numberOfTasksCompleted
-                    
-                   // self.store.currentUser.numberOfTasksCompleted = tasknumber
-//                    if let tasknumber = self.store.currentUser.numberOfTasksCompleted {
-//                        var count = tasknumber
-//                        count += 1
-//                        self.store.currentUser.numberOfTasksCompleted = count
-//                    }
-                    //self.store.currentUser.experiencePoints += points
-                   // self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
-                    //self.store.currentUser.numberOfTasksCompleted += 1
                     self.store.insertUser(user: self.store.currentUser)
                 }
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
@@ -167,7 +147,6 @@ extension HomeViewController {
         print("here")
         pop.popView.isHidden = false
         pop.showPopView(viewController: self)
-        //pop.popView.button.addTarget(self, action: #selector(showLib), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
         pop.containerView.addGestureRecognizer(tap)
     }
@@ -184,9 +163,8 @@ extension HomeViewController {
         present(picker, animated: true)
     }
     
-    
     func logoutButtonPressed() {
-        manager.userIsLoggedIn(loggedIn: false, uid: nil)
+        //manager.userIsLoggedIn(loggedIn: false, uid: nil)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
@@ -195,8 +173,6 @@ extension HomeViewController {
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
-    
- 
     
     fileprivate func setupNavItems() {
         navigationController?.navigationBar.isHidden = false

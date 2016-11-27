@@ -14,7 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     let loginView = LoginView()
     let store = DataStore.sharedInstance
     let loadingView = LoadingView()
-    let manager = AppManager.sharedInstance
+    //let manager = AppManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,11 +78,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
-            self.manager.userIsLoggedIn(loggedIn: true, uid: userID)
-            self.store.fetchData(handler: { fetchedUser in
-                self.store.currentUser = fetchedUser
+            self.store.fetchUser(completion: { user in
+                self.store.currentUser = user
+                print(user)
             })
-            //self.store.currentUser = user
+            
+
             let tabBar = TabBarController()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar

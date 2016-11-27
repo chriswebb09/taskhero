@@ -22,7 +22,7 @@ class LoginView: UIView {
         emailField.layer.borderColor = Constants.signupFieldColor
         emailField.layer.borderWidth = 1
         emailField.layer.cornerRadius = 2
-        emailField.font = Constants.signupFieldFont //Constants.signupFieldFont
+        emailField.font = Constants.signupFieldFont
         emailField.keyboardType = .emailAddress
         return emailField
     }()

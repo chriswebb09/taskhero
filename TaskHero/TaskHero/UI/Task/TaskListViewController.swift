@@ -11,7 +11,7 @@ import UIKit
 class TaskListViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
-    let manager = AppManager.sharedInstance
+    //let manager = AppManager.sharedInstance
     
     let addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
@@ -39,10 +39,7 @@ class TaskListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        store.fetchData(handler: { _ in
-            
-        })
-        //store.fetchUserData()
+        self.store.fetchUserData()
         if store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
@@ -85,30 +82,11 @@ class TaskListViewController: UITableViewController {
             DispatchQueue.main.async {
                 var removeTaskID: String
                 removeTaskID = self.store.tasks[indexPath.row].taskID
-                //              let points = self.store.tasks[indexPath.row - 1].pointValue
-                
-                removeTaskID = self.store.tasks[indexPath.row - 1].taskID
+
+                //removeTaskID = self.store.tasks[indexPath.row - 1].taskID
                 self.store.currentUser.experiencePoints += 1
                 self.store.currentUser.numberOfTasksCompleted += 1
-//                if let userExperiencePoints = self.store.currentUser.experiencePoints {
-//                    var point = userExperiencePoints
-//                    point += 1
-//                    self.store.currentUser.experiencePoints = point
-//                }
-//                
-                // var tasknumber = self.store.currentUser.numberOfTasksCompleted
-                
-                // self.store.currentUser.numberOfTasksCompleted = tasknumber
-//                if let tasknumber = self.store.currentUser.numberOfTasksCompleted {
-//                    var count = tasknumber
-//                    count += 1
-//                    self.store.currentUser.numberOfTasksCompleted = count
-//                }
-                //self.store.currentUser.experiencePoints += points
-                // self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
-                //self.store.currentUser.numberOfTasksCompleted += 1
                 self.store.insertUser(user: self.store.currentUser)
-                //self.store.insertUser(user: self.store.currentUser)
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -140,7 +118,6 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     }
     
     func logoutButtonPressed() {
-        manager.userIsLoggedIn(loggedIn: false, uid: nil)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC

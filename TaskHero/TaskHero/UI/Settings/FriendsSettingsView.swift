@@ -1,14 +1,14 @@
 //
-//  AddTaskView.swift
-//  TaskTiger
+//  FriendSettingsView.swift
+//  TaskHero
 //
-//  Created by Christopher Webb-Orenstein on 9/24/16.
+//  Created by Christopher Webb-Orenstein on 11/27/16.
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
 
 import UIKit
 
-class AddTaskView: UIView {
+class FriendsSettingsView: UIView {
     
     let taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()

@@ -14,7 +14,6 @@ class SettingsCell: UITableViewCell {
     
     let settingLabel: UILabel = {
         let textView = UILabel()
-        //textView.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
         textView.textColor = UIColor.white
         textView.font = Constants.Font.fontNormal
         textView.textAlignment = .center

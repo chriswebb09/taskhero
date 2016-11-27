@@ -24,10 +24,8 @@ class SettingsViewController: UITableViewController {
         view.backgroundColor = UIColor.backgroundColor() //UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
         header.backgroundColor = UIColor.white
-        //header.sizeThatFits(CGSize(width: view.bounds.width, height: 100))
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
-        //tableView.tableHeaderView?.backgroundColor = UIColor.white
         setupSegment()
         setupTableView()
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
@@ -112,8 +110,6 @@ extension SettingsViewController {
         segmentControl.tintColor = UIColor.white
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
-        //segmentControl.layer.borderWidth = 1
-        //segmentControl.layer.borderColor = UIColor.gray.cgColor
         segmentControl.layer.cornerRadius = 8
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.01).isActive = true

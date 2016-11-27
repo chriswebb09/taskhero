@@ -32,7 +32,6 @@ class AlertPopover: UIView {
         var picker = UIPickerView()
         picker.sizeThatFits(CGSize(width: popView.layer.bounds.width, height: popView.layer.bounds.height))
         popView.addSubview(picker)
-        // loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
         return popView
     }()
     

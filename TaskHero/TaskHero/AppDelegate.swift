@@ -20,25 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let store = DataStore.sharedInstance
-        let defaults = UserDefaults.standard
-        if defaults.object(forKey: "loggedIn") != nil {
-            let userLoggedIn = defaults.object(forKey: "loggedIn") as! Bool
-            if userLoggedIn {
-                if let data = defaults.object(forKey: "currentUser") as? NSData {
-                    let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: data as Data)
-                    store.currentUser = unarchivedData as! User
-                }
-                window = UIWindow(frame: UIScreen.main.bounds)
-                window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-                window?.makeKeyAndVisible()
-            } else if userLoggedIn == false {
-                window = UIWindow(frame: UIScreen.main.bounds)
-                window?.rootViewController = UINavigationController(rootViewController: InitialViewController())
-                window?.makeKeyAndVisible()
-            }
-        }
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        window?.makeKeyAndVisible()
         return true
+
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
