@@ -10,6 +10,12 @@ import UIKit
 
 class AddTaskView: UIView {
     
+    
+//    let picker: UIPickerView = {
+//        let picker = UIPickerView()
+//        return picker
+//    }()
+//    
     let taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black

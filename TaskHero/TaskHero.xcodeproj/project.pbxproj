@@ -54,6 +54,9 @@
 		A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */; };
 		A7346D7C1DE90DF1005E3A5E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7B1DE90DF1005E3A5E /* AlertView.swift */; };
 		A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7D1DE93688005E3A5E /* TaskButton.swift */; };
+		A7346D831DEA2541005E3A5E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D821DEA2541005E3A5E /* InitialViewController.swift */; };
+		A7346D851DEA2552005E3A5E /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D841DEA2552005E3A5E /* InitView.swift */; };
+		A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D871DEA6A08005E3A5E /* DataPicker.swift */; };
 		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
@@ -109,6 +112,9 @@
 		A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		A7346D7B1DE90DF1005E3A5E /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		A7346D7D1DE93688005E3A5E /* TaskButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
+		A7346D821DEA2541005E3A5E /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		A7346D841DEA2552005E3A5E /* InitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitView.swift; sourceTree = "<group>"; };
+		A7346D871DEA6A08005E3A5E /* DataPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
 		A7CF6ACF1DDB8FE700B28A5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +280,7 @@
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
 				A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */,
 				A7346D7B1DE90DF1005E3A5E /* AlertView.swift */,
+				A7346D871DEA6A08005E3A5E /* DataPicker.swift */,
 				A7346D7D1DE93688005E3A5E /* TaskButton.swift */,
 			);
 			path = Views;
@@ -286,6 +293,23 @@
 				A709CACD1DE7719E00877907 /* AddTaskViewController.swift */,
 			);
 			path = AddTask;
+			sourceTree = "<group>";
+		};
+		A7346D7F1DEA249C005E3A5E /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A713373C1DE8047E0030DDF2 /* AppManager.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		A7346D861DEA255A005E3A5E /* InitialView */ = {
+			isa = PBXGroup;
+			children = (
+				A7346D821DEA2541005E3A5E /* InitialViewController.swift */,
+				A7346D841DEA2552005E3A5E /* InitView.swift */,
+			);
+			name = InitialView;
 			sourceTree = "<group>";
 		};
 		AF18D86C1DBD8165002A3372 /* Profile */ = {
@@ -324,6 +348,7 @@
 				A709CB1C1DE777A900877907 /* Splash */,
 				AFE9E6BF1DBDA76E0023C232 /* Task */,
 				AF18D86D1DBD816E002A3372 /* Team */,
+				A7346D861DEA255A005E3A5E /* InitialView */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -370,13 +395,13 @@
 			children = (
 				AFA3CEA91DB58E2E003266CA /* Models */,
 				AFA3CE8D1DB58DF7003266CA /* Networking */,
+				A7346D7F1DEA249C005E3A5E /* Application */,
 				AFA3CE8A1DB58DDB003266CA /* UI */,
 				AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */,
 				AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */,
 				AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */,
 				A7CF6ACF1DDB8FE700B28A5A /* Info.plist */,
 				AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */,
-				A713373C1DE8047E0030DDF2 /* AppManager.swift */,
 			);
 			path = TaskHero;
 			sourceTree = "<group>";
@@ -518,6 +543,7 @@
 				A709CACC1DE7718B00877907 /* LoginViewController.swift in Sources */,
 				A709CB261DE77DBF00877907 /* DBFetch.swift in Sources */,
 				A709CAD41DE771EB00877907 /* ProfileDataCell.swift in Sources */,
+				A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */,
 				A709CB0C1DE7735B00877907 /* SignupViewController.swift in Sources */,
 				A709CAD91DE7720200877907 /* TaskCell.swift in Sources */,
 				A709CAFC1DE7730D00877907 /* SignupView.swift in Sources */,
@@ -530,6 +556,7 @@
 				A709CAE61DE7725F00877907 /* SettingsCell.swift in Sources */,
 				A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */,
 				A709CB001DE7731F00877907 /* Constants.swift in Sources */,
+				A7346D831DEA2541005E3A5E /* InitialViewController.swift in Sources */,
 				A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A709CB1E1DE777DC00877907 /* Auth.swift in Sources */,
@@ -561,6 +588,7 @@
 				A709CAD01DE771B700877907 /* HomeViewController.swift in Sources */,
 				A709CAD21DE771E100877907 /* ProfileHeaderCell.swift in Sources */,
 				A709CACB1DE7718B00877907 /* LoginView.swift in Sources */,
+				A7346D851DEA2552005E3A5E /* InitView.swift in Sources */,
 				A709CB0E1DE7736800877907 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

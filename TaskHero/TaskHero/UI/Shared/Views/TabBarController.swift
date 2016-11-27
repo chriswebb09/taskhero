@@ -12,23 +12,36 @@ import Firebase
 class TabBarController: UITabBarController {
     
     let store = DataStore.sharedInstance
+    let manager = AppManager.sharedInstance
     
     override func viewDidLoad() {
+        
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if user != nil && (self.store.currentUser != nil) {
-                super.viewDidLoad()
-                self.view.backgroundColor = UIColor.white
-                self.setupControllers()
-            } else if self.store.currentUser == nil {
-                self.store.fetchData()
+            if let user = user {
                 super.viewDidLoad()
                 self.view.backgroundColor = UIColor.white
                 self.setupControllers()
             } else {
+                // No user is signed in.
                 self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
             }
         }
     }
+//        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+//            if user != nil && (self.store.currentUser != nil) {
+//                super.viewDidLoad()
+//                self.view.backgroundColor = UIColor.white
+//                self.setupControllers()
+//            } else if self.store.currentUser == nil {
+//                self.store.fetchData()
+//                super.viewDidLoad()
+//                self.view.backgroundColor = UIColor.white
+//                self.setupControllers()
+//            } else {
+//                self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
+//            }
+//        }
+//    }
     
     override func viewDidLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -129,4 +142,6 @@ extension TabBarController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginController
     }
+    
+    
 }

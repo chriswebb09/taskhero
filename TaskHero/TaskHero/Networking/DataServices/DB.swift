@@ -41,11 +41,11 @@ class Database {
                                       "FirstName": user.firstName ?? " ",
                                       "LastName": user.lastName ?? " ",
                                       "ProfilePicture": user.profilePicture ?? " ",
-                                      "ExperiencePoints": user.experiencePoints,
+                                      "ExperiencePoints": user.experiencePoints ?? 0,
                                       "Level": user.level,
                                       "JoinDate": user.joinDate,
                                       "Username": user.username,
-                                      "TasksCompleted": user.numberOfTasksCompleted]
+                                      "TasksCompleted": user.numberOfTasksCompleted ?? 0]
         self.userRef.updateChildValues(["/\(self.store.currentUserString!)": userData])
     }
 
@@ -54,7 +54,7 @@ class Database {
         refHandle = tasksRef.observe(.childAdded, with: { (snapshot) in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             //print(snapshotValue)
-            var newTask = Task()
+            let newTask = Task()
             newTask.taskID = snapshot.key
             print(newTask.taskID)
             if let fetchName = snapshotValue["TaskName"] as? String {

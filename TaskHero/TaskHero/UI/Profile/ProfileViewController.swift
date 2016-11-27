@@ -32,7 +32,9 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        store.fetchData()
+        store.fetchData( handler:  { _ in
+            
+        })
         tableView.reloadData()
     }
     
@@ -79,7 +81,7 @@ extension ProfileViewController {
     }
     
     func logoutButtonPressed() {
-        manager.userIsLoggedIn(loggedIn: false)
+        manager.userIsLoggedIn(loggedIn: false, uid: nil)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC

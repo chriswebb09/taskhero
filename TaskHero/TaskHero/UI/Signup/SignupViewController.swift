@@ -101,7 +101,7 @@ extension SignupViewController {
                     print("sucessfully saved username email reference")
                 })
                 
-                let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints":newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
+                let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture, "ExperiencePoints":newUser.experiencePoints ?? 0, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
                 usersReference.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)

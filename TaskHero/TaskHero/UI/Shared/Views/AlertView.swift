@@ -16,6 +16,13 @@ class AlertView: UIView {
         return banner
     }()
     
+    
+//    let alertLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "When would you like to complete your task?"
+//        return label
+//    }()
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = UIColor.white
@@ -23,6 +30,13 @@ class AlertView: UIView {
     }
     
     func setupConstraints() {
+//        addSubview(alertLabel)
+//        alertLabel.translatesAutoresizingMaskIntoConstraints = false
+//        alertLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+//        alertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//        alertLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
+//        alertLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         headBanner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

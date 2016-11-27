@@ -46,12 +46,20 @@ class DataStore {
         tasksRef = userRef
     }
     
-    
-    func fetchData() {
-        auth.fetchUser(with: currentUserString, handler: { user in
-            self.currentUser = user
-            self.manager.userIsLoggedIn(loggedIn: true)
-        })
+    func fetchData(handler: @escaping (User) -> Void) {
+        if currentUserString == nil {
+            currentUserString = currentUser.uid
+            auth.fetchUser(with: currentUserString, handler: { user in
+                self.manager.userIsLoggedIn(loggedIn: true, uid: user.uid)
+                self.currentUser = user
+                self.fetchTasks(completion: { task in
+                    self.tasks.append(task)
+                })
+                self.currentUser.tasks = self.tasks
+                self.manager.setUserData(user: self.currentUser)
+                handler(user)
+            })
+        }
     }
     
     func fetchValidUsernames() {
@@ -67,11 +75,11 @@ class DataStore {
                                       "FirstName": user.firstName ?? " ",
                                       "LastName": user.lastName ?? " ",
                                       "ProfilePicture": user.profilePicture ?? " ",
-                                      "ExperiencePoints": user.experiencePoints,
+                                      "ExperiencePoints": user.experiencePoints ?? 0,
                                       "Level": user.level,
                                       "JoinDate": user.joinDate,
                                       "Username": user.username,
-                                      "TasksCompleted": user.numberOfTasksCompleted]
+                                      "TasksCompleted": user.numberOfTasksCompleted ?? 0]
         userRef.updateChildValues(["/\(self.currentUserString!)": userData])
         usernameRef.updateChildValues([user.username:user.email])
     }
@@ -80,7 +88,7 @@ class DataStore {
         tasksRef = userRef.child(currentUserString).child("Tasks")
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
-            var newTask = Task()
+            let newTask = Task()
             newTask.taskID = snapshot.key
             print(newTask.taskID)
             if let fetchName = snapshotValue["TaskName"] as? String {
@@ -112,7 +120,7 @@ class DataStore {
         tasksRef.child("\(task.taskID)/TaskCompleted").setValue(task.taskDue)
     }
     
-    func removeTask(ref:String) {
+    func removeTask(ref:String, taskID: String) {
         tasksRef = userRef.child(currentUserString).child("Tasks")
         tasksRef.child(ref).removeValue()
     }

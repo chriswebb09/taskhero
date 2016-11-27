@@ -32,11 +32,16 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        store.fetchData()
+        store.fetchData(handler: { _ in
+            
+        })
         super.viewWillAppear(false)
         self.store.tasks.removeAll()
+        self.store.currentUser.tasks.removeAll()
         self.store.fetchTasks(completion: { task in
+            print(task)
             self.store.tasks.append(task)
+            self.store.currentUser.tasks.append(task)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -45,7 +50,10 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        store.tasksRef.removeObserver(withHandle: store.refHandle)
+        if store.refHandle != nil {
+            store.tasksRef.removeObserver(withHandle: store.refHandle)
+        }
+        
     }
 }
 
@@ -106,12 +114,31 @@ extension HomeViewController {
                 if (indexPath.row) == 0 {
                     return
                 } else {
+                    let points = self.store.tasks[indexPath.row - 1].pointValue
+                    
                     removeTaskID = self.store.tasks[indexPath.row - 1].taskID
-                    self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
+                    self.store.currentUser.experiencePoints += 1
                     self.store.currentUser.numberOfTasksCompleted += 1
+//                    if let userExperiencePoints = self.store.currentUser.experiencePoints {
+//                        var point = userExperiencePoints
+//                        point += points
+//                        self.store.currentUser.experiencePoints = point
+//                    }
+                    
+                   // var tasknumber = self.store.currentUser.numberOfTasksCompleted
+                    
+                   // self.store.currentUser.numberOfTasksCompleted = tasknumber
+//                    if let tasknumber = self.store.currentUser.numberOfTasksCompleted {
+//                        var count = tasknumber
+//                        count += 1
+//                        self.store.currentUser.numberOfTasksCompleted = count
+//                    }
+                    //self.store.currentUser.experiencePoints += points
+                   // self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
+                    //self.store.currentUser.numberOfTasksCompleted += 1
                     self.store.insertUser(user: self.store.currentUser)
                 }
-                self.store.removeTask(ref: removeTaskID)
+                self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
@@ -159,7 +186,7 @@ extension HomeViewController {
     
     
     func logoutButtonPressed() {
-        manager.userIsLoggedIn(loggedIn: false)
+        manager.userIsLoggedIn(loggedIn: false, uid: nil)
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC

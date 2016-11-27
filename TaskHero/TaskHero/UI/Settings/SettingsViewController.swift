@@ -64,7 +64,7 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pop.popView.isHidden = false
-        pop.showPopView(viewController: self)
+        pop.showPopView(viewController: self, pick: nil)
         pop.popView.layer.borderWidth = 1
         pop.popView.layer.borderColor = UIColor.black.cgColor
         pop.popView.layer.shadowOffset = CGSize(width:-0.5, height: 0.3)
