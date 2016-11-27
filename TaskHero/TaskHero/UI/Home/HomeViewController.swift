@@ -104,6 +104,7 @@ extension HomeViewController {
             let height = tableView.rowHeight - 5
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
             taskCell.setupCellView(width: view.frame.size.width, height:height)
+            
             return taskCell
         }
     }
