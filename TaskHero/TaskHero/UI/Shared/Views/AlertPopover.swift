@@ -11,21 +11,18 @@ import UIKit
 class AlertPopover: BasePopoverAlert {
     
     var popView: AlertView = {
-        
         let popView = AlertView()
         
         popView.layer.cornerRadius = 10
         popView.backgroundColor = UIColor.white
         popView.layer.borderColor = UIColor.black.cgColor
         popView.layer.borderWidth = 1
-        
         return popView
     }()
     
     
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
-        
         popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
         popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         popView.clipsToBounds = true

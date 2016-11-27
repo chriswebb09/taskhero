@@ -33,15 +33,14 @@ class DataPickerView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         backgroundColor = UIColor.white
         layer.borderWidth = 1
         layer.borderColor = UIColor.black.cgColor
+        
         setupConstraints()
     }
     
     fileprivate func setupConstraints() {
-        
         addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true

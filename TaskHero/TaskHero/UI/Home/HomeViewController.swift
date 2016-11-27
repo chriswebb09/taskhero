@@ -14,6 +14,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     let pop = PickerPopMenu()
     var profilePic: UIImage? = nil
     let cellSpacingHeight: CGFloat = 5
+    let help = TabviewHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         
-        setupTableView()
+        help.setupTableView(tableView: tableView)
         setupNavItems()
     }
     
@@ -102,7 +103,6 @@ extension HomeViewController {
             return headerCell
             
         } else {
-            
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             let height = tableView.rowHeight - 5
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
@@ -114,7 +114,6 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            
             DispatchQueue.main.async {
                 var removeTaskID: String
                 if (indexPath.row) == 0 {
@@ -141,16 +140,6 @@ extension HomeViewController {
 
 extension HomeViewController {
     
-    fileprivate func setupTableView() {
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 4
-    }
-    
     func profilePictureTapped() {
         pop.popView.isHidden = false
         pop.showPopView(viewController: self)
@@ -159,14 +148,12 @@ extension HomeViewController {
     }
     
     func hideView() {
-        
         pop.popView.isHidden = true
         pop.hidePopView(viewController: self)
     }
     
     fileprivate func addNewPerson() {
         let picker = UIImagePickerController()
-        
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)
@@ -179,7 +166,6 @@ extension HomeViewController {
     }
     
     func addTaskButtonTapped() {
-        
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     

@@ -13,7 +13,6 @@ class AlertView: UIView {
     let headBanner: UIView = {
         let banner = UIView()
         banner.backgroundColor = UIColor.lightGray
-       // banner.backgroundColor = UIColor.blue
         return banner
     }()
     
@@ -59,6 +58,7 @@ class AlertView: UIView {
     }
     
     fileprivate func setupConstraints() {
+        
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         headBanner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

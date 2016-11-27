@@ -22,15 +22,17 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
+        
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
         view.addSubview(profileSettingsView)
         view.addSubview(tableView)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
+        
         profileSettingsView.layoutSubviews()
         setupViews()
         setupTableView()
@@ -50,7 +52,6 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     }
     
     fileprivate func setupViews() {
-        
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
         profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
         profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -63,15 +64,13 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
+        
         cell.configureCell(setting: options[indexPath.row])
         cell.delegate = self
         cell.button.tag = indexPath.row
         cell.button.index = indexPath
-        
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)
-        
         return cell
     }
 }
@@ -79,13 +78,11 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
 extension ProfileSettingsViewController {
 
     func connected(sender: TagButton){
-        
         indexTap = sender.index
         tapEdit()
     }
     
     fileprivate func tapEdit() {
-        
         let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
         if tapped == true {
             tapped = false
@@ -104,7 +101,6 @@ extension ProfileSettingsViewController {
     }
     
     fileprivate func setupTableView() {
-        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -114,7 +110,6 @@ extension ProfileSettingsViewController {
     }
     
     fileprivate func separateNames(name:String) -> [String] {
-        
         var nameArray = name.components(separatedBy: " ")
         return nameArray
     }
