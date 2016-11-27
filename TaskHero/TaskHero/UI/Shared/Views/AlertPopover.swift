@@ -16,22 +16,12 @@ class AlertPopover: UIView {
         return containerView
     }()
     
-    lazy var searchLabel: UILabel = {
-        let searchLabel = UILabel()
-        searchLabel.textColor = UIColor.black
-        searchLabel.text = "Become a Member"
-        searchLabel.font = Constants.Font.fontLarge
-        searchLabel.textAlignment = .center
-        return searchLabel
-    }()
-    
-    var popView: UIView = {
-        let popView = UIView()
+    var popView: AlertView = {
+        let popView = AlertView()
         popView.layer.cornerRadius = 10
         popView.backgroundColor = UIColor.white
-        var picker = UIPickerView()
-        picker.sizeThatFits(CGSize(width: popView.layer.bounds.width, height: popView.layer.bounds.height))
-        popView.addSubview(picker)
+        popView.layer.borderColor = UIColor.black.cgColor
+        popView.layer.borderWidth = 1
         return popView
     }()
     
@@ -39,7 +29,7 @@ class AlertPopover: UIView {
     func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
-        popView.frame = CGRect(x:0, y:0, width:160, height:160)
+        popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
         popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         popView.clipsToBounds = true
         containerView.addSubview(popView)
@@ -47,6 +37,14 @@ class AlertPopover: UIView {
         
     }
     
+//    func setupConstraints() {
+//        self.cancelButton.translatesAutoresizingMaskIntoConstraints = false
+//        //self.cancelButton.heightAnchor.constraint(equalTo: popView.heightAnchor, multiplier: Constants.signupFieldHeight).isActive = true
+//        //self.cancelButton.widthAnchor.constraint(equalTo: popView.widthAnchor, multiplier: Constants.loginButtonWidth).isActive = true
+//       // self.cancelButton.centerXAnchor.constraint(equalTo: popView.centerXAnchor).isActive = true
+//        //self.cancelButton.bottomAnchor.constraint(equalTo: popView.bottomAnchor).isActive = true
+//    }
+
     func hidePopView(viewController:UIViewController){
         viewController.view.sendSubview(toBack: containerView)
     }
