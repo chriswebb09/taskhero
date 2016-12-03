@@ -11,40 +11,25 @@ import UIKit
 final class ProfileDataCell: UITableViewCell {
 
     static let cellIdentifier = "ProfileDataCell"
+    static let dataCellRadius = CGFloat(4)
     
+    var dataCellModel: ProfileDataCellViewModel =  {
+        var cellModel = ProfileDataCellViewModel()
+        return cellModel
+    }()
+  
     lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
-        levelLabel.backgroundColor = UIColor.experienceBackground()
-        levelLabel.textColor = UIColor.black
-        levelLabel.font = Constants.Font.fontSmall
-        levelLabel.textAlignment = .center
-        levelLabel.sizeToFit()
-        levelLabel.layer.cornerRadius = 4
-        levelLabel.layer.masksToBounds = true
         return levelLabel
     }()
     
     lazy var experiencePointsLabel: UILabel = {
         let experiencePointsLabel = UILabel()
-        experiencePointsLabel.textColor = UIColor.black
-        experiencePointsLabel.backgroundColor = UIColor.experienceBackground()
-        experiencePointsLabel.font = Constants.Font.fontSmall
-        experiencePointsLabel.textAlignment = .center
-        experiencePointsLabel.sizeToFit()
-        experiencePointsLabel.layer.cornerRadius = 4
-        experiencePointsLabel.layer.masksToBounds = true
         return experiencePointsLabel
     }()
     
     lazy var tasksCompletedLabel: UILabel = {
         let taskCompletedLabel = UILabel()
-        taskCompletedLabel.backgroundColor = UIColor.experienceBackground()
-        taskCompletedLabel.textColor = UIColor.black
-        taskCompletedLabel.font = Constants.Font.fontSmall
-        taskCompletedLabel.textAlignment = .center
-        taskCompletedLabel.layer.cornerRadius = 4
-        taskCompletedLabel.sizeToFit()
-        taskCompletedLabel.layer.masksToBounds = true
         return taskCompletedLabel
     }()
     
@@ -53,33 +38,46 @@ final class ProfileDataCell: UITableViewCell {
         setupConstraints()
     }
     
-    fileprivate func setupConstraints() {
+    func configureLabels(label:UILabel) {
+        label.layer.cornerRadius = ProfileDataCell.dataCellRadius
+        label.layer.masksToBounds = true
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.experienceBackground()
+        label.textColor = UIColor.black
+        label.font = Constants.Font.fontSmall
+        label.sizeToFit()
+    }
+    
+    func configureConstraints(label:UILabel) {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
+        label.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
+    }
+    
+    private func setupConstraints() {
+        configureLabels(label: levelLabel)
         contentView.addSubview(levelLabel)
-        levelLabel.translatesAutoresizingMaskIntoConstraints = false
-        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
-        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
+        configureConstraints(label: levelLabel)
         levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
+        configureLabels(label: experiencePointsLabel)
         contentView.addSubview(experiencePointsLabel)
-        experiencePointsLabel.translatesAutoresizingMaskIntoConstraints = false
-        experiencePointsLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
-        experiencePointsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
+        configureConstraints(label: experiencePointsLabel)
         experiencePointsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         experiencePointsLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
+        configureLabels(label: tasksCompletedLabel)
         contentView.addSubview(tasksCompletedLabel)
-        tasksCompletedLabel.translatesAutoresizingMaskIntoConstraints = false
-        tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
-        tasksCompletedLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
+        configureConstraints(label: tasksCompletedLabel)
         tasksCompletedLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
     }
     
-    func configureCell(user:User) {
-        levelLabel.text = "Level: \(user.level)"
-        experiencePointsLabel.text = "Experience: \(String(describing: user.experiencePoints))"
-        tasksCompletedLabel.text = "Tasks completed: \(String(describing: user.numberOfTasksCompleted))"
+    func configureCell() {
+        levelLabel.text = "Level: \(dataCellModel.level)"
+        experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"
+        tasksCompletedLabel.text = "Tasks completed: \(String(describing: dataCellModel.tasksCompleted))"
         layoutSubviews()
         layoutMargins = UIEdgeInsets.zero
     }

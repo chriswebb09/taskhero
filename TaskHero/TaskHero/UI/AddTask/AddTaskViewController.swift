@@ -18,9 +18,9 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
     var month: String = "Jan"
     var day: String = "01"
     var year: String = "2016"
-    var pickerMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    var years = ["2016", "2017", "2018"]
-    let range: [Int] = Array(1...30)
+    final var pickerMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    final var years = ["2016", "2017", "2018"]
+    final let range: [Int] = Array(1...30)
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:300, height:300))
     
     override func viewDidLoad() {
@@ -41,7 +41,6 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

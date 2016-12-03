@@ -10,7 +10,7 @@ import UIKit
 
 final class FriendsSettingsView: UIView {
     
-    let taskNameLabel: UILabel = {
+    dynamic let taskNameLabel: UILabel = {
         
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black

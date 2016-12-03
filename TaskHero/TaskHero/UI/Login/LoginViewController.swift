@@ -13,7 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
     let store = DataStore.sharedInstance
-    let loadingView = LoadingView()
+    dynamic let loadingView = LoadingView()
     //let manager = AppManager.sharedInstance
     
     override func viewDidLoad() {
@@ -111,7 +111,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension LoginViewController {
-    func dismissKeyboard() {
+    dynamic func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -138,6 +138,7 @@ extension LoginViewController {
 }
 
 extension UINavigationBar {
+    
     func setBottomBorderColor(color: UIColor, height: CGFloat) {
         
         let bottomBorderRect = CGRect(x: 0, y: frame.height, width: frame.width, height: height)

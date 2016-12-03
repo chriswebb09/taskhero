@@ -25,6 +25,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         
         help.setupTableView(tableView: tableView)
+        tableView.estimatedRowHeight = view.frame.height / 4
         setupNavItems()
     }
     
@@ -93,6 +94,7 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
+            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
@@ -153,7 +155,7 @@ extension HomeViewController {
         pop.hidePopView(viewController: self)
     }
     
-    fileprivate func addNewPerson() {
+    func addNewPerson() {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self

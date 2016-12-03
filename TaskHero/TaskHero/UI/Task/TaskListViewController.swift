@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskListViewController: UITableViewController {
+final class TaskListViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
     //let manager = AppManager.sharedInstance
@@ -114,7 +114,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         tableView.reloadData()
     }
     
-    func setupNavItems() {
+    dynamic func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)

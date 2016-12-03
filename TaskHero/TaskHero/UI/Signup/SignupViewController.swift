@@ -9,12 +9,12 @@
 import UIKit
 import Firebase
 
-class SignupViewController: UIViewController, UITextFieldDelegate {
+final class SignupViewController: UIViewController, UITextFieldDelegate {
     
     let store = DataStore.sharedInstance
     
-    let signupView = SignupView()
-    var emailInvalidated = false
+    dynamic let signupView = SignupView()
+    dynamic var emailInvalidated = false
     let CharacterLimit = 11
     
     override func viewDidLoad() {
@@ -225,11 +225,9 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    func validateEmailInput(email:String, confirm:String) -> Bool {
-        
+    dynamic func validateEmailInput(email:String, confirm:String) -> Bool {
         let emailLower = email.lowercased()
         let confirmLower = confirm.lowercased()
-        
         if (email.isValidEmail()) && (emailLower == confirmLower) {
             return true
         } else {

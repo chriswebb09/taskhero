@@ -12,7 +12,6 @@ class AlertPopover: BasePopoverAlert {
     
     var popView: AlertView = {
         let popView = AlertView()
-        
         popView.layer.cornerRadius = 10
         popView.backgroundColor = UIColor.white
         popView.layer.borderColor = UIColor.black.cgColor

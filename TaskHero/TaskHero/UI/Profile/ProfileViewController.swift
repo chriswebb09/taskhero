@@ -12,17 +12,17 @@ import Firebase
 final class ProfileViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
+    let help = TabviewHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        edgesForExtendedLayout = []
-        setupTableView()
         setupNavItems()
-        
+        edgesForExtendedLayout = []
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
+        help.setupTableView(tableView: tableView)
+        tableView.estimatedRowHeight = view.frame.height / 3
         tableView.reloadData()
     }
     
@@ -67,23 +67,13 @@ extension ProfileViewController {
             
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
-            dataCell.configureCell(user: self.store.currentUser)
+            dataCell.configureCell()
             return dataCell
         }
     }
 }
 
 extension ProfileViewController {
-    func setupTableView() {
-        
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        tableView.allowsSelection = false
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 3
-    }
     
     func logoutButtonPressed() {
         

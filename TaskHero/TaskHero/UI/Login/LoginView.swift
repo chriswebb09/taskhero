@@ -80,8 +80,6 @@ final class LoginView: UIView {
         
         UIView.animate(withDuration: 0.5, animations: {
             self.logoImageView.layer.opacity = 1
-        })
-        UIView.animate(withDuration: 1.5, animations: {
             self.loginButton.layer.opacity = 1
             self.registerLabel.layer.opacity = 1
             self.signupButton.layer.opacity = 1

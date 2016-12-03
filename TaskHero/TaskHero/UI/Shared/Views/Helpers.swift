@@ -23,9 +23,9 @@ class TabviewHelper {
 
 
 class LogoutHelper {
-//    func logoutButtonPressed(destinationViewController:UIViewController) {
-//        let loginVC = UINavigationController(rootViewController:LoginViewController())
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        appDelegate.window?.rootViewController = loginVC
-//    }
+    func logoutButtonPressed(destinationViewController:UIViewController) {
+        let destinationVC = UINavigationController(rootViewController:destinationViewController)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = destinationVC
+    }
 }
