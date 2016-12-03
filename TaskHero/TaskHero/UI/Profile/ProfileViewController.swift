@@ -16,13 +16,13 @@ final class ProfileViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavItems()
         edgesForExtendedLayout = []
+        help.setupTableView(tableView: tableView)
+        tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
-        help.setupTableView(tableView: tableView)
         tableView.estimatedRowHeight = view.frame.height / 3
+        setupNavItems()
         tableView.reloadData()
     }
     
@@ -53,18 +53,15 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
             return bannerCell
-            
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
             return headerCell
-            
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
@@ -76,18 +73,16 @@ extension ProfileViewController {
 extension ProfileViewController {
     
     func logoutButtonPressed() {
-        
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
     }
     
     func setupNavItems() {
-        
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
     }
     
     func addTaskButtonTapped() {

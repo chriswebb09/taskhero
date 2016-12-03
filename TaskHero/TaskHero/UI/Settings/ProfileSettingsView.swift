@@ -27,7 +27,6 @@ final class ProfileSettingsView: UIView {
     }
     
     fileprivate func setupConstraints() {
-        
         addSubview(taskNameLabel)
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
         taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true

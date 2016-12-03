@@ -11,7 +11,6 @@ import UIKit
 final class FriendsSettingsView: UIView {
     
     dynamic let taskNameLabel: UILabel = {
-        
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add Friends"
@@ -22,7 +21,6 @@ final class FriendsSettingsView: UIView {
     }()
     
     lazy var taskNameField: TextFieldExtension = {
-        
         let taskNameField = TextFieldExtension()
         taskNameField.placeholder = "Search by email"
         taskNameField.font = Constants.signupFieldFont
@@ -33,7 +31,6 @@ final class FriendsSettingsView: UIView {
     }()
     
     lazy var addTaskButton: UIButton = {
-        
         var addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = 1
         addTaskButton.layer.borderColor = UIColor.white.cgColor
@@ -51,7 +48,6 @@ final class FriendsSettingsView: UIView {
     }
     
     fileprivate func setupConstraints() {
-        
         addSubview(taskNameLabel)
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
         taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true

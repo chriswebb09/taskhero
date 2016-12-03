@@ -104,17 +104,17 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     }
     
     func configureCell(user: User) {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
-        usernameLabel.text = user.username
+       layoutMargins = UIEdgeInsets.zero
+        preservesSuperviewLayoutMargins = false
         emailLabel.text = user.email
-        joinDateLabel.text = "Joined: \(user.joinDate)"
         joinDateLabel.isHidden = true
+        usernameLabel.text = user.username
         levelLabel.text = "Level: \(user.level)"
+        joinDateLabel.text = "Joined: \(user.joinDate)"
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePicture.addGestureRecognizer(tap)
-        layoutMargins = UIEdgeInsets.zero
-        preservesSuperviewLayoutMargins = false
         layoutSubviews()
         layoutIfNeeded()
     }

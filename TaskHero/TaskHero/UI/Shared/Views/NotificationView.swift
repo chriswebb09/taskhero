@@ -36,19 +36,19 @@ class NotificationView: BasePopView {
     }
     
     override func setupConstraints() {
-        super.setupConstraints()
         
         addSubview(dataLabel)
+        addSubview(doneButton)
+        super.setupConstraints()
+        
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
-        dataLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: bounds.height / 3).isActive = true
         dataLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         dataLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         dataLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
-        
-        addSubview(doneButton)
+        dataLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: bounds.height / 3).isActive = true
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         doneButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        doneButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
     }
