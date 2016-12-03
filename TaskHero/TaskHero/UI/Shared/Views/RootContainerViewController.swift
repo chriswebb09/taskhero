@@ -40,9 +40,9 @@ class RootContainerViewController: UIViewController {
     }
     
     func showLoginViewController() {
+        let loginVC = LoginViewController()
         guard !(rootViewController is LoginViewController) else { return }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let loginVC = LoginViewController()
         appDelegate.window?.rootViewController = UINavigationController(rootViewController:loginVC)
     }
     

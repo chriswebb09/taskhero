@@ -29,14 +29,12 @@ class NotificationView: BasePopView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         headBanner.backgroundColor = UIColor.black
         backgroundColor = UIColor.white
         setupConstraints()
     }
     
     override func setupConstraints() {
-        
         addSubview(dataLabel)
         addSubview(doneButton)
         super.setupConstraints()
@@ -46,6 +44,7 @@ class NotificationView: BasePopView {
         dataLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         dataLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
         dataLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: bounds.height / 3).isActive = true
+        
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         doneButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true

@@ -18,15 +18,13 @@ class PhotoPickerView: BasePopView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = UIColor.white
-        
-        setupConstraints()
-        
         addSubview(button)
+        setupConstraints()
+        backgroundColor = UIColor.white
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
-        button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
         button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
+        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
+        button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
     }
 }

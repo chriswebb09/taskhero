@@ -25,6 +25,7 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         edgesForExtendedLayout = []
         view.addSubview(tableView)
         view.addSubview(profileSettingsView)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
@@ -84,9 +85,7 @@ extension ProfileSettingsViewController {
     fileprivate func tapEdit() {
         let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
         if tapped == true { tapped = false
-            if (tapCell.profileSettingField.text?.characters.count)! > 0 {
-                tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
-            } else { tapCell.profileSettingLabel.text = options[(indexTap?.row)!] }
+            if (tapCell.profileSettingField.text?.characters.count)! > 0 { tapCell.profileSettingLabel.text = tapCell.profileSettingField.text } else { tapCell.profileSettingLabel.text = options[(indexTap?.row)!] }
             tapCell.profileSettingField.isHidden = true
             tapCell.profileSettingLabel.isHidden = false
         } else if tapped == false { tapped = true

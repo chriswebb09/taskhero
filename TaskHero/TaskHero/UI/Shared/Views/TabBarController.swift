@@ -13,21 +13,19 @@ class TabBarController: UITabBarController {
     
     let store = DataStore.sharedInstance
     override func viewDidLoad() {
+        
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if user != nil && (self.store.currentUser != nil) {
                 super.viewDidLoad()
-                self.view.backgroundColor = UIColor.white
                 self.setupControllers()
-            } else if self.store.currentUser == nil {
-                self.store.fetchUser { user in
-                    self.store.currentUser = user
-                    super.viewDidLoad()
-                    self.view.backgroundColor = UIColor.white
-                    self.setupControllers()
+                self.view.backgroundColor = UIColor.white
+            } else if self.store.currentUser == nil { self.store.fetchUser { user in
+                self.store.currentUser = user
+                super.viewDidLoad()
+                self.setupControllers()
+                self.view.backgroundColor = UIColor.white
                 }
-            } else {
-                self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
-            }
+            } else { self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0) }
         }
     }
     
@@ -41,6 +39,7 @@ class TabBarController: UITabBarController {
         let profileTab = setupProfileTab(profileVC: ProfileViewController())
         let taskListTab = setupTaskTab(taskListVC: TaskListViewController())
         let settingsTab = setupSettingsTab(settingsVC: SettingsViewController())
+        
         let controllers = [homeTab, profileTab, taskListTab, settingsTab]
         viewControllers = controllers
         tabBar.items?[0].title = "Home"
@@ -110,14 +109,15 @@ extension TabBarController {
     }
     
     func setupTabBar() {
-        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
         var tabFrame = tabBar.frame
+        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
         tabFrame.size.height = tabBarHeight
         tabFrame.origin.y = view.frame.size.height - tabBarHeight
+        
         tabBar.frame = tabFrame
+        tabBar.isTranslucent = true
         tabBar.tintColor = Constants.Tabbar.tabbarTintColor
         tabBar.barTintColor = Constants.Tabbar.tabbarColor
-        tabBar.isTranslucent = true
     }
     
     func handleLogout() {
@@ -125,8 +125,7 @@ extension TabBarController {
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)
-        }
-        let loginController = LoginViewController()
+        }; let loginController = LoginViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginController
     }
