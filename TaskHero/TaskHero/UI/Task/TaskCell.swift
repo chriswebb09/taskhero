@@ -134,7 +134,7 @@ class TaskCell: UITableViewCell {
         taskDescriptionBox.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
         taskDescriptionBox.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
-
+        
     }
     
     func configureCell(task:Task) {
@@ -156,7 +156,7 @@ class TaskCell: UITableViewCell {
             taskCompletedView.addGestureRecognizer(tap)
             
         }
-       
+        
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         contentView.backgroundColor = UIColor.clear
@@ -178,7 +178,7 @@ class TaskCell: UITableViewCell {
         layer.shadowOffset = Constants.TaskCell.styledShadowRadius
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowRadius = Constants.TaskCell.shadowRadius
-        layer.shadowOpacity = Constants.TaskCell.shadowOpacity 
+        layer.shadowOpacity = Constants.TaskCell.shadowOpacity
     }
     
     override func prepareForReuse() {

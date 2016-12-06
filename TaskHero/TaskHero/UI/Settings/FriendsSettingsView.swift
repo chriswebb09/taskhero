@@ -10,7 +10,7 @@ import UIKit
 
 final class FriendsSettingsView: UIView {
     
-    dynamic let friendsHeaderLabel: UILabel = {
+    let friendsHeaderLabel: UILabel = {
         let friendsHeaderLabel = UILabel()
         friendsHeaderLabel.textColor = UIColor.black
         friendsHeaderLabel.text = "Add Friends"

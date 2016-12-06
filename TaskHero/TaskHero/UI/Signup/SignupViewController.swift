@@ -13,8 +13,8 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     
     let store = DataStore.sharedInstance
     
-    dynamic let signupView = SignupView()
-    dynamic var emailInvalidated = false
+    let signupView = SignupView()
+    var emailInvalidated = false
     let CharacterLimit = 11
     
     override func viewDidLoad() {
@@ -203,7 +203,7 @@ extension SignupViewController {
                     self.signupView.usernameField.layer.borderColor = Constants.Signup.invalidAnimationColor
                     self.signupView.usernameField.textColor = Constants.Signup.invalidAnimationTextColor
                     self.signupView.emailField.layer.borderColor = Constants.Signup.invalidAnimationColor
-                    self.signupView.emailField.textColor = Constants.Signup.invalidAnimationTextColor 
+                    self.signupView.emailField.textColor = Constants.Signup.invalidAnimationTextColor
                     self.signupView.confirmEmailField.layer.borderColor = Constants.Signup.invalidAnimationColor
                     self.signupView.confirmEmailField.textColor = Constants.Signup.invalidAnimationTextColor
                 })
@@ -222,7 +222,9 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    dynamic func validateEmailInput(email:String, confirm:String) -> Bool {
+    //
+    
+    func validateEmailInput(email:String, confirm:String) -> Bool {
         let emailLower = email.lowercased()
         let confirmLower = confirm.lowercased()
         if (email.isValidEmail()) && (emailLower == confirmLower) {
@@ -247,6 +249,6 @@ extension SignupViewController {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-       
+        
     }
 }

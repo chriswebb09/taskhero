@@ -65,10 +65,7 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
-        
         cell.configureCell(setting: options[indexPath.row])
-        //cell.accessibilityIdentifier
-        
         cell.delegate = self
         cell.button.index = indexPath
         cell.button.tag = indexPath.row
@@ -116,9 +113,6 @@ extension ProfileSettingsViewController {
                     updatedUser.experiencePoints = self.store.currentUser.experiencePoints
                     updatedUser.tasks = self.store.currentUser.tasks
                 }
-                
-                
-                
                 tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
             } else {
                 tapCell.profileSettingLabel.text = options[(indexTap?.row)!] }

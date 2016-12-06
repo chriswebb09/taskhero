@@ -120,7 +120,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         }
     }
     
-    dynamic func setupNavItems() {
+    func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontSmall], for: .normal)
@@ -153,7 +153,6 @@ extension TaskListViewController {
         print("Button toggle \(tapCell.buttonToggled)")
         if tapCell.buttonToggled == true {
             tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
-            // formatTaskWithData(indexPath: newIndex, taskDescription: tapCell.taskDescriptionBox.text!)
         }
         
     }

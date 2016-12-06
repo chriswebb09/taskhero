@@ -18,7 +18,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
     var delegate: ProfileHeaderCellDelegate?
     
-    dynamic let joinDateLabel: UILabel = {
+    let joinDateLabel: UILabel = {
         let joinDateLabel = UILabel()
         joinDateLabel.font = Constants.Font.fontLarge
         return joinDateLabel
