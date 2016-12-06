@@ -13,8 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
     let store = DataStore.sharedInstance
-    dynamic let loadingView = LoadingView()
-    //let manager = AppManager.sharedInstance
+    let loadingView = LoadingView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +89,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
         })
+
     }
     
     fileprivate func checkForValidEmailInput() {
@@ -104,7 +104,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }, completion: { _ in
                 
                 self.loginView.emailField.layer.borderColor = Constants.signupFieldColor
-                self.loginView.emailField.layer.borderWidth = 1
+                self.loginView.emailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
             })
         }
     }
@@ -127,8 +127,8 @@ extension LoginViewController {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
-        textField.layer.borderColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
+        textField.textColor = Constants.Login.loginFieldEditColor
+        textField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

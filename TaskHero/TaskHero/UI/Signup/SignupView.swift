@@ -14,8 +14,7 @@ class SignupView: UIView {
         let signupViewLabel = UILabel()
         signupViewLabel.textColor = UIColor.black
         signupViewLabel.text = "Become a Member"
-        //signupViewLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 22)
-        signupViewLabel.font = Constants.Font.headerFont
+        signupViewLabel.font = Constants.Font.fontLarge
         signupViewLabel.textAlignment = .center
         return signupViewLabel
     }()
@@ -25,7 +24,7 @@ class SignupView: UIView {
         usernameField.placeholder = "Choose your username"
         usernameField.font = Constants.signupFieldFont
         usernameField.layer.borderColor = Constants.signupFieldColor
-        usernameField.layer.borderWidth = 1
+        usernameField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         usernameField.keyboardType = .emailAddress
         return usernameField
     }()
@@ -35,7 +34,7 @@ class SignupView: UIView {
         emailField.placeholder = "Enter email"
         emailField.font = Constants.signupFieldFont
         emailField.layer.borderColor = Constants.signupFieldColor
-        emailField.layer.borderWidth = 1
+        emailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         emailField.keyboardType = .emailAddress
         return emailField
     }()
@@ -45,7 +44,7 @@ class SignupView: UIView {
         confirmEmailField.placeholder = "Confirm your email address"
         confirmEmailField.font = Constants.signupFieldFont
         confirmEmailField.layer.borderColor = Constants.signupFieldColor
-        confirmEmailField.layer.borderWidth = 1
+        confirmEmailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         confirmEmailField.keyboardType = .emailAddress
         return confirmEmailField
     }()
@@ -55,7 +54,7 @@ class SignupView: UIView {
         passwordField.placeholder = "Enter password"
         passwordField.font = Constants.signupFieldFont
         passwordField.layer.borderColor = Constants.signupFieldColor
-        passwordField.layer.borderWidth = 1
+        passwordField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         passwordField.isSecureTextEntry = true
         return passwordField
     }()
@@ -66,7 +65,7 @@ class SignupView: UIView {
         button.backgroundColor = Constants.Login.loginButtonColor
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin" , size: 18)
+        button.titleLabel?.font = Constants.Font.fontNormal
         return button
     }()
     
@@ -81,48 +80,47 @@ class SignupView: UIView {
     fileprivate func setupConstraints() {
         addSubview(signupViewLabel)
         signupViewLabel.translatesAutoresizingMaskIntoConstraints = false
-        signupViewLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
-        signupViewLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
+        signupViewLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        signupViewLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         signupViewLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        signupViewLabel.topAnchor.constraint(equalTo: topAnchor , constant: bounds.height * 0.05).isActive = true
+        signupViewLabel.topAnchor.constraint(equalTo: topAnchor , constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
         
         
         addSubview(usernameField)
         usernameField.translatesAutoresizingMaskIntoConstraints = false
-        usernameField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
-        usernameField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
+        usernameField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        usernameField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         usernameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        usernameField.topAnchor.constraint(equalTo:signupViewLabel.bottomAnchor, constant: bounds.height * 0.05).isActive = true
+        usernameField.topAnchor.constraint(equalTo:signupViewLabel.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
         
         addSubview(emailField)
         emailField.translatesAutoresizingMaskIntoConstraints = false
-        emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
-        emailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
+        emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        emailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         emailField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        emailField.topAnchor.constraint(equalTo:usernameField.bottomAnchor, constant: bounds.height * 0.05).isActive = true
+        emailField.topAnchor.constraint(equalTo:usernameField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
         
         
         addSubview(confirmEmailField)
         confirmEmailField.translatesAutoresizingMaskIntoConstraints = false
-        confirmEmailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
-        confirmEmailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
+        confirmEmailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        confirmEmailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         confirmEmailField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * 0.05).isActive = true
+        confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
 
         addSubview(passwordField)
         passwordField.translatesAutoresizingMaskIntoConstraints = false
-        passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
-        passwordField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
+        passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        passwordField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         passwordField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        passwordField.topAnchor.constraint(equalTo:confirmEmailField.bottomAnchor, constant: bounds.height * 0.05).isActive = true
+        passwordField.topAnchor.constraint(equalTo:confirmEmailField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
         passwordField.isSecureTextEntry = true
         
         addSubview(signupButton)
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
-        //signupButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor, multiplier:Constants.loginButtonWidth).isActive = true
         signupButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        signupButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * 0.06).isActive = true
+        signupButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Signup.buttonTopOffset).isActive = true
     }
 }

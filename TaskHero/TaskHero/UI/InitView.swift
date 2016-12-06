@@ -23,7 +23,7 @@ class InitView: UIView {
     }()
     
     lazy var signupButton: UIButton = {
-        let button = ButtonType.system(title:"Register Now", color:UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0))
+        let button = ButtonType.system(title:"Register Now", color:Constants.Init.signupButtonColor)
         return button.newButton
     }()
     
@@ -44,8 +44,8 @@ class InitView: UIView {
     func setupConstraints() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.logoImageWidth).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.logoImageHeight).isActive = true
+        logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
         

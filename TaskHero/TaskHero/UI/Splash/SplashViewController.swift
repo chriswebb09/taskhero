@@ -60,7 +60,7 @@ class SplashViewController: UIViewController {
                         self.initialView.viewDivider.alpha = 1
                         self.initialView.signupButton.alpha = 1
                         self.navigationController?.navigationBar.isHidden = false
-                        self.navigationController?.navigationBar.barTintColor = Constants.navbarBarTintColor
+                        self.navigationController?.navigationBar.barTintColor = Constants.Tabbar.navbarBarTintColor
                         
         }, completion: nil)
     }

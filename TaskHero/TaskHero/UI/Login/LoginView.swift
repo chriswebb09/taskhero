@@ -21,7 +21,7 @@ final class LoginView: UIView {
         emailField.placeholder = "Enter email"
         emailField.layer.borderColor = Constants.signupFieldColor
         emailField.layer.borderWidth = 1
-        emailField.layer.cornerRadius = 2
+        emailField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         emailField.font = Constants.signupFieldFont
         emailField.keyboardType = .emailAddress
         return emailField
@@ -32,8 +32,8 @@ final class LoginView: UIView {
         passwordField.placeholder = "Enter password"
         passwordField.font = Constants.signupFieldFont
         passwordField.layer.borderColor = Constants.signupFieldColor
-        passwordField.layer.borderWidth = 1
-        passwordField.layer.cornerRadius = 2
+        passwordField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        passwordField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         passwordField.isSecureTextEntry = true
         return passwordField
     }()
@@ -45,7 +45,7 @@ final class LoginView: UIView {
     }()
     
     lazy var signupButton: UIButton = {
-        let button = ButtonType.system(title:"Register Now", color:UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0))
+        let button = ButtonType.system(title:"Register Now", color:Constants.Login.signupButtonColor)
         return button.newButton
     }()
     
@@ -57,9 +57,9 @@ final class LoginView: UIView {
     
     lazy var registerLabel: UILabel = {
         let registerLabel = UILabel()
-        registerLabel.textColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
+        registerLabel.textColor = Constants.Login.registerLabelColor
         registerLabel.text = "Don't have an account?"
-        registerLabel.font = UIFont(name: Constants.Font.helveticaThin , size: 18)
+        registerLabel.font = Constants.Font.fontLarge
         registerLabel.textAlignment = .center
         return registerLabel
     }()
@@ -92,8 +92,8 @@ final class LoginView: UIView {
     fileprivate func setupConstraints() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.logoImageWidth).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.logoImageHeight).isActive = true
+        logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
         

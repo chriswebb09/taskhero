@@ -22,8 +22,12 @@ final class ProfileViewController: UITableViewController {
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
-        setupNavItems()
-        tableView.reloadData()
+        
+        DispatchQueue.main.async {
+            self.setupNavItems()
+            self.tableView.reloadData()
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,12 +38,15 @@ final class ProfileViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         self.store.fetchUserData()
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
 }
 
 extension ProfileViewController {
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -73,16 +80,18 @@ extension ProfileViewController {
 extension ProfileViewController {
     
     func logoutButtonPressed() {
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginVC
+        DispatchQueue.main.async {
+            let loginVC = UINavigationController(rootViewController:LoginViewController())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = loginVC
+        }
     }
     
     func setupNavItems() {
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: Constants.NavBar.bottomHeight)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
     }
     
     func addTaskButtonTapped() {

@@ -1,3 +1,4 @@
+
 //
 //  DataStore.swift
 //  TaskHero
@@ -5,7 +6,6 @@
 //  Created by Christopher Webb-Orenstein on 9/28/16.
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
-
 import UIKit
 import Firebase
 
@@ -17,17 +17,14 @@ class DataStore {
     var currentUser: User!
     var currentUserString: String!
     var tasks = [Task]()
-    
     var tasksRef: FIRDatabaseReference!
     var ref: FIRDatabaseReference!
     var refHandle: FIRDatabaseHandle!
     var validUsernames = [String]()
     var validUserData = [String]()
-    
     var userData = Dictionary<String, AnyObject>()
     var usernameEmailDict = Dictionary<String, AnyObject>()
     var tasksDict = Dictionary<String, AnyObject>()
-    
     var dataSnapshot = [FIRDataSnapshot]()
     var dbRef: FIRDatabaseReference!
     var userRef: FIRDatabaseReference!
@@ -45,7 +42,6 @@ class DataStore {
         usernameRef = dbRef.child("Usernames")
         tasksRef = userRef
     }
-
     
     func fetchUserData() {
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(self.currentUserString)/LastOnline")
@@ -93,8 +89,6 @@ class DataStore {
         })
     }
     
-    
-    
     func insertUser(user:User) {
         let userData: NSDictionary = ["Email": user.email,
                                       "FirstName": user.firstName ?? " ",
@@ -113,14 +107,13 @@ class DataStore {
         usernameRef.updateChildValues([user.username:user.email])
     }
     
-    
     func fetchUser(completion:@escaping (User)-> ()) {
         let database = FIRDatabase.database()
         guard let uid = currentUserString else { return }
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(uid)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
-       // observeSingleEvent(of: .value, with: { (snapshot) in
+            // observeSingleEvent(of: .value, with: { (snapshot) in
             //guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             let user = User()
@@ -156,14 +149,10 @@ class DataStore {
             completion(user)
         })
     }
-
-    
-
-
     
     func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
         var userID = FIRAuth.auth()?.currentUser?.uid
-
+        
         tasksRef = userRef.child((userID)!).child("Tasks")
         tasksRef.keepSynced(true)
         ///tasksRef.

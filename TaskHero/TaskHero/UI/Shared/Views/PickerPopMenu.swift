@@ -28,14 +28,14 @@ class PickerPopMenu: BasePopoverAlert {
     
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
-        popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.75, height:UIScreen.main.bounds.height * 0.35)
-        popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+        popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.35, width:UIScreen.main.bounds.width * 0.75, height:UIScreen.main.bounds.height * 0.35)
+        popView.center = CGPoint(x: UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.4)
         popView.layer.borderColor = UIColor.black.cgColor
         popView.layer.borderWidth = 1
         popView.clipsToBounds = true
-        
-        containerView.addSubview(popView)
+        popView.isOpaque = true
+        popView.layer.opacity = 1
         viewController.view.addSubview(containerView)
-        
+        viewController.view.addSubview(popView)
     }
 }

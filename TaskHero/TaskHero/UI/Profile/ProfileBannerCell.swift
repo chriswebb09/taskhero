@@ -29,7 +29,7 @@ class ProfileBannerCell: UITableViewCell {
         bannerImage.translatesAutoresizingMaskIntoConstraints = false
         bannerImage.center = contentView.center
         bannerImage.widthAnchor.constraint(equalTo:contentView.widthAnchor).isActive = true
-        bannerImage.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.profileBannerHeight).isActive = true
     }
     
     func configureCell() {
@@ -37,7 +37,7 @@ class ProfileBannerCell: UITableViewCell {
         isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        backgroundColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+        backgroundColor = Constants.Profile.profileHeaderBannerColor
     }
     
     override func prepareForReuse() {

@@ -25,7 +25,6 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.addSubview(addTaskView)
         navigationController?.navigationBar.tintColor = UIColor.white
         edgesForExtendedLayout = []
@@ -52,7 +51,6 @@ extension AddTaskViewController {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
-        
         if(replacementText.isEqual("\n")) {
             textView.resignFirstResponder()
             return false
@@ -61,10 +59,11 @@ extension AddTaskViewController {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        
         if textView.text.isEmpty {
-            textView.text = "Describe what you want to get done."
-            textView.textColor = UIColor.lightGray
+            DispatchQueue.main.async {
+                textView.text = "Describe what you want to get done."
+                textView.textColor = UIColor.lightGray
+            }
         }
     }
 }
@@ -114,38 +113,41 @@ extension AddTaskViewController {
 extension AddTaskViewController {
     
     func addTaskButtonTapped() {
-        
         view.endEditing(true)
-        pop.popView.isHidden = false
-        pick.showsSelectionIndicator = true
-        pick.frame = pop.popView.frame
-        pick.layer.borderWidth = 1
-        pop.showPopView(viewController: self, pick: pick)
-        stringDate = "\(month)-\(day)-\(year)"
+        DispatchQueue.main.async {
+            self.pop.popView.isHidden = false
+            self.pick.showsSelectionIndicator = true
+            self.pick.frame = self.pop.popView.frame
+            self.pick.layer.borderWidth = 1
+            self.pop.showPopView(viewController: self, pick: self.pick)
+            self.stringDate = "\(self.month)-\(self.day)-\(self.year)"
+        }
         pop.popView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
     
     func formatTaskWithDate() {
-        
         let newDate = "\(month)-\(day)-\(year)"
         let uid = NSUUID().uuidString
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
-        
         let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:newDate, taskCompleted: false, pointValue:5)
         store.addTasks(task: newTask)
         store.currentUser.tasks!.append(newTask)
         
-        pop.hidePopView(viewController: self)
-        pop.popView.isHidden = true
-        _ = navigationController?.popToRootViewController(animated: false)
+        DispatchQueue.main.async {
+            self.pop.hidePopView(viewController: self)
+            self.pop.popView.isHidden = true
+            _ = self.navigationController?.popToRootViewController(animated: false)
+        }
     }
     
     fileprivate func addTask() {
+        DispatchQueue.main.async {
+            self.pop.hidePopView(viewController: self)
+            self.pop.popView.isHidden = true
+            _ = self.navigationController?.popToRootViewController(animated: false)
+        }
         
-        pop.hidePopView(viewController: self)
-        pop.popView.isHidden = true
-        _ = navigationController?.popToRootViewController(animated: false)
     }
     
     func dismissKeyboard() {

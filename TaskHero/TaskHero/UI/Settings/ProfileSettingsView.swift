@@ -10,14 +10,14 @@ import UIKit
 
 final class ProfileSettingsView: UIView {
     
-    dynamic let taskNameLabel: UILabel = {
-        let taskNameLabel = UILabel()
-        taskNameLabel.textColor = UIColor.black
-        taskNameLabel.text = "User Settings"
-        taskNameLabel.font = Constants.Font.headerFont
-        taskNameLabel.textAlignment = .center
-        taskNameLabel.layer.masksToBounds = true
-        return taskNameLabel
+    let profileLabel: UILabel = {
+        let profileLabel = UILabel()
+        profileLabel.textColor = UIColor.black
+        profileLabel.text = "User Settings"
+        profileLabel.font = Constants.Font.fontLarge
+        profileLabel.textAlignment = .center
+        profileLabel.layer.masksToBounds = true
+        return profileLabel
     }()
     
     override func layoutSubviews() {
@@ -27,12 +27,13 @@ final class ProfileSettingsView: UIView {
     }
     
     fileprivate func setupConstraints() {
-        addSubview(taskNameLabel)
-        taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
-        taskNameLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.5).isActive = true
-        taskNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.04).isActive = true
+        addSubview(profileLabel)
+        
+        profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        profileLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.friendsHeaderLabelHeight).isActive = true
+        profileLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Profile.heightMultiplier).isActive = true // 0.5
+        profileLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        profileLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Profile.labelTopOffset).isActive = true
     }
     
 }

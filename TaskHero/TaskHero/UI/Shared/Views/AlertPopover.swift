@@ -22,11 +22,16 @@ class AlertPopover: BasePopoverAlert {
     
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
-        popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
+        popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
         popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         popView.clipsToBounds = true
         
         viewController.view.addSubview(popView)
         viewController.view.bringSubview(toFront: popView)
+        //popView.translatesAutoresizingMaskIntoConstraints = false
+       // viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        //popView.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant:0).isActive = true
+        //popView.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: -0.5 * UIScreen.main.bounds.height).isActive = true
+        
     }
 }

@@ -10,35 +10,35 @@ import UIKit
 
 final class FriendsSettingsView: UIView {
     
-    dynamic let taskNameLabel: UILabel = {
-        let taskNameLabel = UILabel()
-        taskNameLabel.textColor = UIColor.black
-        taskNameLabel.text = "Add Friends"
-        taskNameLabel.font = Constants.Font.headerFont
-        taskNameLabel.textAlignment = .center
-        taskNameLabel.layer.masksToBounds = true
-        return taskNameLabel
+    dynamic let friendsHeaderLabel: UILabel = {
+        let friendsHeaderLabel = UILabel()
+        friendsHeaderLabel.textColor = UIColor.black
+        friendsHeaderLabel.text = "Add Friends"
+        friendsHeaderLabel.font = Constants.Font.fontLarge
+        friendsHeaderLabel.textAlignment = .center
+        friendsHeaderLabel.layer.masksToBounds = true
+        return friendsHeaderLabel
     }()
     
-    lazy var taskNameField: TextFieldExtension = {
-        let taskNameField = TextFieldExtension()
-        taskNameField.placeholder = "Search by email"
-        taskNameField.font = Constants.signupFieldFont
-        taskNameField.layer.borderColor = UIColor.lightGray.cgColor
-        taskNameField.layer.cornerRadius = 2
-        taskNameField.layer.borderWidth = 1
-        return taskNameField
+    lazy var searchField: TextFieldExtension = {
+        let searchField = TextFieldExtension()
+        searchField.placeholder = "Search by email"
+        searchField.font = Constants.signupFieldFont
+        searchField.layer.borderColor = UIColor.lightGray.cgColor
+        searchField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
+        searchField.layer.borderWidth = Constants.Settings.searchFieldBorderWidth
+        return searchField
     }()
     
-    lazy var addTaskButton: UIButton = {
-        var addTaskButton = UIButton()
-        addTaskButton.layer.borderWidth = 1
-        addTaskButton.layer.borderColor = UIColor.white.cgColor
-        addTaskButton.backgroundColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
-        addTaskButton.layer.cornerRadius = 2
-        addTaskButton.setTitle("Search", for: .normal)
-        addTaskButton.setTitleColor(UIColor.white, for: .normal)
-        return addTaskButton
+    lazy var searchButton: UIButton = {
+        var searchButton = UIButton()
+        searchButton.layer.borderWidth = Constants.Settings.searchFieldBorderWidth
+        searchButton.layer.borderColor = UIColor.white.cgColor
+        searchButton.backgroundColor = Constants.Settings.searchButtonColor
+        searchButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
+        searchButton.setTitle("Search", for: .normal)
+        searchButton.setTitleColor(UIColor.white, for: .normal)
+        return searchButton
     }()
     
     override func layoutSubviews() {
@@ -48,26 +48,26 @@ final class FriendsSettingsView: UIView {
     }
     
     fileprivate func setupConstraints() {
-        addSubview(taskNameLabel)
-        taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskNameLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
-        taskNameLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
-        taskNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.2).isActive = true
+        addSubview(friendsHeaderLabel)
+        friendsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
+        friendsHeaderLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.friendsHeaderLabelHeight).isActive = true
+        friendsHeaderLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
+        friendsHeaderLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        friendsHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Settings.friendsHeaderLabelTopOffset).isActive = true
         
-        addSubview(taskNameField)
-        taskNameField.translatesAutoresizingMaskIntoConstraints = false
-        taskNameField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
-        taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.loginFieldHeight).isActive = true
-        taskNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
-        taskNameField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * 0.1).isActive = true
+        addSubview(searchField)
+        searchField.translatesAutoresizingMaskIntoConstraints = false
+        searchField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        searchField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
+        searchField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Settings.searchFieldLeadOffset).isActive = true
+        searchField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * Constants.Settings.friendSettingCenterYOffset).isActive = true
         
-        addSubview(addTaskButton)
-        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
-        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
-        addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        addTaskButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * 0.1).isActive = true
+        addSubview(searchButton)
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Settings.searchButtonWidth).isActive = true
+        searchButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Settings.searchButtonHeight).isActive = true
+        searchButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        searchButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * Constants.Settings.searchButtonCenterYOffset).isActive = true
     }
     
 }

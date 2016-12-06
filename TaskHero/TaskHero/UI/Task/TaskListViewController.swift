@@ -8,14 +8,16 @@
 
 import UIKit
 
-final class TaskListViewController: UITableViewController {
+final class TaskListViewController: UITableViewController, TaskCellDelegate {
     
     let store = DataStore.sharedInstance
     //let manager = AppManager.sharedInstance
+    var tapped: Bool = false
+    var buttonTapped: Bool = false
     
     fileprivate let addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
-        addTasksLabel.font = UIFont(name:"HelveticaNeue-Thin", size: 18)
+        addTasksLabel.font = Constants.Font.fontNormal
         addTasksLabel.textColor = UIColor.gray
         addTasksLabel.textAlignment = .center
         return addTasksLabel
@@ -25,7 +27,7 @@ final class TaskListViewController: UITableViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        view.backgroundColor = Constants.TaskList.tableBackgroundColor
         emptyTableViewState()
         setupTableView()
         setupNavItems()
@@ -39,7 +41,7 @@ final class TaskListViewController: UITableViewController {
 }
 
 extension TaskListViewController {
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.store.fetchUserData()
@@ -74,6 +76,9 @@ extension TaskListViewController {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
         let height = tableView.rowHeight - 5
         let cellindex = (indexPath.row)
+        taskCell.delegate = self
+        let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
+        taskCell.taskCompletedView.addGestureRecognizer(tap)
         taskCell.configureCell(task: store.tasks[cellindex])
         taskCell.setupCellView(width: view.frame.size.width, height:height)
         return taskCell
@@ -82,20 +87,19 @@ extension TaskListViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
+            var removeTaskID: String
+            removeTaskID = self.store.tasks[indexPath.row].taskID
+            self.store.currentUser.experiencePoints += 1
+            self.store.currentUser.numberOfTasksCompleted += 1
+            self.store.insertUser(user: self.store.currentUser)
+            self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
+            self.store.tasks.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
             DispatchQueue.main.async {
-                var removeTaskID: String
-                removeTaskID = self.store.tasks[indexPath.row].taskID
-
-                //removeTaskID = self.store.tasks[indexPath.row - 1].taskID
-                self.store.currentUser.experiencePoints += 1
-                self.store.currentUser.numberOfTasksCompleted += 1
-                self.store.insertUser(user: self.store.currentUser)
-                self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
-                self.store.tasks.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.endUpdates()
+                tableView.reloadData()
             }
-            tableView.reloadData()
+            
         } else if editingStyle == .insert {
             // Not implemented
         }
@@ -111,39 +115,57 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         default:
             print("Tasks Completed")
         }
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     dynamic func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontSmall], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
     func logoutButtonPressed() {
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginVC
+        DispatchQueue.main.async {
+            let loginVC = UINavigationController(rootViewController:LoginViewController())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = loginVC
+        }
     }
     
     func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
+        }
     }
-    
 }
 
 extension TaskListViewController {
     
-
+    fileprivate func tapEdit(atIndex:IndexPath) {
+        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+        tapped = !tapped
+        tapCell.toggled! = tapped
+        tapCell.buttonToggled = !tapped
+        print("Task toggle \(tapCell.toggled)")
+        print("Button toggle \(tapCell.buttonToggled)")
+        if tapCell.buttonToggled == true {
+            tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
+            // formatTaskWithData(indexPath: newIndex, taskDescription: tapCell.taskDescriptionBox.text!)
+        }
+        
+    }
+    
     func emptyTableViewState() {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             view.addSubview(addTasksLabel)
             addTasksLabel.center = self.view.center
             addTasksLabel.text = "No tasks have been added yet."
             addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
-            addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.profileHeaderLabelHeight).isActive = true
-            addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.loginFieldWidth).isActive = true
+            addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
+            addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
             addTasksLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         } else if store.tasks.count < 1 {
@@ -159,6 +181,20 @@ extension TaskListViewController {
         tableView.estimatedRowHeight = view.frame.height / 4
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
+    }
+    
+    func toggleForButtonState(sender:UIButton) {
+        buttonTapped = true
+        let superview = sender.superview
+        let cell = superview?.superview as? TaskCell
+        let indexPath = tableView.indexPath(for: cell!)
+        tapEdit(atIndex: indexPath!)
+    }
+    
+    func toggleForEditState(sender:UIGestureRecognizer) {
+        let tapLocation = sender.location(in: self.tableView)
+        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
+        tapEdit(atIndex: tapIndex as IndexPath)
     }
 }
 

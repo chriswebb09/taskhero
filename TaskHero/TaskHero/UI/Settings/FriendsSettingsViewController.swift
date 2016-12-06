@@ -18,7 +18,7 @@ class FriendsSettingsViewController: UIViewController {
         view.addSubview(friendsSettingsView)
         friendsSettingsView.layoutSubviews()
         navigationController?.navigationBar.tintColor = UIColor.white
-        friendsSettingsView.addTaskButton.addTarget(self, action: #selector(popup), for: .touchUpInside)
+        friendsSettingsView.searchButton.addTarget(self, action: #selector(popup), for: .touchUpInside)
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,7 +34,7 @@ extension FriendsSettingsViewController {
         alertPop.popView.isHidden = false
         alertPop.popView.layer.opacity = 0
         alertPop.containerView.isHidden = false
-        alertPop.containerView.layer.opacity = 0
+        alertPop.containerView.layer.opacity = Constants.Settings.dismissedOpacity
         alertPop.showPopView(viewController: self)
         UIView.animate(withDuration: 0.1, animations: {
             self.alertPop.popView.layer.opacity = 1
@@ -47,15 +47,19 @@ extension FriendsSettingsViewController {
     }
     
     func dismissButton() {
-        alertPop.popView.isHidden = true
-        alertPop.containerView.isHidden = true
-        alertPop.hidePopView(viewController: self)
-        navigationController?.popViewController(animated: false)
+        DispatchQueue.main.async {
+            self.alertPop.popView.isHidden = true
+            self.alertPop.containerView.isHidden = true
+            self.alertPop.hidePopView(viewController: self)
+            self.navigationController?.popViewController(animated: false)
+        }
     }
     
     func hide() {
-        alertPop.popView.isHidden = true
-        alertPop.containerView.isHidden = true
-        alertPop.hidePopView(viewController: self)
+        DispatchQueue.main.async {
+            self.alertPop.popView.isHidden = true
+            self.alertPop.containerView.isHidden = true
+            self.alertPop.hidePopView(viewController: self)
+        }
     }
 }

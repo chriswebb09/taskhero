@@ -22,20 +22,20 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
+        
         edgesForExtendedLayout = []
-        view.addSubview(tableView)
+        navigationController?.navigationBar.tintColor = UIColor.white
         view.addSubview(profileSettingsView)
+        view.addSubview(tableView)
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
         
+        profileSettingsView.layoutSubviews()
         setupViews()
         setupTableView()
-        profileSettingsView.layoutSubviews()
-        navigationController?.navigationBar.tintColor = UIColor.white
-        options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
-        
     }
     
     
@@ -55,18 +55,18 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
         profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
+        profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.profileViewHeightAnchor).isActive = true
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.75).isActive = true
+        tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.tableViewHeight).isActive = true
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
-        cell.configureCell(setting: options[indexPath.row])
         
+        cell.configureCell(setting: options[indexPath.row])
         cell.delegate = self
         cell.button.index = indexPath
         cell.button.tag = indexPath.row
@@ -85,7 +85,9 @@ extension ProfileSettingsViewController {
     fileprivate func tapEdit() {
         let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
         if tapped == true { tapped = false
-            if (tapCell.profileSettingField.text?.characters.count)! > 0 { tapCell.profileSettingLabel.text = tapCell.profileSettingField.text } else { tapCell.profileSettingLabel.text = options[(indexTap?.row)!] }
+            if (tapCell.profileSettingField.text?.characters.count)! > 0 {
+                tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
+            } else { tapCell.profileSettingLabel.text = options[(indexTap?.row)!] }
             tapCell.profileSettingField.isHidden = true
             tapCell.profileSettingLabel.isHidden = false
         } else if tapped == false { tapped = true
@@ -95,7 +97,7 @@ extension ProfileSettingsViewController {
     }
     
     fileprivate func setupTableView() {
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = Constants.Settings.rowHeight
         tableView.separatorStyle = .singleLine
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero

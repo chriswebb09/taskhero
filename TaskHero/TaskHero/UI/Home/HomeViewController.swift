@@ -13,17 +13,20 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     let store = DataStore.sharedInstance
     let pop = PickerPopMenu()
     var profilePic: UIImage? = nil
-    let cellSpacingHeight: CGFloat = 5
     let help = TabviewHelper()
+    var tapped: Bool = false
+    var buttonTapped: Bool = false
+    var indexTap: IndexPath?
+    var indexString: String = ""
+    let headerView = UIView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.tableViewBackgroundColor
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        
         help.setupTableView(tableView: tableView)
         tableView.estimatedRowHeight = view.frame.height / 4
         setupNavItems()
@@ -41,7 +44,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         if self.store.currentUser.tasks != nil {
             self.store.currentUser.tasks?.removeAll()
         }
-        
         self.store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
             self.store.currentUser.tasks!.append(task)
@@ -66,12 +68,6 @@ extension HomeViewController {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 {
             return 1
@@ -84,17 +80,12 @@ extension HomeViewController {
         return tableView.rowHeight
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellSpacingHeight
-    }
-    
 }
 
 extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
@@ -103,12 +94,15 @@ extension HomeViewController {
                 headerCell.profilePicture.image = profilePic
             }
             return headerCell
-            
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
-            let height = tableView.rowHeight - 5
+            taskCell.delegate = self
+            taskCell.toggled = tapped
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
-            taskCell.setupCellView(width: view.frame.size.width, height:height)
+            taskCell.saveButton.tag = indexPath.row
+            let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
+            tap.accessibilityLabel = String(indexPath.row)
+            taskCell.taskCompletedView.addGestureRecognizer(tap)
             return taskCell
         }
     }
@@ -137,7 +131,21 @@ extension HomeViewController {
     }
 }
 
-extension HomeViewController {
+extension HomeViewController: TaskCellDelegate {
+    
+    fileprivate func tapEdit(atIndex:IndexPath) {
+        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+        tapped = !tapped
+        tapCell.toggled! = tapped
+        tapCell.buttonToggled = !tapped
+        print("Task toggle \(tapCell.toggled)")
+        print("Button toggle \(tapCell.buttonToggled)")
+        if tapCell.buttonToggled == true {
+            tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
+          
+        }
+        
+    }
     
     func profilePictureTapped() {
         pop.popView.isHidden = false
@@ -146,10 +154,30 @@ extension HomeViewController {
         pop.containerView.addGestureRecognizer(tap)
     }
     
+    func toggleForButtonState(sender:UIButton) {
+        buttonTapped = true
+        let superview = sender.superview
+        let cell = superview?.superview as? TaskCell
+        let indexPath = tableView.indexPath(for: cell!)
+        tapEdit(atIndex: indexPath!)
+        
+    }
+    
+    func toggleForEditState(sender:UIGestureRecognizer) {
+        let tapLocation = sender.location(in: self.tableView)
+        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
+        tapEdit(atIndex: tapIndex as IndexPath)
+    }
+    
     func hideView() {
         pop.popView.isHidden = true
         pop.hidePopView(viewController: self)
+        pop.popView.layer.opacity = 0
+        pop.containerView.layer.opacity = 0
     }
+}
+
+extension HomeViewController {
     
     func addNewPerson() {
         let picker = UIImagePickerController()
@@ -170,9 +198,10 @@ extension HomeViewController {
     
     fileprivate func setupNavItems() {
         navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaLight, size: 18)!], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
 }
+

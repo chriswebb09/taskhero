@@ -60,8 +60,8 @@ extension TabBarController {
         
         let homeTab = UINavigationController(rootViewController: homeVC)
         homeTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        homeTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
-        homeTab.navigationBar.barTintColor = Constants.navbarBarTintColor
+        homeTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.fontMedium]
+        homeTab.navigationBar.barTintColor = Constants.Tabbar.navbarBarTintColor
         homeTab.navigationBar.topItem?.title = "TaskHero"
         return homeTab
     }
@@ -74,8 +74,8 @@ extension TabBarController {
         
         let profileTab = UINavigationController(rootViewController: profileVC)
         profileTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        profileTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
-        profileTab.navigationBar.barTintColor = Constants.navbarBarTintColor
+        profileTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.fontMedium]
+        profileTab.navigationBar.barTintColor = Constants.Tabbar.navbarBarTintColor
         profileTab.navigationBar.topItem?.title = "Profile"
         return profileTab
     }
@@ -88,8 +88,8 @@ extension TabBarController {
         
         let taskListTab = UINavigationController(rootViewController: taskListVC)
         taskListTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        taskListTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
-        taskListTab.navigationBar.barTintColor = Constants.navbarBarTintColor
+        taskListTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.fontMedium]
+        taskListTab.navigationBar.barTintColor = Constants.Tabbar.navbarBarTintColor
         taskListTab.navigationBar.topItem?.title = "TaskList"
         return taskListTab
     }
@@ -102,8 +102,8 @@ extension TabBarController {
         
         let settingsTab = UINavigationController(rootViewController: settingsVC)
         settingsTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        settingsTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Font.helveticaThin, size: 22)!]
-        settingsTab.navigationBar.barTintColor = Constants.navbarBarTintColor
+        settingsTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.fontMedium]
+        settingsTab.navigationBar.barTintColor = Constants.Tabbar.navbarBarTintColor
         settingsTab.navigationBar.topItem?.title = "Settings"
         return settingsTab
     }
@@ -129,4 +129,5 @@ extension TabBarController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginController
     }
+
 }

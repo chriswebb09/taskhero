@@ -122,10 +122,8 @@ extension SignupViewController {
                     }
                     
                     print("Saved user successfully into Firebase db")
-                    
                     self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                     self.store.currentUser = newUser
-                    
                     let tabBar = TabBarController()
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window?.rootViewController = tabBar
@@ -170,23 +168,22 @@ extension SignupViewController {
         if textField == self.signupView.usernameField {
             
             print(store.validUsernames)
-            
             if store.validUsernames.contains(signupView.usernameField.text!) {
-                signupView.usernameField.layer.borderColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0).cgColor
-                signupView.usernameField.textColor = UIColor(red:0.93, green:0.04, blue:0.04, alpha:1.0)
+                signupView.usernameField.layer.borderColor = Constants.Signup.textFieldBorderColor
+                signupView.usernameField.textColor = Constants.Signup.textFieldColor
                 signupView.signupButton.isEnabled = false
                 
             } else if !store.validUsernames.contains(signupView.usernameField.text!) {
-                signupView.usernameField.layer.borderColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
-                signupView.usernameField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+                signupView.usernameField.layer.borderColor = Constants.Signup.invalidAnimationColor
+                signupView.usernameField.textColor = Constants.Signup.invalidAnimationTextColor
                 signupView.signupButton.isEnabled = true
             }
         }
         if textField == signupView.emailField {
             
             if !(textField.text?.isValidEmail())! {
-                signupView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
-                signupView.emailField.textColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0)
+                signupView.emailField.layer.borderColor = Constants.Signup.animationColor
+                signupView.emailField.textColor = Constants.Signup.animationTextColor
                 
             }  else if (textField.text?.isValidEmail() )!{
                 signupView.emailField.textColor = UIColor.blue
@@ -194,30 +191,30 @@ extension SignupViewController {
         }
         if (validateEmailInput(email: signupView.emailField.text!, confirm: signupView.confirmEmailField.text!)) && (emailInvalidated) {
             
-            signupView.emailField.layer.borderColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0).cgColor
-            signupView.emailField.textColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0)
-            signupView.confirmEmailField.layer.borderColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0).cgColor
-            signupView.confirmEmailField.textColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0)
+            signupView.emailField.layer.borderColor = Constants.Signup.invalidEmailColor
+            signupView.emailField.textColor = Constants.Signup.invalidTextColor
+            signupView.confirmEmailField.layer.borderColor = Constants.Signup.invalidEmailColor
+            signupView.confirmEmailField.textColor = Constants.Signup.invalidTextColor
             
             Constants().delay(0.9) {
                 
                 UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                     
-                    self.signupView.usernameField.layer.borderColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
-                    self.signupView.usernameField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-                    self.signupView.emailField.layer.borderColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
-                    self.signupView.emailField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-                    self.signupView.confirmEmailField.layer.borderColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0).cgColor
-                    self.signupView.confirmEmailField.textColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+                    self.signupView.usernameField.layer.borderColor = Constants.Signup.invalidAnimationColor
+                    self.signupView.usernameField.textColor = Constants.Signup.invalidAnimationTextColor
+                    self.signupView.emailField.layer.borderColor = Constants.Signup.invalidAnimationColor
+                    self.signupView.emailField.textColor = Constants.Signup.invalidAnimationTextColor 
+                    self.signupView.confirmEmailField.layer.borderColor = Constants.Signup.invalidAnimationColor
+                    self.signupView.confirmEmailField.textColor = Constants.Signup.invalidAnimationTextColor
                 })
             }
         } else if textField == signupView.confirmEmailField {
             
             if (!validateEmailInput(email: signupView.emailField.text!, confirm: self.signupView.confirmEmailField.text!)) {
-                signupView.emailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
-                signupView.emailField.textColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0)
-                signupView.confirmEmailField.layer.borderColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0).cgColor
-                signupView.confirmEmailField.textColor = UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0)
+                signupView.emailField.layer.borderColor = Constants.Signup.animationColor
+                signupView.emailField.textColor = Constants.Signup.animationTextColor
+                signupView.confirmEmailField.layer.borderColor = Constants.Signup.animationColor
+                signupView.confirmEmailField.textColor = Constants.Signup.animationTextColor
             }
         }
     }

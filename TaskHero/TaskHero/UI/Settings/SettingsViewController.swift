@@ -133,7 +133,7 @@ extension SettingsViewController {
     }
     
     func setupTableView() {
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = Constants.Settings.rowHeight 
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.separatorStyle = .singleLineEtched
@@ -146,15 +146,15 @@ extension SettingsViewController {
         let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.blue]
         let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
         
-        segmentControl.layer.cornerRadius = 8
+        segmentControl.layer.cornerRadius = Constants.Settings.segmentBorderRadius
         segmentControl.tintColor = UIColor.white
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
-        segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.01).isActive = true
+        segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * Constants.Settings.segmentSettingsTopOffset).isActive = true
         segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier:0.96).isActive = true
-        segmentControl.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier:Constants.loginFieldHeight).isActive = true
+        segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier:Constants.Settings.segmentSettingsWidth).isActive = true
+        segmentControl.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
     }
 }

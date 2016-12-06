@@ -15,7 +15,7 @@ class BasePopoverAlert: UIView {
         let containerView = UIView()
         
         containerView.backgroundColor = UIColor.black
-        containerView.layer.opacity = 0.1
+        containerView.layer.opacity = 0.5
         return containerView
     }()
     
