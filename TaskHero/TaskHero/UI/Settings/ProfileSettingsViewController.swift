@@ -67,6 +67,8 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
         
         cell.configureCell(setting: options[indexPath.row])
+        //cell.accessibilityIdentifier
+        
         cell.delegate = self
         cell.button.index = indexPath
         cell.button.tag = indexPath.row
@@ -84,10 +86,42 @@ extension ProfileSettingsViewController {
     
     fileprivate func tapEdit() {
         let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
-        if tapped == true { tapped = false
+        if tapped == true {
+            tapped = false
             if (tapCell.profileSettingField.text?.characters.count)! > 0 {
+                if indexTap?.row == 1 {
+                    var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
+                    var updatedUser = User()
+                    updatedUser.username = self.store.currentUser.username
+                    updatedUser.email = self.store.currentUser.email
+                    updatedUser.profilePicture = "None"
+                    updatedUser.firstName = name?[0]
+                    updatedUser.lastName = name?[1]
+                    updatedUser.joinDate = self.store.currentUser.joinDate
+                    updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
+                    updatedUser.experiencePoints = self.store.currentUser.experiencePoints
+                    updatedUser.tasks = self.store.currentUser.tasks
+                    
+                    self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
+                } else if indexTap?.row == 3 {
+                    var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
+                    var updatedUser = User()
+                    updatedUser.username = tapCell.profileSettingField.text!
+                    updatedUser.email = self.store.currentUser.email
+                    updatedUser.profilePicture = "None"
+                    updatedUser.firstName = name?[0]
+                    updatedUser.lastName = name?[1]
+                    updatedUser.joinDate = self.store.currentUser.joinDate
+                    updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
+                    updatedUser.experiencePoints = self.store.currentUser.experiencePoints
+                    updatedUser.tasks = self.store.currentUser.tasks
+                }
+                
+                
+                
                 tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
-            } else { tapCell.profileSettingLabel.text = options[(indexTap?.row)!] }
+            } else {
+                tapCell.profileSettingLabel.text = options[(indexTap?.row)!] }
             tapCell.profileSettingField.isHidden = true
             tapCell.profileSettingLabel.isHidden = false
         } else if tapped == false { tapped = true
@@ -96,7 +130,7 @@ extension ProfileSettingsViewController {
         }
     }
     
-    fileprivate func setupTableView() {
+    func setupTableView() {
         tableView.estimatedRowHeight = Constants.Settings.rowHeight
         tableView.separatorStyle = .singleLine
         tableView.layoutMargins = UIEdgeInsets.zero

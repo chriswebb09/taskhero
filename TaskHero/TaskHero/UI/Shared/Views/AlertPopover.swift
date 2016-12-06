@@ -28,10 +28,5 @@ class AlertPopover: BasePopoverAlert {
         
         viewController.view.addSubview(popView)
         viewController.view.bringSubview(toFront: popView)
-        //popView.translatesAutoresizingMaskIntoConstraints = false
-       // viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        //popView.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant:0).isActive = true
-        //popView.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: -0.5 * UIScreen.main.bounds.height).isActive = true
-        
     }
 }

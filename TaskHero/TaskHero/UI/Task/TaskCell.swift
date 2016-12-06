@@ -25,7 +25,7 @@ class TaskCell: UITableViewCell {
     let taskNameLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
-        textView.font = Constants.Font.fontMedium
+        textView.font = Constants.Font.bolderFontMedium
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isScrollEnabled = false
@@ -50,7 +50,7 @@ class TaskCell: UITableViewCell {
         textView.backgroundColor = Constants.TaskCell.descriptionLabelBackgroundColor
         textView.textColor = UIColor.white
         textView.layer.cornerRadius = Constants.TaskCell.cornerRadius
-        textView.font = Constants.Font.fontSmall
+        textView.font = Constants.Font.fontMedium
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isEditable = false
@@ -103,7 +103,7 @@ class TaskCell: UITableViewCell {
         taskDueLabel.translatesAutoresizingMaskIntoConstraints = false
         taskDueLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.nameLabelHeight).isActive = true
         taskDueLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
-        taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.TaskCell.nameLabelTopOffset).isActive = true
+        taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
         
         contentView.addSubview(taskDescriptionLabel)

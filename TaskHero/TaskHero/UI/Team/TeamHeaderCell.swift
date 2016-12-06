@@ -24,7 +24,6 @@ class TeamHeaderCell: UITableViewCell {
     }
     
     func setupConstraints() {
-
         contentView.addSubview(usernameLabel)
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true

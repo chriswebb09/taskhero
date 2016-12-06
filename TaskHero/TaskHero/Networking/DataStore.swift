@@ -195,4 +195,41 @@ class DataStore {
         tasksRef = userRef.child(currentUserString).child("Tasks")
         tasksRef.child(ref).removeValue()
     }
+    
+    func updateTask(ref:String, taskID: String, task:Task) {
+        tasksRef = userRef.child(currentUserString).child("Tasks")
+        let taskData: NSDictionary = ["TaskName": task.taskName,
+                                      "TaskDescription": task.taskDescription ,
+                                      "TaskCreated": task.taskCreated ,
+                                      "TaskDue": task.taskDue,
+                                      "TaskCompleted": task.taskCompleted]
+        
+        tasksRef.updateChildValues(["/\(taskID)": taskData])
+    }
+    
+    func updateUserProfile(userID: String, user:User) {
+        let userData: NSDictionary = ["Email": user.email,
+                                      "FirstName": user.firstName ?? " ",
+                                      "LastName": user.lastName ?? " ",
+                                      "ProfilePicture": user.profilePicture ?? " ",
+                                      "ExperiencePoints": user.experiencePoints ?? 0,
+                                      "Level": user.level,
+                                      "JoinDate": user.joinDate,
+                                      "Username": user.username,
+                                      "TasksCompleted": user.numberOfTasksCompleted ?? 0]
+        
+        
+        
+        userRef.updateChildValues(["/\(self.currentUserString!)": userData])
+        userRef.keepSynced(true)
+        usernameRef.updateChildValues([user.username:user.email])
+        self.tasks.forEach { task in
+            updateTask(ref: task.taskID, taskID: task.taskID, task: task)
+        }
+    }
+    
+//    func removeTask(ref:String, taskID: String) {
+//        tasksRef = userRef.child(currentUserString).child("Tasks")
+//        tasksRef.child(ref).removeValue()
+//    }
 }

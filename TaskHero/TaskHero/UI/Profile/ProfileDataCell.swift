@@ -50,14 +50,15 @@ final class ProfileDataCell: UITableViewCell {
     
     func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.profileSettingsDataHeight).isActive = true
-        label.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileDataLabelWidth).isActive = true
+       // label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.profileSettingsDataHeight).isActive = true
+        //label.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileDataLabelWidth).isActive = true
     }
     
     private func setupConstraints() {
         configureLabels(label: levelLabel)
         contentView.addSubview(levelLabel)
         configureConstraints(label: levelLabel)
+        
         levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Settings.levelLabelLeftOffset).isActive = true
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
@@ -70,6 +71,7 @@ final class ProfileDataCell: UITableViewCell {
         configureLabels(label: tasksCompletedLabel)
         contentView.addSubview(tasksCompletedLabel)
         configureConstraints(label: tasksCompletedLabel)
+        
         tasksCompletedLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.Settings.profileDataRightOffset).isActive = true
     }

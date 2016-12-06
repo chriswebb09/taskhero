@@ -16,7 +16,6 @@ class InitView: UIView {
         return imageView
     }()
 
-    
     lazy var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         return button.newButton
@@ -32,7 +31,6 @@ class InitView: UIView {
         view.backgroundColor = UIColor.lightGray
         return view
     }()
-    
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -62,7 +60,6 @@ class InitView: UIView {
         viewDivider.heightAnchor.constraint(equalTo: loginButton.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true
         viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        
         
         addSubview(signupButton)
         signupButton.translatesAutoresizingMaskIntoConstraints = false

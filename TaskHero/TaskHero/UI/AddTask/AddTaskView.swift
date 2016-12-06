@@ -73,7 +73,8 @@ class AddTaskView: UIView {
         taskNameField.translatesAutoresizingMaskIntoConstraints = false
         taskNameField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.TaskList.taskListNameWidth).isActive = true
         taskNameField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
-        taskNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.AddTask.boxHeight).isActive = true
+        taskNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.AddTask.taskNameField).isActive = true
+        taskNameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
         
         addSubview(taskDescriptionBox)

@@ -15,6 +15,9 @@ struct Constants {
         static let fontSmall = UIFont(name: "HelveticaNeue-Light", size: 12)
         static let fontMedium = UIFont(name: "HelveticaNeue-Light", size: 16)
         static let fontLarge = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        static let bolderFontSmall = UIFont(name: "HelveticaNeue", size: 12)
+        static let bolderFontMedium = UIFont(name: "HelveticaNeue", size: 16)
+        static let bolderFontLarge = UIFont(name: "HelveticaNeue", size: 22)
     }
     
     struct ProfilePicture {
@@ -48,9 +51,9 @@ struct Constants {
     
     struct Profile {
         static let profileHeaderLabelHeight:CGFloat = 0.2
-        static let profileHeaderLabelWidth: CGFloat = 0.5
-        static let profileHeaderLabelRightOffset:CGFloat = -150
-        static let profilePictureHeight:CGFloat = 0.15
+        static let profileHeaderLabelWidth: CGFloat = 0.41
+        static let profileHeaderLabelRightOffset:CGFloat = -10
+        static let profilePictureHeight:CGFloat = 0.12
         static let profilePictureWidth: CGFloat = 75
         static let bottomOffset:CGFloat =  -10
         static let topOffset:CGFloat =  20
@@ -120,6 +123,7 @@ struct Constants {
         static let boxHeight:CGFloat = 0.30
         static let boxWidth:CGFloat = 0.4
         static let boxTopOffset:CGFloat = 0.05
+        static let taskNameField:CGFloat = 30
         static let buttonBackgroundColor:UIColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
     }
     

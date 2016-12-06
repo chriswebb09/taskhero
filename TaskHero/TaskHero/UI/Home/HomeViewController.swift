@@ -58,7 +58,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         if store.refHandle != nil {
             store.tasksRef.removeObserver(withHandle: store.refHandle)
         }
-        
     }
 }
 
@@ -93,11 +92,13 @@ extension HomeViewController {
             if profilePic != nil {
                 headerCell.profilePicture.image = profilePic
             }
+            headerCell.contentView.autoresizingMask = UIViewAutoresizing.flexibleHeight
             return headerCell
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             taskCell.delegate = self
             taskCell.toggled = tapped
+            
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
             taskCell.saveButton.tag = indexPath.row
             let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
@@ -141,10 +142,12 @@ extension HomeViewController: TaskCellDelegate {
         print("Task toggle \(tapCell.toggled)")
         print("Button toggle \(tapCell.buttonToggled)")
         if tapCell.buttonToggled == true {
+            
+            var newTask = self.store.tasks[atIndex.row - 1]
+            newTask.taskDescription = tapCell.taskDescriptionBox.text
+            self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
             tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
-          
         }
-        
     }
     
     func profilePictureTapped() {
@@ -160,7 +163,6 @@ extension HomeViewController: TaskCellDelegate {
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
         tapEdit(atIndex: indexPath!)
-        
     }
     
     func toggleForEditState(sender:UIGestureRecognizer) {
