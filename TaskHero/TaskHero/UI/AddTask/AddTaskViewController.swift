@@ -45,10 +45,16 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
 
 extension AddTaskViewController {
     
+    // section for textfield logic 
+    
+    // on returnkey press hides keyboard
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    // if textfield input is equal to newline - return - hides keyboard
     
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
         if(replacementText.isEqual("\n")) {
@@ -57,6 +63,8 @@ extension AddTaskViewController {
         }
         return true
     }
+    
+    // if user is done editting && user has not entered anything - sets taskdescription box default text
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -69,6 +77,8 @@ extension AddTaskViewController {
 }
 
 extension AddTaskViewController {
+    
+    // extension where datepicker logic is implemented
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
@@ -112,6 +122,8 @@ extension AddTaskViewController {
 
 extension AddTaskViewController {
     
+    // when add task button pressed - data popover is show so user can pick task due data
+    
     func addTaskButtonTapped() {
         view.endEditing(true)
         DispatchQueue.main.async {
@@ -124,6 +136,9 @@ extension AddTaskViewController {
         }
         pop.popView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
+    
+    
+    // formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion
     
     func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"
@@ -139,15 +154,6 @@ extension AddTaskViewController {
             self.pop.popView.isHidden = true
             _ = self.navigationController?.popToRootViewController(animated: false)
         }
-    }
-    
-    fileprivate func addTask() {
-        DispatchQueue.main.async {
-            self.pop.hidePopView(viewController: self)
-            self.pop.popView.isHidden = true
-            _ = self.navigationController?.popToRootViewController(animated: false)
-        }
-        
     }
     
     func dismissKeyboard() {

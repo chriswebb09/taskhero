@@ -23,6 +23,8 @@ final class ProfileViewController: UITableViewController {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
         
+        // sets up ui on main thread
+        
         DispatchQueue.main.async {
             self.setupNavItems()
             self.tableView.reloadData()
@@ -35,6 +37,7 @@ final class ProfileViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // on view did appear ensure fresh user data from database is loaded and reloads tableview
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         self.store.fetchUserData()
@@ -46,6 +49,8 @@ final class ProfileViewController: UITableViewController {
 }
 
 extension ProfileViewController {
+
+    // tablviewcell and row logic
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -60,15 +65,18 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // if first row set banner image
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
             return bannerCell
+            // if second row return porfileheader cell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
             return headerCell
+            // beyond that it's all profiledatacells
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
@@ -78,6 +86,8 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController {
+    
+    // on logoutbutton press sets rootview controller to loginviewcontroller on main thread
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {

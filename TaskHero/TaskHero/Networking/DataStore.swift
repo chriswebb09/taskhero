@@ -32,6 +32,8 @@ class DataStore {
     var auth = Auth()
     
     
+    // on deinit - removes refhandle
+    
     deinit {
         ref.removeObserver(withHandle: refHandle)
     }
@@ -81,6 +83,10 @@ class DataStore {
         })
     }
     
+    // fetches all usernames in database and adds them to array
+    
+    // TODO: needs revamping - wouldn't scale well
+    
     func fetchValidUsernames() {
         validUsernames.removeAll()
         usernameRef.observe(.childAdded, with: { snapshot in
@@ -88,6 +94,9 @@ class DataStore {
             self.usernameEmailDict[snapshot.key] = snapshot.value as AnyObject?
         })
     }
+    
+    
+    // inserts new user to database and updates usernames keys
     
     func insertUser(user:User) {
         let userData: NSDictionary = ["Email": user.email,
@@ -181,6 +190,8 @@ class DataStore {
         
     }
     
+    // adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
+    
     func addTasks(task:Task) {
         tasksRef = userRef.child(currentUserString!).child("Tasks")
         tasksRef.child("\(task.taskID)/TaskName").setValue(task.taskName)
@@ -190,6 +201,8 @@ class DataStore {
         tasksRef.child("\(task.taskID)/TaskCompleted").setValue(task.taskDue)
         tasksRef.keepSynced(true)
     }
+    
+    // removes task from database - called on swift left in tableview
     
     func removeTask(ref:String, taskID: String) {
         tasksRef = userRef.child(currentUserString).child("Tasks")
@@ -206,6 +219,8 @@ class DataStore {
         
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
+    
+    // updates userprofile data in database
     
     func updateUserProfile(userID: String, user:User) {
         let userData: NSDictionary = ["Email": user.email,

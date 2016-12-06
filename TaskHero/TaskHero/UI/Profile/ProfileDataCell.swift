@@ -48,6 +48,8 @@ final class ProfileDataCell: UITableViewCell {
         label.sizeToFit()
     }
     
+    // most likely will be removed 
+    
     func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         // label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.profileSettingsDataHeight).isActive = true

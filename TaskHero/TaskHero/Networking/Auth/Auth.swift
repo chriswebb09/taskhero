@@ -11,6 +11,7 @@ import Firebase
 
 class Auth {
     
+    // first attempt to separate database logic from datastore 
     
     func fetchUser(with currentUserString: String, handler: @escaping (User) -> Void) {
         let database = FIRDatabase.database()
