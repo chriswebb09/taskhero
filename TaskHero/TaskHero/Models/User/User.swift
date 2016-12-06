@@ -8,8 +8,6 @@
 
 import UIKit
 
-import UIKit
-
 class User: NSObject {
     
     var uid: String

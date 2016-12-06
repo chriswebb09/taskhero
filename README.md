@@ -11,6 +11,14 @@
 
 - Persist user data with Realm. 
 
+<h2>Edit task in tasklist</h2>
+___
+
+<p align="center">
+  <br><br>
+  <img src="https://github.com/chriswebb09/taskhero/blob/master/edittasklist.png">
+</p>
+
 
 # Next up 
 
@@ -21,6 +29,15 @@
 - Build out task scoring system 
 
 - Build messenger service
+
+
+<h2>Empty TaskListTableView</h2>
+___
+
+<p align="center">
+  <br><br>
+  <img src="https://github.com/chriswebb09/taskhero/blob/master/emptytableview.png">
+</p>
 
 
 # Nice to have
