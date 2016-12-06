@@ -37,6 +37,8 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         // Dispose of any resources that can be recreated.
     }
     
+    // before view appears fetches user data & loads tasks into datastore befroe reloading tableview - if there are tasks in datastore removes tasks before load
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.store.fetchUserData()
@@ -52,6 +54,8 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
             }
         })
     }
+    
+    //if taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -83,6 +87,8 @@ extension HomeViewController {
 
 extension HomeViewController {
     
+    // if first row returns profile header cell else returns task cell
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
@@ -107,6 +113,8 @@ extension HomeViewController {
             return taskCell
         }
     }
+    
+    // logic for deleting tasks from database when user deletes tableview cell
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -150,6 +158,8 @@ extension HomeViewController: TaskCellDelegate {
         }
     }
     
+    // if popover is not visible shows popover/ if popover is displayed - hides popver
+    
     func profilePictureTapped() {
         pop.popView.isHidden = false
         pop.showPopView(viewController: self)
@@ -165,11 +175,15 @@ extension HomeViewController: TaskCellDelegate {
         tapEdit(atIndex: indexPath!)
     }
     
+    // kicks off cycling between taskcell editing states
+    
     func toggleForEditState(sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
         tapEdit(atIndex: tapIndex as IndexPath)
     }
+    
+    // hides popover view when operation has ended.
     
     func hideView() {
         pop.popView.isHidden = true
@@ -181,6 +195,7 @@ extension HomeViewController: TaskCellDelegate {
 
 extension HomeViewController {
     
+    
     func addNewPerson() {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
@@ -188,11 +203,15 @@ extension HomeViewController {
         present(picker, animated: true)
     }
     
+    // logs out user by settings root viewcontroller to loginview
+    
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
     }
+    
+    // pushes addtaskviewcontroller to current current view controller on button press
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)

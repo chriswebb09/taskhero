@@ -47,6 +47,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+// kicks off by checking emailfiel has valid input / send editing and shows activity indicator on loading pop over / returns if conditions are not met.
+
 extension LoginViewController {
     
     func handleLogin() {
@@ -57,8 +59,14 @@ extension LoginViewController {
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {
             return
         }
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        
+        // attempts to signin using userinput for email and password else returns and prints out error description
+        
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { user, error in
             if error != nil {
+                
+                // if there is error - hide loading popover 
+                
                 self.loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                     switch errCode {
@@ -73,20 +81,32 @@ extension LoginViewController {
                 print(error ?? "error")
                 return
             }
+            
+            // if authorized hides loading popover
+            
             self.loadingView.hideActivityIndicator(viewController: self)
+            
+            //ensures firuser has valid uid - if not returns / if valid firuser uid sends it to datastore as current userstring
             
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
             
+            // fetches user profile data from firebase database and sets datastore current user to that profile data
+            
             self.store.fetchUser(completion: { user in
                 self.store.currentUser = user
             })
+            
+            // if everthing i successful sets rootviewcontroller to tabbarcontroller
+            
             let tabBar = TabBarController()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
         })
         
     }
+    
+    // checks that text has been entered and exceeds five characters in length
     
     fileprivate func checkForValidEmailInput() {
         
@@ -108,6 +128,8 @@ extension LoginViewController {
 
 extension LoginViewController {
     
+    // if email field selected cycles to password field / if password field cycles to emailfield.
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
@@ -115,9 +137,13 @@ extension LoginViewController {
         return true
     }
     
+    // hides keyboard/ ends view editting
+    
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    // still implementing
     
     func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
         
@@ -130,10 +156,14 @@ extension LoginViewController {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     
+    // sets textfield text color and border to selected color
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.textColor = Constants.Login.loginFieldEditColor
         textField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
     }
+    
+    // on ending edit textfield border color are set to deselect color
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.textColor = UIColor.lightGray

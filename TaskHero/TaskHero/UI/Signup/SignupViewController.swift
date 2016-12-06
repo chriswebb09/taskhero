@@ -42,6 +42,8 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         self.store.fetchValidUsernames()
     }
     
+    // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String)  -> Bool {
         if textField == self.signupView.usernameField {
             let currentUserName = self.signupView.usernameField.text! as NSString
@@ -68,6 +70,7 @@ extension SignupViewController {
         
         if (validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!)) {
             
+        
             loadingView.showActivityIndicator(viewController: self)
             
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
@@ -84,6 +87,7 @@ extension SignupViewController {
                 }
                 
                 //successfully authenticated user
+                
                 let ref = FIRDatabase.database().reference()
                 let newUser = User()
                 
@@ -143,6 +147,9 @@ extension SignupViewController {
 }
 
 extension SignupViewController {
+    
+    
+    // Sets selected textfield to the field below the current one on return key/ if last textfield cycles to top of fields and repeats.
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == signupView.usernameField {
@@ -222,7 +229,7 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    //
+    // Checks text for valid email format and returns bool based on result
     
     func validateEmailInput(email:String, confirm:String) -> Bool {
         let emailLower = email.lowercased()
@@ -234,6 +241,8 @@ extension SignupViewController {
             return false
         }
     }
+    
+    // Checks that text has more than five characters / animates UITextField to blue color if true.
     
     func checkTextField(_ textField: UITextField) {
         
