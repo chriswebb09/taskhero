@@ -10,7 +10,7 @@ import UIKit
 
 class AddTaskView: UIView {
     
-    let taskNameLabel: UILabel = {
+    lazy var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
@@ -30,7 +30,7 @@ class AddTaskView: UIView {
         return taskNameField
     }()
     
-    var taskDescriptionBox: UITextView = {
+    lazy var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
         taskDescriptionBox.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor

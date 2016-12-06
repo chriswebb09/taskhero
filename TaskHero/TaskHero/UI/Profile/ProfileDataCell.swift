@@ -50,7 +50,7 @@ final class ProfileDataCell: UITableViewCell {
     
     func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
-       // label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.profileSettingsDataHeight).isActive = true
+        // label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.profileSettingsDataHeight).isActive = true
         //label.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileDataLabelWidth).isActive = true
     }
     
@@ -65,6 +65,7 @@ final class ProfileDataCell: UITableViewCell {
         configureLabels(label: experiencePointsLabel)
         contentView.addSubview(experiencePointsLabel)
         configureConstraints(label: experiencePointsLabel)
+        
         experiencePointsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         experiencePointsLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         

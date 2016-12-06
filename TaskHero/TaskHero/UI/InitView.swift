@@ -15,7 +15,7 @@ class InitView: UIView {
         let imageView = UIImageView(image: image)
         return imageView
     }()
-
+    
     lazy var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         return button.newButton

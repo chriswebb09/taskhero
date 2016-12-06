@@ -44,7 +44,7 @@ final class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -73,7 +73,7 @@ extension SettingsViewController {
 
 
 extension SettingsViewController {
-
+    
     func launchPopupView() {
         alertPop.popView.layer.opacity = 0
         alertPop.popView.isHidden = false
@@ -133,7 +133,7 @@ extension SettingsViewController {
     }
     
     func setupTableView() {
-        tableView.estimatedRowHeight = Constants.Settings.rowHeight 
+        tableView.estimatedRowHeight = Constants.Settings.rowHeight
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.separatorStyle = .singleLineEtched

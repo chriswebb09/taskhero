@@ -45,13 +45,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(false)
         store.fetchValidUsernames()
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
-        nextField.becomeFirstResponder()
-        return true
-    }
+}
+
+extension LoginViewController {
     
     func handleLogin() {
         checkForValidEmailInput()
@@ -89,7 +85,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
         })
-
+        
     }
     
     fileprivate func checkForValidEmailInput() {
@@ -111,7 +107,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension LoginViewController {
-    dynamic func dismissKeyboard() {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
+        nextField.becomeFirstResponder()
+        return true
+    }
+    
+    func dismissKeyboard() {
         view.endEditing(true)
     }
     
