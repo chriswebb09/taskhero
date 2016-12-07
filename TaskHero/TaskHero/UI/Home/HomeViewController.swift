@@ -20,7 +20,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     var indexString: String = ""
     let headerView = UIView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
@@ -56,7 +55,6 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     }
     
     //if taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         if store.refHandle != nil {
@@ -66,7 +64,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
 }
 
 extension HomeViewController {
- 
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 {
             return 1
@@ -100,11 +98,9 @@ extension HomeViewController {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             taskCell.delegate = self
             taskCell.toggled = tapped
-            
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
             taskCell.saveButton.tag = indexPath.row
             let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
-            tap.accessibilityLabel = String(indexPath.row)
             taskCell.taskCompletedView.addGestureRecognizer(tap)
             return taskCell
         }
@@ -146,7 +142,6 @@ extension HomeViewController: TaskCellDelegate {
         print("Task toggle \(tapCell.toggled)")
         print("Button toggle \(tapCell.buttonToggled)")
         if tapCell.buttonToggled == true {
-            
             var newTask = self.store.tasks[atIndex.row - 1]
             newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
@@ -186,39 +181,6 @@ extension HomeViewController: TaskCellDelegate {
         photoPopover.hidePopView(viewController: self)
         photoPopover.popView.layer.opacity = 0
         photoPopover.containerView.layer.opacity = 0
-    }
-}
-
-extension HomeViewController {
-    
-    
-    func addNewPerson() {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
-    // logs out user by settings root viewcontroller to loginview
-    
-    func logoutButtonPressed() {
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginVC
-    }
-    
-    // pushes addtaskviewcontroller to current current view controller on button press
-    
-    func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
-    
-    fileprivate func setupNavItems() {
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
 }
 

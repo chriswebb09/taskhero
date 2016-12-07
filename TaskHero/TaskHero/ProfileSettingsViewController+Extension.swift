@@ -1,0 +1,30 @@
+//
+//  ProfileSettingsViewController+Extension.swift
+//  TaskHero
+//
+//  Created by Christopher Webb-Orenstein on 12/6/16.
+//  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
+//
+
+import UIKit
+
+extension ProfileSettingsViewController {
+    
+    func setupTableView() {
+        tableView.estimatedRowHeight = Constants.Settings.rowHeight
+        tableView.separatorStyle = .singleLine
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+    
+    fileprivate func separateNames(name:String) -> [String] {
+        var nameArray = name.components(separatedBy: " ")
+        return nameArray
+    }
+    
+    func editButtonTapped() {
+        tapped = true
+    }
+}

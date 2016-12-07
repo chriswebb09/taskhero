@@ -35,7 +35,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     }()
     
     lazy var profileSettingField: TextFieldExtension = {
-        
         let taskNameField = TextFieldExtension()
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
@@ -57,25 +56,19 @@ extension ProfileSettingsCell {
     }
     
     fileprivate func setupConstraints() {
-        
         contentView.addSubview(profileSettingLabel)
-        
         profileSettingLabel.translatesAutoresizingMaskIntoConstraints = false
         profileSettingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Settings.profileSettingsLabelHeight).isActive = true
         profileSettingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileSettingsLabelWidth).isActive = true
         profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Settings.profileSettingsLeftOffset).isActive = true
         profileSettingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
         contentView.addSubview(button)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.profileSettingsLabelHeight).isActive = true
         button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileViewHeightAnchor).isActive = true
         button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
         contentView.addSubview(profileSettingField)
-        
         profileSettingField.translatesAutoresizingMaskIntoConstraints = false
         profileSettingField.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.labelHeight).isActive = true
         profileSettingField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.labelHeight).isActive = true

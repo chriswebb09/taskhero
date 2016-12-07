@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		7244712A81FA9B4EA164A8FA /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */; };
+		A70433511DF7CBF200A784E1 /* HomeViewControll+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70433501DF7CBF200A784E1 /* HomeViewControll+Extension.swift */; };
+		A70433531DF7CD6000A784E1 /* FriendsSettingsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70433521DF7CD6000A784E1 /* FriendsSettingsViewController+Extension.swift */; };
+		A70433551DF7CDB000A784E1 /* ProfileSettingsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70433541DF7CDB000A784E1 /* ProfileSettingsViewController+Extension.swift */; };
+		A70433571DF7CDE700A784E1 /* SettingsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70433561DF7CDE700A784E1 /* SettingsViewController+Extension.swift */; };
+		A70433591DF7CE3900A784E1 /* TaskListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70433581DF7CE3900A784E1 /* TaskListViewController+Extension.swift */; };
+		A704335B1DF7CE7D00A784E1 /* TaskCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704335A1DF7CE7D00A784E1 /* TaskCell+Extension.swift */; };
 		A70840001DEABB1700055B72 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */; };
 		A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */; };
 		A70840041DEABBD000055B72 /* FriendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840031DEABBD000055B72 /* FriendsSettingsView.swift */; };
@@ -78,6 +84,12 @@
 /* Begin PBXFileReference section */
 		6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91CD8A86197BE8140B3FABF1 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
+		A70433501DF7CBF200A784E1 /* HomeViewControll+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HomeViewControll+Extension.swift"; sourceTree = "<group>"; };
+		A70433521DF7CD6000A784E1 /* FriendsSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FriendsSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
+		A70433541DF7CDB000A784E1 /* ProfileSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
+		A70433561DF7CDE700A784E1 /* SettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+Extension.swift"; sourceTree = "<group>"; };
+		A70433581DF7CE3900A784E1 /* TaskListViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskListViewController+Extension.swift"; sourceTree = "<group>"; };
+		A704335A1DF7CE7D00A784E1 /* TaskCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskCell+Extension.swift"; sourceTree = "<group>"; };
 		A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 		A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		A70840031DEABBD000055B72 /* FriendsSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSettingsView.swift; sourceTree = "<group>"; };
@@ -335,6 +347,12 @@
 			isa = PBXGroup;
 			children = (
 				A713373C1DE8047E0030DDF2 /* AppManager.swift */,
+				A70433501DF7CBF200A784E1 /* HomeViewControll+Extension.swift */,
+				A70433521DF7CD6000A784E1 /* FriendsSettingsViewController+Extension.swift */,
+				A70433541DF7CDB000A784E1 /* ProfileSettingsViewController+Extension.swift */,
+				A70433561DF7CDE700A784E1 /* SettingsViewController+Extension.swift */,
+				A70433581DF7CE3900A784E1 /* TaskListViewController+Extension.swift */,
+				A704335A1DF7CE7D00A784E1 /* TaskCell+Extension.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -587,15 +605,18 @@
 				A709CADE1DE7722300877907 /* String+Extension.swift in Sources */,
 				A709CAE21DE7723800877907 /* TextfieldExtension.swift in Sources */,
 				A709CACE1DE7719E00877907 /* AddTaskViewController.swift in Sources */,
+				A70433531DF7CD6000A784E1 /* FriendsSettingsViewController+Extension.swift in Sources */,
 				A709CAEA1DE7726D00877907 /* TeamBannerCell.swift in Sources */,
 				A709CAF81DE772F700877907 /* AddTaskView.swift in Sources */,
 				A709CAFE1DE7731500877907 /* LoadingView.swift in Sources */,
 				A709CAE61DE7725F00877907 /* SettingsCell.swift in Sources */,
+				A70433591DF7CE3900A784E1 /* TaskListViewController+Extension.swift in Sources */,
 				A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */,
 				A709CB001DE7731F00877907 /* Constants.swift in Sources */,
 				A7346D831DEA2541005E3A5E /* InitialViewController.swift in Sources */,
 				A77FBCC41DEB5B410014C380 /* NotificationView.swift in Sources */,
 				A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */,
+				A70433571DF7CDE700A784E1 /* SettingsViewController+Extension.swift in Sources */,
 				A70840081DEB152F00055B72 /* BaseCell.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A709CB1E1DE777DC00877907 /* Auth.swift in Sources */,
@@ -609,6 +630,7 @@
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,
 				A708400A1DEB180800055B72 /* ProfileSettingsCell.swift in Sources */,
+				A70433551DF7CDB000A784E1 /* ProfileSettingsViewController+Extension.swift in Sources */,
 				A70840001DEABB1700055B72 /* ProfileSettingsView.swift in Sources */,
 				A709CADC1DE7721300877907 /* NSDate+Extension.swift in Sources */,
 				A709CB041DE7733300877907 /* User.swift in Sources */,
@@ -618,6 +640,7 @@
 				A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */,
 				A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */,
 				A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */,
+				A704335B1DF7CE7D00A784E1 /* TaskCell+Extension.swift in Sources */,
 				A77FBCCD1DEB8A190014C380 /* Helpers.swift in Sources */,
 				A709CB081DE7734700877907 /* RootContainerViewController.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,
@@ -631,6 +654,7 @@
 				A709CAFA1DE7730200877907 /* InitialView.swift in Sources */,
 				A70840041DEABBD000055B72 /* FriendsSettingsView.swift in Sources */,
 				A709CAF41DE772CD00877907 /* ProfileViewController.swift in Sources */,
+				A70433511DF7CBF200A784E1 /* HomeViewControll+Extension.swift in Sources */,
 				A7346D7C1DE90DF1005E3A5E /* AlertView.swift in Sources */,
 				A709CAD01DE771B700877907 /* HomeViewController.swift in Sources */,
 				A709CAD21DE771E100877907 /* ProfileHeaderCell.swift in Sources */,

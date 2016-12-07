@@ -119,23 +119,3 @@ extension ProfileSettingsViewController {
     }
 }
 
-extension ProfileSettingsViewController {
-    
-    func setupTableView() {
-        tableView.estimatedRowHeight = Constants.Settings.rowHeight
-        tableView.separatorStyle = .singleLine
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-    }
-    
-    fileprivate func separateNames(name:String) -> [String] {
-        var nameArray = name.components(separatedBy: " ")
-        return nameArray
-    }
-    
-    func editButtonTapped() {
-        tapped = true
-    }
-}
