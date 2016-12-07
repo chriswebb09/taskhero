@@ -25,7 +25,6 @@ class FriendsSettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
 
 extension FriendsSettingsViewController {
@@ -43,7 +42,6 @@ extension FriendsSettingsViewController {
         alertPop.popView.resultLabel.text = "No results found. Please try again later."
         alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
         alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
-        
     }
     
     // hides popover ui - prioritised to main thread when user hits dismiss button
@@ -53,7 +51,7 @@ extension FriendsSettingsViewController {
             self.alertPop.popView.isHidden = true
             self.alertPop.containerView.isHidden = true
             self.alertPop.hidePopView(viewController: self)
-            self.navigationController?.popViewController(animated: false)
+            _ = self.navigationController?.popViewController(animated: false)
         }
     }
     

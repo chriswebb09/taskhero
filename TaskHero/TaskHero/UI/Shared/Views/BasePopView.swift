@@ -18,17 +18,14 @@ class BasePopView: UIView {
     
     lazy var alertLabel: UILabel = {
         let searchLabel = UILabel()
-        
         searchLabel.textColor = UIColor.white
         searchLabel.text = "Notification"
         searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center
-        
         return searchLabel
     }()
     
     func setupConstraints() {
-        
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         headBanner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -43,6 +40,5 @@ class BasePopView: UIView {
         alertLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         alertLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
     }
-
 }
 

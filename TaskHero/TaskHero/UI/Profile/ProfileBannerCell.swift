@@ -17,6 +17,9 @@ class ProfileBannerCell: UITableViewCell {
         imageView.layer.masksToBounds = true
         return imageView
     }()
+}
+
+extension ProfileBannerCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -33,6 +33,9 @@ final class ProfileDataCell: UITableViewCell {
         return taskCompletedLabel
     }()
     
+}
+
+extension ProfileDataCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()

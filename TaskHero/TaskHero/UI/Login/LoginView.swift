@@ -63,6 +63,10 @@ final class LoginView: UIView {
         registerLabel.textAlignment = .center
         return registerLabel
     }()
+}
+
+
+extension LoginView {
     
     override func layoutSubviews() {
         super.layoutSubviews()

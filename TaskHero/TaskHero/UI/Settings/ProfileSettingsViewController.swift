@@ -23,21 +23,17 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
-        
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
         view.addSubview(profileSettingsView)
         view.addSubview(tableView)
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
-        
         profileSettingsView.layoutSubviews()
         setupViews()
         setupTableView()
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -56,7 +52,6 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
         profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.profileViewHeightAnchor).isActive = true
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
@@ -98,7 +93,6 @@ extension ProfileSettingsViewController {
                     updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
                     updatedUser.experiencePoints = self.store.currentUser.experiencePoints
                     updatedUser.tasks = self.store.currentUser.tasks
-                    
                     self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
                 } else if indexTap?.row == 3 {
                     var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
@@ -123,6 +117,9 @@ extension ProfileSettingsViewController {
             tapCell.profileSettingField.isHidden = false
         }
     }
+}
+
+extension ProfileSettingsViewController {
     
     func setupTableView() {
         tableView.estimatedRowHeight = Constants.Settings.rowHeight

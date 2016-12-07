@@ -41,6 +41,10 @@ final class FriendsSettingsView: UIView {
         return searchButton
     }()
     
+}
+
+extension FriendsSettingsView {
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
@@ -69,5 +73,4 @@ final class FriendsSettingsView: UIView {
         searchButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         searchButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * Constants.Settings.searchButtonCenterYOffset).isActive = true
     }
-    
 }

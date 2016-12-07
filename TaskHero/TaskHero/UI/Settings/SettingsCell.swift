@@ -20,6 +20,9 @@ final class SettingsCell: UITableViewCell {
         textView.layer.masksToBounds = true
         return textView
     }()
+}
+
+extension SettingsCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -30,7 +33,6 @@ final class SettingsCell: UITableViewCell {
     fileprivate func setupConstraints() {
         contentView.backgroundColor = UIColor.settingsBackground()
         contentView.addSubview(settingLabel)
-        
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
         settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Settings.labelHeight).isActive = true
         settingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true

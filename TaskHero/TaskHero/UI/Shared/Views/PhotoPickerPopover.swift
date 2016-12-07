@@ -1,5 +1,5 @@
 //
-//  PickerPopMenu.swift
+//  PhotoPickerPopover.swift
 //  TaskHero
 //
 //  Created by Christopher Webb-Orenstein on 11/25/16.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-class PickerPopMenu: BasePopoverAlert {
-    
+class PhotoPickerPopover: BasePopoverAlert {
     lazy var searchLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black

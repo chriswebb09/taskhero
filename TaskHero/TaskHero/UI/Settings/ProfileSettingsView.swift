@@ -19,6 +19,9 @@ final class ProfileSettingsView: UIView {
         profileLabel.layer.masksToBounds = true
         return profileLabel
     }()
+}
+
+extension ProfileSettingsView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -28,7 +31,6 @@ final class ProfileSettingsView: UIView {
     
     fileprivate func setupConstraints() {
         addSubview(profileLabel)
-        
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
         profileLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.friendsHeaderLabelHeight).isActive = true
         profileLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Profile.heightMultiplier).isActive = true // 0.5

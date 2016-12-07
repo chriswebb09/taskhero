@@ -11,7 +11,6 @@ import UIKit
 final class TaskListViewController: UITableViewController, TaskCellDelegate {
     
     let store = DataStore.sharedInstance
-    //let manager = AppManager.sharedInstance
     var tapped: Bool = false
     var buttonTapped: Bool = false
     
@@ -61,11 +60,6 @@ extension TaskListViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         store.tasksRef.removeObserver(withHandle: store.refHandle)
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -154,7 +148,6 @@ extension TaskListViewController {
         if tapCell.buttonToggled == true {
             tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
         }
-        
     }
     
     func emptyTableViewState() {

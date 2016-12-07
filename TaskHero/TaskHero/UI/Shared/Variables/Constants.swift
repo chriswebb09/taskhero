@@ -30,6 +30,7 @@ struct Constants {
         static let tabbarColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:0.5)
         static let tabbarTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
         static let navbarBarTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
+        static let navbarAttributedText = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.fontMedium]
     }
     
     struct Login {
@@ -61,6 +62,13 @@ struct Constants {
         static let heightMultiplier:CGFloat = 0.5
         static let labelTopOffset:CGFloat = 0.04
         static let profileHeaderBannerColor:UIColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+    }
+    
+    struct Alert {
+        static let cancelButtonColor: UIColor = UIColor(red:0.88, green:0.35, blue:0.35, alpha:1.0)
+        static let cancelButtonHeight:CGFloat = 0.25
+        static let cancelButtonWidth:CGFloat = 0.5
+        static let headerBannerHeight:CGFloat = 0.25
     }
     
     static let tableViewBackgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)

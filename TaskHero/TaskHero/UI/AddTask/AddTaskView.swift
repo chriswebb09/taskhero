@@ -51,9 +51,12 @@ class AddTaskView: UIView {
         return addTaskButton
     }()
     
+}
+
+extension AddTaskView {
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         frame = UIScreen.main.bounds
         setupConstraints()
     }

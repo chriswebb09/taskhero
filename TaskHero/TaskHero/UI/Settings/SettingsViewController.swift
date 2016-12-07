@@ -45,10 +45,6 @@ final class SettingsViewController: UITableViewController {
 
 extension SettingsViewController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
@@ -70,7 +66,6 @@ extension SettingsViewController {
         else if settings[indexPath.row] == "Notifications" { notificationPopup() }
     }
 }
-
 
 extension SettingsViewController {
     
@@ -122,13 +117,16 @@ extension SettingsViewController {
 }
 
 extension SettingsViewController {
-    
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             settings = userSettings
+            segmentControl.subviews[1].backgroundColor = UIColor.lightGray
+            dump(segmentControl)
         default:
             settings = applicationSettings
+            segmentControl.subviews[0].backgroundColor = UIColor.lightGray
+            dump(segmentControl)
         }; tableView.reloadData()
     }
     
@@ -143,18 +141,23 @@ extension SettingsViewController {
     }
     
     func setupSegment() {
-        let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.blue]
+        let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
         let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
-        
         segmentControl.layer.cornerRadius = Constants.Settings.segmentBorderRadius
         segmentControl.tintColor = UIColor.white
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
-        segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * Constants.Settings.segmentSettingsTopOffset).isActive = true
+        segmentControl.topAnchor.constraint(equalTo: (tableView.tableHeaderView?.topAnchor)!).isActive = true
         segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier:Constants.Settings.segmentSettingsWidth).isActive = true
-        segmentControl.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
+        segmentControl.heightAnchor.constraint(equalTo:(tableView.tableHeaderView?.heightAnchor)!).isActive = true
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
+        // segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * Constants.Settings.segmentSettingsTopOffset).isActive = true
+        // segmentControl.heightAnchor.constraint(equalTo: tableView.tableHeaderView.heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
+        // let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]
+        
     }
 }
+
+

@@ -68,6 +68,9 @@ class SignupView: UIView {
         button.titleLabel?.font = Constants.Font.fontNormal
         return button
     }()
+}
+
+extension SignupView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -76,6 +79,8 @@ class SignupView: UIView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
+    
+    // sets up constraints on signupview
     
     fileprivate func setupConstraints() {
         addSubview(signupViewLabel)
@@ -107,7 +112,7 @@ class SignupView: UIView {
         confirmEmailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         confirmEmailField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
-
+        
         addSubview(passwordField)
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true

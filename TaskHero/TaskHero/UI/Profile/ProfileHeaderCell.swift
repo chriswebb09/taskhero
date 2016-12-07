@@ -51,6 +51,10 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         return imageView
     }()
     
+}
+
+
+extension ProfileHeaderCell {
     func configureLabel(label:UILabel) {
         label.textColor = UIColor.black
         label.textAlignment = .right

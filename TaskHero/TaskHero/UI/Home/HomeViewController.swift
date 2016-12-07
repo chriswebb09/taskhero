@@ -11,7 +11,7 @@ import UIKit
 final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     let store = DataStore.sharedInstance
-    let pop = PickerPopMenu()
+    let photoPopover = PhotoPickerPopover()
     var profilePic: UIImage? = nil
     let help = TabviewHelper()
     var tapped: Bool = false
@@ -66,11 +66,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
 }
 
 extension HomeViewController {
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+ 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 {
             return 1
@@ -161,10 +157,10 @@ extension HomeViewController: TaskCellDelegate {
     // if popover is not visible shows popover/ if popover is displayed - hides popver
     
     func profilePictureTapped() {
-        pop.popView.isHidden = false
-        pop.showPopView(viewController: self)
+        photoPopover.popView.isHidden = false
+        photoPopover.showPopView(viewController: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideView))
-        pop.containerView.addGestureRecognizer(tap)
+        photoPopover.containerView.addGestureRecognizer(tap)
     }
     
     func toggleForButtonState(sender:UIButton) {
@@ -186,10 +182,10 @@ extension HomeViewController: TaskCellDelegate {
     // hides popover view when operation has ended.
     
     func hideView() {
-        pop.popView.isHidden = true
-        pop.hidePopView(viewController: self)
-        pop.popView.layer.opacity = 0
-        pop.containerView.layer.opacity = 0
+        photoPopover.popView.isHidden = true
+        photoPopover.hidePopView(viewController: self)
+        photoPopover.popView.layer.opacity = 0
+        photoPopover.containerView.layer.opacity = 0
     }
 }
 

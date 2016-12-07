@@ -65,7 +65,7 @@ extension LoginViewController {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { user, error in
             if error != nil {
                 
-                // if there is error - hide loading popover 
+                // if there is error - hide loading popover
                 
                 self.loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {

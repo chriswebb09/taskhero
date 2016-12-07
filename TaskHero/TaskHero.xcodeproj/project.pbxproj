@@ -55,7 +55,7 @@
 		A709CB1E1DE777DC00877907 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB1D1DE777DC00877907 /* Auth.swift */; };
 		A709CB261DE77DBF00877907 /* DBFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB251DE77DBF00877907 /* DBFetch.swift */; };
 		A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713373C1DE8047E0030DDF2 /* AppManager.swift */; };
-		A7346D761DE8EC40005E3A5E /* PickerPopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D751DE8EC40005E3A5E /* PickerPopMenu.swift */; };
+		A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */; };
 		A7346D781DE8EC50005E3A5E /* AlertPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D771DE8EC50005E3A5E /* AlertPopover.swift */; };
 		A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */; };
 		A7346D7C1DE90DF1005E3A5E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7B1DE90DF1005E3A5E /* AlertView.swift */; };
@@ -125,7 +125,7 @@
 		A709CB1D1DE777DC00877907 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		A709CB251DE77DBF00877907 /* DBFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBFetch.swift; sourceTree = "<group>"; };
 		A713373C1DE8047E0030DDF2 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
-		A7346D751DE8EC40005E3A5E /* PickerPopMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerPopMenu.swift; sourceTree = "<group>"; };
+		A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerPopover.swift; sourceTree = "<group>"; };
 		A7346D771DE8EC50005E3A5E /* AlertPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPopover.swift; sourceTree = "<group>"; };
 		A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		A7346D7B1DE90DF1005E3A5E /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 			children = (
 				A709CAFD1DE7731500877907 /* LoadingView.swift */,
 				A709CAF51DE772EC00877907 /* PopMenu.swift */,
-				A7346D751DE8EC40005E3A5E /* PickerPopMenu.swift */,
+				A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */,
 				A7346D771DE8EC50005E3A5E /* AlertPopover.swift */,
 				A709CB071DE7734700877907 /* RootContainerViewController.swift */,
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
@@ -605,7 +605,7 @@
 				A709CAEB1DE7726D00877907 /* TeamDataCell.swift in Sources */,
 				A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */,
 				A709CAF01DE7728B00877907 /* ProfilePictureViewController.swift in Sources */,
-				A7346D761DE8EC40005E3A5E /* PickerPopMenu.swift in Sources */,
+				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,
 				A708400A1DEB180800055B72 /* ProfileSettingsCell.swift in Sources */,

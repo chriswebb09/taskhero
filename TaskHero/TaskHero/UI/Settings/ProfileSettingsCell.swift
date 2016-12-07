@@ -45,6 +45,10 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         return taskNameField
     }()
     
+}
+
+extension ProfileSettingsCell {
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()

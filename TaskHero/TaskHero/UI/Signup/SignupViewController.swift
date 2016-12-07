@@ -42,6 +42,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         self.store.fetchValidUsernames()
     }
     
+}
+
+extension SignupViewController {
+    
     // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String)  -> Bool {
@@ -70,7 +74,7 @@ extension SignupViewController {
         
         if (validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!)) {
             
-        
+            
             loadingView.showActivityIndicator(viewController: self)
             
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
