@@ -12,6 +12,8 @@ class ProfileBannerCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileBannerCell"
     
+    // MARK: - UI Elements
+    
     var bannerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
@@ -21,13 +23,17 @@ class ProfileBannerCell: UITableViewCell {
 
 extension ProfileBannerCell {
     
+    // MARK: - Initialization
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
     
-    fileprivate func setupConstraints() {
+    // MARK: - Configuring
+    
+    private func setupConstraints() {
         contentView.addSubview(bannerImage)
         bannerImage.translatesAutoresizingMaskIntoConstraints = false
         bannerImage.center = contentView.center

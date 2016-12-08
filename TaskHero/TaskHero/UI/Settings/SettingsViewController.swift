@@ -18,6 +18,8 @@ final class SettingsViewController: UITableViewController {
     let alertPop = AlertPopover()
     let notifyPop = NotificationPopover()
     
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         settings = userSettings

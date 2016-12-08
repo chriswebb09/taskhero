@@ -22,9 +22,7 @@ final class ProfileViewController: UITableViewController {
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
-        
-        // Sets up ui on main thread
-        
+        // Sets up UI on main thread
         DispatchQueue.main.async {
             self.setupNavItems()
             self.tableView.reloadData()
@@ -36,14 +34,13 @@ final class ProfileViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // on view did appear ensure fresh user data from database is loaded and reloads tableview
+    // On view did appear ensure fresh user data from database is loaded and reloads tableview
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         self.store.fetchUserData()
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
     }
 }
 
@@ -65,14 +62,13 @@ extension ProfileViewController {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
             return bannerCell
-            
             // If second row return profileheader cell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell()
             return headerCell
-            // Beyond that it's all profiledatacells
+            // Beyond that it's all Profiledata cells
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
@@ -83,7 +79,7 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     
-    // On logoutbutton press sets rootview controller to loginviewcontroller on main thread
+    // On logout button press sets rootview controller to loginviewcontroller on main thread
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {
@@ -99,6 +95,8 @@ extension ProfileViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
     }
+    
+    // MARK: - Delegate Methods
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)

@@ -9,18 +9,21 @@
 import Foundation
 
 protocol ProfileHeaderVM {
+    
     var user: User? { get set }
     var joinDate: String { get }
     var levelLabel: String { get }
     var profilePicture: String { get }
     var usernameLabel: String { get }
     var emailLabel: String { get }
+    
 }
 
 
 class ProfileHeaderCellViewModel: ProfileHeaderVM {
     
     let store = DataStore.sharedInstance
+    
     internal var user: User?
     internal var emailLabel: String
     internal var usernameLabel: String

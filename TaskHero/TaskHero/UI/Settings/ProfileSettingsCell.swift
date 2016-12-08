@@ -18,6 +18,8 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     var delegate: ProfileSettingsCellDelegate?
     
+    // MARK: - UIElements
+    
     let profileSettingLabel: UILabel = {
         let profileLabel = UILabel()
         profileLabel.textColor = UIColor.settingsBackground()
@@ -48,6 +50,8 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
 
 extension ProfileSettingsCell {
     
+    // MARK: - Initalization
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
@@ -75,6 +79,8 @@ extension ProfileSettingsCell {
         profileSettingField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Settings.profileSettingsFieldCenterYAnchor).isActive = true
         profileSettingField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
+    
+    // MARK: - Delegate Methods
     
     func configureCell(setting:String) {
         layoutSubviews()

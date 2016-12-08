@@ -23,6 +23,8 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     var indexString: String = ""
     let headerView = UIView()
     
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
@@ -155,7 +157,9 @@ extension HomeViewController: TaskCellDelegate {
         }
     }
     
-    // If popover is not visible shows popover/ if popover is displayed - hides popver
+    
+    // MARK: - Delegate Methods
+    // If popover is not visible shows popover/ if popover is displayed - hides popover
     
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false

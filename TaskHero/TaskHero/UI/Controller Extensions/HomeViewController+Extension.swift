@@ -20,7 +20,8 @@ extension HomeViewController {
         appDelegate.window?.rootViewController = loginVC
     }
     
-    // pushes addtaskviewcontroller to current current view controller on button press
+    // Pushes addtaskviewcontroller to current current view controller on button press
+    
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }

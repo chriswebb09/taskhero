@@ -9,10 +9,12 @@
 import UIKit
 
 protocol ProfileDataCellVM {
+    
     var user: User? { get set }
     var level: String { get }
     var experience: Int { get }
     var tasksCompleted: Int { get }
+    
 }
 
 class ProfileDataCellViewModel: ProfileDataCellVM {

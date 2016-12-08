@@ -13,6 +13,7 @@ protocol ProfileHeaderCellDelegate: class {
 }
 
 class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
+    
     static let cellIdentifier = "ProfileHeaderCell"
     
     var profileHeaderCellModel : ProfileHeaderCellViewModel = {
@@ -54,11 +55,11 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
-    
 }
 
-
 extension ProfileHeaderCell {
+    
+    // MARK: - Configuring UI
     
     func configureLabel(label:UILabel) {
         label.textColor = UIColor.black
@@ -76,7 +77,6 @@ extension ProfileHeaderCell {
         self.contentView.layoutIfNeeded()
         setupConstraints()
         contentView.layer.masksToBounds = true
-        
     }
     
     fileprivate func setupConstraints() {
@@ -116,6 +116,7 @@ extension ProfileHeaderCell {
     }
     
     func configureCell() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         emailLabel.text = profileHeaderCellModel.emailLabel
@@ -125,11 +126,12 @@ extension ProfileHeaderCell {
         joinDateLabel.text = "Joined: \(profileHeaderCellModel.joinDate)"
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePicture.addGestureRecognizer(tap)
         layoutSubviews()
         layoutIfNeeded()
     }
+    
+    // MARK: - Delegate Methods
     
     func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")
