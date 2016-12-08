@@ -24,7 +24,6 @@ class AlertPopover: BasePopoverAlert {
         popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
         popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         popView.clipsToBounds = true
-        
         viewController.view.addSubview(popView)
         viewController.view.bringSubview(toFront: popView)
     }

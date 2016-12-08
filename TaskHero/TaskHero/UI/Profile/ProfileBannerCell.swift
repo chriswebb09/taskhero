@@ -12,7 +12,7 @@ class ProfileBannerCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileBannerCell"
     
-    lazy var bannerImage: UIImageView = {
+    var bannerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
         return imageView

@@ -16,11 +16,14 @@ protocol ProfileDataCellVM {
 }
 
 class ProfileDataCellViewModel: ProfileDataCellVM {
+    
     let store = DataStore.sharedInstance
+    
     internal var tasksCompleted: Int
     internal var experience: Int
     internal var level: String
     internal var user: User?
+    
     init() {
         self.user = self.store.currentUser
         self.level = (user?.level)!

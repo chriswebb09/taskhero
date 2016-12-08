@@ -65,13 +65,14 @@ extension ProfileViewController {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
             return bannerCell
-            // If second row return porfileheader cell
+            
+            // If second row return profileheader cell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
-            headerCell.configureCell(user: self.store.currentUser)
+            headerCell.configureCell()
             return headerCell
-            // beyond that it's all profiledatacells
+            // Beyond that it's all profiledatacells
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
@@ -82,7 +83,7 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     
-    // on logoutbutton press sets rootview controller to loginviewcontroller on main thread
+    // On logoutbutton press sets rootview controller to loginviewcontroller on main thread
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {

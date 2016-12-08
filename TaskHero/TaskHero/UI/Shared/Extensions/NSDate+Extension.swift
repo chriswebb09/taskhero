@@ -10,7 +10,6 @@ import Foundation
 
 extension NSDate {
     func dateWithFormat() -> String {
-        
         let todaysDate = NSDate()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-yyyy"

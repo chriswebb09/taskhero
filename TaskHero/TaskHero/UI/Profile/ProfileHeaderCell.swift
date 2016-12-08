@@ -13,8 +13,12 @@ protocol ProfileHeaderCellDelegate: class {
 }
 
 class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
-    
     static let cellIdentifier = "ProfileHeaderCell"
+    
+    var profileHeaderCellModel : ProfileHeaderCellViewModel = {
+        var model = ProfileHeaderCellViewModel()
+        return model
+    }()
     
     var delegate: ProfileHeaderCellDelegate?
     
@@ -24,7 +28,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         return joinDateLabel
     }()
     
-    lazy var usernameLabel: UILabel = {
+    var usernameLabel: UILabel = {
         let usernameLabel = UILabel()
         usernameLabel.font = Constants.Font.bolderFontLarge
         return usernameLabel
@@ -36,14 +40,14 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         return emailLabel
     }()
     
-    lazy var levelLabel: UILabel = {
+    var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.font = Constants.Font.fontMedium
         levelLabel.textAlignment = .right
         return levelLabel
     }()
     
-    lazy var profilePicture: UIImageView = {
+    var profilePicture: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = Constants.Settings.searchButtonWidth
@@ -111,14 +115,14 @@ extension ProfileHeaderCell {
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Profile.leftOffset).isActive = true
     }
     
-    func configureCell(user: User) {
+    func configureCell() {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        emailLabel.text = user.email
+        emailLabel.text = profileHeaderCellModel.emailLabel
         joinDateLabel.isHidden = true
-        usernameLabel.text = user.username
-        levelLabel.text = "Level: \(user.level)"
-        joinDateLabel.text = "Joined: \(user.joinDate)"
+        usernameLabel.text = profileHeaderCellModel.usernameLabel
+        levelLabel.text = "Level: \(profileHeaderCellModel.levelLabel)"
+        joinDateLabel.text = "Joined: \(profileHeaderCellModel.joinDate)"
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))

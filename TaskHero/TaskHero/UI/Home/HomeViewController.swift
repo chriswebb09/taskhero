@@ -90,7 +90,7 @@ extension HomeViewController {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
-            headerCell.configureCell(user: self.store.currentUser)
+            headerCell.configureCell()
             if profilePic != nil {
                 headerCell.profilePicture.image = profilePic
             }

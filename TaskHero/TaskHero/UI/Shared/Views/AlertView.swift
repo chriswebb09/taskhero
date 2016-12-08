@@ -32,7 +32,7 @@ class AlertView: UIView {
         return uiElement
     }()
     
-    lazy var resultLabel: UILabel = {
+    var resultLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.text = "Results"
         searchLabel.textColor = UIColor.black
@@ -42,7 +42,7 @@ class AlertView: UIView {
     }()
     
     
-    lazy var alertLabel: UILabel = {
+   var alertLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
         searchLabel.text = "Find Your Friends"
