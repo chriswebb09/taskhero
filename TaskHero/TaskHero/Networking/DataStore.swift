@@ -29,7 +29,6 @@ class DataStore {
     var usernameRef: FIRDatabaseReference!
     var auth = Auth()
     
-    
     // MARK: Deinit
     // Removes refhandle
     
@@ -94,7 +93,6 @@ class DataStore {
         })
     }
     
-    
     // Inserts new user to database and updates usernames keys
     
     func insertUser(user:User) {
@@ -106,10 +104,7 @@ class DataStore {
                                       "Level": user.level,
                                       "JoinDate": user.joinDate,
                                       "Username": user.username,
-                                      "TasksCompleted": user.numberOfTasksCompleted ]
-        
-        
-        
+                                      "TasksCompleted": user.numberOfTasksCompleted]
         userRef.updateChildValues(["/\(self.currentUserString!)": userData])
         userRef.keepSynced(true)
         usernameRef.updateChildValues([user.username:user.email])
@@ -158,7 +153,6 @@ class DataStore {
     
     func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
         let userID = FIRAuth.auth()?.currentUser?.uid
-        
         tasksRef = userRef.child((userID)!).child("Tasks")
         tasksRef.keepSynced(true)
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
@@ -183,7 +177,6 @@ class DataStore {
             }
             completion(newTask)
         })
-        
     }
     
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
@@ -212,7 +205,6 @@ class DataStore {
                                       "TaskCreated": task.taskCreated ,
                                       "TaskDue": task.taskDue,
                                       "TaskCompleted": task.taskCompleted]
-        
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
     
@@ -228,9 +220,6 @@ class DataStore {
                                       "JoinDate": user.joinDate,
                                       "Username": user.username,
                                       "TasksCompleted": user.numberOfTasksCompleted]
-        
-        
-        
         userRef.updateChildValues(["/\(self.currentUserString!)": userData])
         userRef.keepSynced(true)
         usernameRef.updateChildValues([user.username:user.email])
@@ -238,9 +227,4 @@ class DataStore {
             updateTask(ref: task.taskID, taskID: task.taskID, task: task)
         }
     }
-    
-//    func removeTask(ref:String, taskID: String) {
-//        tasksRef = userRef.child(currentUserString).child("Tasks")
-//        tasksRef.child(ref).removeValue()
-//    }
 }

@@ -24,7 +24,8 @@ final class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         settings = userSettings
         edgesForExtendedLayout = []
-        view.backgroundColor = UIColor.backgroundColor() //UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        view.backgroundColor = UIColor.backgroundColor()
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
         let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
         header.backgroundColor = UIColor.white

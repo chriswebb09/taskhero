@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol ProfileDataCellVM {
+protocol ProfileDataCellModel {
     var user: User? { get set }
     var level: String { get }
     var experience: Int { get }
     var tasksCompleted: Int { get }
 }
 
-class ProfileDataCellViewModel: ProfileDataCellVM {
+class ProfileDataCellViewModel: ProfileDataCellModel {
     
     // MARK: - Internal Variables
     

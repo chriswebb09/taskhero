@@ -86,7 +86,6 @@ extension AddTaskViewController {
 
 extension AddTaskViewController {
     
-    
     // MARK: Extension - UIPickerView Methods
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -94,13 +93,13 @@ extension AddTaskViewController {
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        // Return picker options for number of months if at index 0
+            // Return picker options for number of months if at index 0
         if component == 0 {
             return pickerMonths.count
-        // Return numbers of days in month
+            // Return numbers of days in month
         } else if component == 1 {
             return 30
-        //Return years
+            // Return years
         } else {
             return 3
         }
@@ -120,7 +119,7 @@ extension AddTaskViewController {
         }
     }
     
-    // Sets UIPickerView data 
+    // Sets UIPickerView data
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
@@ -131,7 +130,6 @@ extension AddTaskViewController {
             self.year = years[row]
         }
     }
-    
 }
 
 extension AddTaskViewController {
@@ -163,7 +161,6 @@ extension AddTaskViewController {
         let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:newDate, taskCompleted: false, pointValue:5)
         store.addTasks(task: newTask)
         store.currentUser.tasks!.append(newTask)
-        
         DispatchQueue.main.async {
             self.pop.hidePopView(viewController: self)
             self.pop.popView.isHidden = true

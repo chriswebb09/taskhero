@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ProfileHeaderVM {
+protocol ProfileHeaderModel {
     
     var user: User? { get set }
     var joinDate: String { get }
@@ -19,7 +19,7 @@ protocol ProfileHeaderVM {
     
 }
 
-class ProfileHeaderCellViewModel: ProfileHeaderVM {
+class ProfileHeaderCellViewModel: ProfileHeaderModel {
     
     // MARK: - Internal Variables
     

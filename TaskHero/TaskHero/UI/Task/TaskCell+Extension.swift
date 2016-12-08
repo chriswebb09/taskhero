@@ -23,7 +23,6 @@ extension TaskCell {
         } else {
             toggleUIForActive()
             print("toggling for inactive")
-            
         }
     }
     

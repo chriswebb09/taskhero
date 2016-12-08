@@ -16,14 +16,18 @@ class InitialViewController: UIViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         view.addSubview(initView)
+        view.backgroundColor = UIColor.white
         initView.layoutSubviews()
-        initView.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        initView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initView.zoomAnimation({ })
     }
     
     func loginButtonTapped() {

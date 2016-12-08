@@ -90,7 +90,7 @@ extension SignupViewController {
                     return
                 }
                 
-                //successfully authenticated user
+                // Successfully authenticated user
                 
                 let ref = FIRDatabase.database().reference()
                 let newUser = User()

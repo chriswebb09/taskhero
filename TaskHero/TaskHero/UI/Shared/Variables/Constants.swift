@@ -54,7 +54,7 @@ struct Constants {
     struct Profile {
         static let profileHeaderLabelHeight:CGFloat = 0.2
         static let profileHeaderLabelWidth: CGFloat = 0.41
-        static let profileHeaderLabelRightOffset:CGFloat = -5
+        static let profileHeaderLabelRightOffset:CGFloat = -10
         static let profilePictureHeight:CGFloat = 0.12
         static let profilePictureWidth: CGFloat = 75
         static let bottomOffset:CGFloat =  -10

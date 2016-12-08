@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class InitialView: UIView {
     
     let containerView = UIView()
@@ -44,4 +43,6 @@ class InitialView: UIView {
         logoLabel.image = UIImage(named: "logo")
         welcomeLabel.font = UIFont(name: Constants.font, size: 20)
     }
+    
+       
 }

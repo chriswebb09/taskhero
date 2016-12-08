@@ -20,15 +20,15 @@ class TextFieldExtension: UITextField {
         return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width, height: bounds.height)
     }
     
-    
     func returnTextField(placeholder:String) -> TextFieldExtension {
-        let confirmEmailField = TextFieldExtension()
-        confirmEmailField.placeholder = placeholder
-        confirmEmailField.font = Constants.signupFieldFont
-        confirmEmailField.layer.borderColor = Constants.signupFieldColor
-        confirmEmailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
-        confirmEmailField.keyboardType = .default
-        return confirmEmailField
+        let returnTextField = TextFieldExtension()
+        returnTextField.placeholder = placeholder
+        returnTextField.font = Constants.signupFieldFont
+        returnTextField.layer.borderColor = Constants.signupFieldColor
+        returnTextField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        returnTextField.layer.cornerRadius = 3
+        returnTextField.keyboardType = .default
+        return returnTextField
     }
     
     func emailField(placeholder:String) -> TextFieldExtension {
@@ -36,6 +36,7 @@ class TextFieldExtension: UITextField {
         confirmEmailField.placeholder = placeholder
         confirmEmailField.font = Constants.signupFieldFont
         confirmEmailField.layer.borderColor = Constants.signupFieldColor
+        confirmEmailField.layer.cornerRadius = 3
         confirmEmailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         confirmEmailField.keyboardType = .emailAddress
         return confirmEmailField
@@ -46,6 +47,7 @@ class TextFieldExtension: UITextField {
         passwordField.placeholder = "Enter password"
         passwordField.font = Constants.signupFieldFont
         passwordField.layer.borderColor = Constants.signupFieldColor
+        passwordField.layer.cornerRadius = 3
         passwordField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         passwordField.isSecureTextEntry = true
         return passwordField

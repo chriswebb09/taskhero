@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7244712A81FA9B4EA164A8FA /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */; };
-		A704335B1DF7CE7D00A784E1 /* TaskCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704335A1DF7CE7D00A784E1 /* TaskCell+Extension.swift */; };
 		A70840001DEABB1700055B72 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */; };
 		A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */; };
 		A70840041DEABBD000055B72 /* FriendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840031DEABBD000055B72 /* FriendsSettingsView.swift */; };
@@ -70,6 +69,8 @@
 		A76562D01DF93F2000E29AA9 /* TaskListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562CB1DF93F2000E29AA9 /* TaskListViewController+Extension.swift */; };
 		A76562D31DF93F4800E29AA9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D11DF93F4800E29AA9 /* InitialViewController.swift */; };
 		A76562D41DF93F4800E29AA9 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D21DF93F4800E29AA9 /* InitView.swift */; };
+		A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */; };
+		A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */; };
 		A77FBCC41DEB5B410014C380 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC31DEB5B410014C380 /* NotificationView.swift */; };
 		A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */; };
 		A77FBCC91DEB74670014C380 /* BasePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC81DEB74670014C380 /* BasePopView.swift */; };
@@ -85,7 +86,6 @@
 /* Begin PBXFileReference section */
 		6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91CD8A86197BE8140B3FABF1 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
-		A704335A1DF7CE7D00A784E1 /* TaskCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskCell+Extension.swift"; sourceTree = "<group>"; };
 		A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 		A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		A70840031DEABBD000055B72 /* FriendsSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSettingsView.swift; sourceTree = "<group>"; };
@@ -147,6 +147,8 @@
 		A76562CB1DF93F2000E29AA9 /* TaskListViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TaskListViewController+Extension.swift"; path = "UI/Controller Extensions/TaskListViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562D11DF93F4800E29AA9 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = Initial/InitialViewController.swift; sourceTree = "<group>"; };
 		A76562D21DF93F4800E29AA9 /* InitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitView.swift; path = Initial/InitView.swift; sourceTree = "<group>"; };
+		A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskCell+Extension.swift"; sourceTree = "<group>"; };
+		A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		A77FBCC31DEB5B410014C380 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPopover.swift; sourceTree = "<group>"; };
 		A77FBCC81DEB74670014C380 /* BasePopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePopView.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				A709CAE11DE7723800877907 /* TextfieldExtension.swift */,
 				A709CADF1DE7722D00877907 /* UIColorExtension.swift */,
 				A709CAE31DE7724E00877907 /* UIView+Extension.swift */,
+				A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -316,21 +319,12 @@
 		A709CB231DE77C2E00877907 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A709CAFD1DE7731500877907 /* LoadingView.swift */,
-				A709CAF51DE772EC00877907 /* PopMenu.swift */,
-				A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */,
-				A7346D771DE8EC50005E3A5E /* AlertPopover.swift */,
+				A76562D81DF953C500E29AA9 /* Popover */,
 				A709CB071DE7734700877907 /* RootContainerViewController.swift */,
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
-				A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */,
-				A7346D7B1DE90DF1005E3A5E /* AlertView.swift */,
-				A77FBCC31DEB5B410014C380 /* NotificationView.swift */,
-				A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */,
 				A7346D871DEA6A08005E3A5E /* DataPicker.swift */,
 				A7346D7D1DE93688005E3A5E /* TaskButton.swift */,
 				A70840071DEB152F00055B72 /* BaseCell.swift */,
-				A77FBCC81DEB74670014C380 /* BasePopView.swift */,
-				A77FBCCA1DEB78880014C380 /* BasePopoverAlert.swift */,
 				A77FBCCC1DEB8A190014C380 /* Helpers.swift */,
 			);
 			path = Views;
@@ -349,12 +343,6 @@
 			isa = PBXGroup;
 			children = (
 				A713373C1DE8047E0030DDF2 /* AppManager.swift */,
-				A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */,
-				A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */,
-				A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */,
-				A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */,
-				A76562CB1DF93F2000E29AA9 /* TaskListViewController+Extension.swift */,
-				A704335A1DF7CE7D00A784E1 /* TaskCell+Extension.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -366,6 +354,35 @@
 				A76562D21DF93F4800E29AA9 /* InitView.swift */,
 			);
 			name = InitialView;
+			sourceTree = "<group>";
+		};
+		A76562D71DF9536000E29AA9 /* Controller Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */,
+				A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */,
+				A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */,
+				A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */,
+				A76562CB1DF93F2000E29AA9 /* TaskListViewController+Extension.swift */,
+			);
+			name = "Controller Extensions";
+			sourceTree = "<group>";
+		};
+		A76562D81DF953C500E29AA9 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				A709CAFD1DE7731500877907 /* LoadingView.swift */,
+				A709CAF51DE772EC00877907 /* PopMenu.swift */,
+				A77FBCC31DEB5B410014C380 /* NotificationView.swift */,
+				A7346D7B1DE90DF1005E3A5E /* AlertView.swift */,
+				A77FBCC81DEB74670014C380 /* BasePopView.swift */,
+				A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */,
+				A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */,
+				A77FBCCA1DEB78880014C380 /* BasePopoverAlert.swift */,
+				A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */,
+				A7346D771DE8EC50005E3A5E /* AlertPopover.swift */,
+			);
+			name = Popover;
 			sourceTree = "<group>";
 		};
 		AF18D86C1DBD8165002A3372 /* Profile */ = {
@@ -452,6 +469,7 @@
 			children = (
 				AFA3CEA91DB58E2E003266CA /* Models */,
 				AFA3CE8D1DB58DF7003266CA /* Networking */,
+				A76562D71DF9536000E29AA9 /* Controller Extensions */,
 				A7346D7F1DEA249C005E3A5E /* Application */,
 				AFA3CE8A1DB58DDB003266CA /* UI */,
 				AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */,
@@ -466,6 +484,7 @@
 		AFE9E6BF1DBDA76E0023C232 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */,
 				A709CAD71DE7720200877907 /* TaskCell.swift */,
 				A709CAD81DE7720200877907 /* TaskHeaderCell.swift */,
 				A709CB111DE7737800877907 /* TaskListViewController.swift */,
@@ -609,6 +628,7 @@
 				A709CAE21DE7723800877907 /* TextfieldExtension.swift in Sources */,
 				A709CACE1DE7719E00877907 /* AddTaskViewController.swift in Sources */,
 				A76562CC1DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift in Sources */,
+				A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */,
 				A709CAEA1DE7726D00877907 /* TeamBannerCell.swift in Sources */,
 				A709CAF81DE772F700877907 /* AddTaskView.swift in Sources */,
 				A709CAFE1DE7731500877907 /* LoadingView.swift in Sources */,
@@ -629,6 +649,7 @@
 				A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */,
 				A709CAF01DE7728B00877907 /* ProfilePictureViewController.swift in Sources */,
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
+				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,
 				A708400A1DEB180800055B72 /* ProfileSettingsCell.swift in Sources */,
@@ -644,7 +665,6 @@
 				A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */,
 				A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */,
 				A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */,
-				A704335B1DF7CE7D00A784E1 /* TaskCell+Extension.swift in Sources */,
 				A77FBCCD1DEB8A190014C380 /* Helpers.swift in Sources */,
 				A709CB081DE7734700877907 /* RootContainerViewController.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,

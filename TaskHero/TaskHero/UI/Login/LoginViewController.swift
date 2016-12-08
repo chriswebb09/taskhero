@@ -31,10 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let operationQueue = OperationQueue()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-        let operation = BlockOperation(block: { () -> Void in
-            self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
-        })
-        operationConfigure(operationQueue: operationQueue, operation: operation)
+        self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
         navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
     }
@@ -106,7 +103,6 @@ extension LoginViewController {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
         })
-        
     }
     
     // Checks that text has been entered and exceeds five characters in length
@@ -172,18 +168,5 @@ extension LoginViewController {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.textColor = UIColor.lightGray
         textField.layer.borderColor = UIColor.lightGray.cgColor
-    }
-}
-
-extension UINavigationBar {
-    
-    // Setup gray underline UINavigationBar
-    
-    func setBottomBorderColor(color: UIColor, height: CGFloat) {
-        
-        let bottomBorderRect = CGRect(x: 0, y: frame.height, width: frame.width, height: height)
-        let bottomBorderView = UIView(frame: bottomBorderRect)
-        bottomBorderView.backgroundColor = color
-        addSubview(bottomBorderView)
     }
 }

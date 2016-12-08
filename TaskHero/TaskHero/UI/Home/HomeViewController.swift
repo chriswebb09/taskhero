@@ -10,7 +10,6 @@ import UIKit
 
 final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
-    
     // MARK: Internal Properties
     
     let store = DataStore.sharedInstance
@@ -41,7 +40,8 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview - if there are tasks in datastore removes tasks before load
+    // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
+    // If there are tasks in datastore removes tasks before load
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -59,7 +59,8 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
         })
     }
     
-    // If taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
+    // If taskref is not nil removes refhandle
+    // necessary to prevent duplicates from being rendered when view reloads.
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -84,7 +85,6 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.rowHeight
     }
-    
     
     // If first row returns profile header cell else returns task cell
     
@@ -132,7 +132,8 @@ extension HomeViewController {
             tableView.reloadData()
             
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            // Create a new instance of the appropriate class
+            // insert it into the array, and add a new row to the table view.
         }
     }
 }
@@ -140,8 +141,7 @@ extension HomeViewController {
 extension HomeViewController: TaskCellDelegate {
     
     // MARK: Public Methods
-    
-    // Implements logic for editing task from cell 
+    // Implements logic for editing task from cell
     
     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
@@ -160,9 +160,10 @@ extension HomeViewController: TaskCellDelegate {
         }
     }
     
-    
     // MARK: - Delegate Methods
-    // If popover is not visible shows popover/ if popover is displayed - hides popover
+    
+    // If popover is not visible shows popover
+    // if popover is displayed it hides popover
     
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false

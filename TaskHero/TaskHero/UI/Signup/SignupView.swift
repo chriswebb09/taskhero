@@ -41,7 +41,6 @@ class SignupView: UIView {
     
     lazy var signupButton: UIButton = {
         let button = UIButton(type: .system)
-        //button.backgroundColor = UIColor.newButtonColor()
         button.backgroundColor = Constants.Login.loginButtonColor
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)

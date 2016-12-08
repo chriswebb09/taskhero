@@ -32,7 +32,7 @@ final class ProfileViewController: UITableViewController {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
         
-        // Sets up UI on main thread
+        // Setup UI on main thread
         
         DispatchQueue.main.async {
             self.setupNavItems()
@@ -45,7 +45,8 @@ final class ProfileViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // On view did appear ensure fresh user data from database is loaded and reloads TableView
+    // On viewDidAppear ensure fresh user data from database is 
+    // loaded and reloads TableView
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
@@ -100,7 +101,7 @@ extension ProfileViewController {
     // MARK: - Delegate Methods
     
     func setupNavItems() {
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: Constants.NavBar.bottomHeight)
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
