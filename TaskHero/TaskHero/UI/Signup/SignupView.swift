@@ -20,42 +20,22 @@ class SignupView: UIView {
     }()
     
     lazy var usernameField: TextFieldExtension = {
-        let usernameField = TextFieldExtension()
-        usernameField.placeholder = "Choose your username"
-        usernameField.font = Constants.signupFieldFont
-        usernameField.layer.borderColor = Constants.signupFieldColor
-        usernameField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
-        usernameField.keyboardType = .emailAddress
-        return usernameField
+        let emailField = TextFieldExtension().emailField(placeholder: "Choose a username")
+        return emailField
     }()
     
     lazy var emailField: TextFieldExtension = {
-        let emailField = TextFieldExtension()
-        emailField.placeholder = "Enter email"
-        emailField.font = Constants.signupFieldFont
-        emailField.layer.borderColor = Constants.signupFieldColor
-        emailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
-        emailField.keyboardType = .emailAddress
+        let emailField = TextFieldExtension().emailField(placeholder: "Enter email address")
         return emailField
     }()
     
     lazy var confirmEmailField: TextFieldExtension = {
-        let confirmEmailField = TextFieldExtension()
-        confirmEmailField.placeholder = "Confirm your email address"
-        confirmEmailField.font = Constants.signupFieldFont
-        confirmEmailField.layer.borderColor = Constants.signupFieldColor
-        confirmEmailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
-        confirmEmailField.keyboardType = .emailAddress
-        return confirmEmailField
+        let emailField = TextFieldExtension().emailField(placeholder: "Confirm email address")
+        return emailField
     }()
     
     lazy var passwordField: TextFieldExtension = {
-        let passwordField = TextFieldExtension()
-        passwordField.placeholder = "Enter password"
-        passwordField.font = Constants.signupFieldFont
-        passwordField.layer.borderColor = Constants.signupFieldColor
-        passwordField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
-        passwordField.isSecureTextEntry = true
+        let passwordField = TextFieldExtension().passwordField()
         return passwordField
     }()
     

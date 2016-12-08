@@ -9,6 +9,7 @@
 import UIKit
 
 class TextFieldExtension: UITextField {
+    
     // sets textfield input to + 10 inset on origin x value
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -18,5 +19,35 @@ class TextFieldExtension: UITextField {
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width, height: bounds.height)
     }
-  
+    
+    
+    func returnTextField(placeholder:String) -> TextFieldExtension {
+        let confirmEmailField = TextFieldExtension()
+        confirmEmailField.placeholder = placeholder
+        confirmEmailField.font = Constants.signupFieldFont
+        confirmEmailField.layer.borderColor = Constants.signupFieldColor
+        confirmEmailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        confirmEmailField.keyboardType = .default
+        return confirmEmailField
+    }
+    
+    func emailField(placeholder:String) -> TextFieldExtension {
+        let confirmEmailField = TextFieldExtension()
+        confirmEmailField.placeholder = placeholder
+        confirmEmailField.font = Constants.signupFieldFont
+        confirmEmailField.layer.borderColor = Constants.signupFieldColor
+        confirmEmailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        confirmEmailField.keyboardType = .emailAddress
+        return confirmEmailField
+    }
+    
+    func passwordField() -> TextFieldExtension {
+        let passwordField = TextFieldExtension()
+        passwordField.placeholder = "Enter password"
+        passwordField.font = Constants.signupFieldFont
+        passwordField.layer.borderColor = Constants.signupFieldColor
+        passwordField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        passwordField.isSecureTextEntry = true
+        return passwordField
+    }
 }

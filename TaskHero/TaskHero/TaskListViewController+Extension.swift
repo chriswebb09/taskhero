@@ -10,18 +10,6 @@ import UIKit
 
 extension TaskListViewController {
     
-    fileprivate func tapEdit(atIndex:IndexPath) {
-        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        tapped = !tapped
-        tapCell.toggled! = tapped
-        tapCell.buttonToggled = !tapped
-        print("Task toggle \(tapCell.toggled)")
-        print("Button toggle \(tapCell.buttonToggled)")
-        if tapCell.buttonToggled == true {
-            tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
-        }
-    }
-    
     func emptyTableViewState() {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             view.addSubview(addTasksLabel)
@@ -45,19 +33,5 @@ extension TaskListViewController {
         tableView.estimatedRowHeight = view.frame.height / 4
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
-    }
-    
-    func toggleForButtonState(sender:UIButton) {
-        buttonTapped = true
-        let superview = sender.superview
-        let cell = superview?.superview as? TaskCell
-        let indexPath = tableView.indexPath(for: cell!)
-        tapEdit(atIndex: indexPath!)
-    }
-    
-    func toggleForEditState(sender:UIGestureRecognizer) {
-        let tapLocation = sender.location(in: self.tableView)
-        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        tapEdit(atIndex: tapIndex as IndexPath)
     }
 }

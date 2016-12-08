@@ -19,12 +19,10 @@ class DataPickerView: UIView {
         return label
     }()
     
-    
     let button: UIButton = {
         let button = ButtonType.system(title: "Done", color: UIColor.black).newButton
         return button
     }()
-    
     
     let picker: UIPickerView = {
         let picker = UIPickerView()

@@ -10,10 +10,8 @@ import UIKit
 import Firebase
 
 class DataStore {
+    
     static let sharedInstance = DataStore()
-    
-    //let manager = AppManager.sharedInstance
-    
     var currentUser: User!
     var currentUserString: String!
     var tasks = [Task]()
@@ -32,7 +30,8 @@ class DataStore {
     var auth = Auth()
     
     
-    // on deinit - removes refhandle
+    // MARK: Deinit
+    // removes refhandle
     
     deinit {
         ref.removeObserver(withHandle: refHandle)
@@ -83,7 +82,7 @@ class DataStore {
         })
     }
     
-    // fetches all usernames in database and adds them to array
+    // MARK: - fetches all usernames in database and adds them to array
     
     // TODO: needs revamping - wouldn't scale well
     
@@ -103,11 +102,11 @@ class DataStore {
                                       "FirstName": user.firstName ?? " ",
                                       "LastName": user.lastName ?? " ",
                                       "ProfilePicture": user.profilePicture ?? " ",
-                                      "ExperiencePoints": user.experiencePoints ?? 0,
+                                      "ExperiencePoints": user.experiencePoints ,
                                       "Level": user.level,
                                       "JoinDate": user.joinDate,
                                       "Username": user.username,
-                                      "TasksCompleted": user.numberOfTasksCompleted ?? 0]
+                                      "TasksCompleted": user.numberOfTasksCompleted ]
         
         
         
@@ -160,7 +159,7 @@ class DataStore {
     }
     
     func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
-        var userID = FIRAuth.auth()?.currentUser?.uid
+        let userID = FIRAuth.auth()?.currentUser?.uid
         
         tasksRef = userRef.child((userID)!).child("Tasks")
         tasksRef.keepSynced(true)
@@ -227,11 +226,11 @@ class DataStore {
                                       "FirstName": user.firstName ?? " ",
                                       "LastName": user.lastName ?? " ",
                                       "ProfilePicture": user.profilePicture ?? " ",
-                                      "ExperiencePoints": user.experiencePoints ?? 0,
+                                      "ExperiencePoints": user.experiencePoints,
                                       "Level": user.level,
                                       "JoinDate": user.joinDate,
                                       "Username": user.username,
-                                      "TasksCompleted": user.numberOfTasksCompleted ?? 0]
+                                      "TasksCompleted": user.numberOfTasksCompleted]
         
         
         

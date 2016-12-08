@@ -41,4 +41,3 @@ class BasePopView: UIView {
         alertLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
     }
 }
-

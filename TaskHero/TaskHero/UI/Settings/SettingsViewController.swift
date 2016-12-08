@@ -45,6 +45,8 @@ final class SettingsViewController: UITableViewController {
 
 extension SettingsViewController {
     
+    // MARK: UITableViewController Methods
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
@@ -68,6 +70,8 @@ extension SettingsViewController {
 }
 
 extension SettingsViewController {
+    
+    // MARK: Public Methods
     
     func launchPopupView() {
         alertPop.popView.layer.opacity = 0

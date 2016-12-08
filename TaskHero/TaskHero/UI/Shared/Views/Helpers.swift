@@ -21,7 +21,6 @@ class TabviewHelper {
     }
 }
 
-
 class LogoutHelper {
     func logoutButtonPressed(destinationViewController:UIViewController) {
         let destinationVC = UINavigationController(rootViewController:destinationViewController)

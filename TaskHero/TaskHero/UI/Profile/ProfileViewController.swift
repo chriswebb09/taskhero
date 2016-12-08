@@ -23,13 +23,12 @@ final class ProfileViewController: UITableViewController {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
         
-        // sets up ui on main thread
+        // Sets up ui on main thread
         
         DispatchQueue.main.async {
             self.setupNavItems()
             self.tableView.reloadData()
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,8 +48,9 @@ final class ProfileViewController: UITableViewController {
 }
 
 extension ProfileViewController {
-
-    // tablviewcell and row logic
+    
+    // MARK: UITableViewController Methods
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -60,12 +60,12 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // if first row set banner image
+        // If first row set banner image
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
             return bannerCell
-            // if second row return porfileheader cell
+            // If second row return porfileheader cell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true

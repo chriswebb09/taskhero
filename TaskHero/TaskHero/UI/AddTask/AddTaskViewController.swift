@@ -11,9 +11,14 @@ import Firebase
 
 final class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    // MARK: Internal Properties
+    
     let store = DataStore.sharedInstance
     let addTaskView = AddTaskView()
     let pop = PopMenu()
+    
+    
+    
     var stringDate = ""
     var month: String = "Jan"
     var day: String = "01"
@@ -21,7 +26,12 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
     final var pickerMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     final var years = ["2016", "2017", "2018"]
     final let range: [Int] = Array(1...30)
+    
+    
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:300, height:300))
+    
+    
+    // MARK: Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +55,7 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
 
 extension AddTaskViewController {
     
-    // section for textfield logic
+    // MARK: TextField Methods
     // on returnkey press hides keyboard
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -77,7 +87,8 @@ extension AddTaskViewController {
 
 extension AddTaskViewController {
     
-    // extension where datepicker logic is implemented
+    
+    // MARK: Extension - Datepicker Logic implemented
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
@@ -121,6 +132,7 @@ extension AddTaskViewController {
 
 extension AddTaskViewController {
     
+    // MARK: Public methods
     // when add task button pressed - data popover is show so user can pick task due data
     
     func addTaskButtonTapped() {

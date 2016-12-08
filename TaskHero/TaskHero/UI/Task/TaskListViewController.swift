@@ -14,7 +14,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     var tapped: Bool = false
     var buttonTapped: Bool = false
     
-    fileprivate let addTasksLabel:UILabel = {
+    let addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
         addTasksLabel.font = Constants.Font.fontNormal
         addTasksLabel.textColor = UIColor.gray
@@ -117,7 +117,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontSmall], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
@@ -133,5 +133,36 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
         }
+    }
+    
+    func tapEdit(atIndex:IndexPath) {
+        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+        tapped = !tapped
+        tapCell.toggled! = tapped
+        tapCell.buttonToggled = !tapped
+        print("Task toggle \(tapCell.toggled)")
+        print("Button toggle \(tapCell.buttonToggled)")
+        if tapCell.buttonToggled == true {
+            var newTask = self.store.tasks[atIndex.row]
+            newTask.taskDescription = tapCell.taskDescriptionBox.text
+            self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+            tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
+        }
+    }
+    
+    func toggleForButtonState(sender:UIButton) {
+        buttonTapped = true
+        let superview = sender.superview
+        let cell = superview?.superview as? TaskCell
+        let indexPath = tableView.indexPath(for: cell!)
+        tapEdit(atIndex: indexPath!)
+    }
+    
+    // Kicks off cycling between taskcell editing states
+    
+    func toggleForEditState(sender:UIGestureRecognizer) {
+        let tapLocation = sender.location(in: self.tableView)
+        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
+        tapEdit(atIndex: tapIndex as IndexPath)
     }
 }

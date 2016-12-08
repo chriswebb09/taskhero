@@ -18,6 +18,7 @@ struct Constants {
         static let bolderFontSmall = UIFont(name: "HelveticaNeue", size: 12)
         static let bolderFontMedium = UIFont(name: "HelveticaNeue", size: 16)
         static let bolderFontLarge = UIFont(name: "HelveticaNeue", size: 22)
+        static let bolderFontNormal = UIFont(name: "HelveticaNeue", size: 18)
     }
     
     struct ProfilePicture {
@@ -30,7 +31,7 @@ struct Constants {
         static let tabbarColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:0.5)
         static let tabbarTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
         static let navbarBarTintColor = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
-        static let navbarAttributedText = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.fontMedium]
+        static let navbarAttributedText = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.bolderFontNormal]
     }
     
     struct Login {
@@ -53,7 +54,7 @@ struct Constants {
     struct Profile {
         static let profileHeaderLabelHeight:CGFloat = 0.2
         static let profileHeaderLabelWidth: CGFloat = 0.41
-        static let profileHeaderLabelRightOffset:CGFloat = -10
+        static let profileHeaderLabelRightOffset:CGFloat = -5
         static let profilePictureHeight:CGFloat = 0.12
         static let profilePictureWidth: CGFloat = 75
         static let bottomOffset:CGFloat =  -10
@@ -136,7 +137,7 @@ struct Constants {
     }
     
     struct NavBar {
-        static let bottomHeight:CGFloat =  2.0
+        static let bottomHeight:CGFloat =  1.0
 
     }
     struct Logo {

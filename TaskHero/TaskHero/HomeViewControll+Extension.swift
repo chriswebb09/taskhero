@@ -10,7 +10,10 @@ import UIKit
 
 extension HomeViewController {
     
+    // MARK: - Login Button
+    // =========================================================================
     // logs out user by settings root viewcontroller to loginview
+    
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

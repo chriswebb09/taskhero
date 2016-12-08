@@ -59,7 +59,7 @@ extension TabBarController {
         
         let homeTab = UINavigationController(rootViewController: homeVC)
         homeTab.navigationBar.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-        homeTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.fontMedium]
+        homeTab.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.bolderFontNormal]
         homeTab.navigationBar.barTintColor = Constants.Tabbar.navbarBarTintColor
         homeTab.navigationBar.topItem?.title = "TaskHero"
         return homeTab

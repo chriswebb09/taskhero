@@ -15,6 +15,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     let store = DataStore.sharedInstance
     let loadingView = LoadingView()
     
+    
+    // MARK: Initialization Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
@@ -47,7 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-// kicks off by checking emailfiel has valid input / send editing and shows activity indicator on loading pop over / returns if conditions are not met.
+// Kicks off by checking emailfiel has valid input / send editing and shows activity indicator on loading pop over / returns if conditions are not met.
 
 extension LoginViewController {
     
@@ -60,7 +63,7 @@ extension LoginViewController {
             return
         }
         
-        // attempts to signin using userinput for email and password else returns and prints out error description
+        // Attempts to signin using userinput for email and password else returns and prints out error description
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { user, error in
             if error != nil {
@@ -82,22 +85,22 @@ extension LoginViewController {
                 return
             }
             
-            // if authorized hides loading popover
+            // If authorized hides loading popover
             
             self.loadingView.hideActivityIndicator(viewController: self)
             
-            //ensures firuser has valid uid - if not returns / if valid firuser uid sends it to datastore as current userstring
+            // Ensures firuser has valid uid - if not returns / if valid firuser uid sends it to datastore as current userstring
             
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
             
-            // fetches user profile data from firebase database and sets datastore current user to that profile data
+            // Fetches user profile data from firebase database and sets datastore current user to that profile data
             
             self.store.fetchUser(completion: { user in
                 self.store.currentUser = user
             })
             
-            // if everthing i successful sets rootviewcontroller to tabbarcontroller
+            // If everthing i successful sets rootviewcontroller to tabbarcontroller
             
             let tabBar = TabBarController()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -106,7 +109,7 @@ extension LoginViewController {
         
     }
     
-    // checks that text has been entered and exceeds five characters in length
+    // Checks that text has been entered and exceeds five characters in length
     
     fileprivate func checkForValidEmailInput() {
         
@@ -128,7 +131,7 @@ extension LoginViewController {
 
 extension LoginViewController {
     
-    // if email field selected cycles to password field / if password field cycles to emailfield.
+    // If email field selected cycles to password field / if password field cycles to emailfield.
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -137,13 +140,13 @@ extension LoginViewController {
         return true
     }
     
-    // hides keyboard/ ends view editting
+    // Hides keyboard/ ends view editting
     
     func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    // still implementing
+    // Still implementing
     
     func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
         
@@ -156,14 +159,14 @@ extension LoginViewController {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     
-    // sets textfield text color and border to selected color
+    // Sets textfield text color and border to selected color
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.textColor = Constants.Login.loginFieldEditColor
         textField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
     }
     
-    // on ending edit textfield border color are set to deselect color
+    // On ending edit textfield border color are set to deselect color
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.textColor = UIColor.lightGray

@@ -108,13 +108,11 @@ extension SignupViewController {
                 let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
                 
                 usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
-                    
                     if err != nil {
                         loadingView.hideActivityIndicator(viewController: self)
                         print(err ?? "unable to get specific error i")
                         return
                     }
-                    
                     print("sucessfully saved username email reference")
                 })
                 

@@ -20,7 +20,7 @@ extension ProfileSettingsViewController {
     }
     
     fileprivate func separateNames(name:String) -> [String] {
-        var nameArray = name.components(separatedBy: " ")
+        let nameArray = name.components(separatedBy: " ")
         return nameArray
     }
     

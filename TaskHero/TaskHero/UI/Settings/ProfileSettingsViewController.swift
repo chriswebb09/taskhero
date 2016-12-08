@@ -83,7 +83,7 @@ extension ProfileSettingsViewController {
             if (tapCell.profileSettingField.text?.characters.count)! > 0 {
                 if indexTap?.row == 1 {
                     var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
-                    var updatedUser = User()
+                    let updatedUser = User()
                     updatedUser.username = self.store.currentUser.username
                     updatedUser.email = self.store.currentUser.email
                     updatedUser.profilePicture = "None"
@@ -96,7 +96,7 @@ extension ProfileSettingsViewController {
                     self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
                 } else if indexTap?.row == 3 {
                     var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
-                    var updatedUser = User()
+                    let updatedUser = User()
                     updatedUser.username = tapCell.profileSettingField.text!
                     updatedUser.email = self.store.currentUser.email
                     updatedUser.profilePicture = "None"

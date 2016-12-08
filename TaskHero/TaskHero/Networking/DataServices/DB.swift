@@ -41,11 +41,11 @@ class Database {
                                       "FirstName": user.firstName ?? " ",
                                       "LastName": user.lastName ?? " ",
                                       "ProfilePicture": user.profilePicture ?? " ",
-                                      "ExperiencePoints": user.experiencePoints ?? 0,
+                                      "ExperiencePoints": user.experiencePoints,
                                       "Level": user.level,
                                       "JoinDate": user.joinDate,
                                       "Username": user.username,
-                                      "TasksCompleted": user.numberOfTasksCompleted ?? 0]
+                                      "TasksCompleted": user.numberOfTasksCompleted]
         self.userRef.updateChildValues(["/\(self.store.currentUserString!)": userData])
     }
 

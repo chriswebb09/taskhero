@@ -17,27 +17,14 @@ final class LoginView: UIView {
     }()
     
     lazy var emailField: TextFieldExtension = {
-        let emailField = TextFieldExtension()
-        emailField.placeholder = "Enter email"
-        emailField.layer.borderColor = Constants.signupFieldColor
-        emailField.layer.borderWidth = 1
-        emailField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
-        emailField.font = Constants.signupFieldFont
-        emailField.keyboardType = .emailAddress
+        let emailField = TextFieldExtension().emailField(placeholder: "Enter email address")
         return emailField
     }()
-    
+
     lazy var passwordField: TextFieldExtension = {
-        let passwordField = TextFieldExtension()
-        passwordField.placeholder = "Enter password"
-        passwordField.font = Constants.signupFieldFont
-        passwordField.layer.borderColor = Constants.signupFieldColor
-        passwordField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
-        passwordField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
-        passwordField.isSecureTextEntry = true
+        let passwordField = TextFieldExtension().passwordField()
         return passwordField
     }()
-    
     
     lazy var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
