@@ -10,6 +10,7 @@ import UIKit
 
 
 extension SettingsViewController {
+    
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -44,9 +45,10 @@ extension SettingsViewController {
         segmentControl.topAnchor.constraint(equalTo: (tableView.tableHeaderView?.topAnchor)!).isActive = true
         segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-       // segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier:Constants.Settings.segmentSettingsWidth).isActive = true
         segmentControl.heightAnchor.constraint(equalTo:(tableView.tableHeaderView?.heightAnchor)!).isActive = true
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
+        
+        // segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier:Constants.Settings.segmentSettingsWidth).isActive = true
         // segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * Constants.Settings.segmentSettingsTopOffset).isActive = true
         // segmentControl.heightAnchor.constraint(equalTo: tableView.tableHeaderView.heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
         // let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]

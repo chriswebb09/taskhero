@@ -9,6 +9,7 @@
 import UIKit
 
 class InitialViewController: UIViewController {
+    
     let initView = InitView()
     
     override func viewDidLoad() {

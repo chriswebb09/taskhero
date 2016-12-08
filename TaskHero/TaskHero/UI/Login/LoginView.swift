@@ -10,7 +10,7 @@ import UIKit
 
 final class LoginView: UIView {
     
-     // MARK: UIElements
+    // MARK: UIElements
     
     var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
@@ -18,11 +18,11 @@ final class LoginView: UIView {
         return imageView
     }()
     
-   var emailField: TextFieldExtension = {
+    var emailField: TextFieldExtension = {
         let emailField = TextFieldExtension().emailField(placeholder: "Enter email address")
         return emailField
     }()
-
+    
     var passwordField: TextFieldExtension = {
         let passwordField = TextFieldExtension().passwordField()
         return passwordField
@@ -57,7 +57,7 @@ final class LoginView: UIView {
 
 extension LoginView {
     
-     // MARK: Initialization
+    // MARK: Initialization
     
     override func layoutSubviews() {
         super.layoutSubviews()

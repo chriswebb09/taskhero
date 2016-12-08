@@ -50,7 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-// Kicks off by checking emailfiel has valid input / send editing and shows activity indicator on loading pop over / returns if conditions are not met.
+// Kicks off by checking emailfield has valid input / send editing and shows activity indicator on loading pop over / returns if conditions are not met.
 
 extension LoginViewController {
     
@@ -131,6 +131,7 @@ extension LoginViewController {
 
 extension LoginViewController {
     
+    // MARK: - Textfield delegate methods
     // If email field selected cycles to password field / if password field cycles to emailfield.
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

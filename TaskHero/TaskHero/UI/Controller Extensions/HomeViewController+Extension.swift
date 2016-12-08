@@ -10,9 +10,10 @@ import UIKit
 
 extension HomeViewController {
     
-    // MARK: - Login Button
+    // MARK: - UI Methods
     // =========================================================================
-    // logs out user by settings root viewcontroller to loginview
+    
+    // Logs out user by settings root ViewController to Loginview
     
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())
@@ -20,7 +21,7 @@ extension HomeViewController {
         appDelegate.window?.rootViewController = loginVC
     }
     
-    // Pushes addtaskviewcontroller to current current view controller on button press
+    // Pushes AddTaskViewcontroller to current current view controller on button press
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)

@@ -14,15 +14,14 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
     // MARK: Internal Properties
     
     let store = DataStore.sharedInstance
+    
     let addTaskView = AddTaskView()
     let pop = PopMenu()
-    
-    
-    
     var stringDate = ""
     var month: String = "Jan"
     var day: String = "01"
     var year: String = "2016"
+    
     final var pickerMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     final var years = ["2016", "2017", "2018"]
     final let range: [Int] = Array(1...30)
@@ -56,14 +55,14 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
 extension AddTaskViewController {
     
     // MARK: TextField Methods
-    // on returnkey press hides keyboard
+    // On return-key press hides keyboard
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    // if textfield input is equal to newline - return - hides keyboard
+    // If textfield input is equal to newline - return - hides keyboard
     
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
         if(replacementText.isEqual("\n")) {
@@ -73,7 +72,7 @@ extension AddTaskViewController {
         return true
     }
     
-    // if user is done editting && user has not entered anything - sets taskdescription box default text
+    // If user is done editting && user has not entered anything - sets taskdescription box default text
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -88,7 +87,7 @@ extension AddTaskViewController {
 extension AddTaskViewController {
     
     
-    // MARK: Extension - Datepicker Logic implemented
+    // MARK: Extension - UIPickerView Methods
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
@@ -133,7 +132,7 @@ extension AddTaskViewController {
 extension AddTaskViewController {
     
     // MARK: Public methods
-    // when add task button pressed - data popover is show so user can pick task due data
+    // When add task button pressed - data popover is show so user can pick task due data
     
     func addTaskButtonTapped() {
         view.endEditing(true)
@@ -149,7 +148,7 @@ extension AddTaskViewController {
     }
     
     
-    // formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion
+    // Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion
     
     func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"

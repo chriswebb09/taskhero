@@ -159,6 +159,7 @@ extension HomeViewController: TaskCellDelegate {
     
     
     // MARK: - Delegate Methods
+    
     // If popover is not visible shows popover/ if popover is displayed - hides popover
     
     func profilePictureTapped() {

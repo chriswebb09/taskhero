@@ -31,7 +31,7 @@ class DataStore {
     
     
     // MARK: Deinit
-    // removes refhandle
+    // Removes refhandle
     
     deinit {
         ref.removeObserver(withHandle: refHandle)
@@ -95,7 +95,7 @@ class DataStore {
     }
     
     
-    // inserts new user to database and updates usernames keys
+    // Inserts new user to database and updates usernames keys
     
     func insertUser(user:User) {
         let userData: NSDictionary = ["Email": user.email,
@@ -121,8 +121,6 @@ class DataStore {
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(uid)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
-            // observeSingleEvent(of: .value, with: { (snapshot) in
-            //guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             let user = User()
             if let snapshotName = snapshotValue["Username"] as? String {
@@ -163,7 +161,6 @@ class DataStore {
         
         tasksRef = userRef.child((userID)!).child("Tasks")
         tasksRef.keepSynced(true)
-        ///tasksRef.
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             var newTask = Task()
@@ -189,7 +186,7 @@ class DataStore {
         
     }
     
-    // adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
+    // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
     
     func addTasks(task:Task) {
         tasksRef = userRef.child(currentUserString!).child("Tasks")
@@ -201,7 +198,7 @@ class DataStore {
         tasksRef.keepSynced(true)
     }
     
-    // removes task from database - called on swift left in tableview
+    // Removes task from database - called on swift left in tableview
     
     func removeTask(ref:String, taskID: String) {
         tasksRef = userRef.child(currentUserString).child("Tasks")
@@ -219,7 +216,7 @@ class DataStore {
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
     
-    // updates userprofile data in database
+    // Updates user profile data in database
     
     func updateUserProfile(userID: String, user:User) {
         let userData: NSDictionary = ["Email": user.email,

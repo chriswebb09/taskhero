@@ -10,6 +10,8 @@ import UIKit
 
 extension TaskListViewController {
     
+    // MARK: - TaskList UI
+    
     func emptyTableViewState() {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             view.addSubview(addTasksLabel)

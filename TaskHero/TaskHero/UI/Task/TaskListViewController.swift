@@ -14,6 +14,8 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     var tapped: Bool = false
     var buttonTapped: Bool = false
     
+    // MARK: - UI
+    
     let addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
         addTasksLabel.font = Constants.Font.fontNormal
@@ -21,6 +23,8 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
         addTasksLabel.textAlignment = .center
         return addTasksLabel
     }()
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,8 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
 }
 
 extension TaskListViewController {
+    
+    // MARK: - Initialization
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -61,6 +67,8 @@ extension TaskListViewController {
         super.viewWillDisappear(false)
         store.tasksRef.removeObserver(withHandle: store.refHandle)
     }
+    
+    // MARK: - UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.tasks.count
@@ -102,6 +110,8 @@ extension TaskListViewController {
 
 extension TaskListViewController: TaskHeaderCellDelegate {
     
+    // MARK: - Public Methods
+    
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -114,12 +124,17 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         }
     }
     
+    // MARK: - Setup navbar
+    
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: 2.0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
+    
+    
+    // MARK: - Button methods
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {

@@ -10,6 +10,8 @@ import UIKit
 
 extension FriendsSettingsViewController {
     
+    // MARK: - Delegate methods 
+    
     func popup() {
         alertPop.popView.isHidden = false
         alertPop.popView.layer.opacity = 0
@@ -25,7 +27,8 @@ extension FriendsSettingsViewController {
         alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
     }
     
-    // hides popover ui - prioritised to main thread when user hits dismiss button
+    // Hides popover UI - prioritised to main thread when user hits dismiss button
+    
     func dismissButton() {
         DispatchQueue.main.async {
             self.alertPop.popView.isHidden = true

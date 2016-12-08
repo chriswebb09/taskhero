@@ -11,6 +11,10 @@ import UIKit
 
 extension TaskCell {
     
+    //MARK: - Delegate Methods
+    
+    // Button toggle methods
+    
     func taskToggle(taskToggled:Bool) {
         print("Task toggle")
         if taskToggled == true {
