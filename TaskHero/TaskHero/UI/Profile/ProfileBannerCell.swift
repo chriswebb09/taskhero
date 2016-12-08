@@ -35,6 +35,7 @@ extension ProfileBannerCell {
     
     private func setupConstraints() {
         contentView.addSubview(bannerImage)
+        
         bannerImage.translatesAutoresizingMaskIntoConstraints = false
         bannerImage.center = contentView.center
         bannerImage.widthAnchor.constraint(equalTo:contentView.widthAnchor).isActive = true
@@ -43,6 +44,7 @@ extension ProfileBannerCell {
     
     func configureCell() {
         layoutSubviews()
+        
         isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false

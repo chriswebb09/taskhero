@@ -50,6 +50,7 @@ class InitView: UIView {
     
     func setupConstraints() {
         addSubview(logoImageView)
+        
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
@@ -59,6 +60,7 @@ class InitView: UIView {
     
     func zoomAnimation(_ handler: completion? = nil) {
         let duration: TimeInterval =  self.animationDuration * 0.7
+        
         UIView.animate(withDuration: duration, animations:{
             self.logoImageView.transform = self.zoomOut()
             self.alpha = 0

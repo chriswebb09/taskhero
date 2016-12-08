@@ -65,6 +65,7 @@ extension ProfileDataCell {
     }
     
     private func setupConstraints() {
+        
         configureLabels(label: levelLabel)
         contentView.addSubview(levelLabel)
         configureConstraints(label: levelLabel)
@@ -94,6 +95,7 @@ extension ProfileDataCell {
     }
     
     func configureCell() {
+        
         levelLabel.text = "Level: \(dataCellModel.level)"
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"
         tasksCompletedLabel.text = "Tasks Completed: \(String(describing: dataCellModel.tasksCompleted))"

@@ -27,9 +27,11 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
+        
         view.backgroundColor = Constants.tableViewBackgroundColor
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        
         help.setupTableView(tableView: tableView)
         tableView.estimatedRowHeight = view.frame.height / 4
         setupNavItems()
@@ -90,21 +92,26 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
+            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell()
+            
             if profilePic != nil {
                 headerCell.profilePicture.image = profilePic
             }
+            
             headerCell.contentView.autoresizingMask = UIViewAutoresizing.flexibleHeight
             return headerCell
         } else {
+            
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             taskCell.delegate = self
             taskCell.toggled = tapped
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
             taskCell.saveButton.tag = indexPath.row
+            
             let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
             taskCell.taskCompletedView.addGestureRecognizer(tap)
             return taskCell
@@ -124,9 +131,11 @@ extension HomeViewController {
                     self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
                     self.store.currentUser.numberOfTasksCompleted += 1
                     self.store.insertUser(user: self.store.currentUser) }
+                
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
+                
                 tableView.endUpdates()
             }
             tableView.reloadData()
@@ -146,12 +155,15 @@ extension HomeViewController: TaskCellDelegate {
     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         tapped = !tapped
+        
         tapCell.toggled! = tapped
         tapCell.buttonToggled = !tapped
         tapCell.taskDescriptionBox.becomeFirstResponder()
+        
         print("Task toggle \(tapCell.toggled)")
         print("Button toggle \(tapCell.buttonToggled)")
         if tapCell.buttonToggled == true {
+            
             var newTask = self.store.tasks[atIndex.row - 1]
             newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)

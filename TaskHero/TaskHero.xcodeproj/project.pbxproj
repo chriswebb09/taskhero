@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7244712A81FA9B4EA164A8FA /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */; };
+		9837089D7DB0FDB5FED29B98 /* Pods_TaskHero_TaskHeroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B048F3A89226F81F83549E5 /* Pods_TaskHero_TaskHeroTests.framework */; };
 		A70840001DEABB1700055B72 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */; };
 		A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */; };
 		A70840041DEABBD000055B72 /* FriendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840031DEABBD000055B72 /* FriendsSettingsView.swift */; };
@@ -71,6 +72,7 @@
 		A76562D41DF93F4800E29AA9 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D21DF93F4800E29AA9 /* InitView.swift */; };
 		A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */; };
 		A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */; };
+		A76562E41DF991D000E29AA9 /* TaskHeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562E31DF991D000E29AA9 /* TaskHeroTests.swift */; };
 		A77FBCC41DEB5B410014C380 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC31DEB5B410014C380 /* NotificationView.swift */; };
 		A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */; };
 		A77FBCC91DEB74670014C380 /* BasePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC81DEB74670014C380 /* BasePopView.swift */; };
@@ -83,7 +85,19 @@
 		AFE277BF1DB58CA2005C9AB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A76562E61DF991D000E29AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFE277A91DB58CA2005C9AB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFE277B01DB58CA2005C9AB5;
+			remoteInfo = TaskHero;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0B048F3A89226F81F83549E5 /* Pods_TaskHero_TaskHeroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero_TaskHeroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C871499BBBCB660C51A3B43 /* Pods-TaskHero-TaskHeroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero-TaskHeroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero-TaskHeroTests/Pods-TaskHero-TaskHeroTests.release.xcconfig"; sourceTree = "<group>"; };
 		6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91CD8A86197BE8140B3FABF1 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
 		A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
@@ -149,6 +163,9 @@
 		A76562D21DF93F4800E29AA9 /* InitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitView.swift; path = Initial/InitView.swift; sourceTree = "<group>"; };
 		A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskCell+Extension.swift"; sourceTree = "<group>"; };
 		A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
+		A76562E11DF991D000E29AA9 /* TaskHeroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskHeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A76562E31DF991D000E29AA9 /* TaskHeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHeroTests.swift; sourceTree = "<group>"; };
+		A76562E51DF991D000E29AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77FBCC31DEB5B410014C380 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPopover.swift; sourceTree = "<group>"; };
 		A77FBCC81DEB74670014C380 /* BasePopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePopView.swift; sourceTree = "<group>"; };
@@ -156,6 +173,7 @@
 		A77FBCCC1DEB8A190014C380 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A7AFCDE01DF72C4B004D607C /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		A7CF6ACF1DDB8FE700B28A5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACD79247934EC1235C48C258 /* Pods-TaskHero-TaskHeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero-TaskHeroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero-TaskHeroTests/Pods-TaskHero-TaskHeroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +183,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A76562DE1DF991D000E29AA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9837089D7DB0FDB5FED29B98 /* Pods_TaskHero_TaskHeroTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AFE277AE1DB58CA2005C9AB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -180,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				6291454E42D1009C8C01A53F /* Pods_TaskHero.framework */,
+				0B048F3A89226F81F83549E5 /* Pods_TaskHero_TaskHeroTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -189,6 +216,8 @@
 			children = (
 				BB06DFD95BAD81D44FFB21D5 /* Pods-TaskHero.debug.xcconfig */,
 				91CD8A86197BE8140B3FABF1 /* Pods-TaskHero.release.xcconfig */,
+				ACD79247934EC1235C48C258 /* Pods-TaskHero-TaskHeroTests.debug.xcconfig */,
+				5C871499BBBCB660C51A3B43 /* Pods-TaskHero-TaskHeroTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -385,6 +414,15 @@
 			name = Popover;
 			sourceTree = "<group>";
 		};
+		A76562E21DF991D000E29AA9 /* TaskHeroTests */ = {
+			isa = PBXGroup;
+			children = (
+				A76562E31DF991D000E29AA9 /* TaskHeroTests.swift */,
+				A76562E51DF991D000E29AA9 /* Info.plist */,
+			);
+			path = TaskHeroTests;
+			sourceTree = "<group>";
+		};
 		AF18D86C1DBD8165002A3372 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +487,7 @@
 		AFE277A81DB58CA2005C9AB5 = {
 			isa = PBXGroup;
 			children = (
+				A76562E21DF991D000E29AA9 /* TaskHeroTests */,
 				32A0D354D912F6F8E761029F /* Frameworks */,
 				965D6B7FFE51D9CB52C88246 /* Pods */,
 				AFE277B21DB58CA2005C9AB5 /* Products */,
@@ -460,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				AFE277B11DB58CA2005C9AB5 /* TaskHero.app */,
+				A76562E11DF991D000E29AA9 /* TaskHeroTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -495,6 +535,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A76562E01DF991D000E29AA9 /* TaskHeroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A76562E81DF991D000E29AA9 /* Build configuration list for PBXNativeTarget "TaskHeroTests" */;
+			buildPhases = (
+				35EC5180C3E6CFBE6AD7CC51 /* [CP] Check Pods Manifest.lock */,
+				A76562DD1DF991D000E29AA9 /* Sources */,
+				A76562DE1DF991D000E29AA9 /* Frameworks */,
+				A76562DF1DF991D000E29AA9 /* Resources */,
+				59A05049CB0CF1A8ED873C54 /* [CP] Embed Pods Frameworks */,
+				3E0EAD7500F13EBBC6AA7078 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A76562E71DF991D000E29AA9 /* PBXTargetDependency */,
+			);
+			name = TaskHeroTests;
+			productName = TaskHeroTests;
+			productReference = A76562E11DF991D000E29AA9 /* TaskHeroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AFE277B01DB58CA2005C9AB5 /* TaskHero */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFE277C31DB58CA2005C9AB5 /* Build configuration list for PBXNativeTarget "TaskHero" */;
@@ -521,10 +582,16 @@
 		AFE277A91DB58CA2005C9AB5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Christopher Webb-Orenstein";
 				TargetAttributes = {
+					A76562E01DF991D000E29AA9 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 4SZP4Q326F;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AFE277B01DB58CA2005C9AB5;
+					};
 					AFE277B01DB58CA2005C9AB5 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4SZP4Q326F;
@@ -546,11 +613,19 @@
 			projectRoot = "";
 			targets = (
 				AFE277B01DB58CA2005C9AB5 /* TaskHero */,
+				A76562E01DF991D000E29AA9 /* TaskHeroTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A76562DF1DF991D000E29AA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AFE277AF1DB58CA2005C9AB5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -564,6 +639,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		35EC5180C3E6CFBE6AD7CC51 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3E0EAD7500F13EBBC6AA7078 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskHero-TaskHeroTests/Pods-TaskHero-TaskHeroTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59A05049CB0CF1A8ED873C54 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskHero-TaskHeroTests/Pods-TaskHero-TaskHeroTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6AB04827AB82F5F75E5F9081 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -612,6 +732,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A76562DD1DF991D000E29AA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A76562E41DF991D000E29AA9 /* TaskHeroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AFE277AD1DB58CA2005C9AB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -691,6 +819,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A76562E71DF991D000E29AA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFE277B01DB58CA2005C9AB5 /* TaskHero */;
+			targetProxy = A76562E61DF991D000E29AA9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -704,6 +840,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A76562E91DF991D000E29AA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACD79247934EC1235C48C258 /* Pods-TaskHero-TaskHeroTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4SZP4Q326F;
+				INFOPLIST_FILE = TaskHeroTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.froleeyo.TaskHeroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaskHero.app/TaskHero";
+			};
+			name = Debug;
+		};
+		A76562EA1DF991D000E29AA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C871499BBBCB660C51A3B43 /* Pods-TaskHero-TaskHeroTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4SZP4Q326F;
+				INFOPLIST_FILE = TaskHeroTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.froleeyo.TaskHeroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaskHero.app/TaskHero";
+			};
+			name = Release;
+		};
 		AFE277C11DB58CA2005C9AB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -840,6 +1008,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A76562E81DF991D000E29AA9 /* Build configuration list for PBXNativeTarget "TaskHeroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A76562E91DF991D000E29AA9 /* Debug */,
+				A76562EA1DF991D000E29AA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		AFE277AC1DB58CA2005C9AB5 /* Build configuration list for PBXProject "TaskHero" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
