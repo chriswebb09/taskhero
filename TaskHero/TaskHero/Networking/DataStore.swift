@@ -15,6 +15,8 @@ class DataStore {
     var currentUser: User!
     var currentUserString: String!
     var tasks = [Task]()
+    let storage = FIRStorage.storage()
+    var storageRef:FIRStorageReference!
     var tasksRef: FIRDatabaseReference!
     var ref: FIRDatabaseReference!
     var refHandle: FIRDatabaseHandle!
@@ -25,6 +27,7 @@ class DataStore {
     var tasksDict = Dictionary<String, AnyObject>()
     var dataSnapshot = [FIRDataSnapshot]()
     var dbRef: FIRDatabaseReference!
+    var imagesRef: FIRStorageReference!
     var userRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
     var auth = Auth()
@@ -37,10 +40,20 @@ class DataStore {
     }
     
     init() {
+        storageRef = storage.reference(forURL: "gs://taskhero-d3fd7.appspot.com")
+        imagesRef = storageRef.child("images")
         dbRef = FIRDatabase.database().reference()
         userRef = dbRef.child("Users")
         usernameRef = dbRef.child("Usernames")
         tasksRef = userRef
+    }
+    
+    func uploadImages() {
+        
+    }
+    
+    func downloadImages() {
+        
     }
     
     func fetchUserData() {
