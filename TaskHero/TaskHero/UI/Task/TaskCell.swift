@@ -168,11 +168,13 @@ extension TaskCell {
     
     func setupCellView(width: CGFloat, height: CGFloat) {
         let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
+        
         cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
         cellView.layer.masksToBounds = false
         cellView.layer.cornerRadius = Constants.TaskCell.cornerRadius
         cellView.layer.shadowOffset = Constants.TaskCell.shadowOffset
         cellView.layer.shadowOpacity = Constants.TaskCell.styledShadowOpacity
+        
         contentView.addSubview(cellView)
         contentView.sendSubview(toBack: cellView)
     }

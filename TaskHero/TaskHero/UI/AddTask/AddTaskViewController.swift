@@ -94,10 +94,13 @@ extension AddTaskViewController {
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        // Return picker options for number of months if at index 0
         if component == 0 {
             return pickerMonths.count
+        // Return numbers of days in month
         } else if component == 1 {
             return 30
+        //Return years
         } else {
             return 3
         }
@@ -116,6 +119,8 @@ extension AddTaskViewController {
             return years[row]
         }
     }
+    
+    // Sets UIPickerView data 
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {

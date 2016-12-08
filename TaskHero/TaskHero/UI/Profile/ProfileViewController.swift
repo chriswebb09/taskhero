@@ -11,18 +11,29 @@ import Firebase
 
 final class ProfileViewController: UITableViewController {
     
+    // MARK: - Internal Variables
+    
     let store = DataStore.sharedInstance
     let help = TabviewHelper()
     
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         edgesForExtendedLayout = []
+        
         help.setupTableView(tableView: tableView)
+        
+        // MARK: - Register cell types
+        
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
+        
         // Sets up UI on main thread
+        
         DispatchQueue.main.async {
             self.setupNavItems()
             self.tableView.reloadData()
@@ -34,7 +45,8 @@ final class ProfileViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // On view did appear ensure fresh user data from database is loaded and reloads tableview
+    // On view did appear ensure fresh user data from database is loaded and reloads TableView
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         self.store.fetchUserData()
@@ -57,18 +69,24 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         // If first row set banner image
+        
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
             return bannerCell
-            // If second row return profileheader cell
+            
+            // If second row return ProfileHeaderCell
+            
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell()
             return headerCell
-            // Beyond that it's all Profiledata cells
+            
+            // Beyond that it's all ProfileDataCells
+            
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
@@ -79,15 +97,7 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     
-    // On logout button press sets rootview controller to loginviewcontroller on main thread
-    
-    func logoutButtonPressed() {
-        DispatchQueue.main.async {
-            let loginVC = UINavigationController(rootViewController:LoginViewController())
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController = loginVC
-        }
-    }
+    // MARK: - Delegate Methods
     
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: Constants.NavBar.bottomHeight)
@@ -96,7 +106,16 @@ extension ProfileViewController {
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
     }
     
-    // MARK: - Delegate Methods
+    // MARK: - Button methods
+    // On logout button press sets RootViewController to LoginViewController on main thread
+    
+    func logoutButtonPressed() {
+        DispatchQueue.main.async {
+            let loginVC = UINavigationController(rootViewController:LoginViewController())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = loginVC
+        }
+    }
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)

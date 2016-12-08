@@ -49,6 +49,8 @@ extension ProfileBannerCell {
         backgroundColor = Constants.Profile.profileHeaderBannerColor
     }
     
+    // Prepare for resuse 
+    
     override func prepareForReuse() {
         bannerImage.image = nil
     }

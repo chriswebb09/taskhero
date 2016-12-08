@@ -16,6 +16,8 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
     static let cellIdentifier = "ProfileHeaderCell"
     
+    // MARK: - Internal Variables
+    
     var profileHeaderCellModel : ProfileHeaderCellViewModel = {
         var model = ProfileHeaderCellViewModel()
         return model
@@ -80,6 +82,7 @@ extension ProfileHeaderCell {
     }
     
     fileprivate func setupConstraints() {
+        
         contentView.addSubview(levelLabel)
         contentView.addSubview(emailLabel)
         contentView.addSubview(joinDateLabel)

@@ -10,7 +10,9 @@ import UIKit
 
 class AddTaskView: UIView {
     
-    lazy var taskNameLabel: UILabel = {
+    // MARK: UIElements
+    
+    var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
@@ -20,7 +22,7 @@ class AddTaskView: UIView {
         return taskNameLabel
     }()
     
-    lazy var taskNameField: TextFieldExtension = {
+    var taskNameField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
         taskNameField.placeholder = "Task name"
         taskNameField.font = Constants.signupFieldFont
@@ -30,7 +32,7 @@ class AddTaskView: UIView {
         return taskNameField
     }()
     
-    lazy var taskDescriptionBox: UITextView = {
+    var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
         taskDescriptionBox.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
@@ -40,7 +42,7 @@ class AddTaskView: UIView {
         return taskDescriptionBox
     }()
     
-    lazy var addTaskButton: UIButton = {
+    var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
@@ -55,11 +57,15 @@ class AddTaskView: UIView {
 
 extension AddTaskView {
     
+    // MARK: - Initialization
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
         setupConstraints()
     }
+    
+    // MARK: - Configure 
     
     func setupConstraints() {
         

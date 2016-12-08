@@ -60,6 +60,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     }
     
     // If taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         if store.refHandle != nil {
@@ -140,6 +141,8 @@ extension HomeViewController: TaskCellDelegate {
     
     // MARK: Public Methods
     
+    // Implements logic for editing task from cell 
+    
     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         tapped = !tapped
@@ -159,7 +162,6 @@ extension HomeViewController: TaskCellDelegate {
     
     
     // MARK: - Delegate Methods
-    
     // If popover is not visible shows popover/ if popover is displayed - hides popover
     
     func profilePictureTapped() {

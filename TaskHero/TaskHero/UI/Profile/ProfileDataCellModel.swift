@@ -9,15 +9,15 @@
 import UIKit
 
 protocol ProfileDataCellVM {
-    
     var user: User? { get set }
     var level: String { get }
     var experience: Int { get }
     var tasksCompleted: Int { get }
-    
 }
 
 class ProfileDataCellViewModel: ProfileDataCellVM {
+    
+    // MARK: - Internal Variables
     
     let store = DataStore.sharedInstance
     
@@ -25,6 +25,8 @@ class ProfileDataCellViewModel: ProfileDataCellVM {
     internal var experience: Int
     internal var level: String
     internal var user: User?
+    
+    // MARK: - Initialization
     
     init() {
         self.user = self.store.currentUser

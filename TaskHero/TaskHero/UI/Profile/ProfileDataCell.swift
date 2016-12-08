@@ -63,7 +63,7 @@ extension ProfileDataCell {
     func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         // label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.profileSettingsDataHeight).isActive = true
-        //label.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileDataLabelWidth).isActive = true
+        // label.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileDataLabelWidth).isActive = true
     }
     
     private func setupConstraints() {

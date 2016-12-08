@@ -10,6 +10,8 @@ import UIKit
 
 final class TaskListViewController: UITableViewController, TaskCellDelegate {
     
+    // MARK: Internal Variables
+    
     let store = DataStore.sharedInstance
     var tapped: Bool = false
     var buttonTapped: Bool = false
@@ -101,7 +103,6 @@ extension TaskListViewController {
             DispatchQueue.main.async {
                 tableView.reloadData()
             }
-            
         } else if editingStyle == .insert {
             // Not implemented
         }
