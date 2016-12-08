@@ -18,17 +18,17 @@ final class ProfileDataCell: UITableViewCell {
         return cellModel
     }()
     
-    lazy var levelLabel: UILabel = {
+    var levelLabel: UILabel = {
         let levelLabel = UILabel()
         return levelLabel
     }()
     
-    lazy var experiencePointsLabel: UILabel = {
+    var experiencePointsLabel: UILabel = {
         let experiencePointsLabel = UILabel()
         return experiencePointsLabel
     }()
     
-    lazy var tasksCompletedLabel: UILabel = {
+    var tasksCompletedLabel: UILabel = {
         let taskCompletedLabel = UILabel()
         return taskCompletedLabel
     }()
