@@ -147,6 +147,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
             newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
             tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
+            tapCell.taskDescriptionBox.resignFirstResponder()
         }
     }
     

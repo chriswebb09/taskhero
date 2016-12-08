@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    // string extension check  that itself for valid email pattern and returns boolean
+    // String extension check that itself for valid email pattern and returns boolean
     
     func isValidEmail() -> Bool {
         

@@ -20,7 +20,7 @@ final class FriendsSettingsView: UIView {
         return friendsHeaderLabel
     }()
     
-    lazy var searchField: TextFieldExtension = {
+    var searchField: TextFieldExtension = {
         let searchField = TextFieldExtension()
         searchField.placeholder = "Search by email"
         searchField.font = Constants.signupFieldFont
@@ -30,7 +30,7 @@ final class FriendsSettingsView: UIView {
         return searchField
     }()
     
-    lazy var searchButton: UIButton = {
+    var searchButton: UIButton = {
         var searchButton = UIButton()
         searchButton.layer.borderWidth = Constants.Settings.searchFieldBorderWidth
         searchButton.layer.borderColor = UIColor.white.cgColor

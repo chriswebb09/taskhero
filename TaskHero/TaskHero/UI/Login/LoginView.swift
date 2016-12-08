@@ -10,39 +10,39 @@ import UIKit
 
 final class LoginView: UIView {
     
-    lazy var logoImageView: UIImageView = {
+    var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
         let imageView = UIImageView(image: image)
         return imageView
     }()
     
-    lazy var emailField: TextFieldExtension = {
+   var emailField: TextFieldExtension = {
         let emailField = TextFieldExtension().emailField(placeholder: "Enter email address")
         return emailField
     }()
 
-    lazy var passwordField: TextFieldExtension = {
+    var passwordField: TextFieldExtension = {
         let passwordField = TextFieldExtension().passwordField()
         return passwordField
     }()
     
-    lazy var loginButton: UIButton = {
+    var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         return button.newButton
     }()
     
-    lazy var signupButton: UIButton = {
+    var signupButton: UIButton = {
         let button = ButtonType.system(title:"Register Now", color:Constants.Login.signupButtonColor)
         return button.newButton
     }()
     
-    lazy var viewDivider: UIView = {
+    var viewDivider: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         return view
     }()
     
-    lazy var registerLabel: UILabel = {
+    var registerLabel: UILabel = {
         let registerLabel = UILabel()
         registerLabel.textColor = Constants.Login.registerLabelColor
         registerLabel.text = "Don't have an account?"
@@ -87,12 +87,14 @@ extension LoginView {
         logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
+        
         addSubview(emailField)
         emailField.translatesAutoresizingMaskIntoConstraints = false
         emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         emailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         emailField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+        
         addSubview(passwordField)
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
@@ -100,24 +102,28 @@ extension LoginView {
         passwordField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         passwordField.isSecureTextEntry = true
+        
         addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
         loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+        
         addSubview(viewDivider)
         viewDivider.translatesAutoresizingMaskIntoConstraints = false
         viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.dividerWidth).isActive = true
         viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true
         viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+        
         addSubview(registerLabel)
         registerLabel.translatesAutoresizingMaskIntoConstraints = false
         registerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         registerLabel.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         registerLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
+        
         addSubview(signupButton)
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true

@@ -143,6 +143,7 @@ extension HomeViewController: TaskCellDelegate {
         tapped = !tapped
         tapCell.toggled! = tapped
         tapCell.buttonToggled = !tapped
+        tapCell.taskDescriptionBox.becomeFirstResponder()
         print("Task toggle \(tapCell.toggled)")
         print("Button toggle \(tapCell.buttonToggled)")
         if tapCell.buttonToggled == true {
@@ -150,6 +151,7 @@ extension HomeViewController: TaskCellDelegate {
             newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
             tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
+            tapCell.taskDescriptionBox.resignFirstResponder()
         }
     }
     

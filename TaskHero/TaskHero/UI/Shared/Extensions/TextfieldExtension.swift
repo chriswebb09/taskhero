@@ -10,7 +10,7 @@ import UIKit
 
 class TextFieldExtension: UITextField {
     
-    // sets textfield input to + 10 inset on origin x value
+    // Sets textfield input to + 10 inset on origin x value
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width + 10, height: bounds.height)
