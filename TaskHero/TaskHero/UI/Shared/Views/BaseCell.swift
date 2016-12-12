@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol BaseCellModel {
     func configure(data: NSObject)
 }
@@ -24,6 +23,3 @@ class BaseCell: UITableViewCell, BaseCellModel, BaseCellViewModel {
         
     }
 }
-
-
-
