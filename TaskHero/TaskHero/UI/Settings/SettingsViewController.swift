@@ -92,6 +92,8 @@ extension SettingsViewController {
         alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
     
+    // Displays popover when notifications cell is selected
+    
     func notificationPopup() {
         notifyPop.popView.isHidden = false
         notifyPop.containerView.isHidden = false
@@ -103,6 +105,10 @@ extension SettingsViewController {
             self.notifyPop.containerView.layer.opacity = 0.1
         }); notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
     }
+    
+    // MARK: - Setup buttons
+    
+    // Hides notification popover
     
     func dismissNotificationButton() {
         notifyPop.popView.isHidden = true

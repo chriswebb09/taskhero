@@ -25,6 +25,9 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
         addTasksLabel.textAlignment = .center
         return addTasksLabel
     }()
+}
+
+extension TaskListViewController {
     
     // MARK: - Initialization
     
@@ -43,11 +46,6 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-}
-
-extension TaskListViewController {
-    
-    // MARK: - Initialization
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -69,6 +67,10 @@ extension TaskListViewController {
         super.viewWillDisappear(false)
         store.tasksRef.removeObserver(withHandle: store.refHandle)
     }
+}
+
+
+extension TaskListViewController {
     
     // MARK: - UITableViewController Methods
     

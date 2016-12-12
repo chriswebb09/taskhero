@@ -26,7 +26,8 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     var delegate: ProfileHeaderCellDelegate?
     
     let joinDateLabel: UILabel = {
-        let joinDateLabel = configureLargeLabel()
+        let joinDateLabel = UILabel()
+        joinDateLabel.font = Constants.Font.fontLarge
         return joinDateLabel
     }()
     
@@ -37,7 +38,8 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     }()
     
     let emailLabel: UILabel = {
-        let emailLabel = configureLargeLabel()
+        let emailLabel = UILabel()
+        emailLabel.font = Constants.Font.fontLarge
         return emailLabel
     }()
     
@@ -127,17 +129,14 @@ extension ProfileHeaderCell {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        
         emailLabel.text = profileHeaderCellModel.emailLabel
         joinDateLabel.isHidden = true
         usernameLabel.text = profileHeaderCellModel.usernameLabel
         levelLabel.text = "Level: \(profileHeaderCellModel.levelLabel)"
         joinDateLabel.text = "Joined: \(profileHeaderCellModel.joinDate)"
-        
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
         profilePicture.addGestureRecognizer(tap)
-        
         layoutSubviews()
         layoutIfNeeded()
     }

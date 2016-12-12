@@ -32,6 +32,7 @@ extension ProfileBannerCell {
     }
     
     // MARK: - Configuring
+    // Configure constraints
     
     private func setupConstraints() {
         contentView.addSubview(bannerImage)
@@ -42,16 +43,17 @@ extension ProfileBannerCell {
         bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.profileBannerHeight).isActive = true
     }
     
+    // Configure cell UI
+    
     func configureCell() {
         layoutSubviews()
-        
         isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         backgroundColor = Constants.Profile.profileHeaderBannerColor
     }
     
-    // Prepare for resuse 
+    // Prepare for reuse
     
     override func prepareForReuse() {
         bannerImage.image = nil

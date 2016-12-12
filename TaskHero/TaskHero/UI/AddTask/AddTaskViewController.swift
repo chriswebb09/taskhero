@@ -39,7 +39,6 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
         edgesForExtendedLayout = []
         addTaskView.layoutSubviews()
         pick.dataSource = self
-        pick.dataSource = self
         addTaskView.taskNameField.delegate = self
         addTaskView.taskDescriptionBox.delegate = self
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
@@ -93,7 +92,7 @@ extension AddTaskViewController {
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            // Return picker options for number of months if at index 0
+        // Return picker options for number of months if at index 0
         if component == 0 {
             return pickerMonths.count
             // Return numbers of days in month
@@ -140,6 +139,7 @@ extension AddTaskViewController {
     func addTaskButtonTapped() {
         view.endEditing(true)
         DispatchQueue.main.async {
+            
             self.pop.popView.isHidden = false
             self.pick.showsSelectionIndicator = true
             self.pick.frame = self.pop.popView.frame

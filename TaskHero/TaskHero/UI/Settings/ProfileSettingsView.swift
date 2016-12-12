@@ -33,6 +33,8 @@ extension ProfileSettingsView {
         setupConstraints()
     }
     
+    // MARK: - Configure
+    
     fileprivate func setupConstraints() {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false

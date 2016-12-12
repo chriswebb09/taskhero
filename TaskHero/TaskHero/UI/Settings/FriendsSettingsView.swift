@@ -55,6 +55,8 @@ extension FriendsSettingsView {
         setupConstraints()
     }
     
+    // MARK: - Configure
+    
     func setupConstraints() {
         addSubview(friendsHeaderLabel)
         friendsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false

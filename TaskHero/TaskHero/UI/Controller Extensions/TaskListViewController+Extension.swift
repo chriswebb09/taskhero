@@ -27,6 +27,8 @@ extension TaskListViewController {
         }
     }
     
+    // MARK: - Configure
+    
     func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine

@@ -30,6 +30,8 @@ extension SettingsCell {
         contentView.layer.masksToBounds = true
     }
     
+    // MARK: - Configure constraints
+    
     fileprivate func setupConstraints() {
         contentView.backgroundColor = UIColor.settingsBackground()
         contentView.addSubview(settingLabel)

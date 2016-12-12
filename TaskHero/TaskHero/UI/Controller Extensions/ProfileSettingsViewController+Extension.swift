@@ -10,6 +10,8 @@ import UIKit
 
 extension ProfileSettingsViewController {
     
+    // MARK: - Setup tableView
+    
     func setupTableView() {
         tableView.estimatedRowHeight = Constants.Settings.rowHeight
         tableView.separatorStyle = .singleLine
