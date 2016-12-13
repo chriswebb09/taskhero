@@ -18,9 +18,6 @@ final class HomeViewController: UITableViewController {
     let help = TabviewHelper()
     var tapped: Bool = false
     var buttonTapped: Bool = false
-    var indexTap: IndexPath?
-    var indexString: String = ""
-    let headerView = UIView()
 }
 
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -87,8 +84,8 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
             taskCell.delegate = self
             taskCell.taskDescriptionBox.delegate = self
             let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
-            taskCell.toggled = tapped
             taskCell.configureCell(task: store.tasks[indexPath.row - 1], tag: indexPath.row, gesture:tap)
+            taskCell.toggled = tapped
             return taskCell
         }
     }
@@ -99,8 +96,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
             tableView.beginUpdates()
             DispatchQueue.main.async { var removeTaskID: String; if indexPath.row == 0 { return } else {
                 removeTaskID = self.store.tasks[indexPath.row - 1].taskID
-                self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
-                self.store.currentUser.numberOfTasksCompleted += 1
+                self.store.updateUserScore()
                 self.store.insertUser(user: self.store.currentUser) }
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
@@ -126,7 +122,6 @@ extension HomeViewController {
         tapCell.toggled! = tapped
         tapCell.buttonToggled = !tapped
         tapCell.taskDescriptionBox.becomeFirstResponder()
-        tapCell.taskDescriptionBox.text = store.currentUser.tasks?[atIndex.row - 1].taskDescription
         print("Task toggle \(tapCell.toggled)")
         print("Button toggle \(tapCell.buttonToggled)")
         if tapCell.buttonToggled == true {

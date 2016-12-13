@@ -50,16 +50,11 @@ extension TaskListViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.store.fetchUserData()
-        if store.tasks.count >= 1 {
-            addTasksLabel.isHidden = true
-            addTasksLabel.isEnabled = false
-        }
+        if store.tasks.count >= 1 { addTasksLabel.isHidden = true; addTasksLabel.isEnabled = false }
         store.tasks.removeAll()
         store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            DispatchQueue.main.async { self.tableView.reloadData() }
         })
     }
     
@@ -84,8 +79,7 @@ extension TaskListViewController {
         let cellindex = (indexPath.row)
         taskCell.delegate = self
         let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
-        taskCell.taskCompletedView.addGestureRecognizer(tap)
-        taskCell.configureCell(task: store.tasks[cellindex])
+        taskCell.configureCell(task: store.tasks[cellindex], tag: indexPath.row, gesture: tap)
         taskCell.setupCellView(width: view.frame.size.width, height:height)
         return taskCell
     }
@@ -95,16 +89,13 @@ extension TaskListViewController {
             tableView.beginUpdates()
             var removeTaskID: String
             removeTaskID = self.store.tasks[indexPath.row].taskID
-            self.store.currentUser.experiencePoints += 1
-            self.store.currentUser.numberOfTasksCompleted += 1
+            self.store.updateUserScore()
             self.store.insertUser(user: self.store.currentUser)
             self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
             self.store.tasks.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            DispatchQueue.main.async {
-                tableView.reloadData()
-            }
+            DispatchQueue.main.async { tableView.reloadData() }
         } else if editingStyle == .insert {
             // Not implemented
         }
@@ -122,9 +113,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         default:
             print("Tasks Completed")
         }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
     // MARK: - Setup navbar
@@ -135,7 +124,6 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
-    
     
     // MARK: - Button methods
     

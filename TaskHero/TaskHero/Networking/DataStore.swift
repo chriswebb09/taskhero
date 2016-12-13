@@ -106,6 +106,11 @@ class DataStore {
         })
     }
     
+    func updateUserScore() {
+        currentUser.experiencePoints += 1
+        currentUser.numberOfTasksCompleted += 1
+    }
+    
     // Inserts new user to database and updates usernames keys
     
     func insertUser(user:User) {
