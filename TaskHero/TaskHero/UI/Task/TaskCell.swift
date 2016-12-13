@@ -27,7 +27,7 @@ class TaskCell: UITableViewCell {
     let taskNameLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
-        textView.font = Constants.Font.bolderFontMedium
+        textView.font = Constants.Font.bolderFontLarge
         textView.textAlignment = .left
         textView.layer.masksToBounds = true
         textView.isScrollEnabled = false
@@ -113,6 +113,7 @@ extension TaskCell {
         taskDueLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
+        
         
         contentView.addSubview(taskDescriptionLabel)
         taskDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false

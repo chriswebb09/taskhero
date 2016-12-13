@@ -56,6 +56,8 @@
 		A709CB1E1DE777DC00877907 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB1D1DE777DC00877907 /* Auth.swift */; };
 		A709CB261DE77DBF00877907 /* DBFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB251DE77DBF00877907 /* DBFetch.swift */; };
 		A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713373C1DE8047E0030DDF2 /* AppManager.swift */; };
+		A71C97871DFF666F00F855AA /* CellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97861DFF666F00F855AA /* CellStyle.swift */; };
+		A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */; };
 		A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */; };
 		A7346D781DE8EC50005E3A5E /* AlertPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D771DE8EC50005E3A5E /* AlertPopover.swift */; };
 		A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */; };
@@ -147,6 +149,8 @@
 		A709CB1D1DE777DC00877907 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		A709CB251DE77DBF00877907 /* DBFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBFetch.swift; sourceTree = "<group>"; };
 		A713373C1DE8047E0030DDF2 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		A71C97861DFF666F00F855AA /* CellStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellStyle.swift; sourceTree = "<group>"; };
+		A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerPopover.swift; sourceTree = "<group>"; };
 		A7346D771DE8EC50005E3A5E /* AlertPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPopover.swift; sourceTree = "<group>"; };
 		A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 		A709CB231DE77C2E00877907 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A71C97861DFF666F00F855AA /* CellStyle.swift */,
 				A76562D81DF953C500E29AA9 /* Popover */,
 				A709CB071DE7734700877907 /* RootContainerViewController.swift */,
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
@@ -364,6 +369,7 @@
 			children = (
 				A709CAF71DE772F700877907 /* AddTaskView.swift */,
 				A709CACD1DE7719E00877907 /* AddTaskViewController.swift */,
+				A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */,
 			);
 			path = AddTask;
 			sourceTree = "<group>";
@@ -745,6 +751,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77FBCC91DEB74670014C380 /* BasePopView.swift in Sources */,
+				A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */,
 				A709CACC1DE7718B00877907 /* LoginViewController.swift in Sources */,
 				A709CB261DE77DBF00877907 /* DBFetch.swift in Sources */,
 				A709CAD41DE771EB00877907 /* ProfileDataCell.swift in Sources */,
@@ -789,6 +796,7 @@
 				A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */,
 				A709CAD61DE771F400877907 /* ProfileBannerCell.swift in Sources */,
 				A76562CF1DF93F2000E29AA9 /* SettingsViewController+Extension.swift in Sources */,
+				A71C97871DFF666F00F855AA /* CellStyle.swift in Sources */,
 				A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */,
 				A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */,
 				A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */,
@@ -1015,6 +1023,7 @@
 				A76562EA1DF991D000E29AA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFE277AC1DB58CA2005C9AB5 /* Build configuration list for PBXProject "TaskHero" */ = {
 			isa = XCConfigurationList;

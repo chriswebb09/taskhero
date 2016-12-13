@@ -59,7 +59,7 @@ class InitView: UIView {
     }
     
     func zoomAnimation(_ handler: completion? = nil) {
-        let duration: TimeInterval =  self.animationDuration * 0.7
+        let duration: TimeInterval =  self.animationDuration * 0.5
         
         UIView.animate(withDuration: duration, animations:{
             self.logoImageView.transform = self.zoomOut()
@@ -75,7 +75,7 @@ class InitView: UIView {
     }
     
     fileprivate func zoomOut() -> CGAffineTransform {
-        let zoomOutTranform: CGAffineTransform = CGAffineTransform(scaleX: 40, y: 40)
+        let zoomOutTranform: CGAffineTransform = CGAffineTransform(scaleX: 05, y: 05)
         return zoomOutTranform
     }
     

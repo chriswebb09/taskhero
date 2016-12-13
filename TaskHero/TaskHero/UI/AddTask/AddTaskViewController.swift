@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-final class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+final class AddTaskViewController: UIViewController  {
     
     // MARK: Internal Properties
     
@@ -21,14 +21,15 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
     var month: String = "Jan"
     var day: String = "01"
     var year: String = "2016"
-    
-    final var pickerMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    final var years = ["2016", "2017", "2018"]
-    final let range: [Int] = Array(1...30)
-    
-    
+    var taskViewModel = AddTaskViewModel()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:300, height:300))
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+}
+
+extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource  {
     
     // MARK: Initialization
     
@@ -44,10 +45,6 @@ final class AddTaskViewController: UIViewController, UITextFieldDelegate, UIText
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }
 
@@ -83,7 +80,7 @@ extension AddTaskViewController {
     }
 }
 
-extension AddTaskViewController {
+extension AddTaskViewController: UIPickerViewDelegate {
     
     // MARK: Extension - UIPickerView Methods
     
@@ -94,7 +91,7 @@ extension AddTaskViewController {
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // Return picker options for number of months if at index 0
         if component == 0 {
-            return pickerMonths.count
+            return taskViewModel.pickerMonths.count
             // Return numbers of days in month
         } else if component == 1 {
             return 30
@@ -106,15 +103,15 @@ extension AddTaskViewController {
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            return pickerMonths[row]
+            return taskViewModel.pickerMonths[row]
         } else if component == 1 {
-            var dayString = String(describing: range[row])
+            var dayString = String(describing: taskViewModel.range[row])
             if dayString.characters.count < 2 {
                 day = "0\(dayString)"
             }
             return day
         } else {
-            return years[row]
+            return taskViewModel.years[row]
         }
     }
     
@@ -122,11 +119,11 @@ extension AddTaskViewController {
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            self.month = String(describing:pickerMonths[row])
+            self.month = String(describing:taskViewModel.pickerMonths[row])
         } else if component == 1 {
-            self.day = String(describing: range[row])
+            self.day = String(describing: taskViewModel.range[row])
         } else {
-            self.year = years[row]
+            self.year = taskViewModel.years[row]
         }
     }
 }
@@ -139,7 +136,6 @@ extension AddTaskViewController {
     func addTaskButtonTapped() {
         view.endEditing(true)
         DispatchQueue.main.async {
-            
             self.pop.popView.isHidden = false
             self.pick.showsSelectionIndicator = true
             self.pick.frame = self.pop.popView.frame

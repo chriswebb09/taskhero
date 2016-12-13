@@ -22,6 +22,10 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     var indexString: String = ""
     let headerView = UIView()
     
+    
+}
+
+extension HomeViewController {
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -72,7 +76,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     }
 }
 
-extension HomeViewController {
+extension HomeViewController: UITextViewDelegate {
     
     // MARK: UITableViewController Methods
     
@@ -97,21 +101,18 @@ extension HomeViewController {
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell()
-            
             if profilePic != nil {
                 headerCell.profilePicture.image = profilePic
             }
-            
             headerCell.contentView.autoresizingMask = UIViewAutoresizing.flexibleHeight
             return headerCell
         } else {
-            
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             taskCell.delegate = self
+            taskCell.taskDescriptionBox.delegate = self
             taskCell.toggled = tapped
             taskCell.configureCell(task: store.tasks[indexPath.row - 1])
             taskCell.saveButton.tag = indexPath.row
-            
             let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
             taskCell.taskCompletedView.addGestureRecognizer(tap)
             return taskCell
@@ -159,11 +160,11 @@ extension HomeViewController: TaskCellDelegate {
         tapCell.toggled! = tapped
         tapCell.buttonToggled = !tapped
         tapCell.taskDescriptionBox.becomeFirstResponder()
-        
+        tapCell.taskDescriptionBox.text = store.currentUser.tasks?[atIndex.row - 1].taskDescription
         print("Task toggle \(tapCell.toggled)")
         print("Button toggle \(tapCell.buttonToggled)")
         if tapCell.buttonToggled == true {
-            
+            tapCell.taskDescriptionBox.text = tapCell.taskDescriptionBox.text
             var newTask = self.store.tasks[atIndex.row - 1]
             newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)

@@ -53,7 +53,7 @@ struct Constants {
     
     struct Profile {
         static let profileHeaderLabelHeight:CGFloat = 0.2
-        static let profileHeaderLabelWidth: CGFloat = 0.41
+        static let profileHeaderLabelWidth: CGFloat = 0.42
         static let profileHeaderLabelRightOffset:CGFloat = -10
         static let profilePictureHeight:CGFloat = 0.12
         static let profilePictureWidth: CGFloat = 75
@@ -164,7 +164,7 @@ struct Constants {
         static let saveButtonWidth:CGFloat = 80
         static let saveButtonTopOffset:CGFloat = 30
         static let saveButtonRightOffset: CGFloat = -20
-        static let nameLabelTopOffset: CGFloat = 20
+        static let nameLabelTopOffset: CGFloat = 10
         static let nameLabelHeight: CGFloat = 0.2
         static let completedTopOffset: CGFloat = 30
         static let nameLabelLeftOffset:CGFloat = 10

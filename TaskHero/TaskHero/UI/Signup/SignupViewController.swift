@@ -208,24 +208,27 @@ extension SignupViewController {
             Constants().delay(0.9) {
                 
                 UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                    
-                    self.signupView.usernameField.layer.borderColor = Constants.Signup.invalidAnimationColor
-                    self.signupView.usernameField.textColor = Constants.Signup.invalidAnimationTextColor
-                    self.signupView.emailField.layer.borderColor = Constants.Signup.invalidAnimationColor
-                    self.signupView.emailField.textColor = Constants.Signup.invalidAnimationTextColor
-                    self.signupView.confirmEmailField.layer.borderColor = Constants.Signup.invalidAnimationColor
-                    self.signupView.confirmEmailField.textColor = Constants.Signup.invalidAnimationTextColor
+                    self.invalidateStyleFor(field: self.signupView.usernameField)
+                    self.invalidateStyleFor(field: self.signupView.emailField)
+                    self.invalidateStyleFor(field: self.signupView.confirmEmailField)
                 })
             }
         } else if textField == signupView.confirmEmailField {
             
             if (!validateEmailInput(email: signupView.emailField.text!, confirm: self.signupView.confirmEmailField.text!)) {
-                signupView.emailField.layer.borderColor = Constants.Signup.animationColor
-                signupView.emailField.textColor = Constants.Signup.animationTextColor
-                signupView.confirmEmailField.layer.borderColor = Constants.Signup.animationColor
-                signupView.confirmEmailField.textColor = Constants.Signup.animationTextColor
+                self.setAnimationStyleFor(field: signupView.emailField)
+                self.setAnimationStyleFor(field: signupView.confirmEmailField)
             }
         }
+    }
+    
+    func invalidateStyleFor(field:UITextField) {
+        field.layer.borderColor = Constants.Signup.invalidAnimationColor
+        field.textColor = Constants.Signup.invalidAnimationTextColor
+    }
+    func setAnimationStyleFor(field:UITextField) {
+        field.layer.borderColor = Constants.Signup.animationColor
+        field.textColor = Constants.Signup.animationTextColor
     }
 }
 
