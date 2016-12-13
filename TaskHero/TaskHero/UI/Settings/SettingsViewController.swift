@@ -82,11 +82,9 @@ extension SettingsViewController {
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = 0
         alertPop.showPopView(viewController: self)
-        
         UIView.animate(withDuration: 0.1, animations: {
             self.alertPop.popView.layer.opacity = 1
-            self.alertPop.containerView.layer.opacity = 0.1
-        })
+            self.alertPop.containerView.layer.opacity = 0.1 })
         alertPop.popView.resultLabel.text = "Try Again Later."
         alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
         alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
@@ -102,8 +100,8 @@ extension SettingsViewController {
         notifyPop.showPopView(viewController: self)
         UIView.animate(withDuration: 0.1, animations: {
             self.notifyPop.popView.layer.opacity = 1
-            self.notifyPop.containerView.layer.opacity = 0.1
-        }); notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
+            self.notifyPop.containerView.layer.opacity = 0.1 })
+        notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
     }
     
     // MARK: - Setup buttons

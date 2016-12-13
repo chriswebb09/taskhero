@@ -101,8 +101,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.endUpdates()
-            }
+                tableView.endUpdates() }
             tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class
