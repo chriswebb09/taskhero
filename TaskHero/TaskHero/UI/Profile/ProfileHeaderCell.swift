@@ -125,7 +125,10 @@ extension ProfileHeaderCell {
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Profile.leftOffset).isActive = true
     }
     
-    func configureCell() {
+    //headerCell.configureCell(autoHeight: UIViewAutoresizing)
+    
+    func configureCell(autoHeight: UIViewAutoresizing) {
+        contentView.autoresizingMask = autoHeight
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false

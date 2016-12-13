@@ -79,19 +79,16 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
-            headerCell.configureCell()
+            headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
             if profilePic != nil { headerCell.profilePicture.image = profilePic }
-            headerCell.contentView.autoresizingMask = UIViewAutoresizing.flexibleHeight
             return headerCell
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
             taskCell.delegate = self
             taskCell.taskDescriptionBox.delegate = self
-            taskCell.toggled = tapped
-            taskCell.configureCell(task: store.tasks[indexPath.row - 1])
-            taskCell.saveButton.tag = indexPath.row
             let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
-            taskCell.taskCompletedView.addGestureRecognizer(tap)
+            taskCell.toggled = tapped
+            taskCell.configureCell(task: store.tasks[indexPath.row - 1], tag: indexPath.row, gesture:tap)
             return taskCell
         }
     }

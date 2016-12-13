@@ -144,14 +144,17 @@ extension TaskCell {
         taskDescriptionBox.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
     }
     
-    func configureCell(task:Task) {
+    func configureCell(task:Task, tag:Int, gesture:UIGestureRecognizer) {
         taskDescriptionBox.isHidden = true
         taskNameLabel.text = task.taskName
         taskDueLabel.text = "Due date: \(task.taskDue)"
         taskDescriptionLabel.text = task.taskDescription
         saveButton.addTarget(self, action: #selector(toggleForButtonState), for: .touchUpInside)
+        taskCompletedView.addGestureRecognizer(gesture)
+        saveButton.tag = tag
         layoutSubviews()
         styleAppearance()
+        
         if task.taskCompleted {
             taskCompletedView.image = UIImage(named:"checked")
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
