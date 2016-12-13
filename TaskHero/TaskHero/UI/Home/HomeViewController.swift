@@ -23,7 +23,7 @@ final class HomeViewController: UITableViewController {
     let headerView = UIView()
 }
 
-extension HomeViewController: ProfileHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Initialization
     
@@ -45,7 +45,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UIImagePickerController
     
     // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
     // If there are tasks in datastore removes tasks before load
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.store.fetchUserData()
@@ -56,19 +55,16 @@ extension HomeViewController: ProfileHeaderCellDelegate, UIImagePickerController
         })
     }
     
-    // If taskref is not nil removes refhandle
-    // necessary to prevent duplicates from being rendered when view reloads.
-    
+    // If taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         if store.refHandle != nil { store.tasksRef.removeObserver(withHandle: store.refHandle) }
     }
 }
 
-extension HomeViewController: UITextViewDelegate {
+extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, TaskCellDelegate {
     
     // MARK: UITableViewController Methods
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 { return 1 } else { return self.store.tasks.count + 1 }
     }
@@ -78,7 +74,6 @@ extension HomeViewController: UITextViewDelegate {
     }
     
     // If first row returns profile header cell else returns task cell
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
@@ -102,7 +97,6 @@ extension HomeViewController: UITextViewDelegate {
     }
     
     // Logic for deleting tasks from database when user deletes tableview cell
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
@@ -124,11 +118,11 @@ extension HomeViewController: UITextViewDelegate {
     }
 }
 
-extension HomeViewController: TaskCellDelegate {
+extension HomeViewController {
     
     // MARK: Public Methods
-    // Implements logic for editing task from cell
     
+    // Implements logic for editing task from cell
     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         tapped = !tapped
@@ -150,9 +144,7 @@ extension HomeViewController: TaskCellDelegate {
     
     // MARK: - Delegate Methods
     
-    // If popover is not visible shows popover
-    // if popover is displayed it hides popover
-    
+    // If popover is not visible shows popover / if popover is displayed it hides popover
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
         photoPopover.showPopView(viewController: self)
@@ -169,7 +161,6 @@ extension HomeViewController: TaskCellDelegate {
     }
     
     // Kicks off cycling between taskcell editing states
-    
     func toggleForEditState(sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
@@ -177,7 +168,6 @@ extension HomeViewController: TaskCellDelegate {
     }
     
     // Hides popover view when operation has ended.
-    
     func hideView() {
         photoPopover.popView.isHidden = true
         photoPopover.hidePopView(viewController: self)
