@@ -11,7 +11,6 @@ import UIKit
 final class FriendsSettingsView: UIView {
     
     // MARK: - UI Elements
-    
     let friendsHeaderLabel: UILabel = {
         let friendsHeaderLabel = UILabel()
         friendsHeaderLabel.textColor = UIColor.black
@@ -48,7 +47,6 @@ final class FriendsSettingsView: UIView {
 extension FriendsSettingsView {
     
     // MARK: - Initialization
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
@@ -56,7 +54,6 @@ extension FriendsSettingsView {
     }
     
     // MARK: - Configure
-    
     func setupConstraints() {
         addSubview(friendsHeaderLabel)
         friendsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -64,12 +61,14 @@ extension FriendsSettingsView {
         friendsHeaderLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         friendsHeaderLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         friendsHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Settings.friendsHeaderLabelTopOffset).isActive = true
+        
         addSubview(searchField)
         searchField.translatesAutoresizingMaskIntoConstraints = false
         searchField.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         searchField.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         searchField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Settings.searchFieldLeadOffset).isActive = true
         searchField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * Constants.Settings.friendSettingCenterYOffset).isActive = true
+        
         addSubview(searchButton)
         searchButton.translatesAutoresizingMaskIntoConstraints = false
         searchButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Settings.searchButtonWidth).isActive = true
