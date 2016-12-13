@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+final class HomeViewController: UITableViewController {
     
     // MARK: Internal Properties
     
@@ -23,7 +23,7 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     let headerView = UIView()
 }
 
-extension HomeViewController {
+extension HomeViewController: ProfileHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Initialization
     
