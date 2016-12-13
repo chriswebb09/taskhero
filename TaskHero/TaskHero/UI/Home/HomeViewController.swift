@@ -21,21 +21,18 @@ final class HomeViewController: UITableViewController, ProfileHeaderCellDelegate
     var indexTap: IndexPath?
     var indexString: String = ""
     let headerView = UIView()
-    
-    
 }
 
 extension HomeViewController {
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        
         view.backgroundColor = Constants.tableViewBackgroundColor
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        
         help.setupTableView(tableView: tableView)
         tableView.estimatedRowHeight = view.frame.height / 4
         setupNavItems()
@@ -53,15 +50,9 @@ extension HomeViewController {
         super.viewWillAppear(false)
         self.store.fetchUserData()
         self.store.tasks.removeAll()
-        if self.store.currentUser.tasks != nil {
-            self.store.currentUser.tasks?.removeAll()
-        }
-        self.store.fetchTasks(completion: { task in
-            self.store.tasks.append(task)
-            self.store.currentUser.tasks!.append(task)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        if self.store.currentUser.tasks != nil { self.store.currentUser.tasks?.removeAll() }
+        self.store.fetchTasks(completion: { task in self.store.tasks.append(task); self.store.currentUser.tasks!.append(task)
+            DispatchQueue.main.async { self.tableView.reloadData() }
         })
     }
     
@@ -70,9 +61,7 @@ extension HomeViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        if store.refHandle != nil {
-            store.tasksRef.removeObserver(withHandle: store.refHandle)
-        }
+        if store.refHandle != nil { store.tasksRef.removeObserver(withHandle: store.refHandle) }
     }
 }
 
@@ -81,11 +70,7 @@ extension HomeViewController: UITextViewDelegate {
     // MARK: UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.store.tasks.count < 1 {
-            return 1
-        } else {
-            return self.store.tasks.count + 1
-        }
+        if self.store.tasks.count < 1 { return 1 } else { return self.store.tasks.count + 1 }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -96,14 +81,11 @@ extension HomeViewController: UITextViewDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.delegate = self
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell()
-            if profilePic != nil {
-                headerCell.profilePicture.image = profilePic
-            }
+            if profilePic != nil { headerCell.profilePicture.image = profilePic }
             headerCell.contentView.autoresizingMask = UIViewAutoresizing.flexibleHeight
             return headerCell
         } else {
@@ -124,23 +106,17 @@ extension HomeViewController: UITextViewDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            DispatchQueue.main.async {
-                var removeTaskID: String
-                if indexPath.row == 0 { return
-                } else {
-                    removeTaskID = self.store.tasks[indexPath.row - 1].taskID
-                    self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
-                    self.store.currentUser.numberOfTasksCompleted += 1
-                    self.store.insertUser(user: self.store.currentUser) }
-                
+            DispatchQueue.main.async { var removeTaskID: String; if indexPath.row == 0 { return } else {
+                removeTaskID = self.store.tasks[indexPath.row - 1].taskID
+                self.store.currentUser.experiencePoints += self.store.tasks[indexPath.row - 1].pointValue
+                self.store.currentUser.numberOfTasksCompleted += 1
+                self.store.insertUser(user: self.store.currentUser) }
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-                
                 tableView.endUpdates()
             }
             tableView.reloadData()
-            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class
             // insert it into the array, and add a new row to the table view.
@@ -156,7 +132,6 @@ extension HomeViewController: TaskCellDelegate {
     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         tapped = !tapped
-        
         tapCell.toggled! = tapped
         tapCell.buttonToggled = !tapped
         tapCell.taskDescriptionBox.becomeFirstResponder()
