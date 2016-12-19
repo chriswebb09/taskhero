@@ -10,8 +10,8 @@ import UIKit
 
 
 protocol TaskCellDelegate: class {
-   func toggleForEditState(sender:UIGestureRecognizer)
-   func toggleForButtonState(sender:UIButton)
+    func toggleForEditState(sender:UIGestureRecognizer)
+    func toggleForButtonState(sender:UIButton)
 }
 
 class TaskCell: UITableViewCell {
@@ -22,8 +22,6 @@ class TaskCell: UITableViewCell {
     var taskViewModel: TaskCellViewModel!
     
     // MARK: - Setup UI Elements
-    
-   
     
     let taskNameLabel: UITextView = {
         let textView = UITextView()
@@ -71,8 +69,6 @@ class TaskCell: UITableViewCell {
         ui.isEnabled = false
         return ui
     }()
-    
-    
 }
 
 extension TaskCell {
@@ -116,7 +112,7 @@ extension TaskCell {
         configureView(view: taskNameLabel)
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.nameLabelTopOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
-
+        
         configureView(view: taskDueLabel)
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
@@ -152,7 +148,7 @@ extension TaskCell {
         self.toggled = toggled
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
         layoutSubviews()
-        styleAppearance()
+        //styleAppearance()
         if taskVM.taskCompleted == "true" {
             taskCompletedView.image = UIImage(named:"checked")
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
@@ -177,20 +173,6 @@ extension TaskCell {
         cellView.layer.shadowOpacity = Constants.TaskCell.styledShadowOpacity
         contentView.addSubview(cellView)
         contentView.sendSubview(toBack: cellView)
-    }
-    
-    
-   
-    
-    //func namePickerView(_ namePickerView: NamePickerView, didSelectName name: String)
-    //func namePickerViewShouldReload(_ namePickerView: NamePickerView) -> Bool
-    
-    func styleAppearance() {
-        layer.masksToBounds = false
-        layer.shadowOffset = Constants.TaskCell.styledShadowRadius
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowRadius = Constants.TaskCell.shadowRadius
-        layer.shadowOpacity = Constants.TaskCell.shadowOpacity
     }
     
     override func prepareForReuse() {
