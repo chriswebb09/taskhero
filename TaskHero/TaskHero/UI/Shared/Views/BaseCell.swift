@@ -18,7 +18,6 @@ protocol BaseCellViewModel {
 
 class BaseCell: UITableViewCell, BaseCellModel, BaseCellViewModel {
     var cellIdentifier: String! = "cellID"
-    
     func configure(data: NSObject) {
         
     }

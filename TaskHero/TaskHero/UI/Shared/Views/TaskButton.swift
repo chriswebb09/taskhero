@@ -15,16 +15,20 @@ enum ButtonType {
         let button = UIButton()
         button.backgroundColor = Constants.Login.loginButtonColor
         button.setAttributedTitle( NSAttributedString(string: title, attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
-        button.layer.cornerRadius = 2
+        configureButton(button: button)
         return button
+    }
+    
+    func configureButton(button:UIButton) {
+        button.layer.cornerRadius = 2
+        button.layer.borderWidth = 1
     }
     
     fileprivate func setupSystemButton(with title:String, color: UIColor?) -> UIButton {
         let button = TagButton()
         let buttonColor = color ?? UIColor.black
         button.setAttributedTitle( NSAttributedString(string: title, attributes: [NSForegroundColorAttributeName: buttonColor, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
-        button.layer.cornerRadius = 2
-        button.layer.borderWidth = 1
+        configureButton(button: button)
         return button as UIButton
     }
     
@@ -32,8 +36,7 @@ enum ButtonType {
         let button = TagButton()
         let buttonColor = color ?? UIColor.black
         button.setAttributedTitle( NSAttributedString(string: title, attributes: [NSForegroundColorAttributeName: buttonColor, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
-        button.layer.cornerRadius = 2
-        button.layer.borderWidth = 1
+        configureButton(button: button)
         button.buttonTag = tag
         button.index = index
         return button
