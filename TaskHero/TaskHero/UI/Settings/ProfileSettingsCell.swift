@@ -22,12 +22,10 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     let profileSettingLabel: UILabel = {
         let profileLabel = UILabel()
-        
         profileLabel.textColor = UIColor.settingsBackground()
         profileLabel.font = Constants.Font.fontNormal
         profileLabel.textAlignment = .left
         profileLabel.layer.masksToBounds = true
-        
         return profileLabel
     }()
     
@@ -40,13 +38,11 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     lazy var profileSettingField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
-        
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
         taskNameField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         taskNameField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
         taskNameField.isHidden = true
-        
         return taskNameField
     }()
     
@@ -93,9 +89,7 @@ extension ProfileSettingsCell {
     func configureCell(setting:String) {
         layoutSubviews()
         profileSettingLabel.text = setting
-        if setting.contains("N/A") {
-            profileSettingLabel.text = "FirstName LastName"
-        }
+        if setting.contains("N/A") { profileSettingLabel.text = "FirstName LastName" }
         profileSettingField.isHidden = true
     }
     

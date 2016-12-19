@@ -152,6 +152,8 @@ extension TaskListViewController: TaskHeaderCellDelegate {
             DispatchQueue.main.async { tapCell.taskDescriptionLabel.text = newTask.taskDescription }
             tapCell.taskDescriptionBox.resignFirstResponder()
         }
+
+
     }
     
 //    func tapEdit(atIndex:IndexPath) {
@@ -182,4 +184,3 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         tapEdit(atIndex: tapIndex as IndexPath)
     }
 }
-//}

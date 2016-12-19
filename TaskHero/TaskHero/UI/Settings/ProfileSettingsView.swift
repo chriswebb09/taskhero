@@ -11,7 +11,6 @@ import UIKit
 final class ProfileSettingsView: UIView {
     
     // MARK: - UIElements
-    
     let profileLabel: UILabel = {
         let profileLabel = UILabel()
         profileLabel.textColor = UIColor.black
@@ -26,7 +25,6 @@ final class ProfileSettingsView: UIView {
 extension ProfileSettingsView {
     
     // MARK: - Initialization
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
@@ -34,7 +32,6 @@ extension ProfileSettingsView {
     }
     
     // MARK: - Configure
-    
     fileprivate func setupConstraints() {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false

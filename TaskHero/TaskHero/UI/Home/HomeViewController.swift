@@ -11,7 +11,6 @@ import UIKit
 final class HomeViewController: UITableViewController {
     
     // MARK: Internal Properties
-    
     let store = DataStore.sharedInstance
     let photoPopover = PhotoPickerPopover()
     var profilePic: UIImage? = nil
@@ -25,7 +24,6 @@ final class HomeViewController: UITableViewController {
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Initialization
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
@@ -106,8 +104,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
                 self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.endUpdates()
-            }
+                tableView.endUpdates() }
             tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class
@@ -119,7 +116,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
 extension HomeViewController {
     
     // MARK: Public Methods
-    
     // Implements logic for editing task from cell
     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
@@ -142,7 +138,6 @@ extension HomeViewController {
     }
     
     // MARK: - Delegate Methods
-    
     // If popover is not visible shows popover / if popover is displayed it hides popover
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
