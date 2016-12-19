@@ -15,6 +15,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     let store = DataStore.sharedInstance
     var tapped: Bool = false
     var buttonTapped: Bool = false
+    var taskViewModel: TaskCellViewModel!
     
     // MARK: - UI
     
@@ -76,10 +77,11 @@ extension TaskListViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
         let height = tableView.rowHeight - 5
-        let cellindex = (indexPath.row)
+        taskViewModel = TaskCellViewModel(store.tasks[indexPath.row])
         taskCell.delegate = self
         let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
-        taskCell.configureCell(task: store.tasks[cellindex], tag: indexPath.row, gesture: tap)
+        taskCell.taskCompletedView.addGestureRecognizer(tap)
+        taskCell.configureCell(taskVM: taskViewModel, toggled: tapped)
         taskCell.setupCellView(width: view.frame.size.width, height:height)
         return taskCell
     }
@@ -141,30 +143,37 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         }
     }
     
-    func tapEdit(atIndex:IndexPath) {
+     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        tapped = !tapped
-        tapCell.toggled! = tapped
-        tapCell.buttonToggled = !tapped
-        print("Task toggle \(tapCell.toggled)")
-        print("Button toggle \(tapCell.buttonToggled)")
-        if tapCell.buttonToggled == true {
+        if tapCell.toggled == true {
             var newTask = self.store.tasks[atIndex.row]
             newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-            tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
+            DispatchQueue.main.async { tapCell.taskDescriptionLabel.text = newTask.taskDescription }
             tapCell.taskDescriptionBox.resignFirstResponder()
         }
     }
     
+//    func tapEdit(atIndex:IndexPath) {
+//        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+//        tapCell.toggled! = tapped
+//        print("Task toggle \(tapCell.toggled)")
+//        if tapCell.toggled == true {
+//            var newTask = self.store.tasks[atIndex.row]
+//            newTask.taskDescription = tapCell.taskDescriptionBox.text
+//            self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+//            DispatchQueue.main.async { tapCell.taskDescriptionLabel.text = newTask.taskDescription }
+//            tapCell.taskDescriptionBox.resignFirstResponder()
+//        }
+//    }
+    
     func toggleForButtonState(sender:UIButton) {
-        buttonTapped = true
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
         tapEdit(atIndex: indexPath!)
     }
-    
+//
     // Kicks off cycling between taskcell editing states
     
     func toggleForEditState(sender:UIGestureRecognizer) {
@@ -173,3 +182,4 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         tapEdit(atIndex: tapIndex as IndexPath)
     }
 }
+//}

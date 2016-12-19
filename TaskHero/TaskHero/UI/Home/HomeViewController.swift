@@ -18,7 +18,9 @@ final class HomeViewController: UITableViewController {
     let help = TabviewHelper()
     var tapped: Bool = false
     var buttonTapped: Bool = false
+    var taskViewModel: TaskCellViewModel!
 }
+
 
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -81,11 +83,14 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
             return headerCell
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
+            taskViewModel = TaskCellViewModel(store.tasks[indexPath.row - 1])
             taskCell.delegate = self
             taskCell.taskDescriptionBox.delegate = self
             let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
-            taskCell.configureCell(task: store.tasks[indexPath.row - 1], tag: indexPath.row, gesture:tap)
+            taskCell.taskCompletedView.addGestureRecognizer(tap)
+            taskCell.configureCell(taskVM: taskViewModel, toggled: tapped)
             taskCell.toggled = tapped
+            taskCell.saveButton.tag = indexPath.row
             return taskCell
         }
     }
@@ -119,12 +124,14 @@ extension HomeViewController {
     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         tapped = !tapped
-        tapCell.toggled! = tapped
-        tapCell.buttonToggled = !tapped
+        //tapCell.toggled = tapped
+       // tapCell.buttonToggled = !tapped
         tapCell.taskDescriptionBox.becomeFirstResponder()
+        tapCell.saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
+        taskCell(_taskCell: tapCell, didToggleEditState: buttonTapped)
         print("Task toggle \(tapCell.toggled)")
-        print("Button toggle \(tapCell.buttonToggled)")
-        if tapCell.buttonToggled == true {
+        //print("Button toggle \(tapCell.buttonToggled)")
+        if tapCell.toggled == true {
             tapCell.taskDescriptionBox.text = tapCell.taskDescriptionBox.text
             var newTask = self.store.tasks[atIndex.row - 1]
             newTask.taskDescription = tapCell.taskDescriptionBox.text
@@ -150,6 +157,10 @@ extension HomeViewController {
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
         tapEdit(atIndex: indexPath!)
+    }
+    
+    func taskCell(_taskCell:TaskCell, didToggleEditState editState:Bool) {
+        
     }
     
     // Kicks off cycling between taskcell editing states

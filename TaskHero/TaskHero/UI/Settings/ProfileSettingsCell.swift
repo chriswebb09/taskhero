@@ -63,11 +63,16 @@ extension ProfileSettingsCell {
         contentView.layer.masksToBounds = true
     }
     
+
+    func configureView(view:UIView) {
+        addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Settings.profileSettingsLabelHeight).isActive = true
+        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileSettingsLabelWidth).isActive = true
+    }
+    
     fileprivate func setupConstraints() {
-        contentView.addSubview(profileSettingLabel)
-        profileSettingLabel.translatesAutoresizingMaskIntoConstraints = false
-        profileSettingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Settings.profileSettingsLabelHeight).isActive = true
-        profileSettingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileSettingsLabelWidth).isActive = true
+        configureView(view: profileSettingLabel)
         profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Settings.profileSettingsLeftOffset).isActive = true
         profileSettingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
@@ -78,10 +83,7 @@ extension ProfileSettingsCell {
         button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
-        contentView.addSubview(profileSettingField)
-        profileSettingField.translatesAutoresizingMaskIntoConstraints = false
-        profileSettingField.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.labelHeight).isActive = true
-        profileSettingField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.labelHeight).isActive = true
+        configureView(view: profileSettingField)
         profileSettingField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Settings.profileSettingsFieldCenterYAnchor).isActive = true
         profileSettingField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }

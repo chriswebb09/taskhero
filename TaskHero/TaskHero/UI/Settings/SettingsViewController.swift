@@ -17,6 +17,7 @@ final class SettingsViewController: UITableViewController {
     var settings = [String]()
     let alertPop = AlertPopover()
     let notifyPop = NotificationPopover()
+    var settingsViewModel:SettingsCellViewModel!
     
     // MARK: - Initialization
     
@@ -56,7 +57,8 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
-        settingsCell.configureCell(setting: settings[indexPath.row])
+        settingsViewModel = SettingsCellViewModel(settings[indexPath.row])
+        settingsCell.configureCell(setting: settingsViewModel)
         settingsCell.contentView.clipsToBounds = true
         return settingsCell
     }

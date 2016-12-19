@@ -10,17 +10,16 @@ import UIKit
 
 
 protocol TaskCellDelegate: class {
-    func toggleForEditState(sender:UIGestureRecognizer)
-    func toggleForButtonState(sender:UIButton)
+   func toggleForEditState(sender:UIGestureRecognizer)
+   func toggleForButtonState(sender:UIButton)
 }
 
 class TaskCell: UITableViewCell {
     
     static let cellIdentifier = "TaskCell"
-    
     weak var delegate: TaskCellDelegate?
-    var toggled: Bool? = false
-    var buttonToggled: Bool = false
+    var toggled:Bool = false
+    var taskViewModel: TaskCellViewModel!
     
     // MARK: - Setup UI Elements
     
@@ -99,26 +98,31 @@ extension TaskCell {
     
     // MARK: - Configure cell
     
+    func configureView(view:UIView) {
+        contentView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.nameLabelHeight).isActive = true
+    }
+    
+    func configureDesription(view:UIView) {
+        contentView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.descriptionBoxHeight).isActive = true
+        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.descriptionLabelWidth).isActive = true
+    }
+    
     func setupConstraints() {
-        contentView.addSubview(taskNameLabel)
-        taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskNameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.nameLabelHeight).isActive = true
+        configureView(view: taskNameLabel)
         taskNameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.nameLabelTopOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
-        
-        contentView.addSubview(taskDueLabel)
-        taskDueLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskDueLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.nameLabelHeight).isActive = true
+
+        configureView(view: taskDueLabel)
         taskDueLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
         
-        
-        contentView.addSubview(taskDescriptionLabel)
-        taskDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.descriptionBoxHeight).isActive = true
-        taskDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.descriptionLabelWidth).isActive = true
+        configureDesription(view: taskDescriptionLabel)
         taskDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         taskDescriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
         
@@ -136,30 +140,26 @@ extension TaskCell {
         saveButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.saveButtonRightOffset).isActive = true
         saveButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.saveButtonTopOffset).isActive = true
         
-        contentView.addSubview(taskDescriptionBox)
-        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.descriptionBoxHeight).isActive = true
-        taskDescriptionBox.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.descriptionLabelWidth).isActive = true
+        configureDesription(view: taskDescriptionBox)
         taskDescriptionBox.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         taskDescriptionBox.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
     }
     
-    func configureCell(task:Task, tag:Int, gesture:UIGestureRecognizer) {
+    func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
         taskDescriptionBox.isHidden = true
-        taskNameLabel.text = task.taskName
-        taskDueLabel.text = "Due date: \(task.taskDue)"
-        taskDescriptionLabel.text = task.taskDescription
-        saveButton.addTarget(self, action: #selector(toggleForButtonState), for: .touchUpInside)
-        taskCompletedView.addGestureRecognizer(gesture)
-        saveButton.tag = tag
+        taskNameLabel.text = taskVM.taskName
+        taskDueLabel.text = "Due date: \(taskVM.taskDue)"
+        taskDescriptionLabel.text = taskVM.taskDescription
+        self.toggled = toggled
+        saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
         layoutSubviews()
         styleAppearance()
         
-        if task.taskCompleted {
+        if taskVM.taskCompleted == "true" {
             taskCompletedView.image = UIImage(named:"checked")
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
             taskCompletedView.addGestureRecognizer(tap)
-            saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
+            saveButton.addTarget(self, action: #selector(toggleForEditState), for: .touchUpInside)
         } else {
             taskCompletedView.image = UIImage(named:"edit")
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
@@ -182,6 +182,12 @@ extension TaskCell {
         contentView.addSubview(cellView)
         contentView.sendSubview(toBack: cellView)
     }
+    
+    
+   
+    
+    //func namePickerView(_ namePickerView: NamePickerView, didSelectName name: String)
+    //func namePickerViewShouldReload(_ namePickerView: NamePickerView) -> Bool
     
     func styleAppearance() {
         layer.masksToBounds = false

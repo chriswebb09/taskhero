@@ -42,9 +42,9 @@ extension SettingsCell {
         settingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
-    func configureCell(setting:String) {
+    func configureCell(setting: SettingsCellViewModel) {
         layoutSubviews()
-        settingLabel.text = setting
+        settingLabel.text = setting.setting
     }
     
     override func prepareForReuse() {

@@ -127,7 +127,10 @@ extension LoginViewController {
     func checkForValidEmail(field:UITextField) {
         if field.text == nil || (field.text?.characters.count)! < 5 {
             
-            UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0,
+            UIView.animate(withDuration: 3,
+                           delay: 0.0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.0,
                            animations: {
                             field.layer.borderWidth = 2
                             field.layer.borderColor = UIColor.errorColor().cgColor

@@ -75,6 +75,10 @@
 		A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */; };
 		A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */; };
 		A76562E41DF991D000E29AA9 /* TaskHeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562E31DF991D000E29AA9 /* TaskHeroTests.swift */; };
+		A767FBA21E0830D5007767B6 /* SettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A767FBA11E0830D5007767B6 /* SettingsCellViewModel.swift */; };
+		A767FBA41E0832A1007767B6 /* TaskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A767FBA31E0832A1007767B6 /* TaskCellViewModel.swift */; };
+		A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A767FBA51E0836CC007767B6 /* ProfileSettingsCellViewModel.swift */; };
+		A767FBA81E0836F7007767B6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A767FBA71E0836F7007767B6 /* SignupViewModel.swift */; };
 		A77FBCC41DEB5B410014C380 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC31DEB5B410014C380 /* NotificationView.swift */; };
 		A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */; };
 		A77FBCC91DEB74670014C380 /* BasePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC81DEB74670014C380 /* BasePopView.swift */; };
@@ -170,6 +174,10 @@
 		A76562E11DF991D000E29AA9 /* TaskHeroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskHeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A76562E31DF991D000E29AA9 /* TaskHeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHeroTests.swift; sourceTree = "<group>"; };
 		A76562E51DF991D000E29AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A767FBA11E0830D5007767B6 /* SettingsCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCellViewModel.swift; sourceTree = "<group>"; };
+		A767FBA31E0832A1007767B6 /* TaskCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellViewModel.swift; sourceTree = "<group>"; };
+		A767FBA51E0836CC007767B6 /* ProfileSettingsCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsCellViewModel.swift; sourceTree = "<group>"; };
+		A767FBA71E0836F7007767B6 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		A77FBCC31DEB5B410014C380 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPopover.swift; sourceTree = "<group>"; };
 		A77FBCC81DEB74670014C380 /* BasePopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePopView.swift; sourceTree = "<group>"; };
@@ -239,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				A709CAFB1DE7730D00877907 /* SignupView.swift */,
+				A767FBA71E0836F7007767B6 /* SignupViewModel.swift */,
 				A709CB0B1DE7735B00877907 /* SignupViewController.swift */,
 			);
 			path = Signup;
@@ -256,7 +265,9 @@
 			isa = PBXGroup;
 			children = (
 				A709CAE51DE7725F00877907 /* SettingsCell.swift */,
+				A767FBA11E0830D5007767B6 /* SettingsCellViewModel.swift */,
 				A70840091DEB180800055B72 /* ProfileSettingsCell.swift */,
+				A767FBA51E0836CC007767B6 /* ProfileSettingsCellViewModel.swift */,
 				A709CB091DE7735000877907 /* SettingsViewController.swift */,
 				A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */,
 				A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */,
@@ -534,6 +545,7 @@
 				A709CAD71DE7720200877907 /* TaskCell.swift */,
 				A709CAD81DE7720200877907 /* TaskHeaderCell.swift */,
 				A709CB111DE7737800877907 /* TaskListViewController.swift */,
+				A767FBA31E0832A1007767B6 /* TaskCellViewModel.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -767,6 +779,7 @@
 				A709CAEA1DE7726D00877907 /* TeamBannerCell.swift in Sources */,
 				A709CAF81DE772F700877907 /* AddTaskView.swift in Sources */,
 				A709CAFE1DE7731500877907 /* LoadingView.swift in Sources */,
+				A767FBA41E0832A1007767B6 /* TaskCellViewModel.swift in Sources */,
 				A76562D31DF93F4800E29AA9 /* InitialViewController.swift in Sources */,
 				A709CAE61DE7725F00877907 /* SettingsCell.swift in Sources */,
 				A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */,
@@ -775,6 +788,7 @@
 				A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */,
 				A70840081DEB152F00055B72 /* BaseCell.swift in Sources */,
 				A76562CE1DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift in Sources */,
+				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A709CB1E1DE777DC00877907 /* Auth.swift in Sources */,
 				A709CAEC1DE7726D00877907 /* TeamHeaderCell.swift in Sources */,
@@ -786,6 +800,7 @@
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
 				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
+				A767FBA21E0830D5007767B6 /* SettingsCellViewModel.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,
 				A708400A1DEB180800055B72 /* ProfileSettingsCell.swift in Sources */,
 				A70840001DEABB1700055B72 /* ProfileSettingsView.swift in Sources */,
@@ -805,6 +820,7 @@
 				A709CB081DE7734700877907 /* RootContainerViewController.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,
 				A709CAEE1DE7727E00877907 /* ProfileDataCellModel.swift in Sources */,
+				A767FBA81E0836F7007767B6 /* SignupViewModel.swift in Sources */,
 				A709CB061DE7733C00877907 /* Task.swift in Sources */,
 				A709CB021DE7732800877907 /* DataStore.swift in Sources */,
 				A709CB101DE7737100877907 /* TabBarController.swift in Sources */,
