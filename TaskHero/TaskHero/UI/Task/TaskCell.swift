@@ -25,10 +25,8 @@ class TaskCell: UITableViewCell {
     
     let taskNameLabel: UITextView = {
         let textView = UITextView()
-        
         textView.textColor = UIColor.black
         textView.font = Constants.Font.bolderFontLarge
-        
         return textView
     }()
     
@@ -40,27 +38,22 @@ class TaskCell: UITableViewCell {
         taskDescriptionBox.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         taskDescriptionBox.font = Constants.signupFieldFont
         taskDescriptionBox.contentInset = Constants.TaskCell.boxInset
-        
         return taskDescriptionBox
     }()
     
     let taskDescriptionLabel: UITextView = {
         let textView = UITextView()
-        
         textView.backgroundColor = Constants.TaskCell.descriptionLabelBackgroundColor
         textView.textColor = UIColor.white
         textView.layer.cornerRadius = Constants.TaskCell.cornerRadius
         textView.font = Constants.Font.fontMedium
-        
         return textView
     }()
     
     let taskDueLabel: UITextView = {
         let textView = UITextView()
-        
         textView.textColor = UIColor.black
         textView.font = Constants.Font.fontMedium
-        
         return textView
     }()
     
@@ -115,6 +108,8 @@ extension TaskCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.descriptionBoxHeight).isActive = true
         view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.descriptionLabelWidth).isActive = true
+        view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
+        view.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
     
     func configureElements(view:UIView) {
@@ -133,15 +128,11 @@ extension TaskCell {
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
         configureDesription(view: taskDescriptionLabel)
-        taskDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        taskDescriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
         configureElements(view: taskCompletedView)
         taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.completedHeight).isActive = true
         configureElements(view: saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
         configureDesription(view: taskDescriptionBox)
-        taskDescriptionBox.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        taskDescriptionBox.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
     }
     
     func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
@@ -149,12 +140,10 @@ extension TaskCell {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         contentView.backgroundColor = UIColor.clear
-        
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
         self.toggled = toggled
-        
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
         if taskVM.taskCompleted == "true" {
             taskCompletedView.image = UIImage(named:"checked")
