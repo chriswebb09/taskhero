@@ -25,34 +25,42 @@ class TaskCell: UITableViewCell {
     
     let taskNameLabel: UITextView = {
         let textView = UITextView()
+        
         textView.textColor = UIColor.black
         textView.font = Constants.Font.bolderFontLarge
+        
         return textView
     }()
     
     var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
+        
         taskDescriptionBox.layer.borderWidth = Constants.Settings.searchButtonWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
         taskDescriptionBox.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         taskDescriptionBox.font = Constants.signupFieldFont
         taskDescriptionBox.contentInset = Constants.TaskCell.boxInset
+        
         return taskDescriptionBox
     }()
     
     let taskDescriptionLabel: UITextView = {
         let textView = UITextView()
+        
         textView.backgroundColor = Constants.TaskCell.descriptionLabelBackgroundColor
         textView.textColor = UIColor.white
         textView.layer.cornerRadius = Constants.TaskCell.cornerRadius
         textView.font = Constants.Font.fontMedium
+        
         return textView
     }()
     
     let taskDueLabel: UITextView = {
         let textView = UITextView()
+        
         textView.textColor = UIColor.black
         textView.font = Constants.Font.fontMedium
+        
         return textView
     }()
     
@@ -133,7 +141,6 @@ extension TaskCell {
         configureElements(view: taskCompletedView)
         taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.completedHeight).isActive = true
         
-        
         configureElements(view: saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
         
@@ -143,6 +150,7 @@ extension TaskCell {
     }
     
     func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
+        
         taskDescriptionBox.isHidden = true
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
