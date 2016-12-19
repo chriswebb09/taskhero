@@ -23,15 +23,12 @@ class TaskCell: UITableViewCell {
     
     // MARK: - Setup UI Elements
     
+   
+    
     let taskNameLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
         textView.font = Constants.Font.bolderFontLarge
-        textView.textAlignment = .left
-        textView.layer.masksToBounds = true
-        textView.isScrollEnabled = false
-        textView.isEditable = false
-        textView.isUserInteractionEnabled = false
         return textView
     }()
     
@@ -51,11 +48,6 @@ class TaskCell: UITableViewCell {
         textView.textColor = UIColor.white
         textView.layer.cornerRadius = Constants.TaskCell.cornerRadius
         textView.font = Constants.Font.fontMedium
-        textView.textAlignment = .left
-        textView.layer.masksToBounds = true
-        textView.isEditable = false
-        textView.isUserInteractionEnabled = false
-        textView.isScrollEnabled = false
         return textView
     }()
     
@@ -63,11 +55,6 @@ class TaskCell: UITableViewCell {
         let textView = UITextView()
         textView.textColor = UIColor.black
         textView.font = Constants.Font.fontMedium
-        textView.textAlignment = .left
-        textView.layer.masksToBounds = true
-        textView.isScrollEnabled = false
-        textView.isEditable = false
-        textView.isUserInteractionEnabled = false
         return textView
     }()
     
@@ -84,6 +71,8 @@ class TaskCell: UITableViewCell {
         ui.isEnabled = false
         return ui
     }()
+    
+    
 }
 
 extension TaskCell {
@@ -92,11 +81,22 @@ extension TaskCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        configureLabels(label: taskDescriptionLabel)
+        configureLabels(label: taskDueLabel)
+        configureLabels(label: taskNameLabel)
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
     
     // MARK: - Configure cell
+    
+    func configureLabels(label:UITextView) {
+        label.textAlignment = .left
+        label.layer.masksToBounds = true
+        label.isScrollEnabled = false
+        label.isEditable = false
+        label.isUserInteractionEnabled = false
+    }
     
     func configureView(view:UIView) {
         contentView.addSubview(view)
