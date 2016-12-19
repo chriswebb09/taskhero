@@ -63,8 +63,9 @@ class TaskCell: UITableViewCell {
     }()
     
     var saveButton: UIButton = {
-        let button = ButtonType.system(title: "Save", color: UIColor.babyBlueColor())
+        let button = ButtonType.system(title: "Save", color: UIColor.black)
         var ui = button.newButton
+        ui.setAttributedTitle( NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
         ui.isHidden = true
         ui.isEnabled = false
         return ui
@@ -77,16 +78,16 @@ extension TaskCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        configureLabels(label: taskDescriptionLabel)
-        configureLabels(label: taskDueLabel)
-        configureLabels(label: taskNameLabel)
+        configureTextView(label: taskDescriptionLabel)
+        configureTextView(label: taskDueLabel)
+        configureTextView(label: taskNameLabel)
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
     
     // MARK: - Configure cell
     
-    func configureLabels(label:UITextView) {
+    func configureTextView(label:UITextView) {
         label.textAlignment = .left
         label.layer.masksToBounds = true
         label.isScrollEnabled = false
@@ -108,6 +109,14 @@ extension TaskCell {
         view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.descriptionLabelWidth).isActive = true
     }
     
+    func configureElements(view:UIView) {
+        contentView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.saveButtonRightOffset).isActive = true
+        view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.saveButtonTopOffset).isActive = true
+        view.heightAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonHeight).isActive = true
+    }
+    
     func setupConstraints() {
         configureView(view: taskNameLabel)
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.nameLabelTopOffset).isActive = true
@@ -120,20 +129,13 @@ extension TaskCell {
         configureDesription(view: taskDescriptionLabel)
         taskDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         taskDescriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
-        
-        contentView.addSubview(taskCompletedView)
-        taskCompletedView.translatesAutoresizingMaskIntoConstraints = false
-        taskCompletedView.heightAnchor.constraint(equalToConstant: Constants.TaskCell.completedHeight).isActive = true
+    
+        configureElements(view: taskCompletedView)
         taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.completedHeight).isActive = true
-        taskCompletedView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.completedViewRightOffset).isActive = true
-        taskCompletedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.completedTopOffset).isActive = true
         
-        contentView.addSubview(saveButton)
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.heightAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonHeight).isActive = true
+        
+        configureElements(view: saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
-        saveButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.saveButtonRightOffset).isActive = true
-        saveButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.saveButtonTopOffset).isActive = true
         
         configureDesription(view: taskDescriptionBox)
         taskDescriptionBox.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true

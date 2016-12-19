@@ -160,8 +160,8 @@ struct Constants {
         static let styledShadowOpacity: Float =  0.0
         static let styledShadowRadius = CGSize(width: 0, height: 0)
         static let cornerRadius:CGFloat = 2.0
-        static let saveButtonHeight:CGFloat = 40
-        static let saveButtonWidth:CGFloat = 80
+        static let saveButtonHeight:CGFloat = 20
+        static let saveButtonWidth:CGFloat = 70
         static let saveButtonTopOffset:CGFloat = 30
         static let saveButtonRightOffset: CGFloat = -20
         static let nameLabelTopOffset: CGFloat = 10
