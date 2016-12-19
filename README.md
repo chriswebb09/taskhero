@@ -16,7 +16,7 @@ ___
 
 <p align="center">
   <br><br>
-  <img src="https://github.com/chriswebb09/taskhero/blob/master/edittasklist.png">
+  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/edittasklist.png">
 </p>
 
 
@@ -36,7 +36,7 @@ ___
 
 <p align="center">
   <br><br>
-  <img src="https://github.com/chriswebb09/taskhero/blob/master/emptytableview.png">
+  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/emptytableview.png">
 </p>
 
 
@@ -54,7 +54,7 @@ ___
 
 <p align="center">
   <br><br>
-  <img src="https://github.com/chriswebb09/taskhero/blob/master/login.jpg">
+  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/login.jpg">
 </p>
 
 
@@ -64,5 +64,5 @@ ___
 
 <p align="center">
   <br><br>
-  <img src="https://github.com/chriswebb09/taskhero/blob/master/task.jpg">
+  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/task.jpg">
 </p>
