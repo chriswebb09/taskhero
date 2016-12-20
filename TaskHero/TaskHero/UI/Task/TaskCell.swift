@@ -8,14 +8,12 @@
 
 import UIKit
 
-
 protocol TaskCellDelegate: class {
     func toggleForEditState(sender:UIGestureRecognizer)
     func toggleForButtonState(sender:UIButton)
 }
 
 class TaskCell: UITableViewCell {
-    
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
     var toggled:Bool = false
@@ -94,6 +92,7 @@ extension TaskCell {
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
+        
         self.toggled = toggled
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
         if taskVM.taskCompleted == "true" {
