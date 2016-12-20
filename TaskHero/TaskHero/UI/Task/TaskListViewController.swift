@@ -58,9 +58,7 @@ extension TaskListViewController {
         store.tasks.removeAll()
         store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            DispatchQueue.main.async { self.tableView.reloadData() }
         })
     }
     
@@ -95,9 +93,7 @@ extension TaskListViewController {
             deleteTasks(id: removeTaskID, indexPath: indexPath)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            DispatchQueue.main.async {
-                tableView.reloadData()
-            }
+            DispatchQueue.main.async { tableView.reloadData() }
         }
     }
 }

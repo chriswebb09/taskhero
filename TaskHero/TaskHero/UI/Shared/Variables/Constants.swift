@@ -73,15 +73,10 @@ struct Constants {
     }
     
     static let tableViewBackgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-    
-   
-    
     static let helveticaThin = "HelveticaNeue-Thin"
     static let helveticaLight = "HelveticaNeue-Light"
-    
     static let headerFont = "AvenirNext-Medium"
     static let font = "AvenirNext-Regular"
-    
     
     struct TaskList {
         static let tableBackgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
@@ -91,7 +86,6 @@ struct Constants {
     struct ProfileDataCell {
         
     }
-    
     
     struct Settings {
         static let rowHeight: CGFloat = 100
@@ -125,7 +119,6 @@ struct Constants {
         static let searchFieldBorderWidth:CGFloat = 1
     }
     
-    
     struct AddTask {
         static let topAnchorOffset: CGFloat = 0.04
         static let buttonHeight:CGFloat = 0.07
@@ -138,8 +131,9 @@ struct Constants {
     
     struct NavBar {
         static let bottomHeight:CGFloat =  1.0
-
+        
     }
+    
     struct Logo {
         static let logoImageWidth = CGFloat(0.6)
         static let logoImageHeight = CGFloat(0.06)
@@ -174,7 +168,6 @@ struct Constants {
         static let completedViewRightOffset:CGFloat = -20
         static let boxInset: UIEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0)
     }
-    
     
     struct Signup {
         static let invalidEmailColor: CGColor = UIColor(red:0.02, green:0.83, blue:0.29, alpha:1.0).cgColor

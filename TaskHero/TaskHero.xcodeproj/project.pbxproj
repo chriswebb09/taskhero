@@ -86,6 +86,7 @@
 		A7AFCDE11DF72C4B004D607C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFCDE01DF72C4B004D607C /* APIClient.swift */; };
 		A7F019DC1E0922FC00B23667 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F019DB1E0922FC00B23667 /* UITextView+Extensions.swift */; };
 		A7F019DE1E0925FF00B23667 /* TaskListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F019DD1E0925FF00B23667 /* TaskListViewController+Extension.swift */; };
+		A7F019E01E093C8400B23667 /* SignupViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */; };
 		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
@@ -187,6 +188,7 @@
 		A7CF6ACF1DDB8FE700B28A5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F019DB1E0922FC00B23667 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextView+Extensions.swift"; path = "TaskHero/UI/Shared/Extensions/UITextView+Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		A7F019DD1E0925FF00B23667 /* TaskListViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskListViewController+Extension.swift"; sourceTree = "<group>"; };
+		A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SignupViewController+Extension.swift"; path = "TaskHero/UI/Controller Extensions/SignupViewController+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		ACD79247934EC1235C48C258 /* Pods-TaskHero-TaskHeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero-TaskHeroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero-TaskHeroTests/Pods-TaskHero-TaskHeroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,6 +352,7 @@
 				A709CADF1DE7722D00877907 /* UIColorExtension.swift */,
 				A709CAE31DE7724E00877907 /* UIView+Extension.swift */,
 				A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */,
+				A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A709CB1E1DE777DC00877907 /* Auth.swift in Sources */,
 				A709CAEC1DE7726D00877907 /* TeamHeaderCell.swift in Sources */,
+				A7F019E01E093C8400B23667 /* SignupViewController+Extension.swift in Sources */,
 				A709CAF21DE772BF00877907 /* ProfilePictureView.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
 				A709CAEB1DE7726D00877907 /* TeamDataCell.swift in Sources */,

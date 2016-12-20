@@ -53,7 +53,6 @@ extension SignupView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         backgroundColor = UIColor.white
         frame = UIScreen.main.bounds
         setupConstraints()

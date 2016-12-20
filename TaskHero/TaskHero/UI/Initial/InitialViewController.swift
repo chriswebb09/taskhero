@@ -27,7 +27,11 @@ class InitialViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        initView.zoomAnimation({ })
+        let when = DispatchTime.now() + 0.5 //
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.initView.zoomAnimation({ })
+        }
+        
     }
     
     func loginButtonTapped() {

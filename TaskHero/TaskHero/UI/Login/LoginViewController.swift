@@ -15,20 +15,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     let store = DataStore.sharedInstance
     let loadingView = LoadingView()
     
-    
     // MARK: Initialization Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
         edgesForExtendedLayout = []
-        
         loginView.layoutSubviews()
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
         loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
-        
-        let operationQueue = OperationQueue()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
@@ -48,6 +44,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 }
 
 // Kicks off by checking emailfield has valid input / send editing and shows activity indicator on loading pop over / returns if conditions are not met.
+// Attempts to signin using userinput for email and password else returns and prints out error description
+// If there is error - hide loading popover
 
 extension LoginViewController {
     
@@ -55,11 +53,10 @@ extension LoginViewController {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
+        
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else { return }
-        // Attempts to signin using userinput for email and password else returns and prints out error description
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { user, error in
             if error != nil {
-                // If there is error - hide loading popover
                 self.loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                     switch errCode {
@@ -73,51 +70,26 @@ extension LoginViewController {
                 print(error ?? "error")
                 return
             }
+            
             // If authorized hides loading popover
-            self.loadingView.hideActivityIndicator(viewController: self)
             // Ensures firuser has valid uid - if not returns / if valid firuser uid sends it to datastore as current userstring
+            // Fetches user profile data from firebase database and sets datastore current user to that profile data
+            // If everthing i successful sets rootviewcontroller to tabbarcontroller
+            
+            self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
-            // Fetches user profile data from firebase database and sets datastore current user to that profile data
-            self.store.fetchUser(completion: { user in
-                self.store.currentUser = user
-            })
-            // If everthing i successful sets rootviewcontroller to tabbarcontroller
+            self.store.fetchUser(completion: { user in self.store.currentUser = user })
             let tabBar = TabBarController()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = tabBar
         })
     }
-    
     // Checks that text has been entered and exceeds five characters in length
     
     fileprivate func checkForValidEmailInput() {
         if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
-            UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0,
-                           animations: {
-                            self.loginView.emailField.layer.borderWidth = 2
-                            self.loginView.emailField.layer.borderColor = UIColor.errorColor().cgColor
-            }, completion: { _ in
-                self.loginView.emailField.layer.borderColor = Constants.signupFieldColor
-                self.loginView.emailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
-            })
-        }
-    }
-    
-    func checkForValidEmail(field:UITextField) {
-        if field.text == nil || (field.text?.characters.count)! < 5 {
-
-            
-            UIView.animate(withDuration: 3,
-                           delay: 0.0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.0,
-                           animations: {
-                            field.layer.borderWidth = 2
-                            field.layer.borderColor = UIColor.errorColor().cgColor
-            }, completion: { _ in
-                field.layer.borderColor = Constants.signupFieldColor
-            })
+            textFieldAnimation()
         }
     }
 }
@@ -125,20 +97,23 @@ extension LoginViewController {
 extension LoginViewController {
     
     // MARK: - Textfield delegate methods
-    
     // If email field selected cycles to password field / if password field cycles to emailfield.
+    // Hides keyboard/ ends view editting
+    // Sets textfield text color and border to selected color
+    // On ending edit textfield border color are set to deselect color
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true
     }
     
-    // Hides keyboard/ ends view editting
     func dismissKeyboard() {
         view.endEditing(true)
     }
     
     // Still implementing
+    
     func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
         operationQueue.addOperation(operation)
         operationQueue.maxConcurrentOperationCount = 2
@@ -149,15 +124,38 @@ extension LoginViewController {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     
-    // Sets textfield text color and border to selected color
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.textColor = Constants.Login.loginFieldEditColor
-        textField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
+        DispatchQueue.main.async {
+            textField.textColor = Constants.Login.loginFieldEditColor
+            textField.font = Constants.signupFieldFont
+            textField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
+            textField.layer.borderWidth = 1.1
+        }
     }
     
-    // On ending edit textfield border color are set to deselect color
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 1
         textField.textColor = UIColor.lightGray
-        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
+        checkForValidEmailInput()
+    }
+    
+    func textFieldAnimation() {
+        UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.loginView.emailField.layer.borderWidth = 1.2
+                self.loginView.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
+                self.loginView.emailField.textColor =  Constants.Login.loginFieldEditColor
+            } }, completion: { _ in
+                let when = DispatchTime.now() + 0.32
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    self.loginView.emailField.layer.borderWidth = 1
+                    self.loginView.emailField.font = Constants.signupFieldFont
+                    self.loginView.emailField.textColor = UIColor.lightGray
+                    self.loginView.emailField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
+                    self.loginView.emailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+                }
+                
+        })
     }
 }
