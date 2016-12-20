@@ -46,7 +46,9 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
+        
         setupStore()
+        
         self.store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
             self.store.currentUser.tasks!.append(task)
@@ -72,8 +74,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 {
             return 1
-        }
-        else {
+        } else {
             return self.store.tasks.count + 1
         }
     }

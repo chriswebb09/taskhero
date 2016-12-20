@@ -49,7 +49,7 @@ extension TaskCell {
         toggle()
         delegate?.toggleForEditState(sender:sender)
     }
-
+    
     func toggleForButtonState(sender:UIButton) {
         toggle()
         delegate?.toggleForButtonState(sender: sender)
