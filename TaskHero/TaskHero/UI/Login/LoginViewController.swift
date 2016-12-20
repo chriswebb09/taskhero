@@ -26,15 +26,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
     }
     
-    func setupLogin() {
-        loginView.layoutSubviews()
-        loginView.emailField.delegate = self
-        loginView.passwordField.delegate = self
-        loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -95,6 +86,16 @@ extension LoginViewController {
         if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
             textFieldAnimation()
         }
+    }
+    
+    func setupLogin() {
+        loginView.layoutSubviews()
+        loginView.emailField.delegate = self
+        loginView.passwordField.delegate = self
+        loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
     }
 }
 
