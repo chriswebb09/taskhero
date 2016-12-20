@@ -87,6 +87,9 @@ extension TabBarController {
         settingsTab.navigationBar.topItem?.title = "Settings"
         return settingsTab
     }
+}
+
+extension TabBarController {
     
     func configureNav(nav:UINavigationBar) {
         nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText

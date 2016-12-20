@@ -31,22 +31,16 @@ class TaskCell: UITableViewCell {
     }()
     
     var taskDescriptionBox: UITextView = {
-        let taskDescriptionBox = UITextView()
+        let taskDescriptionBox = UITextView().setupStyledTextView()
         taskDescriptionBox.isHidden = true
-        taskDescriptionBox.layer.borderWidth = Constants.Settings.searchButtonWidth
-        taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
-        taskDescriptionBox.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
-        taskDescriptionBox.font = Constants.signupFieldFont
-        taskDescriptionBox.contentInset = Constants.TaskCell.boxInset
         return taskDescriptionBox
     }()
     
     let taskDescriptionLabel: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = Constants.TaskCell.descriptionLabelBackgroundColor
-        textView.textColor = UIColor.white
-        textView.layer.cornerRadius = Constants.TaskCell.cornerRadius
         textView.font = Constants.Font.fontMedium
+        textView.textColor = UIColor.white
         return textView
     }()
     
@@ -79,67 +73,24 @@ extension TaskCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        configureTextView(label: taskDescriptionLabel)
-        configureTextView(label: taskDueLabel)
-        configureTextView(label: taskNameLabel)
-        setupConstraints()
+        setupConfigures()
         contentView.layer.masksToBounds = true
+        layoutMargins = UIEdgeInsets.zero
+        preservesSuperviewLayoutMargins = false
+        contentView.backgroundColor = UIColor.clear
     }
     
     // MARK: - Configure cell
     
-    func configureTextView(label:UITextView) {
-        label.textAlignment = .left
-        label.layer.masksToBounds = true
-        label.isScrollEnabled = false
-        label.isEditable = false
-        label.isUserInteractionEnabled = false
-    }
-    
-    func configureView(view:UIView) {
-        contentView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.nameLabelHeight).isActive = true
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
-    }
-    
-    func configureDesription(view:UIView) {
-        contentView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.descriptionBoxHeight).isActive = true
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.descriptionLabelWidth).isActive = true
-        view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
-        view.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-    }
-    
-    func configureElements(view:UIView) {
-        contentView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.saveButtonRightOffset).isActive = true
-        view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.saveButtonTopOffset).isActive = true
-        view.heightAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonHeight).isActive = true
-    }
-    
-    func setupConstraints() {
-        configureView(view: taskNameLabel)
-        taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.nameLabelTopOffset).isActive = true
-        taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
-        configureView(view: taskDueLabel)
-        taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
-        taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
-        configureDesription(view: taskDescriptionLabel)
-        configureElements(view: taskCompletedView)
-        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.completedHeight).isActive = true
-        configureElements(view: saveButton)
-        saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
-        configureDesription(view: taskDescriptionBox)
+    func setupConfigures() {
+        configureTextView(label: taskDescriptionLabel)
+        configureTextView(label: taskDueLabel)
+        configureTextView(label: taskNameLabel)
+        setupConstraints()
     }
     
     func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
         layoutSubviews()
-        layoutMargins = UIEdgeInsets.zero
-        preservesSuperviewLayoutMargins = false
-        contentView.backgroundColor = UIColor.clear
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
@@ -157,21 +108,9 @@ extension TaskCell {
         }
     }
     
-    func setupCellView(width: CGFloat, height: CGFloat) {
-        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
-        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
-        cellView.layer.masksToBounds = false
-        cellView.layer.cornerRadius = Constants.TaskCell.cornerRadius
-        cellView.layer.shadowOffset = Constants.TaskCell.shadowOffset
-        cellView.layer.shadowOpacity = Constants.TaskCell.styledShadowOpacity
-        contentView.addSubview(cellView)
-        contentView.sendSubview(toBack: cellView)
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         taskNameLabel.text = ""
         taskDescriptionLabel.text = ""
     }
-    
 }

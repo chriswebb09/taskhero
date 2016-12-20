@@ -37,4 +37,11 @@ class PhotoPickerPopover: BasePopoverAlert {
         viewController.view.addSubview(containerView)
         viewController.view.addSubview(popView)
     }
+    
+    func hideView(viewController:UIViewController) {
+        popView.isHidden = true
+        hidePopView(viewController: viewController)
+        popView.layer.opacity = 0
+        containerView.layer.opacity = 0
+    }
 }

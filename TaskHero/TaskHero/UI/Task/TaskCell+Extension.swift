@@ -12,11 +12,9 @@ import UIKit
 extension TaskCell {
     
     //MARK: - Delegate Methods
-    
     // Button toggle methods
     
     func toggle() {
-        //toggled = !toggled
         if toggled {
             toggleState()
             taskDescriptionBox.layer.borderWidth = Constants.Settings.searchFieldButtonRadius
@@ -50,7 +48,6 @@ extension TaskCell {
     func toggleForEditState(sender:UIGestureRecognizer) {
         toggle()
         delegate?.toggleForEditState(sender:sender)
-       
     }
 
     func toggleForButtonState(sender:UIButton) {
@@ -59,64 +56,68 @@ extension TaskCell {
     }
 }
 
-// taskToggle(taskToggled: toggled!)
-//taskToggle(taskToggled: toggled!)
-// taskToggle(taskToggled: toggled!)
+extension TaskCell {
+    
+    // MARK: - Configure cell subviews
+    
+    func configureTextView(label:UITextView) {
+        label.textAlignment = .left
+        label.layer.masksToBounds = true
+        label.isScrollEnabled = false
+        label.isEditable = false
+        label.isUserInteractionEnabled = false
+        label.layer.cornerRadius = Constants.TaskCell.cornerRadius
+    }
+    
+    func configureView(view:UIView) {
+        contentView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.nameLabelHeight).isActive = true
+        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
+    }
+    
+    func configureDesription(view:UIView) {
+        contentView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.descriptionBoxHeight).isActive = true
+        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.descriptionLabelWidth).isActive = true
+        view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
+        view.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+    }
+    
+    func configureElements(view:UIView) {
+        contentView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.saveButtonRightOffset).isActive = true
+        view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.saveButtonTopOffset).isActive = true
+        view.heightAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonHeight).isActive = true
+    }
+    
+    func setupConstraints() {
+        configureView(view: taskNameLabel)
+        taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.nameLabelTopOffset).isActive = true
+        taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
+        configureView(view: taskDueLabel)
+        taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
+        configureDesription(view: taskDescriptionLabel)
+        configureElements(view: taskCompletedView)
+        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.completedHeight).isActive = true
+        configureElements(view: saveButton)
+        saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
+        configureDesription(view: taskDescriptionBox)
+    }
+    
+    func setupCellView(width: CGFloat, height: CGFloat) {
+        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
+        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+        cellView.layer.masksToBounds = false
+        cellView.layer.cornerRadius = Constants.TaskCell.cornerRadius
+        cellView.layer.shadowOffset = Constants.TaskCell.shadowOffset
+        cellView.layer.shadowOpacity = Constants.TaskCell.styledShadowOpacity
+        contentView.addSubview(cellView)
+        contentView.sendSubview(toBack: cellView)
+    }
+}
 
-
-//    func inactive() {
-//        taskDescriptionLabel.isHidden = toggled
-//        
-//    }
-//    
-    
-    
-//    func taskToggle(taskToggled:Bool) {
-//        var taskToggled = taskToggled
-//        print("Task toggle============")
-//        print(taskToggled)
-//        print("==================")
-//        taskToggled = !toggled!
-//        if taskToggled == true {
-//            print("toggling for active")
-//            toggleForInactive()
-//        } else {
-//            toggleUIForActive()
-//            print("toggling for inactive")
-//        }
-//    }
-//    
-//    func toggleUIForActive() {
-//        print("toggled active")
-//        taskDescriptionLabel.isHidden = true
-//        taskDescriptionBox.isHidden = false
-//        taskDescriptionBox.layer.borderWidth = Constants.Settings.searchFieldButtonRadius
-//        saveButton.isEnabled = true
-//        saveButton.isHidden = false
-//        taskCompletedView.isHidden = true
-//        taskCompletedView.isUserInteractionEnabled = false
-//    }
-//
-//    func toggleForInactive() {
-//        print("toggled inactive")
-//        toggled = !toggled!
-//        taskDescriptionLabel.isHidden = false
-//        taskDescriptionBox.isHidden = true
-//        taskDescriptionBox.layer.borderWidth = Constants.Settings.searchFieldButtonRadius
-//        saveButton.isEnabled = false
-//        saveButton.isHidden = true
-//        taskCompletedView.isHidden = false
-//        taskCompletedView.isUserInteractionEnabled = true
-//    }
-//    
-////    func toggleForEditState(sender:UIGestureRecognizer) {
-//        delegate?.toggleForEditState(sender:sender)
-//        taskToggle(taskToggled: toggled!)
-//       // taskToggle(taskToggled: toggled!)
-//    }
-    
-//    func toggleForButtonState(sender:UIButton) {
-//        taskToggle(taskToggled: toggled!)
-//        delegate?.toggleForButtonState(sender: sender)
-//    }
 

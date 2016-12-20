@@ -37,10 +37,14 @@ extension TaskListViewController {
         edgesForExtendedLayout = []
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         view.backgroundColor = Constants.TaskList.tableBackgroundColor
+        initializeBackgroundUI()
+        tableView.reloadData()
+    }
+    
+    func initializeBackgroundUI() {
         emptyTableViewState()
         setupTableView()
         setupNavItems()
-        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,11 +55,16 @@ extension TaskListViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.store.fetchUserData()
-        if store.tasks.count >= 1 { addTasksLabel.isHidden = true; addTasksLabel.isEnabled = false }
+        if store.tasks.count >= 1 {
+            addTasksLabel.isHidden = true
+            addTasksLabel.isEnabled = false
+        }
         store.tasks.removeAll()
         store.fetchTasks(completion: { task in
             self.store.tasks.append(task)
-            DispatchQueue.main.async { self.tableView.reloadData() }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         })
     }
     
@@ -64,7 +73,6 @@ extension TaskListViewController {
         store.tasksRef.removeObserver(withHandle: store.refHandle)
     }
 }
-
 
 extension TaskListViewController {
     
@@ -89,98 +97,15 @@ extension TaskListViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            var removeTaskID: String
-            removeTaskID = self.store.tasks[indexPath.row].taskID
-            self.store.updateUserScore()
-            self.store.insertUser(user: self.store.currentUser)
-            self.store.removeTask(ref: removeTaskID, taskID: removeTaskID)
-            self.store.tasks.remove(at: indexPath.row)
+            var removeTaskID: String = self.store.tasks[indexPath.row].taskID
+            deleteTasks(id: removeTaskID, indexPath: indexPath)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            DispatchQueue.main.async { tableView.reloadData() }
-        } else if editingStyle == .insert {
-            // Not implemented
+            DispatchQueue.main.async {
+                tableView.reloadData()
+            }
         }
     }
 }
 
-extension TaskListViewController: TaskHeaderCellDelegate {
-    
-    // MARK: - Public Methods
-    
-    func changeView(sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            print("Tasks To Do")
-        default:
-            print("Tasks Completed")
-        }
-        DispatchQueue.main.async { self.tableView.reloadData() }
-    }
-    
-    // MARK: - Setup navbar
-    
-    func setupNavItems() {
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
-    }
-    
-    // MARK: - Button methods
-    
-    func logoutButtonPressed() {
-        DispatchQueue.main.async {
-            let loginVC = UINavigationController(rootViewController:LoginViewController())
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController = loginVC
-        }
-    }
-    
-    func addTaskButtonTapped() {
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
-        }
-    }
-    
-     func tapEdit(atIndex:IndexPath) {
-        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        if tapCell.toggled == true {
-            var newTask = self.store.tasks[atIndex.row]
-            newTask.taskDescription = tapCell.taskDescriptionBox.text
-            self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-            DispatchQueue.main.async { tapCell.taskDescriptionLabel.text = newTask.taskDescription }
-            tapCell.taskDescriptionBox.resignFirstResponder()
-        }
 
-
-    }
-    
-//    func tapEdit(atIndex:IndexPath) {
-//        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-//        tapCell.toggled! = tapped
-//        print("Task toggle \(tapCell.toggled)")
-//        if tapCell.toggled == true {
-//            var newTask = self.store.tasks[atIndex.row]
-//            newTask.taskDescription = tapCell.taskDescriptionBox.text
-//            self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-//            DispatchQueue.main.async { tapCell.taskDescriptionLabel.text = newTask.taskDescription }
-//            tapCell.taskDescriptionBox.resignFirstResponder()
-//        }
-//    }
-    
-    func toggleForButtonState(sender:UIButton) {
-        let superview = sender.superview
-        let cell = superview?.superview as? TaskCell
-        let indexPath = tableView.indexPath(for: cell!)
-        tapEdit(atIndex: indexPath!)
-    }
-//
-    // Kicks off cycling between taskcell editing states
-    
-    func toggleForEditState(sender:UIGestureRecognizer) {
-        let tapLocation = sender.location(in: self.tableView)
-        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        tapEdit(atIndex: tapIndex as IndexPath)
-    }
-}

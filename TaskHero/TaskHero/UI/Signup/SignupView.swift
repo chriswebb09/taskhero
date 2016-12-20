@@ -72,23 +72,17 @@ extension SignupView {
     fileprivate func setupConstraints() {
         configureField(field: signupViewLabel)
         signupViewLabel.topAnchor.constraint(equalTo: topAnchor , constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
-    
         configureField(field: usernameField)
         usernameField.topAnchor.constraint(equalTo:signupViewLabel.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
-
         configureField(field: emailField)
         emailField.topAnchor.constraint(equalTo:usernameField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
-        
         configureField(field: confirmEmailField)
         confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
-
         configureField(field: passwordField)
         passwordField.topAnchor.constraint(equalTo:confirmEmailField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
         passwordField.isSecureTextEntry = true
-        
         addSubview(signupButton)
         configureField(field: signupButton)
-       
         signupButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Signup.buttonTopOffset).isActive = true
     }
 }
