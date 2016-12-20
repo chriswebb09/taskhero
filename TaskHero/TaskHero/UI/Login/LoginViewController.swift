@@ -21,6 +21,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.addSubview(loginView)
         edgesForExtendedLayout = []
+        setupLogin()
+        navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
+    }
+    
+    func setupLogin() {
         loginView.layoutSubviews()
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
@@ -28,10 +34,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
-        navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,6 +58,7 @@ extension LoginViewController {
         loadingView.showActivityIndicator(viewController: self)
         
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else { return }
+        
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { user, error in
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
