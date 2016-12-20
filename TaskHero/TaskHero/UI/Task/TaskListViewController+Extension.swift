@@ -80,7 +80,7 @@ extension TaskListViewController {
         }
     }
     
-    func addTaskButtonTapped() {
+    @objc fileprivate func addTaskButtonTapped() {
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
         }

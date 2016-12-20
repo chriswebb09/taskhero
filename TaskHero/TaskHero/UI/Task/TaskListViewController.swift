@@ -37,7 +37,7 @@ extension TaskListViewController {
         tableView.reloadData()
     }
     
-    func initializeBackgroundUI() {
+    fileprivate func initializeBackgroundUI() {
         emptyTableViewState()
         setupTableView()
         setupNavItems()
@@ -89,7 +89,7 @@ extension TaskListViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            var removeTaskID: String = self.store.tasks[indexPath.row].taskID
+            let removeTaskID: String = self.store.tasks[indexPath.row].taskID
             deleteTasks(id: removeTaskID, indexPath: indexPath)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()

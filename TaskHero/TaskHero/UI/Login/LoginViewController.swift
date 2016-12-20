@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
     let store = DataStore.sharedInstance
@@ -43,7 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
 extension LoginViewController {
     
-    func handleLogin() {
+    @objc fileprivate func handleLogin() {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
@@ -77,7 +77,7 @@ extension LoginViewController {
         }
     }
     
-    func setupTabBar() {
+   fileprivate func setupTabBar() {
         let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
@@ -90,7 +90,7 @@ extension LoginViewController {
         }
     }
     
-    func setupLogin() {
+    fileprivate func setupLogin() {
         loginView.layoutSubviews()
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
@@ -115,7 +115,7 @@ extension LoginViewController {
         return true
     }
     
-    func dismissKeyboard() {
+    @objc fileprivate func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -127,7 +127,7 @@ extension LoginViewController {
         operationQueue.qualityOfService = .userInitiated
     }
     
-    func signupButtonTapped() {
+    @objc fileprivate func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     

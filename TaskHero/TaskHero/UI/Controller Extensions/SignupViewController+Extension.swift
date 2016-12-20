@@ -103,11 +103,12 @@ extension SignupViewController {
         }
     }
     
-    func invalidateStyleFor(field:UITextField) {
+    fileprivate func invalidateStyleFor(field:UITextField) {
         field.layer.borderColor = Constants.Signup.invalidAnimationColor
         field.textColor = Constants.Signup.invalidAnimationTextColor
     }
-    func setAnimationStyleFor(field:UITextField) {
+   
+    fileprivate func setAnimationStyleFor(field:UITextField) {
         field.layer.borderColor = Constants.Signup.animationColor
         field.textColor = Constants.Signup.animationTextColor
     }

@@ -14,7 +14,7 @@ extension TaskCell {
     //MARK: - Delegate Methods
     // Button toggle methods
     
-    func toggle() {
+    fileprivate func toggle() {
         if toggled {
             toggleState()
             taskDescriptionBox.layer.borderWidth = Constants.Settings.searchFieldButtonRadius

@@ -133,7 +133,7 @@ extension AddTaskViewController {
     // MARK: Public methods
     // When add task button pressed - data popover is show so user can pick task due data
     
-    func addTaskButtonTapped() {
+    @objc fileprivate func addTaskButtonTapped() {
         view.endEditing(true)
         DispatchQueue.main.async {
             self.pop.popView.isHidden = false
@@ -149,7 +149,7 @@ extension AddTaskViewController {
     
     // Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion
     
-    func formatTaskWithDate() {
+    @objc fileprivate func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"
         let uid = NSUUID().uuidString
         guard let taskName = addTaskView.taskNameField.text else { return }

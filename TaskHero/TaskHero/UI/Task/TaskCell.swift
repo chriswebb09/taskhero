@@ -13,7 +13,7 @@ protocol TaskCellDelegate: class {
     func toggleForButtonState(sender:UIButton)
 }
 
-class TaskCell: UITableViewCell {
+final class TaskCell: UITableViewCell {
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
     var toggled:Bool = false
@@ -58,7 +58,7 @@ class TaskCell: UITableViewCell {
     var saveButton: UIButton = {
         let button = ButtonType.system(title: "Save", color: UIColor.black)
         var ui = button.newButton
-        ui.setAttributedTitle( NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
+        ui.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
         ui.isHidden = true
         ui.isEnabled = false
         return ui
@@ -80,14 +80,14 @@ extension TaskCell {
     
     // MARK: - Configure cell
     
-    func setupConfigures() {
+    fileprivate func setupConfigures() {
         configureTextView(label: taskDescriptionLabel)
         configureTextView(label: taskDueLabel)
         configureTextView(label: taskNameLabel)
         setupConstraints()
     }
     
-    func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
+   func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
         layoutSubviews()
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"

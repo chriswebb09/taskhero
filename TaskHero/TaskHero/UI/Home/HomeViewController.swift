@@ -29,16 +29,20 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         super.viewDidLoad()
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.tableViewBackgroundColor
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        help.setupTableView(tableView: tableView)
-        tableView.estimatedRowHeight = view.frame.height / 4
-        setupNavItems()
+        setupView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupView() {
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        help.setupTableView(tableView: tableView)
+        tableView.estimatedRowHeight = view.frame.height / 4
+        setupNavItems()
     }
     
     // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
@@ -47,13 +51,7 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         setupStore()
-        self.store.fetchTasks() { task in 
-            self.store.tasks.append(task)
-            self.store.currentUser.tasks!.append(task)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        getTasks()
     }
     
     // If taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
@@ -62,6 +60,16 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         super.viewWillDisappear(false)
         if store.refHandle != nil {
             store.tasksRef.removeObserver(withHandle: store.refHandle)
+        }
+    }
+    
+    func getTasks() {
+        self.store.fetchTasks() { task in
+            self.store.tasks.append(task)
+            self.store.currentUser.tasks!.append(task)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 }
@@ -106,7 +114,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         if editingStyle == .delete {
             tableView.beginUpdates()
             DispatchQueue.main.async {
-                var removeTaskID: String = self.store.tasks[indexPath.row - 1].taskID
+                let removeTaskID: String = self.store.tasks[indexPath.row - 1].taskID
                 self.deleteTask(id: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -116,6 +124,3 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         }
     }
 }
-
-
-
