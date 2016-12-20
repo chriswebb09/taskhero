@@ -47,10 +47,8 @@ extension LoginViewController {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
-        
         guard let email = loginView.emailField.text, let password = loginView.passwordField.text else { return }
-        
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { user, error in
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
@@ -75,10 +73,14 @@ extension LoginViewController {
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
             self.store.fetchUser(completion: { user in self.store.currentUser = user })
-            let tabBar = TabBarController()
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController = tabBar
-        })
+            self.setupTabBar()
+        }
+    }
+    
+    func setupTabBar() {
+        let tabBar = TabBarController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = tabBar
     }
     // Checks that text has been entered and exceeds five characters in length
     
