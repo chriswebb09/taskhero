@@ -49,13 +49,13 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         
         setupStore()
         
-        self.store.fetchTasks(completion: { task in
+        self.store.fetchTasks() { task in 
             self.store.tasks.append(task)
             self.store.currentUser.tasks!.append(task)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        })
+        }
     }
     
     // If taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.

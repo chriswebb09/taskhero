@@ -45,7 +45,6 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         signupView.usernameField.delegate = self
         signupView.passwordField.delegate = self
     }
-    
 }
 
 extension SignupViewController {
@@ -66,71 +65,82 @@ extension SignupViewController {
     
     func handleRegister() {
         view.endEditing(true)
-        
         let loadingView = LoadingView()
         guard let email = signupView.emailField.text, let password = signupView.passwordField.text, let username = signupView.usernameField.text else {
             loadingView.hideActivityIndicator(viewController:self)
             print("Form is not valid")
             return
         }
-        
-        if (validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!)) {
+        if validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!) {
             loadingView.showActivityIndicator(viewController: self)
-            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { user, error in
-                if error != nil { loadingView.hideActivityIndicator(viewController: self); print(error ?? "unable to get specific error"); return }
-                guard let uid = user?.uid else { loadingView.hideActivityIndicator(viewController: self) ;return }
+            FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
+                if error != nil {
+                    loadingView.hideActivityIndicator(viewController: self)
+                    print(error ?? "unable to get specific error")
+                    return
+                }
+                guard let uid = user?.uid else {
+                    loadingView.hideActivityIndicator(viewController: self)
+                    return
+                }
                 
                 // Successfully authenticated user
                 
                 let ref = FIRDatabase.database().reference()
-                let newUser = User()
-                newUser.username = username
-                newUser.email = email
-                newUser.profilePicture = "None"
-                newUser.firstName = "N/A"
-                newUser.lastName = "N/A"
-                newUser.experiencePoints = 0
-                newUser.tasks = [Task]()
-                
+                let newUser = self.createUser(username: username, email: email)
                 let usersReference = ref.child("Users").child(uid)
                 let usernamesReference = ref.child("Usernames")
                 let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
                 
-                usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any], withCompletionBlock: { err, ref in
-                    if err != nil { loadingView.hideActivityIndicator(viewController: self); print(err ?? "unable to get specific error i"); return }
-                    print("sucessfully saved username email reference") })
+                usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in
+                    if err != nil {
+                        loadingView.hideActivityIndicator(viewController: self)
+                        print(err ?? "unable to get specific error i")
+                        return
+                    }
+                    print("sucessfully saved username email reference")
+                }
                 
-                let values = ["Username": newUser.username,
-                              "Email": newUser.email,
-                              "FirstName": newUser.firstName!,
-                              "LastName": newUser.lastName!,
-                              "ProfilePicture": newUser.profilePicture!,
-                              "ExperiencePoints":newUser.experiencePoints,
-                              "Level": newUser.level,
-                              "JoinDate":newUser.joinDate,
-                              "TasksCompleted": 0] as [String : Any] as NSDictionary
+                let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints": newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
                 
-                usersReference.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { err, ref in
-                    
-                    if err != nil { loadingView.hideActivityIndicator(viewController: self); print(err ?? "unable to get specific error"); return }
-                    
+                usersReference.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
+                    if err != nil {
+                        loadingView.hideActivityIndicator(viewController: self)
+                        print(err ?? "unable to get specific error")
+                        return
+                    }
                     print("Saved user successfully into Firebase db")
                     self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                     self.store.currentUser = newUser
-                    let tabBar = TabBarController()
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.window?.rootViewController = tabBar
-                    
-                })}) } else {
-            let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-                (result : UIAlertAction) -> Void in
-                print("OK")
+                    self.setupTabBar()
+                }
             }
+        } else {
+            let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { result in print("Okay") }
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
             return
         }
+    }
+    
+    
+    func setupTabBar() {
+        let tabBar = TabBarController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = tabBar
+    }
+    
+    func createUser(username:String, email:String) -> User {
+        let newUser = User()
+        newUser.username = username
+        newUser.email = email
+        newUser.profilePicture = "None"
+        newUser.firstName = "N/A"
+        newUser.lastName = "N/A"
+        newUser.experiencePoints = 0
+        newUser.tasks = [Task]()
+        return newUser
     }
     
 }
