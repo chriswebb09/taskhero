@@ -9,9 +9,7 @@
 import UIKit
 
 final class TaskListViewController: UITableViewController, TaskCellDelegate {
-    
     // MARK: Internal Variables
-    
     let store = DataStore.sharedInstance
     var tapped: Bool = false
     var buttonTapped: Bool = false
@@ -29,9 +27,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
 }
 
 extension TaskListViewController {
-    
     // MARK: - Initialization
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
@@ -75,9 +71,7 @@ extension TaskListViewController {
 }
 
 extension TaskListViewController {
-    
     // MARK: - UITableViewController Methods
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.tasks.count
     }
