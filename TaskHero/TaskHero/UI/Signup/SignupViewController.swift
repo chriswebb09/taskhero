@@ -35,7 +35,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        self.store.fetchValidUsernames()
+        self.store.firebaseAPI.fetchValidUsernames()
     }
     
     func setupDelegate() {

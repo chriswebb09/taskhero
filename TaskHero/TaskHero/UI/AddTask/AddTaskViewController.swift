@@ -155,7 +155,7 @@ extension AddTaskViewController {
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
         let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:newDate, taskCompleted: false, pointValue:5)
-        store.addTasks(task: newTask)
+        store.firebaseAPI.addTasks(task: newTask)
         store.currentUser.tasks!.append(newTask)
         DispatchQueue.main.async {
             self.pop.hidePopView(viewController: self)

@@ -11,19 +11,21 @@ import Firebase
 
 class TabBarController: UITabBarController {
     
+    //let store = DataStore.sharedInstance
     let store = DataStore.sharedInstance
+    
     override func viewDidLoad() {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if user != nil && (self.store.currentUser != nil) {
                 super.viewDidLoad()
                 self.setupControllers()
                 self.view.backgroundColor = UIColor.white
-            } else if self.store.currentUser == nil { self.store.fetchUser { user in
+            } else if self.store.currentUser == nil { self.store.firebaseAPI.fetchUser(completion: { user in
                 self.store.currentUser = user
                 super.viewDidLoad()
                 self.setupControllers()
                 self.view.backgroundColor = UIColor.white
-                }
+                })
             } else { self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0) }
         }
     }

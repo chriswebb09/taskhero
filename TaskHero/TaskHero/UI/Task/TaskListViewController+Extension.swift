@@ -88,8 +88,8 @@ extension TaskListViewController {
     
     func deleteTasks(id:String, indexPath: IndexPath) {
         self.store.updateUserScore()
-        self.store.insertUser(user: self.store.currentUser)
-        self.store.removeTask(ref: id, taskID: id)
+        self.store.firebaseAPI.insertUser(user: self.store.currentUser)
+        self.store.firebaseAPI.removeTask(ref: id, taskID: id)
         self.store.tasks.remove(at: indexPath.row)
     }
     
@@ -98,7 +98,7 @@ extension TaskListViewController {
         if tapCell.toggled == true {
             var newTask = self.store.tasks[atIndex.row]
             newTask.taskDescription = tapCell.taskDescriptionBox.text
-            self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
             DispatchQueue.main.async {
                 tapCell.taskDescriptionLabel.text = newTask.taskDescription
             }

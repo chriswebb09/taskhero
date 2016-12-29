@@ -12,6 +12,8 @@ import Firebase
 final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
+   
+    
     let store = DataStore.sharedInstance
     let loadingView = LoadingView()
     
@@ -33,7 +35,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        store.fetchValidUsernames()
+        self.store.firebaseAPI.fetchValidUsernames()
     }
 }
 
@@ -72,7 +74,13 @@ extension LoginViewController {
             self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
-            self.store.fetchUser(completion: { user in self.store.currentUser = user })
+            //self.store.currentUserString = userID
+            //self.store2.firebaseAPI.initUserID(uid: userID)
+            self.store.firebaseAPI.setupRefs()
+            self.store.firebaseAPI.fetchUser(completion: { user in self.store.currentUser = user })
+            
+            //APIClient().fetchUser(userID: userID, completion: { user in self.store2.currentUser = user })
+          //  self.store.fetchUser(completion: { user in self.store.currentUser = user })
             self.setupTabBar()
         }
     }

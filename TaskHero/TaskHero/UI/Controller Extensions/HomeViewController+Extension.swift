@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension HomeViewController {
     
@@ -28,8 +29,7 @@ extension HomeViewController {
     }
     
     func setupNavItems() {
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
+        navigationController?.setupNav()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
@@ -60,7 +60,7 @@ extension HomeViewController {
         var newTask = self.store.tasks[row - 1]
         cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
         newTask.taskDescription = cell.taskDescriptionBox.text
-        self.store.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+        self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
         cell.taskDescriptionLabel.text = cell.taskDescriptionBox.text
     }
     
@@ -105,13 +105,14 @@ extension HomeViewController {
     
     func deleteTask(id:String) {
         self.store.updateUserScore()
-        self.store.insertUser(user: self.store.currentUser)
-        self.store.removeTask(ref: id, taskID: id)
+        self.store.firebaseAPI.insertUser(user: self.store.currentUser)
+        self.store.firebaseAPI.removeTask(ref: id, taskID: id)
     }
     
     func setupStore() {
-        self.store.fetchUserData()
         self.store.tasks.removeAll()
+        self.store.firebaseAPI.fetchUserData()
+        //self.store2.tasks.removeAll()
         if self.store.currentUser.tasks != nil { self.store.currentUser.tasks?.removeAll() }
     }
     

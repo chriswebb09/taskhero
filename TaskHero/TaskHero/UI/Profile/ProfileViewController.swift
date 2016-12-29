@@ -50,7 +50,7 @@ final class ProfileViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        self.store.fetchUserData()
+        self.store.firebaseAPI.fetchUserData()
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

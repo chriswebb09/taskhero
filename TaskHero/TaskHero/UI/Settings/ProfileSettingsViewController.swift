@@ -11,6 +11,7 @@ import UIKit
 final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let store = DataStore.sharedInstance
+    //let store2 = DataStore2.sharedInstance
     
     let profileSettingsView = ProfileSettingsView()
     var tapped: Bool = false

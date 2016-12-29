@@ -13,6 +13,7 @@ final class HomeViewController: UITableViewController {
     // MARK: Internal Properties
     
     let store = DataStore.sharedInstance
+    
     let photoPopover = PhotoPickerPopover()
     var profilePic: UIImage? = nil
     let help = TabviewHelper()
@@ -58,19 +59,29 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        if store.refHandle != nil {
-            store.tasksRef.removeObserver(withHandle: store.refHandle)
+        if self.store.firebaseAPI.refHandle != nil {
+            self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
         }
+//        if store.refHandle != nil {
+//            store.tasksRef.removeObserver(withHandle: store.refHandle)
+//        }
     }
     
     func getTasks() {
-        self.store.fetchTasks() { task in
+        self.store.firebaseAPI.fetchTasks() { task in
             self.store.tasks.append(task)
-            self.store.currentUser.tasks!.append(task)
+            self.store.currentUser.tasks?.append(task)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+//        self.store.fetchTasks() { task in
+//            self.store.tasks.append(task)
+//            self.store.currentUser.tasks!.append(task)
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
 }
 
@@ -99,7 +110,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
             return headerCell
         } else {
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
-            taskViewModel = TaskCellViewModel(store.tasks[indexPath.row - 1])
+            taskViewModel = TaskCellViewModel(self.store.tasks[indexPath.row - 1])
             setupTaskCell(taskCell: taskCell)
             taskCell.configureCell(taskVM: taskViewModel, toggled: tapped)
             taskCell.saveButton.tag = indexPath.row
