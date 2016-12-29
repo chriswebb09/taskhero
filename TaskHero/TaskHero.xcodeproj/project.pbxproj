@@ -52,9 +52,7 @@
 		A709CB0E1DE7736800877907 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0D1DE7736800877907 /* SplashViewController.swift */; };
 		A709CB101DE7737100877907 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0F1DE7737100877907 /* TabBarController.swift */; };
 		A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB111DE7737800877907 /* TaskListViewController.swift */; };
-		A709CB141DE7738C00877907 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB131DE7738C00877907 /* DB.swift */; };
 		A709CB1E1DE777DC00877907 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB1D1DE777DC00877907 /* Auth.swift */; };
-		A709CB261DE77DBF00877907 /* DBFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB251DE77DBF00877907 /* DBFetch.swift */; };
 		A70DC53F1E15A90B00812FB4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70DC53E1E15A90B00812FB4 /* Info.plist */; };
 		A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5401E15A93500812FB4 /* SetupNav.swift */; };
 		A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713373C1DE8047E0030DDF2 /* AppManager.swift */; };
@@ -153,9 +151,7 @@
 		A709CB0D1DE7736800877907 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		A709CB0F1DE7737100877907 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A709CB111DE7737800877907 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
-		A709CB131DE7738C00877907 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		A709CB1D1DE777DC00877907 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
-		A709CB251DE77DBF00877907 /* DBFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBFetch.swift; sourceTree = "<group>"; };
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A70DC5401E15A93500812FB4 /* SetupNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNav.swift; sourceTree = "<group>"; };
 		A713373C1DE8047E0030DDF2 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -340,8 +336,6 @@
 		A709CB201DE77BEB00877907 /* DataServices */ = {
 			isa = PBXGroup;
 			children = (
-				A709CB131DE7738C00877907 /* DB.swift */,
-				A709CB251DE77DBF00877907 /* DBFetch.swift */,
 				A7AFCDE01DF72C4B004D607C /* APIClient.swift */,
 			);
 			path = DataServices;
@@ -776,7 +770,6 @@
 				A77FBCC91DEB74670014C380 /* BasePopView.swift in Sources */,
 				A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */,
 				A709CACC1DE7718B00877907 /* LoginViewController.swift in Sources */,
-				A709CB261DE77DBF00877907 /* DBFetch.swift in Sources */,
 				A709CAD41DE771EB00877907 /* ProfileDataCell.swift in Sources */,
 				A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */,
 				A709CB0C1DE7735B00877907 /* SignupViewController.swift in Sources */,
@@ -841,7 +834,6 @@
 				A709CB101DE7737100877907 /* TabBarController.swift in Sources */,
 				A76562D41DF93F4800E29AA9 /* InitView.swift in Sources */,
 				A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */,
-				A709CB141DE7738C00877907 /* DB.swift in Sources */,
 				A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */,
 				A709CAFA1DE7730200877907 /* InitialView.swift in Sources */,
 				A70840041DEABBD000055B72 /* FriendsSettingsView.swift in Sources */,

@@ -11,35 +11,29 @@ import Firebase
 
 class APIClient {
     
-    // let store = DataStore.sharedInstance
-    //let store2 = DataStore2.sharedInstance
-    
     let storage = FIRStorage.storage()
     var storageRef:FIRStorageReference!
-    // var userID:String!
     var tasksRef: FIRDatabaseReference!
     var ref: FIRDatabaseReference!
     var refHandle: FIRDatabaseHandle!
-    var validUsernames = [String]()
-    var validUserData = [String]()
-    var userData = Dictionary<String, AnyObject>()
-    var usernameEmailDict = Dictionary<String, AnyObject>()
-    var tasksDict = Dictionary<String, AnyObject>()
     var dataSnapshot = [FIRDataSnapshot]()
     var dbRef: FIRDatabaseReference!
     var imagesRef: FIRStorageReference!
     var userRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
     
+    var validUsernames = [String]()
+    var validUserData = [String]()
+    var userData = Dictionary<String, AnyObject>()
+    var usernameEmailDict = Dictionary<String, AnyObject>()
+    var tasksDict = Dictionary<String, AnyObject>()
+    
+    
     init() {
         dbRef = FIRDatabase.database().reference()
         usernameRef = dbRef.child("Usernames")
     }
     
-    //    func initUserID(uid:String) {
-    //        self.userID =  FIRAuth.auth()?.currentUser?.uid
-    //    }
-    //
     func setupRefs() {
         let userID = FIRAuth.auth()?.currentUser?.uid
         userRef = dbRef.child("Users").child(userID!)
