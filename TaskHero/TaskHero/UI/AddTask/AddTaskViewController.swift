@@ -23,10 +23,7 @@ final class AddTaskViewController: UIViewController  {
     var year: String = "2016"
     var taskViewModel = AddTaskViewModel()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:300, height:300))
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+ 
 }
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource  {

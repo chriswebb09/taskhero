@@ -31,11 +31,6 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         setupView()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func setupView() {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
@@ -60,9 +55,6 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         if self.store.firebaseAPI.refHandle != nil {
             self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
         }
-//        if store.refHandle != nil {
-//            store.tasksRef.removeObserver(withHandle: store.refHandle)
-//        }
     }
     
     func getTasks() {

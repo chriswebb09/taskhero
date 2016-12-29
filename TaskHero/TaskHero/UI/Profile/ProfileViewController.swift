@@ -15,15 +15,12 @@ final class ProfileViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
     
-    
     // MARK: - Initialization
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        
-      
         
         // MARK: - Register cell types
         
@@ -40,12 +37,7 @@ final class ProfileViewController: UITableViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // On viewDidAppear ensure fresh user data from database is 
+    // On viewDidAppear ensure fresh user data from database is
     // loaded and reloads TableView
     
     override func viewDidAppear(_ animated: Bool) {

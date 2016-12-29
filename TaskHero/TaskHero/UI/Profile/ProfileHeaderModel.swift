@@ -9,14 +9,12 @@
 import Foundation
 
 protocol ProfileHeaderModel {
-    
     var user: User? { get set }
     var joinDate: String { get }
     var levelLabel: String { get }
     var profilePicture: String { get }
     var usernameLabel: String { get }
     var emailLabel: String { get }
-    
 }
 
 class ProfileHeaderCellViewModel: ProfileHeaderModel {
@@ -42,5 +40,4 @@ class ProfileHeaderCellViewModel: ProfileHeaderModel {
         self.levelLabel = (self.user?.level)!
         self.joinDate = (self.user?.joinDate)!
     }
-    
 }
