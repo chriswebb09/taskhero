@@ -20,9 +20,4 @@ class FriendsSettingsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         friendsSettingsView.searchButton.addTarget(self, action: #selector(popup), for: .touchUpInside)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }

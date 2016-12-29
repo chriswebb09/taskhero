@@ -37,16 +37,12 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         setupViews()
         setupTableView()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }
 
 extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCellDelegate {
     
      // MARK: UITableViewController Methods
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }

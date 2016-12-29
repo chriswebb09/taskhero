@@ -27,6 +27,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
 }
 
 extension TaskListViewController {
+    
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
