@@ -25,10 +25,18 @@ class DataStore {
         currentUser.numberOfTasksCompleted += 1
     }
     
+    
+    
     func updateUserProfile(userID: String, user:User) {
         firebaseAPI.updateUserProfile(userID: userID, user: user)
         self.tasks.forEach { task in
             firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
         }
+    }
+    
+    func setupStore() {
+        tasks.removeAll()
+        firebaseAPI.fetchUserData()
+        if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
     }
 }

@@ -44,7 +44,7 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        setupStore()
+        store.setupStore()
         getTasks()
     }
     

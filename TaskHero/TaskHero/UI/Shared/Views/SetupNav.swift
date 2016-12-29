@@ -13,4 +13,9 @@ extension UINavigationController {
         self.navigationBar.isHidden = false
         self.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
     }
+    
+    
+    func addTaskButtonTapped() {
+        self.pushViewController(AddTaskViewController(), animated:false)
+    }
 }

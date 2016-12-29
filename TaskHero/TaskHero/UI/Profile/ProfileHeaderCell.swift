@@ -91,20 +91,22 @@ extension ProfileHeaderCell {
     fileprivate func setupConstraints() {
         
         contentView.addSubview(levelLabel)
-        contentView.addSubview(emailLabel)
-        contentView.addSubview(joinDateLabel)
-        contentView.addSubview(usernameLabel)
-        contentView.addSubview(profilePicture)
-        
-        configureLabel(label: emailLabel)
         configureLabel(label: levelLabel)
-        configureLabel(label: usernameLabel)
-        configureLabel(label: joinDateLabel)
-        
         configureConstraints(label: levelLabel)
+        
+        contentView.addSubview(emailLabel)
+        configureLabel(label: emailLabel)
+        configureConstraints(label: emailLabel)
+        
+        contentView.addSubview(joinDateLabel)
+        configureLabel(label: joinDateLabel)
+        configureConstraints(label: joinDateLabel)
+        
+        contentView.addSubview(usernameLabel)
+        configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)
-        configureConstraints(label: usernameLabel)
-        configureConstraints(label: usernameLabel)
+        
+        contentView.addSubview(profilePicture)
         
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Profile.profileHeaderLabelWidth).isActive = true

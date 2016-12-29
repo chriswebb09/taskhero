@@ -109,13 +109,6 @@ extension HomeViewController {
         self.store.firebaseAPI.removeTask(ref: id, taskID: id)
     }
     
-    func setupStore() {
-        self.store.tasks.removeAll()
-        self.store.firebaseAPI.fetchUserData()
-        //self.store2.tasks.removeAll()
-        if self.store.currentUser.tasks != nil { self.store.currentUser.tasks?.removeAll() }
-    }
-    
     func setupTaskCell(taskCell:TaskCell) {
         taskCell.delegate = self
         taskCell.taskDescriptionBox.delegate = self

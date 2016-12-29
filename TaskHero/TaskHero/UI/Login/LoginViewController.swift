@@ -118,13 +118,7 @@ extension LoginViewController {
     }
     
     // Still implementing
-    
-    func operationConfigure(operationQueue: OperationQueue, operation: Operation) {
-        operationQueue.addOperation(operation)
-        operationQueue.maxConcurrentOperationCount = 2
-        operationQueue.qualityOfService = .userInitiated
-    }
-    
+
     @objc fileprivate func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
