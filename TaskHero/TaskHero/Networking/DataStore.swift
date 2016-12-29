@@ -14,6 +14,7 @@ class DataStore {
     static let sharedInstance = DataStore()
     let firebaseAPI = APIClient()
     var currentUser: User!
+    var profilePicture: UIImage!
     var currentUserString: String!
     var validUsernames = [String]()
     

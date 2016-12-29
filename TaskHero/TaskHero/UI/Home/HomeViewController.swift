@@ -14,18 +14,20 @@ final class HomeViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
     let photoPopover = PhotoPickerPopover()
+    let picker = UIImagePickerController()
     var profilePic: UIImage? = nil
     var tapped: Bool = false
     var buttonTapped: Bool = false
     var taskViewModel: TaskCellViewModel!
 }
 
-extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension HomeViewController: UINavigationControllerDelegate {
     
     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        picker.delegate = self
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.tableViewBackgroundColor
         setupView()

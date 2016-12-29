@@ -11,8 +11,6 @@ import UIKit
 final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let store = DataStore.sharedInstance
-    //let store2 = DataStore2.sharedInstance
-    
     let profileSettingsView = ProfileSettingsView()
     var tapped: Bool = false
     var indexTap: IndexPath?
@@ -26,13 +24,16 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
+        
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
         view.addSubview(profileSettingsView)
         view.addSubview(tableView)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
+        
         profileSettingsView.layoutSubviews()
         setupViews()
         setupTableView()
@@ -42,7 +43,6 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
 extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCellDelegate {
     
      // MARK: UITableViewController Methods
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
@@ -64,6 +64,7 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
         cell.configureCell(setting: options[indexPath.row])
         cell.delegate = self
         cell.button.index = indexPath
+        
         cell.button.tag = indexPath.row
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)
         return cell
@@ -85,6 +86,7 @@ extension ProfileSettingsViewController {
                 if indexTap?.row == 1 {
                     var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
                     let updatedUser = User()
+                    
                     updatedUser.username = self.store.currentUser.username
                     updatedUser.email = self.store.currentUser.email
                     updatedUser.profilePicture = "None"
@@ -94,10 +96,12 @@ extension ProfileSettingsViewController {
                     updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
                     updatedUser.experiencePoints = self.store.currentUser.experiencePoints
                     updatedUser.tasks = self.store.currentUser.tasks
+                    
                     self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
                 } else if indexTap?.row == 3 {
                     var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
                     let updatedUser = User()
+                    
                     updatedUser.username = tapCell.profileSettingField.text!
                     updatedUser.email = self.store.currentUser.email
                     updatedUser.profilePicture = "None"
@@ -106,6 +110,7 @@ extension ProfileSettingsViewController {
                     updatedUser.joinDate = self.store.currentUser.joinDate
                     updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
                     updatedUser.experiencePoints = self.store.currentUser.experiencePoints
+                    
                     updatedUser.tasks = self.store.currentUser.tasks
                 }
                 tapCell.profileSettingLabel.text = tapCell.profileSettingField.text

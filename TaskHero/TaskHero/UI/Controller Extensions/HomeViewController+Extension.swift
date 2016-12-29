@@ -37,7 +37,7 @@ extension HomeViewController {
 }
 
 
-extension HomeViewController {
+extension HomeViewController: UIImagePickerControllerDelegate {
     
     // MARK: Public Methods
     // Implements logic for editing task from cell
@@ -72,6 +72,14 @@ extension HomeViewController {
         photoPopover.showPopView(viewController: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidden))
         photoPopover.containerView.addGestureRecognizer(tap)
+        photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto), for: .touchUpInside)
+    }
+    
+    func tapPickPhoto() {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
+        photoPopover.hideView(viewController: self)
     }
     
     func toggleForButtonState(sender:UIButton) {
@@ -122,9 +130,30 @@ extension HomeViewController {
         headerCell.emailLabel.isHidden = true
         headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
         if profilePic != nil {
-            headerCell.profilePicture.image = profilePic
+            headerCell.profilePicture.image = self.store.profilePicture
         }
     }
 }
 
-
+extension HomeViewController {
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage
+        //imageView.contentMode = .scaleAspectFit
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func selectImage() {
+        
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
+    }
+    
+}
