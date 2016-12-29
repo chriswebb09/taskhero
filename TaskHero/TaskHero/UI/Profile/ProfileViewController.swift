@@ -14,7 +14,7 @@ final class ProfileViewController: UITableViewController {
     // MARK: - Internal Variables
     
     let store = DataStore.sharedInstance
-    let help = TabviewHelper()
+    
     
     // MARK: - Initialization
     
@@ -23,7 +23,7 @@ final class ProfileViewController: UITableViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         
-        help.setupTableView(tableView: tableView)
+      
         
         // MARK: - Register cell types
         

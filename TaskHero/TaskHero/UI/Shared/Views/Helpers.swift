@@ -8,18 +8,18 @@
 
 import UIKit
 
-class TabviewHelper {
-    
-    func setupTableView(tableView: UITableView) {
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-       // tableView.estimatedRowHeight = view.frame.height / 4
+
+extension UITableView {
+    func setupHelper() {
+        self.tableFooterView = UIView(frame: CGRect.zero)
+        self.separatorStyle = .singleLine
+        self.layoutMargins = UIEdgeInsets.zero
+        self.separatorInset = UIEdgeInsets.zero
+        self.allowsSelection = false
+        self.rowHeight = UITableViewAutomaticDimension
     }
 }
+
 
 class LogoutHelper {
     func logoutButtonPressed(destinationViewController:UIViewController) {

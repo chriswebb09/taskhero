@@ -13,10 +13,8 @@ final class HomeViewController: UITableViewController {
     // MARK: Internal Properties
     
     let store = DataStore.sharedInstance
-    
     let photoPopover = PhotoPickerPopover()
     var profilePic: UIImage? = nil
-    let help = TabviewHelper()
     var tapped: Bool = false
     var buttonTapped: Bool = false
     var taskViewModel: TaskCellViewModel!
@@ -41,7 +39,7 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
     func setupView() {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        help.setupTableView(tableView: tableView)
+        tableView.setupHelper()
         tableView.estimatedRowHeight = view.frame.height / 4
         setupNavItems()
     }
@@ -75,13 +73,6 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
                 self.tableView.reloadData()
             }
         }
-//        self.store.fetchTasks() { task in
-//            self.store.tasks.append(task)
-//            self.store.currentUser.tasks!.append(task)
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
     }
 }
 
