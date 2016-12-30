@@ -119,6 +119,7 @@ extension TabBarController {
     
     func handleLogout() {
         do {
+            DefaultsData().setLoggedInKey(userState: false)
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)

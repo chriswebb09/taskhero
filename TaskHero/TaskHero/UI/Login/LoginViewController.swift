@@ -72,6 +72,7 @@ extension LoginViewController {
             self.store.currentUserString = userID
             self.store.firebaseAPI.setupRefs()
             self.store.firebaseAPI.fetchUser(completion: { user in self.store.currentUser = user })
+            DefaultsData().setLoggedInKey(userState: true)
             self.setupTabBar()
         }
     }

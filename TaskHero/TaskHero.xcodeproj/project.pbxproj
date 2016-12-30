@@ -56,6 +56,7 @@
 		A70DC53F1E15A90B00812FB4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70DC53E1E15A90B00812FB4 /* Info.plist */; };
 		A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5401E15A93500812FB4 /* SetupNav.swift */; };
 		A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */; };
+		A70F31B41E160EB200190813 /* DefaultsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70F31B31E160EB200190813 /* DefaultsData.swift */; };
 		A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713373C1DE8047E0030DDF2 /* AppManager.swift */; };
 		A71C97871DFF666F00F855AA /* CellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97861DFF666F00F855AA /* CellStyle.swift */; };
 		A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */; };
@@ -156,6 +157,7 @@
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A70DC5401E15A93500812FB4 /* SetupNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNav.swift; sourceTree = "<group>"; };
 		A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperations.swift; sourceTree = "<group>"; };
+		A70F31B31E160EB200190813 /* DefaultsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsData.swift; sourceTree = "<group>"; };
 		A713373C1DE8047E0030DDF2 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A71C97861DFF666F00F855AA /* CellStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellStyle.swift; sourceTree = "<group>"; };
 		A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			children = (
 				A7AFCDE01DF72C4B004D607C /* APIClient.swift */,
 				A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */,
+				A70F31B31E160EB200190813 /* DefaultsData.swift */,
 			);
 			path = DataServices;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */,
 				A77FBCCD1DEB8A190014C380 /* Helpers.swift in Sources */,
 				A709CB081DE7734700877907 /* RootContainerViewController.swift in Sources */,
+				A70F31B41E160EB200190813 /* DefaultsData.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,
 				A709CAEE1DE7727E00877907 /* ProfileDataCellModel.swift in Sources */,
 				A767FBA81E0836F7007767B6 /* SignupViewModel.swift in Sources */,
