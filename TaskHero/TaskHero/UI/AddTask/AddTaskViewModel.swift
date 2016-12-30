@@ -9,7 +9,9 @@
 import UIKit
 
 class AddTaskViewModel {
+    
     final var pickerMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     final var years = ["2016", "2017", "2018"]
     final let range: [Int] = Array(1...30)
+    
 }

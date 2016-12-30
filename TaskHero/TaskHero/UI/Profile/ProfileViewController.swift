@@ -81,9 +81,7 @@ extension ProfileViewController {
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
             return headerCell
-            
             // Beyond that it's all ProfileDataCells
-            
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()

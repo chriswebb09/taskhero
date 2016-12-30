@@ -36,5 +36,4 @@ class ProfileDataCellViewModel: ProfileDataCellModel {
         self.experience = (user?.experiencePoints)!
         self.tasksCompleted = (user?.numberOfTasksCompleted)!
     }
-    
 }

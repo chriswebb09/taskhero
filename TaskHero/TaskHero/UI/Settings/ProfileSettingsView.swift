@@ -46,5 +46,4 @@ extension ProfileSettingsView {
         profileLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         profileLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Profile.labelTopOffset).isActive = true
     }
-    
 }
