@@ -53,7 +53,6 @@ class AddTaskView: UIView {
         addTaskButton.setTitleColor(UIColor.white, for: .normal)
         return addTaskButton
     }()
-    
 }
 
 extension AddTaskView {
@@ -70,7 +69,6 @@ extension AddTaskView {
     // MARK: - Configure
     // =========================================================================
     
-    
     func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +78,6 @@ extension AddTaskView {
     }
     
     func setupConstraints() {
-        
         configureView(view: taskNameLabel)
         taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
         configureView(view: taskNameField)
@@ -100,7 +97,4 @@ extension AddTaskView {
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
     }
-    
-    
-    
 }
