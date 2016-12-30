@@ -10,7 +10,8 @@ import UIKit
 
 extension ProfileSettingsViewController {
     
-    // MARK: - Setup tableView
+    // MARK: - Setup tableView 
+    // =========================================================================
     
     func setupTableView() {
         tableView.estimatedRowHeight = Constants.Settings.rowHeight

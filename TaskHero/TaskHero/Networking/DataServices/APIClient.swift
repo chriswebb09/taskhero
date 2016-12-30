@@ -11,6 +11,9 @@ import Firebase
 
 class APIClient {
     
+    // Firebase properties
+    // =========================================================================
+    
     let storage = FIRStorage.storage()
     var storageRef:FIRStorageReference!
     var tasksRef: FIRDatabaseReference!
@@ -21,6 +24,9 @@ class APIClient {
     var imagesRef: FIRStorageReference!
     var userRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
+    
+    // App data properties
+    // =========================================================================
     
     var validUsernames = [String]()
     var validUserData = [String]()
@@ -34,11 +40,17 @@ class APIClient {
         usernameRef = dbRef.child("Usernames")
     }
     
+    // Initial firebase database reference properties
+    // =========================================================================
+    
     func setupRefs() {
         let userID = FIRAuth.auth()?.currentUser?.uid
         userRef = dbRef.child("Users").child(userID!)
         tasksRef = userRef.child("Tasks")
     }
+    
+    // Fetch all valid usernames in database
+    // =========================================================================
     
     func fetchValidUsernames() {
         validUsernames.removeAll()
@@ -47,6 +59,9 @@ class APIClient {
             self.usernameEmailDict[snapshot.key] = snapshot.value as AnyObject?
         })
     }
+    
+    // Fetch user profile data store in realtime database return data in completion
+    // =========================================================================
     
     func fetchUser(completion:@escaping (User)-> ()) {
         let database = FIRDatabase.database()
@@ -88,6 +103,8 @@ class APIClient {
         })
     }
     
+    // Add new user profile to realtime database
+    // =========================================================================
     
     func insertUser(user:User) {
         let uid = user.uid
@@ -104,6 +121,10 @@ class APIClient {
         userRef.keepSynced(true)
         usernameRef.updateChildValues([user.username:user.email])
     }
+    
+    // Fetch user profile data from realtime database
+    // =========================================================================
+    
     
     func fetchUserData() {
         let userID = FIRAuth.auth()?.currentUser?.uid
@@ -142,6 +163,8 @@ class APIClient {
         })
     }
     
+    // Grab tasks from user profile in realtime user database
+    // =========================================================================
     
     func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
         tasksRef.keepSynced(true)
@@ -170,6 +193,7 @@ class APIClient {
     }
     
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
+    // =========================================================================
     
     func addTasks(task:Task) {
         tasksRef.child("\(task.taskID)/TaskName").setValue(task.taskName)
@@ -182,6 +206,7 @@ class APIClient {
     
     
     // Removes task from database - called on swift left in tableview
+    // =========================================================================
     
     func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
@@ -197,6 +222,7 @@ class APIClient {
     }
     
     // Updates user profile data in database
+    // =========================================================================
     
     func updateUserProfile(userID: String, user:User) {
         let userData: NSDictionary = ["Email": user.email,
@@ -211,25 +237,18 @@ class APIClient {
         userRef.updateChildValues(["/\(userID)": userData])
         userRef.keepSynced(true)
         usernameRef.updateChildValues([user.username:user.email])
-        
     }
     
     
     func uploadImage(profilePicture:UIImage, user:User, completion:@escaping(_ url:String) ->()) {
-       
-        //successfully authenticated user
         let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).png")
-    
         if let uploadData = UIImagePNGRepresentation(profilePicture) {
-            
             storageRef.put(uploadData, metadata: nil, completion: { metadata, error in
-    
                 if error != nil {
                     print(error ?? "Unable to get specific error")
                     return
                 }
-                
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
                     print("\n\n")
                     print(profileImageUrl)
@@ -237,9 +256,9 @@ class APIClient {
                     
                 }
             })
-           
+            
         }
-       
+        
         
     }
     

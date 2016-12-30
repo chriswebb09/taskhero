@@ -119,7 +119,6 @@ extension SignupViewController {
         }
     }
     
-    
     func setupTabBar() {
         let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -137,8 +136,4 @@ extension SignupViewController {
         newUser.tasks = [Task]()
         return newUser
     }
-    
 }
-
-
-

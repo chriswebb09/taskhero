@@ -12,28 +12,34 @@ import Firebase
 class DataStore {
     
     static let sharedInstance = DataStore()
+    
     let firebaseAPI = APIClient()
     var currentUser: User!
     var profilePicture: UIImage!
     var currentUserString: String!
     var validUsernames = [String]()
-    
     var tasks = [Task]()
     
+    // Update currentUser score when user completes task 
+    // =========================================================================
     
     func updateUserScore() {
         currentUser.experiencePoints += 1
         currentUser.numberOfTasksCompleted += 1
     }
     
-    
-    
+    // Update currentUser profile in database
+    // =========================================================================
+
     func updateUserProfile(userID: String, user:User) {
         firebaseAPI.updateUserProfile(userID: userID, user: user)
         self.tasks.forEach { task in
             firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
         }
     }
+    
+    // Setup datastore for initial operation 
+    // =========================================================================
     
     func setupStore() {
         tasks.removeAll()

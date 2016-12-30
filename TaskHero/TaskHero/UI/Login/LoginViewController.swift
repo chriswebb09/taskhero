@@ -12,7 +12,7 @@ import Firebase
 final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
-   
+    
     let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
     let loadingView = LoadingView()
@@ -81,7 +81,7 @@ extension LoginViewController {
         }
     }
     
-   fileprivate func setupTabBar() {
+    fileprivate func setupTabBar() {
         let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
@@ -126,7 +126,7 @@ extension LoginViewController {
     }
     
     // Still implementing
-
+    
     @objc fileprivate func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }

@@ -61,7 +61,6 @@ extension ProfileSettingsCell {
         contentView.layer.masksToBounds = true
     }
     
-
     func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false

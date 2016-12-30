@@ -12,6 +12,7 @@ import UIKit
 extension SettingsViewController {
     
     // MARK: - Switch between segments
+    // =========================================================================
     
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -27,6 +28,7 @@ extension SettingsViewController {
     }
     
     // MARK: - Configure tableView
+    // =========================================================================
     
     func setupTableView() {
         tableView.estimatedRowHeight = Constants.Settings.rowHeight
@@ -39,6 +41,7 @@ extension SettingsViewController {
     }
     
     // MARK: - Segment Control UI
+    // =========================================================================
     
     func setupSegment() {
         let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]
@@ -53,12 +56,6 @@ extension SettingsViewController {
         segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         segmentControl.heightAnchor.constraint(equalTo:(tableView.tableHeaderView?.heightAnchor)!).isActive = true
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
-        
-        // segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier:Constants.Settings.segmentSettingsWidth).isActive = true
-        // segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * Constants.Settings.segmentSettingsTopOffset).isActive = true
-        // segmentControl.heightAnchor.constraint(equalTo: tableView.tableHeaderView.heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
-        // let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]
-        
     }
 }
 

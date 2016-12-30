@@ -11,6 +11,7 @@ import UIKit
 extension FriendsSettingsViewController {
     
     // MARK: - Delegate methods 
+    // =========================================================================
     
     func popup() {
         alertPop.popView.isHidden = false

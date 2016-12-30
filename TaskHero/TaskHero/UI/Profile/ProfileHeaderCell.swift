@@ -128,7 +128,7 @@ extension ProfileHeaderCell {
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Profile.topOffset).isActive = true
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Profile.leftOffset).isActive = true
     }
-
+    
     
     func configureCell(autoHeight: UIViewAutoresizing) {
         contentView.autoresizingMask = autoHeight
