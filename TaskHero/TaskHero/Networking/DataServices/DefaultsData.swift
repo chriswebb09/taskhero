@@ -19,9 +19,7 @@ class DefaultsData {
         }
     }
     
-    
     func setLoggedInKey(userState:Bool) {
         defaults.set(userState, forKey: "hasLoggedIn")
     }
-    
 }

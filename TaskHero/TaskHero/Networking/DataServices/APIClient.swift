@@ -253,13 +253,8 @@ class APIClient {
                     print("\n\n")
                     print(profileImageUrl)
                     completion(profileImageUrl)
-                    
                 }
             })
-            
         }
-        
-        
     }
-    
 }
