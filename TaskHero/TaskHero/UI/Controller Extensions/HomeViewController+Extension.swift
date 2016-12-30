@@ -141,6 +141,12 @@ extension HomeViewController {
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         
         self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.store.firebaseAPI.uploadImage(profilePicture: self.store.profilePicture, user: self.store.currentUser, completion: { url in
+            self.store.currentUser.profilePicture = url
+        })
+        
+       // self.store.updateUserProfile(userID: self.store.currentUser.uid, user: self.store.currentUser)
+        ///self.store.updateUserProfile(userID: self.store.currentUser.uid, user: self.store.currentUser)
         //imageView.contentMode = .scaleAspectFit
         dismiss(animated: true, completion: nil)
     }

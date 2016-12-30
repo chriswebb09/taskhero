@@ -215,4 +215,33 @@ class APIClient {
         
     }
     
+    
+    func uploadImage(profilePicture:UIImage, user:User, completion:@escaping(_ url:String) ->()) {
+        var url:String = ""
+        //successfully authenticated user
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).png")
+    
+        if let uploadData = UIImagePNGRepresentation(profilePicture) {
+            
+            storageRef.put(uploadData, metadata: nil, completion: { metadata, error in
+    
+                if error != nil {
+                    print(error)
+                    return
+                }
+                
+                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                    print("\n\n")
+                    print(profileImageUrl)
+                    completion(profileImageUrl)
+                    
+                }
+            })
+           
+        }
+       
+        
+    }
+    
 }
