@@ -13,7 +13,6 @@ extension HomeViewController {
     
     // MARK: - UI Methods
     // =========================================================================
-    
     // Logs out user by settings root ViewController to Loginview
     
     func logoutButtonPressed() {
@@ -40,6 +39,7 @@ extension HomeViewController {
 extension HomeViewController: UIImagePickerControllerDelegate {
     
     // MARK: Public Methods
+    // =========================================================================
     // Implements logic for editing task from cell
     
     func tapEdit(atIndex:IndexPath) {
@@ -64,7 +64,9 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         cell.taskDescriptionLabel.text = cell.taskDescriptionBox.text
     }
     
+    
     // MARK: - Delegate Methods
+    // =========================================================================
     // If popover is not visible shows popover / if popover is displayed it hides popover
     
     func profilePictureTapped() {
@@ -137,17 +139,11 @@ extension HomeViewController {
 
 extension HomeViewController {
     
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [String : Any]) {
-        
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage
         self.store.firebaseAPI.uploadImage(profilePicture: self.store.profilePicture, user: self.store.currentUser, completion: { url in
             self.store.currentUser.profilePicture = url
         })
-        
-       // self.store.updateUserProfile(userID: self.store.currentUser.uid, user: self.store.currentUser)
-        ///self.store.updateUserProfile(userID: self.store.currentUser.uid, user: self.store.currentUser)
-        //imageView.contentMode = .scaleAspectFit
         dismiss(animated: true, completion: nil)
     }
     

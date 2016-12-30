@@ -24,6 +24,7 @@ final class HomeViewController: UITableViewController {
 extension HomeViewController: UINavigationControllerDelegate {
     
     // MARK: - Initialization
+    // =========================================================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +74,7 @@ extension HomeViewController: UINavigationControllerDelegate {
 extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, TaskCellDelegate {
     
     // MARK: UITableViewController Methods
+    // =========================================================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.store.tasks.count < 1 {
