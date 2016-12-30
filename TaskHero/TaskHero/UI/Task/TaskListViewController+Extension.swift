@@ -13,6 +13,7 @@ import UIKit
 extension TaskListViewController {
     
     // MARK: - TaskList UI
+    // =========================================================================
     
     func emptyTableViewState() {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
@@ -30,6 +31,7 @@ extension TaskListViewController {
     }
     
     // MARK: - Configure
+    // =========================================================================
     
     func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -46,6 +48,7 @@ extension TaskListViewController {
 extension TaskListViewController: TaskHeaderCellDelegate {
     
     // MARK: - Public Methods
+    // =========================================================================
     
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -58,6 +61,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     }
     
     // MARK: - Setup navbar
+    // =========================================================================
     
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
@@ -71,6 +75,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
 extension TaskListViewController {
 
     // MARK: - Button methods
+    // =========================================================================
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {

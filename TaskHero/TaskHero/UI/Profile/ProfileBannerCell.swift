@@ -35,6 +35,7 @@ extension ProfileBannerCell {
     
     // MARK: - Configuring
     // =========================================================================
+    
     // Configure constraints
     
     private func setupConstraints() {

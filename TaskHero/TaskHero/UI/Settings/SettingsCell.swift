@@ -31,6 +31,7 @@ extension SettingsCell {
     }
     
     // MARK: - Configure constraints
+    // =========================================================================
     
     fileprivate func setupConstraints() {
         contentView.backgroundColor = UIColor.settingsBackground()

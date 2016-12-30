@@ -13,6 +13,7 @@ extension HomeViewController {
     
     // MARK: - UI Methods
     // =========================================================================
+    
     // Logs out user by settings root ViewController to Loginview
     
     func logoutButtonPressed() {
@@ -40,6 +41,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     // MARK: Public Methods
     // =========================================================================
+    
     // Implements logic for editing task from cell
     
     func tapEdit(atIndex:IndexPath) {
@@ -48,7 +50,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         tapCell.toggled = tapped
         tapCell.taskDescriptionBox.becomeFirstResponder()
         tapCell.saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
-        taskCell(_taskCell: tapCell, didToggleEditState: buttonTapped)
+        taskCell(didToggleEditState: buttonTapped)
+        //taskCell(_taskCell: tapCell, didToggleEditState: buttonTapped)
         if tapCell.toggled == true {
             updateDescription(cell: tapCell, for: atIndex.row)
             tapCell.taskDescriptionBox.resignFirstResponder()
@@ -67,6 +70,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     // MARK: - Delegate Methods
     // =========================================================================
+    
     // If popover is not visible shows popover / if popover is displayed it hides popover
     
     func profilePictureTapped() {
@@ -92,8 +96,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         tapEdit(atIndex: indexPath!)
     }
     
-    func taskCell(_taskCell:TaskCell, didToggleEditState editState:Bool) {
-        // needs implementation
+    func taskCell(didToggleEditState editState:Bool) {
+        //
     }
     
     // Kicks off cycling between taskcell editing states
@@ -138,6 +142,9 @@ extension HomeViewController {
 }
 
 extension HomeViewController {
+    
+    // MARK: - ImagePicker delegate methods
+    // =========================================================================
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage

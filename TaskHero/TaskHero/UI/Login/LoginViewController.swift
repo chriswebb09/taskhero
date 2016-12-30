@@ -41,7 +41,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
 extension LoginViewController {
     
-    @objc fileprivate func handleLogin() {
+    @objc func handleLogin() {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
@@ -104,6 +104,7 @@ extension LoginViewController {
     
     // MARK: - Textfield delegate methods
     // =========================================================================
+    
     // If email field selected cycles to password field / if password field cycles to emailfield.
     // Hides keyboard/ ends view editting
     // Sets textfield text color and border to selected color

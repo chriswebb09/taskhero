@@ -12,6 +12,8 @@ import UIKit
 extension TaskCell {
     
     //MARK: - Delegate Methods
+    // =========================================================================
+    
     // Button toggle methods
     
     fileprivate func toggle() {
@@ -24,7 +26,7 @@ extension TaskCell {
         }
     }
     
-    func taskCell(_taskCell:TaskCell, didToggleEditState editState:Bool) {
+    func taskCell(didToggleEditState editState:Bool) {
         if editState {
             taskDescriptionLabel.isHidden = editState
             taskDescriptionBox.isHidden = !editState
@@ -54,11 +56,14 @@ extension TaskCell {
         toggle()
         delegate?.toggleForButtonState(sender: sender)
     }
+    
+    
 }
 
 extension TaskCell {
     
     // MARK: - Configure cell subviews
+    // =========================================================================
     
     func configureTextView(label:UITextView) {
         label.textAlignment = .left
@@ -118,6 +123,27 @@ extension TaskCell {
         contentView.addSubview(cellView)
         contentView.sendSubview(toBack: cellView)
     }
+    
+    func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
+        layoutSubviews()
+        taskNameLabel.text = taskVM.taskName
+        taskDueLabel.text = "Due date: \(taskVM.taskDue)"
+        taskDescriptionLabel.text = taskVM.taskDescription
+        
+        self.toggled = toggled
+        saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
+        if taskVM.taskCompleted == "true" {
+            taskCompletedView.image = UIImage(named:"checked")
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
+            taskCompletedView.addGestureRecognizer(tap)
+            saveButton.addTarget(self, action: #selector(toggleForEditState), for: .touchUpInside)
+        } else {
+            taskCompletedView.image = UIImage(named:"edit")
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
+            taskCompletedView.addGestureRecognizer(tap)
+        }
+    }
+    
 }
 
 

@@ -20,6 +20,7 @@ protocol ProfileHeaderModel {
 class ProfileHeaderCellViewModel: ProfileHeaderModel {
     
     // MARK: - Internal Variables
+    // =========================================================================
     
     let store = DataStore.sharedInstance
     
@@ -31,6 +32,7 @@ class ProfileHeaderCellViewModel: ProfileHeaderModel {
     internal var joinDate: String
     
     // MARK: - Initialization
+    // =========================================================================
     
     init() {
         self.user = self.store.currentUser

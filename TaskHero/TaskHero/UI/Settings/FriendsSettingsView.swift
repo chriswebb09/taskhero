@@ -49,6 +49,8 @@ final class FriendsSettingsView: UIView {
 extension FriendsSettingsView {
     
     // MARK: - Initialization
+    // =========================================================================
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
@@ -56,6 +58,7 @@ extension FriendsSettingsView {
     }
     
     // MARK: - Configure
+    // =========================================================================
     
     func configureView(view:UIView) {
         addSubview(view)

@@ -11,6 +11,7 @@ import UIKit
 final class HomeViewController: UITableViewController {
     
     // MARK: Internal Properties
+    // =========================================================================
     
     let store = DataStore.sharedInstance
     let photoPopover = PhotoPickerPopover()

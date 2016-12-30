@@ -144,7 +144,6 @@ class APIClient {
     
     
     func fetchTasks(completion:@escaping (_ task:Task) -> Void) {
-        let userID = FIRAuth.auth()?.currentUser?.uid
         tasksRef.keepSynced(true)
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
@@ -217,7 +216,7 @@ class APIClient {
     
     
     func uploadImage(profilePicture:UIImage, user:User, completion:@escaping(_ url:String) ->()) {
-        var url:String = ""
+       
         //successfully authenticated user
         let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).png")
@@ -227,7 +226,7 @@ class APIClient {
             storageRef.put(uploadData, metadata: nil, completion: { metadata, error in
     
                 if error != nil {
-                    print(error)
+                    print(error ?? "Unable to get specific error")
                     return
                 }
                 

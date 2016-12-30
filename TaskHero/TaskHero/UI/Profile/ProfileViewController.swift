@@ -12,6 +12,7 @@ import Firebase
 final class ProfileViewController: UITableViewController {
     
     // MARK: - Internal Variables
+    // =========================================================================
     
     let store = DataStore.sharedInstance
     
@@ -24,12 +25,13 @@ final class ProfileViewController: UITableViewController {
         edgesForExtendedLayout = []
         
         // MARK: - Register cell types
+        // =========================================================================
         
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
-        
+        tableView.setupHelper()
         // Setup UI on main thread
         
         DispatchQueue.main.async {
@@ -93,6 +95,7 @@ extension ProfileViewController {
 extension ProfileViewController {
     
     // MARK: - Delegate Methods
+    // =========================================================================
     
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
@@ -102,6 +105,9 @@ extension ProfileViewController {
     }
     
     // MARK: - Button methods
+    // =========================================================================
+    
+    
     // On logout button press sets RootViewController to LoginViewController on main thread
     
     func logoutButtonPressed() {

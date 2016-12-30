@@ -20,6 +20,7 @@ final class TaskCell: UITableViewCell {
     var taskViewModel: TaskCellViewModel!
     
     // MARK: - Setup UI Elements
+    // =========================================================================
     
     let taskNameLabel: UITextView = {
         let textView = UITextView()
@@ -68,6 +69,7 @@ final class TaskCell: UITableViewCell {
 extension TaskCell {
     
     // MARK: - Initialization
+    // =========================================================================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -79,32 +81,13 @@ extension TaskCell {
     }
     
     // MARK: - Configure cell
+    // =========================================================================
     
     fileprivate func setupConfigures() {
         configureTextView(label: taskDescriptionLabel)
         configureTextView(label: taskDueLabel)
         configureTextView(label: taskNameLabel)
         setupConstraints()
-    }
-    
-   func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
-        layoutSubviews()
-        taskNameLabel.text = taskVM.taskName
-        taskDueLabel.text = "Due date: \(taskVM.taskDue)"
-        taskDescriptionLabel.text = taskVM.taskDescription
-        
-        self.toggled = toggled
-        saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
-        if taskVM.taskCompleted == "true" {
-            taskCompletedView.image = UIImage(named:"checked")
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
-            taskCompletedView.addGestureRecognizer(tap)
-            saveButton.addTarget(self, action: #selector(toggleForEditState), for: .touchUpInside)
-        } else {
-            taskCompletedView.image = UIImage(named:"edit")
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
-            taskCompletedView.addGestureRecognizer(tap)
-        }
     }
     
     override func prepareForReuse() {

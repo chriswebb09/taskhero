@@ -10,10 +10,12 @@ import XCTest
 @testable import TaskHero
 
 class TaskHeroTests: XCTestCase {
-    var tabbarVC: TabBarController!
+    
+    var initVC: InitialViewController!
     
     override func setUp() {
         super.setUp()
+        self.initVC = InitialViewController()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -22,18 +24,30 @@ class TaskHeroTests: XCTestCase {
         super.tearDown()
     }
     
+    
+    
+    func testForInitView() {
+        self.initVC.viewDidLoad()
+        self.initVC.initView.layoutSubviews()
+        XCTAssertNotNil(self.initVC.initView)
+        self.initVC.initView.logoImageView = UIImageView(image: UIImage(named:"TaskHeroLogoNew2"))
+        XCTAssertNotNil(self.initVC.initView.logoImageView)
+        self.initVC.initView.loginButton = ButtonType.login(title: "login").newButton
+        XCTAssertNotNil(self.initVC.initView.loginButton)
+        dump(self)
+    }
+    
+    
+    
     func testExample() {
-        var loginVC = LoginViewController()
-        //XCTAssertNotNil(tabbarVC.store.currentUser)
         
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {
         
         // This is an example of a performance test case.
         self.measure {
+            self.initVC.initView.zoomAnimation()
             // Put the code you want to measure the time of here.
         }
     }
