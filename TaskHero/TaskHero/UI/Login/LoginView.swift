@@ -137,5 +137,3 @@ extension LoginView {
         signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
     }
 }
-
-

@@ -33,10 +33,8 @@ extension ProfileBannerCell {
         contentView.layer.masksToBounds = true
     }
     
-    // MARK: - Configuring
+    // MARK: - Configuring Cell
     // =========================================================================
-    
-    // Configure constraints
     
     private func setupConstraints() {
         contentView.addSubview(bannerImage)
@@ -46,8 +44,6 @@ extension ProfileBannerCell {
         bannerImage.widthAnchor.constraint(equalTo:contentView.widthAnchor).isActive = true
         bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.profileBannerHeight).isActive = true
     }
-    
-    // Configure cell UI
     
     func configureCell() {
         layoutSubviews()

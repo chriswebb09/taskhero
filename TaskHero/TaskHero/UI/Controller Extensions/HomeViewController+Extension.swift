@@ -163,5 +163,4 @@ extension HomeViewController {
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)
     }
-    
 }

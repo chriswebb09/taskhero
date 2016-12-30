@@ -69,7 +69,17 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
 
 extension ProfileHeaderCell {
     
-    // MARK: - Configuring UI
+    // MARK: - Initialization
+    // =========================================================================
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.layoutIfNeeded()
+        setupConstraints()
+        contentView.layer.masksToBounds = true
+    }
+    
+    // MARK: - Configuring Cell
     // =========================================================================
     
     func configureLabel(label:UILabel) {
@@ -83,52 +93,36 @@ extension ProfileHeaderCell {
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Profile.profileHeaderLabelRightOffset).isActive = true
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.contentView.layoutIfNeeded()
-        setupConstraints()
-        contentView.layer.masksToBounds = true
-    }
-    
     fileprivate func setupConstraints() {
-        
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
-        
         contentView.addSubview(emailLabel)
         configureLabel(label: emailLabel)
         configureConstraints(label: emailLabel)
-        
         contentView.addSubview(joinDateLabel)
         configureLabel(label: joinDateLabel)
         configureConstraints(label: joinDateLabel)
-        
         contentView.addSubview(usernameLabel)
         configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)
-        
         contentView.addSubview(profilePicture)
         
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Profile.profileHeaderLabelWidth).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: profilePicture.topAnchor).isActive  = true
-        
         levelLabel.bottomAnchor.constraint(equalTo: profilePicture.bottomAnchor).isActive = true
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Profile.profileHeaderLabelWidth).isActive = true
-        
         joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
         joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Profile.profileHeaderLabelWidth).isActive = true
         joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Profile.bottomOffset).isActive = true
-        
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Profile.profilePictureHeight).isActive = true
         profilePicture.widthAnchor.constraint(equalToConstant: Constants.Profile.profilePictureWidth).isActive = true
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Profile.topOffset).isActive = true
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Profile.leftOffset).isActive = true
     }
-    
     
     func configureCell(autoHeight: UIViewAutoresizing) {
         contentView.autoresizingMask = autoHeight

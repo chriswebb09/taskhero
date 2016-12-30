@@ -107,7 +107,6 @@ extension ProfileViewController {
     // MARK: - Button methods
     // =========================================================================
     
-    
     // On logout button press sets RootViewController to LoginViewController on main thread
     
     func logoutButtonPressed() {

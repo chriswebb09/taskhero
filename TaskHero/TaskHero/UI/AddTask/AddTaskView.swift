@@ -80,6 +80,7 @@ extension AddTaskView {
     func setupConstraints() {
         configureView(view: taskNameLabel)
         taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
+        
         configureView(view: taskNameField)
         taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
         

@@ -50,6 +50,7 @@ extension AddTaskViewController {
     
     // MARK: TextField Methods
     // =========================================================================
+    
     // On return-key press hides keyboard
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

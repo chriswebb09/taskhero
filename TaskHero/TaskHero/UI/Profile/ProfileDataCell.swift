@@ -98,7 +98,6 @@ extension ProfileDataCell {
     }
     
     func configureCell() {
-        
         levelLabel.text = "Level: \(dataCellModel.level)"
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"
         tasksCompletedLabel.text = "Tasks Completed: \(String(describing: dataCellModel.tasksCompleted))"

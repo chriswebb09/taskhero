@@ -162,7 +162,6 @@ extension LoginViewController {
                     self.loginView.emailField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
                     self.loginView.emailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
                 }
-                
         })
     }
 }

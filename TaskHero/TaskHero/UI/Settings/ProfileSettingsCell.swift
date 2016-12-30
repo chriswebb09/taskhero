@@ -61,6 +61,16 @@ extension ProfileSettingsCell {
         contentView.layer.masksToBounds = true
     }
     
+    // MARK: - Configure Cell Methods
+    // =========================================================================
+    
+    func configureCell(setting:String) {
+        layoutSubviews()
+        profileSettingLabel.text = setting
+        if setting.contains("N/A") { profileSettingLabel.text = "FirstName LastName" }
+        profileSettingField.isHidden = true
+    }
+    
     func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -85,20 +95,13 @@ extension ProfileSettingsCell {
         profileSettingField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
-    // MARK: - Delegate Methods
-    // =========================================================================
-    
-    func configureCell(setting:String) {
-        layoutSubviews()
-        profileSettingLabel.text = setting
-        if setting.contains("N/A") { profileSettingLabel.text = "FirstName LastName" }
-        profileSettingField.isHidden = true
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         profileSettingLabel.text = ""
     }
+    
+    // MARK: - Cell Delegate Method
+    // =========================================================================
     
     func editButtonTapped() {
         delegate?.editButtonTapped()
