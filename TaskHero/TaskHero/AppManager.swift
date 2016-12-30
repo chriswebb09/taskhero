@@ -14,10 +14,12 @@ class AppManager {
     static let sharedInstance = AppManager()
     let defaults = UserDefaults.standard
     
-    func hasLogged() {
+    func hasLoggedIn() {
         let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
+        let user = defaults.data(forKey: "currentUser")
         if hasLoggedIn {
             print("LOGGED IN")
+            dump(user)
         }
     }
     
@@ -31,7 +33,7 @@ class AppManager {
     }
     
     func logout() {
-        defaults.set(false, forKey: "loggedIn")
+        defaults.set(false, forKey: "hasLoggedIn")
         defaults.removeObject(forKey: "currentUser")
         defaults.removeObject(forKey: "UID")
         defaults.synchronize()

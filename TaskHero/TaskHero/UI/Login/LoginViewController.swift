@@ -13,7 +13,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginView = LoginView()
    
-    
+    let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
     let loadingView = LoadingView()
     
@@ -71,8 +71,12 @@ extension LoginViewController {
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
             self.store.firebaseAPI.setupRefs()
-            self.store.firebaseAPI.fetchUser(completion: { user in self.store.currentUser = user })
-            DefaultsData().setLoggedInKey(userState: true)
+            self.store.firebaseAPI.fetchUser(completion: { user in
+                self.store.currentUser = user
+                self.manager.setUserData(user: user)
+            })
+            self.manager.setLoggedInKey(userState: true)
+            self.manager.hasLoggedIn()
             self.setupTabBar()
         }
     }
