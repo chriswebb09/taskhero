@@ -11,6 +11,7 @@ import UIKit
 final class LoginView: UIView {
     
     // MARK: UIElements
+    // =========================================================================
     
     var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
@@ -58,6 +59,7 @@ final class LoginView: UIView {
 extension LoginView {
     
     // MARK: Initialization
+    // =========================================================================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -85,6 +87,7 @@ extension LoginView {
     }
     
     // MARK: - Configuring UI
+    // =========================================================================
     
     fileprivate func setupConstraints() {
         addSubview(logoImageView)

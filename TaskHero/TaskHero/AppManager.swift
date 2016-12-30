@@ -11,28 +11,29 @@ import Firebase
 
 class AppManager {
     
-//    static let sharedInstance = AppManager()
-//    let defaults = UserDefaults.standard
-//    
-//    func userIsLoggedIn(loggedIn: Bool, uid: String?) {
-//        defaults.set(loggedIn, forKey: "loggedIn")
-//        defaults.set(uid, forKey: "UID")
-//        defaults.synchronize()
-//    }
-//    
-//    func setUserData(user: User) {
-//        defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
-//        defaults.synchronize()
-//    }
-//    
-////    func updateDate() {
-////        defaults.
-////    }
-//    
-//    func logout() {
-//        defaults.set(false, forKey: "loggedIn")
-//        defaults.removeObject(forKey: "currentUser")
-//        defaults.removeObject(forKey: "UID")
-//        defaults.synchronize()
-//    }
+    static let sharedInstance = AppManager()
+    let defaults = UserDefaults.standard
+    
+    func hasLogged() {
+        let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
+        if hasLoggedIn {
+            print("LOGGED IN")
+        }
+    }
+    
+    func setLoggedInKey(userState:Bool) {
+        defaults.set(userState, forKey: "hasLoggedIn")
+    }
+    
+    func setUserData(user: User) {
+        defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
+        defaults.synchronize()
+    }
+    
+    func logout() {
+        defaults.set(false, forKey: "loggedIn")
+        defaults.removeObject(forKey: "currentUser")
+        defaults.removeObject(forKey: "UID")
+        defaults.synchronize()
+    }
 }

@@ -132,6 +132,7 @@ extension AddTaskViewController {
     
     // MARK: Public methods
     // =========================================================================
+    
     // When add task button pressed - data popover is show so user can pick task due data
     
     @objc fileprivate func addTaskButtonTapped() {

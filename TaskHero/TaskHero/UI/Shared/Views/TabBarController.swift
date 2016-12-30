@@ -11,7 +11,7 @@ import Firebase
 
 class TabBarController: UITabBarController {
     
-    //let store = DataStore.sharedInstance
+    let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
     
     override func viewDidLoad() {
@@ -119,7 +119,7 @@ extension TabBarController {
     
     func handleLogout() {
         do {
-            DefaultsData().setLoggedInKey(userState: false)
+            manager.setLoggedInKey(userState: false)
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)
