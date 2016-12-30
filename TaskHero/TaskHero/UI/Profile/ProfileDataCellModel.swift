@@ -18,6 +18,7 @@ protocol ProfileDataCellModel {
 class ProfileDataCellViewModel: ProfileDataCellModel {
     
     // MARK: - Internal Variables
+    // =========================================================================
     
     let store = DataStore.sharedInstance
     
@@ -27,6 +28,7 @@ class ProfileDataCellViewModel: ProfileDataCellModel {
     internal var user: User?
     
     // MARK: - Initialization
+    // =========================================================================
     
     init() {
         self.user = self.store.currentUser

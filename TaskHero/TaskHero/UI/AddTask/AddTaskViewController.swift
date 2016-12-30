@@ -29,6 +29,7 @@ final class AddTaskViewController: UIViewController  {
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource  {
     
     // MARK: Initialization
+    // =========================================================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,7 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPick
 extension AddTaskViewController {
     
     // MARK: TextField Methods
+    // =========================================================================
     // On return-key press hides keyboard
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -80,6 +82,7 @@ extension AddTaskViewController {
 extension AddTaskViewController: UIPickerViewDelegate {
     
     // MARK: Extension - UIPickerView Methods
+    // =========================================================================
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
@@ -128,6 +131,7 @@ extension AddTaskViewController: UIPickerViewDelegate {
 extension AddTaskViewController {
     
     // MARK: Public methods
+    // =========================================================================
     // When add task button pressed - data popover is show so user can pick task due data
     
     @objc fileprivate func addTaskButtonTapped() {

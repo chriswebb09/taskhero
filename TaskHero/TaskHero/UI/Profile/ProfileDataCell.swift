@@ -14,6 +14,7 @@ final class ProfileDataCell: UITableViewCell {
     static let dataCellRadius = Constants.Settings.profileDataRadius
     
     // MARK: - UI Elements and cellModel
+    // =========================================================================
     
     var dataCellModel: ProfileDataCellViewModel =  {
         var cellModel = ProfileDataCellViewModel()
@@ -39,6 +40,7 @@ final class ProfileDataCell: UITableViewCell {
 extension ProfileDataCell {
     
     // MARK: - Initialization
+    // =========================================================================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -46,6 +48,7 @@ extension ProfileDataCell {
     }
     
     // MARK: - Configuration
+    // =========================================================================
     
     func configureLabels(label:UILabel) {
         label.layer.cornerRadius = ProfileDataCell.dataCellRadius

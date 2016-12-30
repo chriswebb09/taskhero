@@ -13,6 +13,7 @@ class ProfileBannerCell: UITableViewCell {
     static let cellIdentifier = "ProfileBannerCell"
     
     // MARK: - UI Elements
+    // =========================================================================
     
     var bannerImage: UIImageView = {
         let imageView = UIImageView()
@@ -24,6 +25,7 @@ class ProfileBannerCell: UITableViewCell {
 extension ProfileBannerCell {
     
     // MARK: - Initialization
+    // =========================================================================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -32,6 +34,7 @@ extension ProfileBannerCell {
     }
     
     // MARK: - Configuring
+    // =========================================================================
     // Configure constraints
     
     private func setupConstraints() {

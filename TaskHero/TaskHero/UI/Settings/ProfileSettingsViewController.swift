@@ -43,6 +43,8 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
 extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCellDelegate {
     
      // MARK: UITableViewController Methods
+    // =========================================================================
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }

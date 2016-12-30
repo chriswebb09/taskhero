@@ -152,7 +152,6 @@ extension HomeViewController {
     }
     
     func selectImage() {
-        
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)

@@ -17,6 +17,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     static let cellIdentifier = "ProfileHeaderCell"
     
     // MARK: - Internal Variables
+    // =========================================================================
     
     var profileHeaderCellModel : ProfileHeaderCellViewModel = {
         var model = ProfileHeaderCellViewModel()
@@ -69,6 +70,7 @@ class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
 extension ProfileHeaderCell {
     
     // MARK: - Configuring UI
+    // =========================================================================
     
     func configureLabel(label:UILabel) {
         label.textColor = UIColor.black
@@ -147,6 +149,7 @@ extension ProfileHeaderCell {
     }
     
     // MARK: - Delegate Methods
+    // =========================================================================
     
     func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")

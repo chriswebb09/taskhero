@@ -20,6 +20,7 @@ final class SettingsViewController: UITableViewController {
     var settingsViewModel:SettingsCellViewModel!
     
     // MARK: - Initialization
+    // =========================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
         settings = userSettings
@@ -44,6 +45,7 @@ final class SettingsViewController: UITableViewController {
 extension SettingsViewController {
     
     // MARK: UITableViewController Methods
+    // =========================================================================
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
@@ -70,6 +72,7 @@ extension SettingsViewController {
 extension SettingsViewController {
     
     // MARK: Public Methods
+    // =========================================================================
     func launchPopupView() {
         alertPop.popView.layer.opacity = 0
         alertPop.popView.isHidden = false
@@ -94,6 +97,7 @@ extension SettingsViewController {
     }
     
     // MARK: - Setup buttons
+    // =========================================================================
     // Hides notification popover
     func dismissNotificationButton() {
         notifyPop.popView.isHidden = true

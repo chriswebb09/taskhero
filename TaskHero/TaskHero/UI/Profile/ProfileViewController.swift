@@ -16,6 +16,7 @@ final class ProfileViewController: UITableViewController {
     let store = DataStore.sharedInstance
     
     // MARK: - Initialization
+    // =========================================================================
     
     override func viewDidLoad() {
         
@@ -52,6 +53,7 @@ final class ProfileViewController: UITableViewController {
 extension ProfileViewController {
     
     // MARK: UITableViewController Methods
+    // =========================================================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3

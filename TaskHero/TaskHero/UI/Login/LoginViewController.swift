@@ -18,6 +18,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     let loadingView = LoadingView()
     
     // MARK: Initialization Methods
+    // =========================================================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +103,7 @@ extension LoginViewController {
 extension LoginViewController {
     
     // MARK: - Textfield delegate methods
+    // =========================================================================
     // If email field selected cycles to password field / if password field cycles to emailfield.
     // Hides keyboard/ ends view editting
     // Sets textfield text color and border to selected color
