@@ -11,11 +11,11 @@ import XCTest
 
 class TaskHeroTests: XCTestCase {
     
-    var initVC: InitialViewController!
+    //var task:Task
     
     override func setUp() {
         super.setUp()
-        self.initVC = InitialViewController()
+        //self.initVC = InitialViewController()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -25,29 +25,25 @@ class TaskHeroTests: XCTestCase {
     }
     
     
-    
-    func testForInitView() {
-        self.initVC.viewDidLoad()
-        self.initVC.initView.layoutSubviews()
-        XCTAssertNotNil(self.initVC.initView)
-        self.initVC.initView.logoImageView = UIImageView(image: UIImage(named:"TaskHeroLogoNew2"))
-        XCTAssertNotNil(self.initVC.initView.logoImageView)
-        self.initVC.initView.loginButton = ButtonType.login(title: "login").newButton
-        XCTAssertNotNil(self.initVC.initView.loginButton)
-        dump(self)
+    func testTaskItem() {
+        let task = Task(taskID: "exampleID", taskName: "Example Task", taskDescription: "Task is an example", taskCreated: "01/2017", taskDue: "Example", taskCompleted: false , pointValue: 5)
+        XCTAssertEqual(task.taskName, "Example Task", "Task name should be equal to Example Task")
     }
     
     
-    
-    func testExample() {
-        
+    func testtaskList() {
+        let task = Task(taskID: "exampleID", taskName: "Example Task", taskDescription: "Task is an example", taskCreated: "01/2017", taskDue: "Example", taskCompleted: false , pointValue: 5)
+        let store = DataStore.sharedInstance
+        store.tasks = [task]
+        XCTAssertEqual(store.tasks.count, 1, "Should be one task in tasks")
     }
+    
     
     func testPerformanceExample() {
         
         // This is an example of a performance test case.
         self.measure {
-            self.initVC.initView.zoomAnimation()
+            //  self.initVC.initView.zoomAnimation()
             // Put the code you want to measure the time of here.
         }
     }
