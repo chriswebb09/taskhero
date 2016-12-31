@@ -46,7 +46,7 @@ extension SettingsViewController {
     func setupSegment() {
         let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]
         let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
-        segmentControl.layer.cornerRadius = Constants.Settings.segmentBorderRadius
+        segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
         segmentControl.tintColor = UIColor.black
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)

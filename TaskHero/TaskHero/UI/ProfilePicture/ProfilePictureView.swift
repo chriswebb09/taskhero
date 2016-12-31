@@ -22,8 +22,8 @@ class ProfilePictureView: UIView {
     fileprivate func setupConstraints() {
         addSubview(profilePicture)
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        profilePicture.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.ProfilePicture.profilePictureWidth).isActive = true
-        profilePicture.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.ProfilePicture.profilePictureHeight).isActive = true
+        profilePicture.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Dimension.width).isActive = true
+        profilePicture.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.height).isActive = true
     }
     
     func setupView() {

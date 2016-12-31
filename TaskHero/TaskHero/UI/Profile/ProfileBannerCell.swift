@@ -41,7 +41,7 @@ extension ProfileBannerCell {
         bannerImage.translatesAutoresizingMaskIntoConstraints = false
         bannerImage.center = contentView.center
         bannerImage.widthAnchor.constraint(equalTo:contentView.widthAnchor).isActive = true
-        bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.profileBannerHeight).isActive = true
+        bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.Profile.profileBannerHeight).isActive = true
     }
     
     public func configureCell() {
@@ -49,7 +49,7 @@ extension ProfileBannerCell {
         isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        backgroundColor = Constants.Profile.profileHeaderBannerColor
+        backgroundColor = Constants.Color.mainColor
     }
     
     // Prepare for reuse

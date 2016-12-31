@@ -39,7 +39,7 @@ extension TaskListViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        view.backgroundColor = Constants.TaskList.tableBackgroundColor
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
         initializeBackgroundUI()
         tableView.reloadData()
     }

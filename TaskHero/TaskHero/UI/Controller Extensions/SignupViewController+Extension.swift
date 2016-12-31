@@ -64,30 +64,30 @@ extension SignupViewController {
         if textField == self.signupView.usernameField {
             print(store.validUsernames)
             if store.validUsernames.contains(signupView.usernameField.text!) {
-                signupView.usernameField.layer.borderColor = Constants.Signup.textFieldBorderColor
+                signupView.usernameField.layer.borderColor = Constants.Signup.textFieldColor.cgColor
                 signupView.usernameField.textColor = Constants.Signup.textFieldColor
                 signupView.signupButton.isEnabled = false
             } else if !store.validUsernames.contains(signupView.usernameField.text!) {
-                signupView.usernameField.layer.borderColor = Constants.Signup.invalidAnimationColor
-                signupView.usernameField.textColor = Constants.Signup.invalidAnimationTextColor
+                signupView.usernameField.layer.borderColor = Constants.Color.mainColor.cgColor
+                signupView.usernameField.textColor = Constants.Color.mainColor
                 signupView.signupButton.isEnabled = true
             }
         }
         
         if textField == signupView.emailField {
             if !(textField.text?.isValidEmail())! {
-                signupView.emailField.layer.borderColor = Constants.Signup.animationColor
-                signupView.emailField.textColor = Constants.Signup.animationTextColor
+                signupView.emailField.layer.borderColor = Constants.Signup.animationColor.cgColor
+                signupView.emailField.textColor = Constants.Signup.animationColor
             }  else if (textField.text?.isValidEmail() )!{
                 signupView.emailField.textColor = UIColor.blue
             }
         }
         
         if (validateEmailInput(email: signupView.emailField.text!, confirm: signupView.confirmEmailField.text!)) && (emailInvalidated) {
-            signupView.emailField.layer.borderColor = Constants.Signup.invalidEmailColor
-            signupView.emailField.textColor = Constants.Signup.invalidTextColor
-            signupView.confirmEmailField.layer.borderColor = Constants.Signup.invalidEmailColor
-            signupView.confirmEmailField.textColor = Constants.Signup.invalidTextColor
+            signupView.emailField.layer.borderColor = Constants.Signup.invalidColor.cgColor
+            signupView.emailField.textColor = Constants.Signup.invalidColor
+            signupView.confirmEmailField.layer.borderColor = Constants.Signup.invalidColor.cgColor
+            signupView.confirmEmailField.textColor = Constants.Signup.invalidColor
             Constants().delay(0.9) { UIView.animate(withDuration: 0.5,
                                                     delay: 0.0,
                                                     options: UIViewAnimationOptions.curveEaseOut,
@@ -104,12 +104,12 @@ extension SignupViewController {
     }
     
     fileprivate func invalidateStyleFor(field:UITextField) {
-        field.layer.borderColor = Constants.Signup.invalidAnimationColor
-        field.textColor = Constants.Signup.invalidAnimationTextColor
+        field.layer.borderColor = Constants.Color.mainColor.cgColor
+        field.textColor = Constants.Color.mainColor
     }
    
     fileprivate func setAnimationStyleFor(field:UITextField) {
-        field.layer.borderColor = Constants.Signup.animationColor
-        field.textColor = Constants.Signup.animationTextColor
+        field.layer.borderColor = Constants.Signup.animationColor.cgColor
+        field.textColor = Constants.Signup.animationColor
     }
 }

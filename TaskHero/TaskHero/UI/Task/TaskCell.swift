@@ -37,7 +37,7 @@ final class TaskCell: UITableViewCell {
     
     let taskDescriptionLabel: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = Constants.TaskCell.descriptionLabelBackgroundColor
+        textView.backgroundColor = Constants.TaskCell.Description.descriptionLabelBackgroundColor
         textView.font = Constants.Font.fontMedium
         textView.textColor = UIColor.white
         return textView

@@ -33,7 +33,7 @@ extension HomeViewController: UINavigationControllerDelegate {
         super.viewDidLoad()
         picker.delegate = self
         edgesForExtendedLayout = []
-        view.backgroundColor = Constants.tableViewBackgroundColor
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
         setupView()
     }
     

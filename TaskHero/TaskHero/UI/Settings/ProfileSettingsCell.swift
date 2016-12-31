@@ -49,7 +49,7 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
         taskNameField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
-        taskNameField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        taskNameField.layer.borderWidth = Constants.Border.borderWidth
         taskNameField.isHidden = true
         return taskNameField
     }()
@@ -81,24 +81,24 @@ extension ProfileSettingsCell {
     func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Settings.profileSettingsLabelHeight).isActive = true
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileSettingsLabelWidth).isActive = true
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Dimension.height).isActive = true
+        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileSettingsLabelWidth).isActive = true
     }
     
     fileprivate func setupConstraints() {
         configureView(view: profileSettingLabel)
-        profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Settings.profileSettingsLeftOffset).isActive = true
+        profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Dimension.settingsOffset).isActive = true
         profileSettingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Settings.profileSettingsLabelHeight).isActive = true
-        button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.profileViewHeightAnchor).isActive = true
+        button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.height).isActive = true
+        button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
         button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         configureView(view: profileSettingField)
-        profileSettingField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Settings.profileSettingsFieldCenterYAnchor).isActive = true
+        profileSettingField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Dimension.settingsOffset).isActive = true
         profileSettingField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     

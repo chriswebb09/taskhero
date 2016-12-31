@@ -20,7 +20,7 @@ class AlertView: UIView {
         var button = ButtonType.system(title: "Cancel", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
-        uiElement.backgroundColor = Constants.Alert.cancelButtonColor
+        uiElement.backgroundColor = Constants.Alert.CancelButton.cancelButtonColor
         return uiElement
     }()
     
@@ -28,7 +28,7 @@ class AlertView: UIView {
         var button = ButtonType.system(title: "Add", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
-        uiElement.backgroundColor = Constants.Login.loginButtonColor
+        uiElement.backgroundColor = Constants.Color.mainColor
         return uiElement
     }()
     
@@ -59,7 +59,7 @@ class AlertView: UIView {
     
     func configureConstaints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Alert.headerBannerHeight).isActive = true
+        label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         label.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
     }
     
@@ -74,7 +74,7 @@ class AlertView: UIView {
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         headBanner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         headBanner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Alert.headerBannerHeight).isActive = true
+        headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         headBanner.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         alertLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         alertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -83,12 +83,12 @@ class AlertView: UIView {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         cancelButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        cancelButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Alert.cancelButtonHeight).isActive = true
-        cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Constants.Alert.cancelButtonWidth).isActive = true
+        cancelButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
+        cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Constants.Alert.CancelButton.cancelButtonWidth).isActive = true
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         doneButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Alert.cancelButtonHeight).isActive = true
-        doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Constants.Alert.cancelButtonWidth).isActive = true
+        doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
+        doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Constants.Alert.CancelButton.cancelButtonWidth).isActive = true
     }
 }

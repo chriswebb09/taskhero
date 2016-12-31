@@ -37,7 +37,7 @@ extension SettingsCell {
         contentView.backgroundColor = UIColor.settingsBackground()
         contentView.addSubview(settingLabel)
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
-        settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Settings.labelHeight).isActive = true
+        settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Dimension.height).isActive = true
         settingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         settingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         settingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true

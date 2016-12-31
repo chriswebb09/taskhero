@@ -58,7 +58,7 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     var profilePicture: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.layer.borderWidth = Constants.Settings.searchButtonWidth
+        imageView.layer.borderWidth = Constants.Dimension.mainWidth
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -87,7 +87,7 @@ extension ProfileHeaderCell {
     
     private func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Profile.profileHeaderLabelRightOffset).isActive = true
+        label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
     
     fileprivate func setupConstraints() {
@@ -105,20 +105,20 @@ extension ProfileHeaderCell {
         configureConstraints(label: usernameLabel)
         contentView.addSubview(profilePicture)
         
-        usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
-        usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Profile.profileHeaderLabelWidth).isActive = true
+        usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
+        usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: profilePicture.topAnchor).isActive  = true
         levelLabel.bottomAnchor.constraint(equalTo: profilePicture.bottomAnchor).isActive = true
-        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
-        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Profile.profileHeaderLabelWidth).isActive = true
-        joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
-        joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Profile.profileHeaderLabelWidth).isActive = true
-        joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Profile.bottomOffset).isActive = true
+        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
+        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
+        joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
+        joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
+        joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.mainOffset).isActive = true
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        profilePicture.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Profile.profilePictureHeight).isActive = true
-        profilePicture.widthAnchor.constraint(equalToConstant: Constants.Profile.profilePictureWidth).isActive = true
-        profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Profile.topOffset).isActive = true
-        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Profile.leftOffset).isActive = true
+        profilePicture.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight).isActive = true
+        profilePicture.widthAnchor.constraint(equalToConstant: Constants.Profile.ProfilePicture.profilePictureWidth).isActive = true
+        profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Profile.Offset.topOffset).isActive = true
+        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
     }
     
     public func configureCell(autoHeight: UIViewAutoresizing) {
@@ -127,10 +127,10 @@ extension ProfileHeaderCell {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         emailLabel.text = profileHeaderCellModel.emailLabel
-        joinDateLabel.isHidden = true
+        joinDateLabel.isHidden = profileHeaderCellModel.joinDateIsHidden
         usernameLabel.text = profileHeaderCellModel.usernameLabel
-        levelLabel.text = "Level: \(profileHeaderCellModel.levelLabel)"
-        joinDateLabel.text = "Joined: \(profileHeaderCellModel.joinDate)"
+        levelLabel.text = profileHeaderCellModel.levelLabel
+        joinDateLabel.text = profileHeaderCellModel.joinDate
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
         profilePicture.addGestureRecognizer(tap)

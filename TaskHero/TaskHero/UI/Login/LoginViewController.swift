@@ -136,9 +136,9 @@ extension LoginViewController {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         DispatchQueue.main.async {
-            textField.textColor = Constants.Login.loginFieldEditColor
+            textField.textColor = Constants.Color.backgroundColor
             textField.font = Constants.signupFieldFont
-            textField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
+            textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
             textField.layer.borderWidth = 1.1
         }
     }
@@ -146,7 +146,7 @@ extension LoginViewController {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderWidth = 1
         textField.textColor = UIColor.lightGray
-        textField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
+        textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
         checkForValidEmailInput()
     }
     
@@ -155,15 +155,15 @@ extension LoginViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.loginView.emailField.layer.borderWidth = 1.2
                 self.loginView.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
-                self.loginView.emailField.textColor =  Constants.Login.loginFieldEditColor
+                self.loginView.emailField.textColor =  Constants.Color.backgroundColor
             } }, completion: { _ in
                 let when = DispatchTime.now() + 0.32
                 DispatchQueue.main.asyncAfter(deadline: when) {
                     self.loginView.emailField.layer.borderWidth = 1
                     self.loginView.emailField.font = Constants.signupFieldFont
                     self.loginView.emailField.textColor = UIColor.lightGray
-                    self.loginView.emailField.layer.borderColor = Constants.Login.loginFieldEditBorderColor
-                    self.loginView.emailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+                    self.loginView.emailField.layer.borderColor = Constants.Color.backgroundColor.cgColor
+                    self.loginView.emailField.layer.borderWidth = Constants.Border.borderWidth
                 }
         })
     }

@@ -41,7 +41,7 @@ class SignupView: UIView {
     
     lazy var signupButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = Constants.Login.loginButtonColor
+        button.backgroundColor = Constants.Color.mainColor
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = Constants.Font.fontNormal
@@ -61,8 +61,8 @@ extension SignupView {
     private func configureField(field: UIView) {
         addSubview(field)
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        field.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
+        field.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Dimension.width).isActive = true
+        field.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
         field.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
@@ -70,15 +70,15 @@ extension SignupView {
     
     private func setupConstraints() {
         configureField(field: signupViewLabel)
-        signupViewLabel.topAnchor.constraint(equalTo: topAnchor , constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
+        signupViewLabel.topAnchor.constraint(equalTo: topAnchor , constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         configureField(field: usernameField)
-        usernameField.topAnchor.constraint(equalTo:signupViewLabel.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
+        usernameField.topAnchor.constraint(equalTo:signupViewLabel.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         configureField(field: emailField)
-        emailField.topAnchor.constraint(equalTo:usernameField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
+        emailField.topAnchor.constraint(equalTo:usernameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         configureField(field: confirmEmailField)
-        confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
+        confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         configureField(field: passwordField)
-        passwordField.topAnchor.constraint(equalTo:confirmEmailField.bottomAnchor, constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
+        passwordField.topAnchor.constraint(equalTo:confirmEmailField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         passwordField.isSecureTextEntry = true
         addSubview(signupButton)
         configureField(field: signupButton)

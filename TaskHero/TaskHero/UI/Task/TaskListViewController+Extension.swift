@@ -21,8 +21,8 @@ extension TaskListViewController {
             addTasksLabel.center = self.view.center
             addTasksLabel.text = "No tasks have been added yet."
             addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
-            addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Profile.profileHeaderLabelHeight).isActive = true
-            addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+            addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
+            addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.Dimension.width).isActive = true
             addTasksLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         } else if store.tasks.count < 1 {
@@ -64,9 +64,9 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     // =========================================================================
     
     func setupNavItems() {
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
+        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium?.fontName ?? "Helvetic"], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
 }

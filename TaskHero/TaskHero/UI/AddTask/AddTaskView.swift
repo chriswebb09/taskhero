@@ -29,25 +29,25 @@ class AddTaskView: UIView {
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
         taskNameField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
-        taskNameField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        taskNameField.layer.borderWidth = Constants.Border.borderWidth
         return taskNameField
     }()
     
     var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
-        taskDescriptionBox.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
         taskDescriptionBox.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         taskDescriptionBox.font = Constants.signupFieldFont
-        taskDescriptionBox.contentInset = Constants.TaskCell.boxInset
+        taskDescriptionBox.contentInset = Constants.TaskCell.Description.boxInset
         return taskDescriptionBox
     }()
     
     var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
-        addTaskButton.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
-        addTaskButton.backgroundColor = Constants.AddTask.buttonBackgroundColor
+        addTaskButton.backgroundColor = Constants.Color.buttonColor
         addTaskButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         addTaskButton.setTitle("Add Task", for: .normal)
         addTaskButton.setTitleColor(UIColor.white, for: .normal)
@@ -72,8 +72,8 @@ extension AddTaskView {
     func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.TaskList.taskListNameWidth).isActive = true
-        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
+        view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
+        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
@@ -86,15 +86,15 @@ extension AddTaskView {
         
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.TaskList.taskListNameWidth).isActive = true
+        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
         taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.AddTask.boxHeight).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.AddTask.boxTopOffset).isActive = true
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         
         addSubview(addTaskButton)
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.AddTask.boxWidth).isActive = true
-        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.AddTask.buttonHeight).isActive = true
+        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
+        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
     }

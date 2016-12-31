@@ -10,11 +10,11 @@ import UIKit
 
 extension UITextView {
     func setupStyledTextView() -> UITextView {
-        self.layer.borderWidth = Constants.Settings.searchButtonWidth
+        self.layer.borderWidth = Constants.Dimension.mainWidth
         self.layer.borderColor = UIColor.lightGray.cgColor
         self.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         self.font = Constants.signupFieldFont
-        self.contentInset = Constants.TaskCell.boxInset
+        self.contentInset = Constants.TaskCell.Description.boxInset
         return self
     }
 }

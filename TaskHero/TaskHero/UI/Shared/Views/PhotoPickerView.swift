@@ -24,7 +24,7 @@ class PhotoPickerView: BasePopView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
-        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Login.loginFieldWidth).isActive = true
+        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Dimension.width).isActive = true
         button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
     }
 }

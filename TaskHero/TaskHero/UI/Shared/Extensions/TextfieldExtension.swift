@@ -25,7 +25,7 @@ class TextFieldExtension: UITextField {
         returnTextField.placeholder = placeholder
         returnTextField.font = Constants.signupFieldFont
         returnTextField.layer.borderColor = Constants.signupFieldColor
-        returnTextField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        returnTextField.layer.borderWidth = Constants.Border.borderWidth
         returnTextField.layer.cornerRadius = 3
         returnTextField.keyboardType = .default
         return returnTextField
@@ -37,7 +37,7 @@ class TextFieldExtension: UITextField {
         confirmEmailField.font = Constants.signupFieldFont
         confirmEmailField.layer.borderColor = Constants.signupFieldColor
         confirmEmailField.layer.cornerRadius = 3
-        confirmEmailField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        confirmEmailField.layer.borderWidth = Constants.Border.borderWidth
         confirmEmailField.keyboardType = .emailAddress
         return confirmEmailField
     }
@@ -48,7 +48,7 @@ class TextFieldExtension: UITextField {
         passwordField.font = Constants.signupFieldFont
         passwordField.layer.borderColor = Constants.signupFieldColor
         passwordField.layer.cornerRadius = 3
-        passwordField.layer.borderWidth = Constants.Settings.profileSearchButtonBorderWidth
+        passwordField.layer.borderWidth = Constants.Border.borderWidth
         passwordField.isSecureTextEntry = true
         return passwordField
     }

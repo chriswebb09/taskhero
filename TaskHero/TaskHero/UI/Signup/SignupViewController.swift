@@ -75,7 +75,7 @@ extension SignupViewController {
                     print(error ?? "unable to get specific error")
                     return
                 }
-                guard let uid = user?.uid else {
+                guard (user?.uid) != nil else {
                     loadingView.hideActivityIndicator(viewController: self)
                     return
                 }

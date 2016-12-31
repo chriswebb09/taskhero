@@ -32,16 +32,24 @@ struct ProfileHeaderCellModel {
     internal var profilePicture: String
     internal var levelLabel: String
     internal var joinDate: String
+    internal var joinDateIsHidden: Bool
     
     // MARK: - Initialization
     // =========================================================================
     
     init() {
-        self.user = self.store.currentUser
+        self.user = self.store.currentUser!
         self.emailLabel = (self.user?.email)!
         self.usernameLabel = (self.user?.username)!
         self.profilePicture = (self.user?.profilePicture!)!
-        self.levelLabel = (self.user?.level)!
-        self.joinDate = (self.user?.joinDate)!
+        self.levelLabel = "Level: \((self.user?.level)!)"
+        self.joinDate = "Joined: \((self.user?.joinDate)!)"
+        self.joinDateIsHidden = true 
     }
 }
+
+//emailLabel.text = profileHeaderCellModel.emailLabel
+//joinDateLabel.isHidden = true
+//usernameLabel.text = profileHeaderCellModel.usernameLabel
+//levelLabel.text = "Level: \(profileHeaderCellModel.levelLabel)"
+// joinDateLabel.text = "Joined: \(profileHeaderCellModel.joinDate)"

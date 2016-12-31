@@ -28,7 +28,7 @@ final class InitView: UIView {
     }()
     
     lazy var signupButton: UIButton = {
-        let button = ButtonType.system(title:"Register Now", color:Constants.Init.signupButtonColor)
+        let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor)
         var ui = button.newButton
         ui.isHidden = true
         return ui

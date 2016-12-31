@@ -53,7 +53,7 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
         profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.profileViewHeightAnchor).isActive = true
+        profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true

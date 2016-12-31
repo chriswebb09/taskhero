@@ -19,7 +19,7 @@ import UIKit
 final class ProfileDataCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileDataCell"
-    static let dataCellRadius = Constants.Settings.profileDataRadius
+    static let dataCellRadius = Constants.Settings.Profile.profileDataRadius
     
     // MARK: - UI Elements and cellModel
     // =========================================================================
@@ -81,7 +81,7 @@ extension ProfileDataCell {
         contentView.addSubview(levelLabel)
         configureConstraints(label: levelLabel)
         
-        levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Settings.levelLabelLeftOffset).isActive = true
+        levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
@@ -100,7 +100,7 @@ extension ProfileDataCell {
         configureConstraints(label: tasksCompletedLabel)
         
         tasksCompletedLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.Settings.profileDataRightOffset).isActive = true
+        tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.Settings.Profile.profileDataRightOffset).isActive = true
         tasksCompletedLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
     }

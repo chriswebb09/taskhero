@@ -29,15 +29,15 @@ final class FriendsSettingsView: UIView {
         searchField.font = Constants.signupFieldFont
         searchField.layer.borderColor = UIColor.lightGray.cgColor
         searchField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
-        searchField.layer.borderWidth = Constants.Settings.searchFieldBorderWidth
+        searchField.layer.borderWidth = Constants.Border.borderWidth
         return searchField
     }()
     
     var searchButton: UIButton = {
         var searchButton = UIButton()
-        searchButton.layer.borderWidth = Constants.Settings.searchFieldBorderWidth
+        searchButton.layer.borderWidth = Constants.Border.borderWidth
         searchButton.layer.borderColor = UIColor.white.cgColor
-        searchButton.backgroundColor = Constants.Settings.searchButtonColor
+        searchButton.backgroundColor = Constants.Color.buttonColor
         searchButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         searchButton.setTitle("Search", for: .normal)
         searchButton.setTitleColor(UIColor.white, for: .normal)
@@ -63,18 +63,18 @@ extension FriendsSettingsView {
     private func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.friendsHeaderLabelHeight).isActive = true
-        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
+        view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.FriendsSetting.friendsHeaderLabelHeight).isActive = true
+        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     func setupConstraints() {
         configureView(view: friendsHeaderLabel)
-        friendsHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Settings.friendsHeaderLabelTopOffset).isActive = true
+        friendsHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Settings.FriendsSetting.friendsHeaderLabelTopOffset).isActive = true
         configureView(view: searchField)
-        searchField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Settings.searchFieldLeadOffset).isActive = true
-        searchField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * Constants.Settings.friendSettingCenterYOffset).isActive = true
+        searchField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Dimension.mainOffset).isActive = true
+        searchField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * Constants.Settings.centerYOffset).isActive = true
         configureView(view: searchButton)
-        searchButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * Constants.Settings.searchButtonCenterYOffset).isActive = true
+        searchButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * Constants.Settings.centerYOffset).isActive = true
     }
 }

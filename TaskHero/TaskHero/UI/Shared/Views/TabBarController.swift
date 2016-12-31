@@ -100,7 +100,7 @@ extension TabBarController {
     
     func configureNav(nav:UINavigationBar) {
         nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
-        nav.barTintColor = Constants.Tabbar.navbarBarTintColor
+        nav.barTintColor = Constants.Tabbar.tint
         nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
     }
     
@@ -118,8 +118,8 @@ extension TabBarController {
         
         tabBar.frame = tabFrame
         tabBar.isTranslucent = true
-        tabBar.tintColor = Constants.Tabbar.tabbarTintColor
-        tabBar.barTintColor = Constants.Tabbar.tabbarColor
+        tabBar.tintColor = Constants.Tabbar.tint
+        tabBar.barTintColor = Constants.Color.backgroundColor
     }
     
     func handleLogout() {

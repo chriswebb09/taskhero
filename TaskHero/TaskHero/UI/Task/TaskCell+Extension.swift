@@ -79,7 +79,7 @@ extension TaskCell {
         label.isScrollEnabled = false
         label.isEditable = false
         label.isUserInteractionEnabled = false
-        label.layer.cornerRadius = Constants.TaskCell.cornerRadius
+        label.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
     }
     
     func configureView(view:UIView) {
@@ -92,30 +92,30 @@ extension TaskCell {
     func configureDesription(view:UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.descriptionBoxHeight).isActive = true
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.descriptionLabelWidth).isActive = true
-        view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.TaskCell.descriptionsLabelBottomOffset).isActive = true
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.Description.descriptionBoxHeight).isActive = true
+        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.Description.descriptionLabelWidth).isActive = true
+        view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.bottomOffset).isActive = true
         view.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
     
     func configureElements(view:UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.saveButtonRightOffset).isActive = true
-        view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.saveButtonTopOffset).isActive = true
-        view.heightAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonHeight).isActive = true
+        view.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.negativeOffset).isActive = true
+        view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.mainOffset).isActive = true
+        view.heightAnchor.constraint(equalToConstant: Constants.TaskCell.mainHeight).isActive = true
     }
     
     func setupConstraints() {
         configureView(view: taskNameLabel)
-        taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.TaskCell.nameLabelTopOffset).isActive = true
+        taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
         configureView(view: taskDueLabel)
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
         configureDesription(view: taskDescriptionLabel)
         configureElements(view: taskCompletedView)
-        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.completedHeight).isActive = true
+        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.mainHeight).isActive = true
         configureElements(view: saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
         configureDesription(view: taskDescriptionBox)
@@ -125,9 +125,9 @@ extension TaskCell {
         let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
         cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
         cellView.layer.masksToBounds = false
-        cellView.layer.cornerRadius = Constants.TaskCell.cornerRadius
-        cellView.layer.shadowOffset = Constants.TaskCell.shadowOffset
-        cellView.layer.shadowOpacity = Constants.TaskCell.styledShadowOpacity
+        cellView.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
+        cellView.layer.shadowOffset = Constants.TaskCell.Shadow.shadowOffset
+        cellView.layer.shadowOpacity = Constants.TaskCell.Shadow.styledShadowOpacity
         contentView.addSubview(cellView)
         contentView.sendSubview(toBack: cellView)
     }
