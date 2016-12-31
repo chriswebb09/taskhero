@@ -20,8 +20,9 @@ struct Constants {
     struct Dimension {
         static let mainWidth:CGFloat = 0.4
         static let mainOffset:CGFloat = 30
+        //let
         //static let buttonHeight:CGFloat = 0.07
-        static let buttonHeight = CGFloat(0.02)
+        static let buttonHeight = CGFloat(0.009)
         static let topOffset:CGFloat = 10
         static let bottomOffset:CGFloat = -10
         static let settingsOffset:CGFloat = 0.05
@@ -51,13 +52,26 @@ struct Constants {
         static let navbarAttributedText = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName:Constants.Font.bolderFontNormal]
     }
     
+    struct NavBar {
+        static let bottomHeight:CGFloat =  1.0
+        
+    }
+    
     struct Login {
-        //static let mainHeight = CGFloat(0.07)
-        static let signupFieldHeight = CGFloat(0.07)
-       // static let loginButtonWidth = CGFloat(0.6)
+        static let loginSuccessColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+        static let loginFieldHeight = CGFloat(0.07)
+        static let loginFieldEditColor: UIColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
+        static let loginFieldEditBorderColor: CGColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
+        static let loginFieldWidth = CGFloat(0.85)
+        static let loginButtonWidth = CGFloat(0.6)
+        static let loginButtonColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
         static let loginLogoTopSpacing:CGFloat =  0.045
+        static let loginElementSpacing:CGFloat =  0.07
         static let loginSignupElementSpacing:CGFloat =  0.035
         static let dividerHeight: CGFloat = 0.02
+        static let dividerWidth: CGFloat = 0.9
+        static let registerLabelColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
+        static let signupButtonColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
     }
     
     struct Profile {
