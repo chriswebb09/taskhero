@@ -33,7 +33,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         self.store.firebaseAPI.fetchValidUsernames()
     }
     
-    func setupDelegate() {
+    private func setupDelegate() {
         signupView.layoutSubviews()
         signupView.emailField.delegate = self
         signupView.confirmEmailField.delegate = self
@@ -66,6 +66,7 @@ extension SignupViewController {
             print("Form is not valid")
             return
         }
+        
         if validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!) {
             loadingView.showActivityIndicator(viewController: self)
             FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
@@ -79,36 +80,13 @@ extension SignupViewController {
                     return
                 }
                 
-                // Successfully authenticated user
-                
-                let ref = FIRDatabase.database().reference()
                 let newUser = self.createUser(username: username, email: email)
-                let usersReference = ref.child("Users").child(uid)
-                let usernamesReference = ref.child("Usernames")
-                let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
                 
-                usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in
-                    if err != nil {
-                        loadingView.hideActivityIndicator(viewController: self)
-                        print(err ?? "unable to get specific error i")
-                        return
-                    }
-                    print("sucessfully saved username email reference")
-                }
-                
-                let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints": newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
-                
-                usersReference.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
-                    if err != nil {
-                        loadingView.hideActivityIndicator(viewController: self)
-                        print(err ?? "unable to get specific error")
-                        return
-                    }
-                    print("Saved user successfully into Firebase db")
-                    self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
-                    self.store.currentUser = newUser
-                    self.setupTabBar()
-                }
+                self.store.firebaseAPI.registerUser(user: newUser)
+                self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+                self.store.firebaseAPI.setupRefs()
+                self.store.currentUser = newUser
+                self.setupTabBar()
             }
         } else {
             let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
@@ -119,13 +97,13 @@ extension SignupViewController {
         }
     }
     
-    func setupTabBar() {
+    fileprivate func setupTabBar() {
         let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
     }
     
-    func createUser(username:String, email:String) -> User {
+    private func createUser(username:String, email:String) -> User {
         let newUser = User()
         newUser.username = username
         newUser.email = email

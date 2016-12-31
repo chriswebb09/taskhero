@@ -8,9 +8,9 @@
 
 import UIKit
 
-class InitialViewController: UIViewController {
+final class InitialViewController: UIViewController {
     
-    let initView = InitView()
+    private let initView = InitView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

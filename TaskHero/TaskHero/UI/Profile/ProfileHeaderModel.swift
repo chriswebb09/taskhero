@@ -17,7 +17,9 @@ protocol ProfileHeaderModel {
     var emailLabel: String { get }
 }
 
-class ProfileHeaderCellViewModel: ProfileHeaderModel {
+//class ProfileHeaderCellViewModel: ProfileHeaderModel {
+
+struct ProfileHeaderCellModel {
     
     // MARK: - Internal Variables
     // =========================================================================

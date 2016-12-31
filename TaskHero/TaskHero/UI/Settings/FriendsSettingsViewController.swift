@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendsSettingsViewController: UIViewController {
+final class FriendsSettingsViewController: UIViewController {
     
     let friendsSettingsView = FriendsSettingsView()
     let alertPop = AlertPopover()

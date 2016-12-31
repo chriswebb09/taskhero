@@ -8,6 +8,14 @@
 
 import UIKit
 
+//protocol IdentifiableViewModel {
+//    var identifier: String { get }
+//}
+//
+//extension ViewModel: IdentifiableViewModel {
+//    var identifier: String { return "CellIdentifier" }
+//}
+
 final class ProfileDataCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileDataCell"
@@ -50,7 +58,7 @@ extension ProfileDataCell {
     // MARK: - Configuration
     // =========================================================================
     
-    func configureLabels(label:UILabel) {
+    fileprivate func configureLabels(label:UILabel) {
         label.layer.cornerRadius = ProfileDataCell.dataCellRadius
         label.layer.masksToBounds = true
         label.textAlignment = .center
@@ -97,7 +105,7 @@ extension ProfileDataCell {
         tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
     }
     
-    func configureCell() {
+    public func configureCell() {
         levelLabel.text = "Level: \(dataCellModel.level)"
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"
         tasksCompletedLabel.text = "Tasks Completed: \(String(describing: dataCellModel.tasksCompleted))"

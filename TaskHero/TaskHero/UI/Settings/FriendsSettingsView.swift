@@ -60,7 +60,7 @@ extension FriendsSettingsView {
     // MARK: - Configure
     // =========================================================================
     
-    func configureView(view:UIView) {
+    private func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.friendsHeaderLabelHeight).isActive = true

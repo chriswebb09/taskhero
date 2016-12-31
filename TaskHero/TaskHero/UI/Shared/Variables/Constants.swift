@@ -182,6 +182,26 @@ struct Constants {
         static let buttonTopOffset:CGFloat = 0.06
     }
     
+    struct API {
+        static let username = "Username"
+        static let email = "Email"
+        static let firstName = "FirstName"
+        static let lastName = "LastName"
+        static let level = "Level"
+        static let joinDate = "JoinDate"
+        static let profilePicture = "ProfilePicture"
+        static let tasksCompleted = "TasksCompleted"
+        static let experiencePoints = "ExperiencePoints"
+        
+        struct Task {
+            static let taskName = "TaskName"
+            static let taskDescription = "TaskDescription"
+            static let taskCreated = "TaskCreated"
+            static let taskDue = "TaskDue"
+            static let taskCompleted = "TaskCompleted"
+        }
+    }
+    
     static let signupFieldHeight = CGFloat(0.07)
     static let signupFieldWidth = CGFloat(0.94)
     static let signupFieldFont = UIFont(name: "HelveticaNeue-Thin" , size: 16)

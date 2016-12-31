@@ -12,7 +12,7 @@ protocol TeamHeaderCellDelegate: class {
     func profilePictureTapped()
 }
 
-class TeamHeaderCell: UITableViewCell {
+final class TeamHeaderCell: UITableViewCell {
     
     static let cellIdentifier = "TeamHeaderCell"
     let usernameLabel = UILabel()
@@ -23,7 +23,7 @@ class TeamHeaderCell: UITableViewCell {
         setupCell()
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         contentView.addSubview(usernameLabel)
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
@@ -31,7 +31,7 @@ class TeamHeaderCell: UITableViewCell {
         usernameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
     }
     
-    func setupCell() {
+    private func setupCell() {
         usernameLabel.textColor = UIColor.black
         usernameLabel.font = UIFont(name: Constants.helveticaLight, size: 30)
         usernameLabel.sizeToFit()

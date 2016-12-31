@@ -73,7 +73,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
 
 
 extension TaskListViewController {
-
+    
     // MARK: - Button methods
     // =========================================================================
     

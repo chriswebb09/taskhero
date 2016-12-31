@@ -6,10 +6,13 @@
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
 //
-//import UIKit
-//
-//class SignupViewModel {
-//    var signup: String
-//    init(signu
-//    
-//}
+
+import UIKit
+
+class SignupViewModel {
+    var signupTitle: String
+    init(signup:String) {
+        self.signupTitle = signup
+    }
+    
+}

@@ -15,7 +15,7 @@ protocol ProfileDataCellModel {
     var tasksCompleted: Int { get }
 }
 
-class ProfileDataCellViewModel: ProfileDataCellModel {
+struct ProfileDataCellViewModel {
     
     // MARK: - Internal Variables
     // =========================================================================

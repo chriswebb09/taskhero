@@ -58,7 +58,7 @@ extension SignupView {
         setupConstraints()
     }
     
-    func configureField(field: UIView) {
+    private func configureField(field: UIView) {
         addSubview(field)
         field.translatesAutoresizingMaskIntoConstraints = false
         field.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
@@ -68,7 +68,7 @@ extension SignupView {
     
     // sets up constraints on signupview
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         configureField(field: signupViewLabel)
         signupViewLabel.topAnchor.constraint(equalTo: topAnchor , constant: bounds.height * Constants.Signup.entryFieldTopOffset).isActive = true
         configureField(field: usernameField)

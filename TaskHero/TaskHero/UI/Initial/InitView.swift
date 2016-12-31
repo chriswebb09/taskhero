@@ -10,7 +10,7 @@ import UIKit
 
 typealias completion = () -> Void
 
-class InitView: UIView {
+final class InitView: UIView {
     
     var animationDuration: Double = 0.8
     
@@ -48,7 +48,7 @@ class InitView: UIView {
         setupConstraints()
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true

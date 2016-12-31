@@ -11,11 +11,11 @@ import Firebase
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    let loginView = LoginView()
+    fileprivate let loginView = LoginView()
     
     let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
-    let loadingView = LoadingView()
+    fileprivate let loadingView = LoadingView()
     
     // MARK: Initialization Methods
     // =========================================================================
@@ -77,7 +77,10 @@ extension LoginViewController {
             })
             self.manager.setLoggedInKey(userState: true)
             self.manager.hasLoggedIn()
-            self.setupTabBar()
+            DispatchQueue.main.async {
+                self.setupTabBar()
+            }
+            
         }
     }
     

@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 final class HomeViewController: UITableViewController {
     
     // MARK: Internal Properties
@@ -19,7 +21,7 @@ final class HomeViewController: UITableViewController {
     var profilePic: UIImage? = nil
     var tapped: Bool = false
     var buttonTapped: Bool = false
-    var taskViewModel: TaskCellViewModel!
+    fileprivate var taskViewModel: TaskCellViewModel!
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
@@ -35,7 +37,7 @@ extension HomeViewController: UINavigationControllerDelegate {
         setupView()
     }
     
-    func setupView() {
+    private func setupView() {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         tableView.setupHelper()
@@ -48,7 +50,6 @@ extension HomeViewController: UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        store.setupStore()
         getTasks()
     }
     
@@ -61,7 +62,8 @@ extension HomeViewController: UINavigationControllerDelegate {
         }
     }
     
-    func getTasks() {
+    private func getTasks() {
+        self.store.setupStore()
         self.store.firebaseAPI.fetchTasks() { task in
             self.store.tasks.append(task)
             self.store.currentUser.tasks?.append(task)

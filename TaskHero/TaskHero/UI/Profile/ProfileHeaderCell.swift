@@ -12,17 +12,14 @@ protocol ProfileHeaderCellDelegate: class {
     func profilePictureTapped()
 }
 
-class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
+final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
     static let cellIdentifier = "ProfileHeaderCell"
     
     // MARK: - Internal Variables
     // =========================================================================
     
-    var profileHeaderCellModel : ProfileHeaderCellViewModel = {
-        var model = ProfileHeaderCellViewModel()
-        return model
-    }()
+    var profileHeaderCellModel = ProfileHeaderCellModel()
     
     var delegate: ProfileHeaderCellDelegate?
     
@@ -82,13 +79,13 @@ extension ProfileHeaderCell {
     // MARK: - Configuring Cell
     // =========================================================================
     
-    func configureLabel(label:UILabel) {
+    private func configureLabel(label:UILabel) {
         label.textColor = UIColor.black
         label.textAlignment = .right
         label.sizeToFit()
     }
     
-    func configureConstraints(label:UILabel) {
+    private func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Profile.profileHeaderLabelRightOffset).isActive = true
     }
@@ -124,7 +121,7 @@ extension ProfileHeaderCell {
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Profile.leftOffset).isActive = true
     }
     
-    func configureCell(autoHeight: UIViewAutoresizing) {
+    public func configureCell(autoHeight: UIViewAutoresizing) {
         contentView.autoresizingMask = autoHeight
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         layoutMargins = UIEdgeInsets.zero

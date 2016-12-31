@@ -89,7 +89,7 @@ extension LoginView {
     // MARK: - Configuring UI
     // =========================================================================
     
-    func configure(view:UIView) {
+    private func configure(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true

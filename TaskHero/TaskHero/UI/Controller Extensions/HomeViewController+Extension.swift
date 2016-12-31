@@ -46,20 +46,26 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     func tapEdit(atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        tapped = !tapped
-        tapCell.toggled = tapped
+        //tapped = !tapped
+       // tapCell.toggled = tapped
         tapCell.taskDescriptionBox.becomeFirstResponder()
         tapCell.saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
-        taskCell(didToggleEditState: buttonTapped)
+        updateDescription(cell: tapCell, for: atIndex.row)
+        tapCell.taskDescriptionBox.resignFirstResponder()
+        //taskCell(didToggleEditState: buttonTapped)
         //taskCell(_taskCell: tapCell, didToggleEditState: buttonTapped)
-        if tapCell.toggled == true {
-            updateDescription(cell: tapCell, for: atIndex.row)
-            tapCell.taskDescriptionBox.resignFirstResponder()
-        }
+        //tapCell.taskCell(didToggleEditState: tapCell.toggled)
+//        if tapCell.toggled == true {
+//            updateDescription(cell: tapCell, for: atIndex.row)
+//            tapCell.taskDescriptionBox.resignFirstResponder()
+//        } else {
+//            tapCell.taskDescriptionBox.text = self.store.currentUser.tasks?[atIndex.row].taskDescription
+//            tapCell.taskDescriptionBox.resignFirstResponder()
+//        }
+//    }
     }
     
-    
-    func updateDescription(cell:TaskCell, for row:Int) {
+    fileprivate func updateDescription(cell:TaskCell, for row:Int) {
         var newTask = self.store.tasks[row - 1]
         cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
         newTask.taskDescription = cell.taskDescriptionBox.text
@@ -89,7 +95,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     }
     
     func toggleForButtonState(sender:UIButton) {
-        buttonTapped = true
+       // buttonTapped = true
+        print("inside toggleForButtonState")
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
@@ -158,7 +165,7 @@ extension HomeViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func selectImage() {
+    fileprivate func selectImage() {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)

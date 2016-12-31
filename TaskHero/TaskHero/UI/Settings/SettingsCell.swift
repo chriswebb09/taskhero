@@ -33,7 +33,7 @@ extension SettingsCell {
     // MARK: - Configure constraints
     // =========================================================================
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         contentView.backgroundColor = UIColor.settingsBackground()
         contentView.addSubview(settingLabel)
         settingLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -44,7 +44,7 @@ extension ProfileBannerCell {
         bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.profileBannerHeight).isActive = true
     }
     
-    func configureCell() {
+    public func configureCell() {
         layoutSubviews()
         isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
