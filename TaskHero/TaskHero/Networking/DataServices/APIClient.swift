@@ -13,8 +13,9 @@ typealias UserCompletion = (User) -> Void
 
 class APIClient {
     
+    // =====================================================
     // Firebase properties
-    // =========================================================================
+    // =====================================================
     
     let storage = FIRStorage.storage()
     var storageRef:FIRStorageReference!
@@ -27,8 +28,9 @@ class APIClient {
     var userRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
     
+    // =====================================================
     // App data properties
-    // =========================================================================
+    // =====================================================
     
     var validUsernames = [String]()
     var validUserData = [String]()
@@ -42,8 +44,9 @@ class APIClient {
         usernameRef = dbRef.child("Usernames")
     }
     
+    // =====================================================
     // Initial firebase database reference properties
-    // =========================================================================
+    // =====================================================
     
     func setupRefs() {
         let userID = FIRAuth.auth()?.currentUser?.uid
@@ -51,8 +54,9 @@ class APIClient {
         tasksRef = userRef.child("Tasks")
     }
     
+    // =====================================================
     // Fetch all valid usernames in database
-    // =========================================================================
+    // =====================================================
     
     func fetchValidUsernames() {
         validUsernames.removeAll()
@@ -62,8 +66,9 @@ class APIClient {
         })
     }
     
+    // ================================================================================
     // Fetch user profile data store in realtime database return data in completion
-    // =========================================================================
+    // ================================================================================
     
     func fetchUser(completion:@escaping UserCompletion) {
         let database = FIRDatabase.database()
@@ -96,8 +101,9 @@ class APIClient {
         })
     }
     
+    // ================================================================
     // Add new user profile to realtime database
-    // =========================================================================
+    // ================================================================
     
     func insertUser(user:User) {
         let uid = user.uid
@@ -115,9 +121,9 @@ class APIClient {
         usernameRef.updateChildValues([user.username:user.email])
     }
     
+    // =========================================================
     // Fetch user profile data from realtime database
-    // =========================================================================
-    
+    // =========================================================
     
     func fetchUserData() {
         let userID = FIRAuth.auth()?.currentUser?.uid
@@ -149,6 +155,7 @@ class APIClient {
         })
     }
     
+    // =========================================================================
     // Grab tasks from user profile in realtime user database
     // =========================================================================
     
@@ -178,8 +185,9 @@ class APIClient {
         })
     }
     
+    // =============================================================================================================
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
-    // =========================================================================
+    // =============================================================================================================
     
     func addTasks(task:Task) {
         tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskName)").setValue(task.taskName)
@@ -190,9 +198,9 @@ class APIClient {
         tasksRef.keepSynced(true)
     }
     
-    
+    // ========================================================================
     // Removes task from database - called on swift left in tableview
-    // =========================================================================
+    // ========================================================================
     
     func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
@@ -207,8 +215,9 @@ class APIClient {
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
     
+    // ==============================================
     // Updates user profile data in database
-    // =========================================================================
+    // ==============================================
     
     func updateUserProfile(userID: String, user:User) {
         let userData: NSDictionary = [Constants.API.User.email: user.email,
@@ -256,8 +265,6 @@ class APIClient {
             }
         }
         
-        // let values = ["Username": user.username, "Email": user.email, "FirstName": user.firstName!, "LastName": user.lastName!, "ProfilePicture": user.profilePicture!, "ExperiencePoints": user.experiencePoints, "Level": user.level, "JoinDate":user.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
-        
         let values: NSDictionary = [Constants.API.User.email: user.email,
                                     Constants.API.User.firstName: user.firstName ?? " ",
                                     Constants.API.User.lastName: user.lastName ?? " ",
@@ -270,7 +277,6 @@ class APIClient {
         
         userRef.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
             if err != nil {
-                
                 print(err ?? "unable to get specific error")
                 return
             }
