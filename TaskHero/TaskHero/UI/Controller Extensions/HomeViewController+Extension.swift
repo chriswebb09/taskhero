@@ -75,7 +75,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     }
     
     func toggleForButtonState(sender:UIButton) {
-       // buttonTapped = true
         print("inside toggleForButtonState")
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell

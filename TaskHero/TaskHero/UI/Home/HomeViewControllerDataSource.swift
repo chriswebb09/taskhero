@@ -34,7 +34,7 @@ extension HomeViewControllerDataSource {
         } else {
             var taskViewModel: TaskCellViewModel!
             let taskCell = TaskCell()
-            taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row])!)
+            taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row - 1])!)
             taskCell.configureCell(taskVM: taskViewModel)
             return taskCell
         }
