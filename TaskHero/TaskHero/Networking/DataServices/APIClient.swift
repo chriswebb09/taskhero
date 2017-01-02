@@ -73,34 +73,25 @@ class APIClient {
         database.reference().child("Users").child(uid!).observe(.value, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             let user = User()
-            if let snapshotName = snapshotValue[Constants.API.User.username] as? String {
+            if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
+                let snapshotEmail = snapshotValue[Constants.API.User.email] as? String,
+                let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String,
+                let snapshotLastName = snapshotValue[Constants.API.User.lastName] as? String,
+                let snapshotLevel = snapshotValue[Constants.API.User.level] as? String,
+                let snapshotJoinDate = snapshotValue[Constants.API.User.joinDate] as? String,
+                let snapshotProfilePicture = snapshotValue[Constants.API.User.profilePicture] as? String,
+                let snapshotTasksCompleted = snapshotValue[Constants.API.User.tasksCompleted] as? Int,
+                let snapshotExperiencePoints = snapshotValue[Constants.API.User.experiencePoints] as? Int {
                 user.username = snapshotName
-            }
-            if let snapshotEmail = snapshotValue[Constants.API.User.email] as? String {
                 user.email = snapshotEmail
-            }
-            if let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String {
                 user.firstName = snapshotFirstName
-            }
-            if let snapshotLastName = snapshotValue[Constants.API.User.lastName] as? String {
                 user.lastName = snapshotLastName
-            }
-            if let snapshotLevel = snapshotValue[Constants.API.User.level] as? String {
                 user.level = snapshotLevel
-            }
-            if let snapshotJoinDate = snapshotValue[Constants.API.User.joinDate] as? String {
                 user.joinDate = snapshotJoinDate
-            }
-            if let snapshotProfilePicture = snapshotValue[Constants.API.User.profilePicture] as? String {
                 user.profilePicture = snapshotProfilePicture
-            }
-            if let snapshotTasksCompleted = snapshotValue[Constants.API.User.tasksCompleted] as? Int {
                 user.numberOfTasksCompleted = snapshotTasksCompleted
-            }
-            if let snapshotExperiencePoints = snapshotValue[Constants.API.User.experiencePoints] as? Int {
                 user.experiencePoints = snapshotExperiencePoints
             }
-            
             completion(user)
         })
     }
@@ -134,32 +125,25 @@ class APIClient {
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         userRef.child(userID!).observe(.childAdded, with: { snapshot in
             self.userData[snapshot.key] = snapshot.value as AnyObject?
+            guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             let user = User()
-            if let snapshotName = self.userData[Constants.API.User.username] as? String {
+            if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
+                let snapshotEmail = snapshotValue[Constants.API.User.email] as? String,
+                let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String,
+                let snapshotLastName = snapshotValue[Constants.API.User.lastName] as? String,
+                let snapshotLevel = snapshotValue[Constants.API.User.level] as? String,
+                let snapshotJoinDate = snapshotValue[Constants.API.User.joinDate] as? String,
+                let snapshotProfilePicture = snapshotValue[Constants.API.User.profilePicture] as? String,
+                let snapshotTasksCompleted = snapshotValue[Constants.API.User.tasksCompleted] as? Int,
+                let snapshotExperiencePoints = snapshotValue[Constants.API.User.experiencePoints] as? Int {
                 user.username = snapshotName
-            }
-            if let snapshotEmail = self.userData[Constants.API.User.email] as? String {
                 user.email = snapshotEmail
-            }
-            if let snapshotFirstName = self.userData[Constants.API.User.firstName] as? String {
                 user.firstName = snapshotFirstName
-            }
-            if let snapshotLastName = self.userData[Constants.API.User.lastName] as? String {
                 user.lastName = snapshotLastName
-            }
-            if let snapshotLevel = self.userData[Constants.API.User.level] as? String {
                 user.level = snapshotLevel
-            }
-            if let snapshotJoinDate = self.userData[Constants.API.User.joinDate] as? String {
                 user.joinDate = snapshotJoinDate
-            }
-            if let snapshotProfilePicture = self.userData[Constants.API.User.profilePicture] as? String {
                 user.profilePicture = snapshotProfilePicture
-            }
-            if let snapshotTasksCompleted = self.userData[Constants.API.User.tasksCompleted] as? Int {
                 user.numberOfTasksCompleted = snapshotTasksCompleted
-            }
-            if let snapshotExperiencePoints = self.userData[Constants.API.User.experiencePoints] as? Int {
                 user.experiencePoints = snapshotExperiencePoints
             }
         })
@@ -272,17 +256,17 @@ class APIClient {
             }
         }
         
-       // let values = ["Username": user.username, "Email": user.email, "FirstName": user.firstName!, "LastName": user.lastName!, "ProfilePicture": user.profilePicture!, "ExperiencePoints": user.experiencePoints, "Level": user.level, "JoinDate":user.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
+        // let values = ["Username": user.username, "Email": user.email, "FirstName": user.firstName!, "LastName": user.lastName!, "ProfilePicture": user.profilePicture!, "ExperiencePoints": user.experiencePoints, "Level": user.level, "JoinDate":user.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
         
         let values: NSDictionary = [Constants.API.User.email: user.email,
-                                                  Constants.API.User.firstName: user.firstName ?? " ",
-                                                  Constants.API.User.lastName: user.lastName ?? " ",
-                                                  Constants.API.User.profilePicture: user.profilePicture ?? " ",
-                                                  Constants.API.User.experiencePoints: user.experiencePoints ,
-                                                  Constants.API.User.level: user.level,
-                                                  Constants.API.User.joinDate: user.joinDate,
-                                                  Constants.API.User.username: user.username,
-                                                  Constants.API.User.tasksCompleted: user.numberOfTasksCompleted]
+                                    Constants.API.User.firstName: user.firstName ?? " ",
+                                    Constants.API.User.lastName: user.lastName ?? " ",
+                                    Constants.API.User.profilePicture: user.profilePicture ?? " ",
+                                    Constants.API.User.experiencePoints: user.experiencePoints ,
+                                    Constants.API.User.level: user.level,
+                                    Constants.API.User.joinDate: user.joinDate,
+                                    Constants.API.User.username: user.username,
+                                    Constants.API.User.tasksCompleted: user.numberOfTasksCompleted]
         
         userRef.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
             if err != nil {
@@ -292,33 +276,4 @@ class APIClient {
             }
         }
     }
-            //
-            //    let ref = FIRDatabase.database().reference()
-            //    let newUser = self.createUser(username: username, email: email)
-            //    let usersReference = ref.child("Users").child(uid)
-            //    let usernamesReference = ref.child("Usernames")
-            //    let usernameValues = [newUser.username:newUser.email] as [String : Any] as NSDictionary
-            //
-            //    usernamesReference.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in
-            //    if err != nil {
-            //    loadingView.hideActivityIndicator(viewController: self)
-            //    print(err ?? "unable to get specific error i")
-            //    return
-            //    }
-            //    print("sucessfully saved username email reference")
-            //    }
-            //
-            //    let values = ["Username": newUser.username, "Email": newUser.email, "FirstName": newUser.firstName!, "LastName": newUser.lastName!, "ProfilePicture": newUser.profilePicture!, "ExperiencePoints": newUser.experiencePoints, "Level": newUser.level, "JoinDate":newUser.joinDate, "TasksCompleted": 0] as [String : Any] as NSDictionary
-            //
-            //    usersReference.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
-            //    if err != nil {
-            //    loadingView.hideActivityIndicator(viewController: self)
-            //    print(err ?? "unable to get specific error")
-            //    return
-            //    }
-            //    print("Saved user successfully into Firebase db")
-            //    self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
-            //    self.store.currentUser = newUser
-            //    self.setupTabBar()
-            //    }
 }

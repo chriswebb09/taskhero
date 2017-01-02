@@ -21,7 +21,7 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
     var profileHeaderCellModel = ProfileHeaderCellModel()
     
-    var delegate: ProfileHeaderCellDelegate?
+    weak var delegate: ProfileHeaderCellDelegate?
     
     let joinDateLabel: UILabel = {
         let joinDateLabel = UILabel()

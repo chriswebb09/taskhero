@@ -21,14 +21,12 @@ class TabBarController: UITabBarController {
                 DispatchQueue.main.async {
                     super.viewDidLoad()
                     self.setupControllers()
-                    
                 }
             } else if self.store.currentUser == nil { self.store.firebaseAPI.fetchUser(completion: { user in
                 self.store.currentUser = user
                 DispatchQueue.main.async {
                     super.viewDidLoad()
                     self.setupControllers()
-
                 }
             })
             } else { self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0) }
@@ -41,11 +39,11 @@ class TabBarController: UITabBarController {
     }
     
     fileprivate func setupControllers() {
+        
         let homeTab = setupHomeTab(homeVC: HomeViewController())
         let profileTab = setupProfileTab(profileVC: ProfileViewController())
         let taskListTab = setupTaskTab(taskListVC: TaskListViewController())
         let settingsTab = setupSettingsTab(settingsVC: SettingsViewController())
-        
         let controllers = [homeTab, profileTab, taskListTab, settingsTab]
         
         viewControllers = controllers
