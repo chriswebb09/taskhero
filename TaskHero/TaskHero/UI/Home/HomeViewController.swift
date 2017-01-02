@@ -22,7 +22,7 @@ final class HomeViewController: UITableViewController {
     var tapped: Bool = false
     var buttonTapped: Bool = false
     let helper = Helper()
-    
+    let helperz = Helpers()
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
@@ -35,6 +35,7 @@ extension HomeViewController: UINavigationControllerDelegate {
         super.viewDidLoad()
         picker.delegate = self
         edgesForExtendedLayout = []
+        dataSource = HomeViewControllerDataSource()
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         setupView()
     }
@@ -52,41 +53,39 @@ extension HomeViewController: UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        getTasks()
+        helperz.getTasks(tableView:tableView)
     }
     
     // If taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        if self.store.firebaseAPI.refHandle != nil {
-            self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
-        }
+        helperz.removeRefHandle()
+//        if self.store.firebaseAPI.refHandle != nil {
+//            self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
+//        }
     }
     
-    private func getTasks() {
-        self.store.setupStore()
-        self.store.firebaseAPI.fetchTasks() { task in
-            self.store.tasks.append(task)
-            self.store.currentUser.tasks?.append(task)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+//    private func getTasks() {
+//        self.store.setupStore()
+//        self.store.firebaseAPI.fetchTasks() { task in
+//            self.store.tasks.append(task)
+//            self.store.currentUser.tasks?.append(task)
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
 }
 
 extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, TaskCellDelegate {
     
+    // =======================================
     // MARK: UITableViewController Methods
-    // =========================================================================
+    // =======================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.store.tasks.count < 1 {
-            return 1
-        } else {
-            return self.store.tasks.count + 1
-        }
+        return dataSource.rows
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -96,14 +95,14 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     // If first row returns profile header cell else returns task cell
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        dataSource = HomeViewControllerDataSource()
+        
         dataSource.indexPath = indexPath
         if indexPath.row == 0 {
-            let headerCell = dataSource.configure(indexPath: indexPath, cellType: CellType.header) as! ProfileHeaderCell
+            let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header) as! ProfileHeaderCell
             configureHeader(headerCell: headerCell)
             return headerCell
         } else {
-            let taskCell = dataSource.configure(indexPath: indexPath, cellType: CellType.task) as! TaskCell
+            let taskCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.task) as! TaskCell
             setupTaskCell(taskCell: taskCell)
             taskCell.saveButton.tag = indexPath.row
             return taskCell

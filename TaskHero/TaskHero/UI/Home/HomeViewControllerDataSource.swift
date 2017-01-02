@@ -13,12 +13,20 @@ class HomeViewControllerDataSource {
     fileprivate var taskViewModel: TaskCellViewModel!
     var rows: Int! {
         guard let tasks = store.currentUser.tasks?.count else { return 0 }
-        return tasks
+        if tasks < 1 {
+            return 1
+        } else {
+            return tasks + 1
+        }
     }
+    
     var indexPath: IndexPath!
     var autoHeight: UIViewAutoresizing?
+}
 
-    func configure(indexPath:IndexPath, cellType:CellType) -> UITableViewCell {
+extension HomeViewControllerDataSource {
+    
+    func configure(indexPath:IndexPath, cellType:HomeCellType) -> UITableViewCell {
         if cellType == .header {
             print("header")
             let headerCell = ProfileHeaderCell()
@@ -33,6 +41,6 @@ class HomeViewControllerDataSource {
     }
 }
 
-enum CellType {
+enum HomeCellType {
     case task, header
 }

@@ -19,3 +19,29 @@ extension UITableView {
         self.rowHeight = UITableViewAutomaticDimension
     }
 }
+
+
+class Helpers {
+    let store = DataStore.sharedInstance
+    
+    func getTasks(tableView: UITableView) {
+        store.setupStore()
+        store.firebaseAPI.fetchTasks() { task in
+            self.store.tasks.append(task)
+            self.store.currentUser.tasks?.append(task)
+            DispatchQueue.main.async {
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    func removeRefHandle() {
+        if self.store.firebaseAPI.refHandle != nil {
+            self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
+        }
+    }
+
+    
+}
+
+
