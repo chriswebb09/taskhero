@@ -87,7 +87,7 @@ extension TaskListViewController {
         taskCell.delegate = self
         let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
-        taskCell.configureCell(taskVM: taskViewModel, toggled: tapped)
+        taskCell.configureCell(taskVM: taskViewModel)
         taskCell.setupCellView(width: view.frame.size.width, height:height)
         return taskCell
     }

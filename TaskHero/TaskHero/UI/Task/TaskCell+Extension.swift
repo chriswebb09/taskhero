@@ -132,7 +132,7 @@ extension TaskCell {
         contentView.sendSubview(toBack: cellView)
     }
     
-    func configureCell(taskVM:TaskCellViewModel, toggled:Bool) {
+    func configureCell(taskVM:TaskCellViewModel) {
         layoutSubviews()
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"

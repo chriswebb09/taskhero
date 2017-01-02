@@ -14,7 +14,7 @@ final class HomeViewController: UITableViewController {
     
     // MARK: Internal Properties
     // =========================================================================
-    
+    var dataSource: HomeViewControllerDataSource!
     let store = DataStore.sharedInstance
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
@@ -22,7 +22,7 @@ final class HomeViewController: UITableViewController {
     var tapped: Bool = false
     var buttonTapped: Bool = false
     let helper = Helper()
-    fileprivate var taskViewModel: TaskCellViewModel!
+    
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
@@ -33,6 +33,7 @@ extension HomeViewController: UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        //dataSource.indexPath = tableView.inde
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         setupView()
@@ -95,15 +96,15 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     // If first row returns profile header cell else returns task cell
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        dataSource = HomeViewControllerDataSource()
+        dataSource.indexPath = indexPath
         if indexPath.row == 0 {
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+            let headerCell = dataSource.configure(indexPath: indexPath, cellType: CellType.header) as! ProfileHeaderCell
             configureHeader(headerCell: headerCell)
             return headerCell
         } else {
-            let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
-            taskViewModel = TaskCellViewModel(self.store.tasks[indexPath.row - 1])
+            let taskCell = dataSource.configure(indexPath: indexPath, cellType: CellType.task) as! TaskCell
             setupTaskCell(taskCell: taskCell)
-            taskCell.configureCell(taskVM: taskViewModel, toggled: tapped)
             taskCell.saveButton.tag = indexPath.row
             return taskCell
         }
