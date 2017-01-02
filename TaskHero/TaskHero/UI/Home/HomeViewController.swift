@@ -61,21 +61,7 @@ extension HomeViewController: UINavigationControllerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         helperz.removeRefHandle()
-//        if self.store.firebaseAPI.refHandle != nil {
-//            self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
-//        }
     }
-    
-//    private func getTasks() {
-//        self.store.setupStore()
-//        self.store.firebaseAPI.fetchTasks() { task in
-//            self.store.tasks.append(task)
-//            self.store.currentUser.tasks?.append(task)
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
 }
 
 extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, TaskCellDelegate {
