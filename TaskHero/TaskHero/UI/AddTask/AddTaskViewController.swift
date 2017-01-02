@@ -11,7 +11,10 @@ import Firebase
 
 final class AddTaskViewController: UIViewController  {
     
+    // =============================
     // MARK: Internal Properties
+    // =============================
+    
     
     let store = DataStore.sharedInstance
     
@@ -27,8 +30,9 @@ final class AddTaskViewController: UIViewController  {
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource  {
     
+    // =============================
     // MARK: Initialization
-    // =========================================================================
+    // =============================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +51,9 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPick
 
 extension AddTaskViewController {
     
+    // =================================
     // MARK: TextField Methods
-    // =========================================================================
+    // =================================
     
     // On return-key press hides keyboard
     
@@ -81,8 +86,9 @@ extension AddTaskViewController {
 
 extension AddTaskViewController: UIPickerViewDelegate {
     
+    // =========================================
     // MARK: Extension - UIPickerView Methods
-    // =========================================================================
+    // =========================================
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
@@ -130,8 +136,10 @@ extension AddTaskViewController: UIPickerViewDelegate {
 
 extension AddTaskViewController {
     
+    
+    // ==========================
     // MARK: Public methods
-    // =========================================================================
+    // ==========================
     
     // When add task button pressed - data popover is show so user can pick task due data
     

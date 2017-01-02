@@ -10,8 +10,9 @@ import UIKit
 
 class AddTaskView: UIView {
     
+    // ===========================
     // MARK: UIElements
-    // =========================================================================
+    // ===========================
     
     var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
@@ -57,8 +58,9 @@ class AddTaskView: UIView {
 
 extension AddTaskView {
     
+    // =============================
     // MARK: - Initialization
-    // =========================================================================
+    // =============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -66,8 +68,9 @@ extension AddTaskView {
         setupConstraints()
     }
     
+    // ======================
     // MARK: - Configure
-    // =========================================================================
+    // ======================
     
     func configureView(view:UIView) {
         addSubview(view)
