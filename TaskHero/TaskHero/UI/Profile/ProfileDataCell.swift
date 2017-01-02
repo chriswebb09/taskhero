@@ -8,13 +8,6 @@
 
 import UIKit
 
-//protocol IdentifiableViewModel {
-//    var identifier: String { get }
-//}
-//
-//extension ViewModel: IdentifiableViewModel {
-//    var identifier: String { return "CellIdentifier" }
-//}
 
 final class ProfileDataCell: UITableViewCell {
     
