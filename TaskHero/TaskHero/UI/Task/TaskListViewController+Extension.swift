@@ -104,7 +104,29 @@ extension TaskListViewController {
         self.store.tasks.remove(at: indexPath.row)
     }
     
-    func tapEdit(atIndex:IndexPath) {
+
+    func toggleForButtonState(sender:UIButton) {
+        let superview = sender.superview
+        let cell = superview?.superview as? TaskCell
+        let indexPath = tableView.indexPath(for: cell!)
+        helper.tapEdit(tableView: tableView, atIndex: indexPath!)
+    }
+    
+    // Kicks off cycling between taskcell editing states
+    
+    func toggleForEditState(sender:UIGestureRecognizer) {
+        let tapLocation = sender.location(in: self.tableView)
+        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
+        helper.tapEdit(tableView: tableView, atIndex: tapIndex)
+    }
+}
+
+
+
+class Helper {
+    let store = DataStore.sharedInstance
+    
+    func tapEdit(tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         if tapCell.toggled == true {
             var newTask = self.store.tasks[atIndex.row]
@@ -115,20 +137,5 @@ extension TaskListViewController {
             }
             tapCell.taskDescriptionBox.resignFirstResponder()
         }
-    }
-    
-    func toggleForButtonState(sender:UIButton) {
-        let superview = sender.superview
-        let cell = superview?.superview as? TaskCell
-        let indexPath = tableView.indexPath(for: cell!)
-        tapEdit(atIndex: indexPath!)
-    }
-    
-    // Kicks off cycling between taskcell editing states
-    
-    func toggleForEditState(sender:UIGestureRecognizer) {
-        let tapLocation = sender.location(in: self.tableView)
-        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        tapEdit(atIndex: tapIndex as IndexPath)
     }
 }

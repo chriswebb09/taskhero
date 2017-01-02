@@ -44,27 +44,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     // Implements logic for editing task from cell
     
-    func tapEdit(atIndex:IndexPath) {
-        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        //tapped = !tapped
-       // tapCell.toggled = tapped
-        tapCell.taskDescriptionBox.becomeFirstResponder()
-        tapCell.saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
-        updateDescription(cell: tapCell, for: atIndex.row)
-        tapCell.taskDescriptionBox.resignFirstResponder()
-        //taskCell(didToggleEditState: buttonTapped)
-        //taskCell(_taskCell: tapCell, didToggleEditState: buttonTapped)
-        //tapCell.taskCell(didToggleEditState: tapCell.toggled)
-//        if tapCell.toggled == true {
-//            updateDescription(cell: tapCell, for: atIndex.row)
-//            tapCell.taskDescriptionBox.resignFirstResponder()
-//        } else {
-//            tapCell.taskDescriptionBox.text = self.store.currentUser.tasks?[atIndex.row].taskDescription
-//            tapCell.taskDescriptionBox.resignFirstResponder()
-//        }
-//    }
-    }
-    
+
     fileprivate func updateDescription(cell:TaskCell, for row:Int) {
         var newTask = self.store.tasks[row - 1]
         cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
@@ -100,7 +80,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
-        tapEdit(atIndex: indexPath!)
+        helper.tapEdit(tableView: tableView, atIndex: indexPath!)
     }
     
     func taskCell(didToggleEditState editState:Bool) {
@@ -112,7 +92,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     func toggleForEditState(sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        tapEdit(atIndex: tapIndex as IndexPath)
+        helper.tapEdit(tableView:tableView, atIndex: tapIndex)
+        //tapEdit(atIndex: tapIndex as IndexPath)
     }
     
     // Hides popover view when operation has ended.

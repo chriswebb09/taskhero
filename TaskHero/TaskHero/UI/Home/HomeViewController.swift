@@ -21,6 +21,7 @@ final class HomeViewController: UITableViewController {
     var profilePic: UIImage? = nil
     var tapped: Bool = false
     var buttonTapped: Bool = false
+    let helper = Helper()
     fileprivate var taskViewModel: TaskCellViewModel!
 }
 
