@@ -18,39 +18,20 @@ class HomeViewControllerDataSource {
     }
     var indexPath: IndexPath!
     var autoHeight: UIViewAutoresizing?
-   // let indentifier: String!
-    
+
     func configure(indexPath:IndexPath, cellType:CellType) -> UITableViewCell {
         if cellType == .header {
             print("header")
             let headerCell = ProfileHeaderCell()
-            
             return headerCell
         } else {
             var taskViewModel: TaskCellViewModel!
-           // print("task")
             let taskCell = TaskCell()
             taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row])!)
             taskCell.configureCell(taskVM: taskViewModel)
             return taskCell
         }
-        
-//        else if cellType == .task {
-//            
-//        }
     }
-    
-//        if cellType.task(indexPath: indexPath) {
-//            
-//        }
-//        
-//        if cellType == .task(indexPath) {
-//            var headerCell = TaskCell()
-//            headerCell.configureCell(taskVM: cellType.taskCellViewModel, toggled: <#T##Bool#>)
-//        }
-    
-    
-    //var cellType = CellType.header
 }
 
 
@@ -58,11 +39,3 @@ class HomeViewControllerDataSource {
 enum CellType {
     case task, header
 }
-//    
-//    var taskCellViewModel: TaskCellViewModel {
-//        switch(self) {
-//        case .task(indexPath:IndexPath):
-//            return TaskCellViewModel(self.store.currentUser.tasks[indexPath.row])
-//        }
-//    }
-//}
