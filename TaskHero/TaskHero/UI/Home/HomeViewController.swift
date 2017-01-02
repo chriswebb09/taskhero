@@ -8,12 +8,12 @@
 
 import UIKit
 
-
-
 final class HomeViewController: UITableViewController {
     
+    // =================================
     // MARK: Internal Properties
-    // =========================================================================
+    // =================================
+    
     var dataSource: HomeViewControllerDataSource!
     let store = DataStore.sharedInstance
     let photoPopover = PhotoPickerPopover()
@@ -27,13 +27,13 @@ final class HomeViewController: UITableViewController {
 
 extension HomeViewController: UINavigationControllerDelegate {
     
+    // ==============================
     // MARK: - Initialization
-    // =========================================================================
+    // ==============================
     
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
-        //dataSource.indexPath = tableView.inde
         edgesForExtendedLayout = []
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         setupView()

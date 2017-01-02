@@ -9,7 +9,6 @@
 import UIKit
 
 class HomeViewControllerDataSource {
-    
     let store = DataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
     var rows: Int! {
@@ -33,8 +32,6 @@ class HomeViewControllerDataSource {
         }
     }
 }
-
-
 
 enum CellType {
     case task, header
