@@ -146,17 +146,23 @@ extension ProfileHeaderCell {
         joinDateLabel.text = profileHeaderCellModel.joinDate
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
+
         profilePicture.addGestureRecognizer(tap)
         layoutSubviews()
         layoutIfNeeded()
     }
     
-
+    
     // ===================================
     // MARK: - Delegate Methods
     // ===================================
     
     func changeProfilePic() {
+        if let downloadImage = profileHeaderCellModel.profilePictureImage {
+            DispatchQueue.main.async {
+                self.profilePicture.image = downloadImage
+            }
+        }
         
     }
     

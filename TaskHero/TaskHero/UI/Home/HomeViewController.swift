@@ -36,6 +36,9 @@ extension HomeViewController: UINavigationControllerDelegate {
         picker.delegate = self
         edgesForExtendedLayout = []
         dataSource = HomeViewControllerDataSource()
+        dataSource.checkForPicURL(completion: { image in
+            self.profilePic = image
+        })
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         dataSource.setupView(tableView:tableView, view:view)
         setupNavItems()
@@ -47,24 +50,10 @@ extension HomeViewController: UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        self.store.tasks.removeAll()
-        if self.store.currentUser.tasks != nil {
-            self.store.currentUser.tasks?.removeAll()
-        }
-
-        
-            self.store.fetchUser() { user in
-                self.store.currentUser = user
-                DispatchQueue.main.async {
-                    
-                    self.tableView.reloadData()
-                }
-            }
-        
-        
+        helpers.getData(tableView: tableView)
 
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         helpers.removeRefHandle()

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol ProfileHeaderModel {
     var user: User? { get set }
@@ -17,7 +17,7 @@ protocol ProfileHeaderModel {
     var emailLabel: String { get }
 }
 
-struct ProfileHeaderCellModel {
+class ProfileHeaderCellModel {
     
     // ================================
     // MARK: - Internal Variables
@@ -32,6 +32,7 @@ struct ProfileHeaderCellModel {
     internal var levelLabel: String
     internal var joinDate: String
     internal var joinDateIsHidden: Bool
+    internal var profilePictureImage: UIImage? = nil
     
     // =======================================
     // MARK: - Initialization
@@ -45,5 +46,11 @@ struct ProfileHeaderCellModel {
         self.levelLabel = "Level: \((self.user?.level)!)"
         self.joinDate = "Joined: \((self.user?.joinDate)!)"
         self.joinDateIsHidden = true 
+    }
+    
+    func getImage() {
+        self.store.firebaseAPI.downloadImage(imageName: "1E0C05FD-9A19-4E93-B2D0-398515CC1BF2.png", completion: { profilePic in
+            self.profilePictureImage = profilePic
+        })
     }
 }

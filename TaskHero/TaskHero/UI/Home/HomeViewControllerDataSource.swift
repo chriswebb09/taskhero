@@ -57,6 +57,14 @@ extension HomeViewControllerDataSource {
         }
     }
     
+    func checkForPicURL(completion: @escaping(UIImage) -> Void) {
+        if (self.store.currentUser.profilePicture?.characters.count)! > 0 && self.store.currentUser.profilePicture != "None" {
+            store.firebaseAPI.downloadImage(imageName: self.store.currentUser.profilePicture!, completion: { image in
+                completion(image)
+            })
+        }
+    }
+    
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
         taskCell.delegate = viewController
         taskCell.taskDescriptionBox.delegate = viewController

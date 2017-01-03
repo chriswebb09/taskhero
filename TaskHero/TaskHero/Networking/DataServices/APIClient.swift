@@ -99,19 +99,19 @@ class APIClient {
                 user.experiencePoints = snapshotExperiencePoints
                 
             }
-            user.tasks = tasks 
+            user.tasks = tasks
             completion(user)
         })
     }
     
-
+    
     
     // =========================================================================
     // Grab tasks from user profile in realtime user database
     // =========================================================================
     
     func fetchTasks(taskList: [Task], completion:@escaping ([Task]) -> Void) {
-       // tasksRef.keepSynced(true)
+        // tasksRef.keepSynced(true)
         var taskList = taskList
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
@@ -253,6 +253,46 @@ class APIClient {
                 }
             })
         }
+    }
+    
+    func downloadImage(imageName:String, completion: @escaping (UIImage) -> Void) {
+        var name = "146CC8EC-7042-4406-9BC5-8ED7419C919B.png"
+        let imageRef = FIRStorage.storage().reference().child("profile_images").child("\(name)")
+        print(imageRef)
+        var image: UIImage!
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+       // let prefix = "file:"
+        let localURL = NSURL(string:"file://\(paths[0])/\(imageName)")
+        var filePath = localURL as? URL
+        print(filePath)
+        let downloadTask = imageRef.write(toFile: filePath!) { url, error in
+            if error != nil {
+                print(error?.localizedDescription)
+                print("Error occured")
+            } else {
+                print(localURL?.absoluteString)
+                image = UIImage(contentsOfFile: (localURL?.absoluteString)!)
+                //if let imageDownloaeed =
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+                
+            }
+        }
+        downloadTask.resume()
+        //        let downloadTask = imageRef.write(filePath) { url, error in
+        //            if error != nil {
+        //                print(error?.localizedDescription)
+        //                print("Error occured")
+        //            } else {
+        //                image = UIImage(contentsOfFile: (localURL?.absoluteString)!)
+        //                DispatchQueue.main.async {
+        //                    completion(image)
+        //                }
+        //
+        //            }
+        //        }
+        //        downloadTask.resume()
     }
     
     func registerUser(user:User) {

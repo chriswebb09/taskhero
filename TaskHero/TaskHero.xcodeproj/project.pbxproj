@@ -30,26 +30,18 @@
 		A709CAE21DE7723800877907 /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAE11DE7723800877907 /* TextfieldExtension.swift */; };
 		A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAE31DE7724E00877907 /* UIView+Extension.swift */; };
 		A709CAE61DE7725F00877907 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAE51DE7725F00877907 /* SettingsCell.swift */; };
-		A709CAEA1DE7726D00877907 /* TeamBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAE71DE7726D00877907 /* TeamBannerCell.swift */; };
-		A709CAEB1DE7726D00877907 /* TeamDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAE81DE7726D00877907 /* TeamDataCell.swift */; };
-		A709CAEC1DE7726D00877907 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAE91DE7726D00877907 /* TeamHeaderCell.swift */; };
 		A709CAEE1DE7727E00877907 /* ProfileDataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAED1DE7727E00877907 /* ProfileDataCellModel.swift */; };
-		A709CAF01DE7728B00877907 /* ProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAEF1DE7728B00877907 /* ProfilePictureViewController.swift */; };
-		A709CAF21DE772BF00877907 /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAF11DE772BF00877907 /* ProfilePictureView.swift */; };
 		A709CAF41DE772CD00877907 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAF31DE772CD00877907 /* ProfileViewController.swift */; };
 		A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAF51DE772EC00877907 /* PopMenu.swift */; };
 		A709CAF81DE772F700877907 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAF71DE772F700877907 /* AddTaskView.swift */; };
-		A709CAFA1DE7730200877907 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAF91DE7730200877907 /* InitialView.swift */; };
 		A709CAFC1DE7730D00877907 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAFB1DE7730D00877907 /* SignupView.swift */; };
 		A709CAFE1DE7731500877907 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAFD1DE7731500877907 /* LoadingView.swift */; };
 		A709CB001DE7731F00877907 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAFF1DE7731F00877907 /* Constants.swift */; };
 		A709CB021DE7732800877907 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB011DE7732800877907 /* DataStore.swift */; };
 		A709CB041DE7733300877907 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB031DE7733300877907 /* User.swift */; };
 		A709CB061DE7733C00877907 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB051DE7733C00877907 /* Task.swift */; };
-		A709CB081DE7734700877907 /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB071DE7734700877907 /* RootContainerViewController.swift */; };
 		A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB091DE7735000877907 /* SettingsViewController.swift */; };
 		A709CB0C1DE7735B00877907 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0B1DE7735B00877907 /* SignupViewController.swift */; };
-		A709CB0E1DE7736800877907 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0D1DE7736800877907 /* SplashViewController.swift */; };
 		A709CB101DE7737100877907 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0F1DE7737100877907 /* TabBarController.swift */; };
 		A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB111DE7737800877907 /* TaskListViewController.swift */; };
 		A709CB1E1DE777DC00877907 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB1D1DE777DC00877907 /* Auth.swift */; };
@@ -67,6 +59,7 @@
 		A7346D7C1DE90DF1005E3A5E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7B1DE90DF1005E3A5E /* AlertView.swift */; };
 		A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7D1DE93688005E3A5E /* TaskButton.swift */; };
 		A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D871DEA6A08005E3A5E /* DataPicker.swift */; };
+		A73B47BC1E1BD78E0090F699 /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B47BB1E1BD78E0090F699 /* ImageClient.swift */; };
 		A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */; };
 		A76562CC1DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */; };
 		A76562CD1DF93F2000E29AA9 /* HomeViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */; };
@@ -133,26 +126,18 @@
 		A709CAE11DE7723800877907 /* TextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
 		A709CAE31DE7724E00877907 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		A709CAE51DE7725F00877907 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
-		A709CAE71DE7726D00877907 /* TeamBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamBannerCell.swift; sourceTree = "<group>"; };
-		A709CAE81DE7726D00877907 /* TeamDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDataCell.swift; sourceTree = "<group>"; };
-		A709CAE91DE7726D00877907 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamHeaderCell.swift; sourceTree = "<group>"; };
 		A709CAED1DE7727E00877907 /* ProfileDataCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataCellModel.swift; sourceTree = "<group>"; };
-		A709CAEF1DE7728B00877907 /* ProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePictureViewController.swift; sourceTree = "<group>"; };
-		A709CAF11DE772BF00877907 /* ProfilePictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
 		A709CAF31DE772CD00877907 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A709CAF51DE772EC00877907 /* PopMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopMenu.swift; sourceTree = "<group>"; };
 		A709CAF71DE772F700877907 /* AddTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
-		A709CAF91DE7730200877907 /* InitialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		A709CAFB1DE7730D00877907 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		A709CAFD1DE7731500877907 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		A709CAFF1DE7731F00877907 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A709CB011DE7732800877907 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		A709CB031DE7733300877907 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A709CB051DE7733C00877907 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		A709CB071DE7734700877907 /* RootContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		A709CB091DE7735000877907 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A709CB0B1DE7735B00877907 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
-		A709CB0D1DE7736800877907 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		A709CB0F1DE7737100877907 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A709CB111DE7737800877907 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		A709CB1D1DE777DC00877907 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
@@ -171,6 +156,7 @@
 		A7346D7B1DE90DF1005E3A5E /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		A7346D7D1DE93688005E3A5E /* TaskButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
 		A7346D871DEA6A08005E3A5E /* DataPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
+		A73B47BB1E1BD78E0090F699 /* ImageClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
 		A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FriendsSettingsViewController+Extension.swift"; path = "UI/Controller Extensions/FriendsSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HomeViewController+Extension.swift"; path = "../Controller Extensions/HomeViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -303,15 +289,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		A709CB191DE775A300877907 /* ProfilePicture */ = {
-			isa = PBXGroup;
-			children = (
-				A709CAF11DE772BF00877907 /* ProfilePictureView.swift */,
-				A709CAEF1DE7728B00877907 /* ProfilePictureViewController.swift */,
-			);
-			path = ProfilePicture;
-			sourceTree = "<group>";
-		};
 		A709CB1A1DE7772900877907 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,15 +306,6 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		A709CB1C1DE777A900877907 /* Splash */ = {
-			isa = PBXGroup;
-			children = (
-				A709CAF91DE7730200877907 /* InitialView.swift */,
-				A709CB0D1DE7736800877907 /* SplashViewController.swift */,
-			);
-			path = Splash;
-			sourceTree = "<group>";
-		};
 		A709CB1F1DE77BC600877907 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +319,7 @@
 			children = (
 				A7AFCDE01DF72C4B004D607C /* APIClient.swift */,
 				A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */,
+				A73B47BB1E1BD78E0090F699 /* ImageClient.swift */,
 			);
 			path = DataServices;
 			sourceTree = "<group>";
@@ -382,7 +351,6 @@
 			children = (
 				A71C97861DFF666F00F855AA /* CellStyle.swift */,
 				A76562D81DF953C500E29AA9 /* Popover */,
-				A709CB071DE7734700877907 /* RootContainerViewController.swift */,
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
 				A7346D871DEA6A08005E3A5E /* DataPicker.swift */,
 				A7346D7D1DE93688005E3A5E /* TaskButton.swift */,
@@ -470,16 +438,6 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		AF18D86D1DBD816E002A3372 /* Team */ = {
-			isa = PBXGroup;
-			children = (
-				A709CAE71DE7726D00877907 /* TeamBannerCell.swift */,
-				A709CAE81DE7726D00877907 /* TeamDataCell.swift */,
-				A709CAE91DE7726D00877907 /* TeamHeaderCell.swift */,
-			);
-			path = Team;
-			sourceTree = "<group>";
-		};
 		AFA3CE8A1DB58DDB003266CA /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,13 +445,10 @@
 				A709CB161DE7745500877907 /* Home */,
 				A709CAC81DE7711900877907 /* Login */,
 				AF18D86C1DBD8165002A3372 /* Profile */,
-				A709CB191DE775A300877907 /* ProfilePicture */,
 				A709CB171DE7748F00877907 /* Settings */,
 				A709CB181DE7754600877907 /* Shared */,
 				A709CB151DE773D200877907 /* Signup */,
-				A709CB1C1DE777A900877907 /* Splash */,
 				AFE9E6BF1DBDA76E0023C232 /* Task */,
-				AF18D86D1DBD816E002A3372 /* Team */,
 				A7346D861DEA255A005E3A5E /* InitialView */,
 			);
 			path = UI;
@@ -794,7 +749,6 @@
 				A709CACE1DE7719E00877907 /* AddTaskViewController.swift in Sources */,
 				A76562CC1DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift in Sources */,
 				A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */,
-				A709CAEA1DE7726D00877907 /* TeamBannerCell.swift in Sources */,
 				A709CAF81DE772F700877907 /* AddTaskView.swift in Sources */,
 				A709CAFE1DE7731500877907 /* LoadingView.swift in Sources */,
 				A767FBA41E0832A1007767B6 /* TaskCellViewModel.swift in Sources */,
@@ -804,6 +758,7 @@
 				A709CB001DE7731F00877907 /* Constants.swift in Sources */,
 				A7F019DC1E0922FC00B23667 /* UITextView+Extensions.swift in Sources */,
 				A77FBCC41DEB5B410014C380 /* NotificationView.swift in Sources */,
+				A73B47BC1E1BD78E0090F699 /* ImageClient.swift in Sources */,
 				A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */,
 				A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */,
 				A70840081DEB152F00055B72 /* BaseCell.swift in Sources */,
@@ -811,13 +766,9 @@
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A709CB1E1DE777DC00877907 /* Auth.swift in Sources */,
-				A709CAEC1DE7726D00877907 /* TeamHeaderCell.swift in Sources */,
 				A7F019E01E093C8400B23667 /* SignupViewController+Extension.swift in Sources */,
-				A709CAF21DE772BF00877907 /* ProfilePictureView.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
-				A709CAEB1DE7726D00877907 /* TeamDataCell.swift in Sources */,
 				A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */,
-				A709CAF01DE7728B00877907 /* ProfilePictureViewController.swift in Sources */,
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
 				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
@@ -840,7 +791,6 @@
 				A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */,
 				A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */,
 				A77FBCCD1DEB8A190014C380 /* Helpers.swift in Sources */,
-				A709CB081DE7734700877907 /* RootContainerViewController.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,
 				A709CAEE1DE7727E00877907 /* ProfileDataCellModel.swift in Sources */,
 				A767FBA81E0836F7007767B6 /* SignupViewModel.swift in Sources */,
@@ -852,7 +802,6 @@
 				A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */,
 				A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */,
 				A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */,
-				A709CAFA1DE7730200877907 /* InitialView.swift in Sources */,
 				A70840041DEABBD000055B72 /* FriendsSettingsView.swift in Sources */,
 				A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */,
 				A709CAF41DE772CD00877907 /* ProfileViewController.swift in Sources */,
@@ -860,7 +809,6 @@
 				A709CAD01DE771B700877907 /* HomeViewController.swift in Sources */,
 				A709CAD21DE771E100877907 /* ProfileHeaderCell.swift in Sources */,
 				A709CACB1DE7718B00877907 /* LoginView.swift in Sources */,
-				A709CB0E1DE7736800877907 /* SplashViewController.swift in Sources */,
 				A7AFCDE11DF72C4B004D607C /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
