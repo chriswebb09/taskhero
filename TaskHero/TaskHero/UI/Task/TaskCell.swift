@@ -19,8 +19,9 @@ final class TaskCell: UITableViewCell {
     var toggled:Bool = false
     var taskViewModel: TaskCellViewModel!
     
+    // =================================
     // MARK: - Setup UI Elements
-    // =========================================================================
+    // =================================
     
     let taskNameLabel: UITextView = {
         let textView = UITextView()
@@ -68,8 +69,9 @@ final class TaskCell: UITableViewCell {
 
 extension TaskCell {
     
+    // ===========================
     // MARK: - Initialization
-    // =========================================================================
+    // ===========================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -80,8 +82,9 @@ extension TaskCell {
         contentView.backgroundColor = UIColor.clear
     }
     
+    // ===============================
     // MARK: - Configure cell
-    // =========================================================================
+    // ===============================
     
     fileprivate func setupConfigures() {
         configureTextView(label: taskDescriptionLabel)

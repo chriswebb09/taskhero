@@ -23,18 +23,11 @@ class SplashViewController: UIViewController {
     
     required init?(coder: NSCoder = NSCoder.empty()) {
         self.initialView = InitView()
-        ///initialView = loginVC.loginView
         super.init(coder: coder)!
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-//        initialView.emailField.alpha = 0
-//        initialView.passwordField.alpha = 0
-//        initialView.loginButton.alpha = 0
-//        initialView.registerLabel.alpha = 0
-//        initialView.viewDivider.alpha = 0
-//        initialView.signupButton.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,13 +47,6 @@ class SplashViewController: UIViewController {
                        usingSpringWithDamping: 0.6,
                        initialSpringVelocity: 0.9,
                        options: [.beginFromCurrentState, .curveEaseOut],animations: {
-//                        self.initialView.logoImageView.alpha = 1
-//                        self.initialView.emailField.alpha = 1
-//                        self.initialView.passwordField.alpha = 1
-//                        self.initialView.loginButton.alpha = 1
-//                        self.initialView.registerLabel.alpha = 1
-//                        self.initialView.viewDivider.alpha = 1
-//                        self.initialView.signupButton.alpha = 1
                         self.navigationController?.navigationBar.isHidden = false
                         self.navigationController?.navigationBar.barTintColor = Constants.Tabbar.tint }, completion: nil)
     }

@@ -110,8 +110,9 @@ extension LoginViewController {
 
 extension LoginViewController {
     
+    // ======================================
     // MARK: - Textfield delegate methods
-    // =========================================================================
+    // ======================================
     
     // If email field selected cycles to password field / if password field cycles to emailfield.
     // Hides keyboard/ ends view editting

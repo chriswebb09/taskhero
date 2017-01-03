@@ -16,8 +16,9 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
     static let cellIdentifier = "ProfileHeaderCell"
     
+    // =================================
     // MARK: - Internal Variables
-    // =========================================================================
+    // =================================
     
     var profileHeaderCellModel = ProfileHeaderCellModel()
     
@@ -66,8 +67,9 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
 
 extension ProfileHeaderCell {
     
+    // ==============================
     // MARK: - Initialization
-    // =========================================================================
+    // ==============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -76,8 +78,9 @@ extension ProfileHeaderCell {
         contentView.layer.masksToBounds = true
     }
     
+    // =================================
     // MARK: - Configuring Cell
-    // =========================================================================
+    // =================================
     
     private func configureLabel(label:UILabel) {
         label.textColor = UIColor.black
@@ -148,8 +151,9 @@ extension ProfileHeaderCell {
         layoutIfNeeded()
     }
     
+    // ===================================
     // MARK: - Delegate Methods
-    // =========================================================================
+    // ===================================
     
     func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")

@@ -11,21 +11,12 @@ import UIKit
 
 extension TaskCell {
     
+    // ===============================
     //MARK: - Delegate Methods
-    // =========================================================================
+    // ===============================
     
     // Button toggle methods
-    
-//    fileprivate func toggle() {
-//        if toggled {
-//            toggleState()
-//            taskDescriptionBox.layer.borderWidth = Constants.Settings.searchFieldButtonRadius
-//        } else {
-//            toggleState()
-//            taskDescriptionBox.layer.borderWidth = Constants.Settings.searchFieldButtonRadius
-//        }
-//    }
-//    
+
     func taskCell(didToggleEditState editState:Bool) {
         toggled = editState
         taskDescriptionLabel.isHidden = toggled
@@ -34,26 +25,8 @@ extension TaskCell {
         saveButton.isHidden = !toggled
         taskCompletedView.isHidden = toggled
         taskCompletedView.isUserInteractionEnabled = toggled
-//        if editState {
-//            taskDescriptionLabel.isHidden = editState
-//            taskDescriptionBox.isHidden = !editState
-//            saveButton.isEnabled = editState
-//            saveButton.isHidden = !editState
-//            taskCompletedView.isHidden = editState
-//            taskCompletedView.isUserInteractionEnabled = editState
-//        }
+
     }
-    
-//    func toggleState() {
-//        
-////        print(toggled = !toggled)
-////        taskDescriptionLabel.isHidden = toggled
-////        taskDescriptionBox.isHidden = !toggled
-////        saveButton.isEnabled = toggled
-////        saveButton.isHidden = !toggled
-////        taskCompletedView.isHidden = toggled
-////        taskCompletedView.isUserInteractionEnabled = toggled
-//    }
     
     func toggleForEditState(sender:UIGestureRecognizer) {
         taskCell(didToggleEditState: !toggled)
@@ -64,14 +37,13 @@ extension TaskCell {
         taskCell(didToggleEditState: !toggled)
         delegate?.toggleForButtonState(sender: sender)
     }
-    
-    
 }
 
 extension TaskCell {
     
+    // =====================================
     // MARK: - Configure cell subviews
-    // =========================================================================
+    // =====================================
     
     func configureTextView(label:UITextView) {
         label.textAlignment = .left
@@ -137,8 +109,7 @@ extension TaskCell {
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
-        
-        //self.toggled = toggled
+
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
         if taskVM.taskCompleted == "true" {
             taskCompletedView.image = UIImage(named:"checked")

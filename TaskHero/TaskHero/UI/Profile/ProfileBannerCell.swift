@@ -24,8 +24,9 @@ class ProfileBannerCell: UITableViewCell {
 
 extension ProfileBannerCell {
     
+    // ===============================
     // MARK: - Initialization
-    // =========================================================================
+    // ===============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -33,8 +34,9 @@ extension ProfileBannerCell {
         contentView.layer.masksToBounds = true
     }
     
+    // =============================
     // MARK: - Configuring Cell
-    // =========================================================================
+    // =============================
     
     private func setupConstraints() {
         contentView.addSubview(bannerImage)
