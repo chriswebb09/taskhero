@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsCellViewModel {
+final class SettingsCellViewModel {
     let setting: String
     
     init(_ setting:String) {

@@ -25,17 +25,31 @@ class Helpers {
     let store = DataStore.sharedInstance
     let manager = AppManager.sharedInstance
     
-    func getTasks(tableView: UITableView) {
-        store.setupStore()
-        store.firebaseAPI.fetchTasks() { task in
-            self.store.tasks.append(task)
-            self.store.currentUser.tasks?.append(task)
-            DispatchQueue.main.async {
-                tableView.reloadData()
-            }
-        }
-    }
+//    func getTasks(tableView: UITableView) {
+//        store.setupStore()
+//        store.firebaseAPI.fetchTasks() { task in
+//            self.store.tasks.append(task)
+//            self.store.currentUser.tasks?.append(task)
+//            DispatchQueue.main.async {
+//                tableView.reloadData()
+//            }
+//        }
+//    }
     
+//    func getTasks(tableView: UITableView) {
+//        store.setupStore()
+//        store.firebaseAPI.fetchTasks() { task in
+//            DispatchQueue.main.async {
+//                self.store.tasks.append(task)
+//                self.store.currentUser.tasks?.append(task)
+//                tableView.reloadData()
+//            }
+//            
+////            DispatchQueue.main.async {
+////                tableView.reloadData()
+////            }
+//        }
+//    }
     func removeRefHandle() {
         if self.store.firebaseAPI.refHandle != nil {
             self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
@@ -62,6 +76,21 @@ class Helpers {
     
     func tapEdit(tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+        tapCell.taskDescriptionBox.resignFirstResponder()
+        if tapCell.toggled == true {
+            var newTask = self.store.tasks[atIndex.row - 1]
+            newTask.taskDescription = tapCell.taskDescriptionBox.text
+            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+            DispatchQueue.main.async {
+                tapCell.taskDescriptionLabel.text = newTask.taskDescription
+            }
+            tapCell.taskDescriptionBox.resignFirstResponder()
+        }
+    }
+    
+    func editList(tableView: UITableView, atIndex:IndexPath) {
+        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+        tapCell.taskDescriptionBox.resignFirstResponder()
         if tapCell.toggled == true {
             var newTask = self.store.tasks[atIndex.row]
             newTask.taskDescription = tapCell.taskDescriptionBox.text

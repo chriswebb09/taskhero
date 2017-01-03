@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfilePictureView: UIView {
+final class ProfilePictureView: UIView {
     
     let profilePicture = UIImageView()
     
@@ -19,7 +19,8 @@ class ProfilePictureView: UIView {
         setupView()
     }
     
-    fileprivate func setupConstraints() {
+    
+    private func setupConstraints() {
         addSubview(profilePicture)
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Dimension.width).isActive = true

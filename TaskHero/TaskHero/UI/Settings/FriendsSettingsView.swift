@@ -71,7 +71,7 @@ extension FriendsSettingsView {
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         configureView(view: friendsHeaderLabel)
         friendsHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Settings.FriendsSetting.friendsHeaderLabelTopOffset).isActive = true
         configureView(view: searchField)

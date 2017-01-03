@@ -49,7 +49,6 @@ final class ProfileViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        self.store.firebaseAPI.fetchUserData()
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -118,8 +117,10 @@ extension ProfileViewController {
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {
+            var manager = AppManager.sharedInstance
             let loginVC = UINavigationController(rootViewController:LoginViewController())
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            manager.logout()
             appDelegate.window?.rootViewController = loginVC
         }
     }

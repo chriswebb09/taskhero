@@ -25,7 +25,7 @@ extension TaskCell {
         saveButton.isHidden = !toggled
         taskCompletedView.isHidden = toggled
         taskCompletedView.isUserInteractionEnabled = toggled
-
+        toggled = !editState
     }
     
     func toggleForEditState(sender:UIGestureRecognizer) {
@@ -34,7 +34,7 @@ extension TaskCell {
     }
     
     func toggleForButtonState(sender:UIButton) {
-        taskCell(didToggleEditState: !toggled)
+        taskCell(didToggleEditState: toggled)
         delegate?.toggleForButtonState(sender: sender)
     }
 }
@@ -75,7 +75,7 @@ extension TaskCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.negativeOffset).isActive = true
         view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.mainOffset).isActive = true
-        view.heightAnchor.constraint(equalToConstant: Constants.TaskCell.mainHeight).isActive = true
+        view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Dimension.cellButtonHeight).isActive = true
     }
     
     func setupConstraints() {

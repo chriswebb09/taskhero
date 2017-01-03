@@ -34,7 +34,7 @@ class DataStore {
     // ==============================================
 
     func updateUserProfile(userID: String, user:User) {
-        firebaseAPI.updateUserProfile(userID: userID, user: user)
+        firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:tasks)
         self.tasks.forEach { task in
             firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
         }
@@ -43,15 +43,24 @@ class DataStore {
     // Setup datastore for initial operation 
     // =============================================
     
-    func setupStore() {
-        tasks.removeAll()
-        firebaseAPI.fetchUserData()
-        if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
+    
+    func fetchUser(completion: @escaping(User) -> Void) {
+        self.tasks.removeAll()
+        self.currentUser.tasks?.removeAll()
+        firebaseAPI.fetchUser(completion: { user in
+            self.currentUser = user
+        })
+        
+        firebaseAPI.fetchTasks(taskList: currentUser.tasks!, completion: { tasks in
+            self.currentUser.tasks = tasks
+            self.tasks = tasks
+            dump(self.currentUser)
+            completion(self.currentUser)
+        })
     }
     
-    func deleteTask(id:String) {
-        updateUserScore()
-        firebaseAPI.insertUser(user: currentUser)
-        firebaseAPI.removeTask(ref: id, taskID: id)
+    func setupStore() {
+        tasks.removeAll()
+        if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
     }
 }

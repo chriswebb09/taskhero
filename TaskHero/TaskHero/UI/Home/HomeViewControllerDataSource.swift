@@ -11,12 +11,13 @@ import UIKit
 class HomeViewControllerDataSource {
     let store = DataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
-    var rows: Int! {
-        guard let tasks = store.currentUser.tasks?.count else { return 0 }
-        if tasks < 1 {
-            return 1
-        } else {
-            return tasks + 1
+    var rows: Int {
+        get {
+            if (store.currentUser.tasks?.count)! < 1 {
+                return 1
+            } else {
+                return (store.currentUser.tasks!.count) + 1
+            }
         }
     }
     

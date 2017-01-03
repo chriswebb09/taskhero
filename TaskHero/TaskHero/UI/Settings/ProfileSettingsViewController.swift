@@ -63,7 +63,7 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
 
 extension ProfileSettingsViewController {
     
-    func connected(sender: TagButton){
+    @objc fileprivate func connected(sender: TagButton){
         indexTap = sender.index
         tapEdit()
     }

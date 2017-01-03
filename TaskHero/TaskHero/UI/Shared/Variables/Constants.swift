@@ -20,9 +20,9 @@ struct Constants {
     struct Dimension {
         static let mainWidth:CGFloat = 0.4
         static let mainOffset:CGFloat = 30
-        //let
-        //static let buttonHeight:CGFloat = 0.07
-        static let buttonHeight = CGFloat(0.009)
+        static let buttonHeight:CGFloat = 0.07
+        static let cellButtonHeight:CGFloat = 0.04
+       // static let buttonHeight = CGFloat(0.009)
         static let topOffset:CGFloat = 10
         static let bottomOffset:CGFloat = -10
         static let settingsOffset:CGFloat = 0.05
@@ -76,8 +76,8 @@ struct Constants {
     
     struct Profile {
         struct ProfilePicture {
-            static let profilePictureHeight:CGFloat = 0.12
-            static let profilePictureWidth: CGFloat = 75
+            static let profilePictureHeight:CGFloat = 0.14
+            static let profilePictureWidth: CGFloat = 0.25
         }
         
         struct Offset {

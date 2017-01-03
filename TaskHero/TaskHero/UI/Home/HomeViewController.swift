@@ -22,6 +22,7 @@ final class HomeViewController: UITableViewController {
     var tapped: Bool = false
     var buttonTapped: Bool = false
     let helpers = Helpers()
+    var index:IndexPath!
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
@@ -43,13 +44,27 @@ extension HomeViewController: UINavigationControllerDelegate {
     // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
     // If there are tasks in datastore removes tasks before load
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        helpers.getTasks(tableView:tableView)
+        self.store.tasks.removeAll()
+        if self.store.currentUser.tasks != nil {
+            self.store.currentUser.tasks?.removeAll()
+        }
+
+        
+            self.store.fetchUser() { user in
+                self.store.currentUser = user
+                DispatchQueue.main.async {
+                    
+                    self.tableView.reloadData()
+                }
+            }
+        
+        
+
     }
-    
-    // If taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         helpers.removeRefHandle()
@@ -77,6 +92,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         if indexPath.row == 0 {
             let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header) as! ProfileHeaderCell
             dataSource.configureHeader(headerCell: headerCell, viewController:self)
+            index = indexPath
             return headerCell
         } else {
             let taskCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.task) as! TaskCell
@@ -93,13 +109,17 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         if editingStyle == .delete {
             tableView.beginUpdates()
             DispatchQueue.main.async {
-                let removeTaskID: String = self.store.tasks[indexPath.row - 1].taskID
-                self.store.deleteTask(id: removeTaskID)
+                let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
+                self.store.tasks = self.store.currentUser.tasks!
                 self.store.tasks.remove(at: indexPath.row - 1)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                self.store.updateUserScore()
+                self.store.firebaseAPI.registerUser(user: self.store.currentUser)
+                self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
+                print(self.dataSource)
+                tableView.reloadData()
                 tableView.endUpdates()
             }
-            tableView.reloadData()
+            
         }
     }
 }

@@ -12,7 +12,7 @@ protocol ProfileSettingsCellDelegate: class {
     func editButtonTapped()
 }
 
-class ProfileSettingViewModel {
+final class ProfileSettingViewModel {
     var profileSettings: String
     init(profileSettings: String) {
         self.profileSettings = profileSettings

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTaskView: UIView {
+final class AddTaskView: UIView {
     
     // ===========================
     // MARK: UIElements

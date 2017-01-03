@@ -93,7 +93,7 @@ extension ProfileHeaderCell {
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
     
-    func addConfigures() {
+    private func addConfigures() {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
@@ -113,7 +113,7 @@ extension ProfileHeaderCell {
         contentView.addSubview(profilePicture)
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         addConfigures()
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
@@ -129,7 +129,7 @@ extension ProfileHeaderCell {
         
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight).isActive = true
-        profilePicture.widthAnchor.constraint(equalToConstant: Constants.Profile.ProfilePicture.profilePictureWidth).isActive = true
+        profilePicture.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * Constants.Profile.ProfilePicture.profilePictureWidth).isActive = true
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Profile.Offset.topOffset).isActive = true
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
     }
@@ -151,9 +151,14 @@ extension ProfileHeaderCell {
         layoutIfNeeded()
     }
     
+
     // ===================================
     // MARK: - Delegate Methods
     // ===================================
+    
+    func changeProfilePic() {
+        
+    }
     
     func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")

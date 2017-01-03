@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FriendsSettingsViewController: UIViewController {
+final class FriendsSettingsViewController: UIViewController, UITextFieldDelegate {
     
     let friendsSettingsView = FriendsSettingsView()
     let alertPop = AlertPopover()
@@ -17,7 +17,13 @@ final class FriendsSettingsViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(friendsSettingsView)
         friendsSettingsView.layoutSubviews()
+        friendsSettingsView.searchField.delegate = self
         navigationController?.navigationBar.tintColor = UIColor.white
         friendsSettingsView.searchButton.addTarget(self, action: #selector(popup), for: .touchUpInside)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

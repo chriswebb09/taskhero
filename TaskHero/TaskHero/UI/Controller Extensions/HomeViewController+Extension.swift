@@ -18,8 +18,10 @@ extension HomeViewController {
     // Logs out user by settings root ViewController to Loginview
     
     func logoutButtonPressed() {
+        var manager = AppManager.sharedInstance
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        manager.logout()
         appDelegate.window?.rootViewController = loginVC
     }
     
@@ -51,13 +53,18 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.showPopView(viewController: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidden))
         photoPopover.containerView.addGestureRecognizer(tap)
-        photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto), for: .touchUpInside)
+        photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto(sender:)), for: .touchUpInside)
     }
-    
-    func tapPickPhoto() {
+
+     func tapPickPhoto(sender:UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
+        var headerCell = tableView.cellForRow(at: index) as! ProfileHeaderCell
         present(picker, animated: true, completion: nil)
+        if profilePic != nil {
+             headerCell.profilePicture.image = profilePic!
+        }
+       
         photoPopover.hideView(viewController: self)
     }
     
@@ -97,9 +104,11 @@ extension HomeViewController {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage
+        profilePic = info[UIImagePickerControllerOriginalImage] as? UIImage
         self.store.firebaseAPI.uploadImage(profilePicture: self.store.profilePicture, user: self.store.currentUser, completion: { url in
             self.store.currentUser.profilePicture = url
         })
+        
         dismiss(animated: true, completion: nil)
     }
     

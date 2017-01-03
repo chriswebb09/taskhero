@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileSettingsViewControllerDataSource {
+final class ProfileSettingsViewControllerDataSource {
     
     let store = DataStore.sharedInstance
     

@@ -85,8 +85,10 @@ extension TaskListViewController {
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {
+            let manager = AppManager.sharedInstance
             let loginVC = UINavigationController(rootViewController:LoginViewController())
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            manager.logout()
             appDelegate.window?.rootViewController = loginVC
         }
     }
@@ -99,7 +101,7 @@ extension TaskListViewController {
     
     func deleteTasks(id:String, indexPath: IndexPath) {
         self.store.updateUserScore()
-        self.store.firebaseAPI.insertUser(user: self.store.currentUser)
+        self.store.firebaseAPI.registerUser(user: self.store.currentUser)
         self.store.firebaseAPI.removeTask(ref: id, taskID: id)
         self.store.tasks.remove(at: indexPath.row)
     }
@@ -108,8 +110,9 @@ extension TaskListViewController {
     func toggleForButtonState(sender:UIButton) {
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
-        let indexPath = tableView.indexPath(for: cell!)
-        helpers.tapEdit(tableView: tableView, atIndex: indexPath!)
+        var indexPath = tableView.indexPath(for: cell!)
+        //indexPath?.row += 1
+        helpers.editList(tableView: tableView, atIndex: indexPath!)
     }
     
     // Kicks off cycling between taskcell editing states
@@ -117,7 +120,7 @@ extension TaskListViewController {
     func toggleForEditState(sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        helpers.tapEdit(tableView: tableView, atIndex: tapIndex)
+        helpers.editList(tableView: tableView, atIndex: tapIndex)
     }
 }
 

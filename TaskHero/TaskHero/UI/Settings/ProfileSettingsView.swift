@@ -41,7 +41,7 @@ extension ProfileSettingsView {
     // MARK: - Configure
     // ==============================
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
         profileLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.FriendsSetting.friendsHeaderLabelHeight).isActive = true

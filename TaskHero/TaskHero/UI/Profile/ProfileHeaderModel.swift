@@ -17,8 +17,6 @@ protocol ProfileHeaderModel {
     var emailLabel: String { get }
 }
 
-//class ProfileHeaderCellViewModel: ProfileHeaderModel {
-
 struct ProfileHeaderCellModel {
     
     // ================================

@@ -54,7 +54,7 @@ extension ProfileDataCell {
     // MARK: - Configuration
     // ==========================
     
-    fileprivate func configureLabels(label:UILabel) {
+    private func configureLabels(label:UILabel) {
         label.layer.cornerRadius = ProfileDataCell.dataCellRadius
         label.layer.masksToBounds = true
         label.textAlignment = .center
@@ -67,7 +67,7 @@ extension ProfileDataCell {
     
     // Most likely will be removed
     
-    func configureConstraints(label:UILabel) {
+    private func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
     }
     

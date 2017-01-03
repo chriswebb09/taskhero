@@ -56,17 +56,38 @@ extension TaskListViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        self.store.firebaseAPI.fetchUserData()
+       
         if store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
         }
-        store.tasks.removeAll()
-        store.firebaseAPI.fetchTasks(completion: { task in
-            self.store.tasks.append(task)
-            DispatchQueue.main.async { self.tableView.reloadData() }
-        })
+        
+        self.store.tasks.removeAll()
+        if self.store.currentUser.tasks != nil {
+            self.store.currentUser.tasks?.removeAll()
+        }
+        
+        self.store.fetchUser() { user in
+            self.store.currentUser = user
+            DispatchQueue.main.async {
+                
+                self.tableView.reloadData()
+            }
+        }
     }
+    
+        
+
+//        store.tasks.removeAll()
+//        store.fetchUser(completion: { user in
+//            self.store.currentUser = user
+//        })
+//    }
+//        store.firebaseAPI.fetchTasks(completion: { task in
+//            self.store.tasks.append(task)
+//            DispatchQueue.main.async { self.tableView.reloadData() }
+//        })
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)

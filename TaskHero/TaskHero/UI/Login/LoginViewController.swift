@@ -73,8 +73,8 @@ extension LoginViewController {
             self.store.firebaseAPI.setupRefs()
             self.store.firebaseAPI.fetchUser(completion: { user in
                 self.store.currentUser = user
-                self.manager.setUserData(user: user)
             })
+
             self.manager.setLoggedInKey(userState: true)
             self.manager.hasLoggedIn()
             DispatchQueue.main.async {
@@ -82,8 +82,8 @@ extension LoginViewController {
             }
         }
     }
-    
-    fileprivate func setupTabBar() {
+   
+    private func setupTabBar() {
         let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar

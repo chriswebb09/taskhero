@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ProfileBannerCell: UITableViewCell {
+final class ProfileBannerCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileBannerCell"
     
+    // ========================
     // MARK: - UI Elements
-    // =========================================================================
+    // ========================
     
     var bannerImage: UIImageView = {
         let imageView = UIImageView()

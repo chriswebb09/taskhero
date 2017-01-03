@@ -158,8 +158,7 @@ extension AddTaskViewController {
     
     
     // Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion
-    
-    @objc fileprivate func formatTaskWithDate() {
+    func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"
         let uid = NSUUID().uuidString
         guard let taskName = addTaskView.taskNameField.text else { return }
@@ -173,6 +172,27 @@ extension AddTaskViewController {
             _ = self.navigationController?.popToRootViewController(animated: false)
         }
     }
+
+//    @objc fileprivate func formatTaskWithDate() {
+//        let newDate = "\(month)-\(day)-\(year)"
+//        let uid = NSUUID().uuidString
+//        guard let taskName = addTaskView.taskNameField.text else { return }
+//        guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
+//        let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:newDate, taskCompleted: false, pointValue:5)
+//        //store.firebaseAPI.addTasks(task: newTask)
+//       self.store.tasks.append(newTask)
+//        
+//        
+//       // store.currentUser.tasks?.append(newTask)
+//        self.store.firebaseAPI.addTasks(task: newTask)
+//        //store.updateUserProfile(userID: store.currentUserString, user: store.currentUser)
+//       // store.firebaseAPI.updateUserProfile(userID: store.currentUserString, user: store.currentUser, tasks:self.store.tasks)
+//        DispatchQueue.main.async {
+//            self.pop.hidePopView(viewController: self)
+//            self.pop.popView.isHidden = true
+//            _ = self.navigationController?.popToRootViewController(animated: false)
+//        }
+//    }
     
     func dismissKeyboard() {
         view.endEditing(true)
