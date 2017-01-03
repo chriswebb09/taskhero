@@ -18,7 +18,7 @@ extension HomeViewController {
     // Logs out user by settings root ViewController to Loginview
     
     func logoutButtonPressed() {
-        var manager = AppManager.sharedInstance
+        let manager = AppManager.sharedInstance
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         manager.logout()
@@ -59,7 +59,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
      func tapPickPhoto(sender:UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
-        var headerCell = tableView.cellForRow(at: index) as! ProfileHeaderCell
+        let headerCell = tableView.cellForRow(at: index) as! ProfileHeaderCell
         present(picker, animated: true, completion: nil)
         if profilePic != nil {
              headerCell.profilePicture.image = profilePic!

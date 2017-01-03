@@ -11,6 +11,8 @@ import Firebase
 
 class TabBarController: UITabBarController {
     
+    // self.perform(#selector(self.helpers.handleLogout), with: nil, afterDelay: 0)
+    
     let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
     let helpers = Helpers()
@@ -19,18 +21,11 @@ class TabBarController: UITabBarController {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             self.view.backgroundColor = UIColor.white
             if user != nil && (self.store.currentUser != nil) {
-                DispatchQueue.main.async {
-                    super.viewDidLoad()
-                    self.setupControllers()
-                }
-            } else if self.store.currentUser == nil { self.store.firebaseAPI.fetchUser(completion: { user in
-                self.store.currentUser = user
-                DispatchQueue.main.async {
-                    super.viewDidLoad()
-                    self.setupControllers()
-                }
-            })
-            } else { self.perform(#selector(self.helpers.handleLogout), with: nil, afterDelay: 0) }
+                self.setupTabs()
+            } else if self.store.currentUser == nil {
+                self.getUser()
+                self.setupTabs()
+            }
         }
     }
     
@@ -38,6 +33,24 @@ class TabBarController: UITabBarController {
         super.viewWillLayoutSubviews()
         helpers.setupTabBar(tabBar:tabBar, view:view)
     }
+    
+    
+    func getUser() {
+        self.store.firebaseAPI.fetchUser(completion: { user in
+            self.store.currentUser = user
+        })
+    }
+    
+    func setupTabs() {
+        DispatchQueue.main.async {
+            super.viewDidLoad()
+            self.setupControllers()
+        }
+    }
+    
+}
+
+extension TabBarController {
     
     fileprivate func setupControllers() {
         

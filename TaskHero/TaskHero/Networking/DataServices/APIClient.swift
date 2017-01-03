@@ -76,7 +76,7 @@ class APIClient {
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(uid)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
-            var tasks = [Task]()
+            let tasks = [Task]()
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             let user = User()
             if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
@@ -144,7 +144,7 @@ class APIClient {
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(userID!)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         userRef.child(userID!).observe(.childAdded, with: { snapshot in
-            var user = User()
+            let user = User()
             self.userData[snapshot.key] = snapshot.value as AnyObject?
             
             if let snapshotName = self.userData["Username"] as? String {
@@ -256,14 +256,14 @@ class APIClient {
     }
     
     func downloadImage(imageName:String, completion: @escaping (UIImage) -> Void) {
-        var name = "146CC8EC-7042-4406-9BC5-8ED7419C919B.png"
+        let name = "146CC8EC-7042-4406-9BC5-8ED7419C919B.png"
         let imageRef = FIRStorage.storage().reference().child("profile_images").child("\(name)")
         print(imageRef)
         var image: UIImage!
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
        // let prefix = "file:"
         let localURL = NSURL(string:"file://\(paths[0])/\(imageName)")
-        var filePath = localURL as? URL
+        let filePath = localURL as? URL
         print(filePath)
         let downloadTask = imageRef.write(toFile: filePath!) { url, error in
             if error != nil {

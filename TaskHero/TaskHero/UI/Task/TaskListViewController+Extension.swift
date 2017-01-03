@@ -110,8 +110,7 @@ extension TaskListViewController {
     func toggleForButtonState(sender:UIButton) {
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
-        var indexPath = tableView.indexPath(for: cell!)
-        //indexPath?.row += 1
+        let indexPath = tableView.indexPath(for: cell!)
         helpers.editList(tableView: tableView, atIndex: indexPath!)
     }
     
