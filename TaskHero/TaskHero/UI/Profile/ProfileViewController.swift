@@ -11,27 +11,31 @@ import Firebase
 
 final class ProfileViewController: UITableViewController {
     
+    // =================================
     // MARK: - Internal Variables
-    // =========================================================================
+    // =================================
     
     let store = DataStore.sharedInstance
     
+    // =============================
     // MARK: - Initialization
-    // =========================================================================
+    // =============================
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         edgesForExtendedLayout = []
         
+        // ================================
         // MARK: - Register cell types
-        // =========================================================================
+        // ================================
         
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
         tableView.setupHelper()
+        
         // Setup UI on main thread
         
         DispatchQueue.main.async {
@@ -54,8 +58,9 @@ final class ProfileViewController: UITableViewController {
 
 extension ProfileViewController {
     
+    // ========================================
     // MARK: UITableViewController Methods
-    // =========================================================================
+    // ========================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -81,7 +86,9 @@ extension ProfileViewController {
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
             return headerCell
+            
             // Beyond that it's all ProfileDataCells
+            
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
@@ -92,8 +99,9 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     
+    // ===============================
     // MARK: - Delegate Methods
-    // =========================================================================
+    // ===============================
     
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
@@ -102,8 +110,9 @@ extension ProfileViewController {
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
     }
     
+    // ============================
     // MARK: - Button methods
-    // =========================================================================
+    // ============================
     
     // On logout button press sets RootViewController to LoginViewController on main thread
     

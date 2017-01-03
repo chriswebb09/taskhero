@@ -10,8 +10,9 @@ import UIKit
 
 final class ProfileSettingsView: UIView {
     
+    // ==============================
     // MARK: - UIElements
-    // =========================================================================
+    // ==============================
     
     let profileLabel: UILabel = {
         let profileLabel = UILabel()
@@ -26,8 +27,9 @@ final class ProfileSettingsView: UIView {
 
 extension ProfileSettingsView {
     
+    // ===============================
     // MARK: - Initialization
-    // =========================================================================
+    // ===============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -35,8 +37,9 @@ extension ProfileSettingsView {
         setupConstraints()
     }
     
+    // ==============================
     // MARK: - Configure
-    // =========================================================================
+    // ==============================
     
     fileprivate func setupConstraints() {
         addSubview(profileLabel)

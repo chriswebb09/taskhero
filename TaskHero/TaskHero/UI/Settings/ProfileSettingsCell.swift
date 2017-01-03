@@ -25,8 +25,9 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     var delegate: ProfileSettingsCellDelegate?
     
+    // ========================
     // MARK: - UIElements
-    // =========================================================================
+    // ========================
     
     let profileSettingLabel: UILabel = {
         let profileLabel = UILabel()
@@ -58,8 +59,9 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
 
 extension ProfileSettingsCell {
     
+    // =============================
     // MARK: - Initalization
-    // =========================================================================
+    // =============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -68,8 +70,9 @@ extension ProfileSettingsCell {
         contentView.layer.masksToBounds = true
     }
     
+    // ======================================
     // MARK: - Configure Cell Methods
-    // =========================================================================
+    // ======================================
     
     func configureCell(setting:String) {
         layoutSubviews()
@@ -107,8 +110,9 @@ extension ProfileSettingsCell {
         profileSettingLabel.text = ""
     }
     
+    // =================================
     // MARK: - Cell Delegate Method
-    // =========================================================================
+    // =================================
     
     func editButtonTapped() {
         delegate?.editButtonTapped()

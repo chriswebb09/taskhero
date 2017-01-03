@@ -30,8 +30,9 @@ extension SettingsCell {
         contentView.layer.masksToBounds = true
     }
     
+    // =====================================
     // MARK: - Configure constraints
-    // =========================================================================
+    // =====================================
     
     private func setupConstraints() {
         contentView.backgroundColor = UIColor.settingsBackground()

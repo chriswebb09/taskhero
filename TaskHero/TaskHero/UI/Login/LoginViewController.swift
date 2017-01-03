@@ -80,7 +80,6 @@ extension LoginViewController {
             DispatchQueue.main.async {
                 self.setupTabBar()
             }
-            
         }
     }
     
@@ -89,6 +88,7 @@ extension LoginViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
     }
+    
     // Checks that text has been entered and exceeds five characters in length
     
     fileprivate func checkForValidEmailInput() {
