@@ -86,26 +86,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     }
 }
 
-extension HomeViewController {
-    // Implements logic for editing task from cell
-    
-    func setupTaskCell(taskCell:TaskCell) {
-        taskCell.delegate = self
-        taskCell.taskDescriptionBox.delegate = self
-        taskCell.toggled = tapped
-        let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(sender:)))
-        taskCell.taskCompletedView.addGestureRecognizer(tap)
-    }
-    
-    func configureHeader(headerCell:ProfileHeaderCell) {
-        headerCell.delegate = self
-        headerCell.emailLabel.isHidden = true
-        headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
-        if profilePic != nil {
-            headerCell.profilePicture.image = self.store.profilePicture
-        }
-    }
-}
 
 extension HomeViewController {
     

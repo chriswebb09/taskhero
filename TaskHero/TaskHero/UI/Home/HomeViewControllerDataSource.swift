@@ -46,6 +46,23 @@ extension HomeViewControllerDataSource {
         tableView.setupHelper()
         tableView.estimatedRowHeight = view.frame.height / 4
     }
+    
+    func configureHeader(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
+        headerCell.delegate = viewController
+        headerCell.emailLabel.isHidden = true
+        headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
+        if viewController.profilePic != nil {
+            headerCell.profilePicture.image = self.store.profilePicture
+        }
+    }
+    
+    func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
+        taskCell.delegate = viewController
+        taskCell.taskDescriptionBox.delegate = viewController
+        taskCell.toggled = viewController.tapped
+        let tap = UIGestureRecognizer(target: self, action: #selector(viewController.toggleForEditState(sender:)))
+        taskCell.taskCompletedView.addGestureRecognizer(tap)
+    }
 }
 
 enum HomeCellType {

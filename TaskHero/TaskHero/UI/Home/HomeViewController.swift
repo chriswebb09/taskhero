@@ -76,11 +76,11 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         dataSource.indexPath = indexPath
         if indexPath.row == 0 {
             let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header) as! ProfileHeaderCell
-            configureHeader(headerCell: headerCell)
+            dataSource.configureHeader(headerCell: headerCell, viewController:self)
             return headerCell
         } else {
             let taskCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.task) as! TaskCell
-            setupTaskCell(taskCell: taskCell)
+            dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.saveButton.tag = indexPath.row
             return taskCell
         }
