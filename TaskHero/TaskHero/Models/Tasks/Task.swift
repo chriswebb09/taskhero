@@ -8,7 +8,6 @@
 import UIKit
 
 struct Task {
-    
     var taskID: String
     var taskName: String
     var taskDescription:String
@@ -16,17 +15,9 @@ struct Task {
     var taskDue: String
     var taskCompleted: Bool
     var pointValue: Int
-    
-    init(taskID: String, taskName: String, taskDescription: String, taskCreated: String, taskDue: String, taskCompleted: Bool, pointValue:Int) {
-        self.taskID = taskID
-        self.taskName = taskName
-        self.taskDescription = taskDescription
-        self.taskCreated = taskCreated
-        self.taskDue = taskDue
-        self.taskCompleted = taskCompleted
-        self.pointValue = pointValue
-    }
-    
+}
+
+extension Task {
     init() {
         self.init(taskID: "", taskName: "", taskDescription:"", taskCreated:NSDate().dateWithFormat(), taskDue:"", taskCompleted:false, pointValue: 5)
     }
