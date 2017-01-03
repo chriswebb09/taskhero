@@ -13,7 +13,6 @@
 		A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */; };
 		A70840041DEABBD000055B72 /* FriendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840031DEABBD000055B72 /* FriendsSettingsView.swift */; };
 		A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840051DEABBE200055B72 /* FriendsSettingsViewController.swift */; };
-		A70840081DEB152F00055B72 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840071DEB152F00055B72 /* BaseCell.swift */; };
 		A708400A1DEB180800055B72 /* ProfileSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70840091DEB180800055B72 /* ProfileSettingsCell.swift */; };
 		A709CACB1DE7718B00877907 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAC91DE7718B00877907 /* LoginView.swift */; };
 		A709CACC1DE7718B00877907 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CACA1DE7718B00877907 /* LoginViewController.swift */; };
@@ -51,7 +50,6 @@
 		A7111A031E1B6F7F008B33A9 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7111A021E1B6F7F008B33A9 /* Levels.swift */; };
 		A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713373C1DE8047E0030DDF2 /* AppManager.swift */; };
 		A715C1D21E1B078C0096A18B /* HomeViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */; };
-		A71C97871DFF666F00F855AA /* CellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97861DFF666F00F855AA /* CellStyle.swift */; };
 		A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */; };
 		A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */; };
 		A7346D781DE8EC50005E3A5E /* AlertPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D771DE8EC50005E3A5E /* AlertPopover.swift */; };
@@ -109,7 +107,6 @@
 		A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		A70840031DEABBD000055B72 /* FriendsSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSettingsView.swift; sourceTree = "<group>"; };
 		A70840051DEABBE200055B72 /* FriendsSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSettingsViewController.swift; sourceTree = "<group>"; };
-		A70840071DEB152F00055B72 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A70840091DEB180800055B72 /* ProfileSettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsCell.swift; sourceTree = "<group>"; };
 		A709CAC91DE7718B00877907 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A709CACA1DE7718B00877907 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +145,6 @@
 		A7111A021E1B6F7F008B33A9 /* Levels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		A713373C1DE8047E0030DDF2 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerDataSource.swift; sourceTree = "<group>"; };
-		A71C97861DFF666F00F855AA /* CellStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellStyle.swift; sourceTree = "<group>"; };
 		A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerPopover.swift; sourceTree = "<group>"; };
 		A7346D771DE8EC50005E3A5E /* AlertPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPopover.swift; sourceTree = "<group>"; };
@@ -349,12 +345,10 @@
 		A709CB231DE77C2E00877907 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A71C97861DFF666F00F855AA /* CellStyle.swift */,
 				A76562D81DF953C500E29AA9 /* Popover */,
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
 				A7346D871DEA6A08005E3A5E /* DataPicker.swift */,
 				A7346D7D1DE93688005E3A5E /* TaskButton.swift */,
-				A70840071DEB152F00055B72 /* BaseCell.swift */,
 				A77FBCCC1DEB8A190014C380 /* Helpers.swift */,
 				A7F019DB1E0922FC00B23667 /* UITextView+Extensions.swift */,
 				A70DC5401E15A93500812FB4 /* SetupNav.swift */,
@@ -761,7 +755,6 @@
 				A73B47BC1E1BD78E0090F699 /* ImageClient.swift in Sources */,
 				A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */,
 				A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */,
-				A70840081DEB152F00055B72 /* BaseCell.swift in Sources */,
 				A76562CE1DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift in Sources */,
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
@@ -785,7 +778,6 @@
 				A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */,
 				A709CAD61DE771F400877907 /* ProfileBannerCell.swift in Sources */,
 				A76562CF1DF93F2000E29AA9 /* SettingsViewController+Extension.swift in Sources */,
-				A71C97871DFF666F00F855AA /* CellStyle.swift in Sources */,
 				A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */,
 				A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */,
 				A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */,

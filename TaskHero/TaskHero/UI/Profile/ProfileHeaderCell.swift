@@ -163,7 +163,6 @@ extension ProfileHeaderCell {
                 self.profilePicture.image = downloadImage
             }
         }
-        
     }
     
     func profilePictureTapped() {
