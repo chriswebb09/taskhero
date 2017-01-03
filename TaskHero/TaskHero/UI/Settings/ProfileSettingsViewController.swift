@@ -15,6 +15,7 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     var tapped: Bool = false
     var indexTap: IndexPath?
     let tableView = UITableView()
+    let helpers = Helpers()
     
     fileprivate var options = ["Email Address", "Name", "Profile Picture", "Username"]
     
@@ -36,7 +37,7 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         
         profileSettingsView.layoutSubviews()
         setupViews()
-        setupTableView()
+        helpers.setupTableView(tableView:tableView)
     }
 }
 
@@ -85,35 +86,11 @@ extension ProfileSettingsViewController {
         if tapped == true {
             tapped = false
             if (tapCell.profileSettingField.text?.characters.count)! > 0 {
+                guard let name = tapCell.profileSettingField.text?.components(separatedBy: " ") else { return }
                 if indexTap?.row == 1 {
-                    var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
-                    let updatedUser = User()
-                    
-                    updatedUser.username = self.store.currentUser.username
-                    updatedUser.email = self.store.currentUser.email
-                    updatedUser.profilePicture = "None"
-                    updatedUser.firstName = name?[0]
-                    updatedUser.lastName = name?[1]
-                    updatedUser.joinDate = self.store.currentUser.joinDate
-                    updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
-                    updatedUser.experiencePoints = self.store.currentUser.experiencePoints
-                    updatedUser.tasks = self.store.currentUser.tasks
-                    
-                    self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
+                    updateUserNames(cell: tapCell, name: name)
                 } else if indexTap?.row == 3 {
-                    var name = tapCell.profileSettingField.text?.components(separatedBy: " ")
-                    let updatedUser = User()
-                    
-                    updatedUser.username = tapCell.profileSettingField.text!
-                    updatedUser.email = self.store.currentUser.email
-                    updatedUser.profilePicture = "None"
-                    updatedUser.firstName = name?[0]
-                    updatedUser.lastName = name?[1]
-                    updatedUser.joinDate = self.store.currentUser.joinDate
-                    updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
-                    updatedUser.experiencePoints = self.store.currentUser.experiencePoints
-                    
-                    updatedUser.tasks = self.store.currentUser.tasks
+                    updateUserName(cell: tapCell, name: name)
                 }
                 tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
             } else {
@@ -127,3 +104,34 @@ extension ProfileSettingsViewController {
     }
 }
 
+
+extension ProfileSettingsViewController {
+    
+    func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
+        var name = cell.profileSettingField.text?.components(separatedBy: " ")
+        let updatedUser = User()
+        updatedUser.username = self.store.currentUser.username
+        updatedUser.email = self.store.currentUser.email
+        updatedUser.profilePicture = "None"
+        updatedUser.firstName = name?[0]
+        updatedUser.lastName = name?[1]
+        updatedUser.joinDate = self.store.currentUser.joinDate
+        updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
+        updatedUser.experiencePoints = self.store.currentUser.experiencePoints
+        updatedUser.tasks = self.store.currentUser.tasks
+        self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
+    }
+    
+    func updateUserName(cell:ProfileSettingsCell, name: [String]) {
+        let updatedUser = User()
+        updatedUser.username = cell.profileSettingField.text!
+        updatedUser.email = self.store.currentUser.email
+        updatedUser.profilePicture = "None"
+        updatedUser.firstName = name[0]
+        updatedUser.lastName = name[1]
+        updatedUser.joinDate = self.store.currentUser.joinDate
+        updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
+        updatedUser.experiencePoints = self.store.currentUser.experiencePoints
+        updatedUser.tasks = self.store.currentUser.tasks
+    }
+}

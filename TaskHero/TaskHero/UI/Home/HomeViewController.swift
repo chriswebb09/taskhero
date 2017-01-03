@@ -21,8 +21,7 @@ final class HomeViewController: UITableViewController {
     var profilePic: UIImage? = nil
     var tapped: Bool = false
     var buttonTapped: Bool = false
-    let helper = Helper()
-    let helperz = Helpers()
+    let helpers = Helpers()
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
@@ -40,20 +39,20 @@ extension HomeViewController: UINavigationControllerDelegate {
         dataSource.setupView(tableView:tableView, view:view)
         setupNavItems()
     }
-
+    
     // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
     // If there are tasks in datastore removes tasks before load
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        helperz.getTasks(tableView:tableView)
+        helpers.getTasks(tableView:tableView)
     }
     
     // If taskref is not nil removes refhandle - necessary to prevent duplicates from being rendered when view reloads.
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        helperz.removeRefHandle()
+        helpers.removeRefHandle()
     }
 }
 
@@ -74,7 +73,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     // If first row returns profile header cell else returns task cell
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         dataSource.indexPath = indexPath
         if indexPath.row == 0 {
             let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header) as! ProfileHeaderCell
@@ -96,7 +94,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
             tableView.beginUpdates()
             DispatchQueue.main.async {
                 let removeTaskID: String = self.store.tasks[indexPath.row - 1].taskID
-                self.deleteTask(id: removeTaskID)
+                self.store.deleteTask(id: removeTaskID)
                 self.store.tasks.remove(at: indexPath.row - 1)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()

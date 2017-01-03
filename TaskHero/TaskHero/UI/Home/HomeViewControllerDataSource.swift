@@ -40,7 +40,7 @@ extension HomeViewControllerDataSource {
         }
     }
     
-    func setupView(tableView:UITableView, view: UIView) {
+    func setupView(tableView:UITableView, view:UIView) {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         tableView.setupHelper()

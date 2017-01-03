@@ -90,30 +90,40 @@ extension ProfileHeaderCell {
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
     
-    fileprivate func setupConstraints() {
+    func addConfigures() {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
+        
         contentView.addSubview(emailLabel)
         configureLabel(label: emailLabel)
         configureConstraints(label: emailLabel)
+        
         contentView.addSubview(joinDateLabel)
         configureLabel(label: joinDateLabel)
         configureConstraints(label: joinDateLabel)
+        
         contentView.addSubview(usernameLabel)
         configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)
-        contentView.addSubview(profilePicture)
         
+        contentView.addSubview(profilePicture)
+    }
+    
+    fileprivate func setupConstraints() {
+        addConfigures()
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: profilePicture.topAnchor).isActive  = true
+        
         levelLabel.bottomAnchor.constraint(equalTo: profilePicture.bottomAnchor).isActive = true
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
         joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
+        
         joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
         joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.mainOffset).isActive = true
+        
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight).isActive = true
         profilePicture.widthAnchor.constraint(equalToConstant: Constants.Profile.ProfilePicture.profilePictureWidth).isActive = true

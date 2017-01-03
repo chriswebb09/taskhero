@@ -11,7 +11,7 @@ import Firebase
 
 extension HomeViewController {
     
-    // MARK: - UI Methods
+    // MARK: Public Methods
     // =========================================================================
     
     // Logs out user by settings root ViewController to Loginview
@@ -32,31 +32,15 @@ extension HomeViewController {
         navigationController?.setupNav()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(helperz.addTaskButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
 }
 
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
-    // MARK: Public Methods
+    // MARK: - Header and Task cell Delegate Methods
     // =========================================================================
-   // @objc
-    // Implements logic for editing task from cell
-    
-
-    fileprivate func updateDescription(cell:TaskCell, for row:Int) {
-        var newTask = self.store.tasks[row - 1]
-        cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
-        newTask.taskDescription = cell.taskDescriptionBox.text
-        self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-        cell.taskDescriptionLabel.text = cell.taskDescriptionBox.text
-    }
-    
-    
-    // MARK: - Delegate Methods
-    // =========================================================================
-    
     // If popover is not visible shows popover / if popover is displayed it hides popover
     
     func profilePictureTapped() {
@@ -79,7 +63,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
-        helper.tapEdit(tableView: tableView, atIndex: indexPath!)
+        helpers.tapEdit(tableView: tableView, atIndex: indexPath!)
     }
     
     func taskCell(didToggleEditState editState:Bool) {
@@ -91,7 +75,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     func toggleForEditState(sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        helper.tapEdit(tableView:tableView, atIndex: tapIndex)
+        helpers.tapEdit(tableView:tableView, atIndex: tapIndex)
         //tapEdit(atIndex: tapIndex as IndexPath)
     }
     
@@ -103,12 +87,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
 }
 
 extension HomeViewController {
-    
-    func deleteTask(id:String) {
-        self.store.updateUserScore()
-        self.store.firebaseAPI.insertUser(user: self.store.currentUser)
-        self.store.firebaseAPI.removeTask(ref: id, taskID: id)
-    }
+    // Implements logic for editing task from cell
     
     func setupTaskCell(taskCell:TaskCell) {
         taskCell.delegate = self

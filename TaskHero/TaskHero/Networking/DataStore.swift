@@ -48,4 +48,10 @@ class DataStore {
         firebaseAPI.fetchUserData()
         if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
     }
+    
+    func deleteTask(id:String) {
+        updateUserScore()
+        firebaseAPI.insertUser(user: currentUser)
+        firebaseAPI.removeTask(ref: id, taskID: id)
+    }
 }

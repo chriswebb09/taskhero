@@ -28,20 +28,6 @@ extension SettingsViewController {
         }; tableView.reloadData()
     }
     
-     // ======================================
-    // MARK: - Configure tableView
-    // =======================================
-    
-    func setupTableView() {
-        tableView.estimatedRowHeight = Constants.Settings.rowHeight
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.separatorStyle = .singleLineEtched
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.tableHeaderView?.backgroundColor = UIColor.white
-    }
-    
     // ======================================
     // MARK: - Segment Control UI
     // ======================================

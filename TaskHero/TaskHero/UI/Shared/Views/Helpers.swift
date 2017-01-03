@@ -41,11 +41,34 @@ class Helpers {
         }
     }
     
-//    
-//    @objc func addTaskButtonTapped(navigationController: UINavigationController) {
-//        navigationController.pushViewController(AddTaskViewController(), animated:false)
-//    }
+    func setupTableView(tableView:UITableView) {
+        tableView.estimatedRowHeight = Constants.Settings.rowHeight
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorStyle = .singleLineEtched
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableHeaderView?.backgroundColor = UIColor.white
+    }
     
+    func updateDescription(cell:TaskCell, for row:Int) {
+        var newTask = self.store.tasks[row - 1]
+        cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
+        newTask.taskDescription = cell.taskDescriptionBox.text
+        self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+        cell.taskDescriptionLabel.text = cell.taskDescriptionBox.text
+    }
+    
+    func tapEdit(tableView: UITableView, atIndex:IndexPath) {
+        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+        if tapCell.toggled == true {
+            var newTask = self.store.tasks[atIndex.row]
+            newTask.taskDescription = tapCell.taskDescriptionBox.text
+            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+            DispatchQueue.main.async {
+                tapCell.taskDescriptionLabel.text = newTask.taskDescription
+            }
+            tapCell.taskDescriptionBox.resignFirstResponder()
+        }
+    }
 }
-
-

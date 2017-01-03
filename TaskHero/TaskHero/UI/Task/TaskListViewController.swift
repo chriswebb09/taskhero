@@ -17,7 +17,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     var tapped: Bool = false
     var buttonTapped: Bool = false
     var taskViewModel: TaskCellViewModel!
-    let helper = Helper() 
+    let helpers = Helpers()
     
     // MARK: - UI
     // =========================================================================

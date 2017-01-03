@@ -18,6 +18,7 @@ final class SettingsViewController: UITableViewController {
     let alertPop = AlertPopover()
     let notifyPop = NotificationPopover()
     var settingsViewModel:SettingsCellViewModel!
+    let helpers = Helpers()
     
     // MARK: - Initialization
     // =========================================================================
@@ -33,7 +34,7 @@ final class SettingsViewController: UITableViewController {
         header.backgroundColor = UIColor.white
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
-        setupTableView()
+        helpers.setupTableView(tableView:tableView)
         setupSegment()
     }
     
