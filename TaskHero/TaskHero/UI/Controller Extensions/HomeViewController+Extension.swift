@@ -11,8 +11,9 @@ import Firebase
 
 extension HomeViewController {
     
+    // ============================
     // MARK: Public Methods
-    // =========================================================================
+    // ============================
     
     // Logs out user by settings root ViewController to Loginview
     
@@ -39,8 +40,10 @@ extension HomeViewController {
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
+    // ==================================================
     // MARK: - Header and Task cell Delegate Methods
-    // =========================================================================
+    // ==================================================
+    
     // If popover is not visible shows popover / if popover is displayed it hides popover
     
     func profilePictureTapped() {
@@ -76,7 +79,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
         helpers.tapEdit(tableView:tableView, atIndex: tapIndex)
-        //tapEdit(atIndex: tapIndex as IndexPath)
     }
     
     // Hides popover view when operation has ended.
@@ -89,8 +91,9 @@ extension HomeViewController: UIImagePickerControllerDelegate {
 
 extension HomeViewController {
     
+    // ==========================================
     // MARK: - ImagePicker delegate methods
-    // =========================================================================
+    // ==========================================
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -102,11 +105,5 @@ extension HomeViewController {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    fileprivate func selectImage() {
-        picker.allowsEditing = false
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true, completion: nil)
     }
 }

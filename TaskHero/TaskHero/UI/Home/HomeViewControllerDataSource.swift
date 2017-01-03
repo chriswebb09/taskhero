@@ -63,6 +63,12 @@ extension HomeViewControllerDataSource {
         let tap = UIGestureRecognizer(target: self, action: #selector(viewController.toggleForEditState(sender:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
     }
+    
+    func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        viewController.present(picker, animated: true, completion: nil)
+    }
 }
 
 enum HomeCellType {
