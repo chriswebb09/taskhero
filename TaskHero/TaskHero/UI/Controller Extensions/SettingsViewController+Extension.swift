@@ -11,8 +11,9 @@ import UIKit
 
 extension SettingsViewController {
     
+    // =======================================
     // MARK: - Switch between segments
-    // =========================================================================
+    // =======================================
     
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -27,8 +28,9 @@ extension SettingsViewController {
         }; tableView.reloadData()
     }
     
+     // ======================================
     // MARK: - Configure tableView
-    // =========================================================================
+    // =======================================
     
     func setupTableView() {
         tableView.estimatedRowHeight = Constants.Settings.rowHeight
@@ -40,8 +42,9 @@ extension SettingsViewController {
         tableView.tableHeaderView?.backgroundColor = UIColor.white
     }
     
+    // ======================================
     // MARK: - Segment Control UI
-    // =========================================================================
+    // ======================================
     
     func setupSegment() {
         let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]

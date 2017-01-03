@@ -21,8 +21,9 @@ protocol ProfileHeaderModel {
 
 struct ProfileHeaderCellModel {
     
+    // ================================
     // MARK: - Internal Variables
-    // =========================================================================
+    // ================================
     
     let store = DataStore.sharedInstance
     
@@ -34,8 +35,9 @@ struct ProfileHeaderCellModel {
     internal var joinDate: String
     internal var joinDateIsHidden: Bool
     
+    // =======================================
     // MARK: - Initialization
-    // =========================================================================
+    // =======================================
     
     init() {
         self.user = self.store.currentUser!

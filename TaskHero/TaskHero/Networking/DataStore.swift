@@ -20,16 +20,18 @@ class DataStore {
     var validUsernames = [String]()
     var tasks = [Task]()
     
+    // ===========================================================
     // Update currentUser score when user completes task 
-    // =========================================================================
+    // ===========================================================
     
     func updateUserScore() {
         currentUser.experiencePoints += 1
         currentUser.numberOfTasksCompleted += 1
     }
     
+    // ==============================================
     // Update currentUser profile in database
-    // =========================================================================
+    // ==============================================
 
     func updateUserProfile(userID: String, user:User) {
         firebaseAPI.updateUserProfile(userID: userID, user: user)
@@ -37,9 +39,9 @@ class DataStore {
             firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
         }
     }
-    
+    // =============================================
     // Setup datastore for initial operation 
-    // =========================================================================
+    // =============================================
     
     func setupStore() {
         tasks.removeAll()
