@@ -32,7 +32,6 @@ class ProfileHeaderCellModel {
     internal var levelLabel: String
     internal var joinDate: String
     internal var joinDateIsHidden: Bool
-   // internal var profilePictureImage: UIImage? = nil
     
     // =======================================
     // MARK: - Initialization
