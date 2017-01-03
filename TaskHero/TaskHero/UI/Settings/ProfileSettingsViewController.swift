@@ -75,9 +75,9 @@ extension ProfileSettingsViewController {
             if (tapCell.profileSettingField.text?.characters.count)! > 0 {
                 guard let name = tapCell.profileSettingField.text?.components(separatedBy: " ") else { return }
                 if indexTap?.row == 1 {
-                    updateUserNames(cell: tapCell, name: name)
+                    dataSource.updateUserNames(cell: tapCell, name: name)
                 } else if indexTap?.row == 3 {
-                    updateUserName(cell: tapCell, name: name)
+                    dataSource.updateUserName(cell: tapCell, name: name)
                 }
                 tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
             } else {
@@ -88,37 +88,5 @@ extension ProfileSettingsViewController {
             tapCell.profileSettingLabel.isHidden = true
             tapCell.profileSettingField.isHidden = false
         }
-    }
-}
-
-
-extension ProfileSettingsViewController {
-    
-    func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
-        var name = cell.profileSettingField.text?.components(separatedBy: " ")
-        let updatedUser = User()
-        updatedUser.username = self.store.currentUser.username
-        updatedUser.email = self.store.currentUser.email
-        updatedUser.profilePicture = "None"
-        updatedUser.firstName = name?[0]
-        updatedUser.lastName = name?[1]
-        updatedUser.joinDate = self.store.currentUser.joinDate
-        updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
-        updatedUser.experiencePoints = self.store.currentUser.experiencePoints
-        updatedUser.tasks = self.store.currentUser.tasks
-        self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
-    }
-    
-    func updateUserName(cell:ProfileSettingsCell, name: [String]) {
-        let updatedUser = User()
-        updatedUser.username = cell.profileSettingField.text!
-        updatedUser.email = self.store.currentUser.email
-        updatedUser.profilePicture = "None"
-        updatedUser.firstName = name[0]
-        updatedUser.lastName = name[1]
-        updatedUser.joinDate = self.store.currentUser.joinDate
-        updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
-        updatedUser.experiencePoints = self.store.currentUser.experiencePoints
-        updatedUser.tasks = self.store.currentUser.tasks
     }
 }

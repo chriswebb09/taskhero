@@ -24,4 +24,32 @@ class ProfileSettingsViewControllerDataSource {
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.tableViewHeight).isActive = true
     }
     
+    func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
+        var name = cell.profileSettingField.text?.components(separatedBy: " ")
+        let updatedUser = User()
+        updatedUser.username = self.store.currentUser.username
+        updatedUser.email = self.store.currentUser.email
+        updatedUser.profilePicture = "None"
+        updatedUser.firstName = name?[0]
+        updatedUser.lastName = name?[1]
+        updatedUser.joinDate = self.store.currentUser.joinDate
+        updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
+        updatedUser.experiencePoints = self.store.currentUser.experiencePoints
+        updatedUser.tasks = self.store.currentUser.tasks
+        self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
+    }
+    
+    func updateUserName(cell:ProfileSettingsCell, name: [String]) {
+        let updatedUser = User()
+        updatedUser.username = cell.profileSettingField.text!
+        updatedUser.email = self.store.currentUser.email
+        updatedUser.profilePicture = "None"
+        updatedUser.firstName = name[0]
+        updatedUser.lastName = name[1]
+        updatedUser.joinDate = self.store.currentUser.joinDate
+        updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
+        updatedUser.experiencePoints = self.store.currentUser.experiencePoints
+        updatedUser.tasks = self.store.currentUser.tasks
+    }
+    
 }
