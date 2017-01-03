@@ -20,8 +20,9 @@ final class SettingsViewController: UITableViewController {
     var settingsViewModel:SettingsCellViewModel!
     let helpers = Helpers()
     
+    // ==============================
     // MARK: - Initialization
-    // =========================================================================
+    // ==============================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +47,9 @@ final class SettingsViewController: UITableViewController {
 
 extension SettingsViewController {
     
+    // ========================================
     // MARK: UITableViewController Methods
-    // =========================================================================
+    // ========================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
@@ -74,8 +76,9 @@ extension SettingsViewController {
 
 extension SettingsViewController {
     
+    // =============================
     // MARK: Public Methods
-    // =========================================================================
+    // =============================
     
     func launchPopupView() {
         alertPop.popView.layer.opacity = 0
@@ -90,6 +93,7 @@ extension SettingsViewController {
     }
     
     // Displays popover when notifications cell is selected
+    
     func notificationPopup() {
         notifyPop.popView.isHidden = false
         notifyPop.containerView.isHidden = false
@@ -100,8 +104,9 @@ extension SettingsViewController {
         notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
     }
     
+    // ============================
     // MARK: - Setup buttons
-    // =========================================================================
+    // ============================
     
     // Hides notification popover
     

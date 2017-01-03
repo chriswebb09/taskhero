@@ -16,7 +16,7 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     var indexTap: IndexPath?
     let tableView = UITableView()
     let helpers = Helpers()
-    
+    let dataSource = ProfileSettingsViewControllerDataSource()
     fileprivate var options = ["Email Address", "Name", "Profile Picture", "Username"]
     
     var username: String?
@@ -34,32 +34,20 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
-        
         profileSettingsView.layoutSubviews()
-        setupViews()
+        dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
         helpers.setupTableView(tableView:tableView)
     }
 }
 
 extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCellDelegate {
     
+    // =========================================
     // MARK: UITableViewController Methods
-    // =========================================================================
+    // =========================================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
-    }
-    
-    fileprivate func setupViews() {
-        profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
-        profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.tableViewHeight).isActive = true
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,7 +55,6 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
         cell.configureCell(setting: options[indexPath.row])
         cell.delegate = self
         cell.button.index = indexPath
-        
         cell.button.tag = indexPath.row
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)
         return cell
