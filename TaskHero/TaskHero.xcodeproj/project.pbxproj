@@ -43,7 +43,6 @@
 		A709CB0C1DE7735B00877907 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0B1DE7735B00877907 /* SignupViewController.swift */; };
 		A709CB101DE7737100877907 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0F1DE7737100877907 /* TabBarController.swift */; };
 		A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB111DE7737800877907 /* TaskListViewController.swift */; };
-		A709CB1E1DE777DC00877907 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB1D1DE777DC00877907 /* Auth.swift */; };
 		A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */; };
 		A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5401E15A93500812FB4 /* SetupNav.swift */; };
 		A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */; };
@@ -137,7 +136,6 @@
 		A709CB0B1DE7735B00877907 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		A709CB0F1DE7737100877907 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A709CB111DE7737800877907 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
-		A709CB1D1DE777DC00877907 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A70DC5401E15A93500812FB4 /* SetupNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNav.swift; sourceTree = "<group>"; };
@@ -302,14 +300,6 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		A709CB1F1DE77BC600877907 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				A709CB1D1DE777DC00877907 /* Auth.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
 		A709CB201DE77BEB00877907 /* DataServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,7 +441,6 @@
 		AFA3CE8D1DB58DF7003266CA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				A709CB1F1DE77BC600877907 /* Auth */,
 				A709CB201DE77BEB00877907 /* DataServices */,
 				A709CB011DE7732800877907 /* DataStore.swift */,
 			);
@@ -758,7 +747,6 @@
 				A76562CE1DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift in Sources */,
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
-				A709CB1E1DE777DC00877907 /* Auth.swift in Sources */,
 				A7F019E01E093C8400B23667 /* SignupViewController+Extension.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
 				A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */,

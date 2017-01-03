@@ -21,23 +21,4 @@ struct Levels {
         }
         
     }
-    
-   // let store = DataStore.sharedInstance
-    
-    //var user: User
-    
-//    var taskGoat: String {
-//        if user.experiencePoints < 20 {
-//            user.level = "Task Goat"
-//            
-//        }
-//        return "Task Goat"
-//    }
-//    
-//    var taskWizard: String {
-//        if user.experiencePoints > 20 {
-//            user.level = "Task Wizard"
-//        }
-//        return "Task Wizard"
-//    }
 }
