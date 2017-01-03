@@ -39,6 +39,13 @@ extension HomeViewControllerDataSource {
             return taskCell
         }
     }
+    
+    func setupView(tableView:UITableView, view: UIView) {
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        tableView.setupHelper()
+        tableView.estimatedRowHeight = view.frame.height / 4
+    }
 }
 
 enum HomeCellType {

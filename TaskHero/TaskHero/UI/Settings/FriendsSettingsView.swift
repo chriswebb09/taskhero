@@ -64,7 +64,7 @@ extension FriendsSettingsView {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.FriendsSetting.friendsHeaderLabelHeight).isActive = true
-        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
+        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.07).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     

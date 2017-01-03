@@ -32,7 +32,7 @@ extension HomeViewController {
         navigationController?.setupNav()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(helperz.addTaskButtonTapped))
     }
 }
 
@@ -41,7 +41,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     // MARK: Public Methods
     // =========================================================================
-    
+   // @objc
     // Implements logic for editing task from cell
     
 

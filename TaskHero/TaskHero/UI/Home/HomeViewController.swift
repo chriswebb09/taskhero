@@ -37,17 +37,10 @@ extension HomeViewController: UINavigationControllerDelegate {
         edgesForExtendedLayout = []
         dataSource = HomeViewControllerDataSource()
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
-        setupView()
-    }
-    
-    private func setupView() {
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        tableView.setupHelper()
-        tableView.estimatedRowHeight = view.frame.height / 4
+        dataSource.setupView(tableView:tableView, view:view)
         setupNavItems()
     }
-    
+
     // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
     // If there are tasks in datastore removes tasks before load
     

@@ -47,9 +47,3 @@ struct ProfileHeaderCellModel {
         self.joinDateIsHidden = true 
     }
 }
-
-//emailLabel.text = profileHeaderCellModel.emailLabel
-//joinDateLabel.isHidden = true
-//usernameLabel.text = profileHeaderCellModel.usernameLabel
-//levelLabel.text = "Level: \(profileHeaderCellModel.levelLabel)"
-// joinDateLabel.text = "Joined: \(profileHeaderCellModel.joinDate)"
