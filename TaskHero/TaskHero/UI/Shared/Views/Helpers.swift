@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 
 extension UITableView {
     func setupHelper() {
@@ -23,6 +23,7 @@ extension UITableView {
 
 class Helpers {
     let store = DataStore.sharedInstance
+    let manager = AppManager.sharedInstance
     
     func getTasks(tableView: UITableView) {
         store.setupStore()
@@ -70,5 +71,34 @@ class Helpers {
             }
             tapCell.taskDescriptionBox.resignFirstResponder()
         }
+    }
+    
+    func configureNav(nav:UINavigationBar, view: UIView) {
+        nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
+        nav.barTintColor = Constants.Tabbar.tint
+        nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
+    }
+    
+    func setupTabBar(tabBar:UITabBar, view:UIView) {
+        var tabFrame = tabBar.frame
+        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
+        tabFrame.size.height = tabBarHeight
+        tabFrame.origin.y = view.frame.size.height - tabBarHeight
+        
+        tabBar.frame = tabFrame
+        tabBar.isTranslucent = true
+        tabBar.tintColor = Constants.Tabbar.tint
+        tabBar.barTintColor = Constants.Color.backgroundColor
+    }
+    
+    dynamic func handleLogout() {
+        do {
+            manager.setLoggedInKey(userState: false)
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }; let loginController = LoginViewController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = loginController
     }
 }

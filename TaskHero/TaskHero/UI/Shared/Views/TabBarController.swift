@@ -13,6 +13,7 @@ class TabBarController: UITabBarController {
     
     let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
+    let helpers = Helpers()
     
     override func viewDidLoad() {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
@@ -29,13 +30,13 @@ class TabBarController: UITabBarController {
                     self.setupControllers()
                 }
             })
-            } else { self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0) }
+            } else { self.perform(#selector(self.helpers.handleLogout), with: nil, afterDelay: 0) }
         }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setupTabBar()
+        helpers.setupTabBar(tabBar:tabBar, view:view)
     }
     
     fileprivate func setupControllers() {
@@ -61,7 +62,7 @@ extension TabBarController {
         homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house-white-2")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "house-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: homeVC.tabBarItem)
         let homeTab = UINavigationController(rootViewController: homeVC)
-        configureNav(nav: homeTab.navigationBar)
+        helpers.configureNav(nav: homeTab.navigationBar, view:view)
         homeTab.navigationBar.topItem?.title = "TaskHero"
         return homeTab
     }
@@ -70,7 +71,7 @@ extension TabBarController {
         profileVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "avatar-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "avatar-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: profileVC.tabBarItem)
         let profileTab = UINavigationController(rootViewController: profileVC)
-        configureNav(nav:  profileTab.navigationBar)
+        helpers.configureNav(nav:profileTab.navigationBar, view:profileVC.view)
         profileTab.navigationBar.topItem?.title = "Profile"
         return profileTab
     }
@@ -79,7 +80,7 @@ extension TabBarController {
         taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: taskListVC.tabBarItem)
         let taskListTab = UINavigationController(rootViewController: taskListVC)
-        configureNav(nav: taskListTab.navigationBar)
+        helpers.configureNav(nav: taskListTab.navigationBar, view:taskListVC.view)
         taskListTab.navigationBar.topItem?.title = "TaskList"
         return taskListTab
     }
@@ -88,7 +89,7 @@ extension TabBarController {
         settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-2-white-1")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "settings-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: settingsVC.tabBarItem)
         let settingsTab = UINavigationController(rootViewController: settingsVC)
-        configureNav(nav: settingsTab.navigationBar)
+        helpers.configureNav(nav: settingsTab.navigationBar, view:settingsVC.view)
         settingsTab.navigationBar.topItem?.title = "Settings"
         return settingsTab
     }
@@ -96,39 +97,9 @@ extension TabBarController {
 
 extension TabBarController {
     
-    func configureNav(nav:UINavigationBar) {
-        nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
-        nav.barTintColor = Constants.Tabbar.tint
-        nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
-    }
-    
     func configureTabBarItem(item:UITabBarItem) {
         item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
     }
-    
-    func setupTabBar() {
-        var tabFrame = tabBar.frame
-        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
-        tabFrame.size.height = tabBarHeight
-        tabFrame.origin.y = view.frame.size.height - tabBarHeight
-        
-        tabBar.frame = tabFrame
-        tabBar.isTranslucent = true
-        tabBar.tintColor = Constants.Tabbar.tint
-        tabBar.barTintColor = Constants.Color.backgroundColor
-    }
-    
-    func handleLogout() {
-        do {
-            manager.setLoggedInKey(userState: false)
-            try FIRAuth.auth()?.signOut()
-        } catch let logoutError {
-            print(logoutError)
-        }; let loginController = LoginViewController()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginController
-    }
-    
 }
