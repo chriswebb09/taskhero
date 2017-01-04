@@ -36,9 +36,9 @@ extension HomeViewController: UINavigationControllerDelegate {
         picker.delegate = self
         edgesForExtendedLayout = []
         dataSource = HomeViewControllerDataSource()
-        dataSource.checkForPicURL(completion: { [weak self] image in
+        dataSource.checkForPicURL { [weak self] image in
             self?.profilePic = image
-        })
+        }
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         dataSource.setupView(tableView:tableView, view:view)
         setupNavItems()

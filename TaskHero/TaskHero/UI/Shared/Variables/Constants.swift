@@ -22,7 +22,7 @@ struct Constants {
         static let mainOffset:CGFloat = 30
         static let buttonHeight:CGFloat = 0.07
         static let cellButtonHeight:CGFloat = 0.04
-       // static let buttonHeight = CGFloat(0.009)
+        // static let buttonHeight = CGFloat(0.009)
         static let topOffset:CGFloat = 10
         static let bottomOffset:CGFloat = -10
         static let settingsOffset:CGFloat = 0.05
@@ -45,7 +45,7 @@ struct Constants {
         static let bolderFontLarge = UIFont(name: "HelveticaNeue", size: 22)
         static let bolderFontNormal = UIFont(name: "HelveticaNeue", size: 18)
     }
-
+    
     struct Tabbar {
         static let tint = UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
         static let tabbarFrameHeight: CGFloat = 0.09

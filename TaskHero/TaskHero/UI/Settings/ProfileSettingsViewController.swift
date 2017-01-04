@@ -24,7 +24,11 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
+        options = [self.store.currentUser.email,
+                   "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
+                   "Profile Picture",
+                   self.store.currentUser.username]
+        
         
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white

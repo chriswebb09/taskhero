@@ -107,7 +107,7 @@ extension SignupViewController {
         field.layer.borderColor = Constants.Color.mainColor.cgColor
         field.textColor = Constants.Color.mainColor
     }
-   
+    
     fileprivate func setAnimationStyleFor(field:UITextField) {
         field.layer.borderColor = Constants.Signup.animationColor.cgColor
         field.textColor = Constants.Signup.animationColor

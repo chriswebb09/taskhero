@@ -44,6 +44,6 @@ class ProfileHeaderCellModel {
         self.profilePicture = (self.user?.profilePicture!)!
         self.levelLabel = "Level: \((self.user?.level)!)"
         self.joinDate = "Joined: \((self.user?.joinDate)!)"
-        self.joinDateIsHidden = true 
+        self.joinDateIsHidden = true
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 class BasePopoverAlert: UIView {
+    
     public let containerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor = UIColor.black

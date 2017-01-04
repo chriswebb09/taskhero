@@ -9,6 +9,7 @@
 import UIKit
 
 class PhotoPickerPopover: BasePopoverAlert {
+    
     lazy var searchLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black

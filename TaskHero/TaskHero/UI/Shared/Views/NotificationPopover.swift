@@ -26,8 +26,6 @@ class NotificationPopover: BasePopoverAlert {
         popView.clipsToBounds = true
         viewController.view.addSubview(popView)
         popView.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: 0).isActive = true
-        popView.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 0).isActive = true 
-       // containerView.addSubview(popView)
-        //containerView.bringSubview(toFront: popView)
+        popView.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 0).isActive = true
     }
 }

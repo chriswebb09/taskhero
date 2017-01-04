@@ -42,7 +42,7 @@ class AlertView: UIView {
     }()
     
     
-   var alertLabel: UILabel = {
+    var alertLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
         searchLabel.text = "Find Your Friends"
