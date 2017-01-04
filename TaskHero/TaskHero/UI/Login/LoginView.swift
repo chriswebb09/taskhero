@@ -77,14 +77,14 @@ extension LoginView {
         viewDivider.layer.opacity = 0
         logoImageView.layer.opacity = 0
         
-        UIView.animate(withDuration: 0.5, animations: {
-            self.logoImageView.layer.opacity = 1
-            self.loginButton.layer.opacity = 1
-            self.registerLabel.layer.opacity = 1
-            self.signupButton.layer.opacity = 1
-            self.viewDivider.layer.opacity = 1
-            self.emailField.layer.opacity = 1
-            self.passwordField.layer.opacity = 1
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            self?.logoImageView.layer.opacity = 1
+            self?.loginButton.layer.opacity = 1
+            self?.registerLabel.layer.opacity = 1
+            self?.signupButton.layer.opacity = 1
+            self?.viewDivider.layer.opacity = 1
+            self?.emailField.layer.opacity = 1
+            self?.passwordField.layer.opacity = 1
         })
     }
     

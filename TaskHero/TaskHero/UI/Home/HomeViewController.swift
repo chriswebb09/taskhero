@@ -108,7 +108,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
                 tableView.reloadData()
                 tableView.endUpdates()
             }
-            
         }
     }
 }
