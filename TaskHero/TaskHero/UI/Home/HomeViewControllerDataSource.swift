@@ -35,7 +35,7 @@ extension HomeViewControllerDataSource {
         } else {
             var taskViewModel: TaskCellViewModel!
             let taskCell = TaskCell()
-            taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row - 1])!)
+            taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row + 1])!)
             taskCell.configureCell(taskVM: taskViewModel)
             return taskCell
         }
@@ -59,9 +59,9 @@ extension HomeViewControllerDataSource {
     
     func checkForPicURL(completion: @escaping(UIImage) -> Void) {
         if (self.store.currentUser.profilePicture?.characters.count)! > 0 && self.store.currentUser.profilePicture != "None" {
-            store.firebaseAPI.downloadImage(imageName: self.store.currentUser.profilePicture!, completion: { image in
+            store.firebaseAPI.downloadImage(imageName: self.store.currentUser.profilePicture!) { image in
                 completion(image)
-            })
+            }
         }
     }
     

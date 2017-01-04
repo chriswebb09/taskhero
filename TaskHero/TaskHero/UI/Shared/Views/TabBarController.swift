@@ -36,9 +36,9 @@ class TabBarController: UITabBarController {
     
     
     func getUser() {
-        self.store.firebaseAPI.fetchUser(completion: { user in
+        self.store.firebaseAPI.fetchUser { user in
             self.store.currentUser = user
-        })
+        }
     }
     
     func setupTabs() {

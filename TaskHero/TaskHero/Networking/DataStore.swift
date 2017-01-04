@@ -47,16 +47,16 @@ class DataStore {
     func fetchUser(completion: @escaping(User) -> Void) {
         self.tasks.removeAll()
         self.currentUser.tasks?.removeAll()
-        firebaseAPI.fetchUser(completion: { user in
+        firebaseAPI.fetchUser { user in
             self.currentUser = user
-        })
+        }
         
-        firebaseAPI.fetchTasks(taskList: currentUser.tasks!, completion: { tasks in
+        firebaseAPI.fetchTasks(taskList: currentUser.tasks!) { tasks in
             self.currentUser.tasks = tasks
             self.tasks = tasks
             dump(self.currentUser)
             completion(self.currentUser)
-        })
+        }
     }
     
     func setupStore() {

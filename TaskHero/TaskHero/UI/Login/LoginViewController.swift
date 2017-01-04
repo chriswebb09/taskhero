@@ -71,9 +71,9 @@ extension LoginViewController {
             guard let userID = user?.uid else { return }
             self.store.currentUserString = userID
             self.store.firebaseAPI.setupRefs()
-            self.store.firebaseAPI.fetchUser(completion: { user in
+            self.store.firebaseAPI.fetchUser { user in
                 self.store.currentUser = user
-            })
+            }
 
             self.manager.setLoggedInKey(userState: true)
             self.manager.hasLoggedIn()

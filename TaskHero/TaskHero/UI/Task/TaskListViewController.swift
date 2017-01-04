@@ -75,20 +75,7 @@ extension TaskListViewController {
             }
         }
     }
-    
-        
 
-//        store.tasks.removeAll()
-//        store.fetchUser(completion: { user in
-//            self.store.currentUser = user
-//        })
-//    }
-//        store.firebaseAPI.fetchTasks(completion: { task in
-//            self.store.tasks.append(task)
-//            DispatchQueue.main.async { self.tableView.reloadData() }
-//        })
-//    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         store.firebaseAPI.tasksRef.removeObserver(withHandle: store.firebaseAPI.refHandle)

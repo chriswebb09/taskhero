@@ -61,12 +61,9 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
-    
-    
     // =====================================================
     // MARK: - Setup navbar
     // =====================================================
-    
     
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
@@ -106,7 +103,7 @@ extension TaskListViewController {
         self.store.tasks.remove(at: indexPath.row)
     }
     
-
+    
     func toggleForButtonState(sender:UIButton) {
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell

@@ -105,9 +105,9 @@ extension HomeViewController {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage
         profilePic = info[UIImagePickerControllerOriginalImage] as? UIImage
-        self.store.firebaseAPI.uploadImage(profilePicture: self.store.profilePicture, user: self.store.currentUser, completion: { url in
+        self.store.firebaseAPI.uploadImage(profilePicture: self.store.profilePicture, user: self.store.currentUser) { url in
             self.store.currentUser.profilePicture = url
-        })
+        }
         
         dismiss(animated: true, completion: nil)
     }
