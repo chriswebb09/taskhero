@@ -13,13 +13,20 @@ final class HomeViewController: UITableViewController {
     // =================================
     // MARK: Internal Properties
     // =================================
-    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil) /* BackgroundQueue for background network calls */
-    var dataSource: HomeViewControllerDataSource! /* Abstraction of tableView configuration methods */
-    let photoPopover = PhotoPickerPopover() /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
-    let picker = UIImagePickerController() /* Used to pick profile picture in photoPopover */
-    var tapped: Bool = false /* Used to toggling TaskCell interface / Implemented in HomeViewControllerDataSource */
-    let helpers = Helpers() /* Helper methods mainly for configuring */
-    var index:IndexPath!  /* IndexPath property still figuring out if I need it */
+    
+    /* - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+       - All other cells are of type TaskCell
+       - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource 
+       - Not final setup - still a work in progress 
+   */
+    
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)       /* BackgroundQueue for background network calls */
+    var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
+    let photoPopover = PhotoPickerPopover()      /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
+    let picker = UIImagePickerController()      /* Used to pick profile picture in photoPopover */
+    var tapped: Bool = false       /* Used to toggling TaskCell interface / Implemented in HomeViewControllerDataSource */
+    let helpers = Helpers()     /* Helper methods mainly for configuring */
+    var index:IndexPath!   /* IndexPath property still figuring out if I need it */
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
