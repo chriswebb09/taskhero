@@ -18,7 +18,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let store = DataStore.sharedInstance
     
-    fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated/ will be added to view on login button press */
+    fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated -
+     will be added to view on login button press */
     
     // ================================
     // MARK: Initialization Methods
@@ -74,7 +75,6 @@ extension LoginViewController {
             self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
             
-            
             /* Fetching user profile data and setting dataStore current user property to that profile data */
             
             DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
@@ -85,12 +85,12 @@ extension LoginViewController {
                     newStore.currentUser = currentUser
                 }
                 
-                // setting user defaults for logged in 
+                // setting user defaults for logged in
                 
                 self.manager.setLoggedInKey(userState: true)
                 self.manager.hasLoggedIn()
                 
-                // calls setupTabBar on main thread to load tabbarcontroller 
+                // calls setupTabBar on main thread to load tabbarcontroller
                 
                 DispatchQueue.main.async {
                     self.setupTabBar()
