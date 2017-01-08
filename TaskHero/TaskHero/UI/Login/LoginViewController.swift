@@ -11,13 +11,11 @@ import Firebase
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    
     fileprivate let loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
     let manager = AppManager.sharedInstance /* User defaults data methods */
     let store = DataStore.sharedInstance
     fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated -
-                                                   will be added to view on login button press */
-    
+     will be added to view on login button press */
     // ================================
     // MARK: Initialization Methods
     // ================================
