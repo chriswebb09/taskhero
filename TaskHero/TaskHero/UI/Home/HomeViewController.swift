@@ -62,9 +62,14 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     // MARK: UITableViewController Methods
     // =======================================
     
+    
+    // Returns number of rows based on count taskcount
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.rows // Returns number of rows based on count taskcount
+        return dataSource.rows
     }
+    
+    // Gets rowheight from datasource and returns it - rowheight is UITableViewAutomaticDimension
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return dataSource.rowHeight
