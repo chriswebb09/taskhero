@@ -13,13 +13,13 @@ final class HomeViewController: UITableViewController {
     // =================================
     // MARK: Internal Properties
     // =================================
-    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil) /* BackgroundQueue for background network calls */
     var dataSource: HomeViewControllerDataSource! /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover() /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController() /* Used to pick profile picture in photoPopover */
     var tapped: Bool = false /* Used to toggling TaskCell interface / Implemented in HomeViewControllerDataSource */
     let helpers = Helpers() /* Helper methods mainly for configuring */
-    var index:IndexPath!  /* IndexPath method */
+    var index:IndexPath!  /* IndexPath property still figuring out if I need it */
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
@@ -45,6 +45,8 @@ extension HomeViewController: UINavigationControllerDelegate {
         super.viewWillAppear(false)
         helpers.getData(tableView: tableView)
     }
+    
+    /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will appears is called again. */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)

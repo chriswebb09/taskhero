@@ -17,6 +17,9 @@ protocol cellMake {
 }
 
 class HomeViewControllerDataSource {
+    
+    /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
+    
     let store = DataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
     
@@ -37,6 +40,7 @@ class HomeViewControllerDataSource {
 }
 
 /* Extension containing method for configuring cells in ViewController. If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
+
 extension HomeViewControllerDataSource: cellMake {
     
     func configure(indexPath:IndexPath, cellType:HomeCellType, tableView:UITableView) -> UITableViewCell {
