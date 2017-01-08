@@ -80,6 +80,7 @@ extension TaskCell {
     
     func setupConstraints() {
         configureView(view: taskNameLabel)
+        print(contentView.frame.height * 0.2)
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
         configureView(view: taskDueLabel)

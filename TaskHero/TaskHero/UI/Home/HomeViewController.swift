@@ -15,11 +15,9 @@ final class HomeViewController: UITableViewController {
     // =================================
     
     var dataSource: HomeViewControllerDataSource!
-    //let store = DataStore.sharedInstance
     let photoPopover = PhotoPickerPopover() /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController() /* Used to pick profile picture in photoPopover */
-    var profilePic: UIImage? = nil
-    var tapped: Bool = false
+    var tapped: Bool = false /* Used to toggling TaskCell interface / Implemented in HomeViewControllerDataSource */
     let helpers = Helpers()
     var index:IndexPath!
 }
@@ -35,17 +33,13 @@ extension HomeViewController: UINavigationControllerDelegate {
         picker.delegate = self
         edgesForExtendedLayout = []
         dataSource = HomeViewControllerDataSource()
-//        dataSource.checkForPicURL { [weak self] image in
-//            self?.profilePic = image
-//        }
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         dataSource.setupView(tableView:tableView, view:view)
-        setupNavItems()
+        addNavItemsToController()
     }
     
     // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
     // If there are tasks in datastore removes tasks before load
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -59,6 +53,9 @@ extension HomeViewController: UINavigationControllerDelegate {
     }
 }
 
+
+// Extension for methods that define view controller setup i.e. numberOfRowsInSection, cellForRowAt
+
 extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, TaskCellDelegate {
     
     // =======================================
@@ -70,7 +67,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.rowHeight
+        return dataSource.rowHeight
     }
     
     // If first row returns profile header cell else returns task cell
@@ -98,7 +95,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
             tableView.beginUpdates()
             DispatchQueue.main.async {
                 self.dataSource.deleteTask(indexPath:indexPath)
-                print(self.dataSource)
                 tableView.reloadData()
                 tableView.endUpdates()
             }

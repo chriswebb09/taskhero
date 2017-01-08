@@ -27,13 +27,12 @@ class HomeViewControllerDataSource {
             }
         }
     }
-    
     var rowHeight = UITableViewAutomaticDimension
-    
     var indexPath: IndexPath!
     var autoHeight: UIViewAutoresizing?
 }
 
+/* Extension containing method for configuring cells in ViewController. If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
 extension HomeViewControllerDataSource {
     
     func configure(indexPath:IndexPath, cellType:HomeCellType, tableView:UITableView) -> UITableViewCell {
@@ -48,7 +47,13 @@ extension HomeViewControllerDataSource {
             return taskCell
         }
     }
+}
+
+// Methods for configure UIElements + registers cell types for tableView
+extension HomeViewControllerDataSource {
     
+    // Sets estimatedRowHeight and registers cell types 
+
     func setupView(tableView:UITableView, view:UIView) {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
@@ -60,24 +65,15 @@ extension HomeViewControllerDataSource {
         headerCell.delegate = viewController
         headerCell.emailLabel.isHidden = true
         headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
-        if viewController.profilePic != nil {
-            headerCell.profilePicture.image = self.store.profilePicture
-        }
+
     }
     
-//    func checkForPicURL(completion: @escaping(UIImage) -> Void) {
-//        if (self.store.currentUser.profilePicture?.characters.count)! > 0 && self.store.currentUser.profilePicture != "None" {
-//            store.firebaseAPI.downloadImage(imageName: self.store.currentUser.profilePicture!) { image in
-//                completion(image)
-//            }
-//        }
-//    }
-    
+
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
         taskCell.delegate = viewController
         taskCell.taskDescriptionBox.delegate = viewController
         taskCell.toggled = viewController.tapped
-        let tap = UIGestureRecognizer(target: self, action: #selector(viewController.toggleForEditState(sender:)))
+        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(sender:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
     }
     
@@ -87,6 +83,7 @@ extension HomeViewControllerDataSource {
         viewController.present(picker, animated: true, completion: nil)
     }
     
+    // Deletes task at indexPath 
     func deleteTask(indexPath: IndexPath) {
         let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
         self.store.tasks = self.store.currentUser.tasks!

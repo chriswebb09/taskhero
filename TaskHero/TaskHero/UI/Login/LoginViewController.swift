@@ -17,8 +17,9 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     let store = DataStore.sharedInstance
     fileprivate let loadingView = LoadingView()
     
+    // ================================
     // MARK: Initialization Methods
-    // =========================================================================
+    // ================================
     
     override func viewDidLoad() {
         super.viewDidLoad()

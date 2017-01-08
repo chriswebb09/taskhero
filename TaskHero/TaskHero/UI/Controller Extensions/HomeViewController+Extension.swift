@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 
+
+/* Extension that adds on features - sets up action for logout button press, add task button press and adds these as selectors on navigation items which are added to navigation controller. */
+
 extension HomeViewController {
     
     // ============================
@@ -31,8 +34,8 @@ extension HomeViewController {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
-    func setupNavItems() {
-        navigationController?.setupNav()
+    
+    func addNavItemsToController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
@@ -61,10 +64,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         picker.sourceType = .photoLibrary
         let headerCell = tableView.cellForRow(at: index) as! ProfileHeaderCell
         present(picker, animated: true, completion: nil)
-        if profilePic != nil {
-             headerCell.profilePicture.image = profilePic!
-        }
-       
         photoPopover.hideView(viewController: self)
     }
     

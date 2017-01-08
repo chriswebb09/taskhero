@@ -21,7 +21,7 @@ struct Constants {
         static let mainWidth:CGFloat = 0.4
         static let mainOffset:CGFloat = 30
         static let buttonHeight:CGFloat = 0.07
-        static let cellButtonHeight:CGFloat = 0.04
+        static let cellButtonHeight:CGFloat = 0.03
         // static let buttonHeight = CGFloat(0.009)
         static let topOffset:CGFloat = 10
         static let bottomOffset:CGFloat = -10
@@ -29,6 +29,13 @@ struct Constants {
         static let mainHeight:CGFloat = 0.2
         static let height: CGFloat = 0.5
         static let width: CGFloat = 0.85
+    }
+    
+    struct TaskCellDimension {
+        static let buttonHeight:CGFloat = 0.07
+        static let editImage:CGFloat = 0.03
+        static let mainWidth:CGFloat = 0.4
+        static let mainOffset:CGFloat = 0.1
     }
     
     struct Border {
@@ -41,7 +48,9 @@ struct Constants {
         static let fontMedium = UIFont(name: "HelveticaNeue-Light", size: 16)
         static let fontLarge = UIFont(name: "HelveticaNeue-Thin", size: 22)
         static let bolderFontSmall = UIFont(name: "HelveticaNeue", size: 12)
+        static let bolderFontMediumSmall = UIFont(name: "HelveticaNeue", size: 14)
         static let bolderFontMedium = UIFont(name: "HelveticaNeue", size: 16)
+        static let bolderFontMediumLarge = UIFont(name: "HelveticaNeue", size: 20)
         static let bolderFontLarge = UIFont(name: "HelveticaNeue", size: 22)
         static let bolderFontNormal = UIFont(name: "HelveticaNeue", size: 18)
     }

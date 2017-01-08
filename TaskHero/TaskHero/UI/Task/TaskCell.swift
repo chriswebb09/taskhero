@@ -26,7 +26,7 @@ final class TaskCell: UITableViewCell {
     let taskNameLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
-        textView.font = Constants.Font.bolderFontLarge
+        textView.font = Constants.Font.bolderFontMediumLarge
         return textView
     }()
     
