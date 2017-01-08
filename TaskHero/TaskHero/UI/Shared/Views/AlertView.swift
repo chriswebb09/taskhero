@@ -10,13 +10,13 @@ import UIKit
 
 class AlertView: UIView {
     
-    let headBanner: UIView = {
+    lazy var headBanner: UIView = {
         let banner = UIView()
         banner.backgroundColor = UIColor.lightGray
         return banner
     }()
     
-    let cancelButton: UIButton = {
+    lazy var cancelButton: UIButton = {
         var button = ButtonType.system(title: "Cancel", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
@@ -24,7 +24,7 @@ class AlertView: UIView {
         return uiElement
     }()
     
-    let doneButton: UIButton = {
+    lazy var doneButton: UIButton = {
         var button = ButtonType.system(title: "Add", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
@@ -32,7 +32,7 @@ class AlertView: UIView {
         return uiElement
     }()
     
-    var resultLabel: UILabel = {
+    lazy var resultLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.text = "Results"
         searchLabel.textColor = UIColor.black
@@ -42,7 +42,7 @@ class AlertView: UIView {
     }()
     
     
-    var alertLabel: UILabel = {
+    lazy var alertLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
         searchLabel.text = "Find Your Friends"

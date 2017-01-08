@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProfileHeaderModel {
-    var user: User? { get set }
+    //var user: User? { get set }
     var joinDate: String { get }
     var levelLabel: String { get }
     var profilePicture: String { get }
@@ -17,7 +17,7 @@ protocol ProfileHeaderModel {
     var emailLabel: String { get }
 }
 
-class ProfileHeaderCellModel {
+struct ProfileHeaderCellModel {
     
     // ================================
     // MARK: - Internal Variables
@@ -25,7 +25,7 @@ class ProfileHeaderCellModel {
     
     let store = DataStore.sharedInstance
     
-    internal var user: User?
+    //internal var user: User?
     internal var emailLabel: String
     internal var usernameLabel: String
     internal var profilePicture: String
@@ -38,12 +38,12 @@ class ProfileHeaderCellModel {
     // =======================================
     
     init() {
-        self.user = self.store.currentUser!
-        self.emailLabel = (self.user?.email)!
-        self.usernameLabel = (self.user?.username)!
-        self.profilePicture = (self.user?.profilePicture!)!
-        self.levelLabel = "Level: \((self.user?.level)!)"
-        self.joinDate = "Joined: \((self.user?.joinDate)!)"
+        //self.user = self.store.currentUser!
+        self.emailLabel = (self.store.currentUser?.email)!
+        self.usernameLabel = (self.store.currentUser?.username)!
+        self.profilePicture = (self.store.currentUser?.profilePicture!)!
+        self.levelLabel = "Level: \((self.store.currentUser?.level)!)"
+        self.joinDate = "Joined: \((self.store.currentUser?.joinDate)!)"
         self.joinDateIsHidden = true
     }
 }

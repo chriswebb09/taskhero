@@ -261,7 +261,7 @@ class APIClient {
         print(imageRef)
         var image: UIImage!
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-       // let prefix = "file:"
+        // let prefix = "file:"
         let localURL = NSURL(string:"file://\(paths[0])/\(imageName)")
         let filePath = localURL as? URL
         print(filePath)

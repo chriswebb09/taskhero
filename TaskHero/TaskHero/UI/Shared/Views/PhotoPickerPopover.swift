@@ -19,7 +19,7 @@ class PhotoPickerPopover: BasePopoverAlert {
         return searchLabel
     }()
     
-    let popView: PhotoPickerView = {
+    lazy var popView: PhotoPickerView = {
         let popView = PhotoPickerView()
         popView.layoutSubviews()
         popView.layer.cornerRadius = 10

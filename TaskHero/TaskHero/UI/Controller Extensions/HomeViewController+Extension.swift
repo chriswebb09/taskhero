@@ -51,7 +51,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
         photoPopover.showPopView(viewController: self)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidden))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
         photoPopover.containerView.addGestureRecognizer(tap)
         photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto(sender:)), for: .touchUpInside)
     }
@@ -90,7 +90,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     // Hides popover view when operation has ended.
     
-    func hidden() {
+    func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
     }
 }
@@ -102,17 +102,17 @@ extension HomeViewController {
     // MARK: - ImagePicker delegate methods
     // ==========================================
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage
-        profilePic = info[UIImagePickerControllerOriginalImage] as? UIImage
-        self.store.firebaseAPI.uploadImage(profilePicture: self.store.profilePicture, user: self.store.currentUser) { url in
-            self.store.currentUser.profilePicture = url
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        self.store.profilePicture = info[UIImagePickerControllerOriginalImage] as? UIImage
+//        profilePic = info[UIImagePickerControllerOriginalImage] as? UIImage
+//        self.store.firebaseAPI.uploadImage(profilePicture: self.store.profilePicture, user: self.store.currentUser) { url in
+//            self.store.currentUser.profilePicture = url
+//        }
+//        
+//        dismiss(animated: true, completion: nil)
+//    }
+//    
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        dismiss(animated: true, completion: nil)
+//    }
 }

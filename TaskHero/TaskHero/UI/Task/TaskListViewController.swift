@@ -70,7 +70,6 @@ extension TaskListViewController {
         self.store.fetchUser() { user in
             self.store.currentUser = user
             DispatchQueue.main.async {
-                
                 self.tableView.reloadData()
             }
         }

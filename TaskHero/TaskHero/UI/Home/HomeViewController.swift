@@ -15,12 +15,11 @@ final class HomeViewController: UITableViewController {
     // =================================
     
     var dataSource: HomeViewControllerDataSource!
-    let store = DataStore.sharedInstance
-    let photoPopover = PhotoPickerPopover()
-    let picker = UIImagePickerController()
+    //let store = DataStore.sharedInstance
+    let photoPopover = PhotoPickerPopover() /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
+    let picker = UIImagePickerController() /* Used to pick profile picture in photoPopover */
     var profilePic: UIImage? = nil
     var tapped: Bool = false
-    var buttonTapped: Bool = false
     let helpers = Helpers()
     var index:IndexPath!
 }
@@ -36,9 +35,9 @@ extension HomeViewController: UINavigationControllerDelegate {
         picker.delegate = self
         edgesForExtendedLayout = []
         dataSource = HomeViewControllerDataSource()
-        dataSource.checkForPicURL { [weak self] image in
-            self?.profilePic = image
-        }
+//        dataSource.checkForPicURL { [weak self] image in
+//            self?.profilePic = image
+//        }
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         dataSource.setupView(tableView:tableView, view:view)
         setupNavItems()
@@ -51,7 +50,7 @@ extension HomeViewController: UINavigationControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         helpers.getData(tableView: tableView)
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,7 +66,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     // =======================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.rows
+        return dataSource.rows // Returns number of rows based on count taskcount
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -79,12 +78,12 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         dataSource.indexPath = indexPath
         if indexPath.row == 0 {
-            let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header) as! ProfileHeaderCell
+            let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header, tableView: tableView) as! ProfileHeaderCell
             dataSource.configureHeader(headerCell: headerCell, viewController:self)
             index = indexPath
             return headerCell
         } else {
-            let taskCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.task) as! TaskCell
+            let taskCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.task, tableView: tableView) as! TaskCell
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.saveButton.tag = indexPath.row
             return taskCell
@@ -98,12 +97,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         if editingStyle == .delete {
             tableView.beginUpdates()
             DispatchQueue.main.async {
-                let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
-                self.store.tasks = self.store.currentUser.tasks!
-                self.store.tasks.remove(at: indexPath.row - 1)
-                self.store.updateUserScore()
-                self.store.firebaseAPI.registerUser(user: self.store.currentUser)
-                self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
+                self.dataSource.deleteTask(indexPath:indexPath)
                 print(self.dataSource)
                 tableView.reloadData()
                 tableView.endUpdates()

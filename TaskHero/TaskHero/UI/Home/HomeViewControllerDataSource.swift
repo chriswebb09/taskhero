@@ -8,9 +8,16 @@
 
 import UIKit
 
+enum HomeCellType {
+    case task, header
+}
+
 class HomeViewControllerDataSource {
     let store = DataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
+    
+    // Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell
+    
     var rows: Int {
         get {
             if (store.currentUser.tasks?.count)! < 1 {
@@ -21,21 +28,22 @@ class HomeViewControllerDataSource {
         }
     }
     
+    var rowHeight = UITableViewAutomaticDimension
+    
     var indexPath: IndexPath!
     var autoHeight: UIViewAutoresizing?
 }
 
 extension HomeViewControllerDataSource {
     
-    func configure(indexPath:IndexPath, cellType:HomeCellType) -> UITableViewCell {
+    func configure(indexPath:IndexPath, cellType:HomeCellType, tableView:UITableView) -> UITableViewCell {
         if cellType == .header {
-            print("header")
-            let headerCell = ProfileHeaderCell()
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
             return headerCell
         } else {
             var taskViewModel: TaskCellViewModel!
-            let taskCell = TaskCell()
-            taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row + 1])!)
+            let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
+            taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row - 1])!)
             taskCell.configureCell(taskVM: taskViewModel)
             return taskCell
         }
@@ -57,13 +65,13 @@ extension HomeViewControllerDataSource {
         }
     }
     
-    func checkForPicURL(completion: @escaping(UIImage) -> Void) {
-        if (self.store.currentUser.profilePicture?.characters.count)! > 0 && self.store.currentUser.profilePicture != "None" {
-            store.firebaseAPI.downloadImage(imageName: self.store.currentUser.profilePicture!) { image in
-                completion(image)
-            }
-        }
-    }
+//    func checkForPicURL(completion: @escaping(UIImage) -> Void) {
+//        if (self.store.currentUser.profilePicture?.characters.count)! > 0 && self.store.currentUser.profilePicture != "None" {
+//            store.firebaseAPI.downloadImage(imageName: self.store.currentUser.profilePicture!) { image in
+//                completion(image)
+//            }
+//        }
+//    }
     
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
         taskCell.delegate = viewController
@@ -78,8 +86,15 @@ extension HomeViewControllerDataSource {
         picker.sourceType = .photoLibrary
         viewController.present(picker, animated: true, completion: nil)
     }
+    
+    func deleteTask(indexPath: IndexPath) {
+        let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
+        self.store.tasks = self.store.currentUser.tasks!
+        self.store.tasks.remove(at: indexPath.row - 1)
+        self.store.updateUserScore()
+        self.store.firebaseAPI.registerUser(user: self.store.currentUser)
+        self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
+    }
 }
 
-enum HomeCellType {
-    case task, header
-}
+

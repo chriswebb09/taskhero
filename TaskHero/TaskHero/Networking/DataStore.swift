@@ -21,7 +21,7 @@ class DataStore {
     var tasks = [Task]()
     
     // ===========================================================
-    // Update currentUser score when user completes task 
+    // Update currentUser score when user completes task
     // ===========================================================
     
     func updateUserScore() {
@@ -32,7 +32,7 @@ class DataStore {
     // ==============================================
     // Update currentUser profile in database
     // ==============================================
-
+    
     func updateUserProfile(userID: String, user:User) {
         firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:tasks)
         self.tasks.forEach { task in
@@ -40,7 +40,7 @@ class DataStore {
         }
     }
     // =============================================
-    // Setup datastore for initial operation 
+    // Setup datastore for initial operation
     // =============================================
     
     

@@ -30,13 +30,13 @@ final class TaskCell: UITableViewCell {
         return textView
     }()
     
-    var taskDescriptionBox: UITextView = {
+    lazy var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView().setupStyledTextView()
         taskDescriptionBox.isHidden = true
         return taskDescriptionBox
     }()
     
-    let taskDescriptionLabel: UITextView = {
+    lazy var taskDescriptionLabel: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = Constants.TaskCell.Description.descriptionLabelBackgroundColor
         textView.font = Constants.Font.fontMedium
@@ -57,7 +57,7 @@ final class TaskCell: UITableViewCell {
         return taskCompletedImageView
     }()
     
-    var saveButton: UIButton = {
+    lazy var saveButton: UIButton = {
         let button = ButtonType.system(title: "Save", color: UIColor.black)
         var ui = button.newButton
         ui.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)

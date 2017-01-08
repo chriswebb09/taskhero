@@ -13,6 +13,9 @@ final class LoginView: UIView {
     // =====================================================
     // MARK: UIElements
     // =====================================================
+    deinit {
+        print("loginview deallocated")
+    }
     
     var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
@@ -141,4 +144,6 @@ extension LoginView {
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
     }
+    
+   
 }
