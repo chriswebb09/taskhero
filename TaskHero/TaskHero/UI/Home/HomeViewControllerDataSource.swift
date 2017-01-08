@@ -52,7 +52,7 @@ extension HomeViewControllerDataSource {
 // Methods for configure UIElements + registers cell types for tableView
 extension HomeViewControllerDataSource {
     
-    // Sets estimatedRowHeight and registers cell types 
+    /* Sets estimatedRowHeight and registers cell types */
 
     func setupView(tableView:UITableView, view:UIView) {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
@@ -61,14 +61,17 @@ extension HomeViewControllerDataSource {
         tableView.estimatedRowHeight = view.frame.height / 4
     }
     
-    func configureHeader(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
+    /* Setup headerCell */
+    
+    func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
         headerCell.delegate = viewController
         headerCell.emailLabel.isHidden = true
         headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
 
     }
     
-
+    /* setup TaskCell */
+    
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
         taskCell.delegate = viewController
         taskCell.taskDescriptionBox.delegate = viewController
@@ -83,7 +86,8 @@ extension HomeViewControllerDataSource {
         viewController.present(picker, animated: true, completion: nil)
     }
     
-    // Deletes task at indexPath 
+    /* Deletes task at indexPath.row - 1 - subtraction because TaskCells are below the profileHeader cell */
+    
     func deleteTask(indexPath: IndexPath) {
         let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
         self.store.tasks = self.store.currentUser.tasks!

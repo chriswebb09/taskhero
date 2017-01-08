@@ -18,7 +18,7 @@ extension HomeViewController {
     // MARK: Public Methods
     // ============================
     
-    // Logs out user by settings root ViewController to Loginview
+    /* Logs out user by settings root ViewController to Loginview */
     
     func logoutButtonPressed() {
         let manager = AppManager.sharedInstance
@@ -28,12 +28,13 @@ extension HomeViewController {
         appDelegate.window?.rootViewController = loginVC
     }
     
-    // Pushes AddTaskViewcontroller to current current view controller on button press
+    /* Pushes AddTaskViewcontroller to current current view controller on button press */
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
+    /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     
     func addNavItemsToController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
@@ -49,7 +50,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // MARK: - Header and Task cell Delegate Methods
     // ==================================================
     
-    // If popover is not visible shows popover / if popover is displayed it hides popover
+    /* If popover is not visible shows popover / if popover is displayed it hides popover */
     
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
@@ -67,6 +68,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.hideView(viewController: self)
     }
     
+    /* Method toggles UI states from editing to not editing when save is pressed */
+    
     func toggleForButtonState(sender:UIButton) {
         print("inside toggleForButtonState")
         let superview = sender.superview
@@ -79,7 +82,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         //
     }
     
-    // Kicks off cycling between taskcell editing states
+    /* Kicks off cycling between taskcell editing states */
     
     func toggleForEditState(sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
@@ -87,7 +90,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         helpers.tapEdit(tableView:tableView, atIndex: tapIndex)
     }
     
-    // Hides popover view when operation has ended.
+    /* Hides popover view when operation has ended. */
     
     func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)

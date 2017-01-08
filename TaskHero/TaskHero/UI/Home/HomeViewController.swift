@@ -76,7 +76,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         dataSource.indexPath = indexPath
         if indexPath.row == 0 {
             let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header, tableView: tableView) as! ProfileHeaderCell
-            dataSource.configureHeader(headerCell: headerCell, viewController:self)
+            dataSource.setupHeaderCell(headerCell: headerCell, viewController:self)
             index = indexPath
             return headerCell
         } else {
