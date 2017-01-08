@@ -72,24 +72,16 @@ extension LoginViewController {
             
             self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
-            
             /* Fetching user profile data and setting dataStore current user property to that profile data */
-            
             DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
                 let newStore = DataStore.sharedInstance
                 newStore.currentUserString = userID
                 newStore.firebaseAPI.setupRefs()
-                newStore.firebaseAPI.fetchUser { currentUser in
-                    newStore.currentUser = currentUser
-                }
-                
-                // setting user defaults for logged in
-                
+                newStore.firebaseAPI.fetchUser { currentUser in newStore.currentUser = currentUser }
+                /* setting user defaults for logged in */
                 self.manager.setLoggedInKey(userState: true)
                 self.manager.hasLoggedIn()
-                
-                // calls setupTabBar on main thread to load tabbarcontroller
-                
+                /* calls setupTabBar on main thread to load tabbarcontroller */
                 DispatchQueue.main.async {
                     self.setupTabBar()
                 }
@@ -135,8 +127,6 @@ extension LoginViewController {
         view.endEditing(true)
     }
     
-    // Still implementing
-    
     // selector method that Pushes SignupViewController on button tap
     @objc public func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
@@ -151,7 +141,7 @@ extension LoginViewController {
         }
     }
     
-    // When no long using input fields
+    // When no longer using input fields
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         DispatchQueue.main.async { [unowned textField] in
