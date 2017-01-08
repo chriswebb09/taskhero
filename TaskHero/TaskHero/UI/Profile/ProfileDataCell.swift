@@ -72,29 +72,23 @@ extension ProfileDataCell {
     }
     
     private func setupConstraints() {
-        
         configureLabels(label: levelLabel)
         contentView.addSubview(levelLabel)
         configureConstraints(label: levelLabel)
-        
         levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
-        
         configureLabels(label: experiencePointsLabel)
         contentView.addSubview(experiencePointsLabel)
         configureConstraints(label: experiencePointsLabel)
-        
         experiencePointsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         experiencePointsLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         experiencePointsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         experiencePointsLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
-        
         configureLabels(label: tasksCompletedLabel)
         contentView.addSubview(tasksCompletedLabel)
         configureConstraints(label: tasksCompletedLabel)
-        
         tasksCompletedLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.Settings.Profile.profileDataRightOffset).isActive = true
         tasksCompletedLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true

@@ -26,15 +26,12 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         super.viewDidLoad()
         options = [self.store.currentUser.email,
                    "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
-                   "Profile Picture",
-                   self.store.currentUser.username]
-        
-        
+            "Profile Picture",
+            self.store.currentUser.username]
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
         view.addSubview(profileSettingsView)
         view.addSubview(tableView)
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)

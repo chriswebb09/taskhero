@@ -26,7 +26,6 @@ final class InitialViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.initView.zoomAnimation({ })
         }
-        
     }
     
     func loginButtonTapped() {

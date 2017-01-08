@@ -109,7 +109,7 @@ extension SettingsViewController {
         notifyPop.containerView.layer.opacity = 0
         notifyPop.popView.layer.opacity = 0
         notifyPop.showPopView(viewController: self)
-        UIView.animate(withDuration: 0.1, animations: { [unowned self] in 
+        UIView.animate(withDuration: 0.1, animations: { [unowned self] in
             self.notifyPop.popView.layer.opacity = 1
             self.notifyPop.containerView.layer.opacity = 0.1 }
         )

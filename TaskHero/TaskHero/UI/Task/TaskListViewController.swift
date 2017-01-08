@@ -53,20 +53,17 @@ extension TaskListViewController {
         setupTableView()
         setupNavItems()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-       
         if store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
         }
-        
         self.store.tasks.removeAll()
         if self.store.currentUser.tasks != nil {
             self.store.currentUser.tasks?.removeAll()
         }
-        
         self.store.fetchUser() { user in
             self.store.currentUser = user
             DispatchQueue.main.async {
@@ -74,7 +71,7 @@ extension TaskListViewController {
             }
         }
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         store.firebaseAPI.tasksRef.removeObserver(withHandle: store.firebaseAPI.refHandle)

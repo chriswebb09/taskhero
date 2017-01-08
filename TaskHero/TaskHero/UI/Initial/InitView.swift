@@ -59,12 +59,10 @@ final class InitView: UIView {
     
     func zoomAnimation(_ handler: completion? = nil) {
         let duration: TimeInterval =  self.animationDuration * 0.5
-        
         UIView.animate(withDuration: duration, animations:{ [weak self] in
             if let zoom = self? .zoomOut() {
                 self?.logoImageView.transform = zoom
             }
-           //self?.logoImageView.transform = (self?.zoomOut())!
             self?.alpha = 0
         }, completion: { finished in
             DispatchQueue.main.async {

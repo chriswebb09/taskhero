@@ -14,8 +14,6 @@ final class ProfileSettingsView: UIView {
     // MARK: - UIElements
     // ==============================
     
-    
-    
     let profileLabel: UILabel = {
         let profileLabel = UILabel()
         profileLabel.textColor = UIColor.black
