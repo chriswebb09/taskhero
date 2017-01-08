@@ -63,7 +63,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
      func tapPickPhoto(sender:UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
-        let headerCell = tableView.cellForRow(at: index) as! ProfileHeaderCell
         present(picker, animated: true, completion: nil)
         photoPopover.hideView(viewController: self)
     }

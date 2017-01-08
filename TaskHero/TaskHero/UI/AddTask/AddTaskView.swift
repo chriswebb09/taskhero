@@ -14,7 +14,7 @@ final class AddTaskView: UIView {
     // MARK: UIElements
     // ===========================
     
-    var taskNameLabel: UILabel = {
+    lazy var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
@@ -24,7 +24,7 @@ final class AddTaskView: UIView {
         return taskNameLabel
     }()
     
-    var taskNameField: TextFieldExtension = {
+    lazy var taskNameField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
         taskNameField.placeholder = "Task name"
         taskNameField.font = Constants.signupFieldFont
@@ -34,7 +34,7 @@ final class AddTaskView: UIView {
         return taskNameField
     }()
     
-    var taskDescriptionBox: UITextView = {
+    lazy var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
         taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
@@ -44,7 +44,7 @@ final class AddTaskView: UIView {
         return taskDescriptionBox
     }()
     
-    var addTaskButton: UIButton = {
+    lazy var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
@@ -72,7 +72,7 @@ extension AddTaskView {
     // MARK: - Configure
     // ======================
     
-    func configureView(view:UIView) {
+    fileprivate func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
@@ -80,7 +80,7 @@ extension AddTaskView {
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    func setupConstraints() {
+    fileprivate func setupConstraints() {
         configureView(view: taskNameLabel)
         taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
         

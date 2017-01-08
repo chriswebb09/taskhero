@@ -14,7 +14,7 @@ final class HomeViewController: UITableViewController {
     // MARK: Internal Properties
     // =================================
     
-    var dataSource: HomeViewControllerDataSource!
+    var dataSource: HomeViewControllerDataSource! /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover() /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController() /* Used to pick profile picture in photoPopover */
     var tapped: Bool = false /* Used to toggling TaskCell interface / Implemented in HomeViewControllerDataSource */

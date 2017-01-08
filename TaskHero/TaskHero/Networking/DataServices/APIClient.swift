@@ -267,10 +267,10 @@ class APIClient {
         print(filePath)
         let downloadTask = imageRef.write(toFile: filePath!) { url, error in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "Download image errror")
                 print("Error occured")
             } else {
-                print(localURL?.absoluteString)
+                print(localURL?.absoluteString ?? "local url")
                 image = UIImage(contentsOfFile: (localURL?.absoluteString)!)
                 //if let imageDownloaeed =
                 DispatchQueue.main.async {
