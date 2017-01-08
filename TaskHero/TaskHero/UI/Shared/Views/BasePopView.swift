@@ -10,13 +10,13 @@ import UIKit
 
 class BasePopView: UIView {
     
-    let headBanner: UIView = {
+    open let headBanner: UIView = {
         let banner = UIView()
         banner.backgroundColor = UIColor.black
         return banner
     }()
     
-    lazy var alertLabel: UILabel = {
+    open lazy var alertLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.white
         searchLabel.text = "Notification"
@@ -25,7 +25,7 @@ class BasePopView: UIView {
         return searchLabel
     }()
     
-    func setupConstraints() {
+    open func setupConstraints() {
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         headBanner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

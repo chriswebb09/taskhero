@@ -24,25 +24,25 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
     weak var delegate: ProfileHeaderCellDelegate?
     
-    let joinDateLabel: UILabel = {
+    lazy var joinDateLabel: UILabel = {
         let joinDateLabel = UILabel()
         joinDateLabel.font = Constants.Font.fontLarge
         return joinDateLabel
     }()
     
-    var usernameLabel: UILabel = {
+    lazy var usernameLabel: UILabel = {
         let usernameLabel = UILabel()
         usernameLabel.font = Constants.Font.bolderFontLarge
         return usernameLabel
     }()
     
-    let emailLabel: UILabel = {
+    lazy var emailLabel: UILabel = {
         let emailLabel = UILabel()
         emailLabel.font = Constants.Font.fontLarge
         return emailLabel
     }()
     
-    var levelLabel: UILabel = {
+    lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.font = Constants.Font.fontMedium
         levelLabel.textAlignment = .right
@@ -50,7 +50,7 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     }()
     
     
-    func configureLargeLabel() -> UILabel {
+    fileprivate func configureLargeLabel() -> UILabel {
         let label = UILabel()
         label.font = Constants.Font.fontLarge
         return label
@@ -155,7 +155,7 @@ extension ProfileHeaderCell {
     // MARK: - Delegate Methods
     // ===================================
     
-    func profilePictureTapped() {
+   internal func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")
         delegate?.profilePictureTapped()
     }

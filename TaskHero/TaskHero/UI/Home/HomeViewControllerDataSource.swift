@@ -50,6 +50,7 @@ extension HomeViewControllerDataSource {
 }
 
 // Methods for configure UIElements + registers cell types for tableView
+
 extension HomeViewControllerDataSource {
     
     /* Sets estimatedRowHeight and registers cell types */
