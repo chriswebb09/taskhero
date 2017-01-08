@@ -18,8 +18,8 @@ final class HomeViewController: UITableViewController {
     let photoPopover = PhotoPickerPopover() /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController() /* Used to pick profile picture in photoPopover */
     var tapped: Bool = false /* Used to toggling TaskCell interface / Implemented in HomeViewControllerDataSource */
-    let helpers = Helpers()
-    var index:IndexPath!
+    let helpers = Helpers() /* Helper methods mainly for configuring */
+    var index:IndexPath!  /* IndexPath method */
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
@@ -38,8 +38,8 @@ extension HomeViewController: UINavigationControllerDelegate {
         addNavItemsToController()
     }
     
-    // Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
-    // If there are tasks in datastore removes tasks before load
+    /* Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
+     If there are tasks in datastore removes tasks before load */
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -70,7 +70,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         return dataSource.rowHeight
     }
     
-    // If first row returns profile header cell else returns task cell
+    /* If first row returns profile header cell else returns task cell */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         dataSource.indexPath = indexPath
@@ -87,7 +87,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         }
     }
     
-    // Logic for deleting tasks from database when user deletes tableview cell
+    /* Logic for deleting tasks from database when user deletes tableview cell */
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         guard indexPath.row != 0 else { return }

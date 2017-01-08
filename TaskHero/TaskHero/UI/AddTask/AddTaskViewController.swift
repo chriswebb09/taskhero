@@ -62,7 +62,7 @@ extension AddTaskViewController {
         return true
     }
     
-    // If textfield input is equal to newline - return - hides keyboard
+    /* If textfield input is equal to newline - return - hides keyboard */
     
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
         if(replacementText.isEqual("\n")) {
@@ -72,7 +72,7 @@ extension AddTaskViewController {
         return true
     }
     
-    // If user is done editting && user has not entered anything - sets taskdescription box default text
+    /* If user is done editting && user has not entered anything - sets taskdescription box default text */
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -141,7 +141,7 @@ extension AddTaskViewController {
     // MARK: Public methods
     // ==========================
     
-    // When add task button pressed - data popover is show so user can pick task due data
+    /* When add task button pressed - data popover is show so user can pick task due data */
     
     @objc fileprivate func addTaskButtonTapped() {
         view.endEditing(true)
@@ -157,7 +157,7 @@ extension AddTaskViewController {
     }
     
     
-    // Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion
+    /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */
     
     func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"
