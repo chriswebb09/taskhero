@@ -91,6 +91,16 @@ extension LoginView {
         })
     }
     
+    func setupLogin(viewController: LoginViewController) {
+        layoutSubviews()
+        emailField.delegate = viewController
+        passwordField.delegate = viewController
+        signupButton.addTarget(viewController, action: #selector(viewController.signupButtonTapped), for: .touchUpInside)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController, action: #selector(viewController.dismissKeyboard))
+        viewController.view.addGestureRecognizer(tap)
+        loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
+    }
+    
     
     // =====================================================
     // MARK: - Configuring UI
@@ -146,4 +156,6 @@ extension LoginView {
     }
     
    
+    
+    
 }

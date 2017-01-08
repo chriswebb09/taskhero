@@ -11,11 +11,14 @@ import Firebase
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    fileprivate let loginView = LoginView()
     
-    let manager = AppManager.sharedInstance
+    fileprivate let loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
+    
+    let manager = AppManager.sharedInstance /* User defaults data methods */
+    
     let store = DataStore.sharedInstance
-    fileprivate let loadingView = LoadingView()
+    
+    fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated/ will be added to view on login button press */
     
     // ================================
     // MARK: Initialization Methods
@@ -25,7 +28,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.addSubview(loginView)
         edgesForExtendedLayout = []
-        setupLogin()
+        loginView.setupLogin(viewController:self)
         navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
     }
@@ -86,6 +89,9 @@ extension LoginViewController {
                 
                 self.manager.setLoggedInKey(userState: true)
                 self.manager.hasLoggedIn()
+                
+                // calls setupTabBar on main thread to load tabbarcontroller 
+                
                 DispatchQueue.main.async {
                     self.setupTabBar()
                 }
@@ -106,16 +112,6 @@ extension LoginViewController {
             textFieldAnimation()
         }
     }
-    
-    fileprivate func setupLogin() {
-        loginView.layoutSubviews()
-        loginView.emailField.delegate = self
-        loginView.passwordField.delegate = self
-        loginView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        self.loginView.loginButton.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
-    }
 }
 
 extension LoginViewController {
@@ -129,19 +125,22 @@ extension LoginViewController {
     // Sets textfield text color and border to selected color
     // On ending edit textfield border color are set to deselect color
     
+    // On return key press
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true
     }
     
-    @objc fileprivate func dismissKeyboard() {
+    @objc public func dismissKeyboard() {
         view.endEditing(true)
     }
     
     // Still implementing
     
-    @objc fileprivate func signupButtonTapped() {
+    // selector method that Pushes SignupViewController on button tap
+    @objc public func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     
@@ -153,6 +152,8 @@ extension LoginViewController {
             textField.layer.borderWidth = 1.1
         }
     }
+    
+    // When no long using input fields
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         DispatchQueue.main.async { [unowned textField] in
