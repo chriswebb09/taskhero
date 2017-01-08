@@ -13,9 +13,7 @@ final class HomeViewController: UITableViewController {
     // =================================
     // MARK: Internal Properties
     // =================================
-    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue",
-                                        qos: .background,
-                                        target: nil)
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     var dataSource: HomeViewControllerDataSource! /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover() /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController() /* Used to pick profile picture in photoPopover */
@@ -45,9 +43,7 @@ extension HomeViewController: UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        
         helpers.getData(tableView: tableView)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,8 +84,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
             index = indexPath
             return headerCell
         } else {
-            //dataSource.tableIndexPath = indexPath
-            //index = indexPath
             let taskCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.task, tableView: tableView) as! TaskCell
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.saveButton.tag = indexPath.row
@@ -101,7 +95,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         guard indexPath.row != 0 else { return }
-
         if editingStyle == .delete {
             tableView.beginUpdates()
             backgroundQueue.async {

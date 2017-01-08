@@ -86,24 +86,6 @@ extension LoginViewController {
                     self.setupTabBar()
                 }
             }
-//            DispatchQueue.global(qos: .default).async {
-//                self.store.currentUserString = userID
-//                self.store.firebaseAPI.setupRefs()
-//                self.store.firebaseAPI.fetchUser { currentUser in
-//                    self.store.currentUser = currentUser
-//                }
-//                
-//                self.manager.setLoggedInKey(userState: true)
-//                self.manager.hasLoggedIn()
-//                DispatchQueue.main.async(execute: {
-//                    self.setupTabBar()
-//                })
-//            }
-//            
-////           
-////            DispatchQueue.main.async {
-//
-//            }
         }
     }
     
@@ -160,7 +142,7 @@ extension LoginViewController {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned textField] in
             textField.textColor = Constants.Color.backgroundColor
             textField.font = Constants.signupFieldFont
             textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
@@ -169,10 +151,12 @@ extension LoginViewController {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderWidth = 1
-        textField.textColor = UIColor.lightGray
-        textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
-        checkForValidEmailInput()
+        DispatchQueue.main.async { [unowned textField] in
+            textField.layer.borderWidth = 1
+            textField.textColor = UIColor.lightGray
+            textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
+            self.checkForValidEmailInput()
+        }
     }
     
     func textFieldAnimation() {
