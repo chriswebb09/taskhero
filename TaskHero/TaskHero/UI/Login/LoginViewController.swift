@@ -17,7 +17,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated -
                                                    will be added to view on login button press */
     // ================================
-    // MARK: Initialization Methods
+    // MARK: ViewController Initialization Methods
     // ================================
     
     override func viewDidLoad() {
@@ -35,11 +35,23 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-// Kicks off by checking emailfield has valid input / send editing and shows activity indicator on loading pop over / returns if conditions are not met.
-// Attempts to signin using userinput for email and password else returns and prints out error description
-// If there is error - hide loading popover
-
 extension LoginViewController {
+    
+    // ================================
+    // MARK: Login Method Extension
+    // ================================
+    
+    /* - handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
+       - then it sets LoginViewController.view endEditting property to true
+       - next loadingView (property implmemented at top) calls the showActivity indicator methods which takes viewController as parameter
+         pass in self.
+       - sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns 
+       - calls firebase FIRAuth.auth.signIn method - which takes email and password 
+       - FIRAuth.auth.signIn returns FIRUser and FIRError objects, if error is not nil - hides loadingView.activity indicator enters
+         switch statement to return proper error message
+       - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
+     
+     */
     
     @objc func handleLogin() {
         checkForValidEmailInput()
@@ -59,25 +71,27 @@ extension LoginViewController {
                 print(error ?? "Unknown error occured when attempting sign in authentication")
                 return
             }
-            
-            // If authorized hides loading popover
-            // Ensures firuser has valid uid - if not returns / if valid firuser uid sends it to datastore as current userstring
-            // Fetches user profile data from firebase database and sets datastore current user to that profile data
-            // If everthing i successful sets rootviewcontroller to tabbarcontroller
-            
-            self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
-            /* Fetching user profile data and setting dataStore current user property to that profile data */
+            
+           /* - On global DispatchQueue with qos: userInituated sets self to unowned self
+            * creates new DataStore.sharedInstance
+            * sets new DataStore instance currentUserString property to userID
+            * sets up FirebaseAPI database reference handles
+            * calls new DataStore FirebaseAPI property and uses fetchUser method
+            * sets new DataStore instance currentUser property to user returned from fetchUser method call
+            * sets userDefaults proporties in AppManager to logged in */
+
             DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
                 let newStore = DataStore.sharedInstance
                 newStore.currentUserString = userID
                 newStore.firebaseAPI.setupRefs()
                 newStore.firebaseAPI.fetchUser { currentUser in newStore.currentUser = currentUser }
-                /* setting user defaults for logged in */
                 self.manager.setLoggedInKey(userState: true)
                 self.manager.hasLoggedIn()
-                /* calls setupTabBar on main thread to load tabbarcontroller */
+                
+            /*  - On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
                 DispatchQueue.main.async {
+                    self.loadingView.hideActivityIndicator(viewController: self)
                     self.setupTabBar()
                 }
             }
