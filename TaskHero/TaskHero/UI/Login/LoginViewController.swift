@@ -57,13 +57,11 @@ extension LoginViewController {
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                     switch errCode {
                     case .errorCodeInvalidEmail:
-                        print("invalid email")
-                    case .errorCodeEmailAlreadyInUse:
-                        print("in use")
+                        print("Invalid Email For Sign In")
                     default:
-                        print("Create User Error: \(error)") }
+                        print("User Authentication Error: \(error)") }
                 }
-                print(error ?? "error")
+                print(error ?? "Unknown error occured when attempting sign in authentication")
                 return
             }
             
@@ -109,7 +107,7 @@ extension LoginViewController {
     
     fileprivate func checkForValidEmailInput() {
         if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
-            textFieldAnimation()
+            loginView.textFieldAnimation()
         }
     }
 }
@@ -162,23 +160,5 @@ extension LoginViewController {
             textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
             self.checkForValidEmailInput()
         }
-    }
-    
-    func textFieldAnimation() {
-        UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.loginView.emailField.layer.borderWidth = 1.2
-                self.loginView.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
-                self.loginView.emailField.textColor =  Constants.Color.backgroundColor
-            } }, completion: { _ in
-                let when = DispatchTime.now() + 0.32
-                DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
-                    self.loginView.emailField.layer.borderWidth = 1
-                    self.loginView.emailField.font = Constants.signupFieldFont
-                    self.loginView.emailField.textColor = UIColor.lightGray
-                    self.loginView.emailField.layer.borderColor = Constants.Color.backgroundColor.cgColor
-                    self.loginView.emailField.layer.borderWidth = Constants.Border.borderWidth
-                }
-        })
     }
 }
