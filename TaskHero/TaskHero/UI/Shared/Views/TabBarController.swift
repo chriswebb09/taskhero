@@ -21,10 +21,16 @@ class TabBarController: UITabBarController {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             self.view.backgroundColor = UIColor.white
             if user != nil && (self.store.currentUser != nil) {
-                self.setupTabs()
+                DispatchQueue.main.async {
+                    self.setupTabs()
+                }
+                
             } else if self.store.currentUser == nil {
                 self.getUser()
-                self.setupTabs()
+                DispatchQueue.main.async {
+                    self.setupTabs()
+                }
+                
             }
         }
     }
@@ -42,10 +48,8 @@ class TabBarController: UITabBarController {
     }
     
     func setupTabs() {
-        DispatchQueue.main.async {
-            super.viewDidLoad()
-            self.setupControllers()
-        }
+        super.viewDidLoad()
+        self.setupControllers()
     }
     
 }
@@ -53,19 +57,21 @@ class TabBarController: UITabBarController {
 extension TabBarController {
     
     fileprivate func setupControllers() {
-        
-        let homeTab = setupHomeTab(homeVC: HomeViewController())
-        let profileTab = setupProfileTab(profileVC: ProfileViewController())
-        let taskListTab = setupTaskTab(taskListVC: TaskListViewController())
-        let settingsTab = setupSettingsTab(settingsVC: SettingsViewController())
-        let controllers = [homeTab, profileTab, taskListTab, settingsTab]
-        
-        viewControllers = controllers
-        tabBar.items?[0].title = "Home"
-        tabBar.items?[1].title = "Profile"
-        tabBar.items?[2].title = "Tasks"
-        tabBar.items?[3].title = "Settings"
-        selectedIndex = 0
+        DispatchQueue.main.async {
+            let homeTab = self.setupHomeTab(homeVC: HomeViewController())
+            let profileTab = self.setupProfileTab(profileVC: ProfileViewController())
+            let taskListTab = self.setupTaskTab(taskListVC: TaskListViewController())
+            let settingsTab = self.setupSettingsTab(settingsVC: SettingsViewController())
+            let controllers = [homeTab, profileTab, taskListTab, settingsTab]
+            
+            self.viewControllers = controllers
+            self.tabBar.items?[0].title = "Home"
+            self.tabBar.items?[1].title = "Profile"
+            self.tabBar.items?[2].title = "Tasks"
+            self.tabBar.items?[3].title = "Settings"
+            self.selectedIndex = 0
+            
+        }
     }
 }
 
@@ -114,5 +120,6 @@ extension TabBarController {
         item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
+    
     }
 }

@@ -26,19 +26,26 @@ class Helpers {
     let manager = AppManager.sharedInstance
     
     func getData(tableView:UITableView) {
-        self.store.tasks.removeAll()
-        if self.store.currentUser.tasks != nil {
-            self.store.currentUser.tasks?.removeAll()
-        }
-        self.store.fetchUser() { user in
-            
-            DispatchQueue.main.async {
-                self.store.currentUser = user
-                tableView.reloadData()
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            var newStore = DataStore.sharedInstance
+            newStore.tasks.removeAll()
+            if newStore.currentUser.tasks != nil {
+                newStore.currentUser.tasks?.removeAll()
             }
+            newStore.fetchUser() { user in
+                
+                newStore.currentUser = user
+                
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            }
+            
         }
+        
+        
     }
-
+    
     func removeRefHandle() {
         if self.store.firebaseAPI.refHandle != nil {
             self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)

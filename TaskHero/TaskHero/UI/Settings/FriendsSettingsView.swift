@@ -14,6 +14,10 @@ final class FriendsSettingsView: UIView {
     // MARK: - UI Elements
     // ==========================
     
+    deinit {
+        print("FriendsSettingsView deallocated")
+    }
+    
     let friendsHeaderLabel: UILabel = {
         let friendsHeaderLabel = UILabel()
         friendsHeaderLabel.textColor = UIColor.black

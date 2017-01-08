@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProfileDataCellModel {
-    var user: User? { get set }
+   
     var level: String { get }
     var experience: Int { get }
     var tasksCompleted: Int { get }
@@ -26,16 +26,15 @@ struct ProfileDataCellViewModel {
     internal var tasksCompleted: Int
     internal var experience: Int
     internal var level: String
-    internal var user: User?
+   
     
     // =============================
     // MARK: - Initialization
     // =============================
     
     init() {
-        self.user = self.store.currentUser
-        self.level = (user?.level)!
-        self.experience = (user?.experiencePoints)!
-        self.tasksCompleted = (user?.numberOfTasksCompleted)!
+        self.level = (self.store.currentUser.level)
+        self.experience = (self.store.currentUser.experiencePoints)
+        self.tasksCompleted = (self.store.currentUser?.numberOfTasksCompleted)!
     }
 }

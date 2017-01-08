@@ -69,8 +69,8 @@ final class InitView: UIView {
         }, completion: { finished in
             DispatchQueue.main.async {
                 let loginVC = UINavigationController(rootViewController:LoginViewController())
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = loginVC
+                weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+                appDelegate?.window?.rootViewController = loginVC
             }
             handler?()
         })

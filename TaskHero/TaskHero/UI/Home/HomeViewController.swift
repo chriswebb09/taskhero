@@ -13,7 +13,9 @@ final class HomeViewController: UITableViewController {
     // =================================
     // MARK: Internal Properties
     // =================================
-    
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue",
+                                        qos: .background,
+                                        target: nil)
     var dataSource: HomeViewControllerDataSource! /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover() /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController() /* Used to pick profile picture in photoPopover */
@@ -43,6 +45,7 @@ extension HomeViewController: UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
+        
         helpers.getData(tableView: tableView)
         
     }
@@ -78,13 +81,15 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     /* If first row returns profile header cell else returns task cell */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        dataSource.indexPath = indexPath
+        dataSource.tableIndexPath = indexPath
         if indexPath.row == 0 {
             let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header, tableView: tableView) as! ProfileHeaderCell
             dataSource.setupHeaderCell(headerCell: headerCell, viewController:self)
             index = indexPath
             return headerCell
         } else {
+            //dataSource.tableIndexPath = indexPath
+            //index = indexPath
             let taskCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.task, tableView: tableView) as! TaskCell
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.saveButton.tag = indexPath.row
@@ -96,13 +101,17 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         guard indexPath.row != 0 else { return }
+
         if editingStyle == .delete {
             tableView.beginUpdates()
-            DispatchQueue.main.async {
-                self.dataSource.deleteTask(indexPath:indexPath)
-                tableView.reloadData()
-                tableView.endUpdates()
+            backgroundQueue.async {
+                self.dataSource.deleteTask(indexPath:indexPath, tableView: self.tableView)
             }
+            DispatchQueue.main.async {
+                self.dataSource.tableIndexPath.row = indexPath.row - 1
+                tableView.reloadData()
+            }
+            tableView.endUpdates()
         }
     }
 }

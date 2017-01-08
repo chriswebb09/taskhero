@@ -70,21 +70,44 @@ extension LoginViewController {
             
             self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
-            self.store.currentUserString = userID
-            self.store.firebaseAPI.setupRefs()
-            self.store.firebaseAPI.fetchUser { currentUser in
-                self.store.currentUser = currentUser
-            }
             
-            self.manager.setLoggedInKey(userState: true)
-            self.manager.hasLoggedIn()
-            DispatchQueue.main.async {
-                self.setupTabBar()
+            DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+                let newStore = DataStore.sharedInstance
+                
+                newStore.currentUserString = userID
+                newStore.firebaseAPI.setupRefs()
+                newStore.firebaseAPI.fetchUser { currentUser in
+                    newStore.currentUser = currentUser
+                }
+                
+                self.manager.setLoggedInKey(userState: true)
+                self.manager.hasLoggedIn()
+                DispatchQueue.main.async {
+                    self.setupTabBar()
+                }
             }
+//            DispatchQueue.global(qos: .default).async {
+//                self.store.currentUserString = userID
+//                self.store.firebaseAPI.setupRefs()
+//                self.store.firebaseAPI.fetchUser { currentUser in
+//                    self.store.currentUser = currentUser
+//                }
+//                
+//                self.manager.setLoggedInKey(userState: true)
+//                self.manager.hasLoggedIn()
+//                DispatchQueue.main.async(execute: {
+//                    self.setupTabBar()
+//                })
+//            }
+//            
+////           
+////            DispatchQueue.main.async {
+//
+//            }
         }
     }
     
-    private func setupTabBar() {
+    fileprivate func setupTabBar() {
         let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
@@ -153,14 +176,14 @@ extension LoginViewController {
     }
     
     func textFieldAnimation() {
-        UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: {
+        UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.loginView.emailField.layer.borderWidth = 1.2
                 self.loginView.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
                 self.loginView.emailField.textColor =  Constants.Color.backgroundColor
             } }, completion: { _ in
                 let when = DispatchTime.now() + 0.32
-                DispatchQueue.main.asyncAfter(deadline: when) {
+                DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
                     self.loginView.emailField.layer.borderWidth = 1
                     self.loginView.emailField.font = Constants.signupFieldFont
                     self.loginView.emailField.textColor = UIColor.lightGray

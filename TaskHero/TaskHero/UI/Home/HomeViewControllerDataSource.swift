@@ -12,6 +12,10 @@ enum HomeCellType {
     case task, header
 }
 
+protocol cellMake {
+    func configure(indexPath: IndexPath, cellType: HomeCellType, tableView:UITableView) -> UITableViewCell
+}
+
 class HomeViewControllerDataSource {
     let store = DataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
@@ -28,12 +32,12 @@ class HomeViewControllerDataSource {
         }
     }
     var rowHeight = UITableViewAutomaticDimension
-    var indexPath: IndexPath!
+    var tableIndexPath: IndexPath!
     var autoHeight: UIViewAutoresizing?
 }
 
 /* Extension containing method for configuring cells in ViewController. If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
-extension HomeViewControllerDataSource {
+extension HomeViewControllerDataSource: cellMake {
     
     func configure(indexPath:IndexPath, cellType:HomeCellType, tableView:UITableView) -> UITableViewCell {
         if cellType == .header {
@@ -42,6 +46,10 @@ extension HomeViewControllerDataSource {
         } else {
             var taskViewModel: TaskCellViewModel!
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
+           // print(indexPath.row)
+            self.store.currentUser.tasks = self.store.tasks
+            print(indexPath.row - 1)
+            //print(self.store.currentUser.tasks?[indexPath.row - 1])
             taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row - 1])!)
             taskCell.configureCell(taskVM: taskViewModel)
             return taskCell
@@ -89,13 +97,20 @@ extension HomeViewControllerDataSource {
     
     /* Deletes task at indexPath.row - 1 - subtraction because TaskCells are below the profileHeader cell */
     
-    func deleteTask(indexPath: IndexPath) {
-        let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
-        self.store.tasks = self.store.currentUser.tasks!
-        self.store.tasks.remove(at: indexPath.row - 1)
-        self.store.updateUserScore()
-        self.store.firebaseAPI.registerUser(user: self.store.currentUser)
-        self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
+    func deleteTask(indexPath: IndexPath, tableView:UITableView) {
+        
+        DispatchQueue.global(qos: .default).async {
+            let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
+            self.store.tasks = self.store.currentUser.tasks!
+            self.store.tasks.remove(at: indexPath.row - 1)
+            self.store.updateUserScore()
+            self.store.firebaseAPI.registerUser(user: self.store.currentUser)
+            self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
+            DispatchQueue.main.async(execute: {
+                tableView.reloadData()
+            })
+        }
+        print(self.store.tasks)
     }
 }
 
