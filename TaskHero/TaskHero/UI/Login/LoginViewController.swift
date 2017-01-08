@@ -71,14 +71,18 @@ extension LoginViewController {
             self.loadingView.hideActivityIndicator(viewController: self)
             guard let userID = user?.uid else { return }
             
+            
+            /* Fetching user profile data and setting dataStore current user property to that profile data */
+            
             DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
                 let newStore = DataStore.sharedInstance
-                
                 newStore.currentUserString = userID
                 newStore.firebaseAPI.setupRefs()
                 newStore.firebaseAPI.fetchUser { currentUser in
                     newStore.currentUser = currentUser
                 }
+                
+                // setting user defaults for logged in 
                 
                 self.manager.setLoggedInKey(userState: true)
                 self.manager.hasLoggedIn()
