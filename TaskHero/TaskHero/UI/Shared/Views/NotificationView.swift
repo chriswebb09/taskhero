@@ -27,6 +27,10 @@ class NotificationView: BasePopView {
         return searchLabel
     }()
     
+}
+
+extension NotificationView {
+
     override func layoutSubviews() {
         super.layoutSubviews()
         headBanner.backgroundColor = UIColor.black

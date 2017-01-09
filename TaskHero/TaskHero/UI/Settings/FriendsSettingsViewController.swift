@@ -13,6 +13,11 @@ final class FriendsSettingsViewController: UIViewController, UITextFieldDelegate
     let friendsSettingsView = FriendsSettingsView()
     let alertPop = AlertPopover()
     
+}
+
+
+extension FriendsSettingsViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(friendsSettingsView)

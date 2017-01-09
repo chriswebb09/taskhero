@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+// ====================================================
+// MARK: - MAJOR Refactor Necessary - Temporary setup
+// ====================================================
+
 extension UITableView {
     
     func setupTableView() {

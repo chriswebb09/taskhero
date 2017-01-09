@@ -19,6 +19,10 @@ class AlertPopover: BasePopoverAlert {
         return popView
     }()
     
+}
+
+extension AlertPopover {
+
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
         popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)

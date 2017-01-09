@@ -21,6 +21,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     let CharacterLimit = 11
     let helpers = Helpers()
     
+}
+
+extension SignupViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(signupView)

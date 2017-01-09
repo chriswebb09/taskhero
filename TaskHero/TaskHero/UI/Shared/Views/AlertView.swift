@@ -51,6 +51,10 @@ class AlertView: UIView {
         return searchLabel
     }()
     
+}
+
+extension AlertView {
+
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()

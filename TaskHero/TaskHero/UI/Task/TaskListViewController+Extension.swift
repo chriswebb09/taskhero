@@ -89,6 +89,10 @@ extension TaskListViewController {
         }
     }
     
+    // ===============================
+    // MARK: - Task Actions
+    // ===============================
+    
     @objc fileprivate func addTaskButtonTapped() {
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
@@ -102,6 +106,10 @@ extension TaskListViewController {
         self.store.tasks.remove(at: indexPath.row)
     }
     
+    
+    // =====================================
+    // MARK: - Cell Button Toggle Methods
+    // =====================================
     
     func toggleForButtonState(sender:UIButton) {
         let superview = sender.superview

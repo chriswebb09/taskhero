@@ -11,10 +11,23 @@ import MobileCoreServices
 
 class PhotoPickerView: BasePopView {
     
+    // ===============================
+    // MARK: - UI Element
+    // ===============================
+    
     lazy var button: UIButton = {
         let button = ButtonType.system(title: "Change Profile Picture", color: UIColor.black)
         return button.newButton
     }()
+    
+}
+
+
+extension PhotoPickerView {
+
+    // ===============================
+    // MARK: - Configuration 
+    // ===============================
     
     override func layoutSubviews() {
         super.layoutSubviews()

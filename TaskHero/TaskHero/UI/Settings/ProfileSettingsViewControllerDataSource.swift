@@ -12,6 +12,11 @@ final class ProfileSettingsViewControllerDataSource {
     
     let store = DataStore.sharedInstance
     
+}
+
+
+extension ProfileSettingsViewControllerDataSource {
+
     func setupViews(profileSettingsView: ProfileSettingsView, tableView: UITableView, view:UIView) {
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
         profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -24,6 +29,13 @@ final class ProfileSettingsViewControllerDataSource {
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.tableViewHeight).isActive = true
     }
     
+    
+}
+
+
+extension ProfileSettingsViewControllerDataSource {
+    
+
     func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
         var name = cell.profileSettingField.text?.components(separatedBy: " ")
         let updatedUser = User()

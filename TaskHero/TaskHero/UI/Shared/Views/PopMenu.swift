@@ -15,6 +15,11 @@ class PopMenu: BasePopoverAlert {
         return pick
     }()
     
+}
+
+
+extension PopMenu {
+
     public func showPopView(viewController: UIViewController, pick: UIPickerView?) {
         super.showPopView(viewController: viewController)
         

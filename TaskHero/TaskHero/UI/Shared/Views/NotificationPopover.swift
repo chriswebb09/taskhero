@@ -18,7 +18,10 @@ class NotificationPopover: BasePopoverAlert {
         popView.layer.borderWidth = 1
         return popView
     }()
-    
+}
+
+extension NotificationPopover {
+
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
         popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)

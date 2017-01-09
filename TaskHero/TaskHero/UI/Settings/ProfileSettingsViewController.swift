@@ -22,6 +22,10 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     var username: String?
     var email: String?
     
+}
+
+extension ProfileSettingsViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         options = [self.store.currentUser.email,

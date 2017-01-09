@@ -10,7 +10,10 @@ import UIKit
 
 final class InitialViewController: UIViewController {
     
-    private let initView = InitView()
+    let initView = InitView()
+}
+
+extension InitialViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,10 @@ final class InitialViewController: UIViewController {
             self.initView.zoomAnimation({ })
         }
     }
+    
+}
+
+extension InitialViewController {
     
     func loginButtonTapped() {
         navigationController?.pushViewController(LoginViewController(), animated: false)

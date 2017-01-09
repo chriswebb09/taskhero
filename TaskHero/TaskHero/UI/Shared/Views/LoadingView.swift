@@ -28,6 +28,10 @@ class LoadingView: UIView {
         return loadingView
     }()
     
+}
+
+extension LoadingView {
+
     public func showActivityIndicator(viewController: UIViewController) {
         
         containerView.frame = UIScreen.main.bounds

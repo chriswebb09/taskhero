@@ -17,6 +17,10 @@ final class ProfileViewController: UITableViewController {
     
     let store = DataStore.sharedInstance
     
+}
+
+extension ProfileViewController {
+
     // =============================
     // MARK: - Initialization
     // =============================

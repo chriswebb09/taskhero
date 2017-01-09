@@ -14,6 +14,11 @@ protocol TaskCellDelegate: class {
 }
 
 final class TaskCell: UITableViewCell {
+    
+    // ===============================
+    // MARK: - Properties 
+    // ===============================
+    
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
     var toggled:Bool = false
@@ -92,6 +97,10 @@ extension TaskCell {
         configureTextView(label: taskNameLabel)
         setupConstraints()
     }
+    
+    // ===============================
+    // MARK: - Reuse
+    // ===============================
     
     override func prepareForReuse() {
         super.prepareForReuse()

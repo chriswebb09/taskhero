@@ -10,6 +10,10 @@ import UIKit
 
 class PhotoPickerPopover: BasePopoverAlert {
     
+    // ===============================
+    // MARK: - UI Elements
+    // ===============================
+    
     lazy var searchLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
@@ -25,6 +29,15 @@ class PhotoPickerPopover: BasePopoverAlert {
         popView.layer.cornerRadius = 10
         return popView
     }()
+    
+}
+
+
+extension PhotoPickerPopover {
+
+    // ===============================
+    // MARK: - Behavior methods 
+    // ===============================
     
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)

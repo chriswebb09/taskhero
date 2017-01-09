@@ -49,6 +49,11 @@ extension SettingsCell {
         settingLabel.text = setting.setting
     }
     
+}
+
+
+extension SettingsCell {
+
     override func prepareForReuse() {
         super.prepareForReuse()
         settingLabel.text = ""

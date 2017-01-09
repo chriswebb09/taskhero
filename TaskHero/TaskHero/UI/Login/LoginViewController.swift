@@ -17,6 +17,12 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated -
                                                    will be added to view on login button press */
     
+    
+}
+
+
+extension LoginViewController {
+
     // ============================================
     // MARK: ViewController Initialization Methods
     // ============================================
@@ -103,6 +109,11 @@ extension LoginViewController {
         }
     }
     
+    
+    // ===============================
+    // MARK: - Load TabbarController
+    // ===============================
+    
     fileprivate func setupTabBar() {
         let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -142,6 +153,7 @@ extension LoginViewController {
     }
     
     // selector method that Pushes SignupViewController on button tap
+    
     @objc public func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }

@@ -44,10 +44,14 @@ final class InitView: UIView {
         view.isHidden = true
         return view
     }()
-    
-    // =====================================================
+}
+
+
+extension InitView {
+
+    // ===========================
     // MARK: - Configure
-    // =====================================================
+    // ===========================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -64,7 +68,15 @@ final class InitView: UIView {
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
+}
+
+
+extension InitView {
     
+    // ========================
+    // MARK: - Animation
+    // ========================
+
     func zoomAnimation(_ handler: completion? = nil) {
         let duration: TimeInterval =  self.animationDuration * 0.5
         UIView.animate(withDuration: duration, animations:{ [weak self] in

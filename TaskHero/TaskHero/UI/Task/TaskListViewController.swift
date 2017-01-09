@@ -11,7 +11,7 @@ import UIKit
 final class TaskListViewController: UITableViewController, TaskCellDelegate {
     
     // ================================
-    // MARK: Internal Variables
+    // MARK: Properties
     // ================================
     
     let store = DataStore.sharedInstance
@@ -21,7 +21,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     let helpers = Helpers()
     
     // =======================
-    // MARK: - UI
+    // MARK: - UI Elements
     // =======================
     
     lazy var addTasksLabel:UILabel = {
@@ -53,6 +53,9 @@ extension TaskListViewController {
         setupTableView()
         setupNavItems()
     }
+    
+    
+    // FIXME: - Refactor ASAP 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
