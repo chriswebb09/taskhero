@@ -39,15 +39,19 @@ class APIClient {
     
     var validUsernames = [String]()
     var validUserData = [String]()
-    var userData = Dictionary<String, AnyObject>() // [String: AnyObject]()
-    var usernameEmailDict = Dictionary<String, AnyObject>()
-    var tasksDict = Dictionary<String, AnyObject>()
+    var userData = [String:AnyObject]() // [String: AnyObject]()
+    var usernameEmailDict = [String: AnyObject]()
+    var tasksDict = [String:AnyObject]()
     
     init() {
         dbRef = FIRDatabase.database().reference()
         usernameRef = dbRef.child("Usernames")
     }
     
+}
+
+extension APIClient {
+
     // =====================================================
     // MARK:- Initial firebase database reference properties
     // =====================================================
@@ -62,6 +66,12 @@ class APIClient {
         tasksRef.child(ref).removeValue()
     }
     
+    
+}
+
+
+extension APIClient {
+
     // =====================================================
     // Fetch all valid usernames in database
     // =====================================================
@@ -86,6 +96,11 @@ class APIClient {
         }
     }
     
+}
+
+
+extension APIClient {
+
     // =========================================================================
     // Grab tasks from user profile in realtime user database
     // =========================================================================
@@ -145,6 +160,12 @@ class APIClient {
         })
     }
     
+}
+
+
+extension APIClient {
+
+
     // =============================================================================================================
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
     // =============================================================================================================
@@ -172,6 +193,11 @@ class APIClient {
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
     
+}
+
+
+extension APIClient {
+
     // ==============================================
     // Updates user profile data in database
     // ==============================================
