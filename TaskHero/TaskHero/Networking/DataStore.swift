@@ -20,6 +20,10 @@ class DataStore {
     var validUsernames = [String]()
     var tasks = [Task]()
     
+    func setupStore() {
+        tasks.removeAll()
+        if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
+    }
     
     // Temporary functionality moved into DataStore during project reorganiztion. Will be removed at completion.
     
@@ -32,38 +36,4 @@ class DataStore {
         currentUser.numberOfTasksCompleted += 1
     }
     
-    // ==============================================
-    // Update currentUser profile in database
-    // ==============================================
-    
-    func updateUserProfile(userID: String, user:User) {
-        firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:tasks)
-        self.tasks.forEach { task in
-            firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
-        }
-    }
-    // =============================================
-    // Setup datastore for initial operation
-    // =============================================
-    
-    
-    func fetchUser(completion: @escaping(User) -> Void) {
-        self.tasks.removeAll()
-        self.currentUser.tasks?.removeAll()
-        firebaseAPI.fetchUser { user in
-            self.currentUser = user
-        }
-        
-        firebaseAPI.fetchTasks(taskList: currentUser.tasks!) { tasks in
-            self.currentUser.tasks = tasks
-            self.tasks = tasks
-            dump(self.currentUser)
-            completion(self.currentUser)
-        }
-    }
-    
-    func setupStore() {
-        tasks.removeAll()
-        if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
-    }
 }

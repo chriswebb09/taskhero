@@ -27,6 +27,7 @@ final class ProfileSettingsViewControllerDataSource {
     func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
         var name = cell.profileSettingField.text?.components(separatedBy: " ")
         let updatedUser = User()
+        var helpers = Helpers()
         updatedUser.username = self.store.currentUser.username
         updatedUser.email = self.store.currentUser.email
         updatedUser.profilePicture = "None"
@@ -36,7 +37,7 @@ final class ProfileSettingsViewControllerDataSource {
         updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
         updatedUser.experiencePoints = self.store.currentUser.experiencePoints
         updatedUser.tasks = self.store.currentUser.tasks
-        self.store.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
+        helpers.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
     }
     
     func updateUserName(cell:ProfileSettingsCell, name: [String]) {

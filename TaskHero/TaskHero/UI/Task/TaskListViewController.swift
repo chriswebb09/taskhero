@@ -64,7 +64,9 @@ extension TaskListViewController {
         if self.store.currentUser.tasks != nil {
             self.store.currentUser.tasks?.removeAll()
         }
-        self.store.fetchUser() { user in
+        
+        
+        self.helpers.fetchUser() { user in
             self.store.currentUser = user
             DispatchQueue.main.async {
                 self.tableView.reloadData()

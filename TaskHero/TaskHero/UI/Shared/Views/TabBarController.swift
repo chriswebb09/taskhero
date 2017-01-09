@@ -42,7 +42,7 @@ class TabBarController: UITabBarController {
     
     
     func getUser() {
-        self.store.firebaseAPI.fetchUser { user in
+        self.store.firebaseAPI.fetchUserData { user in
             self.store.currentUser = user
         }
     }

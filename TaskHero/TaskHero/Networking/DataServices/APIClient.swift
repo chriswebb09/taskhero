@@ -38,7 +38,6 @@ class APIClient {
     var usernameEmailDict = Dictionary<String, AnyObject>()
     var tasksDict = Dictionary<String, AnyObject>()
     
-    
     init() {
         dbRef = FIRDatabase.database().reference()
         usernameRef = dbRef.child("Usernames")
@@ -54,6 +53,10 @@ class APIClient {
         tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
     }
     
+    func removeTask(ref:String, taskID: String) {
+        tasksRef.child(ref).removeValue()
+    }
+    
     // =====================================================
     // Fetch all valid usernames in database
     // =====================================================
@@ -66,14 +69,50 @@ class APIClient {
         })
     }
     
-    // ================================================================================
-    // Fetch user profile data store in realtime database return data in completion
-    // ================================================================================
+    func updateUsernameList(user: User) {
+        self.ref = FIRDatabase.database().reference()
+        let usernameRefs = ref.child("Usernames")
+        let usernameValues = [user.username:user.email] as [String : Any] as NSDictionary
+        
+        usernameRefs.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in
+            if err != nil {
+                print(err ?? "unable to get specific error i")
+                return
+            }
+        }
+    }
     
-    func fetchUser(completion:@escaping UserCompletion) {
+    // =========================================================================
+    // Grab tasks from user profile in realtime user database
+    // =========================================================================
+    
+    func fetchTasks(taskList: [Task], completion:@escaping ([Task]) -> Void) {
+        // tasksRef.keepSynced(true)
+        var taskList = taskList
+        refHandle = tasksRef.observe(.childAdded, with: { snapshot in
+            guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
+            var newTask = Task()
+            newTask.taskID = snapshot.key
+            if let fetchName = snapshotValue[Constants.API.Task.taskName] as? String,
+                let fetchDescription = snapshotValue[Constants.API.Task.taskDescription] as? String,
+                let fetchCreated = snapshotValue[Constants.API.Task.taskCreated] as? String,
+                let fetchDue = snapshotValue[Constants.API.Task.taskDue] as? String,
+                let fetchCompleted = snapshotValue[Constants.API.Task.taskCompleted] as? Bool {
+                newTask.taskName = fetchName
+                newTask.taskDescription = fetchDescription
+                newTask.taskCreated = fetchCreated
+                newTask.taskDue = fetchDue
+                newTask.taskCompleted = fetchCompleted
+            }
+            taskList.append(newTask)
+            completion(taskList)
+        })
+    }
+    
+    func fetchUserData(completion: @escaping UserCompletion) {
         let database = FIRDatabase.database()
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-        let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(uid)/LastOnline")
+        let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(userID!)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
             let tasks = [Task]()
@@ -97,84 +136,8 @@ class APIClient {
                 user.profilePicture = snapshotProfilePicture
                 user.numberOfTasksCompleted = snapshotTasksCompleted
                 user.experiencePoints = snapshotExperiencePoints
-                
             }
             user.tasks = tasks
-            completion(user)
-        })
-    }
-    
-    
-    
-    // =========================================================================
-    // Grab tasks from user profile in realtime user database
-    // =========================================================================
-    
-    func fetchTasks(taskList: [Task], completion:@escaping ([Task]) -> Void) {
-        // tasksRef.keepSynced(true)
-        var taskList = taskList
-        refHandle = tasksRef.observe(.childAdded, with: { snapshot in
-            guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
-            var newTask = Task()
-            newTask.taskID = snapshot.key
-            if let fetchName = snapshotValue[Constants.API.Task.taskName] as? String {
-                newTask.taskName = fetchName
-            }
-            if let fetchDescription = snapshotValue[Constants.API.Task.taskDescription] as? String {
-                newTask.taskDescription = fetchDescription
-            }
-            if let fetchCreated = snapshotValue[Constants.API.Task.taskCreated] as? String {
-                newTask.taskCreated = fetchCreated
-            }
-            if let fetchDue = snapshotValue[Constants.API.Task.taskDue] as? String {
-                newTask.taskDue = fetchDue
-            }
-            if let fetchCompleted = snapshotValue[Constants.API.Task.taskCompleted] as? Bool {
-                newTask.taskCompleted = fetchCompleted
-            }
-            taskList.append(newTask)
-            completion(taskList)
-        })
-    }
-    
-    
-    
-    
-    func fetchUserData(completion: @escaping UserCompletion) {
-        let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(userID!)/LastOnline")
-        userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
-        userRef.child(userID!).observe(.childAdded, with: { snapshot in
-            let user = User()
-            self.userData[snapshot.key] = snapshot.value as AnyObject?
-            
-            if let snapshotName = self.userData["Username"] as? String {
-                user.username = snapshotName
-            }
-            if let snapshotEmail = self.userData["Email"] as? String {
-                user.email = snapshotEmail
-            }
-            if let snapshotFirstName = self.userData["FirstName"] as? String {
-                user.firstName = snapshotFirstName
-            }
-            if let snapshotLastName = self.userData["LastName"] as? String {
-                user.lastName = snapshotLastName
-            }
-            if let snapshotLevel = self.userData["Level"] as? String {
-                user.level = snapshotLevel
-            }
-            if let snapshotJoinDate = self.userData["JoinDate"] as? String {
-                user.joinDate = snapshotJoinDate
-            }
-            if let snapshotProfilePicture = self.userData["ProfilePicture"] as? String {
-                user.profilePicture = snapshotProfilePicture
-            }
-            if let snapshotTasksCompleted = self.userData["TasksCompleted"] as? Int {
-                user.numberOfTasksCompleted = snapshotTasksCompleted
-            }
-            if let snapshotExperiencePoints = self.userData["ExperiencePoints"] as? Int {
-                user.experiencePoints = snapshotExperiencePoints
-            }
-            
             completion(user)
         })
     }
@@ -196,10 +159,6 @@ class APIClient {
     // ========================================================================
     // Removes task from database - called on swift left in tableview
     // ========================================================================
-    
-    func removeTask(ref:String, taskID: String) {
-        tasksRef.child(ref).removeValue()
-    }
     
     func updateTask(ref:String, taskID: String, task:Task) {
         let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
@@ -228,73 +187,15 @@ class APIClient {
         userRef.updateChildValues(["/\(userID)": userData])
         userRef.keepSynced(true)
         if tasks.count != 0 {
-            for task in user.tasks! {
-                addTasks(task: task)
-            }
+            for task in user.tasks! { addTasks(task: task) }
         }
         
         usernameRef.updateChildValues([user.username:user.email])
     }
     
-    
-    func uploadImage(profilePicture:UIImage, user:User, completion:@escaping(_ url:String) ->()) {
-        let imageName = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).png")
-        if let uploadData = UIImagePNGRepresentation(profilePicture) {
-            storageRef.put(uploadData, metadata: nil, completion: { metadata, error in
-                if error != nil {
-                    print(error ?? "Unable to get specific error")
-                    return
-                }
-                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                    print("\n\n")
-                    print(profileImageUrl)
-                    completion(profileImageUrl)
-                }
-            })
-        }
-    }
-    
-    func downloadImage(imageName:String, completion: @escaping (UIImage) -> Void) {
-        let name = "146CC8EC-7042-4406-9BC5-8ED7419C919B.png"
-        let imageRef = FIRStorage.storage().reference().child("profile_images").child("\(name)")
-        print(imageRef)
-        var image: UIImage!
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        // let prefix = "file:"
-        let localURL = NSURL(string:"file://\(paths[0])/\(imageName)")
-        let filePath = localURL as? URL
-        print(filePath)
-        let downloadTask = imageRef.write(toFile: filePath!) { url, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "Download image errror")
-                print("Error occured")
-            } else {
-                print(localURL?.absoluteString ?? "local url")
-                image = UIImage(contentsOfFile: (localURL?.absoluteString)!)
-                //if let imageDownloaeed =
-                DispatchQueue.main.async {
-                    completion(image)
-                }
-                
-            }
-        }
-        downloadTask.resume()
-
-    }
-    
     func registerUser(user:User) {
-        self.ref = FIRDatabase.database().reference()
         self.userRef = dbRef.child("Users").child(user.uid)
-        let usernameRefs = ref.child("Usernames")
-        let usernameValues = [user.username:user.email] as [String : Any] as NSDictionary
-        usernameRefs.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in
-            if err != nil {
-                print(err ?? "unable to get specific error i")
-                return
-            }
-        }
-        
+        updateUsernameList(user: user)
         let values: NSDictionary = [Constants.API.User.email: user.email,
                                     Constants.API.User.firstName: user.firstName ?? " ",
                                     Constants.API.User.lastName: user.lastName ?? " ",

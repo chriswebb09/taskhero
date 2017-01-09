@@ -89,7 +89,7 @@ extension LoginViewController {
                 let newStore = DataStore.sharedInstance
                 newStore.currentUserString = userID
                 newStore.firebaseAPI.setupRefs()
-                newStore.firebaseAPI.fetchUser { currentUser in newStore.currentUser = currentUser }
+                newStore.firebaseAPI.fetchUserData { currentUser in newStore.currentUser = currentUser }
                 self.manager.setLoggedInKey(userState: true)
                 self.manager.hasLoggedIn()
                 

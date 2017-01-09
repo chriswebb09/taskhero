@@ -17,6 +17,8 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     var emailInvalidated = false
     let CharacterLimit = 11
     
+    let helpers = Helpers()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(signupView)
@@ -61,11 +63,15 @@ extension SignupViewController {
     func handleRegister() {
         view.endEditing(true)
         let loadingView = LoadingView()
-        guard let email = signupView.emailField.text, let password = signupView.passwordField.text, let username = signupView.usernameField.text else {
-            loadingView.hideActivityIndicator(viewController:self)
-            print("Form is not valid")
-            return
+        
+        guard let email = signupView.emailField.text,
+            let password = signupView.passwordField.text,
+            let username = signupView.usernameField.text else {
+                loadingView.hideActivityIndicator(viewController:self)
+                print("Form is not valid")
+                return
         }
+        
         if validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!) {
             loadingView.showActivityIndicator(viewController: self)
             FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
@@ -78,11 +84,14 @@ extension SignupViewController {
                     loadingView.hideActivityIndicator(viewController: self)
                     return
                 }
-                let newUser = self.createUser(username: username, email: email)
-                self.store.firebaseAPI.registerUser(user: newUser)
-                self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
-                self.store.firebaseAPI.setupRefs()
-                self.store.currentUser = newUser
+                
+                if let uid = FIRAuth.auth()?.currentUser?.uid {
+                    let newUser = self.helpers.createUser(uid:uid, username: username, email: email)
+                    self.store.firebaseAPI.registerUser(user: newUser)
+                    self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+                    self.store.firebaseAPI.setupRefs()
+                    self.store.currentUser = newUser
+                }
                 self.setupTabBar()
             }
         } else {
@@ -100,15 +109,16 @@ extension SignupViewController {
         appDelegate.window?.rootViewController = tabBar
     }
     
-    private func createUser(username:String, email:String) -> User {
-        let newUser = User()
-        newUser.username = username
-        newUser.email = email
-        newUser.profilePicture = "None"
-        newUser.firstName = "N/A"
-        newUser.lastName = "N/A"
-        newUser.experiencePoints = 0
-        newUser.tasks = [Task]()
-        return newUser
-    }
+//    public func createUser(uid: String, username:String, email:String) -> User {
+//        let newUser = User()
+//        newUser.uid = uid
+//        newUser.username = username
+//        newUser.email = email
+//        newUser.profilePicture = "None"
+//        newUser.firstName = "N/A"
+//        newUser.lastName = "N/A"
+//        newUser.experiencePoints = 0
+//        newUser.tasks = [Task]()
+//        return newUser
+//    }
 }

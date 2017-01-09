@@ -27,12 +27,16 @@ class Helpers {
     
     func getData(tableView:UITableView) {
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            var helpers = Helpers()
             var newStore = DataStore.sharedInstance
             newStore.tasks.removeAll()
             if newStore.currentUser.tasks != nil {
                 newStore.currentUser.tasks?.removeAll()
             }
-            newStore.fetchUser() { user in
+            
+            
+            
+            helpers.fetchUser() { user in
                 
                 newStore.currentUser = user
                 
@@ -116,7 +120,20 @@ class Helpers {
         tabBar.barTintColor = Constants.Color.backgroundColor
     }
     
-    dynamic func handleLogout() {
+    public func createUser(username:String, email:String) -> User {
+        let newUser = User()
+        newUser.username = username
+        newUser.email = email
+        newUser.profilePicture = "None"
+        newUser.firstName = "N/A"
+        newUser.lastName = "N/A"
+        newUser.experiencePoints = 0
+        newUser.tasks = [Task]()
+        return newUser
+    }
+    
+    
+    func handleLogout() {
         do {
             manager.setLoggedInKey(userState: false)
             try FIRAuth.auth()?.signOut()
@@ -125,5 +142,40 @@ class Helpers {
         }; let loginController = LoginViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginController
+    }
+    
+    public func createUser(uid: String, username:String, email:String) -> User {
+        let newUser = User()
+        newUser.uid = uid
+        newUser.username = username
+        newUser.email = email
+        newUser.profilePicture = "None"
+        newUser.firstName = "N/A"
+        newUser.lastName = "N/A"
+        newUser.experiencePoints = 0
+        newUser.tasks = [Task]()
+        return newUser
+    }
+    
+    func fetchUser(completion: @escaping(User) -> Void) {
+        self.store.tasks.removeAll()
+        self.store.currentUser.tasks?.removeAll()
+        self.store.firebaseAPI.fetchUserData { user in
+            self.store.currentUser = user
+        }
+        
+        self.store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
+            self.store.currentUser.tasks = tasks
+            self.store.tasks = tasks
+            dump(self.store.currentUser)
+            completion(self.store.currentUser)
+        }
+    }
+    
+    func updateUserProfile(userID: String, user:User) {
+        self.store.firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:self.store.tasks)
+        self.store.tasks.forEach { task in
+            self.store.firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
+        }
     }
 }

@@ -19,8 +19,9 @@ final class HomeViewController: UITableViewController {
        - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource 
        - Not final setup - still a work in progress 
    */
-    
-    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)       /* BackgroundQueue for background network calls */
+   
+    /* BackgroundQueue for background network calls */
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover()      /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController()      /* Used to pick profile picture in photoPopover */
