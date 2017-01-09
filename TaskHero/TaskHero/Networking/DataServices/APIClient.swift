@@ -95,7 +95,6 @@ extension APIClient {
             }
         }
     }
-    
 }
 
 
@@ -159,7 +158,6 @@ extension APIClient {
             completion(user)
         })
     }
-    
 }
 
 
@@ -192,7 +190,6 @@ extension APIClient {
                                       Constants.API.Task.taskCompleted: task.taskCompleted]
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
-    
 }
 
 
