@@ -116,6 +116,10 @@ extension SettingsViewController {
         notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
     }
     
+    
+}
+
+extension SettingsViewController {
     // ============================
     // MARK: - Setup buttons
     // ============================

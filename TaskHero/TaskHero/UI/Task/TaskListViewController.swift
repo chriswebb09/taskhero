@@ -48,12 +48,17 @@ extension TaskListViewController {
         tableView.reloadData()
     }
     
-    fileprivate func initializeBackgroundUI() {
+    func initializeBackgroundUI() {
         emptyTableViewState()
         setupTableView()
         setupNavItems()
     }
     
+}
+
+
+extension TaskListViewController {
+
     
     // FIXME: - Refactor ASAP 
     
