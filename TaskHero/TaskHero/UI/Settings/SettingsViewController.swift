@@ -35,7 +35,7 @@ final class SettingsViewController: UITableViewController {
         header.backgroundColor = UIColor.white
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
-        helpers.setupTableView(tableView:tableView)
+        tableView.setupTableView()
         setupSegment()
     }
     

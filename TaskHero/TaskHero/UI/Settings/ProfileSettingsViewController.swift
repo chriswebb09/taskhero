@@ -37,7 +37,8 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
         profileSettingsView.layoutSubviews()
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
-        helpers.setupTableView(tableView:tableView)
+        tableView.setupTableView()
+        //helpers.setupTableView(tableView:tableView)
     }
 }
 

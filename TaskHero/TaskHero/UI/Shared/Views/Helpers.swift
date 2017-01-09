@@ -10,13 +10,15 @@ import UIKit
 import Firebase
 
 extension UITableView {
-    func setupHelper() {
-        self.tableFooterView = UIView(frame: CGRect.zero)
-        self.separatorStyle = .singleLine
+
+    func setupTableView() {
+        self.estimatedRowHeight = Constants.Settings.rowHeight
         self.layoutMargins = UIEdgeInsets.zero
         self.separatorInset = UIEdgeInsets.zero
-        self.allowsSelection = false
+        self.separatorStyle = .singleLineEtched
         self.rowHeight = UITableViewAutomaticDimension
+        self.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableHeaderView?.backgroundColor = UIColor.white
     }
 }
 
@@ -35,7 +37,7 @@ extension Helpers {
 
 extension Helpers {
     
-    public func setupTabBar() {
+    public func loadTabBar() {
         let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
@@ -56,16 +58,6 @@ extension Helpers {
         tabBar.isTranslucent = true
         tabBar.tintColor = Constants.Tabbar.tint
         tabBar.barTintColor = Constants.Color.backgroundColor
-    }
-    
-    func setupTableView(tableView:UITableView) {
-        tableView.estimatedRowHeight = Constants.Settings.rowHeight
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.separatorStyle = .singleLineEtched
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.tableHeaderView?.backgroundColor = UIColor.white
     }
 }
 

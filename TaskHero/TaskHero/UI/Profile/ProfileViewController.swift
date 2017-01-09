@@ -34,7 +34,7 @@ final class ProfileViewController: UITableViewController {
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.estimatedRowHeight = view.frame.height / 3
-        tableView.setupHelper()
+        
         
         // Setup UI on main thread
         

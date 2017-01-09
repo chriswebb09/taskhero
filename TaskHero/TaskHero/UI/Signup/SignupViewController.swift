@@ -79,7 +79,7 @@ extension SignupViewController {
                 if let uid = FIRAuth.auth()?.currentUser?.uid {
                     self.setupUser(uid: uid, username: username, email: email)
                 }
-                self.helpers.setupTabBar()
+                self.helpers.loadTabBar()
             }
         } else {
             let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
