@@ -48,9 +48,9 @@ class APIClient {
     // =====================================================
     
     func setupRefs() {
-        //let userID = FIRAuth.auth()?.currentUser?.uid
-        userRef = dbRef.child("Users").child(userID!)
-        tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
+        guard let userID = FIRAuth.auth()?.currentUser?.uid else { return }
+        userRef = dbRef.child("Users").child(userID)
+        tasksRef = dbRef.child("Users").child(userID).child("Tasks")
     }
     
     func removeTask(ref:String, taskID: String) {
@@ -73,7 +73,6 @@ class APIClient {
         self.ref = FIRDatabase.database().reference()
         let usernameRefs = ref.child("Usernames")
         let usernameValues = [user.username:user.email] as [String : Any] as NSDictionary
-        
         usernameRefs.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in
             if err != nil {
                 print(err ?? "unable to get specific error i")
@@ -87,7 +86,6 @@ class APIClient {
     // =========================================================================
     
     func fetchTasks(taskList: [Task], completion:@escaping ([Task]) -> Void) {
-        // tasksRef.keepSynced(true)
         var taskList = taskList
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
@@ -189,7 +187,6 @@ class APIClient {
         if tasks.count != 0 {
             for task in user.tasks! { addTasks(task: task) }
         }
-        
         usernameRef.updateChildValues([user.username:user.email])
     }
     
@@ -205,7 +202,6 @@ class APIClient {
                                     Constants.API.User.joinDate: user.joinDate,
                                     Constants.API.User.username: user.username,
                                     Constants.API.User.tasksCompleted: user.numberOfTasksCompleted]
-        
         userRef.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
             if err != nil {
                 print(err ?? "unable to get specific error")
