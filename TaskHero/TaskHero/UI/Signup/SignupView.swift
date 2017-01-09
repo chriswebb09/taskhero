@@ -66,6 +66,11 @@ extension SignupView {
         field.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
+}
+
+
+extension SignupView {
+
     // sets up constraints on signupview
     
     private func setupConstraints() {
