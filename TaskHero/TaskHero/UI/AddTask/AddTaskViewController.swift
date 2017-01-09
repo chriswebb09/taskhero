@@ -38,6 +38,7 @@ extension AddTaskViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         edgesForExtendedLayout = []
         setupDelegates()
+        setupPick()
         addTaskView.layoutSubviews()
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -45,7 +46,7 @@ extension AddTaskViewController {
     }
 }
 
-extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource {
+extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
     // =================================
     // MARK: TextField Methods
@@ -54,7 +55,6 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPick
     // On return-key press hides keyboard
     
     func setupDelegates() {
-        pick.dataSource = self
         addTaskView.taskNameField.delegate = self
         addTaskView.taskDescriptionBox.delegate = self
     }
@@ -86,11 +86,15 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPick
     }
 }
 
-extension AddTaskViewController: UIPickerViewDelegate {
+extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     // =========================================
     // MARK: Extension - UIPickerView Methods
     // =========================================
+    
+    func setupPick() {
+        pick.dataSource = self
+    }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
