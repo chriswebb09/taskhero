@@ -20,7 +20,7 @@ final class ProfileViewController: UITableViewController {
 }
 
 extension ProfileViewController {
-
+    
     // =============================
     // MARK: - Initialization
     // =============================

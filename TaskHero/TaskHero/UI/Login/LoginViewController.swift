@@ -15,14 +15,14 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     let manager = AppManager.sharedInstance /* User defaults data methods */
     let store = DataStore.sharedInstance
     fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated -
-                                                   will be added to view on login button press */
+     will be added to view on login button press */
     
     
 }
 
 
 extension LoginViewController {
-
+    
     // ============================================
     // MARK: ViewController Initialization Methods
     // ============================================
@@ -50,15 +50,15 @@ extension LoginViewController {
     // ================================
     
     /*
-       - handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
-       - then it sets LoginViewController.view endEditting property to true
-       - next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController as parameter -
-         pass in self.
-       - sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns 
-       - calls firebase FIRAuth.auth.signIn method - which takes email and password 
-       - FIRAuth.auth.signIn returns FIRUser and FIRError objects, if error is not nil - hides loadingView.activity indicator enters
-         switch statement to return proper error message
-       - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
+     - handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
+     - then it sets LoginViewController.view endEditting property to true
+     - next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController as parameter -
+     pass in self.
+     - sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
+     - calls firebase FIRAuth.auth.signIn method - which takes email and password
+     - FIRAuth.auth.signIn returns FIRUser and FIRError objects, if error is not nil - hides loadingView.activity indicator enters
+     switch statement to return proper error message
+     - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
      */
     
     @objc func handleLogin() {
@@ -81,16 +81,16 @@ extension LoginViewController {
             }
             guard let userID = user?.uid else { return }
             
-           /*
-            - On global DispatchQueue with qos: userInituated sets self to unowned self
-            * creates new DataStore.sharedInstance
-            * sets new DataStore instance currentUserString property to userID
-            * sets up FirebaseAPI database reference handles
-            * calls new DataStore FirebaseAPI property and uses fetchUser method
-            * sets new DataStore instance currentUser property to user returned from fetchUser method call
-            * sets userDefaults proporties in AppManager to logged in 
-            */
-
+            /*
+             - On global DispatchQueue with qos: userInituated sets self to unowned self
+             * creates new DataStore.sharedInstance
+             * sets new DataStore instance currentUserString property to userID
+             * sets up FirebaseAPI database reference handles
+             * calls new DataStore FirebaseAPI property and uses fetchUser method
+             * sets new DataStore instance currentUser property to user returned from fetchUser method call
+             * sets userDefaults proporties in AppManager to logged in
+             */
+            
             DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
                 let newStore = DataStore.sharedInstance
                 newStore.currentUserString = userID
@@ -99,7 +99,7 @@ extension LoginViewController {
                 self.manager.setLoggedInKey(userState: true)
                 self.manager.hasLoggedIn()
                 
-            /*  - On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
+                /*  - On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
                 
                 DispatchQueue.main.async {
                     self.loadingView.hideActivityIndicator(viewController: self)

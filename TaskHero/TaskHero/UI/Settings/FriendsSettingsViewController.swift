@@ -15,7 +15,7 @@ final class FriendsSettingsViewController: UIViewController {
 
 
 extension FriendsSettingsViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(friendsSettingsView)
@@ -29,7 +29,7 @@ extension FriendsSettingsViewController {
 
 
 extension FriendsSettingsViewController: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false

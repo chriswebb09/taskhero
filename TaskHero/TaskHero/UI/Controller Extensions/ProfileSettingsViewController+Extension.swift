@@ -11,7 +11,7 @@ import UIKit
 extension ProfileSettingsViewController {
     
     //=======================================
-    // MARK: - Setup tableView 
+    // MARK: - Setup tableView
     //=======================================
     
     fileprivate func separateNames(name:String) -> [String] {

@@ -24,9 +24,9 @@ class PhotoPickerView: BasePopView {
 
 
 extension PhotoPickerView {
-
+    
     // ===============================
-    // MARK: - Configuration 
+    // MARK: - Configuration
     // ===============================
     
     override func layoutSubviews() {

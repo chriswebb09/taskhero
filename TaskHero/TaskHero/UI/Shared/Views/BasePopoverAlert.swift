@@ -20,7 +20,7 @@ class BasePopoverAlert: UIView {
 }
 
 extension BasePopoverAlert {
-
+    
     public func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)

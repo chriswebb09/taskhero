@@ -54,7 +54,7 @@ class AlertView: UIView {
 }
 
 extension AlertView {
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()

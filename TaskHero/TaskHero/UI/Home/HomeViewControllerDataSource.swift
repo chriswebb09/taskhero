@@ -50,7 +50,7 @@ extension HomeViewControllerDataSource: cellMake {
         } else {
             var taskViewModel: TaskCellViewModel!
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
-           // print(indexPath.row)
+            // print(indexPath.row)
             self.store.currentUser.tasks = self.store.tasks
             print(indexPath.row - 1)
             //print(self.store.currentUser.tasks?[indexPath.row - 1])
@@ -66,7 +66,7 @@ extension HomeViewControllerDataSource: cellMake {
 extension HomeViewControllerDataSource {
     
     /* Sets estimatedRowHeight and registers cell types */
-
+    
     func setupView(tableView:UITableView, view:UIView) {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
@@ -80,7 +80,7 @@ extension HomeViewControllerDataSource {
         headerCell.delegate = viewController
         headerCell.emailLabel.isHidden = true
         headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
-
+        
     }
     
     /* setup TaskCell */

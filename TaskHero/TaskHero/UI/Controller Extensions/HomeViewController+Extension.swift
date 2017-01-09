@@ -67,8 +67,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.containerView.addGestureRecognizer(tap)
         photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto(sender:)), for: .touchUpInside)
     }
-
-     func tapPickPhoto(sender:UIButton) {
+    
+    func tapPickPhoto(sender:UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)

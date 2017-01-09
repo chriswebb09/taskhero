@@ -10,14 +10,12 @@ import Foundation
 import Firebase
 
 class AppManager {
-    
     static let sharedInstance = AppManager()
     let defaults = UserDefaults.standard
-    
 }
 
 extension AppManager {
-
+    
     func hasLoggedIn() {
         let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
         let user = defaults.data(forKey: "currentUser")
@@ -35,11 +33,10 @@ extension AppManager {
         defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
         defaults.synchronize()
     }
-    
 }
 
 extension AppManager {
-
+    
     func logout() {
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.removeObject(forKey: "currentUser")

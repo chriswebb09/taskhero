@@ -28,7 +28,7 @@ class BasePopView: UIView {
 }
 
 extension BasePopView {
-
+    
     open func setupConstraints() {
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false

@@ -53,7 +53,7 @@ extension SettingsCell {
 
 
 extension SettingsCell {
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         settingLabel.text = ""

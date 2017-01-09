@@ -30,7 +30,7 @@ class NotificationView: BasePopView {
 }
 
 extension NotificationView {
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         headBanner.backgroundColor = UIColor.black

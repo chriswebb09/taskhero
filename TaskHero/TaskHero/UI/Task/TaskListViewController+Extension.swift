@@ -64,7 +64,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
 
 
 extension TaskListViewController {
-
+    
     // =====================================================
     // MARK: - Setup navbar
     // =====================================================

@@ -20,7 +20,6 @@ class TabBarController: UITabBarController {
     let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
     let helpers = Helpers()
-    
 }
 
 
@@ -29,7 +28,7 @@ extension TabBarController {
     // =========================
     // MARK: - Initialization
     // =========================
-
+    
     override func viewDidLoad() {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             self.view.backgroundColor = UIColor.white
@@ -56,7 +55,7 @@ extension TabBarController {
 
 
 extension TabBarController {
-
+    
     func getUser() {
         self.store.firebaseAPI.fetchUserData { user in
             self.store.currentUser = user

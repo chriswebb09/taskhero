@@ -16,7 +16,7 @@ protocol TaskCellDelegate: class {
 final class TaskCell: UITableViewCell {
     
     // ===============================
-    // MARK: - Properties 
+    // MARK: - Properties
     // ===============================
     
     static let cellIdentifier = "TaskCell"
@@ -102,7 +102,7 @@ extension TaskCell {
 
 
 extension TaskCell {
-
+    
     // ===============================
     // MARK: - Reuse
     // ===============================

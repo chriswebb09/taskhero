@@ -15,11 +15,11 @@ final class HomeViewController: UITableViewController {
     // =================================
     
     /*
-       - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
-       - All other cells are of type TaskCell
-       - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource 
-       - Not final setup - still a work in progress 
-   */
+     - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+     - All other cells are of type TaskCell
+     - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource
+     - Not final setup - still a work in progress
+     */
     
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  /* BackgroundQueue for background network */
     var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
@@ -47,7 +47,7 @@ extension HomeViewController: UINavigationControllerDelegate {
     }
     
     /* Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
-       If there are tasks in datastore removes tasks before load 
+     If there are tasks in datastore removes tasks before load
      */
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,8 +55,8 @@ extension HomeViewController: UINavigationControllerDelegate {
         helpers.getData(tableView: tableView)
     }
     
-    /* Removes reference to database - necessary to prevent duplicate task cells from loading when 
-       view will appears is called again.
+    /* Removes reference to database - necessary to prevent duplicate task cells from loading when
+     view will appears is called again.
      */
     
     override func viewWillDisappear(_ animated: Bool) {

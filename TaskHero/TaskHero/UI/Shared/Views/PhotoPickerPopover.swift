@@ -34,9 +34,9 @@ class PhotoPickerPopover: BasePopoverAlert {
 
 
 extension PhotoPickerPopover {
-
+    
     // ===============================
-    // MARK: - Behavior methods 
+    // MARK: - Behavior methods
     // ===============================
     
     public override func showPopView(viewController: UIViewController) {

@@ -24,7 +24,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension SignupViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(signupView)
@@ -105,7 +105,7 @@ extension SignupViewController {
 }
 
 extension SignupViewController {
-
+    
     func setupUser(uid: String, username:String, email:String) {
         let newUser = self.helpers.createUser(uid:uid, username: username, email: email)
         self.store.firebaseAPI.registerUser(user: newUser)

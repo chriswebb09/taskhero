@@ -106,7 +106,7 @@ extension Helpers {
 
 
 extension Helpers {
-
+    
     func handleLogout() {
         do {
             manager.setLoggedInKey(userState: false)

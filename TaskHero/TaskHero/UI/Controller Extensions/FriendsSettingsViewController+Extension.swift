@@ -11,7 +11,7 @@ import UIKit
 extension FriendsSettingsViewController {
     
     // ======================================
-    // MARK: - Delegate methods 
+    // MARK: - Delegate methods
     // ======================================
     
     func popup() {

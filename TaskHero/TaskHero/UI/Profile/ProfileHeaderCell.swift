@@ -155,7 +155,7 @@ extension ProfileHeaderCell {
     // MARK: - Delegate Methods
     // ===================================
     
-   internal func profilePictureTapped() {
+    internal func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")
         delegate?.profilePictureTapped()
     }

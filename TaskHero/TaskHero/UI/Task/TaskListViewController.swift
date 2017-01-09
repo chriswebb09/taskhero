@@ -58,9 +58,9 @@ extension TaskListViewController {
 
 
 extension TaskListViewController {
-
     
-    // FIXME: - Refactor ASAP 
+    
+    // FIXME: - Refactor ASAP
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)

@@ -16,7 +16,7 @@ extension TaskCell {
     // ===============================
     
     // Button toggle methods
-
+    
     func taskCell(didToggleEditState editState:Bool) {
         toggled = editState
         taskDescriptionLabel.isHidden = toggled
@@ -110,7 +110,7 @@ extension TaskCell {
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
-
+        
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
         if taskVM.taskCompleted == "true" {
             taskCompletedView.image = UIImage(named:"checked")
