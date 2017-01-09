@@ -27,14 +27,14 @@ class Helpers {
     
     func getData(tableView:UITableView) {
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            //var newStore = DataStore.sharedInstance
-//            self.store.tasks.removeAll()
-//            self.store.currentUser.tasks != nil {
-//                self.store.currentUser.tasks?.removeAll()
-//            }
-            self.store.fetchUser() { user in
+            var newStore = DataStore.sharedInstance
+            newStore.tasks.removeAll()
+            if newStore.currentUser.tasks != nil {
+                newStore.currentUser.tasks?.removeAll()
+            }
+            newStore.fetchUser() { user in
                 
-                self.store.currentUser = user
+                newStore.currentUser = user
                 
                 DispatchQueue.main.async {
                     tableView.reloadData()

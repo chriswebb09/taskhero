@@ -20,7 +20,6 @@ final class HomeViewController: UITableViewController {
        - Not final setup - still a work in progress 
    */
     
-    let store = DataStore.sharedInstance
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)       /* BackgroundQueue for background network calls */
     var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover()      /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
@@ -75,11 +74,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     // Returns number of rows based on count taskcount
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.store.tasks.count < 1 {
-            return 1
-        } else {
-            return self.store.tasks.count + 1
-        }
+        return dataSource.rows
     }
     
     // Gets rowheight from datasource and returns it - rowheight is UITableViewAutomaticDimension

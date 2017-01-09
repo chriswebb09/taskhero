@@ -15,7 +15,7 @@ class DataStore {
     
     let firebaseAPI = APIClient()
     var currentUser: User!
-    ///var profilePicture: UIImage!
+    var profilePicture: UIImage!
     var currentUserString: String!
     var validUsernames = [String]()
     var tasks = [Task]()
