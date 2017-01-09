@@ -9,9 +9,9 @@
 import UIKit
 
 extension ProfileSettingsViewController {
-    
+    //=======================================
     // MARK: - Setup tableView 
-    // =========================================================================
+    //=======================================
     
     fileprivate func separateNames(name:String) -> [String] {
         let nameArray = name.components(separatedBy: " ")

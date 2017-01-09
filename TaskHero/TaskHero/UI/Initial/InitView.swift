@@ -12,7 +12,11 @@ typealias completion = () -> Void
 
 final class InitView: UIView {
     
-    var animationDuration: Double = 0.8
+    // =============================
+    // MARK: - UIElements 
+    // =============================
+    
+    lazy var animationDuration: Double = 0.8
     
     lazy var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
@@ -40,6 +44,10 @@ final class InitView: UIView {
         view.isHidden = true
         return view
     }()
+    
+    // =====================================================
+    // MARK: - Configure
+    // =====================================================
     
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -10,6 +10,7 @@ import Foundation
 
 
 struct LoginViewModel {
+    
     var userName: String!
     var password: String!
     

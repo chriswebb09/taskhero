@@ -14,7 +14,7 @@ final class ProfileSettingsView: UIView {
     // MARK: - UIElements
     // ==============================
     
-    let profileLabel: UILabel = {
+    lazy var profileLabel: UILabel = {
         let profileLabel = UILabel()
         profileLabel.textColor = UIColor.black
         profileLabel.text = "User Settings"

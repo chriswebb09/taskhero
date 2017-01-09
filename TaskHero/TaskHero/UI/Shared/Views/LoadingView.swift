@@ -10,18 +10,18 @@ import UIKit
 
 class LoadingView: UIView {
     
-    var activityIndicator: UIActivityIndicatorView = {
+    lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         return activityIndicator
     }()
     
-    let containerView: UIView = {
+    lazy var containerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor = UIColor.clear
         return containerView
     }()
     
-    let loadingView: UIView = {
+    lazy var loadingView: UIView = {
         let loadingView = UIView()
         loadingView.layer.cornerRadius = 10
         loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)

@@ -10,7 +10,7 @@ import UIKit
 
 class BasePopView: UIView {
     
-    open let headBanner: UIView = {
+    open lazy var headBanner: UIView = {
         let banner = UIView()
         banner.backgroundColor = UIColor.black
         return banner

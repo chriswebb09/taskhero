@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 extension UITableView {
-
+    
     func setupTableView() {
         self.estimatedRowHeight = Constants.Settings.rowHeight
         self.layoutMargins = UIEdgeInsets.zero

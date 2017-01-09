@@ -13,9 +13,17 @@ class TabBarController: UITabBarController {
     
     // self.perform(#selector(self.helpers.handleLogout), with: nil, afterDelay: 0)
     
+    // ====================
+    // MARK: - Properties
+    // ====================
+    
     let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
     let helpers = Helpers()
+    
+    // =========================
+    // MARK: - Initialization
+    // =========================
     
     override func viewDidLoad() {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
@@ -55,6 +63,10 @@ class TabBarController: UITabBarController {
 }
 
 extension TabBarController {
+    
+    // ===============================
+    // MARK: - Setup ViewControllers
+    // ===============================
     
     fileprivate func setupControllers() {
         DispatchQueue.main.async {
@@ -120,6 +132,5 @@ extension TabBarController {
         item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
-    
     }
 }

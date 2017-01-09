@@ -11,6 +11,10 @@ import Firebase
 
 final class SignupViewController: UIViewController, UITextFieldDelegate {
     
+    // ====================
+    // MARK: - Properties
+    // ====================
+    
     let store = DataStore.sharedInstance
     let signupView = SignupView()
     var emailInvalidated = false
@@ -22,7 +26,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(signupView)
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
-        setupDelegate()
+        setupSignupView()
         signupView.signupButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -33,7 +37,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         self.store.firebaseAPI.fetchValidUsernames()
     }
     
-    private func setupDelegate() {
+    private func setupSignupView() {
         signupView.layoutSubviews()
         signupView.emailField.delegate = self
         signupView.confirmEmailField.delegate = self
@@ -43,6 +47,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension SignupViewController {
+    
+    // =======================================
+    // MARK: - UITextfield Delegate Methods
+    // =======================================
     
     // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
     
@@ -97,10 +105,4 @@ extension SignupViewController {
         self.store.firebaseAPI.setupRefs()
         self.store.currentUser = newUser
     }
-    
-//    fileprivate func setupTabBar() {
-//        let tabBar = TabBarController()
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        appDelegate.window?.rootViewController = tabBar
-//    }
 }

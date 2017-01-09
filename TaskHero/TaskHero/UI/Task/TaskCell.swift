@@ -23,7 +23,7 @@ final class TaskCell: UITableViewCell {
     // MARK: - Setup UI Elements
     // =================================
     
-    let taskNameLabel: UITextView = {
+    lazy var taskNameLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
         textView.font = Constants.Font.bolderFontMediumLarge
@@ -44,14 +44,14 @@ final class TaskCell: UITableViewCell {
         return textView
     }()
     
-    let taskDueLabel: UITextView = {
+    lazy var taskDueLabel: UITextView = {
         let textView = UITextView()
         textView.textColor = UIColor.black
         textView.font = Constants.Font.fontMedium
         return textView
     }()
     
-    var taskCompletedView: UIImageView = {
+    lazy var taskCompletedView: UIImageView = {
         let taskCompletedImageView = UIImageView()
         taskCompletedImageView.isUserInteractionEnabled = true
         return taskCompletedImageView

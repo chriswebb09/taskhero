@@ -10,6 +10,8 @@ import UIKit
 
 class User: NSObject, NSCoding {
     
+    // FIXME: Remove NSCoding and NSObject to bring up to Swift 3 standards 
+    
     var uid: String
     var email: String
     var username: String
@@ -21,6 +23,7 @@ class User: NSObject, NSCoding {
     var joinDate: String
     var tasks: [Task]?
     var numberOfTasksCompleted: Int
+    
     
     init(uid: String,  email: String, firstName: String?, lastName: String?, profilePicture: String?, username: String, experiencePoints: Int, level: String, joinDate: String, tasks: [Task]?, numberOfTasksCompleted: Int) {
         self.uid = uid

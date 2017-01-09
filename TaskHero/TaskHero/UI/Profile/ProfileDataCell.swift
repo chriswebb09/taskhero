@@ -75,10 +75,12 @@ extension ProfileDataCell {
         configureLabels(label: levelLabel)
         contentView.addSubview(levelLabel)
         configureConstraints(label: levelLabel)
+        
         levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
+        
         configureLabels(label: experiencePointsLabel)
         contentView.addSubview(experiencePointsLabel)
         configureConstraints(label: experiencePointsLabel)
@@ -102,6 +104,10 @@ extension ProfileDataCell {
         layoutSubviews()
         layoutMargins = UIEdgeInsets.zero
     }
+    
+    // ====================
+    // MARK: - Reuse
+    // ====================
     
     override func prepareForReuse() {
         experiencePointsLabel.text = " "

@@ -10,7 +10,7 @@ import UIKit
 
 class NotificationView: BasePopView {
     
-    let doneButton: UIButton = {
+    lazy var doneButton: UIButton = {
         var button = ButtonType.system(title: "Okay", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0

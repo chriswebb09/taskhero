@@ -12,12 +12,10 @@ import Firebase
 final class AddTaskViewController: UIViewController  {
     
     // =============================
-    // MARK: Internal Properties
+    // MARK: Properties
     // =============================
-    
-    
+
     let store = DataStore.sharedInstance
-    
     let addTaskView = AddTaskView()
     let pop = PopMenu()
     var stringDate = ""

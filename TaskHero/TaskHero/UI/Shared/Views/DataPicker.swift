@@ -10,7 +10,11 @@ import UIKit
 
 class DataPickerView: UIView {
     
-    let alertLabel: UILabel = {
+    // ====================
+    // MARK: - Properties
+    // ====================
+    
+    lazy var alertLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.black
         label.textAlignment = .center
@@ -19,15 +23,19 @@ class DataPickerView: UIView {
         return label
     }()
     
-    let button: UIButton = {
+    lazy var button: UIButton = {
         let button = ButtonType.system(title: "Done", color: UIColor.black).newButton
         return button
     }()
     
-    let picker: UIPickerView = {
+    lazy var picker: UIPickerView = {
         let picker = UIPickerView()
         return picker
     }()
+    
+    // =========================
+    // MARK: - Initialization
+    // =========================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -37,6 +45,10 @@ class DataPickerView: UIView {
         
         setupConstraints()
     }
+    
+    // ====================
+    // MARK: - Configure
+    // ====================
     
     fileprivate func setupConstraints() {
         addSubview(picker)

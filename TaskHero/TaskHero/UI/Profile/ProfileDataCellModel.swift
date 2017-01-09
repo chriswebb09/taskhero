@@ -26,7 +26,6 @@ struct ProfileDataCellViewModel {
     internal var tasksCompleted: Int
     internal var experience: Int
     internal var level: String
-   
     
     // =============================
     // MARK: - Initialization

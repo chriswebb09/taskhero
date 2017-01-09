@@ -18,7 +18,7 @@ final class FriendsSettingsView: UIView {
         print("FriendsSettingsView deallocated")
     }
     
-    let friendsHeaderLabel: UILabel = {
+    lazy var friendsHeaderLabel: UILabel = {
         let friendsHeaderLabel = UILabel()
         friendsHeaderLabel.textColor = UIColor.black
         friendsHeaderLabel.text = "Add Friends"
@@ -28,7 +28,7 @@ final class FriendsSettingsView: UIView {
         return friendsHeaderLabel
     }()
     
-    var searchField: TextFieldExtension = {
+    lazy var searchField: TextFieldExtension = {
         let searchField = TextFieldExtension()
         searchField.placeholder = "Search by email"
         searchField.font = Constants.signupFieldFont
@@ -38,7 +38,7 @@ final class FriendsSettingsView: UIView {
         return searchField
     }()
     
-    var searchButton: UIButton = {
+    lazy var searchButton: UIButton = {
         var searchButton = UIButton()
         searchButton.layer.borderWidth = Constants.Border.borderWidth
         searchButton.layer.borderColor = UIColor.white.cgColor

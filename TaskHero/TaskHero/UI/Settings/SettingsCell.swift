@@ -12,7 +12,7 @@ final class SettingsCell: UITableViewCell {
     
     static let cellIdentifier = "SettingsCell"
     
-    let settingLabel: UILabel = {
+    lazy var settingLabel: UILabel = {
         let textView = UILabel()
         textView.textColor = UIColor.white
         textView.font = Constants.Font.fontNormal

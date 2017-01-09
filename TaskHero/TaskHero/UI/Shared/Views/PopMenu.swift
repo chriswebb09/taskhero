@@ -10,7 +10,7 @@ import UIKit
 
 class PopMenu: BasePopoverAlert {
     
-    let popView: DataPickerView = {
+    lazy var popView: DataPickerView = {
         let pick = DataPickerView()
         return pick
     }()

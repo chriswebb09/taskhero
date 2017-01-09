@@ -10,20 +10,20 @@ import UIKit
 
 final class LoginView: UIView {
     
-    // =====================================================
+    // =========================
     // MARK: UIElements
-    // =====================================================
+    // =========================
     deinit {
         print("loginview deallocated")
     }
     
-    var logoImageView: UIImageView = {
+    lazy var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
         let imageView = UIImageView(image: image)
         return imageView
     }()
     
-    var emailField: TextFieldExtension = {
+    lazy var emailField: TextFieldExtension = {
         let emailField = TextFieldExtension().emailField(placeholder: "Enter email address")
         return emailField
     }()
@@ -33,23 +33,23 @@ final class LoginView: UIView {
         return passwordField
     }()
     
-    var loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         return button.newButton
     }()
     
-    var signupButton: UIButton = {
+    lazy var signupButton: UIButton = {
         let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor)
         return button.newButton
     }()
     
-    var viewDivider: UIView = {
+    lazy var viewDivider: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         return view
     }()
     
-    var registerLabel: UILabel = {
+    lazy var registerLabel: UILabel = {
         let registerLabel = UILabel()
         registerLabel.textColor = Constants.Color.backgroundColor
         registerLabel.text = "Don't have an account?"
@@ -62,9 +62,9 @@ final class LoginView: UIView {
 
 extension LoginView {
     
-    // =====================================================
+    // ==============================
     // MARK: Initialization
-    // =====================================================
+    // ==============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -101,9 +101,9 @@ extension LoginView {
     }
     
     
-    // =====================================================
+    // ===============================
     // MARK: - Configuring UI
-    // =====================================================
+    // ===============================
     
     
     func configure(view:UIView) {
@@ -147,6 +147,16 @@ extension LoginView {
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
     }
+    
+}
+
+
+extension LoginView {
+    
+
+    // ===============================
+    // MARK: - Animation
+    // ===============================
     
     
     func textFieldAnimation() {

@@ -15,7 +15,7 @@ import Firebase
 extension HomeViewController {
     
     // ============================
-    // MARK: Public Methods
+    // MARK: Selector Methods
     // ============================
     
     /* Logs out user by settings root ViewController to Loginview */
@@ -36,6 +36,10 @@ extension HomeViewController {
     
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     
+    // ====================
+    // MARK: - Nav Items
+    // ====================
+    
     func addNavItemsToController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
@@ -51,6 +55,10 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // ==================================================
     
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
+    
+    // ====================
+    // MARK: - Profile Pic
+    // ====================
     
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
@@ -68,6 +76,10 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     }
     
     /* Method toggles UI states from editing to not editing when save is pressed */
+    
+    // ====================
+    // MARK: - TaskCell
+    // ====================
     
     func toggleForButtonState(sender:UIButton) {
         print("inside toggleForButtonState")
@@ -88,6 +100,11 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
         helpers.tapEdit(tableView:tableView, atIndex: tapIndex)
     }
+    
+    
+    // ====================
+    // MARK: - Popover
+    // ====================
     
     /* Hides popover view when operation has ended. */
     

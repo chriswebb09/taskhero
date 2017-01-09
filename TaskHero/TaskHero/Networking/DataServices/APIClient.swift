@@ -13,9 +13,13 @@ typealias UserCompletion = (User) -> Void
 
 class APIClient {
     
-    // =====================================================
+    // TODO: Finish refactoring class, remove duplicate functionality
+    
+    // FIXME: Remove duplicate fetch task and user methods 
+    
+    // =================================
     // Firebase properties
-    // =====================================================
+    // =================================
     
     let storage = FIRStorage.storage()
     var storageRef:FIRStorageReference!
@@ -29,13 +33,13 @@ class APIClient {
     var usernameRef: FIRDatabaseReference!
     let userID = FIRAuth.auth()?.currentUser?.uid
     
-    // =====================================================
+    // ========================
     // App data properties
-    // =====================================================
+    // =======================
     
     var validUsernames = [String]()
     var validUserData = [String]()
-    var userData = Dictionary<String, AnyObject>()
+    var userData = Dictionary<String, AnyObject>() // [String: AnyObject]()
     var usernameEmailDict = Dictionary<String, AnyObject>()
     var tasksDict = Dictionary<String, AnyObject>()
     
@@ -45,7 +49,7 @@ class APIClient {
     }
     
     // =====================================================
-    // Initial firebase database reference properties
+    // MARK:- Initial firebase database reference properties
     // =====================================================
     
     func setupRefs() {

@@ -24,7 +24,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     // MARK: - UI
     // =======================
     
-    let addTasksLabel:UILabel = {
+    lazy var addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
         addTasksLabel.font = Constants.Font.fontNormal
         addTasksLabel.textColor = UIColor.gray

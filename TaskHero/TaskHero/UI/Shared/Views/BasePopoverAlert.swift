@@ -10,7 +10,7 @@ import UIKit
 
 class BasePopoverAlert: UIView {
     
-    public let containerView: UIView = {
+    public lazy var containerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor = UIColor.black
         containerView.layer.opacity = 0.5
