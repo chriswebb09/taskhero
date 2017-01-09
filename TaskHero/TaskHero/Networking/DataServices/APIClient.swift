@@ -15,7 +15,7 @@ class APIClient {
     
     // TODO: Finish refactoring class, remove duplicate functionality
     
-    // FIXME: Remove duplicate fetch task and user methods 
+    // FIXME: Remove duplicate fetch task and user methods
     
     // =================================
     // Firebase properties
@@ -51,7 +51,7 @@ class APIClient {
 }
 
 extension APIClient {
-
+    
     // =====================================================
     // MARK:- Initial firebase database reference properties
     // =====================================================
@@ -71,7 +71,7 @@ extension APIClient {
 
 
 extension APIClient {
-
+    
     // =====================================================
     // Fetch all valid usernames in database
     // =====================================================
@@ -100,7 +100,7 @@ extension APIClient {
 
 
 extension APIClient {
-
+    
     // =========================================================================
     // Grab tasks from user profile in realtime user database
     // =========================================================================
@@ -164,8 +164,8 @@ extension APIClient {
 
 
 extension APIClient {
-
-
+    
+    
     // =============================================================================================================
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
     // =============================================================================================================
@@ -197,7 +197,7 @@ extension APIClient {
 
 
 extension APIClient {
-
+    
     // ==============================================
     // Updates user profile data in database
     // ==============================================
