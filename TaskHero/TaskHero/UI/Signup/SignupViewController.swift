@@ -66,7 +66,6 @@ extension SignupViewController {
             print("Form is not valid")
             return
         }
-        
         if validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!) {
             loadingView.showActivityIndicator(viewController: self)
             FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
@@ -79,9 +78,7 @@ extension SignupViewController {
                     loadingView.hideActivityIndicator(viewController: self)
                     return
                 }
-                
                 let newUser = self.createUser(username: username, email: email)
-                
                 self.store.firebaseAPI.registerUser(user: newUser)
                 self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                 self.store.firebaseAPI.setupRefs()

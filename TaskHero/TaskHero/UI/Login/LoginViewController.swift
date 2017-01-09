@@ -25,6 +25,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.addSubview(loginView)
         edgesForExtendedLayout = []
+        print(view.superview)
         loginView.setupLogin(viewController:self)
         navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)

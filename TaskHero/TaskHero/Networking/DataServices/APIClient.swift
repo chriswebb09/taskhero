@@ -280,19 +280,7 @@ class APIClient {
             }
         }
         downloadTask.resume()
-        //        let downloadTask = imageRef.write(filePath) { url, error in
-        //            if error != nil {
-        //                print(error?.localizedDescription)
-        //                print("Error occured")
-        //            } else {
-        //                image = UIImage(contentsOfFile: (localURL?.absoluteString)!)
-        //                DispatchQueue.main.async {
-        //                    completion(image)
-        //                }
-        //
-        //            }
-        //        }
-        //        downloadTask.resume()
+
     }
     
     func registerUser(user:User) {

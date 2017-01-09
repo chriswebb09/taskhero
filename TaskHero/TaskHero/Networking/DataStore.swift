@@ -20,6 +20,9 @@ class DataStore {
     var validUsernames = [String]()
     var tasks = [Task]()
     
+    
+    // Temporary functionality moved into DataStore during project reorganiztion. Will be removed at completion.
+    
     // ===========================================================
     // Update currentUser score when user completes task
     // ===========================================================
