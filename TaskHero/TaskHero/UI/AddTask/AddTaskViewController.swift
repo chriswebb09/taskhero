@@ -14,7 +14,7 @@ final class AddTaskViewController: UIViewController  {
     // =============================
     // MARK: Properties
     // =============================
-
+    
     let store = DataStore.sharedInstance
     let addTaskView = AddTaskView()
     let pop = PopMenu()
@@ -26,7 +26,7 @@ final class AddTaskViewController: UIViewController  {
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:300, height:300))
 }
 
-extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource  {
+extension AddTaskViewController {
     
     // =============================
     // MARK: Initialization
@@ -37,23 +37,27 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPick
         view.addSubview(addTaskView)
         navigationController?.navigationBar.tintColor = UIColor.white
         edgesForExtendedLayout = []
+        setupDelegates()
         addTaskView.layoutSubviews()
-        pick.dataSource = self
-        addTaskView.taskNameField.delegate = self
-        addTaskView.taskDescriptionBox.delegate = self
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
 }
 
-extension AddTaskViewController {
+extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource {
     
     // =================================
     // MARK: TextField Methods
     // =================================
     
     // On return-key press hides keyboard
+    
+    func setupDelegates() {
+        pick.dataSource = self
+        addTaskView.taskNameField.delegate = self
+        addTaskView.taskDescriptionBox.delegate = self
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -154,7 +158,6 @@ extension AddTaskViewController {
         pop.popView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
     
-    
     /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */
     
     func formatTaskWithDate() {
@@ -171,8 +174,6 @@ extension AddTaskViewController {
             _ = self.navigationController?.popToRootViewController(animated: false)
         }
     }
-    
-    
     
     func dismissKeyboard() {
         view.endEditing(true)
