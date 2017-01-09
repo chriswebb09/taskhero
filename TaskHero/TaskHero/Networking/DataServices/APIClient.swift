@@ -47,7 +47,6 @@ class APIClient {
         dbRef = FIRDatabase.database().reference()
         usernameRef = dbRef.child("Usernames")
     }
-    
 }
 
 extension APIClient {
@@ -65,8 +64,6 @@ extension APIClient {
     func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
     }
-    
-    
 }
 
 

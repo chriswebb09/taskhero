@@ -98,6 +98,11 @@ extension TaskCell {
         setupConstraints()
     }
     
+}
+
+
+extension TaskCell {
+
     // ===============================
     // MARK: - Reuse
     // ===============================

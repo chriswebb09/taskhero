@@ -19,6 +19,10 @@ class DataStore {
     var currentUserString: String!
     var validUsernames = [String]()
     var tasks = [Task]()
+}
+
+
+extension DataStore {
     
     func setupStore() {
         tasks.removeAll()
@@ -35,5 +39,4 @@ class DataStore {
         currentUser.experiencePoints += 1
         currentUser.numberOfTasksCompleted += 1
     }
-    
 }

@@ -8,11 +8,9 @@
 
 import UIKit
 
-final class FriendsSettingsViewController: UIViewController, UITextFieldDelegate {
-    
+final class FriendsSettingsViewController: UIViewController {
     let friendsSettingsView = FriendsSettingsView()
     let alertPop = AlertPopover()
-    
 }
 
 
@@ -27,6 +25,11 @@ extension FriendsSettingsViewController {
         friendsSettingsView.searchButton.addTarget(self, action: #selector(popup), for: .touchUpInside)
     }
     
+}
+
+
+extension FriendsSettingsViewController: UITextFieldDelegate {
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false

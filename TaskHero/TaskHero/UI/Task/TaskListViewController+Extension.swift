@@ -60,6 +60,11 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
+}
+
+
+extension TaskListViewController {
+
     // =====================================================
     // MARK: - Setup navbar
     // =====================================================
@@ -106,6 +111,10 @@ extension TaskListViewController {
         self.store.tasks.remove(at: indexPath.row)
     }
     
+}
+
+
+extension TaskListViewController {
     
     // =====================================
     // MARK: - Cell Button Toggle Methods
