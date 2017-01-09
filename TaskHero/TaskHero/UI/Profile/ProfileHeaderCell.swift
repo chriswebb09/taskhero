@@ -14,15 +14,14 @@ protocol ProfileHeaderCellDelegate: class {
 
 final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
-    static let cellIdentifier = "ProfileHeaderCell"
-    
     // =================================
     // MARK: - Internal Variables
     // =================================
     
+    static let cellIdentifier = "ProfileHeaderCell"
     var profileHeaderCellModel = ProfileHeaderCellModel()
-    
     weak var delegate: ProfileHeaderCellDelegate?
+    
     
     lazy var joinDateLabel: UILabel = {
         let joinDateLabel = UILabel()

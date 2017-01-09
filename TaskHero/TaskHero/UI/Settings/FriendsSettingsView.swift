@@ -48,7 +48,6 @@ final class FriendsSettingsView: UIView {
         searchButton.setTitleColor(UIColor.white, for: .normal)
         return searchButton
     }()
-    
 }
 
 extension FriendsSettingsView {

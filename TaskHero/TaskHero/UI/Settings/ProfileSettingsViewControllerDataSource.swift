@@ -9,9 +9,7 @@
 import UIKit
 
 final class ProfileSettingsViewControllerDataSource {
-    
     let store = DataStore.sharedInstance
-    
 }
 
 
@@ -22,7 +20,6 @@ extension ProfileSettingsViewControllerDataSource {
         profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
@@ -34,7 +31,6 @@ extension ProfileSettingsViewControllerDataSource {
 
 
 extension ProfileSettingsViewControllerDataSource {
-    
     
     func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
         var name = cell.profileSettingField.text?.components(separatedBy: " ")
@@ -64,5 +60,4 @@ extension ProfileSettingsViewControllerDataSource {
         updatedUser.experiencePoints = self.store.currentUser.experiencePoints
         updatedUser.tasks = self.store.currentUser.tasks
     }
-    
 }

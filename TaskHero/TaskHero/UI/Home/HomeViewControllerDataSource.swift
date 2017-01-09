@@ -50,10 +50,7 @@ extension HomeViewControllerDataSource: cellMake {
         } else {
             var taskViewModel: TaskCellViewModel!
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
-            // print(indexPath.row)
             self.store.currentUser.tasks = self.store.tasks
-            print(indexPath.row - 1)
-            //print(self.store.currentUser.tasks?[indexPath.row - 1])
             taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row - 1])!)
             taskCell.configureCell(taskVM: taskViewModel)
             return taskCell

@@ -9,7 +9,6 @@
 import UIKit
 
 final class SettingsViewController: UITableViewController {
-    
     let applicationSettings = ["Notifications"]
     let userSettings = ["Edit Profile", "Friends"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
@@ -19,6 +18,9 @@ final class SettingsViewController: UITableViewController {
     let notifyPop = NotificationPopover()
     var settingsViewModel:SettingsCellViewModel!
     let helpers = Helpers()
+}
+
+extension SettingsViewController {
     
     // ==============================
     // MARK: - Initialization
@@ -115,11 +117,10 @@ extension SettingsViewController {
         )
         notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
     }
-    
-    
 }
 
 extension SettingsViewController {
+    
     // ============================
     // MARK: - Setup buttons
     // ============================
