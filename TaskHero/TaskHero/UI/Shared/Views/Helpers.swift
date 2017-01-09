@@ -20,35 +20,20 @@ extension UITableView {
     }
 }
 
-
 class Helpers {
     let store = DataStore.sharedInstance
     let manager = AppManager.sharedInstance
-    
-    func getData(tableView:UITableView) {
-        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            var helpers = Helpers()
-            var newStore = DataStore.sharedInstance
-            newStore.tasks.removeAll()
-            if newStore.currentUser.tasks != nil {
-                newStore.currentUser.tasks?.removeAll()
-            }
-            
-            
-            
-            helpers.fetchUser() { user in
-                
-                newStore.currentUser = user
-                
-                DispatchQueue.main.async {
-                    tableView.reloadData()
-                }
-            }
-            
+}
+
+extension Helpers {
+    func removeRefHandle() {
+        if self.store.firebaseAPI.refHandle != nil {
+            self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
         }
-        
-        
     }
+}
+
+extension Helpers {
     
     public func setupTabBar() {
         let tabBar = TabBarController()
@@ -56,10 +41,21 @@ class Helpers {
         appDelegate.window?.rootViewController = tabBar
     }
     
-    func removeRefHandle() {
-        if self.store.firebaseAPI.refHandle != nil {
-            self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
-        }
+    func configureNav(nav:UINavigationBar, view: UIView) {
+        nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
+        nav.barTintColor = Constants.Tabbar.tint
+        nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
+    }
+    
+    func setupTabBar(tabBar:UITabBar, view:UIView) {
+        var tabFrame = tabBar.frame
+        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
+        tabFrame.size.height = tabBarHeight
+        tabFrame.origin.y = view.frame.size.height - tabBarHeight
+        tabBar.frame = tabFrame
+        tabBar.isTranslucent = true
+        tabBar.tintColor = Constants.Tabbar.tint
+        tabBar.barTintColor = Constants.Color.backgroundColor
     }
     
     func setupTableView(tableView:UITableView) {
@@ -71,14 +67,9 @@ class Helpers {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.tableHeaderView?.backgroundColor = UIColor.white
     }
-    
-    func updateDescription(cell:TaskCell, for row:Int) {
-        var newTask = self.store.tasks[row - 1]
-        cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
-        newTask.taskDescription = cell.taskDescriptionBox.text
-        self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-        cell.taskDescriptionLabel.text = cell.taskDescriptionBox.text
-    }
+}
+
+extension Helpers {
     
     func tapEdit(tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
@@ -108,37 +99,18 @@ class Helpers {
         }
     }
     
-    func configureNav(nav:UINavigationBar, view: UIView) {
-        nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
-        nav.barTintColor = Constants.Tabbar.tint
-        nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
+    func updateDescription(cell:TaskCell, for row:Int) {
+        var newTask = self.store.tasks[row - 1]
+        cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
+        newTask.taskDescription = cell.taskDescriptionBox.text
+        self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+        cell.taskDescriptionLabel.text = cell.taskDescriptionBox.text
     }
-    
-    func setupTabBar(tabBar:UITabBar, view:UIView) {
-        var tabFrame = tabBar.frame
-        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
-        tabFrame.size.height = tabBarHeight
-        tabFrame.origin.y = view.frame.size.height - tabBarHeight
-        
-        tabBar.frame = tabFrame
-        tabBar.isTranslucent = true
-        tabBar.tintColor = Constants.Tabbar.tint
-        tabBar.barTintColor = Constants.Color.backgroundColor
-    }
-    
-    public func createUser(username:String, email:String) -> User {
-        let newUser = User()
-        newUser.username = username
-        newUser.email = email
-        newUser.profilePicture = "None"
-        newUser.firstName = "N/A"
-        newUser.lastName = "N/A"
-        newUser.experiencePoints = 0
-        newUser.tasks = [Task]()
-        return newUser
-    }
-    
-    
+}
+
+
+extension Helpers {
+
     func handleLogout() {
         do {
             manager.setLoggedInKey(userState: false)
@@ -169,7 +141,6 @@ class Helpers {
         self.store.firebaseAPI.fetchUserData { user in
             self.store.currentUser = user
         }
-        
         self.store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
             self.store.currentUser.tasks = tasks
             self.store.tasks = tasks
@@ -182,6 +153,23 @@ class Helpers {
         self.store.firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:self.store.tasks)
         self.store.tasks.forEach { task in
             self.store.firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
+        }
+    }
+    
+    func getData(tableView:UITableView) {
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            var helpers = Helpers()
+            var newStore = DataStore.sharedInstance
+            newStore.tasks.removeAll()
+            if newStore.currentUser.tasks != nil {
+                newStore.currentUser.tasks?.removeAll()
+            }
+            helpers.fetchUser() { user in
+                newStore.currentUser = user
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            }
         }
     }
 }
