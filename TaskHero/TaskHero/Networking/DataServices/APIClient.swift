@@ -26,6 +26,7 @@ class APIClient {
     var dbRef: FIRDatabaseReference!
     var imagesRef: FIRStorageReference!
     var userRef: FIRDatabaseReference!
+    var usersRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
     let userID = FIRAuth.auth()?.currentUser?.uid
     // =====================================================
@@ -49,7 +50,8 @@ class APIClient {
     // =====================================================
     
     func setupRefs() {
-        //let userID = FIRAuth.auth()?.currentUser?.uid
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        usersRef = dbRef.child("Users")
         userRef = dbRef.child("Users").child(userID!)
         tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
     }

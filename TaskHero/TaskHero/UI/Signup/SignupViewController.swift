@@ -75,26 +75,34 @@ extension SignupViewController {
                     print(error ?? "unable to get specific error")
                     return
                 }
-                guard (user?.uid) != nil else {
+                guard let uid = user?.uid else {
                     loadingView.hideActivityIndicator(viewController: self)
                     return
                 }
-                
-                let newUser = self.createUser(username: username, email: email)
-                
-                self.store.firebaseAPI.registerUser(user: newUser)
-                self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
                 self.store.firebaseAPI.setupRefs()
+                var newUser = self.createUser(uid: uid, username: username, email: email)
                 self.store.currentUser = newUser
+                self.store.currentUserString = uid
+                self.insertUser(uid: uid, user: newUser)
                 self.setupTabBar()
             }
-        } else {
-            let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { result in print("Okay") }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-            return
         }
+        
+        
+    }
+    
+    func insertUser(uid: String, user:User) {
+        let userData: NSDictionary = ["Email": user.email,
+                                      "FirstName": user.firstName ?? " ",
+                                      "LastName": user.lastName ?? " ",
+                                      "ProfilePicture": user.profilePicture ?? " ",
+                                      "ExperiencePoints": user.experiencePoints,
+                                      "Level": user.level,
+                                      "JoinDate": user.joinDate,
+                                      "Username": user.username,
+                                      "TasksCompleted": user.numberOfTasksCompleted]
+        //elf.store.firebaseAPI.usernameRef
+        self.store.firebaseAPI.usersRef.updateChildValues(["/\(self.store.currentUserString!)": userData])
     }
     
     fileprivate func setupTabBar() {
@@ -103,8 +111,10 @@ extension SignupViewController {
         appDelegate.window?.rootViewController = tabBar
     }
     
-    private func createUser(username:String, email:String) -> User {
+    private func createUser(uid: String, username:String, email:String) -> User {
         let newUser = User()
+        
+        newUser.uid = uid
         newUser.username = username
         newUser.email = email
         newUser.profilePicture = "None"
@@ -112,6 +122,8 @@ extension SignupViewController {
         newUser.lastName = "N/A"
         newUser.experiencePoints = 0
         newUser.tasks = [Task]()
+        
         return newUser
     }
+    
 }
