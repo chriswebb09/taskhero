@@ -28,6 +28,7 @@ class APIClient {
     var userRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
     let userID = FIRAuth.auth()?.currentUser?.uid
+    
     // =====================================================
     // App data properties
     // =====================================================
@@ -183,11 +184,11 @@ class APIClient {
                                       Constants.API.User.username: user.username,
                                       Constants.API.User.tasksCompleted: user.numberOfTasksCompleted]
         userRef.updateChildValues(["/\(userID)": userData])
+        usernameRef.updateChildValues([user.username:user.email])
         userRef.keepSynced(true)
         if tasks.count != 0 {
             for task in user.tasks! { addTasks(task: task) }
         }
-        usernameRef.updateChildValues([user.username:user.email])
     }
     
     func registerUser(user:User) {

@@ -50,6 +50,12 @@ class Helpers {
         
     }
     
+    public func setupTabBar() {
+        let tabBar = TabBarController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = tabBar
+    }
+    
     func removeRefHandle() {
         if self.store.firebaseAPI.refHandle != nil {
             self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)

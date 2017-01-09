@@ -20,8 +20,7 @@ final class HomeViewController: UITableViewController {
        - Not final setup - still a work in progress 
    */
    
-    /* BackgroundQueue for background network calls */
-    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil) /* BackgroundQueue for background network calls */
     var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover()      /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController()      /* Used to pick profile picture in photoPopover */
@@ -62,7 +61,6 @@ extension HomeViewController: UINavigationControllerDelegate {
     }
 }
 
-
 // Extension for methods that define view controller setup i.e. numberOfRowsInSection, cellForRowAt
 
 extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, TaskCellDelegate {
@@ -70,7 +68,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     // =======================================
     // MARK: UITableViewController Methods
     // =======================================
-    
     
     // Returns number of rows based on count taskcount
     

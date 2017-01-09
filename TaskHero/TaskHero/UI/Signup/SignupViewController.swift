@@ -79,7 +79,7 @@ extension SignupViewController {
                 if let uid = FIRAuth.auth()?.currentUser?.uid {
                     self.setupUser(uid: uid, username: username, email: email)
                 }
-                self.setupTabBar()
+                self.helpers.setupTabBar()
             }
         } else {
             let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
@@ -98,9 +98,9 @@ extension SignupViewController {
         self.store.currentUser = newUser
     }
     
-    fileprivate func setupTabBar() {
-        let tabBar = TabBarController()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = tabBar
-    }
+//    fileprivate func setupTabBar() {
+//        let tabBar = TabBarController()
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        appDelegate.window?.rootViewController = tabBar
+//    }
 }
