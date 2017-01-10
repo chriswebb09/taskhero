@@ -5,7 +5,7 @@
 <p> Currently in the process a overhualing the application architecture to MVVM and I'm overhauling the whole API setup. Current examples of redundant code in the APIClient are in the process of being refactored out. Currently overhauling how views are laid out. Redundant constraints and UI properties will be DRY when the process is complete. Thanks. </p>
 
 
-<h1 align="center">Implementing</h1>
+<h1>Implementing</h1>
 
 <ul>
    <li>Add tests to LoginViewController</li>
