@@ -49,7 +49,7 @@ ___
 
 
 
-<h2>Log In</h2>
+<h2 align="center">Log In</h2>
 ___
 
 <p align="center">
@@ -59,7 +59,7 @@ ___
 
 
 
-<h2>Add Task</h2>
+<h2 align="center">Add Task</h2>
 ___
 
 <p align="center">
