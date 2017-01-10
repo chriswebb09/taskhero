@@ -12,15 +12,6 @@
    <li>Persist user data with Realm.</li>
 </ul>
 
----
-<h2 align="center">Edit task in tasklist</h2>
-<p align="center">
-  <br><br>
-  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/edittasklist.png">
-</p>
-
----
-
 # Next up 
 
 - Bug fixes 
@@ -32,7 +23,22 @@
 - Build messenger service
 
 
+# Nice to have
 
+- Set up Ubuntu web server on AWS for transition to Realm Object server.
+
+- Transfer data
+
+
+
+---
+<h2 align="center">Edit task in tasklist</h2>
+<p align="center">
+  <br><br>
+  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/edittasklist.png">
+</p>
+
+---
 ___
 
 <h2 align="center">Empty TaskListTableView</h2>
@@ -41,14 +47,6 @@ ___
   <br><br>
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/emptytableview.png">
 </p>
-
-
-# Nice to have
-
-- Set up Ubuntu web server on AWS for transition to Realm Object server.
-
-- Transfer data
-
 ___
 
 <h2 align="center">Log In</h2>
@@ -57,7 +55,6 @@ ___
   <br><br>
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/login.jpg">
 </p>
-
 ___
 
 <h2 align="center">Add Task</h2>
