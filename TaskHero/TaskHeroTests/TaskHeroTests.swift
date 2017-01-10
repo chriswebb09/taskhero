@@ -39,6 +39,27 @@ class TaskHeroTests: XCTestCase {
         XCTAssertEqual(store.currentUser.tasks?.count, 1, "Should be one task in current user tasks")
     }
     
+    func testSharedInstance() {
+        let shared = DataStore.sharedInstance
+        XCTAssertNotNil(shared, "not nil")
+    }
+    
+    func testLogin() {
+        var loginViewController = LoginViewController()
+        //loginViewController.store = DataStore.sharedInstance
+        loginViewController.viewDidLoad()
+        loginViewController.loginView.emailField.text = "chris.webb5249@gmail.com"
+        loginViewController.loginView.passwordField.text = "123456"
+        loginViewController.loadingView = LoadingView()
+        XCTAssertNotNil(loginViewController.handleLogin(), "Handled login")
+        XCTAssertNotNil(loginViewController.store, "Handled login")
+        XCTAssertEqual(loginViewController.store.currentUser, nil)
+        //loginViewController.viewDidLoad()
+        //XCTAssertNotNil(loginViewController.store.currentUser, "\(loginViewController.store.currentUser)")
+       // XCTAssertEqual(loginViewController.store.currentUser.email, "chris.webb5249@gmail.com")
+       //
+    }
+    
     
     func testPerformanceExample() {
         

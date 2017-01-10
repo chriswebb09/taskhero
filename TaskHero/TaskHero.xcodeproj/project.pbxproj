@@ -47,7 +47,6 @@
 		A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5401E15A93500812FB4 /* SetupNav.swift */; };
 		A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */; };
 		A7111A031E1B6F7F008B33A9 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7111A021E1B6F7F008B33A9 /* Levels.swift */; };
-		A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713373C1DE8047E0030DDF2 /* AppManager.swift */; };
 		A715C1D21E1B078C0096A18B /* HomeViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */; };
 		A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */; };
 		A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */; };
@@ -57,6 +56,7 @@
 		A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7D1DE93688005E3A5E /* TaskButton.swift */; };
 		A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D871DEA6A08005E3A5E /* DataPicker.swift */; };
 		A73B47BC1E1BD78E0090F699 /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B47BB1E1BD78E0090F699 /* ImageClient.swift */; };
+		A74553421E2346C9004300AA /* TaskHeroSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74553411E2346C9004300AA /* TaskHeroSpec.swift */; };
 		A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */; };
 		A76562CC1DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */; };
 		A76562CD1DF93F2000E29AA9 /* HomeViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */; };
@@ -141,7 +141,6 @@
 		A70DC5401E15A93500812FB4 /* SetupNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNav.swift; sourceTree = "<group>"; };
 		A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperations.swift; sourceTree = "<group>"; };
 		A7111A021E1B6F7F008B33A9 /* Levels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
-		A713373C1DE8047E0030DDF2 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerDataSource.swift; sourceTree = "<group>"; };
 		A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerPopover.swift; sourceTree = "<group>"; };
@@ -151,6 +150,7 @@
 		A7346D7D1DE93688005E3A5E /* TaskButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
 		A7346D871DEA6A08005E3A5E /* DataPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
 		A73B47BB1E1BD78E0090F699 /* ImageClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
+		A74553411E2346C9004300AA /* TaskHeroSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHeroSpec.swift; sourceTree = "<group>"; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
 		A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FriendsSettingsViewController+Extension.swift"; path = "UI/Controller Extensions/FriendsSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HomeViewController+Extension.swift"; path = "../Controller Extensions/HomeViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -359,7 +359,6 @@
 		A7346D7F1DEA249C005E3A5E /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				A713373C1DE8047E0030DDF2 /* AppManager.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -404,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				A76562E31DF991D000E29AA9 /* TaskHeroTests.swift */,
+				A74553411E2346C9004300AA /* TaskHeroSpec.swift */,
 				A76562E51DF991D000E29AA9 /* Info.plist */,
 			);
 			path = TaskHeroTests;
@@ -711,6 +711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76562E41DF991D000E29AA9 /* TaskHeroTests.swift in Sources */,
+				A74553421E2346C9004300AA /* TaskHeroSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,7 +750,6 @@
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A7F019E01E093C8400B23667 /* SignupViewController+Extension.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
-				A713373D1DE8047E0030DDF2 /* AppManager.swift in Sources */,
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
 				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
@@ -820,6 +820,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACD79247934EC1235C48C258 /* Pods-TaskHero-TaskHeroTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4SZP4Q326F;
 				INFOPLIST_FILE = TaskHeroTests/Info.plist;
@@ -836,6 +837,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C871499BBBCB660C51A3B43 /* Pods-TaskHero-TaskHeroTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4SZP4Q326F;
 				INFOPLIST_FILE = TaskHeroTests/Info.plist;
