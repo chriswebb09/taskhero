@@ -1,15 +1,15 @@
 <h1 align="center">Task Hero Application</h1>
 
-<ul>
+<ul align="center">
   <li type="circle">Work in progress </li>
 </ul>
 
-<p> Currently in the process a overhualing the application architecture to MVVM and I'm overhauling the whole API setup. Current examples of redundant code in the APIClient are in the process of being refactored out. Currently overhauling how views are laid out. Redundant constraints and UI properties will be DRY when the process is complete. Thanks. </p>
+<p align="center"> Currently in the process a overhualing the application architecture to MVVM and I'm overhauling the whole API setup. Current examples of redundant code in the APIClient are in the process of being refactored out. Currently overhauling how views are laid out. Redundant constraints and UI properties will be DRY when the process is complete. Thanks. </p>
 
 
 <h1 align="center">Implementing</h1>
 
-<ul>
+<ul align="center">
   <li>Add tests to LoginViewController</li>
   <li>Persist user data with Realm.</li>
 </ul>
