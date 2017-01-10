@@ -12,10 +12,8 @@
    <li type="none">Persist user data with Realm.</li>
 </ul>
 
-
-
-<h2 align="center">Edit task in tasklist</h2>
 ---
+<h2 align="center">Edit task in tasklist</h2>
 <p align="center">
   <br><br>
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/edittasklist.png">
