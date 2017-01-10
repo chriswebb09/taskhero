@@ -10,9 +10,9 @@ import UIKit
 import Firebase
 
 final class LoginViewController: UIViewController {
-    let loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
+    var loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
     let store = DataStore.sharedInstance /* Singleton for the instance of the the authenticated user that shared by the entire application */
-    let loadingView = LoadingView() /* Activity indicator and background container view instantiated - will be added to view on login button press */
+    var loadingView = LoadingView() /* Activity indicator and background container view instantiated - will be added to view on login button press */
 }
 
 
