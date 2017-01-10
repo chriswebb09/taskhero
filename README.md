@@ -31,8 +31,10 @@
 - Build messenger service
 
 
-<h2>Empty TaskListTableView</h2>
+
 ___
+
+<h2 align="center">Empty TaskListTableView</h2>
 
 <p align="center">
   <br><br>
@@ -49,8 +51,10 @@ ___
 
 
 
-<h2 align="center">Log In</h2>
+
 ___
+
+<h2 align="center">Log In</h2>
 
 <p align="center">
   <br><br>
