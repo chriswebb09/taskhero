@@ -7,13 +7,18 @@
 <p> Currently in the process a overhualing the application architecture to MVVM and I'm overhauling the whole API setup. Current examples of redundant code in the APIClient are in the process of being refactored out. Currently overhauling how views are laid out. Redundant constraints and UI properties will be DRY when the process is complete. Thanks. </p>
 
 
-# Implementing 
+<h1 align="center">Implementing</h1>
 
-- Add tests to LoginViewController
+<ul>
+  <li>Add tests to LoginViewController</li>
+  <li>Persist user data with Realm.</li>
+</ul>
 
-- Persist user data with Realm. 
+- 
 
-<h2>Edit task in tasklist</h2>
+
+
+<h2 align="center">Edit task in tasklist</h2>
 ___
 
 <p align="center">
