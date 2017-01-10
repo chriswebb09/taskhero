@@ -21,10 +21,11 @@
 </ul>
 
 <h2>Nice to have</h2>
+<ul>
+   <li>Set up Ubuntu web server on AWS for transition to Realm Object server. </li>
+   <li>Transfer data </li>
+</ul>
 
-- Set up Ubuntu web server on AWS for transition to Realm Object server.
-
-- Transfer data
 
 <h2 align="center">Edit task in tasklist</h2>
 <p align="center">
