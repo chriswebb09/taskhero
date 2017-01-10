@@ -12,7 +12,7 @@
    <li>Persist user data with Realm.</li>
 </ul>
 
-# Next up 
+<h2>Next up</h2>
 
 - Bug fixes 
 
@@ -23,7 +23,7 @@
 - Build messenger service
 
 
-# Nice to have
+<h2>Nice to have</h2>
 
 - Set up Ubuntu web server on AWS for transition to Realm Object server.
 
