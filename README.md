@@ -1,66 +1,59 @@
 <h1 align="center">Task Hero Application</h1>
 
+<h2>Work in progress </h2>
+
+#### Currently waiting for review in App Store to patch bug with SignupViewController.
+
+<p> Currently in the process a overhualing the application architecture to MVVM and I'm overhauling the whole API setup. Current examples of redundant code in the APIClient are in the process of being refactored out. Currently overhauling how views are laid out. Redundant constraints and UI properties will be DRY when the process is complete. Thanks.  </p>
+
+
+<h2>Implementing</h2>
+
 <ul>
-  <li type="circle">Work in progress </li>
+   <li>Add tests to LoginViewController</li>
+   <li>Persist user data with Realm.</li>
 </ul>
 
+<h2>Next up</h2>
+<ul>
+   <li>Bug fixes</li>
+   <li>Allow users to communicate with each other </li>
+   <li>Build out task scoring system  </li>
+   <li>Build messenger service</li>
+</ul>
 
-# Implementing 
-
-- Add tests to LoginViewController
-
-- Persist user data with Realm. 
-
-<h2>Edit task in tasklist</h2>
+<h2>Nice to have</h2>
+<ul>
+   <li>Set up Ubuntu web server on AWS for transition to Realm Object server. </li>
+   <li>Transfer data </li>
+</ul>
 ___
 
+<h2 align="center">Edit task in tasklist</h2>
 <p align="center">
   <br><br>
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/edittasklist.png">
 </p>
 
-
-# Next up 
-
-- Bug fixes 
-
-- Allow users to communicate with each other 
-
-- Build out task scoring system 
-
-- Build messenger service
-
-
-<h2>Empty TaskListTableView</h2>
 ___
+
+<h2 align="center">Empty TaskListTableView</h2>
 
 <p align="center">
   <br><br>
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/emptytableview.png">
 </p>
-
-
-# Nice to have
-
-- Set up Ubuntu web server on AWS for transition to Realm Object server.
-
-- Transfer data
-
-
-
-
-<h2>Log In</h2>
 ___
+
+<h2 align="center">Log In</h2>
 
 <p align="center">
   <br><br>
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/login.jpg">
 </p>
-
-
-
-<h2>Add Task</h2>
 ___
+
+<h2 align="center">Add Task</h2>
 
 <p align="center">
   <br><br>
