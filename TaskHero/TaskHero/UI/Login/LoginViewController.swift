@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-final class LoginViewController: UIViewController, UITextFieldDelegate {
-    fileprivate let loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
+final class LoginViewController: UIViewController {
+    let loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
     let store = DataStore.sharedInstance /* Singleton for the instance of the the authenticated user that shared by the entire application */
-    fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated - will be added to view on login button press */
+    let loadingView = LoadingView() /* Activity indicator and background container view instantiated - will be added to view on login button press */
 }
 
 
@@ -37,7 +37,7 @@ extension LoginViewController {
     }
 }
 
-extension LoginViewController {
+extension LoginViewController: UITextFieldDelegate {
     
     // ================================
     // MARK: Login Method Extension
@@ -56,6 +56,8 @@ extension LoginViewController {
      */
     
     func handleLogin() {
+        loginView.emailField.delegate = self
+        loginView.passwordField.delegate = self
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
@@ -73,7 +75,11 @@ extension LoginViewController {
                 print(error ?? "Unknown error occured when attempting sign in authentication")
                 return
             }
-            guard let userID = user?.uid else { return }
+            
+            var userString = ""
+            if let userID = user?.uid {
+                userString = userID
+            }
             
             /*
              - On global DispatchQueue with qos: userInituated sets self to unowned self
@@ -86,10 +92,10 @@ extension LoginViewController {
              */
             
             DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-                let newStore = DataStore.sharedInstance
-                newStore.currentUserString = userID
-                newStore.firebaseAPI.setupRefs()
-                newStore.firebaseAPI.fetchUserData { currentUser in newStore.currentUser = currentUser }
+//                let newStore = DataStore.sharedInstance
+//                newStore.currentUserString = userID
+//                newStore.firebaseAPI.setupRefs()
+                DataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in DataStore.sharedInstance.currentUser = currentUser }
                 DataStore.sharedInstance.setLoggedInKey(userState: true)
                 DataStore.sharedInstance.hasLoggedIn()
                 

@@ -101,11 +101,9 @@ extension LoginView {
         loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
     }
     
-    
     // ===============================
     // MARK: - Configuring UI
     // ===============================
-    
     
     func configure(view:UIView) {
         addSubview(view)
@@ -148,17 +146,14 @@ extension LoginView {
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
     }
-    
 }
 
 
 extension LoginView {
     
-    
     // ===============================
     // MARK: - Animation
     // ===============================
-    
     
     func textFieldAnimation() {
         UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
