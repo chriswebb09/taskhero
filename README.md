@@ -9,7 +9,7 @@
 
 <h1 align="center">Implementing</h1>
 
-<ul>
+<ul align="center">
    <li type="none">Add tests to LoginViewController</li>
    <li type="none">Persist user data with Realm.</li>
 </ul>
