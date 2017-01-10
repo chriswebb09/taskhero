@@ -13,15 +13,12 @@
 </ul>
 
 <h2>Next up</h2>
-
-- Bug fixes 
-
-- Allow users to communicate with each other 
-
-- Build out task scoring system 
-
-- Build messenger service
-
+<ul>
+   <li>Bug fixes</li>
+   <li>Allow users to communicate with each other </li>
+   <li>Build out task scoring system  </li>
+   <li>Build messenger service</li>
+</ul>
 
 <h2>Nice to have</h2>
 
@@ -29,16 +26,12 @@
 
 - Transfer data
 
-
-
----
 <h2 align="center">Edit task in tasklist</h2>
 <p align="center">
   <br><br>
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/edittasklist.png">
 </p>
 
----
 ___
 
 <h2 align="center">Empty TaskListTableView</h2>
