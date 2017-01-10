@@ -11,10 +11,8 @@ import Firebase
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
     fileprivate let loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
-    let manager = AppManager.sharedInstance /* User defaults data methods */
-    let store = DataStore.sharedInstance
-    fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated -
-     will be added to view on login button press */
+    let store = DataStore.sharedInstance /* Singleton for the instance of the the authenticated user that shared by the entire application */
+    fileprivate let loadingView = LoadingView() /* Activity indicator and background container view instantiated - will be added to view on login button press */
 }
 
 
@@ -28,7 +26,6 @@ extension LoginViewController {
         super.viewDidLoad()
         view.addSubview(loginView)
         edgesForExtendedLayout = []
-        print(view.superview)
         loginView.setupLogin(viewController:self)
         navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
@@ -151,7 +148,7 @@ extension LoginViewController {
     
     // selector method that Pushes SignupViewController on button tap
     
-    @objc public func signupButtonTapped() {
+    public func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     

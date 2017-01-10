@@ -17,7 +17,6 @@ class TabBarController: UITabBarController {
     // MARK: - Properties
     // ====================
     
-    let manager = AppManager.sharedInstance
     let store = DataStore.sharedInstance
     let helpers = Helpers()
 }
