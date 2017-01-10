@@ -25,7 +25,7 @@
    <li>Set up Ubuntu web server on AWS for transition to Realm Object server. </li>
    <li>Transfer data </li>
 </ul>
-
+___
 
 <h2 align="center">Edit task in tasklist</h2>
 <p align="center">
