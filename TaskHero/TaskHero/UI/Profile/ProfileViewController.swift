@@ -121,7 +121,6 @@ extension ProfileViewController {
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {
-            let manager = AppManager.sharedInstance
             let loginVC = UINavigationController(rootViewController:LoginViewController())
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             DataStore.sharedInstance.logout()

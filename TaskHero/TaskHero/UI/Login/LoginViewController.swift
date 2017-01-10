@@ -55,7 +55,7 @@ extension LoginViewController {
      - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
      */
     
-    @objc func handleLogin() {
+    func handleLogin() {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)

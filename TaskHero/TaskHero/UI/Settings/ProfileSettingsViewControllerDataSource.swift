@@ -35,7 +35,7 @@ extension ProfileSettingsViewControllerDataSource {
     func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
         var name = cell.profileSettingField.text?.components(separatedBy: " ")
         let updatedUser = User()
-        var helpers = Helpers()
+        let helpers = Helpers()
         updatedUser.username = self.store.currentUser.username
         updatedUser.email = self.store.currentUser.email
         updatedUser.profilePicture = "None"

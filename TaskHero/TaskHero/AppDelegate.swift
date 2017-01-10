@@ -13,7 +13,6 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var appManager = AppManager.sharedInstance
     
     override init() {
         FIRApp.configure()

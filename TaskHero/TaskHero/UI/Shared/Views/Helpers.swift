@@ -28,7 +28,6 @@ extension UITableView {
 
 class Helpers {
     let store = DataStore.sharedInstance
-    let manager = AppManager.sharedInstance
 }
 
 extension Helpers {
@@ -154,14 +153,11 @@ extension Helpers {
     
     func getData(tableView:UITableView) {
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            var helpers = Helpers()
-            var newStore = DataStore.sharedInstance
-            newStore.tasks.removeAll()
-            if newStore.currentUser.tasks != nil {
-                newStore.currentUser.tasks?.removeAll()
+            if self.store.currentUser.tasks != nil {
+                self.store.currentUser.tasks?.removeAll()
             }
-            helpers.fetchUser() { user in
-                newStore.currentUser = user
+            self.fetchUser() { user in
+                self.store.currentUser = user
                 DispatchQueue.main.async {
                     tableView.reloadData()
                 }
