@@ -19,6 +19,7 @@
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/edittasklist.png">
 </p>
 
+---
 
 # Next up 
 
@@ -48,10 +49,6 @@ ___
 
 - Transfer data
 
-
-
-
-
 ___
 
 <h2 align="center">Log In</h2>
@@ -61,10 +58,9 @@ ___
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/login.jpg">
 </p>
 
-
+___
 
 <h2 align="center">Add Task</h2>
-___
 
 <p align="center">
   <br><br>
