@@ -93,8 +93,8 @@ extension LoginViewController {
                 newStore.currentUserString = userID
                 newStore.firebaseAPI.setupRefs()
                 newStore.firebaseAPI.fetchUserData { currentUser in newStore.currentUser = currentUser }
-                self.manager.setLoggedInKey(userState: true)
-                self.manager.hasLoggedIn()
+                DataStore.sharedInstance.setLoggedInKey(userState: true)
+                DataStore.sharedInstance.hasLoggedIn()
                 
                 /*  - On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
                 

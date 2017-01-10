@@ -24,7 +24,7 @@ extension HomeViewController {
         let manager = AppManager.sharedInstance
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        manager.logout()
+        DataStore.sharedInstance.logout()
         appDelegate.window?.rootViewController = loginVC
     }
     

@@ -109,7 +109,7 @@ extension Helpers {
     
     func handleLogout() {
         do {
-            manager.setLoggedInKey(userState: false)
+            DataStore.sharedInstance.setLoggedInKey(userState: false)
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)

@@ -12,7 +12,8 @@ import Firebase
 class DataStore {
     
     static let sharedInstance = DataStore()
-    
+    let defaults = UserDefaults.standard
+
     let firebaseAPI = APIClient()
     var currentUser: User!
     var profilePicture: UIImage!
@@ -39,4 +40,31 @@ extension DataStore {
         currentUser.experiencePoints += 1
         currentUser.numberOfTasksCompleted += 1
     }
+    
+    func hasLoggedIn() {
+        let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
+        let user = defaults.data(forKey: "currentUser")
+        if hasLoggedIn {
+            print("LOGGED IN")
+            dump(user)
+        }
+    }
+    
+    func setLoggedInKey(userState:Bool) {
+        defaults.set(userState, forKey: "hasLoggedIn")
+    }
+    
+    func setUserData(user: User) {
+        defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
+        defaults.synchronize()
+    }
+    
+    
+    func logout() {
+        defaults.set(false, forKey: "hasLoggedIn")
+        defaults.removeObject(forKey: "currentUser")
+        defaults.removeObject(forKey: "UID")
+        defaults.synchronize()
+    }
+    
 }
