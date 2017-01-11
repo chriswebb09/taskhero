@@ -61,7 +61,7 @@ extension SignupViewController {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkTextField(textField)
-        if textField == self.signupView.usernameField {
+        if textField == signupView.usernameField {
             print(store.validUsernames)
             if store.validUsernames.contains(signupView.usernameField.text!) {
                 signupView.usernameField.layer.borderColor = Constants.Signup.textFieldColor.cgColor
@@ -88,14 +88,16 @@ extension SignupViewController {
             signupView.emailField.textColor = Constants.Signup.invalidColor
             signupView.confirmEmailField.layer.borderColor = Constants.Signup.invalidColor.cgColor
             signupView.confirmEmailField.textColor = Constants.Signup.invalidColor
-            Constants().delay(0.9) { UIView.animate(withDuration: 0.5,
-                                                    delay: 0.0,
-                                                    options: UIViewAnimationOptions.curveEaseOut,
-                                                    animations: {
-                                                        self.invalidateStyleFor(field: self.signupView.usernameField)
-                                                        self.invalidateStyleFor(field: self.signupView.emailField)
-                                                        self.invalidateStyleFor(field: self.signupView.confirmEmailField)
-            }) } } else if textField == signupView.confirmEmailField {
+            let when = DispatchTime.now() + 0.9 //
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                UIView.animate(withDuration: 0.5,
+                               delay: 0.0,
+                               options: UIViewAnimationOptions.curveEaseOut,
+                               animations: {
+                                self.invalidateStyleFor(field: self.signupView.usernameField)
+                                self.invalidateStyleFor(field: self.signupView.emailField)
+                                self.invalidateStyleFor(field: self.signupView.confirmEmailField)
+                }) } } else if textField == signupView.confirmEmailField {
             if (!validateEmailInput(email: signupView.emailField.text!, confirm: self.signupView.confirmEmailField.text!)) {
                 self.setAnimationStyleFor(field: signupView.emailField)
                 self.setAnimationStyleFor(field: signupView.confirmEmailField)

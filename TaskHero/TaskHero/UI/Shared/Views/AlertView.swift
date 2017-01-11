@@ -76,23 +76,23 @@ extension AlertView {
         configureConstaints(label: alertLabel)
         configureConstaints(label: resultLabel)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
-        headBanner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        headBanner.topAnchor.constraint(equalTo: topAnchor).isActive = true
         headBanner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-        headBanner.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        alertLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        headBanner.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        alertLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         alertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         resultLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        resultLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: bounds.height / 3).isActive = true
+        resultLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height / 3).isActive = true
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         cancelButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         cancelButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-        cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Constants.Alert.CancelButton.cancelButtonWidth).isActive = true
+        cancelButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Alert.CancelButton.cancelButtonWidth).isActive = true
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         doneButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-        doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Constants.Alert.CancelButton.cancelButtonWidth).isActive = true
+        doneButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Alert.CancelButton.cancelButtonWidth).isActive = true
     }
 }

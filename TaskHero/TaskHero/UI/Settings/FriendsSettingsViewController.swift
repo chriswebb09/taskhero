@@ -9,12 +9,21 @@
 import UIKit
 
 final class FriendsSettingsViewController: UIViewController {
+    
+    // =============================
+    // MARK: Properties
+    // =============================
+    
     let friendsSettingsView = FriendsSettingsView()
     let alertPop = AlertPopover()
 }
 
 
 extension FriendsSettingsViewController {
+    
+    // ============================================
+    // MARK: ViewController Initialization Methods
+    // ============================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +39,12 @@ extension FriendsSettingsViewController {
 
 extension FriendsSettingsViewController: UITextFieldDelegate {
     
+    // ======================================
+    // MARK: - Textfield delegate methods
+    // ======================================
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        view.endEditing(true)
         return false
     }
 }

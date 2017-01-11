@@ -11,11 +11,11 @@ import UIKit
 extension UINavigationController {
     
     func setupNav() {
-        self.navigationBar.isHidden = false
-        self.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
+        navigationBar.isHidden = false
+        navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
     }
     
     func addTaskButtonTapped() {
-        self.pushViewController(AddTaskViewController(), animated:false)
+        pushViewController(AddTaskViewController(), animated:false)
     }
 }

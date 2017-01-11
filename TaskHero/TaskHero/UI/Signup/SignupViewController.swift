@@ -15,7 +15,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
     // ====================
     
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
     let signupView = SignupView()
     var emailInvalidated = false
     let CharacterLimit = 11
@@ -59,8 +59,8 @@ extension SignupViewController {
     // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String)  -> Bool {
-        if textField == self.signupView.usernameField {
-            let currentUserName = self.signupView.usernameField.text! as NSString
+        if textField == signupView.usernameField {
+            let currentUserName = signupView.usernameField.text! as NSString
             let updatedText = currentUserName.replacingCharacters(in: range, with: string)
             return updatedText.characters.count <= CharacterLimit
         }
@@ -107,10 +107,10 @@ extension SignupViewController {
 extension SignupViewController {
     
     func setupUser(uid: String, username:String, email:String) {
-        let newUser = self.helpers.createUser(uid:uid, username: username, email: email)
-        self.store.firebaseAPI.registerUser(user: newUser)
-        self.store.currentUserString = FIRAuth.auth()?.currentUser?.uid
-        self.store.firebaseAPI.setupRefs()
-        self.store.currentUser = newUser
+        let newUser = helpers.createUser(uid:uid, username: username, email: email)
+        store.firebaseAPI.registerUser(user: newUser)
+        store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+        store.firebaseAPI.setupRefs()
+        store.currentUser = newUser
     }
 }

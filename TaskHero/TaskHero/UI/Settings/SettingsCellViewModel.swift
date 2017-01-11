@@ -9,7 +9,7 @@
 import UIKit
 
 final class SettingsCellViewModel {
-    let setting: String
+    var setting: String
     
     init(_ setting:String) {
         self.setting = setting

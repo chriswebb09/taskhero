@@ -72,7 +72,7 @@ extension ProfileHeaderCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contentView.layoutIfNeeded()
+        contentView.layoutIfNeeded()
         setupConstraints()
         contentView.layer.masksToBounds = true
     }

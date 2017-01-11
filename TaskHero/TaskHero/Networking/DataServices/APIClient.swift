@@ -82,7 +82,7 @@ extension APIClient {
     }
     
     func updateUsernameList(user: User) {
-        self.ref = FIRDatabase.database().reference()
+        ref = FIRDatabase.database().reference()
         let usernameRefs = ref.child("Usernames")
         let usernameValues = [user.username:user.email] as [String : Any] as NSDictionary
         usernameRefs.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in

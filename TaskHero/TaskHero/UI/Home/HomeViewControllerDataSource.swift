@@ -20,7 +20,7 @@ class HomeViewControllerDataSource {
     
     /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
     
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
     
     // Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell

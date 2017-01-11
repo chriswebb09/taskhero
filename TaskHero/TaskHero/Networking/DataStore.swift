@@ -9,9 +9,16 @@
 import UIKit
 import Firebase
 
-class DataStore {
+class UserDataStore {
     
-    static let sharedInstance = DataStore()
+    private static let _shared = UserDataStore()
+    private init() { }
+    
+    public static var sharedInstance: UserDataStore {
+        return _shared
+    }
+    
+    
     let defaults = UserDefaults.standard
 
     let firebaseAPI = APIClient()
@@ -23,7 +30,7 @@ class DataStore {
 }
 
 
-extension DataStore {
+extension UserDataStore {
     
     func setupStore() {
         tasks.removeAll()

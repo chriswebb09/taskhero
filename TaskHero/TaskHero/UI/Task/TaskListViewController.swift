@@ -14,7 +14,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     // MARK: Properties
     // ================================
     
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
     var tapped: Bool = false
     var buttonTapped: Bool = false
     var taskViewModel: TaskCellViewModel!
@@ -53,28 +53,27 @@ extension TaskListViewController {
         setupTableView()
         setupNavItems()
     }
-    
 }
 
 
 extension TaskListViewController {
     
-    
     // FIXME: - Refactor ASAP
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(false)
+        
         if store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
         }
-        self.store.tasks.removeAll()
-        if self.store.currentUser.tasks != nil {
-            self.store.currentUser.tasks?.removeAll()
+        store.tasks.removeAll()
+        if store.currentUser.tasks != nil {
+            store.currentUser.tasks?.removeAll()
         }
         
-        
-        self.helpers.fetchUser() { user in
+        helpers.fetchUser() { user in
             self.store.currentUser = user
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -115,7 +114,7 @@ extension TaskListViewController {
             tableView.beginUpdates()
             let removeTaskID: String = self.store.tasks[indexPath.row].taskID
             deleteTasks(id: removeTaskID, indexPath: indexPath)
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
             DispatchQueue.main.async { tableView.reloadData() }
         }

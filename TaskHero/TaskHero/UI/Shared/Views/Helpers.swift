@@ -16,23 +16,23 @@ import Firebase
 extension UITableView {
     
     func setupTableView() {
-        self.estimatedRowHeight = Constants.Settings.rowHeight
-        self.layoutMargins = UIEdgeInsets.zero
-        self.separatorInset = UIEdgeInsets.zero
-        self.separatorStyle = .singleLineEtched
-        self.rowHeight = UITableViewAutomaticDimension
-        self.tableFooterView = UIView(frame: CGRect.zero)
-        self.tableHeaderView?.backgroundColor = UIColor.white
+        estimatedRowHeight = Constants.Settings.rowHeight
+        layoutMargins = UIEdgeInsets.zero
+        separatorInset = UIEdgeInsets.zero
+        separatorStyle = .singleLineEtched
+        rowHeight = UITableViewAutomaticDimension
+        tableFooterView = UIView(frame: CGRect.zero)
+        tableHeaderView?.backgroundColor = UIColor.white
     }
 }
 
 class Helpers {
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
 }
 
 extension Helpers {
-    func removeRefHandle() {
-        if self.store.firebaseAPI.refHandle != nil {
+    public func removeRefHandle() {
+        if store.firebaseAPI.refHandle != nil {
             self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
         }
     }
@@ -46,13 +46,13 @@ extension Helpers {
         appDelegate.window?.rootViewController = tabBar
     }
     
-    func configureNav(nav:UINavigationBar, view: UIView) {
+    public func configureNav(nav:UINavigationBar, view: UIView) {
         nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
         nav.barTintColor = Constants.Tabbar.tint
         nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
     }
     
-    func setupTabBar(tabBar:UITabBar, view:UIView) {
+    public func setupTabBar(tabBar:UITabBar, view:UIView) {
         var tabFrame = tabBar.frame
         let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
         tabFrame.size.height = tabBarHeight
@@ -66,7 +66,7 @@ extension Helpers {
 
 extension Helpers {
     
-    func tapEdit(tableView: UITableView, atIndex:IndexPath) {
+    public func tapEdit(tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         tapCell.taskDescriptionBox.resignFirstResponder()
         if tapCell.toggled == true {
@@ -80,7 +80,7 @@ extension Helpers {
         }
     }
     
-    func editList(tableView: UITableView, atIndex:IndexPath) {
+    public func editList(tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         tapCell.taskDescriptionBox.resignFirstResponder()
         if tapCell.toggled == true {
@@ -94,11 +94,11 @@ extension Helpers {
         }
     }
     
-    func updateDescription(cell:TaskCell, for row:Int) {
+    public func updateDescription(cell:TaskCell, for row:Int) {
         var newTask = self.store.tasks[row - 1]
         cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
         newTask.taskDescription = cell.taskDescriptionBox.text
-        self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+        store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
         cell.taskDescriptionLabel.text = cell.taskDescriptionBox.text
     }
 }
@@ -106,9 +106,9 @@ extension Helpers {
 
 extension Helpers {
     
-    func handleLogout() {
+    public func handleLogout() {
         do {
-            DataStore.sharedInstance.setLoggedInKey(userState: false)
+            UserDataStore.sharedInstance.setLoggedInKey(userState: false)
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)
@@ -130,13 +130,13 @@ extension Helpers {
         return newUser
     }
     
-    func fetchUser(completion: @escaping(User) -> Void) {
-        self.store.tasks.removeAll()
-        self.store.currentUser.tasks?.removeAll()
-        self.store.firebaseAPI.fetchUserData { user in
+    public func fetchUser(completion: @escaping(User) -> Void) {
+        store.tasks.removeAll()
+        store.currentUser.tasks?.removeAll()
+        store.firebaseAPI.fetchUserData { user in
             self.store.currentUser = user
         }
-        self.store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
+        store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
             self.store.currentUser.tasks = tasks
             self.store.tasks = tasks
             dump(self.store.currentUser)
@@ -144,14 +144,14 @@ extension Helpers {
         }
     }
     
-    func updateUserProfile(userID: String, user:User) {
-        self.store.firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:self.store.tasks)
-        self.store.tasks.forEach { task in
+    public func updateUserProfile(userID: String, user:User) {
+        store.firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:store.tasks)
+        store.tasks.forEach { task in
             self.store.firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
         }
     }
     
-    func getData(tableView:UITableView) {
+    public func getData(tableView:UITableView) {
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
             if self.store.currentUser.tasks != nil {
                 self.store.currentUser.tasks?.removeAll()

@@ -16,7 +16,7 @@ extension FriendsSettingsViewController {
     
     func popup() {
         alertPop.popView.isHidden = false
-        self.friendsSettingsView.searchField.resignFirstResponder()
+        friendsSettingsView.searchField.resignFirstResponder()
         alertPop.popView.layer.opacity = 0
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = Constants.Settings.dismissedOpacity

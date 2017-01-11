@@ -9,9 +9,8 @@
 import UIKit
 
 final class ProfileSettingsViewControllerDataSource {
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
 }
-
 
 extension ProfileSettingsViewControllerDataSource {
     
@@ -29,35 +28,34 @@ extension ProfileSettingsViewControllerDataSource {
     
 }
 
-
 extension ProfileSettingsViewControllerDataSource {
     
     func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
         var name = cell.profileSettingField.text?.components(separatedBy: " ")
         let updatedUser = User()
         let helpers = Helpers()
-        updatedUser.username = self.store.currentUser.username
-        updatedUser.email = self.store.currentUser.email
+        updatedUser.username = store.currentUser.username
+        updatedUser.email = store.currentUser.email
         updatedUser.profilePicture = "None"
         updatedUser.firstName = name?[0]
         updatedUser.lastName = name?[1]
-        updatedUser.joinDate = self.store.currentUser.joinDate
-        updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
-        updatedUser.experiencePoints = self.store.currentUser.experiencePoints
-        updatedUser.tasks = self.store.currentUser.tasks
-        helpers.updateUserProfile(userID: self.store.currentUser.uid, user: updatedUser)
+        updatedUser.joinDate = store.currentUser.joinDate
+        updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
+        updatedUser.experiencePoints = store.currentUser.experiencePoints
+        updatedUser.tasks = store.currentUser.tasks
+        helpers.updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
     }
     
     func updateUserName(cell:ProfileSettingsCell, name: [String]) {
         let updatedUser = User()
         updatedUser.username = cell.profileSettingField.text!
-        updatedUser.email = self.store.currentUser.email
+        updatedUser.email = store.currentUser.email
         updatedUser.profilePicture = "None"
         updatedUser.firstName = name[0]
         updatedUser.lastName = name[1]
-        updatedUser.joinDate = self.store.currentUser.joinDate
-        updatedUser.numberOfTasksCompleted = self.store.currentUser.numberOfTasksCompleted
-        updatedUser.experiencePoints = self.store.currentUser.experiencePoints
-        updatedUser.tasks = self.store.currentUser.tasks
+        updatedUser.joinDate = store.currentUser.joinDate
+        updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
+        updatedUser.experiencePoints = store.currentUser.experiencePoints
+        updatedUser.tasks = store.currentUser.tasks
     }
 }

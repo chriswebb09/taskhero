@@ -15,9 +15,9 @@ struct TaskCellViewModel {
     var taskCompleted: String
     
     init(_ task:Task) {
-        self.taskName = task.taskName
-        self.taskDescription = task.taskDescription
-        self.taskDue = task.taskDue
+        taskName = task.taskName
+        taskDescription = task.taskDescription
+        taskDue = task.taskDue
         taskCompleted = task.taskCompleted.description
     }
 }

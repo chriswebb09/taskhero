@@ -21,7 +21,7 @@ struct ProfileDataCellViewModel {
     // MARK: - Internal Variables
     // ===============================
     
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
     
     internal var tasksCompleted: Int
     internal var experience: Int

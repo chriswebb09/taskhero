@@ -23,7 +23,7 @@ extension HomeViewController {
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        DataStore.sharedInstance.logout()
+        UserDataStore.sharedInstance.logout()
         appDelegate.window?.rootViewController = loginVC
     }
     

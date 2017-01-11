@@ -11,7 +11,7 @@ import UIKit
 final class AddTaskView: UIView {
     
     // ===========================
-    // MARK: UIElements
+    // MARK: UI Elements
     // ===========================
     
     lazy var taskNameLabel: UILabel = {

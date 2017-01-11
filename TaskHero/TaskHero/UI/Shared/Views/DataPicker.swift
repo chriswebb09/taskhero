@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DataPickerView: UIView {
+final class DataPickerView: UIView {
     
     // ====================
     // MARK: - Properties
@@ -61,20 +61,20 @@ extension DataPickerView {
         picker.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
         picker.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         picker.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-        picker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        picker.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
         
         addSubview(alertLabel)
         alertLabel.translatesAutoresizingMaskIntoConstraints = false
-        alertLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        alertLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         alertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         alertLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-        alertLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.98).isActive = true
+        alertLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.98).isActive = true
         
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-        button.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
     }
 }

@@ -23,7 +23,7 @@ struct ProfileHeaderCellModel {
     // MARK: - Internal Variables
     // ================================
     
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
     
     //internal var user: User?
     internal var emailLabel: String
@@ -38,7 +38,6 @@ struct ProfileHeaderCellModel {
     // =======================================
     
     init() {
-        //self.user = self.store.currentUser!
         self.emailLabel = (self.store.currentUser?.email)!
         self.usernameLabel = (self.store.currentUser?.username)!
         self.profilePicture = (self.store.currentUser?.profilePicture!)!

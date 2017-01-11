@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
     // MARK: - Properties
     // ====================
     
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
     let helpers = Helpers()
 }
 
@@ -88,7 +88,6 @@ extension TabBarController {
             self.tabBar.items?[2].title = "Tasks"
             self.tabBar.items?[3].title = "Settings"
             self.selectedIndex = 0
-            
         }
     }
 }

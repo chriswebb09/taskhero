@@ -71,7 +71,7 @@ extension SignupView {
 
 extension SignupView {
     
-    // sets up constraints on signupview
+    /* sets up constraints on signupview */
     
     func setupConstraints() {
         configureField(field: signupViewLabel)

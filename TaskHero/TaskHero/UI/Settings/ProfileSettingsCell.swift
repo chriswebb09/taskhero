@@ -12,13 +12,6 @@ protocol ProfileSettingsCellDelegate: class {
     func editButtonTapped()
 }
 
-final class ProfileSettingViewModel {
-    var profileSettings: String
-    init(profileSettings: String) {
-        self.profileSettings = profileSettings
-    }
-}
-
 final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     static let cellIdentifier = "ProfileSettingsCell"
@@ -29,7 +22,7 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     // MARK: - UIElements
     // ========================
     
-    let profileSettingLabel: UILabel = {
+    lazy var profileSettingLabel: UILabel = {
         let profileLabel = UILabel()
         profileLabel.textColor = UIColor.settingsBackground()
         profileLabel.font = Constants.Font.fontNormal
@@ -38,7 +31,7 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         return profileLabel
     }()
     
-    let button: TagButton = {
+    lazy var button: TagButton = {
         let button = ButtonType.tag(title: "Edit", color: UIColor.blue, tag: 20, index: IndexPath())
         let uiElement = button.tagButton
         uiElement.layer.borderWidth = 0
@@ -74,7 +67,7 @@ extension ProfileSettingsCell {
     // MARK: - Configure Cell Methods
     // ======================================
     
-    func configureCell(setting:String) {
+    public func configureCell(setting:String) {
         layoutSubviews()
         profileSettingLabel.text = setting
         if setting.contains("N/A") { profileSettingLabel.text = "FirstName LastName" }

@@ -19,7 +19,7 @@ enum ButtonType {
         return button
     }
     
-    func configureButton(button:UIButton) {
+    public func configureButton(button:UIButton) {
         button.layer.cornerRadius = 2
         button.layer.borderWidth = 1
     }

@@ -90,12 +90,12 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         dataSource.tableIndexPath = indexPath
         if indexPath.row == 0 {
-            let headerCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.header, tableView: tableView) as! ProfileHeaderCell
+            let headerCell = dataSource.configure(indexPath: indexPath, cellType:.header, tableView: tableView) as! ProfileHeaderCell
             dataSource.setupHeaderCell(headerCell: headerCell, viewController:self)
             index = indexPath
             return headerCell
         } else {
-            let taskCell = dataSource.configure(indexPath: indexPath, cellType: HomeCellType.task, tableView: tableView) as! TaskCell
+            let taskCell = dataSource.configure(indexPath: indexPath, cellType:.task, tableView: tableView) as! TaskCell
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.saveButton.tag = indexPath.row
             return taskCell

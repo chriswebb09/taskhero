@@ -18,22 +18,22 @@ final class ProfileDataCell: UITableViewCell {
     // MARK: - UI Elements and cellModel
     // ====================================
     
-    var dataCellModel: ProfileDataCellViewModel =  {
+    lazy var dataCellModel: ProfileDataCellViewModel =  {
         var cellModel = ProfileDataCellViewModel()
         return cellModel
     }()
     
-    var levelLabel: UILabel = {
+    lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         return levelLabel
     }()
     
-    var experiencePointsLabel: UILabel = {
+    lazy var experiencePointsLabel: UILabel = {
         let experiencePointsLabel = UILabel()
         return experiencePointsLabel
     }()
     
-    var tasksCompletedLabel: UILabel = {
+    lazy var tasksCompletedLabel: UILabel = {
         let taskCompletedLabel = UILabel()
         return taskCompletedLabel
     }()

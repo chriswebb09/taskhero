@@ -15,7 +15,7 @@ final class ProfileViewController: UITableViewController {
     // MARK: - Internal Variables
     // =================================
     
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
     
 }
 
@@ -123,7 +123,7 @@ extension ProfileViewController {
         DispatchQueue.main.async {
             let loginVC = UINavigationController(rootViewController:LoginViewController())
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            DataStore.sharedInstance.logout()
+            UserDataStore.sharedInstance.logout()
             appDelegate.window?.rootViewController = loginVC
         }
     }

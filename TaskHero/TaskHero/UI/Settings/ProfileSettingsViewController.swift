@@ -9,8 +9,7 @@
 import UIKit
 
 final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    let store = DataStore.sharedInstance
+    let store = UserDataStore.sharedInstance
     let profileSettingsView = ProfileSettingsView()
     var tapped: Bool = false
     var indexTap: IndexPath?
@@ -40,7 +39,6 @@ extension ProfileSettingsViewController {
         profileSettingsView.layoutSubviews()
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
         tableView.setupTableView()
-        //helpers.setupTableView(tableView:tableView)
     }
 }
 
