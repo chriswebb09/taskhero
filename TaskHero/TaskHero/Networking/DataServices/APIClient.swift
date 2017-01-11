@@ -46,6 +46,7 @@ class APIClient {
     init() {
         dbRef = FIRDatabase.database().reference()
         usernameRef = dbRef.child("Usernames")
+        setupRefs()
     }
 }
 

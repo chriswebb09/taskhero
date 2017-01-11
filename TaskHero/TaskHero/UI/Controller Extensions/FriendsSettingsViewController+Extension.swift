@@ -21,10 +21,10 @@ extension FriendsSettingsViewController {
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = Constants.Settings.dismissedOpacity
         alertPop.showPopView(viewController: self)
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.1) {
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
-        })
+        }
         alertPop.popView.resultLabel.text = "No results found. Please try again later."
         alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
         alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
