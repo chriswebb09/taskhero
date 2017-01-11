@@ -80,6 +80,7 @@ extension TaskCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        selectionStyle = .none
         setupConfigures()
         contentView.layer.masksToBounds = true
         layoutMargins = UIEdgeInsets.zero

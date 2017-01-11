@@ -60,9 +60,11 @@ extension SignupViewController {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String)  -> Bool {
         if textField == signupView.usernameField {
-            let currentUserName = signupView.usernameField.text! as NSString
-            let updatedText = currentUserName.replacingCharacters(in: range, with: string)
-            return updatedText.characters.count <= CharacterLimit
+            if let userName = signupView.usernameField.text {
+                let userNameString = userName as NSString
+                let updatedText = userNameString.replacingCharacters(in: range, with: string)
+                return updatedText.characters.count <= CharacterLimit
+            }
         }
         return true
     }
