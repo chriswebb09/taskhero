@@ -115,6 +115,24 @@ extension HomeViewControllerDataSource {
         }
         print(self.store.tasks)
     }
+    
+    public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
+        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+        tapCell.taskDescriptionBox.resignFirstResponder()
+        if tapCell.toggled == true {
+            var newTask = self.store.tasks[atIndex.row - 1]
+            newTask.taskDescription = tapCell.taskDescriptionBox.text
+            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+            DispatchQueue.main.async {
+                tapCell.taskDescriptionLabel.text = newTask.taskDescription
+            }
+            tapCell.taskDescriptionBox.resignFirstResponder()
+            tapCell.toggled = false 
+        }
+        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(sender:)))
+        tapCell.taskCompletedView.addGestureRecognizer(tap)
+        tapCell.taskCompletedView.isUserInteractionEnabled = true
+    }
 }
 
 

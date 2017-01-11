@@ -78,6 +78,7 @@ extension Helpers {
             }
             tapCell.taskDescriptionBox.resignFirstResponder()
         }
+        
     }
     
     public func editList(tableView: UITableView, atIndex:IndexPath) {

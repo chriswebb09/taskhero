@@ -85,7 +85,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
-        helpers.tapEdit(tableView: tableView, atIndex: indexPath!)
+        
+        dataSource.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!)
     }
     
     func taskCell(didToggleEditState editState:Bool) {
@@ -97,7 +98,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     func toggleForEditState(sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        helpers.tapEdit(tableView:tableView, atIndex: tapIndex)
+        dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
     }
     
     
