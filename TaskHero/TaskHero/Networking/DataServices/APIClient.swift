@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-typealias TaskCompletion = (Task) -> Void
+typealias TaskCompletion = ([Task]) -> Void
 typealias UserCompletion = (User) -> Void
 
 class APIClient {
@@ -102,7 +102,7 @@ extension APIClient {
     // Grab tasks from user profile in realtime user database
     // =========================================================================
     
-    func fetchTasks(taskList: [Task], completion:@escaping ([Task]) -> Void) {
+    func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
         var taskList = taskList
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }

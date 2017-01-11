@@ -131,7 +131,7 @@ extension Helpers {
         return newUser
     }
     
-    public func fetchUser(completion: @escaping(User) -> Void) {
+    public func fetchUser(completion: @escaping UserCompletion) {
         store.tasks.removeAll()
         store.currentUser.tasks?.removeAll()
         store.firebaseAPI.fetchUserData { user in
