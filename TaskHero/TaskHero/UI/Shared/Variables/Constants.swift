@@ -17,6 +17,10 @@ struct Constants {
         static let tableViewBackgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
     }
     
+    struct AttributedTextFontNames {
+        
+    }
+    
     struct Dimension {
         static let mainWidth:CGFloat = 0.4
         static let mainOffset:CGFloat = 30

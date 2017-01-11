@@ -76,11 +76,6 @@ extension LoginViewController: UITextFieldDelegate {
                 return
             }
             
-            var userString = ""
-            if let userID = user?.uid {
-                userString = userID
-            }
-            
             /*
              - On global DispatchQueue with qos: userInituated sets self to unowned self
              * creates new DataStore.sharedInstance
@@ -92,9 +87,6 @@ extension LoginViewController: UITextFieldDelegate {
              */
             
             DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-//                let newStore = DataStore.sharedInstance
-//                newStore.currentUserString = userID
-//                newStore.firebaseAPI.setupRefs()
                 UserDataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in UserDataStore.sharedInstance.currentUser = currentUser }
                 UserDataStore.sharedInstance.setLoggedInKey(userState: true)
                 UserDataStore.sharedInstance.hasLoggedIn()

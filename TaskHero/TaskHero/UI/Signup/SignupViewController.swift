@@ -82,18 +82,21 @@ extension SignupViewController {
                 print("Form is not valid")
                 return
         }
-        if validateEmailInput(email:email, confirm:self.signupView.confirmEmailField.text!) {
-            loadingView.showActivityIndicator(viewController: self)
-            FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
-                if error != nil {
-                    loadingView.hideActivityIndicator(viewController: self)
-                    print(error ?? "unable to get specific error")
-                    return
+        
+        if let confirmFieldText = self.signupView.confirmEmailField.text {
+            if validateEmailInput(email:email, confirm:confirmFieldText) {
+                loadingView.showActivityIndicator(viewController: self)
+                FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
+                    if error != nil {
+                        loadingView.hideActivityIndicator(viewController: self)
+                        print(error ?? "unable to get specific error")
+                        return
+                    }
+                    if let uid = FIRAuth.auth()?.currentUser?.uid {
+                        self.setupUser(uid: uid, username: username, email: email)
+                    }
+                    self.helpers.loadTabBar()
                 }
-                if let uid = FIRAuth.auth()?.currentUser?.uid {
-                    self.setupUser(uid: uid, username: username, email: email)
-                }
-                self.helpers.loadTabBar()
             }
         } else {
             let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
