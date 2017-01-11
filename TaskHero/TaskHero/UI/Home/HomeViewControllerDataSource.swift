@@ -12,7 +12,7 @@ enum HomeCellType {
     case task, header
 }
 
-protocol cellMake {
+protocol CellMake {
     func configure(indexPath: IndexPath, cellType: HomeCellType, tableView:UITableView) -> UITableViewCell
 }
 
@@ -23,7 +23,7 @@ class HomeViewControllerDataSource {
     let store = UserDataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
     
-    // Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell
+    /* Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell */
     
     var rows: Int {
         get {
@@ -39,9 +39,10 @@ class HomeViewControllerDataSource {
     var autoHeight: UIViewAutoresizing?
 }
 
-/* Extension containing method for configuring cells in ViewController. If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
+/* Extension containing method for configuring cells in ViewController. */
+/* If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
 
-extension HomeViewControllerDataSource: cellMake {
+extension HomeViewControllerDataSource: CellMake {
     
     func configure(indexPath:IndexPath, cellType:HomeCellType, tableView:UITableView) -> UITableViewCell {
         if cellType == .header {
@@ -127,7 +128,7 @@ extension HomeViewControllerDataSource {
                 tapCell.taskDescriptionLabel.text = newTask.taskDescription
             }
             tapCell.taskDescriptionBox.resignFirstResponder()
-            tapCell.toggled = false 
+            tapCell.toggled = false
         }
         let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(sender:)))
         tapCell.taskCompletedView.addGestureRecognizer(tap)
