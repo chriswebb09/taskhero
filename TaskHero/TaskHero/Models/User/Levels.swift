@@ -11,14 +11,11 @@ import Foundation
 
 struct Levels {
     
-    var user: User?
-    
-    var level: String {
-        if (user?.experiencePoints)! < 20 {
+    func getLevelFor(_ user:User) -> String {
+        if user.experiencePoints < 20 {
             return "Task Goat"
         } else {
             return "Task Wizard"
         }
-        
     }
 }

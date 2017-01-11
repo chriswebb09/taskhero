@@ -102,14 +102,16 @@ extension HomeViewControllerDataSource {
         
         DispatchQueue.global(qos: .default).async {
             let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
-            self.store.tasks = self.store.currentUser.tasks!
+            if let tasks = self.store.currentUser.tasks {
+                self.store.tasks = tasks
+            }
             self.store.tasks.remove(at: indexPath.row - 1)
             self.store.updateUserScore()
             self.store.firebaseAPI.registerUser(user: self.store.currentUser)
             self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
                 tableView.reloadData()
-            })
+            }
         }
         print(self.store.tasks)
     }

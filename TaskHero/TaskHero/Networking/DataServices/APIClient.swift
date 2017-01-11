@@ -211,7 +211,11 @@ extension APIClient {
         usernameRef.updateChildValues([user.username:user.email])
         userRef.keepSynced(true)
         if tasks.count != 0 {
-            for task in user.tasks! { addTasks(task: task) }
+            if let tasks = user.tasks {
+                for task in tasks {
+                    addTasks(task: task)
+                }
+            }
         }
     }
     
