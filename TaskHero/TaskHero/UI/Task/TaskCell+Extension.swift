@@ -17,6 +17,9 @@ extension TaskCell {
     
     // Button toggle methods
     
+    
+    /* changes taskcell UI based on editstate value */
+    
     func taskCell(didToggleEditState editState:Bool) {
         toggled = editState
         taskDescriptionLabel.isHidden = toggled
@@ -28,10 +31,14 @@ extension TaskCell {
         toggled = !editState
     }
     
+    /* taskcompletedview delegate method */
+    
     func toggleForEditState(sender:UIGestureRecognizer) {
         taskCell(didToggleEditState: !toggled)
         delegate?.toggleForEditState(sender)
     }
+    
+    /* Button delegate method */
     
     func toggleForButtonState(sender:UIButton) {
         taskCell(didToggleEditState: toggled)
@@ -45,6 +52,8 @@ extension TaskCell {
     // MARK: - Configure cell subviews
     // =====================================
     
+    /* takes in textview returns configured textview*/
+    
     func configureTextView(label:UITextView) {
         label.textAlignment = .left
         label.layer.masksToBounds = true
@@ -54,6 +63,8 @@ extension TaskCell {
         label.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
     }
     
+    /* sets up taskNameLabel and taskDue label top, right and height constraints */
+    
     func configureView(view:UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -61,6 +72,7 @@ extension TaskCell {
         view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
     }
     
+    /* taskdescription label configuration */
     func configureDesription(view:UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +82,8 @@ extension TaskCell {
         view.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
     
+    
+    /* taskcompletedview and savebutton configuration */
     func configureElements(view:UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -94,6 +108,8 @@ extension TaskCell {
         configureDesription(view: taskDescriptionBox)
     }
     
+    /* adds shadow styling to cell */
+    
     func setupCellView(width: CGFloat, height: CGFloat) {
         let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
         cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
@@ -105,7 +121,9 @@ extension TaskCell {
         contentView.sendSubview(toBack: cellView)
     }
     
-    func configureCell(taskVM:TaskCellViewModel) {
+    
+    /* methods used in VC to setup cell with data */
+    public func configureCell(taskVM:TaskCellViewModel) {
         layoutSubviews()
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
