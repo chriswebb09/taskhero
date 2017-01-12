@@ -39,7 +39,7 @@ class APIClient {
     
     var validUsernames = [String]()
     var validUserData = [String]()
-    var userData = [String:AnyObject]() // [String: AnyObject]()
+    var userData = [String:AnyObject]()
     var usernameEmailDict = [String: AnyObject]()
     var tasksDict = [String:AnyObject]()
     

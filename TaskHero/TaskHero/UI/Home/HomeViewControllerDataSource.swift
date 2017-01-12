@@ -69,6 +69,7 @@ extension HomeViewControllerDataSource {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         tableView.setupTableView()
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
         tableView.estimatedRowHeight = view.frame.height / 4
     }
     

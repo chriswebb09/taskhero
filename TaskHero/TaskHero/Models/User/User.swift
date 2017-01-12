@@ -10,7 +10,7 @@ import UIKit
 
 class User: NSObject, NSCoding {
     
-    // FIXME: Remove NSCoding and NSObject to bring up to Swift 3 standards 
+    // FIXME: Remove NSCoding and NSObject to bring up to Swift 3 standards
     
     var uid: String
     var email: String
@@ -50,7 +50,6 @@ class User: NSObject, NSCoding {
         self.experiencePoints = aDecoder.decodeObject(forKey: "experiencePoints") as! Int
         self.level = aDecoder.decodeObject(forKey: "level") as! String
         self.joinDate = aDecoder.decodeObject(forKey: "joinDate") as! String
-        //self.tasks = aDecoder.decodeObject(forKey: "task") as? [Task]
         self.numberOfTasksCompleted =  aDecoder.decodeObject(forKey: "numberOfTasksCompleted") as! Int
         super.init()
     }
@@ -69,7 +68,6 @@ class User: NSObject, NSCoding {
         aCoder.encode(experiencePoints, forKey: "experiencePoints")
         aCoder.encode(level, forKey: "level")
         aCoder.encode(joinDate, forKey: "joinDate")
-        // aCoder.encode(tasks, forKey: "tasks")
         aCoder.encode(numberOfTasksCompleted, forKey: "numberOfTasksCompleted")
     }
     

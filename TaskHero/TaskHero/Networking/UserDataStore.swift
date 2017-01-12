@@ -18,9 +18,7 @@ class UserDataStore {
         return _shared
     }
     
-    
     let defaults = UserDefaults.standard
-
     let firebaseAPI = APIClient()
     var currentUser: User!
     var profilePicture: UIImage!

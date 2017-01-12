@@ -41,7 +41,6 @@ extension HomeViewController: UINavigationControllerDelegate {
         picker.delegate = self
         edgesForExtendedLayout = []
         dataSource = HomeViewControllerDataSource()
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor
         dataSource.setupView(tableView:tableView, view:view)
         addNavItemsToController()
     }

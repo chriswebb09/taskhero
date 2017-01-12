@@ -21,5 +21,4 @@ extension Task {
     init() {
         self.init(taskID: "", taskName: "", taskDescription:"", taskCreated:NSDate().dateWithFormat(), taskDue:"", taskCompleted:false, pointValue: 5)
     }
-    
 }

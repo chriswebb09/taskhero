@@ -25,7 +25,8 @@ extension SettingsViewController {
             settings = applicationSettings
             segmentControl.subviews[1].backgroundColor = UIColor.white
             dump(segmentControl)
-        }; tableView.reloadData()
+        }
+        tableView.reloadData()
     }
     
     // ======================================
