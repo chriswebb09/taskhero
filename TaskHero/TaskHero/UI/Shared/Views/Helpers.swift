@@ -14,7 +14,6 @@ import Firebase
 // ====================================================
 
 extension UITableView {
-    
     func setupTableView() {
         estimatedRowHeight = Constants.Settings.rowHeight
         layoutMargins = UIEdgeInsets.zero
@@ -75,19 +74,6 @@ extension Helpers {
         }; let loginController = LoginViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginController
-    }
-    
-    public func createUser(uid: String, username:String, email:String) -> User {
-        let newUser = User()
-        newUser.uid = uid
-        newUser.username = username
-        newUser.email = email
-        newUser.profilePicture = "None"
-        newUser.firstName = "N/A"
-        newUser.lastName = "N/A"
-        newUser.experiencePoints = 0
-        newUser.tasks = [Task]()
-        return newUser
     }
     
     public func fetchUser(completion: @escaping UserCompletion) {

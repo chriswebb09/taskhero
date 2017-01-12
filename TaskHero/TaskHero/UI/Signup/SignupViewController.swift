@@ -112,10 +112,24 @@ extension SignupViewController {
 extension SignupViewController {
     
     func setupUser(uid: String, username:String, email:String) {
-        let newUser = helpers.createUser(uid:uid, username: username, email: email)
+        let newUser = createUser(uid:uid, username: username, email: email)
         store.firebaseAPI.registerUser(user: newUser)
         store.currentUserString = FIRAuth.auth()?.currentUser?.uid
         store.firebaseAPI.setupRefs()
         store.currentUser = newUser
     }
+    
+    func createUser(uid: String, username:String, email:String) -> User {
+        let newUser = User()
+        newUser.uid = uid
+        newUser.username = username
+        newUser.email = email
+        newUser.profilePicture = "None"
+        newUser.firstName = "N/A"
+        newUser.lastName = "N/A"
+        newUser.experiencePoints = 0
+        newUser.tasks = [Task]()
+        return newUser
+    }
+
 }
