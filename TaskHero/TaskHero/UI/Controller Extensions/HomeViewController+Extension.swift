@@ -49,6 +49,7 @@ extension HomeViewController {
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
+    
     // ==================================================
     // MARK: - Header and Task cell Delegate Methods
     // ==================================================
@@ -107,4 +108,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
     }
+    
+    
+    
 }

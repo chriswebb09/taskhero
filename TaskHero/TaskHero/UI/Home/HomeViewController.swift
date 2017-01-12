@@ -96,6 +96,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         } else {
             let taskCell = dataSource.configure(indexPath: indexPath, cellType:.task, tableView: tableView) as! TaskCell
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
+            taskCell.taskDescriptionBox.delegate = self
             taskCell.saveButton.tag = indexPath.row
             return taskCell
         }
@@ -103,18 +104,18 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        guard indexPath.row != 0 else { return }
-        if editingStyle == .delete {
-            tableView.beginUpdates()
-            backgroundQueue.async {
-                self.dataSource.deleteTask(indexPath:indexPath, tableView: self.tableView)
-            }
-            DispatchQueue.main.async {
-                self.dataSource.tableIndexPath.row = indexPath.row - 1
-                tableView.reloadData()
-            }
-            tableView.endUpdates()
-        }
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        guard indexPath.row != 0 else { return }
+//        if editingStyle == .delete {
+//            tableView.beginUpdates()
+//            backgroundQueue.async {
+//                self.dataSource.deleteTask(indexPath:indexPath, tableView: self.tableView)
+//            }
+//            DispatchQueue.main.async {
+//                self.dataSource.tableIndexPath.row = indexPath.row - 1
+//                tableView.reloadData()
+//            }
+//            tableView.endUpdates()
+//        }
+//    }
 }

@@ -25,7 +25,7 @@ extension UITableView {
     }
 }
 
-class Helpers {
+final class Helpers {
     let store = UserDataStore.sharedInstance
 }
 

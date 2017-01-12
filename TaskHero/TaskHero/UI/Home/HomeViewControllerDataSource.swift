@@ -120,9 +120,12 @@ extension HomeViewControllerDataSource {
     
     public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        tapCell.taskDescriptionBox.resignFirstResponder()
+       // tapCell.taskDescriptionBox.resignFirstResponder()
+        
         if tapCell.toggled == true {
+            tapCell.taskDescriptionBox.text = tapCell.taskDescriptionLabel.text
             var newTask = self.store.tasks[atIndex.row - 1]
+            print(tapCell.taskDescriptionBox.text)
             newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
             DispatchQueue.main.async {
