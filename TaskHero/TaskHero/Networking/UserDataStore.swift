@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class UserDataStore {
-    
     private static let _shared = UserDataStore()
     private init() { }
     
@@ -41,12 +40,12 @@ extension UserDataStore {
     // Update currentUser score when user completes task
     // ===========================================================
     
-    func updateUserScore() {
+    public func updateUserScore() {
         currentUser.experiencePoints += 1
         currentUser.numberOfTasksCompleted += 1
     }
     
-    func hasLoggedIn() {
+    public func hasLoggedIn() {
         let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
         let user = defaults.data(forKey: "currentUser")
         if hasLoggedIn {
@@ -55,17 +54,17 @@ extension UserDataStore {
         }
     }
     
-    func setLoggedInKey(userState:Bool) {
+    public func setLoggedInKey(userState:Bool) {
         defaults.set(userState, forKey: "hasLoggedIn")
     }
     
-    func setUserData(user: User) {
+    public func setUserData(user: User) {
         defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
         defaults.synchronize()
     }
     
     
-    func logout() {
+    public func logout() {
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.removeObject(forKey: "currentUser")
         defaults.removeObject(forKey: "UID")

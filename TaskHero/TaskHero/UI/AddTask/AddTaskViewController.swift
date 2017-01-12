@@ -15,7 +15,7 @@ final class AddTaskViewController: UIViewController  {
     // MARK: Properties
     // =============================
     
-    let store = UserDataStore.sharedInstance
+    let store = UserDataStore.sharedInstance /* User state for application */
     let addTaskView = AddTaskView()
     let pop = PopMenu()
     var stringDate = ""

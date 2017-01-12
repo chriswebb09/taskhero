@@ -10,19 +10,22 @@ import UIKit
 
 final class TaskListViewController: UITableViewController, TaskCellDelegate {
     
+    /* TaskListViewController is the viewcontroller that presents just the tasks that the user has added */
+    
     // ================================
     // MARK: Properties
     // ================================
     
-    let store = UserDataStore.sharedInstance
-    var tapped: Bool = false
-    var buttonTapped: Bool = false
+    let store = UserDataStore.sharedInstance /* userData store for application user state */
+    var tapped: Bool = false /* tracks taps on taskcell completedView and button */
     var taskViewModel: TaskCellViewModel!
     let helpers = Helpers()
     
     // =======================
     // MARK: - UI Elements
     // =======================
+    
+    /* Label for empty tasklist state, should disappear once task is added */
     
     lazy var addTasksLabel:UILabel = {
         let addTasksLabel = UILabel()
@@ -47,6 +50,8 @@ extension TaskListViewController {
         initializeBackgroundUI()
         tableView.reloadData()
     }
+    
+    /* Does setupfor tableview/emptytable view and navbar */
     
     func initializeBackgroundUI() {
         emptyTableViewState()

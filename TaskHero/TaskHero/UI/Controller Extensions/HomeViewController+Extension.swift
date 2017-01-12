@@ -81,7 +81,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // MARK: - TaskCell
     // ====================
     
-    func toggleForButtonState(_ sender:UIButton) {
+    public func toggleForButtonState(_ sender:UIButton) {
         print("inside toggleForButtonState")
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
@@ -92,7 +92,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     /* Kicks off cycling between taskcell editing states */
     
-    func toggleForEditState(_ sender:UIGestureRecognizer) {
+    public func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
         dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
