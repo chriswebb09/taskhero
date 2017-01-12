@@ -9,8 +9,8 @@
 import UIKit
 
 protocol TaskCellDelegate: class {
-    func toggleForEditState(sender:UIGestureRecognizer)
-    func toggleForButtonState(sender:UIButton)
+    func toggleForEditState(_ sender:UIGestureRecognizer)
+    func toggleForButtonState(_ sender:UIButton)
 }
 
 final class TaskCell: UITableViewCell {

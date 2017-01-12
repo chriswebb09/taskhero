@@ -30,12 +30,12 @@ extension TaskCell {
     
     func toggleForEditState(sender:UIGestureRecognizer) {
         taskCell(didToggleEditState: !toggled)
-        delegate?.toggleForEditState(sender:sender)
+        delegate?.toggleForEditState(sender)
     }
     
     func toggleForButtonState(sender:UIButton) {
         taskCell(didToggleEditState: toggled)
-        delegate?.toggleForButtonState(sender: sender)
+        delegate?.toggleForButtonState(sender)
     }
 }
 

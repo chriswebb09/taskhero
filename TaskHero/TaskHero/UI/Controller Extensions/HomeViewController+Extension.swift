@@ -65,10 +65,10 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.showPopView(viewController: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
         photoPopover.containerView.addGestureRecognizer(tap)
-        photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto(sender:)), for: .touchUpInside)
+        photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
     }
     
-    func tapPickPhoto(sender:UIButton) {
+    func tapPickPhoto(_ sender:UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)
@@ -81,7 +81,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // MARK: - TaskCell
     // ====================
     
-    func toggleForButtonState(sender:UIButton) {
+    func toggleForButtonState(_ sender:UIButton) {
         print("inside toggleForButtonState")
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
@@ -92,7 +92,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     /* Kicks off cycling between taskcell editing states */
     
-    func toggleForEditState(sender:UIGestureRecognizer) {
+    func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
         dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)

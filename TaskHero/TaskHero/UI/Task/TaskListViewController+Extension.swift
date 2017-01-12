@@ -119,7 +119,7 @@ extension TaskListViewController {
     // MARK: - Cell Button Toggle Methods
     // =====================================
     
-    func toggleForButtonState(sender:UIButton) {
+    func toggleForButtonState(_ sender:UIButton) {
         let superview = sender.superview
         guard let cell = superview?.superview as? TaskCell else { return }
         let indexPath = tableView.indexPath(for: cell)
@@ -128,7 +128,7 @@ extension TaskListViewController {
     
     // Kicks off cycling between taskcell editing states
     
-    func toggleForEditState(sender:UIGestureRecognizer) {
+    func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
         editList(tableView: tableView, atIndex: tapIndex)

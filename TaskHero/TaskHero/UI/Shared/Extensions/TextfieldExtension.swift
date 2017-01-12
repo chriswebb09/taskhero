@@ -25,7 +25,7 @@ class TextFieldExtension: UITextField {
 
 extension TextFieldExtension {
     
-    func returnTextField(placeholder:String) -> TextFieldExtension {
+    func returnTextField(_ placeholder:String) -> TextFieldExtension {
         let returnTextField = TextFieldExtension()
         returnTextField.placeholder = placeholder
         returnTextField.font = Constants.signupFieldFont
@@ -36,7 +36,7 @@ extension TextFieldExtension {
         return returnTextField
     }
     
-    func emailField(placeholder:String) -> TextFieldExtension {
+    func emailField(_ placeholder:String) -> TextFieldExtension {
         let confirmEmailField = TextFieldExtension()
         confirmEmailField.placeholder = placeholder
         confirmEmailField.font = Constants.signupFieldFont

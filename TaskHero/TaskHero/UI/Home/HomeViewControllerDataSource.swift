@@ -88,7 +88,7 @@ extension HomeViewControllerDataSource {
         taskCell.delegate = viewController
         taskCell.taskDescriptionBox.delegate = viewController
         taskCell.toggled = viewController.tapped
-        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(sender:)))
+        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
     }
     
@@ -134,7 +134,7 @@ extension HomeViewControllerDataSource {
             tapCell.taskDescriptionBox.resignFirstResponder()
             tapCell.toggled = false
         }
-        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(sender:)))
+        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
         tapCell.taskCompletedView.addGestureRecognizer(tap)
         tapCell.taskCompletedView.isUserInteractionEnabled = true
     }

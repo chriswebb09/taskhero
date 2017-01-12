@@ -25,7 +25,7 @@ final class LoginView: UIView {
     }()
     
     lazy var emailField: TextFieldExtension = {
-        let emailField = TextFieldExtension().emailField(placeholder: "Enter email address")
+        let emailField = TextFieldExtension().emailField("Enter email address")
         return emailField
     }()
     
@@ -91,7 +91,7 @@ extension LoginView {
         })
     }
     
-    func setupLogin(viewController: LoginViewController) {
+    func setupLogin(_ viewController: LoginViewController) {
         layoutSubviews()
         emailField.delegate = viewController
         passwordField.delegate = viewController

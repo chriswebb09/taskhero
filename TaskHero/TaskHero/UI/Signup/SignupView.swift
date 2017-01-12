@@ -20,17 +20,17 @@ class SignupView: UIView {
     }()
     
     lazy var usernameField: TextFieldExtension = {
-        let emailField = TextFieldExtension().emailField(placeholder: "Choose a username")
+        let emailField = TextFieldExtension().emailField("Choose a username")
         return emailField
     }()
     
     lazy var emailField: TextFieldExtension = {
-        let emailField = TextFieldExtension().emailField(placeholder: "Enter email address")
+        let emailField = TextFieldExtension().emailField("Enter email address")
         return emailField
     }()
     
     lazy var confirmEmailField: TextFieldExtension = {
-        let emailField = TextFieldExtension().emailField(placeholder: "Confirm email address")
+        let emailField = TextFieldExtension().emailField("Confirm email address")
         return emailField
     }()
     

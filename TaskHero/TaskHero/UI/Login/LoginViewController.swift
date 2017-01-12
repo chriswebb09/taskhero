@@ -26,7 +26,7 @@ extension LoginViewController {
         super.viewDidLoad()
         view.addSubview(loginView)
         edgesForExtendedLayout = []
-        loginView.setupLogin(viewController:self)
+        loginView.setupLogin(self)
         navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
     }
