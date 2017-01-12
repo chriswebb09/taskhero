@@ -89,10 +89,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         dataSource.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!)
     }
     
-    func taskCell(didToggleEditState editState:Bool) {
-        //
-    }
-    
     /* Kicks off cycling between taskcell editing states */
     
     func toggleForEditState(sender:UIGestureRecognizer) {

@@ -9,7 +9,6 @@
 import UIKit
 
 final class InitialViewController: UIViewController {
-    
     let initView = InitView()
 }
 

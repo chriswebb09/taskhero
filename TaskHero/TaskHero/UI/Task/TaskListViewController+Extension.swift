@@ -123,7 +123,7 @@ extension TaskListViewController {
         let superview = sender.superview
         guard let cell = superview?.superview as? TaskCell else { return }
         let indexPath = tableView.indexPath(for: cell)
-        helpers.editList(tableView: tableView, atIndex: indexPath!)
+        editList(tableView: tableView, atIndex: indexPath!)
     }
     
     // Kicks off cycling between taskcell editing states
@@ -131,7 +131,22 @@ extension TaskListViewController {
     func toggleForEditState(sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        helpers.editList(tableView: tableView, atIndex: tapIndex)
+        editList(tableView: tableView, atIndex: tapIndex)
+    }
+    
+    
+    func editList(tableView: UITableView, atIndex:IndexPath) {
+        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+        tapCell.taskDescriptionBox.resignFirstResponder()
+        if tapCell.toggled == true {
+            var newTask = self.store.tasks[atIndex.row]
+            newTask.taskDescription = tapCell.taskDescriptionBox.text
+            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+            DispatchQueue.main.async {
+                tapCell.taskDescriptionLabel.text = newTask.taskDescription
+            }
+            tapCell.taskDescriptionBox.resignFirstResponder()
+        }
     }
 }
 

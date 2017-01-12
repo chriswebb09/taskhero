@@ -66,47 +66,6 @@ extension Helpers {
 
 extension Helpers {
     
-    public func tapEdit(tableView: UITableView, atIndex:IndexPath) {
-        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        tapCell.taskDescriptionBox.resignFirstResponder()
-        if tapCell.toggled == true {
-            var newTask = self.store.tasks[atIndex.row - 1]
-            newTask.taskDescription = tapCell.taskDescriptionBox.text
-            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-            DispatchQueue.main.async {
-                tapCell.taskDescriptionLabel.text = newTask.taskDescription
-            }
-            tapCell.taskDescriptionBox.resignFirstResponder()
-        }
-        
-    }
-    
-    public func editList(tableView: UITableView, atIndex:IndexPath) {
-        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        tapCell.taskDescriptionBox.resignFirstResponder()
-        if tapCell.toggled == true {
-            var newTask = self.store.tasks[atIndex.row]
-            newTask.taskDescription = tapCell.taskDescriptionBox.text
-            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-            DispatchQueue.main.async {
-                tapCell.taskDescriptionLabel.text = newTask.taskDescription
-            }
-            tapCell.taskDescriptionBox.resignFirstResponder()
-        }
-    }
-    
-    public func updateDescription(cell:TaskCell, for row:Int) {
-        var newTask = self.store.tasks[row - 1]
-        cell.taskDescriptionBox.text = cell.taskDescriptionBox.text
-        newTask.taskDescription = cell.taskDescriptionBox.text
-        store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-        cell.taskDescriptionLabel.text = cell.taskDescriptionBox.text
-    }
-}
-
-
-extension Helpers {
-    
     public func handleLogout() {
         do {
             UserDataStore.sharedInstance.setLoggedInKey(userState: false)

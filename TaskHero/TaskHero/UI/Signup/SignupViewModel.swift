@@ -16,5 +16,4 @@ class SignupViewModel {
     init(signup:String) {
         self.signupTitle = signup
     }
-    
 }
