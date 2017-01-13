@@ -11,15 +11,19 @@ import UIKit
 
 final class ProfileDataCell: UITableViewCell {
     
-    static let cellIdentifier = "ProfileDataCell"
-    
     // ====================================
-    // MARK: - UI Elements and cellModel
+    // MARK: - ProfileDataCell deallocated
     // ====================================
     
     deinit {
         print("ProfileDataCell deallocated")
     }
+    
+    static let cellIdentifier = "ProfileDataCell"
+    
+    // ====================================
+    // MARK: - UI Elements and cellModel
+    // ====================================
     
     lazy var dataCellModel: ProfileDataCellViewModel =  {
         var cellModel = ProfileDataCellViewModel()

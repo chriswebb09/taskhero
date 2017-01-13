@@ -10,15 +10,19 @@ import UIKit
 
 final class ProfileBannerCell: UITableViewCell {
     
+    // =================================
+    // MARK: - ProfileBanner deallocated
+    // =================================
+    
+    deinit {
+        print("ProfileBannerCell")
+    }
+    
     static let cellIdentifier = "ProfileBannerCell"
     
     // ========================
     // MARK: - UI Elements
     // ========================
-    
-    deinit {
-        print("ProfileBannerCell")
-    }
     
     lazy var bannerImage: UIImageView = {
         let imageView = UIImageView()

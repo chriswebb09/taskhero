@@ -16,6 +16,10 @@ final class APIClient {
     // TODO: Finish refactoring class, remove duplicate functionality
     // FIXME: Remove duplicate fetch task and user methods
     
+    // ================================================
+    // MARK: - Deallocate APIClient
+    // ================================================
+    
     deinit {
         print("APIClient deallocated")
     }

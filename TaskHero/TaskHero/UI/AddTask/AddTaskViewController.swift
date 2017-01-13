@@ -11,6 +11,15 @@ import Firebase
 
 final class AddTaskViewController: UIViewController  {
     
+    // =====================================================
+    // MARK: - Deallocate AddTaskViewController From Memory
+    // =====================================================
+    
+    deinit {
+        print("AddTaskViewController deallocated")
+    }
+    
+    
     // =============================
     // MARK: Properties
     // =============================

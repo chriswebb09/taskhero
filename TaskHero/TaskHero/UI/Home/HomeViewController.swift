@@ -10,6 +10,14 @@ import UIKit
 
 final class HomeViewController: UITableViewController {
     
+    // =====================================================
+    // MARK: - Deallocate HomeViewController From Memory
+    // =====================================================
+    
+    deinit {
+        print("HomeViewController deallocated")
+    }
+
     // =================================
     // MARK: Internal Properties
     // =================================

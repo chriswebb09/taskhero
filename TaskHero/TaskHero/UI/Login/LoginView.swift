@@ -10,17 +10,17 @@ import UIKit
 
 final class LoginView: UIView {
     
-    // =========================
-    // MARK: UIElements
-    // =========================
-    
-    // ==================================
-    // MARK: - Deallocation from memory
+    // =================================
+    // MARK: - LoginView deallocated
     // =================================
     
     deinit {
         print("LoginView deallocated from memory")
     }
+    
+    // =========================
+    // MARK: UIElements
+    // =========================
     
     lazy var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
