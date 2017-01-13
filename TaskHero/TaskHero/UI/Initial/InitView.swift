@@ -12,6 +12,14 @@ typealias completion = () -> Void
 
 final class InitView: UIView {
     
+    // ==================================
+    // MARK: - Deallocation from memory
+    // =================================
+    
+    deinit {
+        print("InitView deallocated")
+    }
+    
     // =============================
     // MARK: - UIElements
     // =============================

@@ -12,7 +12,6 @@ import UIKit
 final class ProfileDataCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileDataCell"
-    static let dataCellRadius = Constants.Settings.Profile.profileDataRadius
     
     // ====================================
     // MARK: - UI Elements and cellModel
@@ -59,7 +58,7 @@ extension ProfileDataCell {
     // ==========================
     
     private func configureLabels(label:UILabel) {
-        label.layer.cornerRadius = ProfileDataCell.dataCellRadius
+        label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
         label.layer.masksToBounds = true
         label.textAlignment = .center
         label.backgroundColor = UIColor.experienceBackground()

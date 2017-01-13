@@ -23,8 +23,8 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     }
     
     static let cellIdentifier = "ProfileHeaderCell"
-    var profileHeaderCellModel = ProfileHeaderCellModel()
     weak var delegate: ProfileHeaderCellDelegate?
+    var profileHeaderCellModel = ProfileHeaderCellModel()
     
     
     lazy var joinDateLabel: UILabel = {
@@ -96,23 +96,24 @@ extension ProfileHeaderCell {
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
     
+    
+    /* adds levelLabel, emailLabel, joinDateLabel, usernameLabel, profilePicture to subview */
+    /* calls configureLabel on levelLabel, emailLabel, joinDateLabel, usernameLabel */
+    /* calls configureConstraints on levelLabel, emailLabel, usernameLabel */
+    
     private func addConfigures() {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
-        
         contentView.addSubview(emailLabel)
         configureLabel(label: emailLabel)
         configureConstraints(label: emailLabel)
-        
         contentView.addSubview(joinDateLabel)
         configureLabel(label: joinDateLabel)
         configureConstraints(label: joinDateLabel)
-        
         contentView.addSubview(usernameLabel)
         configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)
-        
         contentView.addSubview(profilePicture)
     }
     

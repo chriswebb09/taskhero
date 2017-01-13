@@ -9,6 +9,7 @@
 import UIKit
 
 enum ButtonType {
+    
     case login(title:String), system(title:String, color: UIColor), tag(title:String, color:UIColor, tag: Int, index: IndexPath)
     
     fileprivate func setupLoginButton(with title:String) -> UIButton {

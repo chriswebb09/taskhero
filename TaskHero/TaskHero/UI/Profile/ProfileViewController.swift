@@ -11,13 +11,17 @@ import Firebase
 
 final class ProfileViewController: UITableViewController {
     
-    // =================================
-    // MARK: - Internal Variables
-    // =================================
+    // ================================================
+    // MARK: - Deallocation for ProfileViewController
+    // ================================================
     
     deinit {
         print("ProfileViewController deallocated")
     }
+    
+    // ==============================
+    // MARK: - Internal Variables
+    // ==============================
     
     let store = UserDataStore.sharedInstance
     
@@ -72,6 +76,8 @@ extension ProfileViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
+    
+    /* Gives an automatic dimension to tableView based on given default value for rowheight*/
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         return UITableViewAutomaticDimension

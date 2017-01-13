@@ -12,6 +12,11 @@ final class SettingsCell: UITableViewCell {
     
     static let cellIdentifier = "SettingsCell"
     
+    
+    // ==================================
+    // MARK: - Deallocation from memory
+    // =================================
+
     deinit {
         print("SettingsCell deallocated")
     }

@@ -10,6 +10,10 @@ import UIKit
 
 final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // ==================================
+    // MARK: - Deallocation from memory
+    // =================================
+    
     deinit {
         print("ProfileSettingsViewController deallocated")
     }
@@ -70,7 +74,7 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
 
 extension ProfileSettingsViewController {
     
-    @objc fileprivate func connected(sender: TagButton){
+    dynamic fileprivate func connected(sender: TagButton){
         indexTap = sender.index
         tapEdit()
     }

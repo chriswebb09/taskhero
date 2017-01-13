@@ -10,13 +10,17 @@ import UIKit
 
 final class FriendsSettingsView: UIView {
     
-    // ==========================
-    // MARK: - UI Elements
-    // ==========================
+    // ==================================
+    // MARK: - Deallocation from memory
+    // =================================
     
     deinit {
         print("FriendsSettingsView deallocated")
     }
+    
+    // ==========================
+    // MARK: - UI Elements
+    // ==========================
     
     lazy var friendsHeaderLabel: UILabel = {
         let friendsHeaderLabel = UILabel()

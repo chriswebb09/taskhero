@@ -15,16 +15,21 @@ protocol ProfileSettingsCellDelegate: class {
 final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     static let cellIdentifier = "ProfileSettingsCell"
-    
     var delegate: ProfileSettingsCellDelegate?
+    
+    // ==================================
+    // MARK: - Deallocation from memory
+    // =================================
+    
+    deinit {
+        print("ProfileSettingsCell deallocated")
+    }
+
     
     // ========================
     // MARK: - UIElements
     // ========================
     
-    deinit {
-        print("ProfileSettingsCell deallocated")
-    }
     
     lazy var profileSettingLabel: UILabel = {
         let profileLabel = UILabel()
