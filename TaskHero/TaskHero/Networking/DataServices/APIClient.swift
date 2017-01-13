@@ -17,6 +17,10 @@ final class APIClient {
     
     // FIXME: Remove duplicate fetch task and user methods
     
+    deinit {
+        print("APIClient deallocated")
+    }
+    
     // =================================
     // Firebase properties
     // =================================
@@ -73,14 +77,6 @@ extension APIClient {
     // =====================================================
     // Fetch all valid usernames in database
     // =====================================================
-    
-    public func fetchValidUsernames() {
-        validUsernames.removeAll()
-        usernameRef.observe(.childAdded, with: { snapshot in
-            self.validUsernames.append(snapshot.key)
-            self.usernameEmailDict[snapshot.key] = snapshot.value as AnyObject?
-        })
-    }
     
     public func updateUsernameList(user: User) {
         ref = FIRDatabase.database().reference()

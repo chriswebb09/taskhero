@@ -33,7 +33,6 @@ extension LoginViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        self.store.firebaseAPI.fetchValidUsernames()
     }
 }
 

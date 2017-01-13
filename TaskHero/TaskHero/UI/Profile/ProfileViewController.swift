@@ -34,9 +34,9 @@ extension ProfileViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         
-        // ================================
-        // MARK: - Register cell types
-        // ================================
+    // ================================
+    // MARK: - Register cell types
+    // ================================
         
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)

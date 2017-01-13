@@ -8,15 +8,19 @@
 
 import UIKit
 
-class AlertView: UIView {
+final class AlertView: UIView {
     
-    lazy var headBanner: UIView = {
+    deinit {
+        print("AlertView deallocated from memory")
+    }
+    
+    public lazy var headBanner: UIView = {
         let banner = UIView()
         banner.backgroundColor = UIColor.lightGray
         return banner
     }()
     
-    lazy var cancelButton: UIButton = {
+    public lazy var cancelButton: UIButton = {
         var button = ButtonType.system(title: "Cancel", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
@@ -24,7 +28,7 @@ class AlertView: UIView {
         return uiElement
     }()
     
-    lazy var doneButton: UIButton = {
+    public lazy var doneButton: UIButton = {
         var button = ButtonType.system(title: "Add", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
@@ -32,7 +36,7 @@ class AlertView: UIView {
         return uiElement
     }()
     
-    lazy var resultLabel: UILabel = {
+    public lazy var resultLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.text = "Results"
         searchLabel.textColor = UIColor.black
@@ -61,7 +65,7 @@ extension AlertView {
         backgroundColor = UIColor.white
     }
     
-    func configureConstaints(label:UILabel) {
+    fileprivate func configureConstaints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         label.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true

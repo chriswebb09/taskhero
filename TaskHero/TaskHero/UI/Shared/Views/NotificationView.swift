@@ -8,7 +8,11 @@
 
 import UIKit
 
-class NotificationView: BasePopView {
+final class NotificationView: BasePopView {
+    
+    deinit {
+        print("NotificationView deallocated from memory")
+    }
     
     lazy var doneButton: UIButton = {
         var button = ButtonType.system(title: "Okay", color: UIColor.white)
