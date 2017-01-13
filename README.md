@@ -56,5 +56,14 @@ ___
 
 <p align="center">
   <br><br>
-  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/task.jpg">
+  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/addtaskscreen.png">
 </p>
+___
+
+<h2 align="center">Settings Menu</h2>
+
+<p align="center">
+  <br><br>
+  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/settings-menu.png">
+</p>
+
