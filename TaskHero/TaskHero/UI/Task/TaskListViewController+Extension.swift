@@ -14,7 +14,7 @@ extension TaskListViewController {
     // MARK: - TaskList UI
     // =====================================================
     
-    func emptyTableViewState() {
+    public func emptyTableViewState() {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             view.addSubview(addTasksLabel)
             addTasksLabel.center = self.view.center
@@ -33,7 +33,7 @@ extension TaskListViewController {
     // MARK: - Configure
     // =====================================================
     
-    func setupTableView() {
+    public func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = false
@@ -97,7 +97,7 @@ extension TaskListViewController {
     // MARK: - Task Actions
     // ===============================
     
-    @objc fileprivate func addTaskButtonTapped() {
+    dynamic fileprivate func addTaskButtonTapped() {
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
         }

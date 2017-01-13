@@ -9,7 +9,6 @@
 import UIKit
 
 protocol ProfileHeaderModel {
-    //var user: User? { get set }
     var joinDate: String { get }
     var levelLabel: String { get }
     var profilePicture: String { get }

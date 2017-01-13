@@ -9,6 +9,11 @@
 import UIKit
 
 final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    deinit {
+        print("ProfileSettingsViewController deallocated")
+    }
+    
     let store = UserDataStore.sharedInstance
     let profileSettingsView = ProfileSettingsView()
     var tapped: Bool = false

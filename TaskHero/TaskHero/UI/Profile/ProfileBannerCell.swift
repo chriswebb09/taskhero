@@ -16,6 +16,10 @@ final class ProfileBannerCell: UITableViewCell {
     // MARK: - UI Elements
     // ========================
     
+    deinit {
+        print("ProfileBannerCell")
+    }
+    
     lazy var bannerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true

@@ -9,6 +9,11 @@
 import UIKit
 
 final class ProfileSettingsViewControllerDataSource {
+    
+    deinit {
+        print("ProfileSettingsViewControllerDataSource deallocated")
+    }
+    
     let store = UserDataStore.sharedInstance
 }
 

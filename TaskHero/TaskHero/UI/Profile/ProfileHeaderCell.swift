@@ -18,6 +18,10 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     // MARK: - Internal Variables
     // =================================
     
+    deinit {
+        print("ProfileHeaderCell deallocated")
+    }
+    
     static let cellIdentifier = "ProfileHeaderCell"
     var profileHeaderCellModel = ProfileHeaderCellModel()
     weak var delegate: ProfileHeaderCellDelegate?

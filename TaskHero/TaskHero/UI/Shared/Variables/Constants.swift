@@ -26,7 +26,7 @@ struct Constants {
         static let mainOffset:CGFloat = 30
         static let buttonHeight:CGFloat = 0.07
         static let cellButtonHeight:CGFloat = 0.03
-        static let saveButtonHeight:CGFloat = 2
+        static let saveButtonHeight:CGFloat = 0.05
         // static let buttonHeight = CGFloat(0.009)
         static let topOffset:CGFloat = 10
         static let bottomOffset:CGFloat = -10

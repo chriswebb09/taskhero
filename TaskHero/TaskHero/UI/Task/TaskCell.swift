@@ -19,6 +19,10 @@ final class TaskCell: UITableViewCell {
     // MARK: - Properties
     // ===============================
     
+    deinit {
+        print("Task cell deallocated")
+    }
+    
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
     var toggled:Bool = false
@@ -107,7 +111,7 @@ extension TaskCell {
     // ===============================
     // MARK: - Reuse
     // ===============================
-    
+  
     override func prepareForReuse() {
         super.prepareForReuse()
         taskNameLabel.text = ""

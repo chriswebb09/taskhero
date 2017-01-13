@@ -15,6 +15,10 @@ final class ProfileViewController: UITableViewController {
     // MARK: - Internal Variables
     // =================================
     
+    deinit {
+        print("ProfileViewController deallocated")
+    }
+    
     let store = UserDataStore.sharedInstance
     
 }

@@ -89,7 +89,7 @@ extension TaskCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.negativeOffset).isActive = true
         view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.mainOffset).isActive = true
-        view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Dimension.cellButtonHeight).isActive = true
+        view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Dimension.saveButtonHeight).isActive = true
     }
     
     func setupConstraints() {
@@ -102,7 +102,8 @@ extension TaskCell {
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
         configureDesription(view: taskDescriptionLabel)
         configureElements(view: taskCompletedView)
-        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.mainHeight).isActive = true
+        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth * 0.5).isActive = true
+        
         configureElements(view: saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
         configureDesription(view: taskDescriptionBox)

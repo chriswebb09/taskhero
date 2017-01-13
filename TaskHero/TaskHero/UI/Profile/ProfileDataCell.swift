@@ -18,6 +18,10 @@ final class ProfileDataCell: UITableViewCell {
     // MARK: - UI Elements and cellModel
     // ====================================
     
+    deinit {
+        print("ProfileDataCell deallocated")
+    }
+    
     lazy var dataCellModel: ProfileDataCellViewModel =  {
         var cellModel = ProfileDataCellViewModel()
         return cellModel

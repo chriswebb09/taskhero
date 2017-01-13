@@ -19,7 +19,7 @@ enum ButtonType {
         return button
     }
     
-    public func configureButton(button:UIButton) {
+    fileprivate func configureButton(button:UIButton) {
         button.layer.cornerRadius = 2
         button.layer.borderWidth = 1
     }
@@ -42,7 +42,7 @@ enum ButtonType {
         return button
     }
     
-    var newButton: UIButton {
+    public var newButton: UIButton {
         switch self {
         case let .login(title):
             return setupLoginButton(with: title)
@@ -53,7 +53,7 @@ enum ButtonType {
         }
     }
     
-    var tagButton: TagButton {
+    public var tagButton: TagButton {
         switch self {
         case let .tag(title: title, color: color, tag: tag, index:index):
             return setupTagButton(with: title, color: color, tag: tag, index:index)
@@ -63,7 +63,7 @@ enum ButtonType {
     }
 }
 
-class TagButton: UIButton {
+final class TagButton: UIButton {
     var buttonTag: Int?
     var index: IndexPath?
 }

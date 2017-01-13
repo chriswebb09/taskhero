@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UserDataStore {
+final class UserDataStore {
     private static let _shared = UserDataStore()
     private init() { }
     
@@ -18,18 +18,20 @@ class UserDataStore {
     }
     
     let defaults = UserDefaults.standard
-    let firebaseAPI = APIClient()
-    var currentUser: User!
+    
+    public let firebaseAPI = APIClient()
+    public var currentUser: User!
+    public var currentUserString: String!
+    public var tasks = [Task]()
+    
     var profilePicture: UIImage!
-    var currentUserString: String!
     var validUsernames = [String]()
-    var tasks = [Task]()
 }
 
 
 extension UserDataStore {
     
-    func setupStore() {
+    public func setupStore() {
         tasks.removeAll()
         if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
     }

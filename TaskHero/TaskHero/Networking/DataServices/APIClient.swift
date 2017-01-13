@@ -11,7 +11,7 @@ import Firebase
 typealias TaskCompletion = ([Task]) -> Void
 typealias UserCompletion = (User) -> Void
 
-class APIClient {
+final class APIClient {
     
     // TODO: Finish refactoring class, remove duplicate functionality
     
@@ -56,13 +56,13 @@ extension APIClient {
     // MARK:- Initial firebase database reference properties
     // =====================================================
     
-    func setupRefs() {
+    public func setupRefs() {
         guard let userID = FIRAuth.auth()?.currentUser?.uid else { return }
         userRef = dbRef.child("Users").child(userID)
         tasksRef = dbRef.child("Users").child(userID).child("Tasks")
     }
     
-    func removeTask(ref:String, taskID: String) {
+    public func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
     }
 }
@@ -74,7 +74,7 @@ extension APIClient {
     // Fetch all valid usernames in database
     // =====================================================
     
-    func fetchValidUsernames() {
+    public func fetchValidUsernames() {
         validUsernames.removeAll()
         usernameRef.observe(.childAdded, with: { snapshot in
             self.validUsernames.append(snapshot.key)
@@ -82,7 +82,7 @@ extension APIClient {
         })
     }
     
-    func updateUsernameList(user: User) {
+    public func updateUsernameList(user: User) {
         ref = FIRDatabase.database().reference()
         let usernameRefs = ref.child("Usernames")
         let usernameValues = [user.username:user.email] as [String : Any] as NSDictionary
@@ -124,7 +124,7 @@ extension APIClient {
         })
     }
     
-    func fetchUserData(completion: @escaping UserCompletion) {
+    public func fetchUserData(completion: @escaping UserCompletion) {
         let database = FIRDatabase.database()
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(userID!)/LastOnline")
@@ -166,7 +166,7 @@ extension APIClient {
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
     // =============================================================================================================
     
-    func addTasks(task:Task) {
+    public func addTasks(task:Task) {
         tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
         tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskName)").setValue(task.taskName)
         tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskDescription)").setValue(task.taskDescription)
@@ -180,7 +180,7 @@ extension APIClient {
     // Removes task from database - called on swift left in tableview
     // ========================================================================
     
-    func updateTask(ref:String, taskID: String, task:Task) {
+    public func updateTask(ref:String, taskID: String, task:Task) {
         let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
                                       Constants.API.Task.taskDescription: task.taskDescription ,
                                       Constants.API.Task.taskCreated: task.taskCreated ,
@@ -197,7 +197,7 @@ extension APIClient {
     // Updates user profile data in database
     // ==============================================
     
-    func updateUserProfile(userID: String, user:User, tasks:[Task]) {
+    public func updateUserProfile(userID: String, user:User, tasks:[Task]) {
         userRef = dbRef.child("Users")
         let userData: NSDictionary = [Constants.API.User.email: user.email,
                                       Constants.API.User.firstName: user.firstName ?? " ",
@@ -220,7 +220,7 @@ extension APIClient {
         }
     }
     
-    func registerUser(user:User) {
+    public func registerUser(user:User) {
         self.userRef = dbRef.child("Users").child(user.uid)
         updateUsernameList(user: user)
         let values: NSDictionary = [Constants.API.User.email: user.email,

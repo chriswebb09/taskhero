@@ -9,6 +9,19 @@
 import UIKit
 
 final class SettingsViewController: UITableViewController {
+    
+    // ==================================
+    // MARK: - Deallocation from memory
+    // =================================
+    
+    deinit {
+        print("SettingsViewController deallocated")
+    }
+    
+    // ==============================
+    // MARK: - Properties
+    // ==============================
+    
     let applicationSettings = ["Notifications"]
     let userSettings = ["Edit Profile", "Friends"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
