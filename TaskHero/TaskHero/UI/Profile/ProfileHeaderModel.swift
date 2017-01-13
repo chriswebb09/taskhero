@@ -23,8 +23,7 @@ struct ProfileHeaderCellModel {
     // ================================
     
     let store = UserDataStore.sharedInstance
-    
-    //internal var user: User?
+
     internal var emailLabel: String
     internal var usernameLabel: String
     internal var profilePicture: String

@@ -14,8 +14,12 @@ final class LoginView: UIView {
     // MARK: UIElements
     // =========================
     
+    // ==================================
+    // MARK: - Deallocation from memory
+    // =================================
+    
     deinit {
-        print("loginview deallocated")
+        print("LoginView deallocated from memory")
     }
     
     lazy var logoImageView: UIImageView = {
@@ -91,6 +95,8 @@ extension LoginView {
         })
     }
     
+    
+    /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
     func setupLogin(_ viewController: LoginViewController) {
         layoutSubviews()
         emailField.delegate = viewController
