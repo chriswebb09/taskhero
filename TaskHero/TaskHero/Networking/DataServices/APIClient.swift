@@ -14,7 +14,6 @@ typealias UserCompletion = (User) -> Void
 final class APIClient {
     
     // TODO: Finish refactoring class, remove duplicate functionality
-    
     // FIXME: Remove duplicate fetch task and user methods
     
     deinit {
@@ -98,7 +97,7 @@ extension APIClient {
     // Grab tasks from user profile in realtime user database
     // =========================================================================
     
-    func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
+    public func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
         var taskList = taskList
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
@@ -217,7 +216,7 @@ extension APIClient {
     }
     
     public func registerUser(user:User) {
-        self.userRef = dbRef.child("Users").child(user.uid)
+        userRef = dbRef.child("Users").child(user.uid)
         updateUsernameList(user: user)
         let values: NSDictionary = [Constants.API.User.email: user.email,
                                     Constants.API.User.firstName: user.firstName ?? " ",
