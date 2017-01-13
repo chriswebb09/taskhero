@@ -56,7 +56,7 @@ ___
 
 <p align="center">
   <br><br>
-  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/task.jpg">
+  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/addtaskscreen.png">
 </p>
 ___
 
