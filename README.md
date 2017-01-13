@@ -2,14 +2,13 @@
 
 <h2>Work in progress </h2>
 
-#### Currently waiting for review in App Store to patch bug with SignupViewController.
-
 <p> Currently in the process a overhualing the application architecture to MVVM and I'm overhauling the whole API setup. Current examples of redundant code in the APIClient are in the process of being refactored out. Currently overhauling how views are laid out. Redundant constraints and UI properties will be DRY when the process is complete. Thanks.  </p>
 
 
 <h2>Implementing</h2>
 
-<ul>
+<ul> 
+   <li>Fix cell textview delegate method inside TaskCells so that users can edit tasks instead of having to create new ones</li> 
    <li>Add tests to LoginViewController</li>
    <li>Persist user data with Realm.</li>
 </ul>
