@@ -148,9 +148,9 @@ extension ProfileHeaderCell {
      - called in ParentViewController - in this case that is either ProfileViewController or HomeViewController
      */
     
-    public func configureCell(autoHeight: UIViewAutoresizing) {
+    func configureCell(autoHeight: UIViewAutoresizing, gesture:UIGestureRecognizer) {
         contentView.autoresizingMask = autoHeight
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         emailLabel.text = profileHeaderCellModel.emailLabel
@@ -160,7 +160,7 @@ extension ProfileHeaderCell {
         joinDateLabel.text = profileHeaderCellModel.joinDate
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
-        profilePicture.addGestureRecognizer(tap)
+        profilePicture.addGestureRecognizer(gesture)
         layoutSubviews()
         layoutIfNeeded()
     }
@@ -172,7 +172,7 @@ extension ProfileHeaderCell: ProfileHeaderCellDelegate {
     
     // Implementation of delegate method - May be deleted either in HomeViewController or ProfileViewController because functionality is redundant
     
-    internal func profilePictureTapped() {
+   public func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")
         delegate?.profilePictureTapped()
     }

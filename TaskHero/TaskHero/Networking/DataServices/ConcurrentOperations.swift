@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ConcurrentOperation: Operation {
+class ConcurrentOperation: Operation {
     
     enum State: String {
         case isReady, isExecuting, isFinished
@@ -30,7 +30,7 @@ public class ConcurrentOperation: Operation {
     }
 }
 
-public extension ConcurrentOperation {
+extension ConcurrentOperation {
     
     override public var isReady: Bool {
         return super.isReady && state == .isReady

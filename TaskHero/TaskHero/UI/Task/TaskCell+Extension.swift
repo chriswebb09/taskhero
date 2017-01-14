@@ -125,7 +125,7 @@ extension TaskCell {
 
     /* methods used in VC to setup cell with data */
     
-    public func configureCell(taskVM:TaskCellViewModel) {
+    func configureCell(taskVM:TaskCellViewModel) {
         layoutSubviews()
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"

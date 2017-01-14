@@ -93,7 +93,9 @@ extension ProfileViewController {
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
-            headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileHeaderCell.profilePictureTapped))
+
+            headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
             return headerCell
             
             // Beyond that it's all ProfileDataCells

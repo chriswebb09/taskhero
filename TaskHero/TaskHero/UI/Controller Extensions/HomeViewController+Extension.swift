@@ -61,7 +61,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // MARK: - Popover
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
     
-    func profilePictureTapped() {
+    public func profilePictureTapped() {
         photoPopover.popView.isHidden = false
         photoPopover.showPopView(viewController: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
@@ -83,7 +83,7 @@ extension HomeViewController {
     // MARK: - TaskCell
     /* Method toggles UI states from editing to not editing when save is pressed */
     
-    public func toggleForButtonState(_ sender:UIButton) {
+    func toggleForButtonState(_ sender:UIButton) {
         print("inside toggleForButtonState")
         print("-----------------------------")
         let superview = sender.superview
@@ -94,7 +94,7 @@ extension HomeViewController {
     
     /* Kicks off cycling between taskcell editing states */
     
-    public func toggleForEditState(_ sender:UIGestureRecognizer) {
+    func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
         dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)

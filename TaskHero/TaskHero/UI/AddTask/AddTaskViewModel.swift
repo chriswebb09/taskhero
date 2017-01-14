@@ -9,7 +9,7 @@
 import UIKit
 
 
-struct AddTaskViewModel {
+public struct AddTaskViewModel {
     
     // TODO: - Incomplete needs to accurate data - continue refactoring data out of vc
     

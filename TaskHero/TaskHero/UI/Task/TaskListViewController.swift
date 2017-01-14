@@ -51,9 +51,9 @@ extension TaskListViewController {
     /* Does setupfor tableview/emptytable view and navbar */
     
     func initializeBackgroundUI() {
-        emptyTableViewState()
-        setupTableView()
-        setupNavItems()
+        emptyTableViewState(addTaskLabel: addTasksLabel)
+        setupTableView(tableView:tableView)
+        setupNavItems(navController:navigationController)
     }
 }
 

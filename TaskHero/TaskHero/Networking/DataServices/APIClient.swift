@@ -55,13 +55,13 @@ extension APIClient {
     
     // MARK:- Initial firebase database reference properties
     
-    public func setupRefs() {
+   func setupRefs() {
         guard let userID = FIRAuth.auth()?.currentUser?.uid else { return }
         userRef = dbRef.child("Users").child(userID)
         tasksRef = dbRef.child("Users").child(userID).child("Tasks")
     }
     
-    public func removeTask(ref:String, taskID: String) {
+    func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
     }
 }
@@ -89,7 +89,7 @@ extension APIClient {
     
     // Grab tasks from user profile in realtime user database
     
-    public func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
+    func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
         var taskList = taskList
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
@@ -111,7 +111,7 @@ extension APIClient {
         })
     }
     
-    public func fetchUserData(completion: @escaping UserCompletion) {
+    func fetchUserData(completion: @escaping UserCompletion) {
         let database = FIRDatabase.database()
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(userID!)/LastOnline")
@@ -150,7 +150,7 @@ extension APIClient {
     
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
     
-    public func addTasks(task:Task) {
+    func addTasks(task:Task) {
         tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
         tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskName)").setValue(task.taskName)
         tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskDescription)").setValue(task.taskDescription)
@@ -162,7 +162,7 @@ extension APIClient {
     
     // Removes task from database - called on swift left in tableview
     
-    public func updateTask(ref:String, taskID: String, task:Task) {
+    func updateTask(ref:String, taskID: String, task:Task) {
         let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
                                       Constants.API.Task.taskDescription: task.taskDescription ,
                                       Constants.API.Task.taskCreated: task.taskCreated ,
@@ -177,7 +177,7 @@ extension APIClient {
     
     // Updates user profile data in database
     
-    public func updateUserProfile(userID: String, user:User, tasks:[Task]) {
+    func updateUserProfile(userID: String, user:User, tasks:[Task]) {
         userRef = dbRef.child("Users")
         let userData: NSDictionary = [Constants.API.User.email: user.email,
                                       Constants.API.User.firstName: user.firstName ?? " ",
@@ -200,7 +200,7 @@ extension APIClient {
         }
     }
     
-    public func registerUser(user:User) {
+    func registerUser(user:User) {
         userRef = dbRef.child("Users").child(user.uid)
         updateUsernameList(user: user)
         let values: NSDictionary = [Constants.API.User.email: user.email,

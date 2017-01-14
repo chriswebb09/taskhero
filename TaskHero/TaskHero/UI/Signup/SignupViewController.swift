@@ -88,7 +88,8 @@ extension SignupViewController {
                         return
                     }
                     if let uid = FIRAuth.auth()?.currentUser?.uid {
-                        self.setupUser(uid: uid, username: username, email: email)
+                        var newUser = self.createUser(uid: uid, username: username, email: email)
+                        self.setupUser(user: newUser)
                     }
                     self.helpers.loadTabBar()
                 }
@@ -105,12 +106,11 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    func setupUser(uid: String, username:String, email:String) {
-        let newUser = createUser(uid:uid, username: username, email: email)
-        store.firebaseAPI.registerUser(user: newUser)
+    func setupUser(user:User) {
+        store.firebaseAPI.registerUser(user: user)
         store.currentUserString = FIRAuth.auth()?.currentUser?.uid
         store.firebaseAPI.setupRefs()
-        store.currentUser = newUser
+        store.currentUser = user
     }
     
     func createUser(uid: String, username:String, email:String) -> User {

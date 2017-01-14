@@ -13,7 +13,7 @@ extension SettingsViewController {
     
     // MARK: - Switch between segments
     
-    func changeView(sender: UISegmentedControl) {
+   func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             settings = userSettings

@@ -12,7 +12,7 @@ extension TaskListViewController {
     
     // MARK: - TaskList UI
     
-    public func emptyTableViewState() {
+    func emptyTableViewState(addTaskLabel:UILabel) {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             view.addSubview(addTasksLabel)
             addTasksLabel.center = self.view.center
@@ -33,7 +33,7 @@ extension TaskListViewController {
     
     // MARK: - Configure
     
-    public func setupTableView() {
+    func setupTableView(tableView: UITableView) {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = false
@@ -64,8 +64,8 @@ extension TaskListViewController {
     
     // MARK: - Setup navbar
     
-    func setupNavItems() {
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
+    func setupNavItems(navController:UINavigationController?) {
+        navController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))

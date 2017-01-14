@@ -114,9 +114,9 @@ extension ProfileDataCell {
 
 extension ProfileDataCell {
     
-    // Public configureCell method - called in ParentViewController - in this case ProfileViewController
+    // configureCell method - called in ParentViewController - in this case ProfileViewController
     
-    public func configureCell() {
+    func configureCell() {
         levelLabel.text = "Level: \(dataCellModel.level)"
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"
         tasksCompletedLabel.text = "Tasks Completed: \(String(describing: dataCellModel.tasksCompleted))"

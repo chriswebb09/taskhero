@@ -93,7 +93,7 @@ extension LoginView {
 extension LoginView {
     
     /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
-    public func setupLogin(_ viewController: LoginViewController) {
+    func setupLogin(_ viewController: LoginViewController) {
         layoutSubviews()
         emailField.delegate = viewController
         passwordField.delegate = viewController
@@ -156,7 +156,7 @@ extension LoginView {
     
     // MARK: - Animation
     
-    public func textFieldAnimation() {
+    func textFieldAnimation() {
         UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.emailField.layer.borderWidth = 1.2

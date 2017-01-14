@@ -79,7 +79,9 @@ extension HomeViewControllerDataSource {
     func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
         headerCell.delegate = viewController
         headerCell.emailLabel.isHidden = true
-        headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileHeaderCell.profilePictureTapped))
+
+        headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
         
     }
     
@@ -105,7 +107,7 @@ extension HomeViewControllerDataSource {
 extension HomeViewControllerDataSource {
     /* Deletes task at indexPath.row - 1 - subtraction because TaskCells are below the profileHeader cell */
     
-    public func deleteTask(indexPath: IndexPath, tableView:UITableView) {
+    func deleteTask(indexPath: IndexPath, tableView:UITableView) {
         DispatchQueue.global(qos: .default).async {
             let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
             if let tasks = self.store.currentUser.tasks {
@@ -125,7 +127,7 @@ extension HomeViewControllerDataSource {
     
     // Selector method for taskCompletedView and SaveButton in TaskCell - cycles between them depending on the state to either edit or save
     
-    public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
+    func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         if tapCell.toggled == false {
             var newTask = self.store.tasks[atIndex.row - 1]

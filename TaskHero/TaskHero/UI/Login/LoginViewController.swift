@@ -77,6 +77,10 @@ extension LoginViewController: UITextFieldDelegate {
 
 extension LoginViewController {
     
+    func handleTextFields() {
+        
+    }
+    
     func handleLogin() {
         checkForValidEmailInput()
         view.endEditing(true)
@@ -115,7 +119,8 @@ extension LoginViewController {
                 
                 DispatchQueue.main.async {
                     self.loadingView.hideActivityIndicator(viewController: self)
-                    self.setupTabBar()
+                    let tabBar = UITabBarController()
+                    self.setupTabBar(tabBar: tabBar)
                 }
             }
         }
@@ -125,8 +130,8 @@ extension LoginViewController {
 extension LoginViewController {
     // MARK: - Load TabbarController
     
-    fileprivate func setupTabBar() {
-        let tabBar = TabBarController()
+    fileprivate func setupTabBar(tabBar:UITabBarController) {
+       // let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
     }
@@ -168,7 +173,7 @@ extension LoginViewController {
     
     // selector method that Pushes SignupViewController on button tap
     
-    public func signupButtonTapped() {
+    func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     

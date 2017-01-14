@@ -68,7 +68,7 @@ extension ProfileSettingsCell {
     
     // MARK: - Configure Cell Methods
     
-    public func configureCell(setting:String) {
+    func configureCell(setting:String) {
         layoutSubviews()
         profileSettingLabel.text = setting
         if setting.contains("N/A") { profileSettingLabel.text = "FirstName LastName" }

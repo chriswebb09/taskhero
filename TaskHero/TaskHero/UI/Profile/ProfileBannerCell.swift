@@ -54,7 +54,7 @@ extension ProfileBannerCell {
     
     // Calls all methods that setup the subviews within the contentView and cell
     
-    public func configureCell() {
+    func configureCell() {
         layoutSubviews()
         isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero

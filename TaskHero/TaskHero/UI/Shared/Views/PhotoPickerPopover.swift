@@ -33,7 +33,7 @@ extension PhotoPickerPopover {
     
     // MARK: - Behavior methods
     
-    public override func showPopView(viewController: UIViewController) {
+    override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
         popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.35, width:UIScreen.main.bounds.width * 0.75, height:UIScreen.main.bounds.height * 0.35)
         popView.center = CGPoint(x: UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.4)

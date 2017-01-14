@@ -18,7 +18,7 @@ final class AddTaskView: UIView {
     
     // MARK: UI Elements
     
-    lazy var taskNameLabel: UILabel = {
+    public lazy var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
@@ -28,7 +28,7 @@ final class AddTaskView: UIView {
         return taskNameLabel
     }()
     
-    lazy var taskNameField: TextFieldExtension = {
+    public lazy var taskNameField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
         taskNameField.placeholder = "Task name"
         taskNameField.font = Constants.signupFieldFont
@@ -38,7 +38,7 @@ final class AddTaskView: UIView {
         return taskNameField
     }()
     
-    lazy var taskDescriptionBox: UITextView = {
+    public lazy var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
         taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
@@ -48,7 +48,7 @@ final class AddTaskView: UIView {
         return taskDescriptionBox
     }()
     
-    lazy var addTaskButton: UIButton = {
+    public lazy var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor

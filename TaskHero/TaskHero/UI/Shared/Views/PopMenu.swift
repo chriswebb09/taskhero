@@ -16,7 +16,8 @@ class PopMenu: BasePopoverAlert {
 }
 
 extension PopMenu {
-    public func showPopView(viewController: UIViewController, pick: UIPickerView?) {
+    
+    func showPopView(viewController: UIViewController, pick: UIPickerView?) {
         super.showPopView(viewController: viewController)
         popView.frame =  CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.7, width:UIScreen.main.bounds.width * 0.9, height:UIScreen.main.bounds.height * 0.4)
         popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY * 0.8)

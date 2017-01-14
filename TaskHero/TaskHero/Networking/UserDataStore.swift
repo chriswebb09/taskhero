@@ -29,7 +29,7 @@ final class UserDataStore {
 
 extension UserDataStore {
     
-    public func setupStore() {
+    func setupStore() {
         tasks.removeAll()
         if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
     }
@@ -40,12 +40,12 @@ extension UserDataStore {
     // Update currentUser score when user completes task
     // ===========================================================
     
-    public func updateUserScore() {
+    func updateUserScore() {
         currentUser.experiencePoints += 1
         currentUser.numberOfTasksCompleted += 1
     }
     
-    public func hasLoggedIn() {
+    func hasLoggedIn() {
         let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
         let user = defaults.data(forKey: "currentUser")
         if hasLoggedIn {
@@ -54,17 +54,17 @@ extension UserDataStore {
         }
     }
     
-    public func setLoggedInKey(userState:Bool) {
+    func setLoggedInKey(userState:Bool) {
         defaults.set(userState, forKey: "hasLoggedIn")
     }
     
-    public func setUserData(user: User) {
+    func setUserData(user: User) {
         defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
         defaults.synchronize()
     }
     
     
-    public func logout() {
+    func logout() {
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.removeObject(forKey: "currentUser")
         defaults.removeObject(forKey: "UID")
