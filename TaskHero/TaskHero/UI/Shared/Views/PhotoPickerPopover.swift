@@ -33,15 +33,23 @@ extension PhotoPickerPopover {
     
     // MARK: - Behavior methods
     
-    override func showPopView(viewController: UIViewController) {
-        super.showPopView(viewController: viewController)
-        popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.35, width:UIScreen.main.bounds.width * 0.75, height:UIScreen.main.bounds.height * 0.35)
-        popView.center = CGPoint(x: UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.4)
+    func popViewSettings() {
         popView.layer.borderColor = UIColor.black.cgColor
         popView.layer.borderWidth = 1
         popView.clipsToBounds = true
         popView.isOpaque = true
         popView.layer.opacity = 1
+    }
+    
+    func popViewCentered() {
+        popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.35, width:UIScreen.main.bounds.width * 0.75, height:UIScreen.main.bounds.height * 0.35)
+        popView.center = CGPoint(x: UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.4)
+    }
+    
+    override func showPopView(viewController: UIViewController) {
+        super.showPopView(viewController: viewController)
+        popViewCentered()
+        popViewSettings()
         viewController.view.addSubview(containerView)
         viewController.view.addSubview(popView)
     }
