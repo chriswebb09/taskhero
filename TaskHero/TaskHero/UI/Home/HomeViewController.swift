@@ -46,7 +46,8 @@ extension HomeViewController: UINavigationControllerDelegate {
         addNavItemsToController()
     }
     
-    /* Before view appears fetches tasks user data
+    /* 
+     Before view appears fetches tasks user data
      - using helpers.getData method -
      for current user, if currentUser.tasks is not nil,
      it removes tasks from currentUser - regardless it then
@@ -59,7 +60,8 @@ extension HomeViewController: UINavigationControllerDelegate {
         helpers.getData(tableView: tableView)
     }
     
-    /* Removes reference to database - necessary to prevent duplicate task cells from loading when
+    /* 
+     Removes reference to database - necessary to prevent duplicate task cells from loading when
      view will appears is called again. Called inside helpers class
      */
     
