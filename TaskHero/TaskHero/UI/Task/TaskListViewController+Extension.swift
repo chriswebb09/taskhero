@@ -28,7 +28,6 @@ extension TaskListViewController {
     }
 }
 
-
 extension TaskListViewController {
     
     // MARK: - Configure
@@ -59,7 +58,6 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     }
 }
 
-
 extension TaskListViewController {
     
     // MARK: - Setup navbar
@@ -72,9 +70,7 @@ extension TaskListViewController {
     }
 }
 
-
 extension TaskListViewController {
-    
     // MARK: - Button methods
     
     func logoutButtonPressed() {
@@ -86,7 +82,6 @@ extension TaskListViewController {
         }
     }
 }
-
 
 extension TaskListViewController {
     
@@ -138,7 +133,3 @@ extension TaskListViewController {
         tapCell.taskCompletedView.isUserInteractionEnabled = true
     }
 }
-
-
-
-

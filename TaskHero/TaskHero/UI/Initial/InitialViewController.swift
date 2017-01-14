@@ -9,13 +9,11 @@
 import UIKit
 
 final class InitialViewController: UIViewController {
-    
     // MARK: - Deallocation from memory
     
     deinit {
         print("InitialViewController deallocated from memory")
     }
-    
     let initView = InitView()
 }
 

@@ -42,12 +42,9 @@ extension TaskListViewController {
         initializeBackgroundUI()
         tableView.reloadData()
     }
-    
 }
 
-
 extension TaskListViewController {
-
     /* Does setupfor tableview/emptytable view and navbar */
     
     func initializeBackgroundUI() {
@@ -57,9 +54,7 @@ extension TaskListViewController {
     }
 }
 
-
 extension TaskListViewController {
-    
     // FIXME: - Refactor ASAP
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,7 +90,6 @@ extension TaskListViewController {
     }
 }
 
-
 extension TaskListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -120,5 +114,3 @@ extension TaskListViewController {
         }
     }
 }
-
-

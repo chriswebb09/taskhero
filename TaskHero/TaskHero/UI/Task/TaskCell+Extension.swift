@@ -38,6 +38,9 @@ extension TaskCell: Toggable {
             self.taskCompletedView.isUserInteractionEnabled = true
         }
     }
+}
+
+extension TaskCell {
     
     /* taskcompletedview delegate method */
     
@@ -104,14 +107,22 @@ extension TaskCell {
         element.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Dimension.saveButtonHeight).isActive = true
     }
     
-    func setupConstraints() {
+    func addTaskNameLabel() {
         configureView(view: taskNameLabel)
         print(contentView.frame.height * 0.2)
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
+    }
+    
+    func addTaskDueLabel() {
         configureView(view: taskDueLabel)
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
+    }
+    
+    func setupConstraints() {
+        addTaskNameLabel()
+        addTaskDueLabel()
         setupDescriptionElements(element: taskDescriptionLabel)
         setupEditElements(element: taskCompletedView)
         taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth * 0.5).isActive = true
@@ -122,7 +133,7 @@ extension TaskCell {
 }
 
 extension TaskCell {
-
+    
     /* methods used in VC to setup cell with data */
     
     func configureCell(taskVM:TaskCellViewModel) {
