@@ -59,7 +59,6 @@ final class LoginView: UIView {
     }()
 }
 
-
 extension LoginView {
     // MARK: Initialization
     
@@ -102,9 +101,7 @@ extension LoginView {
         viewController.view.addGestureRecognizer(tap)
         loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
     }
-    
 }
-
 
 extension LoginView {
     
@@ -116,39 +113,71 @@ extension LoginView {
         view.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
+}
+
+
+extension LoginView {
     
-    fileprivate func setupConstraints() {
+    private func setupLogoImage() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
+    }
+    
+    private func setupEmailField() {
         configure(view: emailField)
         emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+    }
+    
+    private func setupPassword() {
         configure(view: passwordField)
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         passwordField.isSecureTextEntry = true
+    }
+    
+    private func setupLoginButton() {
         configure(view: loginButton)
         loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+    }
+    
+    private func setupViewDivider() {
         addSubview(viewDivider)
         viewDivider.translatesAutoresizingMaskIntoConstraints = false
         viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.dividerWidth).isActive = true
         viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true
         viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+    }
+    
+    private func setupRegisterLabel() {
         addSubview(registerLabel)
         registerLabel.translatesAutoresizingMaskIntoConstraints = false
         registerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         registerLabel.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         registerLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
+    }
+    
+    private func setupSignupButton() {
         addSubview(signupButton)
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         signupButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
+    }
+    
+    fileprivate func setupConstraints() {
+        setupLogoImage()
+        setupEmailField()
+        setupPassword()
+        setupLoginButton()
+        setupViewDivider()
+        setupRegisterLabel()
+        setupSignupButton()
     }
 }
 

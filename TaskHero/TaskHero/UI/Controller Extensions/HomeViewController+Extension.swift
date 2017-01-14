@@ -32,6 +32,9 @@ extension HomeViewController {
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
+}
+
+extension HomeViewController {
     
     // MARK: - Nav Items
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
@@ -42,7 +45,6 @@ extension HomeViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
 }
-
 
 // Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
 
@@ -68,6 +70,10 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.containerView.addGestureRecognizer(tap)
         photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
     }
+    
+}
+
+extension HomeViewController {
     
     /* Hides popover view when operation has ended. */
     

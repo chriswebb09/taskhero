@@ -16,7 +16,7 @@ protocol CellMake {
     func configure(indexPath: IndexPath, cellType: HomeCellType, tableView:UITableView) -> UITableViewCell
 }
 
-class HomeViewControllerDataSource {
+final class HomeViewControllerDataSource {
     /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
     
     let store = UserDataStore.sharedInstance
@@ -105,6 +105,7 @@ extension HomeViewControllerDataSource {
 }
 
 extension HomeViewControllerDataSource {
+    
     /* Deletes task at indexPath.row - 1 - subtraction because TaskCells are below the profileHeader cell */
     
     func deleteTask(indexPath: IndexPath, tableView:UITableView) {
@@ -125,6 +126,10 @@ extension HomeViewControllerDataSource {
         print(self.store.tasks)
     }
     
+}
+
+extension HomeViewControllerDataSource {
+
     // Selector method for taskCompletedView and SaveButton in TaskCell - cycles between them depending on the state to either edit or save
     
     func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {

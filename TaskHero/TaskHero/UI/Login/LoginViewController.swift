@@ -52,6 +52,26 @@ extension LoginViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     
+    // Adds UITextField delegates to self(LoginViewController)
+    
+    func setupDelegates() {
+        loginView.emailField.delegate = self
+        loginView.passwordField.delegate = self
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // selector method that Pushes SignupViewController on button tap
+    
+    public func signupButtonTapped() {
+        navigationController?.pushViewController(SignupViewController(), animated: false)
+    }
+}
+
+extension LoginViewController {
+    
     // MARK: - Login Method Extension
     
     /*
@@ -65,21 +85,6 @@ extension LoginViewController: UITextFieldDelegate {
      switch statement to return proper error message
      - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
      */
-    
-    
-    // Adds UITextField delegates to self(LoginViewController)
-    
-    func setupDelegates() {
-        loginView.emailField.delegate = self
-        loginView.passwordField.delegate = self
-    }
-}
-
-extension LoginViewController {
-    
-    func handleTextFields() {
-        
-    }
     
     func handleLogin() {
         checkForValidEmailInput()
@@ -119,8 +124,7 @@ extension LoginViewController {
                 
                 DispatchQueue.main.async {
                     self.loadingView.hideActivityIndicator(viewController: self)
-                    let tabBar = UITabBarController()
-                    self.setupTabBar(tabBar: tabBar)
+                    self.setupTabBar()
                 }
             }
         }
@@ -128,10 +132,11 @@ extension LoginViewController {
 }
 
 extension LoginViewController {
+    
     // MARK: - Load TabbarController
     
-    fileprivate func setupTabBar(tabBar:UITabBarController) {
-       // let tabBar = TabBarController()
+    fileprivate func setupTabBar() {
+        let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
     }
@@ -142,15 +147,6 @@ extension LoginViewController {
         if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
             loginView.textFieldAnimation()
         }
-    }
-}
-
-extension LoginViewController {
-    
-    // Makes keyboard disappear when view ends editting
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
     }
 }
 
@@ -169,12 +165,6 @@ extension LoginViewController {
         let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true
-    }
-    
-    // selector method that Pushes SignupViewController on button tap
-    
-    func signupButtonTapped() {
-        navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     
     // On beginning editting changes textfield UI properties
