@@ -13,16 +13,6 @@ import UIKit
 
 extension UITextView {
     
-//    func setupEditStyledTextView() -> UITextView {
-//        layer.borderWidth = Constants.Dimension.mainWidth
-//        layer.borderColor = UIColor.lightGray.cgColor
-//        layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
-//        font = Constants.signupFieldFont
-//        contentInset = Constants.TaskCell.Description.boxInset
-//        return self
-//    }
-    
-    
     func editTextViewStyle() {
         print("Inside edit text view style")
         layer.borderWidth = Constants.Dimension.mainWidth
