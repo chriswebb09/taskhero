@@ -19,6 +19,7 @@ protocol CellMake {
 class HomeViewControllerDataSource {
     
     /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
+    
     let store = UserDataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
     var delete: Bool = false
@@ -76,7 +77,7 @@ extension HomeViewControllerDataSource {
 
 extension HomeViewControllerDataSource {
     
-    /* Setup HeaderCell */
+    /* Setup HeaderCell - configuration and adding delegates to HomeViewController  */
     
     func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
         headerCell.delegate = viewController
@@ -85,7 +86,7 @@ extension HomeViewControllerDataSource {
         
     }
     
-    /* Setup TaskCell */
+    /* Setup TaskCell configuration and adding delegates to HomeViewController */
     
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
         taskCell.delegate = viewController
@@ -95,6 +96,9 @@ extension HomeViewControllerDataSource {
 }
 
 extension HomeViewControllerDataSource {
+    
+    // Method choosing profilePicture for Header cell
+    
     func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
@@ -123,6 +127,8 @@ extension HomeViewControllerDataSource {
         }
         print(self.store.tasks)
     }
+    
+    // Selector method for taskCompletedView and SavButton in TaskCell - cycles between them depending on the state to either edit or save
     
     public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell

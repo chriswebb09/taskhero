@@ -9,8 +9,11 @@
 import UIKit
 import Firebase
 
-
-/* Extension that adds on features - sets up action for logout button press, add task button press and adds these as selectors on navigation items which are added to navigation controller. */
+/*
+ Extension that adds on features - sets up action for logout button press,
+ add task button press and adds these as selectors on
+ navigation items which are added to navigation controller.
+ */
 
 extension HomeViewController {
     
@@ -30,8 +33,8 @@ extension HomeViewController {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
-    /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     // MARK: - Nav Items
+    /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     
     func addNavItemsToController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
@@ -41,14 +44,12 @@ extension HomeViewController {
 }
 
 
-// Extension for header cell delegate methods and UIImagePicker implementation 
+// Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
-    // MARK: - Header cell Delegate Methods - Mainly for ProfilePicture
-    
-    // TODO: - Add profile picture storage methods
-    // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview
+    // MARK: - Header cell Delegate Methods
+    // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview - Add profile picture storage methods
     
     func tapPickPhoto(_ sender:UIButton) {
         picker.allowsEditing = false
@@ -58,8 +59,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     }
     
     // MARK: - Popover
-    
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
+    
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
         photoPopover.showPopView(viewController: self)
@@ -79,8 +80,8 @@ extension HomeViewController: UIImagePickerControllerDelegate {
 
 extension HomeViewController {
     
-    /* Method toggles UI states from editing to not editing when save is pressed */
     // MARK: - TaskCell
+    /* Method toggles UI states from editing to not editing when save is pressed */
     
     public func toggleForButtonState(_ sender:UIButton) {
         print("inside toggleForButtonState")
@@ -99,5 +100,5 @@ extension HomeViewController {
         dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
     }
     
-
+    
 }
