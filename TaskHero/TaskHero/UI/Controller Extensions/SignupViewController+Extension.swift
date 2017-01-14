@@ -17,7 +17,10 @@ extension SignupViewController {
         let confirmLower = confirm.lowercased()
         if (email.isValidEmail()) && (emailLower == confirmLower) { return true } else { emailInvalidated = true; return false }
     }
-    
+}
+
+extension SignupViewController {
+
     // Checks that text has more than five characters / animates UITextField to blue color if true.
     
     func checkTextField(_ textField: UITextField) {

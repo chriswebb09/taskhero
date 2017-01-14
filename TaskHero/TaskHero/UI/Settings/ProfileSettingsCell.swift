@@ -78,26 +78,39 @@ extension ProfileSettingsCell {
 
 extension ProfileSettingsCell {
     
-    func configureView(view:UIView) {
+    private func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Dimension.height).isActive = true
         view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileSettingsLabelWidth).isActive = true
     }
     
-    fileprivate func setupConstraints() {
+    private func addProfileSetttingLabel() {
         configureView(view: profileSettingLabel)
         profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Dimension.settingsOffset).isActive = true
         profileSettingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+    }
+    
+    private func addButton() {
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.height).isActive = true
         button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
         button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        
+    }
+    
+    private func addProfileSettingsField() {
         configureView(view: profileSettingField)
         profileSettingField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Dimension.settingsOffset).isActive = true
         profileSettingField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+    }
+    
+    fileprivate func setupConstraints() {
+        addProfileSetttingLabel()
+        addButton()
+        addProfileSettingsField()
     }
 }
 

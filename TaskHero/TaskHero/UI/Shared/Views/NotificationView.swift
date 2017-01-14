@@ -43,20 +43,33 @@ extension NotificationView {
 }
 
 extension NotificationView {
-
-    override func setupConstraints() {
-        addSubview(dataLabel)
-        addSubview(doneButton)
-        super.setupConstraints()
+    
+    func addDataLabel() {
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
         dataLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         dataLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         dataLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
         dataLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: bounds.height / 3).isActive = true
+        
+    }
+    
+    func addDoneButton() {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         doneButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+    }
+    
+}
+
+extension NotificationView {
+    
+    override func setupConstraints() {
+        addSubview(dataLabel)
+        addSubview(doneButton)
+        super.setupConstraints()
+        addDataLabel()
+        addDoneButton()
     }
 }

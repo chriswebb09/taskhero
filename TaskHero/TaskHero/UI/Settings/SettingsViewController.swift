@@ -97,11 +97,15 @@ extension SettingsViewController {
     
     // MARK: Public Methods
     
-    func launchPopupView() {
+    private func alertPopInitialOpacity() {
         alertPop.popView.layer.opacity = 0
         alertPop.popView.isHidden = false
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = 0
+    }
+    
+    func launchPopupView() {
+        alertPopInitialOpacity()
         alertPop.showPopView(viewController: self)
         UIView.animate(withDuration: 0.1, animations: { [unowned self] in
             self.alertPop.popView.layer.opacity = 1
@@ -112,13 +116,21 @@ extension SettingsViewController {
         alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
     
+}
+
+extension SettingsViewController {
+
     // Displays popover when notifications cell is selected
     
-    func notificationPopup() {
+    private func notificationPopInitialOpacity() {
         notifyPop.popView.isHidden = false
         notifyPop.containerView.isHidden = false
         notifyPop.containerView.layer.opacity = 0
         notifyPop.popView.layer.opacity = 0
+    }
+    
+    func notificationPopup() {
+        notificationPopInitialOpacity()
         notifyPop.showPopView(viewController: self)
         UIView.animate(withDuration: 0.1, animations: { [unowned self] in
             self.notifyPop.popView.layer.opacity = 1

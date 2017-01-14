@@ -31,19 +31,37 @@ class LoadingView: UIView {
 
 extension LoadingView {
     
-   func showActivityIndicator(viewController: UIViewController) {
-        containerView.frame = UIScreen.main.bounds
-        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
+    func addLoadingView() {
         loadingView.frame = CGRect(x:0, y:0, width:60, height:60)
         loadingView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         loadingView.clipsToBounds = true
+    }
+    
+    func addSubviews(viewController:UIViewController) {
+        loadingView.addSubview(activityIndicator)
+        containerView.addSubview(loadingView)
+        viewController.view.addSubview(containerView)
+    }
+}
+
+extension LoadingView {
+    
+    func activityIndicatorSetup() {
         activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
         activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
                                            y:loadingView.frame.size.height / 2)
-        loadingView.addSubview(activityIndicator)
-        containerView.addSubview(loadingView)
-        viewController.view.addSubview(containerView)
+    }
+}
+
+extension LoadingView {
+    
+    func showActivityIndicator(viewController: UIViewController) {
+        containerView.frame = UIScreen.main.bounds
+        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
+        addLoadingView()
+        activityIndicatorSetup()
+        addSubviews(viewController: viewController)
         activityIndicator.startAnimating()
     }
     
