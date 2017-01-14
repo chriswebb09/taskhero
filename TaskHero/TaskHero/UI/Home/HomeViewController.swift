@@ -8,8 +8,14 @@
 
 import UIKit
 
-
 final class HomeViewController: UITableViewController {
+    
+    /*
+     - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+     - All other cells are of type TaskCell
+     - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource
+     - Not final setup - still a work in progress
+     */
     
     // MARK: - Deallocate HomeViewController From Memory
     
@@ -18,13 +24,6 @@ final class HomeViewController: UITableViewController {
     }
     
     // MARK: Internal Properties
-    
-    /*
-     - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
-     - All other cells are of type TaskCell
-     - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource
-     - Not final setup - still a work in progress
-     */
     
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  /* BackgroundQueue for background network */
     var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */

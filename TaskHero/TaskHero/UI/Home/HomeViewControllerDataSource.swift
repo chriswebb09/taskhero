@@ -19,7 +19,6 @@ protocol CellMake {
 class HomeViewControllerDataSource {
     
     /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
-    
     let store = UserDataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
     var delete: Bool = false
@@ -102,7 +101,6 @@ extension HomeViewControllerDataSource {
         viewController.present(picker, animated: true, completion: nil)
     }
 }
-
 
 extension HomeViewControllerDataSource {
     

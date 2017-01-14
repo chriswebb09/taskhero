@@ -93,5 +93,4 @@ extension HomeViewController {
     func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
     }
-    
 }
