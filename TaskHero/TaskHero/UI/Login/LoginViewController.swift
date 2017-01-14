@@ -164,22 +164,18 @@ extension LoginViewController {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        DispatchQueue.main.async { [unowned textField] in
-            textField.textColor = Constants.Color.backgroundColor
-            textField.font = Constants.signupFieldFont
-            textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
-            textField.layer.borderWidth = 1.1
-        }
+        textField.textColor = Constants.Color.backgroundColor
+        textField.font = Constants.signupFieldFont
+        textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
+        textField.layer.borderWidth = 1.1
     }
     
     // When no longer using input fields
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        DispatchQueue.main.async { [unowned textField] in
-            textField.layer.borderWidth = 1
-            textField.textColor = UIColor.lightGray
-            textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
-            self.checkForValidEmailInput()
-        }
+        textField.layer.borderWidth = 1
+        textField.textColor = UIColor.lightGray
+        textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
+        checkForValidEmailInput()
     }
 }
