@@ -107,22 +107,22 @@ extension TaskCell {
         element.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Dimension.saveButtonHeight).isActive = true
     }
     
-    func addTaskNameLabel() {
+    func addTaskNameLabel(taskNameLabel: UITextView) {
         configureView(view: taskNameLabel)
         print(contentView.frame.height * 0.2)
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
     }
     
-    func addTaskDueLabel() {
+    func addTaskDueLabel(taskDueLabel: UITextView) {
         configureView(view: taskDueLabel)
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
     }
     
     func setupConstraints() {
-        addTaskNameLabel()
-        addTaskDueLabel()
+        addTaskNameLabel(taskNameLabel:taskNameLabel)
+        addTaskDueLabel(taskDueLabel: taskDueLabel)
         setupDescriptionElements(element: taskDescriptionLabel)
         setupEditElements(element: taskCompletedView)
         taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth * 0.5).isActive = true
