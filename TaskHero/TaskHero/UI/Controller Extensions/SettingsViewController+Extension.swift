@@ -11,9 +11,7 @@ import UIKit
 
 extension SettingsViewController {
     
-    // =======================================
     // MARK: - Switch between segments
-    // =======================================
     
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -29,9 +27,7 @@ extension SettingsViewController {
         tableView.reloadData()
     }
     
-    // ======================================
     // MARK: - Segment Control UI
-    // ======================================
     
     func setupSegment() {
         let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]

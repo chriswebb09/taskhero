@@ -46,8 +46,12 @@ extension HomeViewController: UINavigationControllerDelegate {
         addNavItemsToController()
     }
     
-    /* Before view appears fetches user data & loads tasks into datastore befroe reloading tableview
-     If there are tasks in datastore removes tasks before load
+    /* Before view appears fetches tasks user data
+     - using helpers.getData method -
+     for current user, if currentUser.tasks is not nil,
+     it removes tasks from currentUser - regardless it then
+     fetches currentUser from database by calling APIClient before loading
+     - redundant functionality, definitely could be streamlined
      */
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +60,7 @@ extension HomeViewController: UINavigationControllerDelegate {
     }
     
     /* Removes reference to database - necessary to prevent duplicate task cells from loading when
-     view will appears is called again.
+     view will appears is called again. Called inside helpers class
      */
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,7 +73,7 @@ extension HomeViewController: UINavigationControllerDelegate {
 
 extension HomeViewController: ProfileHeaderCellDelegate {
     
-    // MARK: UITableViewController Methods
+    // MARK: - UITableViewController Methods
     // Returns number of rows based on count taskcount
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,7 +89,14 @@ extension HomeViewController: ProfileHeaderCellDelegate {
 
 extension HomeViewController: UITextViewDelegate, TaskCellDelegate {
     
-    /* If first row returns profile header cell else returns task cell */
+    /*
+     - If first row returns profile header cell else returns task cell
+     - all cells configured within HomeViewController datasource class
+     - This setup is problematic when deleting task cells, causes tableview to lose track
+     of proper index path when tableView is reloaded. Need fix.
+     */
+    
+    // FIXME: - Fix so that tableview can delete tasks with index out of range getting thrown
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         dataSource.tableIndexPath = indexPath

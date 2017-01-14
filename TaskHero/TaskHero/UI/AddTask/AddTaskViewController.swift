@@ -21,11 +21,11 @@ final class AddTaskViewController: UIViewController  {
     
     let store = UserDataStore.sharedInstance /* User state for application */
     let addTaskView = AddTaskView()
-    let pop = PopMenu()
+    let pop = PopMenu() // Popover for datepicker for adding due date to task
     var stringDate = ""
     var month: String = "Jan"
     var day: String = "01"
-    var year: String = "2016"
+    var year: String = "2017"
     var taskViewModel = AddTaskViewModel()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:300, height:300))
 }
@@ -50,12 +50,10 @@ extension AddTaskViewController {
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
-    
     func setupDelegates() {
         addTaskView.taskNameField.delegate = self
         addTaskView.taskDescriptionBox.delegate = self
     }
-    
 }
 
 extension AddTaskViewController {
@@ -102,7 +100,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 }
 
 extension AddTaskViewController {
-
+    
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }

@@ -11,21 +11,29 @@ import Firebase
 
 final class LoginViewController: UIViewController {
     
+    /*
+     - LoginViewController is called after InitialViewController
+     - InitialViewController should be deallocated from memory after LoginViewController loads
+     - Contains form for logging in with email address and password and button to load SignupViewController
+     - Subviews loaded in LoginView - LoginView contains all UI elements
+     - Large method for firebase sign in should be refactored as soon as is practical
+     */
+    
     // MARK: - Deallocation from memory
     
     deinit {
         print("LoginViewController deallocated from memory")
     }
     
-    var loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
-    let store = UserDataStore.sharedInstance /* Singleton for the instance of the the authenticated user that shared by the entire application */
-    var loadingView = LoadingView() /* Activity indicator and background container view instantiated - will be added to view on login button press */
+    var loginView = LoginView() // LoginView instantiated - will be added to viewcontroller view in viewdidload
+    let store = UserDataStore.sharedInstance  // Singleton for the instance of the the authenticated user that shared by the entire application
+    var loadingView = LoadingView() // Activity indicator and background container view instantiated - will be added to view on login button press
 }
 
 
 extension LoginViewController {
     
-    // MARK: ViewController Initialization Methods
+    // MARK: - ViewController Initialization Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +52,7 @@ extension LoginViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     
-    // MARK: Login Method Extension
+    // MARK: - Login Method Extension
     
     /*
      - handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
@@ -58,6 +66,8 @@ extension LoginViewController: UITextFieldDelegate {
      - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
      */
     
+    
+    // Adds UITextField delegates to self(LoginViewController)
     
     func setupDelegates() {
         loginView.emailField.delegate = self
@@ -142,6 +152,8 @@ extension LoginViewController {
         return true
     }
     
+    // Makes keyboard disappear when view ends editting
+    
     func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -152,6 +164,8 @@ extension LoginViewController {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
     
+    // On beginning editting changes textfield UI properties
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.textColor = Constants.Color.backgroundColor
         textField.font = Constants.signupFieldFont
@@ -159,7 +173,7 @@ extension LoginViewController {
         textField.layer.borderWidth = 1.1
     }
     
-    // When no longer using input fields
+    // When no longer using input fields changes textfield ui properties back to original
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderWidth = 1

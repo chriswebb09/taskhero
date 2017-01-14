@@ -38,6 +38,7 @@ extension ProfileBannerCell {
     }
     
     // MARK: - Configuring Cell
+    // Adds constraints to banner image - adds bannerimage to subview - sets bannerimage center to contentView center
     
     private func setupConstraints() {
         contentView.addSubview(bannerImage)
@@ -46,6 +47,8 @@ extension ProfileBannerCell {
         bannerImage.widthAnchor.constraint(equalTo:contentView.widthAnchor).isActive = true
         bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.Profile.profileBannerHeight).isActive = true
     }
+    
+    // Calls all methods that setup the subviews within the contentView and cell
     
     public func configureCell() {
         layoutSubviews()

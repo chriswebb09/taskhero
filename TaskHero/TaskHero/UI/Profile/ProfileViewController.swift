@@ -31,8 +31,8 @@ extension ProfileViewController {
         
         super.viewDidLoad()
         edgesForExtendedLayout = []
-
-    // MARK: - Register cell types
+        
+        // MARK: - Register cell types
         
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
@@ -76,7 +76,7 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController {
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // If first row set banner image

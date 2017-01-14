@@ -82,7 +82,7 @@ extension TaskCell {
 }
 
 extension TaskCell {
-
+    
     // MARK: - Configure cell
     
     fileprivate func setupConfigures() {

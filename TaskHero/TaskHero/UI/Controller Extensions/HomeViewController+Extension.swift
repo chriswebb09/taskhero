@@ -47,6 +47,9 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
     // MARK: - Profile Pic
     
+    // TODO: - Add profile picture storage methods
+    // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview
+    
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
         photoPopover.showPopView(viewController: self)

@@ -20,7 +20,7 @@ final class InitialViewController: UIViewController {
 }
 
 extension InitialViewController {
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []

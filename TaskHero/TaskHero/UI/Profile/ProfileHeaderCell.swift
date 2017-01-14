@@ -14,11 +14,13 @@ protocol ProfileHeaderCellDelegate: class {
 
 final class ProfileHeaderCell: UITableViewCell {
     
-    // MARK: - Internal Variables
+    // MARK: - ProfileHeaderCell deallocated from memory
     
     deinit {
         print("ProfileHeaderCell deallocated")
     }
+    
+    // MARK: - Internal Variables
     
     static let cellIdentifier = "ProfileHeaderCell"
     weak var delegate: ProfileHeaderCellDelegate?
@@ -80,7 +82,6 @@ extension ProfileHeaderCell {
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
-    
 }
 
 extension ProfileHeaderCell {
@@ -143,7 +144,12 @@ extension ProfileHeaderCell {
 }
 
 extension ProfileHeaderCell {
-
+    
+    /*
+     - Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing
+     - called in ParentViewController - in this case that is either ProfileViewController or HomeViewController
+     */
+    
     public func configureCell(autoHeight: UIViewAutoresizing) {
         contentView.autoresizingMask = autoHeight
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
@@ -163,13 +169,20 @@ extension ProfileHeaderCell {
 }
 
 extension ProfileHeaderCell: ProfileHeaderCellDelegate {
-
+    
     // MARK: - Delegate Methods
+    
+    // Implementation of delegate method - May be deleted either in HomeViewController or ProfileViewController because functionality is redundant
     
     internal func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")
         delegate?.profilePictureTapped()
     }
+}
+
+extension ProfileHeaderCell {
+    
+    // MARK: - Reuse
     
     override func prepareForReuse() {
         super.prepareForReuse()

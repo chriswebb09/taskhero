@@ -73,7 +73,7 @@ extension AddTaskView {
 }
 
 extension AddTaskView {
-
+    
     // MARK: - Configure
     
     fileprivate func configureView(view:UIView) {

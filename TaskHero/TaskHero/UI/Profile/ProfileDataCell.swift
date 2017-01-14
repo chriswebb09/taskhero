@@ -25,16 +25,25 @@ final class ProfileDataCell: UITableViewCell {
         return cellModel
     }()
     
+    // Level label - label for User Level - i.e. Task Goat, Task Wizard ect.
+    
     lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         return levelLabel
     }()
+    
+    /*
+     - Number of experience points for user - by adding together points of tasks completed
+     - at this point tasksCompleted means by tasks deleted - will be improved upon
+     */
     
     lazy var experiencePointsLabel: UILabel = {
         let experiencePointsLabel = UILabel()
         return experiencePointsLabel
     }()
     
+    
+    // Actual number of tasks completed - deleted - not pointvalue it is the number of tasks
     lazy var tasksCompletedLabel: UILabel = {
         let taskCompletedLabel = UILabel()
         return taskCompletedLabel
@@ -44,6 +53,7 @@ final class ProfileDataCell: UITableViewCell {
 extension ProfileDataCell {
     
     // MARK: - Initialization
+    // Lays out subviews and calls setup constraints
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -53,8 +63,9 @@ extension ProfileDataCell {
 }
 
 extension ProfileDataCell {
-
+    
     // MARK: - Configuration
+    /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - sets label to small green ovaly element with black border aligns content in center */
     
     fileprivate func configureLabels(label:UILabel) {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
@@ -72,6 +83,9 @@ extension ProfileDataCell {
     fileprivate func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    
+    // Adds constraints to labels to also adds experience points labels and tasksComleted labels to contentView
     
     fileprivate func setupConstraints() {
         configureLabels(label: levelLabel)
@@ -103,7 +117,9 @@ extension ProfileDataCell {
 
 
 extension ProfileDataCell {
-
+    
+    // Public configureCell method - called in ParentViewController - in this case ProfileViewController
+    
     public func configureCell() {
         levelLabel.text = "Level: \(dataCellModel.level)"
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"

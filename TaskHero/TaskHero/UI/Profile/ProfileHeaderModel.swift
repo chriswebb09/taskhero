@@ -21,14 +21,14 @@ struct ProfileHeaderCellModel {
     // MARK: - Internal Variables
     
     let store = UserDataStore.sharedInstance
-
+    
     internal var emailLabel: String
     internal var usernameLabel: String
     internal var profilePicture: String
     internal var levelLabel: String
     internal var joinDate: String
     internal var joinDateIsHidden: Bool
-
+    
     
     // MARK: - Initialization
     
