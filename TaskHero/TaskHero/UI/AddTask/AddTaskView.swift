@@ -70,6 +70,10 @@ extension AddTaskView {
         setupConstraints()
     }
     
+}
+
+extension AddTaskView {
+
     // MARK: - Configure
     
     fileprivate func configureView(view:UIView) {

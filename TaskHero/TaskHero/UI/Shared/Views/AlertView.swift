@@ -45,7 +45,6 @@ final class AlertView: UIView {
         return searchLabel
     }()
     
-    
     lazy var alertLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
@@ -54,7 +53,6 @@ final class AlertView: UIView {
         searchLabel.textAlignment = .center
         return searchLabel
     }()
-    
 }
 
 extension AlertView {

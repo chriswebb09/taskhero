@@ -73,6 +73,10 @@ extension ProfileViewController {
         return UITableViewAutomaticDimension
     }
     
+}
+
+extension ProfileViewController {
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // If first row set banner image

@@ -18,7 +18,6 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     var emailInvalidated = false
     let CharacterLimit = 11
     let helpers = Helpers()
-    
 }
 
 extension SignupViewController {
@@ -37,8 +36,11 @@ extension SignupViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
     }
+}
+
+extension SignupViewController {
     
-    private func setupSignupView() {
+    fileprivate func setupSignupView() {
         signupView.layoutSubviews()
         signupView.emailField.delegate = self
         signupView.confirmEmailField.delegate = self
@@ -50,7 +52,6 @@ extension SignupViewController {
 extension SignupViewController {
     
     // MARK: - UITextfield Delegate Methods
-    
     // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String)  -> Bool {
@@ -77,7 +78,6 @@ extension SignupViewController {
                 print("Form is not valid")
                 return
         }
-        
         if let confirmFieldText = self.signupView.confirmEmailField.text {
             if validateEmailInput(email:email, confirm:confirmFieldText) {
                 loadingView.showActivityIndicator(viewController: self)
@@ -101,7 +101,6 @@ extension SignupViewController {
             return
         }
     }
-    
 }
 
 extension SignupViewController {
@@ -126,5 +125,4 @@ extension SignupViewController {
         newUser.tasks = [Task]()
         return newUser
     }
-
 }

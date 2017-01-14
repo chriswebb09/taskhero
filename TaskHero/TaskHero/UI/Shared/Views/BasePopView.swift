@@ -9,7 +9,6 @@
 import UIKit
 
 class BasePopView: UIView {
-    
     open lazy var headBanner: UIView = {
         let banner = UIView()
         banner.backgroundColor = UIColor.black
@@ -24,7 +23,6 @@ class BasePopView: UIView {
         searchLabel.textAlignment = .center
         return searchLabel
     }()
-    
 }
 
 extension BasePopView {
@@ -36,7 +34,6 @@ extension BasePopView {
         headBanner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         headBanner.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
-        
         addSubview(alertLabel)
         alertLabel.translatesAutoresizingMaskIntoConstraints = false
         alertLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true

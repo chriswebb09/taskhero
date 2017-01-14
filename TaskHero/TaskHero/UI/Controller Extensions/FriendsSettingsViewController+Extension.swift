@@ -9,10 +9,8 @@
 import UIKit
 
 extension FriendsSettingsViewController {
-    
-    // ======================================
+
     // MARK: - Delegate methods
-    // ======================================
     
     func popup() {
         alertPop.popView.isHidden = false
@@ -37,7 +35,7 @@ extension FriendsSettingsViewController {
             self.alertPop.popView.isHidden = true
             self.alertPop.containerView.isHidden = true
             self.alertPop.hidePopView(viewController: self)
-            _ = self.navigationController?.popViewController(animated: false)
+            UINavigationController().popViewController(animated: false)
         }
     }
     

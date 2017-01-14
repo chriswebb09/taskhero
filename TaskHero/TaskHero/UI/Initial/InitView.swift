@@ -98,6 +98,4 @@ extension InitView {
         let zoomOutTranform: CGAffineTransform = CGAffineTransform(scaleX: 03, y: 03)
         return zoomOutTranform
     }
-    
-    
 }

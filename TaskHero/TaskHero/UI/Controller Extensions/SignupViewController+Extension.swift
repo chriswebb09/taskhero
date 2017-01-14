@@ -105,6 +105,10 @@ extension SignupViewController {
         }
     }
     
+}
+
+extension SignupViewController {
+
     fileprivate func invalidateStyleFor(field:UITextField) {
         field.layer.borderColor = Constants.Color.mainColor.cgColor
         field.textColor = Constants.Color.mainColor

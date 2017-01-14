@@ -19,7 +19,6 @@ class PhotoPickerView: BasePopView {
     }()
 }
 
-
 extension PhotoPickerView {
     
     // MARK: - Configuration

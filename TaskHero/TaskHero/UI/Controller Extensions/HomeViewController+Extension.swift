@@ -15,7 +15,6 @@ import Firebase
 extension HomeViewController {
     
     // MARK: Selector Methods
-    
     /* Logs out user by settings root ViewController to Loginview */
     
     func logoutButtonPressed() {
@@ -32,7 +31,6 @@ extension HomeViewController {
     }
     
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
-    
     // MARK: - Nav Items
     
     func addNavItemsToController() {
@@ -42,13 +40,11 @@ extension HomeViewController {
     }
 }
 
+// MARK: - Header cell Delegate Methods
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
-    // MARK: - Header and Task cell Delegate Methods
-    
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
-    
     // MARK: - Profile Pic
     
     func profilePictureTapped() {
@@ -65,9 +61,13 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         present(picker, animated: true, completion: nil)
         photoPopover.hideView(viewController: self)
     }
+}
+
+// MARK: - Task cell Delegate Methods
+
+extension HomeViewController {
     
     /* Method toggles UI states from editing to not editing when save is pressed */
-    
     // MARK: - TaskCell
     
     public func toggleForButtonState(_ sender:UIButton) {
@@ -88,7 +88,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     }
     
     // MARK: - Popover
-    
     /* Hides popover view when operation has ended. */
     
     func hidePopoverView() {

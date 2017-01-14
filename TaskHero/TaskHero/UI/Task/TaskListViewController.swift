@@ -11,7 +11,6 @@ import UIKit
 final class TaskListViewController: UITableViewController, TaskCellDelegate {
     
     /* TaskListViewController is the viewcontroller that presents just the tasks that the user has added */
-    
     // MARK: Properties
     
     let store = UserDataStore.sharedInstance /* userData store for application user state */
@@ -20,7 +19,6 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     let helpers = Helpers()
     
     // MARK: - UI Elements
-    
     /* Label for empty tasklist state, should disappear once task is added */
     
     lazy var addTasksLabel:UILabel = {
@@ -60,9 +58,7 @@ extension TaskListViewController {
     // FIXME: - Refactor ASAP
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(false)
-        
         if store.tasks.count >= 1 {
             addTasksLabel.isHidden = true
             addTasksLabel.isEnabled = false
@@ -71,7 +67,6 @@ extension TaskListViewController {
         if store.currentUser.tasks != nil {
             store.currentUser.tasks?.removeAll()
         }
-        
         helpers.fetchUser() { user in
             self.store.currentUser = user
             DispatchQueue.main.async {
@@ -93,6 +88,10 @@ extension TaskListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.tasks.count
     }
+}
+
+
+extension TaskListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell

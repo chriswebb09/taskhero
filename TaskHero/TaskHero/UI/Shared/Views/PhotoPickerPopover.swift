@@ -30,7 +30,6 @@ class PhotoPickerPopover: BasePopoverAlert {
     
 }
 
-
 extension PhotoPickerPopover {
     
     // MARK: - Behavior methods

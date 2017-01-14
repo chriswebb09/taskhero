@@ -18,12 +18,19 @@ class PopMenu: BasePopoverAlert {
 extension PopMenu {
     public func showPopView(viewController: UIViewController, pick: UIPickerView?) {
         super.showPopView(viewController: viewController)
-        popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width / 1.05, height:UIScreen.main.bounds.height / 3)
-        popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+        popView.frame =  CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.7, width:UIScreen.main.bounds.width * 0.9, height:UIScreen.main.bounds.height * 0.4)
+        popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY * 0.8)
         popView.picker.dataSource = viewController as! AddTaskViewController
         popView.picker.delegate = viewController as! AddTaskViewController
         popView.picker.showsSelectionIndicator = true
-        popView.clipsToBounds = true
+        //popView.clipsToBounds = true
         viewController.view.addSubview(popView)
     }
 }
+
+//
+//frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
+//popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+//popView.clipsToBounds = true
+//viewController.view.addSubview(popView)
+//viewController.view.bringSubview(toFront: popView)

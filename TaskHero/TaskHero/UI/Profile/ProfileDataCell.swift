@@ -50,9 +50,13 @@ extension ProfileDataCell {
         setupConstraints()
     }
     
+}
+
+extension ProfileDataCell {
+
     // MARK: - Configuration
     
-    private func configureLabels(label:UILabel) {
+    fileprivate func configureLabels(label:UILabel) {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
         label.layer.masksToBounds = true
         label.textAlignment = .center
@@ -65,11 +69,11 @@ extension ProfileDataCell {
     
     // Most likely will be removed
     
-    private func configureConstraints(label:UILabel) {
+    fileprivate func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func setupConstraints() {
+    fileprivate func setupConstraints() {
         configureLabels(label: levelLabel)
         contentView.addSubview(levelLabel)
         configureConstraints(label: levelLabel)
@@ -95,6 +99,11 @@ extension ProfileDataCell {
         tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
     }
     
+}
+
+
+extension ProfileDataCell {
+
     public func configureCell() {
         levelLabel.text = "Level: \(dataCellModel.level)"
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"

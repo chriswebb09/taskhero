@@ -16,5 +16,4 @@ struct AddTaskViewModel {
     var pickerMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     var years = ["2017", "2018", "2019"]
     let range: [Int] = Array(1...30)
-    
 }

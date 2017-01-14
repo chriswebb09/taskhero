@@ -16,5 +16,4 @@ class NavBarHelpers {
         UserDataStore.sharedInstance.logout()
         appDelegate.window?.rootViewController = loginVC
     }
-    
 }

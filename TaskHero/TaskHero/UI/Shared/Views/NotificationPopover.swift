@@ -9,7 +9,6 @@
 import UIKit
 
 class NotificationPopover: BasePopoverAlert {
-    
     lazy var popView: NotificationView = {
         let popView = NotificationView()
         popView.layer.cornerRadius = 10
@@ -25,7 +24,7 @@ extension NotificationPopover {
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
         popView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
-        popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY - 180)
+        popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY * 0.7)
         popView.clipsToBounds = true
         viewController.view.addSubview(popView)
         popView.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: 0).isActive = true

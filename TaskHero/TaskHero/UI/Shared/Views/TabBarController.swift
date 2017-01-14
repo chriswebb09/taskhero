@@ -19,7 +19,7 @@ class TabBarController: UITabBarController {
 
 
 extension TabBarController {
-
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -48,7 +48,6 @@ extension TabBarController {
 
 
 extension TabBarController {
-    
     func getUser() {
         self.store.firebaseAPI.fetchUserData { user in
             self.store.currentUser = user
@@ -59,7 +58,6 @@ extension TabBarController {
         super.viewDidLoad()
         self.setupControllers()
     }
-    
 }
 
 extension TabBarController {

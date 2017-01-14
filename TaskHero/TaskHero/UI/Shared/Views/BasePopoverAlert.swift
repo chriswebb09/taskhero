@@ -16,7 +16,6 @@ class BasePopoverAlert: UIView {
         containerView.layer.opacity = 0.5
         return containerView
     }()
-    
 }
 
 extension BasePopoverAlert {

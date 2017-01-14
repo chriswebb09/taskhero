@@ -30,7 +30,6 @@ final class NotificationView: BasePopView {
         searchLabel.textAlignment = .center
         return searchLabel
     }()
-    
 }
 
 extension NotificationView {

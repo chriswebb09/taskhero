@@ -22,6 +22,7 @@ class HomeViewControllerDataSource {
     
     let store = UserDataStore.sharedInstance
     fileprivate var taskViewModel: TaskCellViewModel!
+    var delete: Bool = false
     
     /* Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell */
     
@@ -72,8 +73,11 @@ extension HomeViewControllerDataSource {
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         tableView.estimatedRowHeight = view.frame.height / 4
     }
+}
+
+extension HomeViewControllerDataSource {
     
-    /* Setup headerCell */
+    /* Setup HeaderCell */
     
     func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
         headerCell.delegate = viewController
@@ -82,29 +86,35 @@ extension HomeViewControllerDataSource {
         
     }
     
-    /* setup TaskCell */
+    /* Setup TaskCell */
     
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
         taskCell.delegate = viewController
         let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
     }
-    
+}
+
+extension HomeViewControllerDataSource {
     func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
         viewController.present(picker, animated: true, completion: nil)
     }
+}
+
+
+extension HomeViewControllerDataSource {
     
     /* Deletes task at indexPath.row - 1 - subtraction because TaskCells are below the profileHeader cell */
     
     func deleteTask(indexPath: IndexPath, tableView:UITableView) {
-        
         DispatchQueue.global(qos: .default).async {
             let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
             if let tasks = self.store.currentUser.tasks {
                 self.store.tasks = tasks
             }
+            print(indexPath.row - 1)
             self.store.tasks.remove(at: indexPath.row - 1)
             self.store.updateUserScore()
             self.store.firebaseAPI.registerUser(user: self.store.currentUser)
@@ -116,10 +126,10 @@ extension HomeViewControllerDataSource {
         print(self.store.tasks)
     }
     
-    
     public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         if tapCell.toggled == false {
+            // print(atIndex.row - 1])
             var newTask = self.store.tasks[atIndex.row - 1]
             newTask.taskDescription = tapCell.taskDescriptionLabel.text
             self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
@@ -129,7 +139,6 @@ extension HomeViewControllerDataSource {
         tapCell.taskCompletedView.addGestureRecognizer(tap)
         tapCell.taskCompletedView.isUserInteractionEnabled = true
     }
-    
 }
 
 

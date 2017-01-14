@@ -11,15 +11,12 @@ import Firebase
 
 final class AddTaskViewController: UIViewController  {
     
-    
     // MARK: - Deallocate AddTaskViewController From Memory
     
     deinit {
         print("AddTaskViewController deallocated")
     }
     
-    
-
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance /* User state for application */
@@ -53,14 +50,18 @@ extension AddTaskViewController {
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
-    // MARK: TextField Methods
-    
-    // On return-key press hides keyboard
     
     func setupDelegates() {
         addTaskView.taskNameField.delegate = self
         addTaskView.taskDescriptionBox.delegate = self
     }
+    
+}
+
+extension AddTaskViewController {
+    
+    // MARK: TextField Methods
+    // On return-key press hides keyboard
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -92,13 +93,16 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
 extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: Extension - UIPickerView Methods
-    
     // DatePicker Initialization
     
     func setupPick() {
         pick.dataSource = self
     }
     
+}
+
+extension AddTaskViewController {
+
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
@@ -134,11 +138,11 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            self.month = String(describing:taskViewModel.pickerMonths[row])
+            month = String(describing:taskViewModel.pickerMonths[row])
         } else if component == 1 {
-            self.day = String(describing: taskViewModel.range[row])
+            day = String(describing: taskViewModel.range[row])
         } else {
-            self.year = taskViewModel.years[row]
+            year = taskViewModel.years[row]
         }
     }
 }
@@ -149,7 +153,7 @@ extension AddTaskViewController {
     
     /* When add task button pressed - data popover is show so user can pick task due data */
     
-    @objc fileprivate func addTaskButtonTapped() {
+    dynamic fileprivate func addTaskButtonTapped() {
         view.endEditing(true)
         DispatchQueue.main.async {
             self.pop.popView.isHidden = false

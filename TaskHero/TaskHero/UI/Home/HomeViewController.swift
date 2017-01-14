@@ -34,7 +34,6 @@ final class HomeViewController: UITableViewController {
     var index:IndexPath!   /* IndexPath property still figuring out if I need it */
 }
 
-
 extension HomeViewController: UINavigationControllerDelegate {
     
     // MARK: - Initialization
@@ -69,10 +68,9 @@ extension HomeViewController: UINavigationControllerDelegate {
 
 // Extension for tableView delegate methods
 
-extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, TaskCellDelegate {
+extension HomeViewController: ProfileHeaderCellDelegate {
     
     // MARK: UITableViewController Methods
-    
     // Returns number of rows based on count taskcount
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,6 +82,9 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return dataSource.rowHeight
     }
+}
+
+extension HomeViewController: UITextViewDelegate, TaskCellDelegate {
     
     /* If first row returns profile header cell else returns task cell */
     
@@ -104,18 +105,18 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
     
-    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    //        guard indexPath.row != 0 else { return }
-    //        if editingStyle == .delete {
-    //            tableView.beginUpdates()
-    //            backgroundQueue.async {
-    //                self.dataSource.deleteTask(indexPath:indexPath, tableView: self.tableView)
-    //            }
-    //            DispatchQueue.main.async {
-    //                self.dataSource.tableIndexPath.row = indexPath.row - 1
-    //                tableView.reloadData()
-    //            }
-    //            tableView.endUpdates()
-    //        }
-    //    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard indexPath.row != 0 else { return }
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            backgroundQueue.async {
+                self.dataSource.deleteTask(indexPath:indexPath, tableView: self.tableView)
+            }
+            DispatchQueue.main.async {
+                self.dataSource.tableIndexPath.row = indexPath.row
+                tableView.reloadData()
+            }
+            tableView.endUpdates()
+        }
+    }
 }

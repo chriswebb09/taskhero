@@ -10,9 +10,7 @@ import UIKit
 
 extension TaskListViewController {
     
-    // ======================
     // MARK: - TaskList UI
-    // ======================
     
     public func emptyTableViewState() {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
@@ -28,10 +26,12 @@ extension TaskListViewController {
             addTasksLabel.isHidden = false
         }
     }
+}
+
+
+extension TaskListViewController {
     
-    // =====================
     // MARK: - Configure
-    // =====================
     
     public func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -46,9 +46,7 @@ extension TaskListViewController {
 
 extension TaskListViewController: TaskHeaderCellDelegate {
     
-    // ============================
     // MARK: - Public Methods
-    // ============================
     
     func changeView(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -64,9 +62,7 @@ extension TaskListViewController: TaskHeaderCellDelegate {
 
 extension TaskListViewController {
     
-    // ==========================
     // MARK: - Setup navbar
-    // ==========================
     
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
@@ -89,7 +85,11 @@ extension TaskListViewController {
             appDelegate.window?.rootViewController = loginVC
         }
     }
+}
 
+
+extension TaskListViewController {
+    
     // MARK: - Task Actions
     
     dynamic fileprivate func addTaskButtonTapped() {

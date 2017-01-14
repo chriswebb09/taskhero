@@ -11,19 +11,13 @@ import UIKit
 
 extension TaskCell: Toggable {
     
-    
     // MARK: - Delegate Methods
-    
     // Button toggle methods
-    
-    
     /* changes taskcell UI based on editstate value */
     
     func taskCell(didToggleEditState editState:Bool) {
         textViewToggle(state: editState, textView: taskDescriptionLabel)
     }
-    
-    
     
     func textViewToggle(state: Bool, textView: UITextView) {
         if state == true {
@@ -64,13 +58,11 @@ extension TaskCell: Toggable {
         taskCell(didToggleEditState: toggleState)
         return toggleState
     }
-    
 }
 
 extension TaskCell {
     
     // MARK: - Configure cell subviews
-    
     /* takes in textview returns configured textview*/
     
     func configureTextView(label:UITextView) {
@@ -102,7 +94,6 @@ extension TaskCell {
         element.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
     
-    
     /* taskcompletedview and savebutton configuration */
     
     func setupEditElements(element:UIView) {
@@ -114,17 +105,13 @@ extension TaskCell {
     }
     
     func setupConstraints() {
-        
         configureView(view: taskNameLabel)
         print(contentView.frame.height * 0.2)
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
-        
         configureView(view: taskDueLabel)
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
-        
-        
         setupDescriptionElements(element: taskDescriptionLabel)
         setupEditElements(element: taskCompletedView)
         taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth * 0.5).isActive = true
@@ -132,16 +119,13 @@ extension TaskCell {
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
     }
     
-    
     /* methods used in VC to setup cell with data */
     
     public func configureCell(taskVM:TaskCellViewModel) {
-        
         layoutSubviews()
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
-        
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
         if taskVM.taskCompleted == "true" {
             taskCompletedView.image = UIImage(named:"checked")
@@ -154,7 +138,6 @@ extension TaskCell {
             taskCompletedView.addGestureRecognizer(tap)
         }
     }
-    
 }
 
 

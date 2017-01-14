@@ -12,7 +12,7 @@ protocol ProfileHeaderCellDelegate: class {
     func profilePictureTapped()
 }
 
-final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
+final class ProfileHeaderCell: UITableViewCell {
     
     // MARK: - Internal Variables
     
@@ -50,13 +50,6 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
         return levelLabel
     }()
     
-    
-    fileprivate func configureLargeLabel() -> UILabel {
-        let label = UILabel()
-        label.font = Constants.Font.fontLarge
-        return label
-    }
-    
     var profilePicture: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderColor = UIColor.black.cgColor
@@ -66,30 +59,41 @@ final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     }()
 }
 
+
 extension ProfileHeaderCell {
     
-    // ==============================
+    fileprivate func configureLargeLabel() -> UILabel {
+        let label = UILabel()
+        label.font = Constants.Font.fontLarge
+        return label
+    }
+}
+
+extension ProfileHeaderCell {
+    
     // MARK: - Initialization
-    // ==============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        selectionStyle = .none
         contentView.layoutIfNeeded()
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
     
-    // =================================
-    // MARK: - Configuring Cell
-    // =================================
+}
+
+extension ProfileHeaderCell {
     
-    private func configureLabel(label:UILabel) {
+    // MARK: - Configuring Cell
+    
+    fileprivate func configureLabel(label:UILabel) {
         label.textColor = UIColor.black
         label.textAlignment = .right
         label.sizeToFit()
     }
     
-    private func configureConstraints(label:UILabel) {
+    fileprivate func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
@@ -99,7 +103,7 @@ extension ProfileHeaderCell {
     /* calls configureLabel on levelLabel, emailLabel, joinDateLabel, usernameLabel */
     /* calls configureConstraints on levelLabel, emailLabel, usernameLabel */
     
-    private func addConfigures() {
+    fileprivate func addConfigures() {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
@@ -115,7 +119,7 @@ extension ProfileHeaderCell {
         contentView.addSubview(profilePicture)
     }
     
-    private func setupConstraints() {
+    fileprivate func setupConstraints() {
         addConfigures()
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
@@ -136,6 +140,10 @@ extension ProfileHeaderCell {
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
     }
     
+}
+
+extension ProfileHeaderCell {
+
     public func configureCell(autoHeight: UIViewAutoresizing) {
         contentView.autoresizingMask = autoHeight
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
@@ -152,10 +160,11 @@ extension ProfileHeaderCell {
         layoutSubviews()
         layoutIfNeeded()
     }
-    
-    // ===================================
+}
+
+extension ProfileHeaderCell: ProfileHeaderCellDelegate {
+
     // MARK: - Delegate Methods
-    // ===================================
     
     internal func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")

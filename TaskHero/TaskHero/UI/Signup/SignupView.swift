@@ -57,6 +57,9 @@ extension SignupView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
+}
+
+extension SignupView {
     
     func configureField(field: UIView) {
         addSubview(field)
@@ -65,11 +68,6 @@ extension SignupView {
         field.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
         field.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
-    
-}
-
-
-extension SignupView {
     
     /* sets up constraints on signupview */
     

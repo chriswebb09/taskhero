@@ -18,7 +18,6 @@ class AlertPopover: BasePopoverAlert {
         popView.layer.borderWidth = 1
         return popView
     }()
-    
 }
 
 extension AlertPopover {
