@@ -119,25 +119,44 @@ extension ProfileHeaderCell {
         contentView.addSubview(profilePicture)
     }
     
-    fileprivate func setupConstraints() {
-        addConfigures()
+}
+
+extension ProfileHeaderCell {
+    
+    private func addUsernameLabel() {
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: profilePicture.topAnchor).isActive  = true
-        
+    }
+    
+    private func addlevelLabel() {
         levelLabel.bottomAnchor.constraint(equalTo: profilePicture.bottomAnchor).isActive = true
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
+    }
+    
+    private func addJoinDateLabel() {
         joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         
         joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
         joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.mainOffset).isActive = true
         
+    }
+    
+    private func addProfilePicture() {
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight).isActive = true
         profilePicture.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * Constants.Profile.ProfilePicture.profilePictureWidth).isActive = true
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Profile.Offset.topOffset).isActive = true
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
+    }
+    
+    fileprivate func setupConstraints() {
+        addConfigures()
+        addUsernameLabel()
+        addlevelLabel()
+        addJoinDateLabel()
+        addProfilePicture()
     }
 }
 
@@ -172,7 +191,7 @@ extension ProfileHeaderCell: ProfileHeaderCellDelegate {
     
     // Implementation of delegate method - May be deleted either in HomeViewController or ProfileViewController because functionality is redundant
     
-   public func profilePictureTapped() {
+    public func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")
         delegate?.profilePictureTapped()
     }

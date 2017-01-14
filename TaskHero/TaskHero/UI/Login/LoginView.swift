@@ -60,6 +60,7 @@ final class LoginView: UIView {
 }
 
 extension LoginView {
+    
     // MARK: Initialization
     
     override func layoutSubviews() {
@@ -67,6 +68,14 @@ extension LoginView {
         backgroundColor = UIColor.white
         frame = UIScreen.main.bounds
         setupConstraints()
+        
+        // Animates fade in of UIElements
+        initialOpacity()
+        animated()
+        
+    }
+    
+    func initialOpacity() {
         loginButton.layer.opacity = 0
         emailField.layer.opacity = 0
         passwordField.layer.opacity = 0
@@ -74,9 +83,9 @@ extension LoginView {
         signupButton.layer.opacity = 0
         viewDivider.layer.opacity = 0
         logoImageView.layer.opacity = 0
-        
-        // Animates fade in of UIElements
-        
+    }
+    
+    func animated() {
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             self?.logoImageView.layer.opacity = 1
             self?.loginButton.layer.opacity = 1
@@ -114,7 +123,6 @@ extension LoginView {
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }
-
 
 extension LoginView {
     
