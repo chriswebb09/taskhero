@@ -9,6 +9,7 @@
 import UIKit
 
 final class InitialViewController: UIViewController {
+    
     // MARK: - Deallocation from memory
     
     deinit {

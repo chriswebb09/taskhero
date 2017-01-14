@@ -80,9 +80,7 @@ extension HomeViewControllerDataSource {
         headerCell.delegate = viewController
         headerCell.emailLabel.isHidden = true
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileHeaderCell.profilePictureTapped))
-
         headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
-        
     }
     
     /* Setup TaskCell configuration and adding delegates to HomeViewController */
@@ -125,7 +123,6 @@ extension HomeViewControllerDataSource {
         }
         print(self.store.tasks)
     }
-    
 }
 
 extension HomeViewControllerDataSource {

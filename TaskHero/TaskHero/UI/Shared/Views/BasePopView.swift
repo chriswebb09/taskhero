@@ -9,6 +9,7 @@
 import UIKit
 
 class BasePopView: UIView {
+    
     open lazy var headBanner: UIView = {
         let banner = UIView()
         banner.backgroundColor = UIColor.black
@@ -27,7 +28,7 @@ class BasePopView: UIView {
 
 extension BasePopView {
     
-    private func addHeaderBanner() {
+    private func addHeaderBanner(headBanner:UIView) {
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         headBanner.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -36,7 +37,7 @@ extension BasePopView {
         headBanner.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
     }
     
-    private func addAlertLabel() {
+    private func addAlertLabel(label:UILabel) {
         addSubview(alertLabel)
         alertLabel.translatesAutoresizingMaskIntoConstraints = false
         alertLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -46,7 +47,7 @@ extension BasePopView {
     }
     
     open func setupConstraints() {
-        addHeaderBanner()
-        addAlertLabel()
+        addHeaderBanner(headBanner: headBanner)
+        addAlertLabel(label:alertLabel)
     }
 }

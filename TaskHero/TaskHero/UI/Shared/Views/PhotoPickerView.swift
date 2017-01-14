@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MobileCoreServices
 
 class PhotoPickerView: BasePopView {
     
@@ -23,18 +22,19 @@ extension PhotoPickerView {
     
     // MARK: - Configuration
     
-    func addButton() {
+    func addButton(button:UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
         button.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Dimension.width).isActive = true
         button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         addSubview(button)
         setupConstraints()
         backgroundColor = UIColor.white
-        addButton()
+        addButton(button: button)
     }
 }

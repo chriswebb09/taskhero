@@ -9,6 +9,7 @@
 import UIKit
 
 class NotificationPopover: BasePopoverAlert {
+    
     lazy var popView: NotificationView = {
         let popView = NotificationView()
         popView.layer.cornerRadius = 10

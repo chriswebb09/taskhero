@@ -65,20 +65,21 @@ extension TabBarController {
     // MARK: - Setup ViewControllers
     
     fileprivate func setupControllers() {
-        DispatchQueue.main.async {
-            let homeTab = self.setupHomeTab(homeVC: HomeViewController())
-            let profileTab = self.setupProfileTab(profileVC: ProfileViewController())
-            let taskListTab = self.setupTaskTab(taskListVC: TaskListViewController())
-            let settingsTab = self.setupSettingsTab(settingsVC: SettingsViewController())
-            let controllers = [homeTab, profileTab, taskListTab, settingsTab]
-            
-            self.viewControllers = controllers
-            self.tabBar.items?[0].title = "Home"
-            self.tabBar.items?[1].title = "Profile"
-            self.tabBar.items?[2].title = "Tasks"
-            self.tabBar.items?[3].title = "Settings"
-            self.selectedIndex = 0
-        }
+        let homeTab = self.setupHomeTab(homeVC: HomeViewController())
+        let profileTab = self.setupProfileTab(profileVC: ProfileViewController())
+        let taskListTab = self.setupTaskTab(taskListVC: TaskListViewController())
+        let settingsTab = self.setupSettingsTab(settingsVC: SettingsViewController())
+        let controllers = [homeTab, profileTab, taskListTab, settingsTab]
+        setTabTitles(controllers: controllers)
+    }
+    
+    private func setTabTitles(controllers: [UINavigationController]) {
+        viewControllers = controllers
+        tabBar.items?[0].title = "Home"
+        tabBar.items?[1].title = "Profile"
+        tabBar.items?[2].title = "Tasks"
+        tabBar.items?[3].title = "Settings"
+        selectedIndex = 0
     }
 }
 

@@ -129,7 +129,6 @@ extension TaskCell {
         setupEditElements(element:saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
     }
-    
 }
 
 extension TaskCell {

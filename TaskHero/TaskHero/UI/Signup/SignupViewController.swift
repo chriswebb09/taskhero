@@ -71,6 +71,7 @@ extension SignupViewController {
     func handleRegister() {
         view.endEditing(true)
         let loadingView = LoadingView()
+        
         guard let email = signupView.emailField.text,
             let password = signupView.passwordField.text,
             let username = signupView.usernameField.text else {
@@ -78,6 +79,7 @@ extension SignupViewController {
                 print("Form is not valid")
                 return
         }
+        
         if let confirmFieldText = self.signupView.confirmEmailField.text {
             if validateEmailInput(email:email, confirm:confirmFieldText) {
                 loadingView.showActivityIndicator(viewController: self)
