@@ -8,14 +8,14 @@
 
 import UIKit
 
+/*
+ - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+ - All other cells are of type TaskCell
+ - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource
+ - Not final setup - still a work in progress
+ */
+
 final class HomeViewController: UITableViewController {
-    
-    /*
-     - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
-     - All other cells are of type TaskCell
-     - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource
-     - Not final setup - still a work in progress
-     */
     
     // MARK: - Deallocate HomeViewController From Memory
     
@@ -99,7 +99,6 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate {
      */
     
     // FIXME: - Fix so that tableview can delete tasks with index out of range getting thrown
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         dataSource.tableIndexPath = indexPath
         if indexPath.row == 0 {
