@@ -47,6 +47,10 @@ extension ProfileBannerCell {
         bannerImage.widthAnchor.constraint(equalTo:contentView.widthAnchor).isActive = true
         bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.Profile.profileBannerHeight).isActive = true
     }
+}
+
+
+extension ProfileBannerCell {
     
     // Calls all methods that setup the subviews within the contentView and cell
     
@@ -57,6 +61,9 @@ extension ProfileBannerCell {
         preservesSuperviewLayoutMargins = false
         backgroundColor = Constants.Color.mainColor
     }
+}
+
+extension ProfileBannerCell {
     
     // Prepare for reuse
     

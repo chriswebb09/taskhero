@@ -73,6 +73,9 @@ extension LoginViewController: UITextFieldDelegate {
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
     }
+}
+
+extension LoginViewController {
     
     func handleLogin() {
         checkForValidEmailInput()
@@ -117,7 +120,9 @@ extension LoginViewController: UITextFieldDelegate {
             }
         }
     }
-    
+}
+
+extension LoginViewController {
     // MARK: - Load TabbarController
     
     fileprivate func setupTabBar() {
@@ -137,6 +142,15 @@ extension LoginViewController: UITextFieldDelegate {
 
 extension LoginViewController {
     
+    // Makes keyboard disappear when view ends editting
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+extension LoginViewController {
+    
     // MARK: - Textfield delegate methods
     
     // If email field selected cycles to password field / if password field cycles to emailfield.
@@ -150,12 +164,6 @@ extension LoginViewController {
         let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true
-    }
-    
-    // Makes keyboard disappear when view ends editting
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
     }
     
     // selector method that Pushes SignupViewController on button tap

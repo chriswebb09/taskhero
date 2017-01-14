@@ -61,6 +61,9 @@ extension SettingsViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
+}
+
+extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
@@ -73,6 +76,9 @@ extension SettingsViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 82
     }
+}
+
+extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if settings[indexPath.row] == "Edit Profile" {
@@ -123,9 +129,8 @@ extension SettingsViewController {
 }
 
 extension SettingsViewController {
-
-    // MARK: - Setup buttons
     
+    // MARK: - Setup buttons
     // Hides notification popover
     
     func dismissNotificationButton() {

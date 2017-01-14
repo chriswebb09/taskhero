@@ -17,7 +17,6 @@ protocol CellMake {
 }
 
 class HomeViewControllerDataSource {
-    
     /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
     
     let store = UserDataStore.sharedInstance
@@ -63,7 +62,6 @@ extension HomeViewControllerDataSource: CellMake {
 // Methods for configure UIElements + registers cell types for tableView
 
 extension HomeViewControllerDataSource {
-    
     /* Sets estimatedRowHeight and registers cell types */
     
     func setupView(tableView:UITableView, view:UIView) {
@@ -76,7 +74,6 @@ extension HomeViewControllerDataSource {
 }
 
 extension HomeViewControllerDataSource {
-    
     /* Setup HeaderCell - configuration and adding delegates to HomeViewController  */
     
     func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
@@ -96,7 +93,6 @@ extension HomeViewControllerDataSource {
 }
 
 extension HomeViewControllerDataSource {
-    
     // Method choosing profilePicture for Header cell
     
     func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
@@ -107,10 +103,9 @@ extension HomeViewControllerDataSource {
 }
 
 extension HomeViewControllerDataSource {
-    
     /* Deletes task at indexPath.row - 1 - subtraction because TaskCells are below the profileHeader cell */
     
-    func deleteTask(indexPath: IndexPath, tableView:UITableView) {
+    public func deleteTask(indexPath: IndexPath, tableView:UITableView) {
         DispatchQueue.global(qos: .default).async {
             let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
             if let tasks = self.store.currentUser.tasks {
@@ -128,12 +123,11 @@ extension HomeViewControllerDataSource {
         print(self.store.tasks)
     }
     
-    // Selector method for taskCompletedView and SavButton in TaskCell - cycles between them depending on the state to either edit or save
+    // Selector method for taskCompletedView and SaveButton in TaskCell - cycles between them depending on the state to either edit or save
     
     public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         if tapCell.toggled == false {
-            // print(atIndex.row - 1])
             var newTask = self.store.tasks[atIndex.row - 1]
             newTask.taskDescription = tapCell.taskDescriptionLabel.text
             self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)

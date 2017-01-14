@@ -89,14 +89,12 @@ extension AddTaskViewController {
 }
 
 extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    
     // MARK: Extension - UIPickerView Methods
     // DatePicker Initialization
     
     func setupPick() {
         pick.dataSource = self
     }
-    
 }
 
 extension AddTaskViewController {
@@ -148,7 +146,6 @@ extension AddTaskViewController {
 extension AddTaskViewController {
     
     // MARK: Public methods
-    
     /* When add task button pressed - data popover is show so user can pick task due data */
     
     dynamic fileprivate func addTaskButtonTapped() {

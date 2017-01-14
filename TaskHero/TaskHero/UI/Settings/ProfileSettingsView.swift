@@ -9,7 +9,7 @@
 import UIKit
 
 final class ProfileSettingsView: UIView {
-  
+    
     // MARK: - Deallocation from memory
     
     deinit {
@@ -38,11 +38,13 @@ extension ProfileSettingsView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
+}
 
-    // MARK: - Configure
-    // ==============================
+extension ProfileSettingsView {
     
-    private func setupConstraints() {
+    // MARK: - Configure
+    
+    fileprivate func setupConstraints() {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
         profileLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.FriendsSetting.friendsHeaderLabelHeight).isActive = true

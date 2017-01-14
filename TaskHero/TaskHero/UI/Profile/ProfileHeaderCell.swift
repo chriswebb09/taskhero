@@ -99,7 +99,6 @@ extension ProfileHeaderCell {
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
     
-    
     /* adds levelLabel, emailLabel, joinDateLabel, usernameLabel, profilePicture to subview */
     /* calls configureLabel on levelLabel, emailLabel, joinDateLabel, usernameLabel */
     /* calls configureConstraints on levelLabel, emailLabel, usernameLabel */
@@ -140,7 +139,6 @@ extension ProfileHeaderCell {
         profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Profile.Offset.topOffset).isActive = true
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
     }
-    
 }
 
 extension ProfileHeaderCell {

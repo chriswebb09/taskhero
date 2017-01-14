@@ -16,7 +16,6 @@ import UIKit
  */
 
 final class HomeViewController: UITableViewController {
-    
     // MARK: - Deallocate HomeViewController From Memory
     
     deinit {
@@ -34,8 +33,6 @@ final class HomeViewController: UITableViewController {
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
-    
-    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +71,6 @@ extension HomeViewController: UINavigationControllerDelegate {
 // Extension for tableView delegate methods
 
 extension HomeViewController: ProfileHeaderCellDelegate {
-    
     // MARK: - UITableViewController Methods
     // Returns number of rows based on count taskcount
     
@@ -90,7 +86,6 @@ extension HomeViewController: ProfileHeaderCellDelegate {
 }
 
 extension HomeViewController: UITextViewDelegate, TaskCellDelegate {
-    
     /*
      - If first row returns profile header cell else returns task cell
      - all cells configured within HomeViewController datasource class
@@ -99,6 +94,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate {
      */
     
     // FIXME: - Fix so that tableview can delete tasks with index out of range getting thrown
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         dataSource.tableIndexPath = indexPath
         if indexPath.row == 0 {

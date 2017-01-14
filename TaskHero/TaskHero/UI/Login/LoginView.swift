@@ -9,7 +9,6 @@
 import UIKit
 
 final class LoginView: UIView {
-    
     // MARK: - LoginView deallocated
     
     deinit {
@@ -62,7 +61,6 @@ final class LoginView: UIView {
 
 
 extension LoginView {
-    
     // MARK: Initialization
     
     override func layoutSubviews() {
@@ -78,6 +76,8 @@ extension LoginView {
         viewDivider.layer.opacity = 0
         logoImageView.layer.opacity = 0
         
+        // Animates fade in of UIElements
+        
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             self?.logoImageView.layer.opacity = 1
             self?.loginButton.layer.opacity = 1
@@ -88,9 +88,12 @@ extension LoginView {
             self?.passwordField.layer.opacity = 1
         })
     }
+}
+
+extension LoginView {
     
     /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
-    func setupLogin(_ viewController: LoginViewController) {
+    public func setupLogin(_ viewController: LoginViewController) {
         layoutSubviews()
         emailField.delegate = viewController
         passwordField.delegate = viewController
@@ -100,8 +103,12 @@ extension LoginView {
         loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
     }
     
-    // MARK: - Configuring UI
+}
+
+
+extension LoginView {
     
+    // MARK: - Configuring UI
     fileprivate func configure(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -149,7 +156,7 @@ extension LoginView {
     
     // MARK: - Animation
     
-    func textFieldAnimation() {
+    public func textFieldAnimation() {
         UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.emailField.layer.borderWidth = 1.2

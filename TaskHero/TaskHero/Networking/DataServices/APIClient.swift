@@ -11,22 +11,18 @@ import Firebase
 typealias TaskCompletion = ([Task]) -> Void
 typealias UserCompletion = (User) -> Void
 
+// TODO: Finish refactoring class, remove duplicate functionality
+// FIXME: Remove duplicate fetch task and user methods
+
 final class APIClient {
     
-    // TODO: Finish refactoring class, remove duplicate functionality
-    // FIXME: Remove duplicate fetch task and user methods
-    
-    // ================================================
     // MARK: - Deallocate APIClient
-    // ================================================
     
     deinit {
         print("APIClient deallocated")
     }
     
-    // =================================
     // Firebase properties
-    // =================================
     
     let storage = FIRStorage.storage()
     var storageRef:FIRStorageReference!
@@ -40,9 +36,7 @@ final class APIClient {
     var usernameRef: FIRDatabaseReference!
     let userID = FIRAuth.auth()?.currentUser?.uid
     
-    // ========================
     // App data properties
-    // =======================
     
     var validUsernames = [String]()
     var validUserData = [String]()
@@ -59,9 +53,7 @@ final class APIClient {
 
 extension APIClient {
     
-    // =====================================================
     // MARK:- Initial firebase database reference properties
-    // =====================================================
     
     public func setupRefs() {
         guard let userID = FIRAuth.auth()?.currentUser?.uid else { return }
@@ -77,9 +69,7 @@ extension APIClient {
 
 extension APIClient {
     
-    // =====================================================
     // Fetch all valid usernames in database
-    // =====================================================
     
     public func updateUsernameList(user: User) {
         ref = FIRDatabase.database().reference()
@@ -97,9 +87,7 @@ extension APIClient {
 
 extension APIClient {
     
-    // =========================================================================
     // Grab tasks from user profile in realtime user database
-    // =========================================================================
     
     public func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
         var taskList = taskList
@@ -160,10 +148,7 @@ extension APIClient {
 
 extension APIClient {
     
-    
-    // =============================================================================================================
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
-    // =============================================================================================================
     
     public func addTasks(task:Task) {
         tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
@@ -175,9 +160,7 @@ extension APIClient {
         tasksRef.keepSynced(true)
     }
     
-    // ========================================================================
     // Removes task from database - called on swift left in tableview
-    // ========================================================================
     
     public func updateTask(ref:String, taskID: String, task:Task) {
         let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
@@ -192,9 +175,7 @@ extension APIClient {
 
 extension APIClient {
     
-    // ==============================================
     // Updates user profile data in database
-    // ==============================================
     
     public func updateUserProfile(userID: String, user:User, tasks:[Task]) {
         userRef = dbRef.child("Users")

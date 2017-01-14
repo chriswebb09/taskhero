@@ -43,6 +43,11 @@ extension TaskListViewController {
         tableView.reloadData()
     }
     
+}
+
+
+extension TaskListViewController {
+
     /* Does setupfor tableview/emptytable view and navbar */
     
     func initializeBackgroundUI() {

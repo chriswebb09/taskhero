@@ -22,7 +22,6 @@ final class FriendsSettingsViewController: UIViewController {
     let alertPop = AlertPopover()
 }
 
-
 extension FriendsSettingsViewController {
     
     // MARK: ViewController Initialization Methods

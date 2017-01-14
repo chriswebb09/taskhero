@@ -59,7 +59,6 @@ extension ProfileDataCell {
         super.layoutSubviews()
         setupConstraints()
     }
-    
 }
 
 extension ProfileDataCell {
@@ -83,7 +82,6 @@ extension ProfileDataCell {
     fileprivate func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
     }
-    
     
     // Adds constraints to labels to also adds experience points labels and tasksComleted labels to contentView
     
@@ -112,9 +110,7 @@ extension ProfileDataCell {
         tasksCompletedLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
     }
-    
 }
-
 
 extension ProfileDataCell {
     
@@ -127,7 +123,10 @@ extension ProfileDataCell {
         layoutSubviews()
         layoutMargins = UIEdgeInsets.zero
     }
-    
+}
+
+extension ProfileDataCell {
+
     // MARK: - Reuse
     
     override func prepareForReuse() {

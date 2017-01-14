@@ -13,7 +13,7 @@ final class SettingsCell: UITableViewCell {
     static let cellIdentifier = "SettingsCell"
     
     // MARK: - Deallocation from memory
-
+    
     deinit {
         print("SettingsCell deallocated")
     }
@@ -37,10 +37,13 @@ extension SettingsCell {
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
+}
+
+extension SettingsCell {
     
     // MARK: - Configure constraints
     
-    private func setupConstraints() {
+    fileprivate func setupConstraints() {
         contentView.backgroundColor = UIColor.settingsBackground()
         contentView.addSubview(settingLabel)
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -49,12 +52,14 @@ extension SettingsCell {
         settingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         settingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
+}
+
+extension SettingsCell {
     
     func configureCell(setting: SettingsCellViewModel) {
         layoutSubviews()
         settingLabel.text = setting.setting
     }
-    
 }
 
 

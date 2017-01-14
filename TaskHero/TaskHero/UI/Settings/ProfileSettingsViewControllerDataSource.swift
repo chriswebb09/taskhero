@@ -9,7 +9,7 @@
 import UIKit
 
 final class ProfileSettingsViewControllerDataSource {
-
+    
     // MARK: - Deallocation from memory
     
     deinit {
@@ -33,8 +33,6 @@ extension ProfileSettingsViewControllerDataSource {
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.tableViewHeight).isActive = true
     }
-    
-    
 }
 
 extension ProfileSettingsViewControllerDataSource {

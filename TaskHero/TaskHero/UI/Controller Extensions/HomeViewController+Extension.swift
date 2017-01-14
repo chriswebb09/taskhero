@@ -99,6 +99,4 @@ extension HomeViewController {
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
         dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
     }
-    
-    
 }

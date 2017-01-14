@@ -16,7 +16,6 @@ final class UserDataStore {
     public static var sharedInstance: UserDataStore {
         return _shared
     }
-    
     let defaults = UserDefaults.standard
     
     public let firebaseAPI = APIClient()
@@ -27,7 +26,6 @@ final class UserDataStore {
     var profilePicture: UIImage!
     var validUsernames = [String]()
 }
-
 
 extension UserDataStore {
     
@@ -72,5 +70,4 @@ extension UserDataStore {
         defaults.removeObject(forKey: "UID")
         defaults.synchronize()
     }
-    
 }

@@ -50,7 +50,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         taskNameField.isHidden = true
         return taskNameField
     }()
-    
 }
 
 extension ProfileSettingsCell {
@@ -63,6 +62,9 @@ extension ProfileSettingsCell {
         selectionStyle = UITableViewCellSelectionStyle.none
         contentView.layer.masksToBounds = true
     }
+}
+
+extension ProfileSettingsCell {
     
     // MARK: - Configure Cell Methods
     
@@ -72,6 +74,9 @@ extension ProfileSettingsCell {
         if setting.contains("N/A") { profileSettingLabel.text = "FirstName LastName" }
         profileSettingField.isHidden = true
     }
+}
+
+extension ProfileSettingsCell {
     
     func configureView(view:UIView) {
         addSubview(view)
@@ -84,23 +89,28 @@ extension ProfileSettingsCell {
         configureView(view: profileSettingLabel)
         profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Dimension.settingsOffset).isActive = true
         profileSettingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.height).isActive = true
         button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
         button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
         configureView(view: profileSettingField)
         profileSettingField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Dimension.settingsOffset).isActive = true
         profileSettingField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
+}
+
+extension ProfileSettingsCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
         profileSettingLabel.text = ""
     }
+    
+}
+
+extension ProfileSettingsCell {
     
     // MARK: - Cell Delegate Method
     

@@ -119,6 +119,10 @@ extension TaskCell {
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
     }
     
+}
+
+extension TaskCell {
+
     /* methods used in VC to setup cell with data */
     
     public func configureCell(taskVM:TaskCellViewModel) {

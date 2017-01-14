@@ -46,7 +46,7 @@ enum ButtonType {
 
 
 extension ButtonType {
-
+    
     public var newButton: UIButton {
         switch self {
         case let .login(title):

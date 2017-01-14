@@ -62,6 +62,9 @@ extension AlertView {
         setupConstraints()
         backgroundColor = UIColor.white
     }
+}
+
+extension AlertView {
     
     fileprivate func configureConstaints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false

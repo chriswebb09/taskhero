@@ -59,10 +59,13 @@ extension FriendsSettingsView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
+}
 
+extension FriendsSettingsView {
+    
     // MARK: - Configure
     
-    private func configureView(view:UIView) {
+    fileprivate func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.FriendsSetting.friendsHeaderLabelHeight).isActive = true
@@ -70,7 +73,7 @@ extension FriendsSettingsView {
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    private func setupConstraints() {
+    fileprivate func setupConstraints() {
         configureView(view: friendsHeaderLabel)
         friendsHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Settings.FriendsSetting.friendsHeaderLabelTopOffset).isActive = true
         configureView(view: searchField)

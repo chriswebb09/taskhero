@@ -50,7 +50,6 @@ final class InitView: UIView {
     }()
 }
 
-
 extension InitView {
     
     // MARK: - Configure
@@ -71,7 +70,6 @@ extension InitView {
         logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 }
-
 
 extension InitView {
     

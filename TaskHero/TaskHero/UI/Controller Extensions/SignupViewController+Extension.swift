@@ -73,7 +73,6 @@ extension SignupViewController {
                 signupView.signupButton.isEnabled = true
             }
         }
-        
         if textField == signupView.emailField {
             if !(textField.text?.isValidEmail())! {
                 signupView.emailField.layer.borderColor = Constants.Signup.animationColor.cgColor
@@ -82,7 +81,6 @@ extension SignupViewController {
                 signupView.emailField.textColor = UIColor.blue
             }
         }
-        
         if (validateEmailInput(email: signupView.emailField.text!, confirm: signupView.confirmEmailField.text!)) && (emailInvalidated) {
             signupView.emailField.layer.borderColor = Constants.Signup.invalidColor.cgColor
             signupView.emailField.textColor = Constants.Signup.invalidColor
@@ -104,7 +102,6 @@ extension SignupViewController {
             }
         }
     }
-    
 }
 
 extension SignupViewController {

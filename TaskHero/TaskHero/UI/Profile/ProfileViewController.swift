@@ -20,7 +20,6 @@ final class ProfileViewController: UITableViewController {
     // MARK: - Internal Variables
     
     let store = UserDataStore.sharedInstance
-    
 }
 
 extension ProfileViewController {
@@ -31,12 +30,7 @@ extension ProfileViewController {
         
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        
-        // MARK: - Register cell types
-        
-        tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
-        tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        registerCells()
         tableView.estimatedRowHeight = view.frame.height / 3
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
@@ -61,6 +55,15 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     
+    func registerCells() {
+        tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
+        tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+    }
+}
+
+extension ProfileViewController {
+    
     // MARK: UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,7 +75,6 @@ extension ProfileViewController {
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
 }
 
 extension ProfileViewController {
@@ -116,7 +118,6 @@ extension ProfileViewController {
     }
     
     // MARK: - Button methods
-    
     // On logout button press sets RootViewController to LoginViewController on main thread
     
     func logoutButtonPressed() {

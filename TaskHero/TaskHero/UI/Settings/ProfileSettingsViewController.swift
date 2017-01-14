@@ -9,7 +9,7 @@
 import UIKit
 
 final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     // MARK: - Deallocation from memory
     
     deinit {

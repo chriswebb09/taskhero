@@ -40,7 +40,10 @@ extension NotificationView {
         backgroundColor = UIColor.white
         setupConstraints()
     }
-    
+}
+
+extension NotificationView {
+
     override func setupConstraints() {
         addSubview(dataLabel)
         addSubview(doneButton)

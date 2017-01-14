@@ -48,7 +48,6 @@ extension DataPickerView {
     }
 }
 
-
 extension DataPickerView {
 
     // MARK: - Configure
