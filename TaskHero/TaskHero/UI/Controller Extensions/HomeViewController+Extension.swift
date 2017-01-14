@@ -40,16 +40,26 @@ extension HomeViewController {
     }
 }
 
-// MARK: - Header cell Delegate Methods
+
+// Extension for header cell delegate methods and UIImagePicker implementation 
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
-    /* If popover is not visible shows popover / if popover is displayed it hides popover */
-    // MARK: - Profile Pic
+    // MARK: - Header cell Delegate Methods - Mainly for ProfilePicture
     
     // TODO: - Add profile picture storage methods
     // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview
     
+    func tapPickPhoto(_ sender:UIButton) {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
+        photoPopover.hideView(viewController: self)
+    }
+    
+    // MARK: - Popover
+    
+    /* If popover is not visible shows popover / if popover is displayed it hides popover */
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
         photoPopover.showPopView(viewController: self)
@@ -58,15 +68,14 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
     }
     
-    func tapPickPhoto(_ sender:UIButton) {
-        picker.allowsEditing = false
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true, completion: nil)
-        photoPopover.hideView(viewController: self)
+    /* Hides popover view when operation has ended. */
+    
+    func hidePopoverView() {
+        photoPopover.hidePopView(viewController: self)
     }
 }
 
-// MARK: - Task cell Delegate Methods
+// Task cell Delegate Methods - Mainly toggling UI for edit state
 
 extension HomeViewController {
     
@@ -90,10 +99,5 @@ extension HomeViewController {
         dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
     }
     
-    // MARK: - Popover
-    /* Hides popover view when operation has ended. */
-    
-    func hidePopoverView() {
-        photoPopover.hidePopView(viewController: self)
-    }
+
 }
