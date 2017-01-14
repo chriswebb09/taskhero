@@ -20,8 +20,6 @@ extension HomeViewController {
     
     /* Logs out user by settings root ViewController to Loginview */
     
-    
-    
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -85,6 +83,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     public func toggleForButtonState(_ sender:UIButton) {
         print("inside toggleForButtonState")
+        print("-----------------------------")
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
@@ -109,20 +108,5 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
     }
-    
-//    public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
-//        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-//        print("outside of toggle check \(tapCell.taskDescriptionLabel.text)")
-//        if tapCell.toggled == true {
-//            var newTask = self.store.tasks[atIndex.row - 1]
-//            newTask.taskDescription = tapCell.taskDescriptionLabel.text
-//            print("inside of toggle check task Description\(newTask.taskDescription)")
-//            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-//            tapCell.taskDescriptionLabel.text = newTask.taskDescription
-//        }
-//        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
-//        tapCell.taskCompletedView.addGestureRecognizer(tap)
-//        tapCell.taskCompletedView.isUserInteractionEnabled = true
-//    }
     
 }

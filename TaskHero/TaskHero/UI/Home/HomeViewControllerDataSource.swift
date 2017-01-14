@@ -117,18 +117,13 @@ extension HomeViewControllerDataSource {
         }
         print(self.store.tasks)
     }
-    
-//    func textViewDidChange(textView: UITextView) { //Handle the text changes here
-//        print(textView.text); //the textView parameter is the textView where text was changed
-//    }
+
     
     public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        print("outside of toggle check \(tapCell.taskDescriptionLabel.text)")
-        if tapCell.toggled == true {
+        if tapCell.toggled == false {
             var newTask = self.store.tasks[atIndex.row - 1]
             newTask.taskDescription = tapCell.taskDescriptionLabel.text
-            print("inside of toggle check task Description\(newTask.taskDescription)")
             self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
             tapCell.taskDescriptionLabel.text = newTask.taskDescription
         }
@@ -136,85 +131,6 @@ extension HomeViewControllerDataSource {
         tapCell.taskCompletedView.addGestureRecognizer(tap)
         tapCell.taskCompletedView.isUserInteractionEnabled = true
     }
-    
-    
-//    public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
-//        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-//        tapCell.taskDescriptionBox.text = tapCell.taskDescriptionLabel.text
-//        print("taskDescriptionBox.text outside of toggled \(tapCell.taskDescriptionBox.text!)")
-//        if tapCell.toggled == true {
-//            print("Description label \(tapCell.taskDescriptionLabel.text!)")
-//            print("Description box \(tapCell.taskDescriptionBox.text!)")
-//            self.store.tasks[atIndex.row - 1].taskDescription = tapCell.taskDescriptionBox.text
-//            print("task description inside toggled after textbox \(self.store.tasks[atIndex.row - 1].taskDescription)")
-//            print("Tap cell description box in toggled \(tapCell.taskDescriptionBox.text)")
-//            self.store.firebaseAPI.updateTask(ref: self.store.tasks[atIndex.row - 1].taskID, taskID: self.store.tasks[atIndex.row - 1].taskID, task: self.store.tasks[atIndex.row - 1])
-//            
-//            tapCell.taskDescriptionLabel.text = tapCell.taskDescriptionBox.text
-//            
-//            tapCell.taskDescriptionBox.resignFirstResponder()
-//            tapCell.toggled = false
-//        }
-//        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
-//        tapCell.taskCompletedView.addGestureRecognizer(tap)
-//        tapCell.taskCompletedView.isUserInteractionEnabled = true
-//    }
-    
-//    public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
-//        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-//        tapCell.taskDescriptionBox.text = tapCell.taskDescriptionLabel.text
-//        //var newTask = self.store.tasks[atIndex.row - 1]
-//        //        newTask.taskDescription = tapCell.taskDescriptionBox.text
-//        //print(newTask)
-//        if tapCell.toggled == true {
-//            print("Description box \(tapCell.taskDescriptionBox.text)")
-//            
-//            ////print("MY \(newTask)")
-//            //tapCell.taskDescriptionBox.text = tapCell.taskDescriptionLabel.text
-//            //var newTask = self.store.tasks[atIndex.row - 1]
-//           // print(tapCell.taskDescriptionBox.text)
-//            //newTask.taskDescription = tapCell.taskDescriptionBox.text
-//            self.store.tasks[atIndex.row - 1].taskDescription = tapCell.taskDescriptionBox.text
-//            print("task description inside toggled after textbox \(self.store.tasks[atIndex.row - 1].taskDescription)")
-//            print("Tap cell description box in toggled \(tapCell.taskDescriptionBox.text)")
-//            //rint("NO \(newTask)")
-//            self.store.firebaseAPI.updateTask(ref: self.store.tasks[atIndex.row - 1].taskID, taskID: self.store.tasks[atIndex.row - 1].taskID, task: self.store.tasks[atIndex.row - 1])
-//            
-//            tapCell.taskDescriptionLabel.text = self.store.tasks[atIndex.row - 1].taskDescription
-//            
-//            tapCell.taskDescriptionBox.resignFirstResponder()
-//            tapCell.toggled = false
-//        }
-//        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
-//        tapCell.taskCompletedView.addGestureRecognizer(tap)
-//        tapCell.taskCompletedView.isUserInteractionEnabled = true
-//    }
-    //
-    //    public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
-    //        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-    //        tapCell.taskDescriptionBox.text = tapCell.taskDescriptionLabel.text
-    //        var newTask = self.store.tasks[atIndex.row - 1]
-    //        //        newTask.taskDescription = tapCell.taskDescriptionBox.text
-    //        if tapCell.toggled == true {
-    //            print("inside of toggle check \(tapCell.taskDescriptionLabel.text)")
-    //            tapCell.taskDescriptionBox.text = tapCell.taskDescriptionLabel.text
-    //
-    //
-    //            //var newTask = self.store.tasks[atIndex.row - 1]
-    //            print("inside of toggle check 2 \(tapCell.taskDescriptionBox.text)")
-    //            newTask.taskDescription = tapCell.taskDescriptionBox.text
-    //            print("inside of toggle check task Description\(newTask.taskDescription)")
-    //            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-    //            print("inside of toggle check 3 \(tapCell.taskDescriptionBox.text)")
-    //            tapCell.taskDescriptionLabel.text = newTask.taskDescription
-    //
-    //            tapCell.taskDescriptionBox.resignFirstResponder()
-    //            tapCell.toggled = false
-    //        }
-    //        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
-    //        tapCell.taskCompletedView.addGestureRecognizer(tap)
-    //        tapCell.taskCompletedView.isUserInteractionEnabled = true
-    //    }
     
 }
 

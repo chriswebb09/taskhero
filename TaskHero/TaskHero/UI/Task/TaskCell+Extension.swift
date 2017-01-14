@@ -22,56 +22,28 @@ extension TaskCell: Toggable {
     
     func taskCell(didToggleEditState editState:Bool) {
         textViewToggle(state: editState, textView: taskDescriptionLabel)
-//        taskDescriptionLabel.isEditable = editState
-//        taskDescriptionLabel.isUserInteractionEnabled = editState
-        print("-------------------------------------------")
-        print("\n taskCell(didToggleEditState editState:Bool) \(editState)")
-//        saveButton.isEnabled = editState
-//        saveButton.isHidden = !editState
-//        taskCompletedView.isHidden = editState
-//        taskCompletedView.isUserInteractionEnabled = editState
     }
     
     
-
+    
     func textViewToggle(state: Bool, textView: UITextView) {
-        print("-------------------------------------------")
-        print("\n inside textViewToggle(state: Bool, textView: UITextView)")
-        print(state)
         if state == true {
-            print("\n textViewToggle(state: Bool, textView: UITextView) == true")
-            DispatchQueue.main.async {
-                textView.editTextViewStyle()
-                textView.isEditable = true
-                textView.isUserInteractionEnabled = true
-                self.saveButton.isEnabled = true
-                self.saveButton.isHidden = false
-                self.taskCompletedView.isHidden = true
-                self.taskCompletedView.isUserInteractionEnabled = false
-            }
-            
+            textView.editTextViewStyle()
+            textView.isEditable = true
+            textView.isUserInteractionEnabled = true
+            self.saveButton.isEnabled = true
+            self.saveButton.isHidden = false
+            self.taskCompletedView.isHidden = true
+            self.taskCompletedView.isUserInteractionEnabled = false
         } else if state == false {
-            print("**************************************************************")
-            print(state)
-            print("\n textViewToggle(state: Bool, textView: UITextView) == false")
-            DispatchQueue.main.async {
-                textView.labelTextViewStyle()
-                textView.isEditable = false
-                textView.isUserInteractionEnabled = false
-                self.saveButton.isEnabled = false
-                self.saveButton.isHidden = true
-                self.taskCompletedView.isHidden = false
-                self.taskCompletedView.isUserInteractionEnabled = true
-            }
-            
+            textView.labelTextViewStyle()
+            textView.isEditable = false
+            textView.isUserInteractionEnabled = false
+            self.saveButton.isEnabled = false
+            self.saveButton.isHidden = true
+            self.taskCompletedView.isHidden = false
+            self.taskCompletedView.isUserInteractionEnabled = true
         }
-        
-        print("\n textViewToggle(state: Bool, textView: UITextView) \(state)")
-//        if editState == true {
-//            taskDescriptionLabel.editTextViewStyle()
-//        } else if editState == false {
-//            taskDescriptionLabel.labelTextViewStyle()
-//        }
     }
     
     /* taskcompletedview delegate method */
@@ -89,14 +61,8 @@ extension TaskCell: Toggable {
     }
     
     func toggleState(state: Bool) -> Bool {
-        print("-------------------------------------------")
-        print("\n")
-        print("\n inside toggleState(state: Bool) -> Bool")
-        print("\n toggleState(state: Bool) -> Bool state is \(state)")
         let toggleState = !state
-        print("\n toggleState(state: Bool) -> Bool begins \(toggleState)")
         taskCell(didToggleEditState: toggleState)
-        print("\n toggleState(state: Bool) -> Boolhas changed to \(toggleState)")
         return toggleState
     }
     
@@ -141,7 +107,7 @@ extension TaskCell {
     
     
     /* taskcompletedview and savebutton configuration */
-
+    
     func setupEditElements(element:UIView) {
         contentView.addSubview(element)
         element.translatesAutoresizingMaskIntoConstraints = false
@@ -156,7 +122,7 @@ extension TaskCell {
         print(contentView.frame.height * 0.2)
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
-       
+        
         configureView(view: taskDueLabel)
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
@@ -172,16 +138,16 @@ extension TaskCell {
     
     /* adds shadow styling to cell */
     
-//    func setupCellView(width: CGFloat, height: CGFloat) {
-//        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
-//        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
-//        cellView.layer.masksToBounds = false
-//        cellView.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
-//        cellView.layer.shadowOffset = Constants.TaskCell.Shadow.shadowOffset
-//        cellView.layer.shadowOpacity = Constants.TaskCell.Shadow.styledShadowOpacity
-//        contentView.addSubview(cellView)
-//        contentView.sendSubview(toBack: cellView)
-//    }
+    //    func setupCellView(width: CGFloat, height: CGFloat) {
+    //        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
+    //        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+    //        cellView.layer.masksToBounds = false
+    //        cellView.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
+    //        cellView.layer.shadowOffset = Constants.TaskCell.Shadow.shadowOffset
+    //        cellView.layer.shadowOpacity = Constants.TaskCell.Shadow.styledShadowOpacity
+    //        contentView.addSubview(cellView)
+    //        contentView.sendSubview(toBack: cellView)
+    //    }
     
     
     /* methods used in VC to setup cell with data */

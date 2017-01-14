@@ -131,20 +131,17 @@ extension TaskListViewController {
         editList(tableView: tableView, atIndex: tapIndex)
     }
     
-    
     func editList(tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        //tapCell.taskDescriptionBox.resignFirstResponder()
-        if tapCell.toggled == true {
+        if tapCell.toggled == false {
             var newTask = self.store.tasks[atIndex.row]
             newTask.taskDescription = tapCell.taskDescriptionLabel.text
-            //newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-            DispatchQueue.main.async {
-                tapCell.taskDescriptionLabel.text = newTask.taskDescription
-            }
-           // tapCell.taskDescriptionBox.resignFirstResponder()
+            tapCell.taskDescriptionLabel.text = newTask.taskDescription
         }
+        let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(_:)))
+        tapCell.taskCompletedView.addGestureRecognizer(tap)
+        tapCell.taskCompletedView.isUserInteractionEnabled = true
     }
 }
 

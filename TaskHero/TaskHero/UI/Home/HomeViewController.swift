@@ -108,7 +108,6 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         } else {
             let taskCell = dataSource.configure(indexPath: indexPath, cellType:.task, tableView: tableView) as! TaskCell
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
-            //taskCell.taskDescriptionBox.delegate = self
             taskCell.saveButton.tag = indexPath.row
             return taskCell
         }
