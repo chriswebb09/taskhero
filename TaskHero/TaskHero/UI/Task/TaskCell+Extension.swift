@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension TaskCell {
+extension TaskCell: Toggable {
     
     // ===============================
     //MARK: - Delegate Methods
@@ -21,29 +21,85 @@ extension TaskCell {
     /* changes taskcell UI based on editstate value */
     
     func taskCell(didToggleEditState editState:Bool) {
-        toggled = editState
-        taskDescriptionLabel.isHidden = toggled
-        taskDescriptionBox.isHidden = !toggled
-        saveButton.isEnabled = toggled
-        saveButton.isHidden = !toggled
-        taskCompletedView.isHidden = toggled
-        taskCompletedView.isUserInteractionEnabled = toggled
-        toggled = !editState
+        textViewToggle(state: editState, textView: taskDescriptionLabel)
+//        taskDescriptionLabel.isEditable = editState
+//        taskDescriptionLabel.isUserInteractionEnabled = editState
+        print("-------------------------------------------")
+        print("\n taskCell(didToggleEditState editState:Bool) \(editState)")
+//        saveButton.isEnabled = editState
+//        saveButton.isHidden = !editState
+//        taskCompletedView.isHidden = editState
+//        taskCompletedView.isUserInteractionEnabled = editState
+    }
+    
+    
+
+    func textViewToggle(state: Bool, textView: UITextView) {
+        print("-------------------------------------------")
+        print("\n inside textViewToggle(state: Bool, textView: UITextView)")
+        print(state)
+        if state == true {
+            print("\n textViewToggle(state: Bool, textView: UITextView) == true")
+            DispatchQueue.main.async {
+                textView.editTextViewStyle()
+                textView.isEditable = true
+                textView.isUserInteractionEnabled = true
+                self.saveButton.isEnabled = true
+                self.saveButton.isHidden = false
+                self.taskCompletedView.isHidden = true
+                self.taskCompletedView.isUserInteractionEnabled = false
+            }
+            
+        } else if state == false {
+            print("**************************************************************")
+            print(state)
+            print("\n textViewToggle(state: Bool, textView: UITextView) == false")
+            DispatchQueue.main.async {
+                textView.labelTextViewStyle()
+                textView.isEditable = false
+                textView.isUserInteractionEnabled = false
+                self.saveButton.isEnabled = false
+                self.saveButton.isHidden = true
+                self.taskCompletedView.isHidden = false
+                self.taskCompletedView.isUserInteractionEnabled = true
+            }
+            
+        }
+        
+        print("\n textViewToggle(state: Bool, textView: UITextView) \(state)")
+//        if editState == true {
+//            taskDescriptionLabel.editTextViewStyle()
+//        } else if editState == false {
+//            taskDescriptionLabel.labelTextViewStyle()
+//        }
     }
     
     /* taskcompletedview delegate method */
     
     func toggleForEditState(sender:UIGestureRecognizer) {
-        taskCell(didToggleEditState: !toggled)
+        toggled = toggleState(state: toggled)
         delegate?.toggleForEditState(sender)
     }
     
     /* Button delegate method */
     
     func toggleForButtonState(sender:UIButton) {
-        taskCell(didToggleEditState: toggled)
+        toggled = toggleState(state: toggled)
         delegate?.toggleForButtonState(sender)
     }
+    
+    func toggleState(state: Bool) -> Bool {
+        print("-------------------------------------------")
+        print("\n")
+        print("\n inside toggleState(state: Bool) -> Bool")
+        print("\n toggleState(state: Bool) -> Bool state is \(state)")
+        let toggleState = !state
+        print("\n toggleState(state: Bool) -> Bool begins \(toggleState)")
+        taskCell(didToggleEditState: toggleState)
+        print("\n toggleState(state: Bool) -> Boolhas changed to \(toggleState)")
+        return toggleState
+    }
+    
 }
 
 extension TaskCell {
@@ -73,58 +129,65 @@ extension TaskCell {
     }
     
     /* taskdescription label configuration */
-    func configureDesription(view:UIView) {
-        contentView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.Description.descriptionBoxHeight).isActive = true
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.Description.descriptionLabelWidth).isActive = true
-        view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.bottomOffset).isActive = true
-        view.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+    
+    func setupDescriptionElements(element:UIView) {
+        contentView.addSubview(element)
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.Description.descriptionBoxHeight).isActive = true
+        element.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.Description.descriptionLabelWidth).isActive = true
+        element.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.bottomOffset).isActive = true
+        element.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
     
     
     /* taskcompletedview and savebutton configuration */
-    func configureElements(view:UIView) {
-        contentView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.negativeOffset).isActive = true
-        view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.mainOffset).isActive = true
-        view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Dimension.saveButtonHeight).isActive = true
+
+    func setupEditElements(element:UIView) {
+        contentView.addSubview(element)
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.negativeOffset).isActive = true
+        element.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.mainOffset).isActive = true
+        element.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Dimension.saveButtonHeight).isActive = true
     }
     
     func setupConstraints() {
+        
         configureView(view: taskNameLabel)
         print(contentView.frame.height * 0.2)
         taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
         taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
+       
         configureView(view: taskDueLabel)
         taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
-        configureDesription(view: taskDescriptionLabel)
-        configureElements(view: taskCompletedView)
-        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth * 0.5).isActive = true
         
-        configureElements(view: saveButton)
+        
+        setupDescriptionElements(element: taskDescriptionLabel)
+        setupEditElements(element: taskCompletedView)
+        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth * 0.5).isActive = true
+        setupEditElements(element:saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
-        configureDesription(view: taskDescriptionBox)
+        //setupDescriptionElements(element: taskDescriptionBox)
     }
     
     /* adds shadow styling to cell */
     
-    func setupCellView(width: CGFloat, height: CGFloat) {
-        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
-        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
-        cellView.layer.masksToBounds = false
-        cellView.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
-        cellView.layer.shadowOffset = Constants.TaskCell.Shadow.shadowOffset
-        cellView.layer.shadowOpacity = Constants.TaskCell.Shadow.styledShadowOpacity
-        contentView.addSubview(cellView)
-        contentView.sendSubview(toBack: cellView)
-    }
+//    func setupCellView(width: CGFloat, height: CGFloat) {
+//        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
+//        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+//        cellView.layer.masksToBounds = false
+//        cellView.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
+//        cellView.layer.shadowOffset = Constants.TaskCell.Shadow.shadowOffset
+//        cellView.layer.shadowOpacity = Constants.TaskCell.Shadow.styledShadowOpacity
+//        contentView.addSubview(cellView)
+//        contentView.sendSubview(toBack: cellView)
+//    }
     
     
     /* methods used in VC to setup cell with data */
+    
     public func configureCell(taskVM:TaskCellViewModel) {
+        
         layoutSubviews()
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"

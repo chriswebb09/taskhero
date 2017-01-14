@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct LoginViewModel {
     
     var userName: String!

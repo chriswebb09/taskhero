@@ -21,6 +21,10 @@ final class SettingsCell: UITableViewCell {
         print("SettingsCell deallocated")
     }
     
+    // ==============================
+    // MARK: - UIElement
+    // ==============================
+    
     lazy var settingLabel: UILabel = {
         let textView = UILabel()
         textView.textColor = UIColor.white

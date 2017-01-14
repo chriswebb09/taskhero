@@ -88,8 +88,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)
-        
-        tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!)
+        dataSource.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!)
     }
     
     /* Kicks off cycling between taskcell editing states */
@@ -111,33 +110,19 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.hidePopView(viewController: self)
     }
     
-    
-    
-    func textViewDidChange(textView: UITextView) { //Handle the text changes here
-        print(textView.text) //the textView parameter is the textView where text was changed
-    }
-    
-    public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
-        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        print("outside of toggle check \(tapCell.taskDescriptionLabel.text)")
-        if tapCell.toggled == true {
-            print("inside of toggle check \(tapCell.taskDescriptionLabel.text)")
-            
-            var newTask = self.store.tasks[atIndex.row - 1]
-            print("inside of toggle check 2 \(tapCell.taskDescriptionLabel.text)")
-            newTask.taskDescription = tapCell.taskDescriptionBox.text
-            print("inside of toggle check task Description\(newTask.taskDescription)")
-            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-            DispatchQueue.main.async {
-                print("inside of toggle check 3 \(tapCell.taskDescriptionLabel.text)")
-                tapCell.taskDescriptionLabel.text = newTask.taskDescription
-            }
-            tapCell.taskDescriptionBox.resignFirstResponder()
-            tapCell.toggled = false
-        }
-        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
-        tapCell.taskCompletedView.addGestureRecognizer(tap)
-        tapCell.taskCompletedView.isUserInteractionEnabled = true
-    }
+//    public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
+//        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
+//        print("outside of toggle check \(tapCell.taskDescriptionLabel.text)")
+//        if tapCell.toggled == true {
+//            var newTask = self.store.tasks[atIndex.row - 1]
+//            newTask.taskDescription = tapCell.taskDescriptionLabel.text
+//            print("inside of toggle check task Description\(newTask.taskDescription)")
+//            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
+//            tapCell.taskDescriptionLabel.text = newTask.taskDescription
+//        }
+//        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
+//        tapCell.taskCompletedView.addGestureRecognizer(tap)
+//        tapCell.taskCompletedView.isUserInteractionEnabled = true
+//    }
     
 }

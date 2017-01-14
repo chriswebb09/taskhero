@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 final class HomeViewController: UITableViewController {
     
     // =====================================================
@@ -39,6 +40,7 @@ final class HomeViewController: UITableViewController {
     let helpers = Helpers()     /* Helper methods mainly for configuring */
     var index:IndexPath!   /* IndexPath property still figuring out if I need it */
 }
+
 
 extension HomeViewController: UINavigationControllerDelegate {
     
@@ -106,7 +108,7 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
         } else {
             let taskCell = dataSource.configure(indexPath: indexPath, cellType:.task, tableView: tableView) as! TaskCell
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
-            taskCell.taskDescriptionBox.delegate = self
+            //taskCell.taskDescriptionBox.delegate = self
             taskCell.saveButton.tag = indexPath.row
             return taskCell
         }

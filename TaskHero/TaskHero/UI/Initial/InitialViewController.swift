@@ -38,7 +38,6 @@ extension InitialViewController {
             self.initView.zoomAnimation({ })
         }
     }
-    
 }
 
 extension InitialViewController {

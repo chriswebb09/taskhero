@@ -18,6 +18,10 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
         print("ProfileSettingsViewController deallocated")
     }
     
+    // ==============================
+    // MARK: - Properties
+    // ==============================
+    
     let store = UserDataStore.sharedInstance
     let profileSettingsView = ProfileSettingsView()
     var tapped: Bool = false

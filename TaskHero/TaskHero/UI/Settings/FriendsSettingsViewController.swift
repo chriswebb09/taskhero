@@ -10,6 +10,14 @@ import UIKit
 
 final class FriendsSettingsViewController: UIViewController {
     
+    // ==================================
+    // MARK: - Deallocation from memory
+    // =================================
+    
+    deinit {
+        print("FriendsSettingsView deallocated")
+    }
+    
     // =============================
     // MARK: Properties
     // =============================
@@ -33,9 +41,7 @@ extension FriendsSettingsViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         friendsSettingsView.searchButton.addTarget(self, action: #selector(popup), for: .touchUpInside)
     }
-    
 }
-
 
 extension FriendsSettingsViewController: UITextFieldDelegate {
     

@@ -59,7 +59,6 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         }
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
-    
 }
 
 
@@ -109,9 +108,7 @@ extension TaskListViewController {
         store.firebaseAPI.removeTask(ref: id, taskID: id)
         store.tasks.remove(at: indexPath.row)
     }
-    
 }
-
 
 extension TaskListViewController {
     
@@ -137,15 +134,16 @@ extension TaskListViewController {
     
     func editList(tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        tapCell.taskDescriptionBox.resignFirstResponder()
+        //tapCell.taskDescriptionBox.resignFirstResponder()
         if tapCell.toggled == true {
             var newTask = self.store.tasks[atIndex.row]
-            newTask.taskDescription = tapCell.taskDescriptionBox.text
+            newTask.taskDescription = tapCell.taskDescriptionLabel.text
+            //newTask.taskDescription = tapCell.taskDescriptionBox.text
             self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
             DispatchQueue.main.async {
                 tapCell.taskDescriptionLabel.text = newTask.taskDescription
             }
-            tapCell.taskDescriptionBox.resignFirstResponder()
+           // tapCell.taskDescriptionBox.resignFirstResponder()
         }
     }
 }

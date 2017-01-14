@@ -24,12 +24,10 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     deinit {
         print("ProfileSettingsCell deallocated")
     }
-
     
     // ========================
     // MARK: - UIElements
     // ========================
-    
     
     lazy var profileSettingLabel: UILabel = {
         let profileLabel = UILabel()

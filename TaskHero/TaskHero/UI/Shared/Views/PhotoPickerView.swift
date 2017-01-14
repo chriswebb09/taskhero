@@ -19,7 +19,6 @@ class PhotoPickerView: BasePopView {
         let button = ButtonType.system(title: "Change Profile Picture", color: UIColor.black)
         return button.newButton
     }()
-    
 }
 
 

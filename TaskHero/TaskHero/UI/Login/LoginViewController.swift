@@ -19,7 +19,6 @@ final class LoginViewController: UIViewController {
         print("LoginViewController deallocated from memory")
     }
     
-    
     var loginView = LoginView() /* LoginView instantiated - will be added to viewcontroller view in viewdidload */
     let store = UserDataStore.sharedInstance /* Singleton for the instance of the the authenticated user that shared by the entire application */
     var loadingView = LoadingView() /* Activity indicator and background container view instantiated - will be added to view on login button press */
@@ -35,6 +34,7 @@ extension LoginViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
+        setupDelegates()
         edgesForExtendedLayout = []
         loginView.setupLogin(self)
         navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
@@ -64,9 +64,13 @@ extension LoginViewController: UITextFieldDelegate {
      - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
      */
     
-    func handleLogin() {
+    
+    func setupDelegates() {
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
+    }
+    
+    func handleLogin() {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
@@ -149,7 +153,7 @@ extension LoginViewController {
         return true
     }
     
-    @objc public func dismissKeyboard() {
+    func dismissKeyboard() {
         view.endEditing(true)
     }
     

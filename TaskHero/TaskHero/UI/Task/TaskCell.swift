@@ -25,7 +25,7 @@ final class TaskCell: UITableViewCell {
     
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
-    var toggled:Bool = false
+    var toggled: Bool = false
     var taskViewModel: TaskCellViewModel!
     
     // =================================
@@ -39,17 +39,19 @@ final class TaskCell: UITableViewCell {
         return textView
     }()
     
-    lazy var taskDescriptionBox: UITextView = {
-        let taskDescriptionBox = UITextView().setupStyledTextView()
-        taskDescriptionBox.isHidden = true
-        return taskDescriptionBox
-    }()
-    
+//    lazy var taskDescriptionBox: UITextView = {
+//        let taskDescriptionBox = UITextView().setupEditStyledTextView()
+//        taskDescriptionBox.isHidden = true
+//        return taskDescriptionBox
+//    }()
+//    
     lazy var taskDescriptionLabel: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = Constants.TaskCell.Description.descriptionLabelBackgroundColor
-        textView.font = Constants.Font.fontMedium
-        textView.textColor = UIColor.white
+//        textView.backgroundColor = Constants.TaskCell.Description.descriptionLabelBackgroundColor
+//        textView.font = Constants.Font.fontMedium
+//        textView.textColor = UIColor.white
+        
+        textView.labelTextViewStyle()
         return textView
     }()
     
@@ -102,7 +104,6 @@ extension TaskCell {
         configureTextView(label: taskNameLabel)
         setupConstraints()
     }
-    
 }
 
 

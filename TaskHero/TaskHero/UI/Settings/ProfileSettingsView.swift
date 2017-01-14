@@ -9,11 +9,7 @@
 import UIKit
 
 final class ProfileSettingsView: UIView {
-    
-    // ==============================
-    // MARK: - UIElements
-    // ==============================
-    
+  
     // ==================================
     // MARK: - Deallocation from memory
     // =================================
@@ -22,6 +18,9 @@ final class ProfileSettingsView: UIView {
         print("ProfileSettingsView deallocated from memory")
     }
     
+    // ==============================
+    // MARK: - UIElements
+    // ==============================
     
     lazy var profileLabel: UILabel = {
         let profileLabel = UILabel()
