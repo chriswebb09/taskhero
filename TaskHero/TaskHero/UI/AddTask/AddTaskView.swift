@@ -82,6 +82,27 @@ extension AddTaskView {
         view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.07).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
+}
+
+extension AddTaskView {
+    
+    func addTaskDescriptionBox() {
+        addSubview(taskDescriptionBox)
+        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
+        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
+        taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
+    }
+    
+    func addButton() {
+        addSubview(addTaskButton)
+        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
+        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
+        addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
+    }
     
     fileprivate func setupConstraints() {
         configureView(view: taskNameLabel)
@@ -91,18 +112,7 @@ extension AddTaskView {
         
         // UITextView for task description input
         
-        addSubview(taskDescriptionBox)
-        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
-        taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
-        
-        addSubview(addTaskButton)
-        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
-        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
-        addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
+        addButton()
+        addTaskDescriptionBox()
     }
 }

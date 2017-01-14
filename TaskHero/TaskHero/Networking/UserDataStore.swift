@@ -29,6 +29,8 @@ final class UserDataStore {
 
 extension UserDataStore {
     
+    // basic setups for dataStore, removes all tasks from store tasks and currentUser tasks 
+    
     func setupStore() {
         tasks.removeAll()
         if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
@@ -40,10 +42,15 @@ extension UserDataStore {
     // Update currentUser score when user completes task
     // ===========================================================
     
+    
+    // adds to one point to user experience points and addd one task to numberOfTasksCompleted
+    
     func updateUserScore() {
         currentUser.experiencePoints += 1
         currentUser.numberOfTasksCompleted += 1
     }
+    
+    // Incomplete - will eventually pull stored data for log in persistence
     
     func hasLoggedIn() {
         let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
@@ -54,15 +61,22 @@ extension UserDataStore {
         }
     }
     
+    // sets has logged in key for UserDefaults
+    
     func setLoggedInKey(userState:Bool) {
         defaults.set(userState, forKey: "hasLoggedIn")
     }
+    
+    
+    // incomplete - set currentUser and tasks on local storage after log in to mitigate constant log in fatigue
     
     func setUserData(user: User) {
         defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
         defaults.synchronize()
     }
     
+    
+    // incomplete - when finished method should remove currentUser and tasks from local storage when user taps logout
     
     func logout() {
         defaults.set(false, forKey: "hasLoggedIn")

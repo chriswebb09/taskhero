@@ -32,7 +32,7 @@ final class AddTaskViewController: UIViewController  {
 
 extension AddTaskViewController {
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +50,8 @@ extension AddTaskViewController {
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
+    // Adds UITextFieldDelegate and UITextViewDelege to self - self = AddTaskViewController
+    
     func setupDelegates() {
         addTaskView.taskNameField.delegate = self
         addTaskView.taskDescriptionBox.delegate = self
@@ -58,7 +60,8 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
 
 extension AddTaskViewController {
     
-    // MARK: TextField Methods
+    // MARK: - TextField Methods
+    
     // On return-key press hides keyboard
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -89,7 +92,9 @@ extension AddTaskViewController {
 }
 
 extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    // MARK: Extension - UIPickerView Methods
+    
+    // MARK: - Extension UIPickerView Methods
+    
     // DatePicker Initialization
     
     func setupPick() {
@@ -98,6 +103,8 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 }
 
 extension AddTaskViewController {
+    
+    // 3 components in picker - day - month - year
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
@@ -116,16 +123,25 @@ extension AddTaskViewController {
         }
     }
     
+    
+    
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
+            // first component is months
             return taskViewModel.pickerMonths[row]
         } else if component == 1 {
             var dayString = String(describing: taskViewModel.range[row])
+            
+            // second component is days if less than 2 digits adds zero before day
+            
             if dayString.characters.count < 2 {
                 day = "0\(dayString)"
             }
             return day
         } else {
+            
+            // last component is years
+            
             return taskViewModel.years[row]
         }
     }
@@ -145,7 +161,8 @@ extension AddTaskViewController {
 
 extension AddTaskViewController {
     
-    // MARK: Public methods
+    // MARK: - Public methods
+    
     /* When add task button pressed - data popover is show so user can pick task due data */
     
     dynamic fileprivate func addTaskButtonTapped() {
@@ -177,6 +194,8 @@ extension AddTaskViewController {
             _ = self.navigationController?.popToRootViewController(animated: false)
         }
     }
+    
+    // Hides keyboard 
     
     func dismissKeyboard() {
         view.endEditing(true)

@@ -61,6 +61,8 @@ extension APIClient {
         tasksRef = dbRef.child("Users").child(userID).child("Tasks")
     }
     
+    // remove task from database 
+    
     func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
     }
@@ -160,7 +162,7 @@ extension APIClient {
         tasksRef.keepSynced(true)
     }
     
-    // Removes task from database - called on swift left in tableview
+   // updates values of task when task is editted
     
     func updateTask(ref:String, taskID: String, task:Task) {
         let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
