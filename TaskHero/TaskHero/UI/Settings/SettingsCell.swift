@@ -12,18 +12,13 @@ final class SettingsCell: UITableViewCell {
     
     static let cellIdentifier = "SettingsCell"
     
-    
-    // ==================================
     // MARK: - Deallocation from memory
-    // =================================
 
     deinit {
         print("SettingsCell deallocated")
     }
     
-    // ==============================
     // MARK: - UIElement
-    // ==============================
     
     lazy var settingLabel: UILabel = {
         let textView = UILabel()
@@ -43,9 +38,7 @@ extension SettingsCell {
         contentView.layer.masksToBounds = true
     }
     
-    // =====================================
     // MARK: - Configure constraints
-    // =====================================
     
     private func setupConstraints() {
         contentView.backgroundColor = UIColor.settingsBackground()

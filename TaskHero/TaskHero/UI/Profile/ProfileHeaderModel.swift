@@ -18,9 +18,7 @@ protocol ProfileHeaderModel {
 
 struct ProfileHeaderCellModel {
     
-    // ================================
     // MARK: - Internal Variables
-    // ================================
     
     let store = UserDataStore.sharedInstance
 
@@ -30,10 +28,9 @@ struct ProfileHeaderCellModel {
     internal var levelLabel: String
     internal var joinDate: String
     internal var joinDateIsHidden: Bool
+
     
-    // =======================================
     // MARK: - Initialization
-    // =======================================
     
     init() {
         self.emailLabel = (self.store.currentUser?.email)!

@@ -11,9 +11,8 @@ import UIKit
 
 extension TaskCell: Toggable {
     
-    // ===============================
-    //MARK: - Delegate Methods
-    // ===============================
+    
+    // MARK: - Delegate Methods
     
     // Button toggle methods
     
@@ -70,9 +69,7 @@ extension TaskCell: Toggable {
 
 extension TaskCell {
     
-    // =====================================
     // MARK: - Configure cell subviews
-    // =====================================
     
     /* takes in textview returns configured textview*/
     

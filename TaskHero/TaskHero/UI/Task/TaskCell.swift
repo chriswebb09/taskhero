@@ -15,22 +15,23 @@ protocol TaskCellDelegate: class {
 
 final class TaskCell: UITableViewCell {
     
-    // ===============================
-    // MARK: - Properties
-    // ===============================
+    // MARK: - Deallocation from memory
     
     deinit {
         print("Task cell deallocated")
     }
+    
+    
+    // MARK: - Properties
     
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
     var toggled: Bool = false
     var taskViewModel: TaskCellViewModel!
     
-    // =================================
+    
     // MARK: - Setup UI Elements
-    // =================================
+   
     
     lazy var taskNameLabel: UITextView = {
         let textView = UITextView()
@@ -70,9 +71,8 @@ final class TaskCell: UITableViewCell {
 
 extension TaskCell {
     
-    // ===========================
     // MARK: - Initialization
-    // ===========================
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -84,9 +84,7 @@ extension TaskCell {
         contentView.backgroundColor = UIColor.clear
     }
     
-    // ===============================
     // MARK: - Configure cell
-    // ===============================
     
     fileprivate func setupConfigures() {
         configureTextView(label: taskDescriptionLabel)
@@ -98,9 +96,7 @@ extension TaskCell {
 
 extension TaskCell {
     
-    // ===============================
     // MARK: - Reuse
-    // ===============================
     
     override func prepareForReuse() {
         super.prepareForReuse()

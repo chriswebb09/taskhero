@@ -10,17 +10,13 @@ import UIKit
 
 final class FriendsSettingsViewController: UIViewController {
     
-    // ==================================
     // MARK: - Deallocation from memory
-    // =================================
     
     deinit {
         print("FriendsSettingsView deallocated")
     }
     
-    // =============================
     // MARK: Properties
-    // =============================
     
     let friendsSettingsView = FriendsSettingsView()
     let alertPop = AlertPopover()
@@ -29,9 +25,7 @@ final class FriendsSettingsViewController: UIViewController {
 
 extension FriendsSettingsViewController {
     
-    // ============================================
     // MARK: ViewController Initialization Methods
-    // ============================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +39,7 @@ extension FriendsSettingsViewController {
 
 extension FriendsSettingsViewController: UITextFieldDelegate {
     
-    // ======================================
     // MARK: - Textfield delegate methods
-    // ======================================
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)

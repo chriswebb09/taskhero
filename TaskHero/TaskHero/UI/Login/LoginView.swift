@@ -10,17 +10,13 @@ import UIKit
 
 final class LoginView: UIView {
     
-    // =================================
     // MARK: - LoginView deallocated
-    // =================================
     
     deinit {
         print("LoginView deallocated from memory")
     }
     
-    // =========================
     // MARK: UIElements
-    // =========================
     
     lazy var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
@@ -67,9 +63,7 @@ final class LoginView: UIView {
 
 extension LoginView {
     
-    // ==============================
     // MARK: Initialization
-    // ==============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -107,9 +101,7 @@ extension LoginView {
         loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
     }
     
-    // ===============================
     // MARK: - Configuring UI
-    // ===============================
     
     fileprivate func configure(view:UIView) {
         addSubview(view)
@@ -157,9 +149,7 @@ extension LoginView {
 
 extension LoginView {
     
-    // ===============================
     // MARK: - Animation
-    // ===============================
     
     func textFieldAnimation() {
         UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in

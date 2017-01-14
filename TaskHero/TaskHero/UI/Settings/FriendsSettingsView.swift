@@ -10,17 +10,13 @@ import UIKit
 
 final class FriendsSettingsView: UIView {
     
-    // ==================================
     // MARK: - Deallocation from memory
-    // =================================
     
     deinit {
         print("FriendsSettingsView deallocated")
     }
     
-    // ==========================
     // MARK: - UI Elements
-    // ==========================
     
     lazy var friendsHeaderLabel: UILabel = {
         let friendsHeaderLabel = UILabel()
@@ -56,19 +52,15 @@ final class FriendsSettingsView: UIView {
 
 extension FriendsSettingsView {
     
-    // =============================
     // MARK: - Initialization
-    // =============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-    
-    // =============================
+
     // MARK: - Configure
-    // =============================
     
     private func configureView(view:UIView) {
         addSubview(view)

@@ -14,9 +14,7 @@ import Firebase
 
 extension HomeViewController {
     
-    // ============================
     // MARK: Selector Methods
-    // ============================
     
     /* Logs out user by settings root ViewController to Loginview */
     
@@ -35,9 +33,7 @@ extension HomeViewController {
     
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     
-    // ====================
     // MARK: - Nav Items
-    // ====================
     
     func addNavItemsToController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
@@ -49,16 +45,11 @@ extension HomeViewController {
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
-    
-    // ==================================================
     // MARK: - Header and Task cell Delegate Methods
-    // ==================================================
     
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
     
-    // ====================
     // MARK: - Profile Pic
-    // ====================
     
     func profilePictureTapped() {
         photoPopover.popView.isHidden = false
@@ -77,9 +68,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     /* Method toggles UI states from editing to not editing when save is pressed */
     
-    // ====================
     // MARK: - TaskCell
-    // ====================
     
     public func toggleForButtonState(_ sender:UIButton) {
         print("inside toggleForButtonState")
@@ -98,10 +87,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
     }
     
-    
-    // ====================
     // MARK: - Popover
-    // ====================
     
     /* Hides popover view when operation has ended. */
     

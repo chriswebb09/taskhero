@@ -9,18 +9,14 @@
 import UIKit
 
 final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    // ==================================
+
     // MARK: - Deallocation from memory
-    // =================================
     
     deinit {
         print("ProfileSettingsViewController deallocated")
     }
     
-    // ==============================
     // MARK: - Properties
-    // ==============================
     
     let store = UserDataStore.sharedInstance
     let profileSettingsView = ProfileSettingsView()
@@ -57,9 +53,7 @@ extension ProfileSettingsViewController {
 
 extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCellDelegate {
     
-    // =========================================
     // MARK: UITableViewController Methods
-    // =========================================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count

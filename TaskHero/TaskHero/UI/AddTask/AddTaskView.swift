@@ -10,17 +10,13 @@ import UIKit
 
 final class AddTaskView: UIView {
     
-    // ================================================
     // MARK: - Deallocate AddTaskView From Memory
-    // ================================================
     
     deinit {
         print("AddTaskView deallocated")
     }
     
-    // ===========================
     // MARK: UI Elements
-    // ===========================
     
     lazy var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
@@ -66,9 +62,7 @@ final class AddTaskView: UIView {
 
 extension AddTaskView {
     
-    // =============================
     // MARK: - Initialization
-    // =============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -76,9 +70,7 @@ extension AddTaskView {
         setupConstraints()
     }
     
-    // ======================
     // MARK: - Configure
-    // ======================
     
     fileprivate func configureView(view:UIView) {
         addSubview(view)

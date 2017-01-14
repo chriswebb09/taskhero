@@ -12,17 +12,13 @@ typealias completion = () -> Void
 
 final class InitView: UIView {
     
-    // ==================================
     // MARK: - Deallocation from memory
-    // =================================
     
     deinit {
         print("InitView deallocated")
     }
     
-    // =============================
     // MARK: - UIElements
-    // =============================
     
     lazy var animationDuration: Double = 0.8
     
@@ -57,9 +53,7 @@ final class InitView: UIView {
 
 extension InitView {
     
-    // ===========================
     // MARK: - Configure
-    // ===========================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -81,9 +75,7 @@ extension InitView {
 
 extension InitView {
     
-    // ========================
     // MARK: - Animation
-    // ========================
     
     func zoomAnimation(_ handler: completion? = nil) {
         let duration: TimeInterval =  self.animationDuration * 0.5

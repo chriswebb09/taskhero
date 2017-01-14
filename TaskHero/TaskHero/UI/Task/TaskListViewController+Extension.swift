@@ -79,9 +79,7 @@ extension TaskListViewController {
 
 extension TaskListViewController {
     
-    // ================================
     // MARK: - Button methods
-    // ================================
     
     func logoutButtonPressed() {
         DispatchQueue.main.async {
@@ -91,10 +89,8 @@ extension TaskListViewController {
             appDelegate.window?.rootViewController = loginVC
         }
     }
-    
-    // ===============================
+
     // MARK: - Task Actions
-    // ===============================
     
     dynamic fileprivate func addTaskButtonTapped() {
         DispatchQueue.main.async {
@@ -112,9 +108,7 @@ extension TaskListViewController {
 
 extension TaskListViewController {
     
-    // =====================================
     // MARK: - Cell Button Toggle Methods
-    // =====================================
     
     func toggleForButtonState(_ sender:UIButton) {
         let superview = sender.superview

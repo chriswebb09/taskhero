@@ -11,11 +11,7 @@ import Firebase
 
 class TabBarController: UITabBarController {
     
-    // self.perform(#selector(self.helpers.handleLogout), with: nil, afterDelay: 0)
-    
-    // ====================
     // MARK: - Properties
-    // ====================
     
     let store = UserDataStore.sharedInstance
     let helpers = Helpers()
@@ -23,10 +19,8 @@ class TabBarController: UITabBarController {
 
 
 extension TabBarController {
-    
-    // =========================
+
     // MARK: - Initialization
-    // =========================
     
     override func viewDidLoad() {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
@@ -70,9 +64,7 @@ extension TabBarController {
 
 extension TabBarController {
     
-    // ===============================
     // MARK: - Setup ViewControllers
-    // ===============================
     
     fileprivate func setupControllers() {
         DispatchQueue.main.async {

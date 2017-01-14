@@ -11,17 +11,13 @@ import Firebase
 
 final class ProfileViewController: UITableViewController {
     
-    // ================================================
     // MARK: - Deallocation for ProfileViewController
-    // ================================================
     
     deinit {
         print("ProfileViewController deallocated")
     }
     
-    // ==============================
     // MARK: - Internal Variables
-    // ==============================
     
     let store = UserDataStore.sharedInstance
     
@@ -29,18 +25,14 @@ final class ProfileViewController: UITableViewController {
 
 extension ProfileViewController {
     
-    // =============================
     // MARK: - Initialization
-    // =============================
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        
-    // ================================
+
     // MARK: - Register cell types
-    // ================================
         
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
@@ -69,9 +61,7 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     
-    // ========================================
     // MARK: UITableViewController Methods
-    // ========================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -112,9 +102,7 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     
-    // ===============================
     // MARK: - Delegate Methods
-    // ===============================
     
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
@@ -123,9 +111,7 @@ extension ProfileViewController {
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
     }
     
-    // ============================
     // MARK: - Button methods
-    // ============================
     
     // On logout button press sets RootViewController to LoginViewController on main thread
     

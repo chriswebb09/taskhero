@@ -11,18 +11,16 @@ import Firebase
 
 final class AddTaskViewController: UIViewController  {
     
-    // =====================================================
+    
     // MARK: - Deallocate AddTaskViewController From Memory
-    // =====================================================
     
     deinit {
         print("AddTaskViewController deallocated")
     }
     
     
-    // =============================
-    // MARK: Properties
-    // =============================
+
+    // MARK: - Properties
     
     let store = UserDataStore.sharedInstance /* User state for application */
     let addTaskView = AddTaskView()
@@ -37,9 +35,7 @@ final class AddTaskViewController: UIViewController  {
 
 extension AddTaskViewController {
     
-    // =============================
     // MARK: Initialization
-    // =============================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +53,7 @@ extension AddTaskViewController {
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
-    // =================================
     // MARK: TextField Methods
-    // =================================
     
     // On return-key press hides keyboard
     
@@ -97,9 +91,7 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
 
 extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
-    // =========================================
     // MARK: Extension - UIPickerView Methods
-    // =========================================
     
     // DatePicker Initialization
     
@@ -153,10 +145,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
 extension AddTaskViewController {
     
-    
-    // ==========================
     // MARK: Public methods
-    // ==========================
     
     /* When add task button pressed - data popover is show so user can pick task due data */
     

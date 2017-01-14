@@ -11,17 +11,13 @@ import UIKit
 
 final class HomeViewController: UITableViewController {
     
-    // =====================================================
     // MARK: - Deallocate HomeViewController From Memory
-    // =====================================================
     
     deinit {
         print("HomeViewController deallocated")
     }
     
-    // =================================
     // MARK: Internal Properties
-    // =================================
     
     /*
      - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
@@ -41,9 +37,7 @@ final class HomeViewController: UITableViewController {
 
 extension HomeViewController: UINavigationControllerDelegate {
     
-    // ==============================
     // MARK: - Initialization
-    // ==============================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,9 +71,7 @@ extension HomeViewController: UINavigationControllerDelegate {
 
 extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, TaskCellDelegate {
     
-    // =======================================
     // MARK: UITableViewController Methods
-    // =======================================
     
     // Returns number of rows based on count taskcount
     

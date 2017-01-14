@@ -11,9 +11,7 @@ import Firebase
 
 final class SignupViewController: UIViewController, UITextFieldDelegate {
     
-    // ====================
     // MARK: - Properties
-    // ====================
     
     let store = UserDataStore.sharedInstance
     let signupView = SignupView()
@@ -51,9 +49,7 @@ extension SignupViewController {
 
 extension SignupViewController {
     
-    // =======================================
     // MARK: - UITextfield Delegate Methods
-    // =======================================
     
     // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
     

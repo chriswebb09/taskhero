@@ -10,9 +10,7 @@ import UIKit
 
 final class ProfileBannerCell: UITableViewCell {
     
-    // =================================
     // MARK: - ProfileBanner deallocated
-    // =================================
     
     deinit {
         print("ProfileBannerCell")
@@ -20,9 +18,7 @@ final class ProfileBannerCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileBannerCell"
     
-    // ========================
     // MARK: - UI Elements
-    // ========================
     
     lazy var bannerImage: UIImageView = {
         let imageView = UIImageView()
@@ -33,9 +29,7 @@ final class ProfileBannerCell: UITableViewCell {
 
 extension ProfileBannerCell {
     
-    // ===============================
     // MARK: - Initialization
-    // ===============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -43,9 +37,7 @@ extension ProfileBannerCell {
         contentView.layer.masksToBounds = true
     }
     
-    // =============================
     // MARK: - Configuring Cell
-    // =============================
     
     private func setupConstraints() {
         contentView.addSubview(bannerImage)

@@ -10,9 +10,7 @@ import UIKit
 
 class PhotoPickerPopover: BasePopoverAlert {
     
-    // ===============================
     // MARK: - UI Elements
-    // ===============================
     
     lazy var searchLabel: UILabel = {
         let searchLabel = UILabel()
@@ -35,9 +33,7 @@ class PhotoPickerPopover: BasePopoverAlert {
 
 extension PhotoPickerPopover {
     
-    // ===============================
     // MARK: - Behavior methods
-    // ===============================
     
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)

@@ -37,10 +37,7 @@ final class DataPickerView: UIView {
 
 extension DataPickerView {
     
-    
-    // =========================
     // MARK: - Initialization
-    // =========================
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -51,9 +48,7 @@ extension DataPickerView {
         setupConstraints()
     }
     
-    // ====================
     // MARK: - Configure
-    // ====================
     
     fileprivate func setupConstraints() {
         addSubview(picker)

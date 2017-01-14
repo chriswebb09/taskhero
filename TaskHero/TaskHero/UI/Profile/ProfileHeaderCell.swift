@@ -14,9 +14,7 @@ protocol ProfileHeaderCellDelegate: class {
 
 final class ProfileHeaderCell: UITableViewCell, ProfileHeaderCellDelegate {
     
-    // =================================
     // MARK: - Internal Variables
-    // =================================
     
     deinit {
         print("ProfileHeaderCell deallocated")

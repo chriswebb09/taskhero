@@ -10,17 +10,13 @@ import UIKit
 
 final class SettingsViewController: UITableViewController {
     
-    // ==================================
     // MARK: - Deallocation from memory
-    // =================================
     
     deinit {
         print("SettingsViewController deallocated")
     }
     
-    // ==============================
     // MARK: - Properties
-    // ==============================
     
     let applicationSettings = ["Notifications"]
     let userSettings = ["Edit Profile", "Friends"]
@@ -35,9 +31,7 @@ final class SettingsViewController: UITableViewController {
 
 extension SettingsViewController {
     
-    // ==============================
     // MARK: - Initialization
-    // ==============================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +56,7 @@ extension SettingsViewController {
 
 extension SettingsViewController {
     
-    // ========================================
     // MARK: UITableViewController Methods
-    // ========================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
@@ -97,9 +89,7 @@ extension SettingsViewController {
 
 extension SettingsViewController {
     
-    // =============================
     // MARK: Public Methods
-    // =============================
     
     func launchPopupView() {
         alertPop.popView.layer.opacity = 0
@@ -133,10 +123,8 @@ extension SettingsViewController {
 }
 
 extension SettingsViewController {
-    
-    // ============================
+
     // MARK: - Setup buttons
-    // ============================
     
     // Hides notification popover
     

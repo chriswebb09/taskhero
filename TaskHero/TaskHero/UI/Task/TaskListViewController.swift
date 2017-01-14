@@ -12,18 +12,14 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
     
     /* TaskListViewController is the viewcontroller that presents just the tasks that the user has added */
     
-    // ================================
     // MARK: Properties
-    // ================================
     
     let store = UserDataStore.sharedInstance /* userData store for application user state */
     var tapped: Bool = false /* tracks taps on taskcell completedView and button */
     var taskViewModel: TaskCellViewModel!
     let helpers = Helpers()
     
-    // =======================
     // MARK: - UI Elements
-    // =======================
     
     /* Label for empty tasklist state, should disappear once task is added */
     
@@ -38,9 +34,7 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
 
 extension TaskListViewController {
     
-    // ===============================
     // MARK: - Initialization
-    // ===============================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,9 +88,7 @@ extension TaskListViewController {
 
 extension TaskListViewController {
     
-    // =======================================
     // MARK: - UITableViewController Methods
-    // =======================================
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.tasks.count
@@ -110,7 +102,6 @@ extension TaskListViewController {
         let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
         taskCell.configureCell(taskVM: taskViewModel)
-        //taskCell.setupCellView(width: view.frame.size.width, height:height)
         return taskCell
     }
     

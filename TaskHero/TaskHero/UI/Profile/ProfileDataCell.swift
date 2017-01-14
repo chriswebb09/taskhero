@@ -10,9 +10,7 @@ import UIKit
 
 final class ProfileDataCell: UITableViewCell {
     
-    // ====================================
     // MARK: - ProfileDataCell deallocated
-    // ====================================
     
     deinit {
         print("ProfileDataCell deallocated")
@@ -20,9 +18,7 @@ final class ProfileDataCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileDataCell"
     
-    // ====================================
     // MARK: - UI Elements and cellModel
-    // ====================================
     
     lazy var dataCellModel: ProfileDataCellViewModel =  {
         var cellModel = ProfileDataCellViewModel()
@@ -47,18 +43,14 @@ final class ProfileDataCell: UITableViewCell {
 
 extension ProfileDataCell {
     
-    // ==============================
     // MARK: - Initialization
-    // ==============================
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
     }
     
-    // ==========================
     // MARK: - Configuration
-    // ==========================
     
     private func configureLabels(label:UILabel) {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
@@ -111,9 +103,7 @@ extension ProfileDataCell {
         layoutMargins = UIEdgeInsets.zero
     }
     
-    // ====================
     // MARK: - Reuse
-    // ====================
     
     override func prepareForReuse() {
         experiencePointsLabel.text = " "

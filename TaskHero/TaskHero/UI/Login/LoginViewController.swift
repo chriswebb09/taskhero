@@ -11,9 +11,7 @@ import Firebase
 
 final class LoginViewController: UIViewController {
     
-    // ==================================
     // MARK: - Deallocation from memory
-    // =================================
     
     deinit {
         print("LoginViewController deallocated from memory")
@@ -27,9 +25,7 @@ final class LoginViewController: UIViewController {
 
 extension LoginViewController {
     
-    // ============================================
     // MARK: ViewController Initialization Methods
-    // ============================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +44,7 @@ extension LoginViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     
-    // ================================
     // MARK: Login Method Extension
-    // ================================
     
     /*
      - handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
@@ -114,10 +108,7 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    
-    // ===============================
     // MARK: - Load TabbarController
-    // ===============================
     
     fileprivate func setupTabBar() {
         let tabBar = TabBarController()
@@ -136,9 +127,7 @@ extension LoginViewController: UITextFieldDelegate {
 
 extension LoginViewController {
     
-    // ======================================
     // MARK: - Textfield delegate methods
-    // ======================================
     
     // If email field selected cycles to password field / if password field cycles to emailfield.
     // Hides keyboard/ ends view editting
