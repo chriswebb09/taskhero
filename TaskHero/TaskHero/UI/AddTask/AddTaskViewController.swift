@@ -182,10 +182,10 @@ extension AddTaskViewController {
     
     func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"
-        let uid = NSUUID().uuidString
+        let uid = UUID.init()
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
-        let newTask = Task(taskID: uid, taskName: taskName, taskDescription: taskDescription, taskCreated:NSDate().dateWithFormat(), taskDue:newDate, taskCompleted: false, pointValue:5)
+        let newTask = Task(taskID: uid.uuidString, taskName: taskName, taskDescription: taskDescription, taskCreated:Date().dateStringFormatted(), taskDue:newDate, taskCompleted: false, pointValue:5)
         store.firebaseAPI.addTasks(task: newTask)
         store.currentUser.tasks!.append(newTask)
         DispatchQueue.main.async {

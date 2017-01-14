@@ -54,7 +54,7 @@ class User: NSObject, NSCoding {
     }
     
     override convenience init() {
-        self.init(uid:" ", email:" ", firstName: " ", lastName:" ", profilePicture: "None", username: " ", experiencePoints: 0, level: "Task Goat", joinDate: NSDate().dateWithFormat(), tasks:[Task](), numberOfTasksCompleted: 0)
+        self.init(uid:" ", email:" ", firstName: " ", lastName:" ", profilePicture: "None", username: " ", experiencePoints: 0, level: "Task Goat", joinDate: Date().dateStringFormatted(), tasks:[Task](), numberOfTasksCompleted: 0)
     }
     
     public func encode(with aCoder: NSCoder) {
