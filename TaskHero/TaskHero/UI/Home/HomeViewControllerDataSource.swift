@@ -86,8 +86,6 @@ extension HomeViewControllerDataSource {
     
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
         taskCell.delegate = viewController
-        //taskCell.taskDescriptionBox.delegate = viewController
-        taskCell.toggled = viewController.tapped
         let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
     }
