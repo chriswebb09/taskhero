@@ -117,7 +117,7 @@ extension HomeViewControllerDataSource {
         }
         print(self.store.tasks)
     }
-
+    
     
     public func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell

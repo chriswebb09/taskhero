@@ -18,7 +18,7 @@ final class HomeViewController: UITableViewController {
     deinit {
         print("HomeViewController deallocated")
     }
-
+    
     // =================================
     // MARK: Internal Properties
     // =================================
@@ -30,8 +30,8 @@ final class HomeViewController: UITableViewController {
      - Not final setup - still a work in progress
      */
     
-    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  /* BackgroundQueue 
-                                                                                                    for background network */
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  /* BackgroundQueue
+     for background network */
     let store = UserDataStore.sharedInstance
     var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover()      /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
@@ -115,18 +115,18 @@ extension HomeViewController: ProfileHeaderCellDelegate, UITextViewDelegate, Tas
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
     
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        guard indexPath.row != 0 else { return }
-//        if editingStyle == .delete {
-//            tableView.beginUpdates()
-//            backgroundQueue.async {
-//                self.dataSource.deleteTask(indexPath:indexPath, tableView: self.tableView)
-//            }
-//            DispatchQueue.main.async {
-//                self.dataSource.tableIndexPath.row = indexPath.row - 1
-//                tableView.reloadData()
-//            }
-//            tableView.endUpdates()
-//        }
-//    }
+    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    //        guard indexPath.row != 0 else { return }
+    //        if editingStyle == .delete {
+    //            tableView.beginUpdates()
+    //            backgroundQueue.async {
+    //                self.dataSource.deleteTask(indexPath:indexPath, tableView: self.tableView)
+    //            }
+    //            DispatchQueue.main.async {
+    //                self.dataSource.tableIndexPath.row = indexPath.row - 1
+    //                tableView.reloadData()
+    //            }
+    //            tableView.endUpdates()
+    //        }
+    //    }
 }

@@ -133,21 +133,7 @@ extension TaskCell {
         taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth * 0.5).isActive = true
         setupEditElements(element:saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
-        //setupDescriptionElements(element: taskDescriptionBox)
     }
-    
-    /* adds shadow styling to cell */
-    
-    //    func setupCellView(width: CGFloat, height: CGFloat) {
-    //        let cellView : UIView = UIView(frame: CGRect(x:0, y:1, width:width, height:height))
-    //        cellView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
-    //        cellView.layer.masksToBounds = false
-    //        cellView.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
-    //        cellView.layer.shadowOffset = Constants.TaskCell.Shadow.shadowOffset
-    //        cellView.layer.shadowOpacity = Constants.TaskCell.Shadow.styledShadowOpacity
-    //        contentView.addSubview(cellView)
-    //        contentView.sendSubview(toBack: cellView)
-    //    }
     
     
     /* methods used in VC to setup cell with data */
