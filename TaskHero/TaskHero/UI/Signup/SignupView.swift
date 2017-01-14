@@ -80,9 +80,21 @@ extension SignupView {
         emailField.topAnchor.constraint(equalTo:usernameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         configureField(field: confirmEmailField)
         confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
+        addPasswordField(passwordField: passwordField)
+        addSignupButton(signupButton: signupButton)
+    }
+    
+}
+
+extension SignupView {
+    
+    func addPasswordField(passwordField:UITextField) {
         configureField(field: passwordField)
         passwordField.topAnchor.constraint(equalTo:confirmEmailField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         passwordField.isSecureTextEntry = true
+    }
+    
+    func addSignupButton(signupButton:UIButton) {
         addSubview(signupButton)
         configureField(field: signupButton)
         signupButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Signup.buttonTopOffset).isActive = true

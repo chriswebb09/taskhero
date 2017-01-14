@@ -10,13 +10,11 @@ import UIKit
 import Firebase
 
 class TabBarController: UITabBarController {
-    
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance
     let helpers = Helpers()
 }
-
 
 extension TabBarController {
     
@@ -49,14 +47,14 @@ extension TabBarController {
 
 extension TabBarController {
     func getUser() {
-        self.store.firebaseAPI.fetchUserData { user in
+        store.firebaseAPI.fetchUserData { user in
             self.store.currentUser = user
         }
     }
     
     func setupTabs() {
         super.viewDidLoad()
-        self.setupControllers()
+        setupControllers()
     }
 }
 

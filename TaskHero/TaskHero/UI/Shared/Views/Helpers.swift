@@ -12,6 +12,7 @@ import Firebase
 // MARK: - MAJOR Refactor Necessary - Temporary setup
 
 public extension UITableView {
+    
     public func setupTableView() {
         estimatedRowHeight = Constants.Settings.rowHeight
         layoutMargins = UIEdgeInsets.zero
@@ -28,6 +29,7 @@ final class Helpers {
 }
 
 extension Helpers {
+    
     func removeRefHandle() {
         if store.firebaseAPI.refHandle != nil {
             self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
@@ -37,8 +39,7 @@ extension Helpers {
 
 extension Helpers {
     
-    func loadTabBar() {
-        let tabBar = TabBarController()
+    func loadTabBar(tabBar:TabBarController) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
     }

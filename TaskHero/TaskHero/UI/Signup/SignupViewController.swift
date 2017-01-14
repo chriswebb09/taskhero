@@ -93,7 +93,8 @@ extension SignupViewController {
                         var newUser = self.createUser(uid: uid, username: username, email: email)
                         self.setupUser(user: newUser)
                     }
-                    self.helpers.loadTabBar()
+                    var tabBar = TabBarController()
+                    self.helpers.loadTabBar(tabBar:tabBar)
                 }
             }
         } else {
