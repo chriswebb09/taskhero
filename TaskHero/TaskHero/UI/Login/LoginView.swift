@@ -135,20 +135,10 @@ extension LoginView {
         logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
     }
     
-    private func setupEmailField() {
-        configure(view: emailField)
-        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-    }
-    
     private func setupPassword() {
         configure(view: passwordField)
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         passwordField.isSecureTextEntry = true
-    }
-    
-    private func setupLoginButton() {
-        configure(view: loginButton)
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
     }
     
     private func setupViewDivider() {
@@ -167,12 +157,14 @@ extension LoginView {
         view.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
- 
+    
     fileprivate func setupConstraints() {
         setupLogoImage()
-        setupEmailField()
+        configure(view: emailField)
+        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         setupPassword()
-        setupLoginButton()
+        configure(view: loginButton)
+        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         setupViewDivider()
         setupView(view: registerLabel)
         registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
