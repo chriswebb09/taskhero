@@ -46,17 +46,9 @@ extension FriendsSettingsViewController: UITextFieldDelegate {
     // MARK: - Delegate methods
     
     func popup() {
-        alertPop.popView.isHidden = false
-        friendsSettingsView.searchField.resignFirstResponder()
-        alertPop.popView.layer.opacity = 0
-        alertPop.containerView.isHidden = false
-        alertPop.containerView.layer.opacity = Constants.Settings.dismissedOpacity
         alertPop.showPopView(viewController: self)
-        UIView.animate(withDuration: 0.1) {
-            self.alertPop.popView.layer.opacity = 1
-            self.alertPop.containerView.layer.opacity = 0.1
-        }
-        alertPop.alertPopView.resultLabel.text = "No results found. Please try again later."
+        friendsSettingsView.searchField.resignFirstResponder()
+        alertPop.alertPopView.resultLabel.text = "No results found."
         alertPop.alertPopView.doneButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
         alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
     }

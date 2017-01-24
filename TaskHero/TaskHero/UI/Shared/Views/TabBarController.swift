@@ -49,6 +49,8 @@ class TabBarController: UITabBarController {
         setupControllers()
     }
     
+    
+    
     // MARK: - Setup ViewControllers
     
     fileprivate func setupControllers() {
@@ -92,7 +94,7 @@ class TabBarController: UITabBarController {
         configureTabBarItem(item: taskListVC.tabBarItem)
         let taskListTab = UINavigationController(rootViewController: taskListVC)
         helpers.configureNav(nav: taskListTab.navigationBar, view:taskListVC.view)
-        taskListTab.navigationBar.topItem?.title = "TaskList"
+        taskListTab.navigationBar.topItem?.title = "Task List"
         return taskListTab
     }
     
