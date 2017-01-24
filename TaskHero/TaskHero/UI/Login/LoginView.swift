@@ -68,11 +68,9 @@ extension LoginView {
         backgroundColor = UIColor.white
         frame = UIScreen.main.bounds
         setupConstraints()
-        
         // Animates fade in of UIElements
         initialOpacity()
         animated()
-        
     }
     
     func initialOpacity() {
