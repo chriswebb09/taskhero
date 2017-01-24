@@ -59,9 +59,6 @@ extension FriendsSettingsView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-}
-
-extension FriendsSettingsView {
     
     // MARK: - Configure
     

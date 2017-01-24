@@ -68,9 +68,6 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)
         return cell
     }
-}
-
-extension ProfileSettingsViewController {
     
     dynamic fileprivate func connected(sender: TagButton){
         indexTap = sender.index

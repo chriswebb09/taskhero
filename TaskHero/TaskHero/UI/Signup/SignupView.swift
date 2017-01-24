@@ -57,9 +57,6 @@ extension SignupView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-}
-
-extension SignupView {
     
     func configureField(field: UIView) {
         addSubview(field)
@@ -83,10 +80,6 @@ extension SignupView {
         addPasswordField(passwordField: passwordField)
         addSignupButton(signupButton: signupButton)
     }
-    
-}
-
-extension SignupView {
     
     func addPasswordField(passwordField:UITextField) {
         configureField(field: passwordField)

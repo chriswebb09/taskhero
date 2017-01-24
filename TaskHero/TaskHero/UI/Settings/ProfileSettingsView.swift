@@ -38,9 +38,6 @@ extension ProfileSettingsView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-}
-
-extension ProfileSettingsView {
     
     // MARK: - Configure
     

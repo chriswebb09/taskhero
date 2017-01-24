@@ -59,9 +59,6 @@ extension ProfileDataCell {
         super.layoutSubviews()
         setupConstraints()
     }
-}
-
-extension ProfileDataCell {
     
     // MARK: - Configuration
     /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - sets label to small green ovaly element with black border aligns content in center */
@@ -122,9 +119,6 @@ extension ProfileDataCell {
         addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
     }
-}
-
-extension ProfileDataCell {
     
     // configureCell method - called in ParentViewController - in this case ProfileViewController
     
@@ -135,9 +129,6 @@ extension ProfileDataCell {
         layoutSubviews()
         layoutMargins = UIEdgeInsets.zero
     }
-}
-
-extension ProfileDataCell {
     
     // MARK: - Reuse
     

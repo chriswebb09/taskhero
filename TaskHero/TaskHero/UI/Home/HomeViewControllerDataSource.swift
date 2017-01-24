@@ -62,6 +62,7 @@ extension HomeViewControllerDataSource: CellMake {
 // Methods for configure UIElements + registers cell types for tableView
 
 extension HomeViewControllerDataSource {
+    
     /* Sets estimatedRowHeight and registers cell types */
     
     func setupView(tableView:UITableView, view:UIView) {
@@ -71,9 +72,7 @@ extension HomeViewControllerDataSource {
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         tableView.estimatedRowHeight = view.frame.height / 4
     }
-}
-
-extension HomeViewControllerDataSource {
+    
     /* Setup HeaderCell - configuration and adding delegates to HomeViewController  */
     
     func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
@@ -90,9 +89,7 @@ extension HomeViewControllerDataSource {
         let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
     }
-}
-
-extension HomeViewControllerDataSource {
+    
     // Method choosing profilePicture for Header cell
     
     func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
@@ -100,9 +97,6 @@ extension HomeViewControllerDataSource {
         picker.sourceType = .photoLibrary
         viewController.present(picker, animated: true, completion: nil)
     }
-}
-
-extension HomeViewControllerDataSource {
     
     /* Deletes task at indexPath.row - 1 - subtraction because TaskCells are below the profileHeader cell */
     
@@ -123,10 +117,7 @@ extension HomeViewControllerDataSource {
         }
         print(self.store.tasks)
     }
-}
-
-extension HomeViewControllerDataSource {
-
+    
     // Selector method for taskCompletedView and SaveButton in TaskCell - cycles between them depending on the state to either edit or save
     
     func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {

@@ -33,9 +33,6 @@ extension HomeViewController {
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
-}
-
-extension HomeViewController {
     
     // MARK: - Nav Items
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
@@ -44,6 +41,33 @@ extension HomeViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
+    }
+    
+    /* Hides popover view when operation has ended. */
+    
+    public func hidePopoverView() {
+        photoPopover.hidePopView(viewController: self)
+    }
+    
+    // Task cell Delegate Methods - Mainly toggling UI for edit state
+    // MARK: - TaskCell
+    /* Method toggles UI states from editing to not editing when save is pressed */
+    
+    func toggleForButtonState(_ sender:UIButton) {
+        print("inside toggleForButtonState")
+        print("-----------------------------")
+        let superview = sender.superview
+        let cell = superview?.superview as? TaskCell
+        let indexPath = tableView.indexPath(for: cell!)
+        dataSource.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!)
+    }
+    
+    /* Kicks off cycling between taskcell editing states */
+    
+    func toggleForEditState(_ sender:UIGestureRecognizer) {
+        let tapLocation = sender.location(in: self.tableView)
+        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
+        dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
     }
 }
 
@@ -74,36 +98,5 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
 }
 
-extension HomeViewController {
-    
-    /* Hides popover view when operation has ended. */
-    
-    public func hidePopoverView() {
-        photoPopover.hidePopView(viewController: self)
-    }
-}
 
-// Task cell Delegate Methods - Mainly toggling UI for edit state
 
-extension HomeViewController {
-    
-    // MARK: - TaskCell
-    /* Method toggles UI states from editing to not editing when save is pressed */
-    
-    func toggleForButtonState(_ sender:UIButton) {
-        print("inside toggleForButtonState")
-        print("-----------------------------")
-        let superview = sender.superview
-        let cell = superview?.superview as? TaskCell
-        let indexPath = tableView.indexPath(for: cell!)
-        dataSource.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!)
-    }
-    
-    /* Kicks off cycling between taskcell editing states */
-    
-    func toggleForEditState(_ sender:UIGestureRecognizer) {
-        let tapLocation = sender.location(in: self.tableView)
-        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
-    }
-}

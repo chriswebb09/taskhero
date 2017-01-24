@@ -37,9 +37,6 @@ extension SettingsCell {
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
-}
-
-extension SettingsCell {
     
     // MARK: - Configure constraints
     
@@ -52,18 +49,11 @@ extension SettingsCell {
         settingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         settingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
-}
-
-extension SettingsCell {
     
     func configureCell(setting: SettingsCellViewModel) {
         layoutSubviews()
         settingLabel.text = setting.setting
     }
-}
-
-
-extension SettingsCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()

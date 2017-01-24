@@ -36,9 +36,6 @@ extension SignupViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
     }
-}
-
-extension SignupViewController {
     
     fileprivate func setupSignupView() {
         signupView.layoutSubviews()
@@ -47,9 +44,6 @@ extension SignupViewController {
         signupView.usernameField.delegate = self
         signupView.passwordField.delegate = self
     }
-}
-
-extension SignupViewController {
     
     // MARK: - UITextfield Delegate Methods
     // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
@@ -64,9 +58,6 @@ extension SignupViewController {
         }
         return true
     }
-}
-
-extension SignupViewController {
     
     func handleRegister() {
         view.endEditing(true)
@@ -105,9 +96,6 @@ extension SignupViewController {
             return
         }
     }
-}
-
-extension SignupViewController {
     
     func setupUser(user:User) {
         store.firebaseAPI.registerUser(user: user)

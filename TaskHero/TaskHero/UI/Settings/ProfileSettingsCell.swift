@@ -62,9 +62,6 @@ extension ProfileSettingsCell {
         selectionStyle = UITableViewCellSelectionStyle.none
         contentView.layer.masksToBounds = true
     }
-}
-
-extension ProfileSettingsCell {
     
     // MARK: - Configure Cell Methods
     
@@ -74,9 +71,6 @@ extension ProfileSettingsCell {
         if setting.contains("N/A") { profileSettingLabel.text = "FirstName LastName" }
         profileSettingField.isHidden = true
     }
-}
-
-extension ProfileSettingsCell {
     
     private func configureView(view:UIView) {
         addSubview(view)
@@ -112,18 +106,11 @@ extension ProfileSettingsCell {
         addButton()
         addProfileSettingsField()
     }
-}
-
-extension ProfileSettingsCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
         profileSettingLabel.text = ""
     }
-    
-}
-
-extension ProfileSettingsCell {
     
     // MARK: - Cell Delegate Method
     

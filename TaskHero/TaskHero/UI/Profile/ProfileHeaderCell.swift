@@ -69,9 +69,6 @@ extension ProfileHeaderCell {
         label.font = Constants.Font.fontLarge
         return label
     }
-}
-
-extension ProfileHeaderCell {
     
     // MARK: - Initialization
     
@@ -82,9 +79,6 @@ extension ProfileHeaderCell {
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
-}
-
-extension ProfileHeaderCell {
     
     // MARK: - Configuring Cell
     
@@ -122,10 +116,6 @@ extension ProfileHeaderCell {
         contentView.addSubview(profilePicture)
     }
     
-}
-
-extension ProfileHeaderCell {
-    
     private func addUsernameLabel() {
         usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
@@ -161,9 +151,6 @@ extension ProfileHeaderCell {
         addJoinDateLabel()
         addProfilePicture()
     }
-}
-
-extension ProfileHeaderCell {
     
     /*
      - Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing
@@ -198,9 +185,6 @@ extension ProfileHeaderCell: ProfileHeaderCellDelegate {
         print("profile pic tapped\n\n\n\n\n\n")
         delegate?.profilePictureTapped()
     }
-}
-
-extension ProfileHeaderCell {
     
     // MARK: - Reuse
     
