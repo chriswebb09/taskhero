@@ -15,6 +15,7 @@ protocol ProfileDataCellModel {
 }
 
 struct ProfileDataCellViewModel {
+    
     // MARK: - Internal Variables
     
     let store = UserDataStore.sharedInstance

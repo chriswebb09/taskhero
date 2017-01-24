@@ -69,9 +69,6 @@ extension AddTaskView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-}
-
-extension AddTaskView {
     
     // MARK: - Configure
     

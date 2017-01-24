@@ -57,9 +57,6 @@ final class LoginView: UIView {
         registerLabel.textAlignment = .center
         return registerLabel
     }()
-}
-
-extension LoginView {
     
     // MARK: Initialization
     

@@ -20,9 +20,6 @@ final class ProfileViewController: UITableViewController {
     // MARK: - Internal Variables
     
     let store = UserDataStore.sharedInstance
-}
-
-extension ProfileViewController {
     
     // MARK: - Initialization
     
@@ -51,18 +48,12 @@ extension ProfileViewController {
             self.tableView.reloadData()
         }
     }
-}
-
-extension ProfileViewController {
     
     func registerCells() {
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
     }
-}
-
-extension ProfileViewController {
     
     // MARK: UITableViewController Methods
     
@@ -75,9 +66,6 @@ extension ProfileViewController {
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-}
-
-extension ProfileViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -94,7 +82,6 @@ extension ProfileViewController {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(headerCell.profilePictureTapped))
-
             headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
             return headerCell
             
@@ -106,9 +93,6 @@ extension ProfileViewController {
             return dataCell
         }
     }
-}
-
-extension ProfileViewController {
     
     // MARK: - Delegate Methods
     

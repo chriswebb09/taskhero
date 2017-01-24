@@ -56,12 +56,8 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
         addTaskView.taskNameField.delegate = self
         addTaskView.taskDescriptionBox.delegate = self
     }
-}
-
-extension AddTaskViewController {
     
     // MARK: - TextField Methods
-    
     // On return-key press hides keyboard
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -98,9 +94,6 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func setupPick() {
         pick.dataSource = self
     }
-}
-
-extension AddTaskViewController {
     
     // 3 components in picker - day - month - year
     
@@ -120,8 +113,6 @@ extension AddTaskViewController {
             return 3
         }
     }
-    
-    
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
@@ -155,12 +146,8 @@ extension AddTaskViewController {
             year = taskViewModel.years[row]
         }
     }
-}
-
-extension AddTaskViewController {
     
     // MARK: - Public methods
-    
     /* When add task button pressed - data popover is show so user can pick task due data */
     
     dynamic fileprivate func addTaskButtonTapped() {

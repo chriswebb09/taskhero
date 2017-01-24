@@ -70,9 +70,6 @@ extension LoginViewController: UITextFieldDelegate {
     public func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
-}
-
-extension LoginViewController {
     
     // MARK: - Login Method Extension
     
@@ -131,9 +128,6 @@ extension LoginViewController {
             }
         }
     }
-}
-
-extension LoginViewController {
     
     // MARK: - Load TabbarController
     
@@ -150,9 +144,6 @@ extension LoginViewController {
             loginView.textFieldAnimation()
         }
     }
-}
-
-extension LoginViewController {
     
     // MARK: - Textfield delegate methods
     

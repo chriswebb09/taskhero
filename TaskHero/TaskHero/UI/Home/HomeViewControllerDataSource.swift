@@ -57,12 +57,8 @@ extension HomeViewControllerDataSource: CellMake {
             return taskCell
         }
     }
-}
-
-// Methods for configure UIElements + registers cell types for tableView
-
-extension HomeViewControllerDataSource {
     
+    // Methods for configure UIElements + registers cell types for tableView
     /* Sets estimatedRowHeight and registers cell types */
     
     func setupView(tableView:UITableView, view:UIView) {

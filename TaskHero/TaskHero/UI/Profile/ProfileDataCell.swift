@@ -48,9 +48,6 @@ final class ProfileDataCell: UITableViewCell {
         let taskCompletedLabel = UILabel()
         return taskCompletedLabel
     }()
-}
-
-extension ProfileDataCell {
     
     // MARK: - Initialization
     // Lays out subviews and calls setup constraints

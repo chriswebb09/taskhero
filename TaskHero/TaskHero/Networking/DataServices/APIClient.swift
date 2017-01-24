@@ -49,9 +49,6 @@ final class APIClient {
         usernameRef = dbRef.child("Usernames")
         setupRefs()
     }
-}
-
-extension APIClient {
     
     // MARK:- Initial firebase database reference properties
     

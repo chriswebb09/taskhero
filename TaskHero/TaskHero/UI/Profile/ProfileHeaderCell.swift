@@ -59,10 +59,6 @@ final class ProfileHeaderCell: UITableViewCell {
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
-}
-
-
-extension ProfileHeaderCell {
     
     fileprivate func configureLargeLabel() -> UILabel {
         let label = UILabel()
@@ -178,7 +174,6 @@ extension ProfileHeaderCell {
 extension ProfileHeaderCell: ProfileHeaderCellDelegate {
     
     // MARK: - Delegate Methods
-    
     // Implementation of delegate method - May be deleted either in HomeViewController or ProfileViewController because functionality is redundant
     
     public dynamic func profilePictureTapped() {
