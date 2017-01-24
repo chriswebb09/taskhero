@@ -66,10 +66,6 @@ extension APIClient {
     func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
     }
-}
-
-
-extension APIClient {
     
     // Fetch all valid usernames in database
     
@@ -84,9 +80,6 @@ extension APIClient {
             }
         }
     }
-}
-
-extension APIClient {
     
     // Grab tasks from user profile in realtime user database
     
@@ -144,9 +137,6 @@ extension APIClient {
             completion(user)
         })
     }
-}
-
-extension APIClient {
     
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
     
@@ -170,9 +160,6 @@ extension APIClient {
                                       Constants.API.Task.taskCompleted: task.taskCompleted]
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
-}
-
-extension APIClient {
     
     // Updates user profile data in database
     

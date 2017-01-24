@@ -28,9 +28,6 @@ class ConcurrentOperation: Operation {
             didChangeValue(forKey: state.keyPath)
         }
     }
-}
-
-extension ConcurrentOperation {
     
     override public var isReady: Bool {
         return super.isReady && state == .isReady

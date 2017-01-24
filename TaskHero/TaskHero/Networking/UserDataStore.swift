@@ -25,9 +25,6 @@ final class UserDataStore {
     
     var profilePicture: UIImage!
     var validUsernames = [String]()
-}
-
-extension UserDataStore {
     
     // basic setups for dataStore, removes all tasks from store tasks and currentUser tasks
     
@@ -37,12 +34,7 @@ extension UserDataStore {
     }
     
     // Temporary functionality moved into DataStore during project reorganiztion. Will be removed at completion.
-    
-    // ===========================================================
     // Update currentUser score when user completes task
-    // ===========================================================
-    
-    
     // adds to one point to user experience points and addd one task to numberOfTasksCompleted
     
     func updateUserScore() {

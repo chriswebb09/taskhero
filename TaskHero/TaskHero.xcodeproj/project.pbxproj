@@ -159,10 +159,10 @@
 		A74553411E2346C9004300AA /* TaskHeroSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHeroSpec.swift; sourceTree = "<group>"; };
 		A75EB40C1E29E5EC002FE7EE /* HomeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHelpers.swift; sourceTree = "<group>"; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
-		A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FriendsSettingsViewController+Extension.swift"; path = "UI/Controller Extensions/FriendsSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
+		A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FriendsSettingsViewController+Extension.swift"; path = "../Controller Extensions/FriendsSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HomeViewController+Extension.swift"; path = "../Controller Extensions/HomeViewController+Extension.swift"; sourceTree = "<group>"; };
-		A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProfileSettingsViewController+Extension.swift"; path = "UI/Controller Extensions/ProfileSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
-		A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SettingsViewController+Extension.swift"; path = "UI/Controller Extensions/SettingsViewController+Extension.swift"; sourceTree = "<group>"; };
+		A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProfileSettingsViewController+Extension.swift"; path = "../Controller Extensions/ProfileSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
+		A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SettingsViewController+Extension.swift"; path = "../Controller Extensions/SettingsViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562D11DF93F4800E29AA9 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = Initial/InitialViewController.swift; sourceTree = "<group>"; };
 		A76562D21DF93F4800E29AA9 /* InitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitView.swift; path = Initial/InitView.swift; sourceTree = "<group>"; };
 		A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskCell+Extension.swift"; sourceTree = "<group>"; };
@@ -249,8 +249,7 @@
 			children = (
 				A709CAFB1DE7730D00877907 /* SignupView.swift */,
 				A767FBA71E0836F7007767B6 /* SignupViewModel.swift */,
-				A709CB0B1DE7735B00877907 /* SignupViewController.swift */,
-				A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */,
+				A77DDFFC1E3747E100B2A64A /* ViewController */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -258,8 +257,7 @@
 		A709CB161DE7745500877907 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */,
-				A709CACF1DE771B700877907 /* HomeViewController.swift */,
+				A77DDFFF1E37482F00B2A64A /* ViewController */,
 				A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */,
 				A75EB40C1E29E5EC002FE7EE /* HomeHelpers.swift */,
 			);
@@ -377,17 +375,6 @@
 			name = InitialView;
 			sourceTree = "<group>";
 		};
-		A76562D71DF9536000E29AA9 /* Controller Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */,
-				A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */,
-				A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */,
-			);
-			name = "Controller Extensions";
-			path = ..;
-			sourceTree = "<group>";
-		};
 		A76562D81DF953C500E29AA9 /* Popover */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,14 +399,85 @@
 			path = TaskHeroTests;
 			sourceTree = "<group>";
 		};
+		A77DDFF81E3747B000B2A64A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */,
+				A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		A77DDFF91E3747BC00B2A64A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */,
+				A70840091DEB180800055B72 /* ProfileSettingsCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A77DDFFA1E3747C300B2A64A /* Models/Data */ = {
+			isa = PBXGroup;
+			children = (
+				A767FBA51E0836CC007767B6 /* ProfileSettingsCellViewModel.swift */,
+				A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */,
+			);
+			name = Models/Data;
+			sourceTree = "<group>";
+		};
+		A77DDFFB1E3747D100B2A64A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */,
+				A709CB091DE7735000877907 /* SettingsViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		A77DDFFC1E3747E100B2A64A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A709CB0B1DE7735B00877907 /* SignupViewController.swift */,
+				A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		A77DDFFD1E3747F100B2A64A /* TaskCell */ = {
+			isa = PBXGroup;
+			children = (
+				A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */,
+				A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */,
+				A709CAD71DE7720200877907 /* TaskCell.swift */,
+			);
+			name = TaskCell;
+			sourceTree = "<group>";
+		};
+		A77DDFFE1E37481500B2A64A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */,
+				A70840051DEABBE200055B72 /* FriendsSettingsViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		A77DDFFF1E37482F00B2A64A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */,
+				A709CACF1DE771B700877907 /* HomeViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		A7DF774B1E37260800FB2DCE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A70840091DEB180800055B72 /* ProfileSettingsCell.swift */,
-				A767FBA51E0836CC007767B6 /* ProfileSettingsCellViewModel.swift */,
-				A7083FFF1DEABB1700055B72 /* ProfileSettingsView.swift */,
-				A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */,
-				A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */,
+				A77DDFF91E3747BC00B2A64A /* Views */,
+				A77DDFFA1E3747C300B2A64A /* Models/Data */,
+				A77DDFF81E3747B000B2A64A /* ViewController */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -427,8 +485,8 @@
 		A7DF774C1E37261400FB2DCE /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				A77DDFFE1E37481500B2A64A /* ViewController */,
 				A70840031DEABBD000055B72 /* FriendsSettingsView.swift */,
-				A70840051DEABBE200055B72 /* FriendsSettingsViewController.swift */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -438,7 +496,7 @@
 			children = (
 				A709CAE51DE7725F00877907 /* SettingsCell.swift */,
 				A767FBA11E0830D5007767B6 /* SettingsCellViewModel.swift */,
-				A709CB091DE7735000877907 /* SettingsViewController.swift */,
+				A77DDFFB1E3747D100B2A64A /* ViewController */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -465,9 +523,7 @@
 		A7DF77501E37266800FB2DCE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */,
-				A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */,
-				A709CAD71DE7720200877907 /* TaskCell.swift */,
+				A77DDFFD1E3747F100B2A64A /* TaskCell */,
 				A709CAD81DE7720200877907 /* TaskHeaderCell.swift */,
 			);
 			name = Cells;
@@ -531,7 +587,6 @@
 		AFA3CE8A1DB58DDB003266CA /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A76562D71DF9536000E29AA9 /* Controller Extensions */,
 				A709CB241DE77C7700877907 /* AddTask */,
 				A709CB161DE7745500877907 /* Home */,
 				A709CAC81DE7711900877907 /* Login */,
