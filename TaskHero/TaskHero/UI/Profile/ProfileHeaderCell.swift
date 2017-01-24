@@ -26,7 +26,6 @@ final class ProfileHeaderCell: UITableViewCell {
     weak var delegate: ProfileHeaderCellDelegate?
     var profileHeaderCellModel = ProfileHeaderCellModel()
     
-    
     lazy var joinDateLabel: UILabel = {
         let joinDateLabel = UILabel()
         joinDateLabel.font = Constants.Font.fontLarge
@@ -97,15 +96,12 @@ final class ProfileHeaderCell: UITableViewCell {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
-        
         contentView.addSubview(emailLabel)
         configureLabel(label: emailLabel)
         configureConstraints(label: emailLabel)
-        
         contentView.addSubview(joinDateLabel)
         configureLabel(label: joinDateLabel)
         configureConstraints(label: joinDateLabel)
-        
         contentView.addSubview(usernameLabel)
         configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)

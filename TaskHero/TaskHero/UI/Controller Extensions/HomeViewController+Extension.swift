@@ -95,7 +95,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.containerView.addGestureRecognizer(tap)
         photoPopover.photoPopView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
     }
-    
 }
 
 

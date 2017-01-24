@@ -59,40 +59,43 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     func handleRegister() {
         view.endEditing(true)
         let loadingView = LoadingView()
-        
         guard let email = signupView.emailField.text,
             let password = signupView.passwordField.text,
-            let username = signupView.usernameField.text else {
+            let username = signupView.usernameField.text,
+            let confirmFieldText = self.signupView.confirmEmailField.text else {
                 loadingView.hideActivityIndicator(viewController:self)
                 print("Form is not valid")
                 return
         }
         
-        if let confirmFieldText = self.signupView.confirmEmailField.text {
-            if validateEmailInput(email:email, confirm:confirmFieldText) {
-                loadingView.showActivityIndicator(viewController: self)
-                FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
-                    if error != nil {
-                        loadingView.hideActivityIndicator(viewController: self)
-                        print(error ?? "unable to get specific error")
-                        return
-                    }
-                    if let uid = FIRAuth.auth()?.currentUser?.uid {
-                        let newUser = self.createUser(uid: uid, username: username, email: email)
-                        self.setupUser(user: newUser)
-                    }
-                    let tabBar = TabBarController()
-                    self.helpers.loadTabBar(tabBar:tabBar)
+        if validateEmailInput(email:email, confirm:confirmFieldText) {
+            loadingView.showActivityIndicator(viewController: self)
+            FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
+                if error != nil {
+                    loadingView.hideActivityIndicator(viewController: self)
+                    print(error ?? "unable to get specific error")
+                    return
                 }
+                if let uid = FIRAuth.auth()?.currentUser?.uid {
+                    let newUser = self.createUser(uid: uid, username: username, email: email)
+                    self.setupUser(user: newUser)
+                }
+                let tabBar = TabBarController()
+                self.helpers.loadTabBar(tabBar:tabBar)
             }
         } else {
-            let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { result in print("Okay") }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            setupErrorAlert()
             return
         }
     }
+    
+    func setupErrorAlert() {
+        let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { result in print("Okay") }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     func setupUser(user:User) {
         store.firebaseAPI.registerUser(user: user)
