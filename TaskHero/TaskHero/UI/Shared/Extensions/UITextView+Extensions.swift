@@ -18,4 +18,11 @@ extension UITextView {
         contentInset = Constants.TaskCell.Description.boxInset
         return self
     }
+    
+    func setupCellStyle() -> UITextView {
+        let textView = UITextView()
+        textView.textColor = UIColor.black
+        textView.font = Constants.Font.fontMedium
+        return textView
+    }
 }

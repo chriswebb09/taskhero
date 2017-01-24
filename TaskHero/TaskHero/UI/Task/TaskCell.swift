@@ -31,9 +31,7 @@ final class TaskCell: UITableViewCell, Toggable {
     // MARK: - Setup UI Elements
     
     lazy var taskNameLabel: UITextView = {
-        let textView = UITextView()
-        textView.textColor = UIColor.black
-        textView.font = Constants.Font.bolderFontMediumLarge
+        let textView = UITextView().setupCellStyle()
         return textView
     }()
     
@@ -44,9 +42,7 @@ final class TaskCell: UITableViewCell, Toggable {
     }()
     
     lazy var taskDueLabel: UITextView = {
-        let textView = UITextView()
-        textView.textColor = UIColor.black
-        textView.font = Constants.Font.fontMedium
+        let textView = UITextView().setupCellStyle()
         return textView
     }()
     
