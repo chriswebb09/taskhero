@@ -59,6 +59,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     func handleRegister() {
         view.endEditing(true)
         let loadingView = LoadingView()
+        loadingView.showActivityIndicator(viewController: self)
         guard let email = signupView.emailField.text,
             let password = signupView.passwordField.text,
             let username = signupView.usernameField.text,
@@ -67,34 +68,20 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
                 print("Form is not valid")
                 return
         }
-        
-        guard validateEmailInput(email: email, confirm: confirmFieldText) == true else { setupErrorAlert(); return }
-        loadingView.showActivityIndicator(viewController: self)
+        guard validateEmailInput(email: email, confirm: confirmFieldText) == true else { helpers.setupErrorAlert(viewController: self); return }
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
             if error != nil {
                 loadingView.hideActivityIndicator(viewController: self)
                 print(error ?? "unable to get specific error")
                 return
             }
-            
             guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-            
             let newUser = self.createUser(uid: uid, username: username, email: email)
             self.setupUser(user: newUser)
-            
             let tabBar = TabBarController()
             self.helpers.loadTabBar(tabBar:tabBar)
         }
-        
     }
-    
-    func setupErrorAlert() {
-        let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { result in print("Okay") }
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     
     func setupUser(user:User) {
         store.firebaseAPI.registerUser(user: user)

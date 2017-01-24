@@ -41,6 +41,12 @@ final class Helpers {
 }
 
 extension Helpers {
+    func setupErrorAlert(viewController:UIViewController) {
+        let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { result in print("Okay") }
+        alertController.addAction(okAction)
+        viewController.present(alertController, animated: true, completion: nil)
+    }
     
     func removeRefHandle() {
         if store.firebaseAPI.refHandle != nil {
