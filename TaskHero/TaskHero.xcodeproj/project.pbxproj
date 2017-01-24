@@ -46,7 +46,6 @@
 		A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */; };
 		A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5401E15A93500812FB4 /* SetupNav.swift */; };
 		A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */; };
-		A7111A031E1B6F7F008B33A9 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7111A021E1B6F7F008B33A9 /* Levels.swift */; };
 		A712BA6E1E298E3C00B91951 /* TaskCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */; };
 		A715C1D21E1B078C0096A18B /* HomeViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */; };
 		A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */; };
@@ -56,7 +55,6 @@
 		A7346D7C1DE90DF1005E3A5E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7B1DE90DF1005E3A5E /* AlertView.swift */; };
 		A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7D1DE93688005E3A5E /* TaskButton.swift */; };
 		A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D871DEA6A08005E3A5E /* DataPicker.swift */; };
-		A73B47BC1E1BD78E0090F699 /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B47BB1E1BD78E0090F699 /* ImageClient.swift */; };
 		A74553421E2346C9004300AA /* TaskHeroSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74553411E2346C9004300AA /* TaskHeroSpec.swift */; };
 		A75EB40D1E29E5EC002FE7EE /* HomeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75EB40C1E29E5EC002FE7EE /* HomeHelpers.swift */; };
 		A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */; };
@@ -137,7 +135,6 @@
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A70DC5401E15A93500812FB4 /* SetupNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNav.swift; sourceTree = "<group>"; };
 		A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperations.swift; sourceTree = "<group>"; };
-		A7111A021E1B6F7F008B33A9 /* Levels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellTextView.swift; sourceTree = "<group>"; };
 		A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerDataSource.swift; sourceTree = "<group>"; };
 		A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
@@ -147,7 +144,6 @@
 		A7346D7B1DE90DF1005E3A5E /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		A7346D7D1DE93688005E3A5E /* TaskButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
 		A7346D871DEA6A08005E3A5E /* DataPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
-		A73B47BB1E1BD78E0090F699 /* ImageClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
 		A74553411E2346C9004300AA /* TaskHeroSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHeroSpec.swift; sourceTree = "<group>"; };
 		A75EB40C1E29E5EC002FE7EE /* HomeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHelpers.swift; sourceTree = "<group>"; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
@@ -282,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				A709CB031DE7733300877907 /* User.swift */,
-				A7111A021E1B6F7F008B33A9 /* Levels.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -292,7 +287,6 @@
 			children = (
 				A7AFCDE01DF72C4B004D607C /* APIClient.swift */,
 				A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */,
-				A73B47BB1E1BD78E0090F699 /* ImageClient.swift */,
 			);
 			name = Networking;
 			path = DataServices;
@@ -877,7 +871,6 @@
 				A7F019DC1E0922FC00B23667 /* UITextView+Extensions.swift in Sources */,
 				A712BA6E1E298E3C00B91951 /* TaskCellTextView.swift in Sources */,
 				A77FBCC41DEB5B410014C380 /* NotificationView.swift in Sources */,
-				A73B47BC1E1BD78E0090F699 /* ImageClient.swift in Sources */,
 				A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */,
 				A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */,
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
@@ -907,7 +900,6 @@
 				A709CAEE1DE7727E00877907 /* ProfileDataCellModel.swift in Sources */,
 				A7DF774A1E37185800FB2DCE /* Secrets.swift in Sources */,
 				A767FBA81E0836F7007767B6 /* SignupViewModel.swift in Sources */,
-				A7111A031E1B6F7F008B33A9 /* Levels.swift in Sources */,
 				A709CB061DE7733C00877907 /* Task.swift in Sources */,
 				A709CB021DE7732800877907 /* UserDataStore.swift in Sources */,
 				A75EB40D1E29E5EC002FE7EE /* HomeHelpers.swift in Sources */,

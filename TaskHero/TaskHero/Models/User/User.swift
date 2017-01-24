@@ -71,3 +71,15 @@ class User: NSObject, NSCoding {
     }
 }
 
+struct Levels {
+    
+    func getLevelFor(_ user:User) -> String {
+        if user.experiencePoints < 20 {
+            return "Task Goat"
+        } else {
+            return "Task Wizard"
+        }
+    }
+}
+
+
