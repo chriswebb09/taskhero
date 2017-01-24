@@ -76,10 +76,12 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
                 print(error ?? "unable to get specific error")
                 return
             }
-            if let uid = FIRAuth.auth()?.currentUser?.uid {
-                let newUser = self.createUser(uid: uid, username: username, email: email)
-                self.setupUser(user: newUser)
-            }
+            
+            guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+            
+            let newUser = self.createUser(uid: uid, username: username, email: email)
+            self.setupUser(user: newUser)
+            
             let tabBar = TabBarController()
             self.helpers.loadTabBar(tabBar:tabBar)
         }
