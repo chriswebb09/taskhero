@@ -70,4 +70,4 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-TaskHero/TaskHero/Secrets.swift
+TaskHero/Secrets.swift
