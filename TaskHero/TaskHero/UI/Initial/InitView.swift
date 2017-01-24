@@ -18,9 +18,10 @@ final class InitView: UIView {
         print("InitView deallocated")
     }
     
-    // MARK: - UIElements
+    var animationDuration: Double = 0.8
     
-    lazy var animationDuration: Double = 0.8
+    
+    // MARK: - UIElements
     
     lazy var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
@@ -30,16 +31,16 @@ final class InitView: UIView {
     
     lazy var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
-        var ui = button.newButton
-        ui.isHidden = true
-        return ui
+        var loginButton = button.newButton
+        loginButton.isHidden = true
+        return loginButton
     }()
     
     lazy var signupButton: UIButton = {
         let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor)
-        var ui = button.newButton
-        ui.isHidden = true
-        return ui
+        var signupButton = button.newButton
+        signupButton.isHidden = true
+        return signupButton
     }()
     
     lazy var viewDivider: UIView = {

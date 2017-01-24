@@ -40,8 +40,10 @@ final class HomeViewControllerDataSource {
     var autoHeight: UIViewAutoresizing?
 }
 
-/* Extension containing method for configuring cells in ViewController. */
-/* If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
+/*
+ Extension containing method for configuring cells in ViewController.
+ If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell
+ */
 
 extension HomeViewControllerDataSource: CellMake {
     
@@ -70,7 +72,10 @@ extension HomeViewControllerDataSource: CellMake {
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
     }
     
-    /* Setup HeaderCell - configuration and adding delegates to HomeViewController  */
+    /*
+     Setup HeaderCell
+     - configuration and adding delegates to HomeViewController
+     */
     
     func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
         headerCell.delegate = viewController
@@ -87,7 +92,7 @@ extension HomeViewControllerDataSource: CellMake {
         taskCell.taskCompletedView.addGestureRecognizer(tap)
     }
     
-    // Method choosing profilePicture for Header cell
+    /* Method choosing profilePicture for Header cell */
     
     func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
         picker.allowsEditing = false
@@ -95,7 +100,10 @@ extension HomeViewControllerDataSource: CellMake {
         viewController.present(picker, animated: true, completion: nil)
     }
     
-    /* Deletes task at indexPath.row - 1 - subtraction because TaskCells are below the profileHeader cell */
+    /*
+     Deletes task at indexPath.row - 1
+     subtraction because TaskCells are below the profileHeader cell
+     */
     
     func deleteTask(indexPath: IndexPath, tableView:UITableView) {
         DispatchQueue.global(qos: .default).async {
@@ -113,7 +121,10 @@ extension HomeViewControllerDataSource: CellMake {
         print(self.store.tasks)
     }
     
-    // Selector method for taskCompletedView and SaveButton in TaskCell - cycles between them depending on the state to either edit or save
+    /*
+     Selector method for taskCompletedView and SaveButton in TaskCell
+     - cycles between them depending on the state to either edit or save
+     */
     
     func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
