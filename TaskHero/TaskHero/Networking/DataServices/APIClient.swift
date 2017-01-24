@@ -35,7 +35,7 @@ final class APIClient {
     var userRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
     let userID = FIRAuth.auth()?.currentUser?.uid
-    
+    let database = FIRDatabase.database()
     // App data properties
     
     var validUsernames = [String]()
@@ -78,7 +78,19 @@ final class APIClient {
         }
     }
     
-    // Grab tasks from user profile in realtime user database
+    // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
+    
+    func addTasks(task:Task) {
+        tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
+        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskName)").setValue(task.taskName)
+        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskDescription)").setValue(task.taskDescription)
+        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskCreated)").setValue(task.taskCreated)
+        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskDue)").setValue(task.taskDue)
+        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskCompleted)").setValue(task.taskCompleted)
+        tasksRef.keepSynced(true)
+    }
+    
+    // updates values of task when task is editted
     
     func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
         var taskList = taskList
@@ -102,14 +114,25 @@ final class APIClient {
         })
     }
     
+    func updateTask(ref:String, taskID: String, task:Task) {
+        let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
+                                      Constants.API.Task.taskDescription: task.taskDescription ,
+                                      Constants.API.Task.taskCreated: task.taskCreated ,
+                                      Constants.API.Task.taskDue: task.taskDue,
+                                      Constants.API.Task.taskCompleted: task.taskCompleted]
+        tasksRef.updateChildValues(["/\(taskID)": taskData])
+    }
+    
+    // Updates user profile data in database
+    // Grab tasks from user profile in realtime user database
+    
     func fetchUserData(completion: @escaping UserCompletion) {
-        let database = FIRDatabase.database()
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(userID!)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
-            let tasks = [Task]()
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
+            let tasks = [Task]()
             let user = User()
             if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
                 let snapshotEmail = snapshotValue[Constants.API.User.email] as? String,
@@ -134,31 +157,6 @@ final class APIClient {
             completion(user)
         })
     }
-    
-    // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
-    
-    func addTasks(task:Task) {
-        tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
-        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskName)").setValue(task.taskName)
-        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskDescription)").setValue(task.taskDescription)
-        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskCreated)").setValue(task.taskCreated)
-        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskDue)").setValue(task.taskDue)
-        tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskCompleted)").setValue(task.taskCompleted)
-        tasksRef.keepSynced(true)
-    }
-    
-    // updates values of task when task is editted
-    
-    func updateTask(ref:String, taskID: String, task:Task) {
-        let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
-                                      Constants.API.Task.taskDescription: task.taskDescription ,
-                                      Constants.API.Task.taskCreated: task.taskCreated ,
-                                      Constants.API.Task.taskDue: task.taskDue,
-                                      Constants.API.Task.taskCompleted: task.taskCompleted]
-        tasksRef.updateChildValues(["/\(taskID)": taskData])
-    }
-    
-    // Updates user profile data in database
     
     func updateUserProfile(userID: String, user:User, tasks:[Task]) {
         userRef = dbRef.child("Users")
