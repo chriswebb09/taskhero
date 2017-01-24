@@ -95,7 +95,7 @@ extension AddTaskView {
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
     }
     
-    func addButton() {
+    func addButton(addTaskButton:UIButton) {
         addSubview(addTaskButton)
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
@@ -111,8 +111,7 @@ extension AddTaskView {
         taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
         
         // UITextView for task description input
-        
-        addButton()
         addTaskDescriptionBox()
+        addButton(addTaskButton: addTaskButton)
     }
 }

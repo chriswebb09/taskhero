@@ -57,6 +57,9 @@ extension LoginViewController: UITextFieldDelegate {
     func setupDelegates() {
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
+        
+        loginView.emailField.text = Secrets.email
+        loginView.passwordField.text = Secrets.password
     }
     
     func dismissKeyboard() {

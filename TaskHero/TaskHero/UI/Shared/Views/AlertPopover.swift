@@ -10,7 +10,7 @@ import UIKit
 
 class AlertPopover: BasePopoverAlert {
     
-    open lazy var popView: AlertView = {
+    open lazy var alertPopView: AlertView = {
         let popView = AlertView()
         popView.layer.cornerRadius = 10
         popView.backgroundColor = UIColor.white
@@ -24,10 +24,11 @@ extension AlertPopover {
     
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
-        popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
-        popView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
-        popView.clipsToBounds = true
-        viewController.view.addSubview(popView)
-        viewController.view.bringSubview(toFront: popView)
+        alertPopView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
+        alertPopView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+        alertPopView.clipsToBounds = true
+        viewController.view.addSubview(alertPopView)
+        viewController.view.bringSubview(toFront: alertPopView)
     }
+
 }

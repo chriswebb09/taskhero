@@ -10,7 +10,7 @@ import UIKit
 
 class NotificationPopover: BasePopoverAlert {
     
-    lazy var popView: NotificationView = {
+    lazy var notifyPopView: NotificationView = {
         let popView = NotificationView()
         popView.layer.cornerRadius = 10
         popView.backgroundColor = UIColor.white

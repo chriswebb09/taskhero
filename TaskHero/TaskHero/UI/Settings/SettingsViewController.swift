@@ -27,10 +27,7 @@ final class SettingsViewController: UITableViewController {
     let notifyPop = NotificationPopover()
     var settingsViewModel:SettingsCellViewModel!
     let helpers = Helpers()
-}
-
-extension SettingsViewController {
-    
+ 
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -52,18 +49,13 @@ extension SettingsViewController {
         super.viewWillDisappear(false)
         hide()
     }
-}
-
-extension SettingsViewController {
-    
+ 
     // MARK: UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
-}
-
-extension SettingsViewController {
+ 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
@@ -76,24 +68,22 @@ extension SettingsViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 82
     }
-}
-
-extension SettingsViewController {
+ 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if settings[indexPath.row] == "Edit Profile" {
             navigationController?.pushViewController(ProfileSettingsViewController(), animated: true)
         }
         else if settings[indexPath.row] == "Friends" {
-            navigationController?.pushViewController(FriendsSettingsViewController(), animated: true)
+            
+            let friendsVC = FriendsSettingsViewController()
+            navigationController?.pushViewController(friendsVC, animated: true)
         }
         else if settings[indexPath.row] == "Notifications" {
             notificationPopup()
         }
     }
-}
-
-extension SettingsViewController {
+ 
     
     // MARK: Public Methods
     
@@ -111,14 +101,12 @@ extension SettingsViewController {
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
         })
-        alertPop.popView.resultLabel.text = "Try Again Later."
-        alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
-        alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
+        self.alertPop.alertPopView.resultLabel.text = "Try Again Later."
+        self.alertPop.alertPopView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
+        self.alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
     
-}
-
-extension SettingsViewController {
+ 
 
     // Displays popover when notifications cell is selected
     
@@ -136,11 +124,9 @@ extension SettingsViewController {
             self.notifyPop.popView.layer.opacity = 1
             self.notifyPop.containerView.layer.opacity = 0.1 }
         )
-        notifyPop.popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
+        notifyPop
+        //popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
     }
-}
-
-extension SettingsViewController {
     
     // MARK: - Setup buttons
     // Hides notification popover
@@ -163,3 +149,17 @@ extension SettingsViewController {
         alertPop.hidePopView(viewController: self)
     }
 }
+
+
+protocol Hiddable {
+    func hide(view:UIView)
+}
+
+
+extension Hiddable {
+    func hide(view:UIView, viewController:UIViewController) {
+        
+    }
+}
+
+

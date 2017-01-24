@@ -79,7 +79,7 @@ extension HomeViewControllerDataSource {
     func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
         headerCell.delegate = viewController
         headerCell.emailLabel.isHidden = true
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileHeaderCell.profilePictureTapped))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.profilePictureTapped))
         headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
     }
     

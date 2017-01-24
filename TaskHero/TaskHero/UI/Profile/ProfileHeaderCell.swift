@@ -107,12 +107,15 @@ extension ProfileHeaderCell {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
+        
         contentView.addSubview(emailLabel)
         configureLabel(label: emailLabel)
         configureConstraints(label: emailLabel)
+        
         contentView.addSubview(joinDateLabel)
         configureLabel(label: joinDateLabel)
         configureConstraints(label: joinDateLabel)
+        
         contentView.addSubview(usernameLabel)
         configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)
@@ -191,7 +194,7 @@ extension ProfileHeaderCell: ProfileHeaderCellDelegate {
     
     // Implementation of delegate method - May be deleted either in HomeViewController or ProfileViewController because functionality is redundant
     
-    public func profilePictureTapped() {
+    public dynamic func profilePictureTapped() {
         print("profile pic tapped\n\n\n\n\n\n")
         delegate?.profilePictureTapped()
     }

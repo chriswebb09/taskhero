@@ -28,6 +28,7 @@ extension FriendsSettingsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.white
         view.addSubview(friendsSettingsView)
         friendsSettingsView.layoutSubviews()
         friendsSettingsView.searchField.delegate = self

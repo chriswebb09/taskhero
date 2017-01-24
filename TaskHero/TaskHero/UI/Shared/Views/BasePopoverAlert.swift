@@ -10,17 +10,26 @@ import UIKit
 
 class BasePopoverAlert: UIView {
     
-    public lazy var containerView: UIView = {
-        let containerView = UIView()
+    public lazy var containerView: BasePopView = {
+        let containerView = BasePopView()
         containerView.backgroundColor = UIColor.black
         containerView.layer.opacity = 0.5
         return containerView
+    }()
+    
+    public lazy var popView: BasePopView = {
+        let popView = NotificationView()
+        popView.layer.cornerRadius = 10
+        popView.backgroundColor = UIColor.white
+        popView.layer.borderColor = UIColor.black.cgColor
+        popView.layer.borderWidth = 1
+        return popView
     }()
 }
 
 extension BasePopoverAlert {
     
-    func showPopView(viewController: UIViewController) {
+    public func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
         viewController.view.addSubview(containerView)
@@ -29,4 +38,25 @@ extension BasePopoverAlert {
     public func hidePopView(viewController:UIViewController){
         viewController.view.sendSubview(toBack: containerView)
     }
+    
+    public func hide(viewController:UIViewController) {
+        popView.isHidden = true
+        containerView.isHidden = true
+        hidePopView(viewController: viewController)
+    }
+    
+    
 }
+
+//func dismissButton() {
+//    alertPop.popView.isHidden = true
+//    alertPop.containerView.isHidden = true
+//    alertPop.hidePopView(viewController: self)
+//}
+//
+//func hide() {
+//    alertPop.popView.isHidden = true
+//    alertPop.containerView.isHidden = true
+//    alertPop.hidePopView(viewController: self)
+//}
+//}

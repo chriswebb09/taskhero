@@ -21,10 +21,11 @@ extension HomeViewController {
     /* Logs out user by settings root ViewController to Loginview */
     
     func logoutButtonPressed() {
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
+        let loginVC = LoginViewController()
+        let rootNC = UINavigationController(rootViewController:loginVC)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         UserDataStore.sharedInstance.logout()
-        appDelegate.window?.rootViewController = loginVC
+        appDelegate.window?.rootViewController = rootNC
     }
     
     /* Pushes AddTaskViewcontroller to current current view controller on button press */
@@ -68,7 +69,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         photoPopover.showPopView(viewController: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
         photoPopover.containerView.addGestureRecognizer(tap)
-        photoPopover.popView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
+        photoPopover.photoPopView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
     }
     
 }

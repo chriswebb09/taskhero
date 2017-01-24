@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class DataPickerView: UIView {
+final class DataPickerView: BasePopView {
     
     // ====================
     // MARK: - Properties
     // ====================
     
-    lazy var alertLabel: UILabel = {
+    dynamic lazy var dataAlertLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.black
         label.font = Constants.Font.bolderFontMediumLarge
@@ -52,19 +52,19 @@ extension DataPickerView {
 
     // MARK: - Configure
     
-    fileprivate func setupConstraints() {
+    internal override func setupConstraints() {
         addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
         picker.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         picker.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.22).isActive = true
         picker.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
-        addSubview(alertLabel)
-        alertLabel.translatesAutoresizingMaskIntoConstraints = false
-        alertLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        alertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        alertLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-        alertLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.98).isActive = true
+        addSubview(dataAlertLabel)
+        dataAlertLabel.translatesAutoresizingMaskIntoConstraints = false
+        dataAlertLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        dataAlertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        dataAlertLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
+        dataAlertLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.98).isActive = true
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true

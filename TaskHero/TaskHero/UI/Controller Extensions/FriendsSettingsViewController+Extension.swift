@@ -23,9 +23,9 @@ extension FriendsSettingsViewController {
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
         }
-        alertPop.popView.resultLabel.text = "No results found. Please try again later."
-        alertPop.popView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
-        alertPop.popView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
+        alertPop.alertPopView.resultLabel.text = "No results found. Please try again later."
+        alertPop.alertPopView.doneButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
+        alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
     }
     
     // Hides popover UI - prioritised to main thread when user hits dismiss button

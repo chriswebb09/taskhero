@@ -29,7 +29,7 @@ final class UserDataStore {
 
 extension UserDataStore {
     
-    // basic setups for dataStore, removes all tasks from store tasks and currentUser tasks 
+    // basic setups for dataStore, removes all tasks from store tasks and currentUser tasks
     
     func setupStore() {
         tasks.removeAll()
@@ -67,14 +67,12 @@ extension UserDataStore {
         defaults.set(userState, forKey: "hasLoggedIn")
     }
     
-    
     // incomplete - set currentUser and tasks on local storage after log in to mitigate constant log in fatigue
     
     func setUserData(user: User) {
         defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
         defaults.synchronize()
     }
-    
     
     // incomplete - when finished method should remove currentUser and tasks from local storage when user taps logout
     

@@ -37,7 +37,7 @@ extension ProfileSettingsViewControllerDataSource {
 
 extension ProfileSettingsViewControllerDataSource {
     
-    func updateUserNames(cell: ProfileSettingsCell, name:[String]) {
+    func updateUserName(cell: ProfileSettingsCell, name:[String]) {
         var name = cell.profileSettingField.text?.components(separatedBy: " ")
         let updatedUser = User()
         let helpers = Helpers()
@@ -53,16 +53,16 @@ extension ProfileSettingsViewControllerDataSource {
         helpers.updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
     }
     
-    func updateUserName(cell:ProfileSettingsCell, name: [String]) {
-        let updatedUser = User()
-        updatedUser.username = cell.profileSettingField.text!
-        updatedUser.email = store.currentUser.email
-        updatedUser.profilePicture = "None"
-        updatedUser.firstName = name[0]
-        updatedUser.lastName = name[1]
-        updatedUser.joinDate = store.currentUser.joinDate
-        updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
-        updatedUser.experiencePoints = store.currentUser.experiencePoints
-        updatedUser.tasks = store.currentUser.tasks
-    }
+//    func updateUserName(cell:ProfileSettingsCell, name: [String]) {
+//        let updatedUser = User()
+//        updatedUser.username = cell.profileSettingField.text!
+//        updatedUser.email = store.currentUser.email
+//        updatedUser.profilePicture = "None"
+//        updatedUser.firstName = name[0]
+//        updatedUser.lastName = name[1]
+//        updatedUser.joinDate = store.currentUser.joinDate
+//        updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
+//        updatedUser.experiencePoints = store.currentUser.experiencePoints
+//        updatedUser.tasks = store.currentUser.tasks
+//    }
 }

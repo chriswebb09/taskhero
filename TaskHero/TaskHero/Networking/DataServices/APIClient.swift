@@ -55,13 +55,13 @@ extension APIClient {
     
     // MARK:- Initial firebase database reference properties
     
-   func setupRefs() {
+    func setupRefs() {
         guard let userID = FIRAuth.auth()?.currentUser?.uid else { return }
         userRef = dbRef.child("Users").child(userID)
         tasksRef = dbRef.child("Users").child(userID).child("Tasks")
     }
     
-    // remove task from database 
+    // remove task from database
     
     func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
@@ -85,7 +85,6 @@ extension APIClient {
         }
     }
 }
-
 
 extension APIClient {
     
@@ -147,7 +146,6 @@ extension APIClient {
     }
 }
 
-
 extension APIClient {
     
     // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
@@ -162,7 +160,7 @@ extension APIClient {
         tasksRef.keepSynced(true)
     }
     
-   // updates values of task when task is editted
+    // updates values of task when task is editted
     
     func updateTask(ref:String, taskID: String, task:Task) {
         let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
@@ -173,7 +171,6 @@ extension APIClient {
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
 }
-
 
 extension APIClient {
     

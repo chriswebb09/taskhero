@@ -85,7 +85,7 @@ extension ProfileDataCell {
     
     // Adds constraints to labels to also adds experience points labels and tasksComleted labels to contentView
     
-    fileprivate func setupConstraints() {
+    private func addLevelLabel(levelLabel:UILabel) {
         configureLabels(label: levelLabel)
         contentView.addSubview(levelLabel)
         configureConstraints(label: levelLabel)
@@ -95,6 +95,9 @@ extension ProfileDataCell {
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
         
+    }
+    
+    private func addExperiencePointLabel(experiencePointLabel:UILabel) {
         configureLabels(label: experiencePointsLabel)
         contentView.addSubview(experiencePointsLabel)
         configureConstraints(label: experiencePointsLabel)
@@ -102,6 +105,9 @@ extension ProfileDataCell {
         experiencePointsLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         experiencePointsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         experiencePointsLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    private func addTasksCompletedLabel(tasksCompletedLabel:UILabel) {
         configureLabels(label: tasksCompletedLabel)
         contentView.addSubview(tasksCompletedLabel)
         configureConstraints(label: tasksCompletedLabel)
@@ -109,6 +115,12 @@ extension ProfileDataCell {
         tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.Settings.Profile.profileDataRightOffset).isActive = true
         tasksCompletedLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    fileprivate func setupConstraints() {
+        addLevelLabel(levelLabel: levelLabel)
+        addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
+        addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
     }
 }
 
@@ -126,7 +138,7 @@ extension ProfileDataCell {
 }
 
 extension ProfileDataCell {
-
+    
     // MARK: - Reuse
     
     override func prepareForReuse() {

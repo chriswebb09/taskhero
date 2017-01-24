@@ -84,7 +84,7 @@ extension ProfileSettingsViewController {
             if (tapCell.profileSettingField.text?.characters.count)! > 0 {
                 guard let name = tapCell.profileSettingField.text?.components(separatedBy: " ") else { return }
                 if indexTap?.row == 1 {
-                    dataSource.updateUserNames(cell: tapCell, name: name)
+                    dataSource.updateUserName(cell: tapCell, name: name)
                 } else if indexTap?.row == 3 {
                     dataSource.updateUserName(cell: tapCell, name: name)
                 }

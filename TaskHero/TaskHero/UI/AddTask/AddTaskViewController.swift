@@ -175,7 +175,7 @@ extension AddTaskViewController {
             self.pop.showPopView(viewController: self, pick: self.pick)
             self.stringDate = "\(self.month)-\(self.day)-\(self.year)"
         }
-        pop.popView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
+        pop.poppupView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
     
     /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */

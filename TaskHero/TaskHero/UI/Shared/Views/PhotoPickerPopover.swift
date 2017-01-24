@@ -21,7 +21,7 @@ class PhotoPickerPopover: BasePopoverAlert {
         return searchLabel
     }()
     
-    lazy var popView: PhotoPickerView = {
+    lazy var photoPopView: PhotoPickerView = {
         let popView = PhotoPickerView()
         popView.layoutSubviews()
         popView.layer.cornerRadius = 10
@@ -48,8 +48,8 @@ extension PhotoPickerPopover {
     
     override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
-        popViewCentered(popView: popView)
-        popViewSettings(popView: popView)
+        popViewCentered(popView: popView as! PhotoPickerView)
+        popViewSettings(popView: popView as! PhotoPickerView)
         viewController.view.addSubview(containerView)
         viewController.view.addSubview(popView)
     }

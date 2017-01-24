@@ -81,7 +81,7 @@ extension ProfileSettingsCell {
     private func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Dimension.height).isActive = true
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Dimension.fieldHeight).isActive = true
         view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileSettingsLabelWidth).isActive = true
     }
     
@@ -94,7 +94,7 @@ extension ProfileSettingsCell {
     private func addButton() {
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.height).isActive = true
+        button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.fieldHeight).isActive = true
         button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
         button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true

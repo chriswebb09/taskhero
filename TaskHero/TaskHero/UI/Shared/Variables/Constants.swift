@@ -32,6 +32,7 @@ public struct Constants {
         public static let bottomOffset:CGFloat = -10
         public static let settingsOffset:CGFloat = 0.05
         public static let mainHeight:CGFloat = 0.2
+        public static let fieldHeight: CGFloat = 0.75
         public static let height: CGFloat = 0.5
         public static let width: CGFloat = 0.85
     }
