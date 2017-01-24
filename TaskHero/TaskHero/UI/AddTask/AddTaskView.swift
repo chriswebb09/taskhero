@@ -70,28 +70,28 @@ final class AddTaskView: UIView {
     // MARK: - Configure
     
     fileprivate func configureView(view: UIView) {
-        addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
+        configureUIElements(view: view)
         view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
         view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.07).isActive = true
-        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     func addTaskDescriptionBox(taskDescriptionBox: UITextView) {
-        addSubview(taskDescriptionBox)
-        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
+        configureUIElements(view: taskDescriptionBox)
         taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
-        taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
     }
     
+    func configureUIElements(view: UIView) {
+        addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    }
+    
     func addButton(addTaskButton: UIButton) {
-        addSubview(addTaskButton)
-        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        configureUIElements(view: addTaskButton)
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
-        addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
     }
     
@@ -100,7 +100,6 @@ final class AddTaskView: UIView {
         taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
         configureView(view: taskNameField)
         taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
-        // UITextView for task description input
         addTaskDescriptionBox(taskDescriptionBox: taskDescriptionBox)
         addButton(addTaskButton: addTaskButton)
     }

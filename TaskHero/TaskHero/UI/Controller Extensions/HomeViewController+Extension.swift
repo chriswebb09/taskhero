@@ -89,9 +89,9 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
     
     public func profilePictureTapped() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
         photoPopover.popView.isHidden = false
         photoPopover.showPopView(viewController: self)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
         photoPopover.containerView.addGestureRecognizer(tap)
         photoPopover.photoPopView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
     }

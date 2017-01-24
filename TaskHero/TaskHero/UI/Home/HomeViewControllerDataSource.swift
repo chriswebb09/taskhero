@@ -65,8 +65,8 @@ extension HomeViewControllerDataSource: CellMake {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         tableView.setupTableView()
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor
         tableView.estimatedRowHeight = view.frame.height / 4
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
     }
     
     /* Setup HeaderCell - configuration and adding delegates to HomeViewController  */
@@ -99,9 +99,7 @@ extension HomeViewControllerDataSource: CellMake {
     func deleteTask(indexPath: IndexPath, tableView:UITableView) {
         DispatchQueue.global(qos: .default).async {
             let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
-            if let tasks = self.store.currentUser.tasks {
-                self.store.tasks = tasks
-            }
+            if let tasks = self.store.currentUser.tasks { self.store.tasks = tasks }
             print(indexPath.row - 1)
             self.store.tasks.remove(at: indexPath.row - 1)
             self.store.updateUserScore()

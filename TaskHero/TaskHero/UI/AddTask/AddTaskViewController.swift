@@ -34,11 +34,11 @@ final class AddTaskViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(addTaskView)
-        navigationController?.navigationBar.tintColor = UIColor.white
-        edgesForExtendedLayout = []
-        setupDelegates()
         setupPick()
+        setupDelegates()
         addTaskView.layoutSubviews()
+        edgesForExtendedLayout = []
+        navigationController?.navigationBar.tintColor = UIColor.white
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -65,7 +65,7 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     /* If textfield input is equal to newline - return - hides keyboard */
     
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
-        if(replacementText.isEqual("\n")) {
+        if (replacementText.isEqual("\n")) {
             textView.resignFirstResponder()
             return false
         }
@@ -85,7 +85,6 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
 extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: - Extension UIPickerView Methods
-    
     // DatePicker Initialization
     
     func setupPick() {
