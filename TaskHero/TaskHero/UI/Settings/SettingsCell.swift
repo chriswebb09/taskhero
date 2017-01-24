@@ -28,9 +28,6 @@ final class SettingsCell: UITableViewCell {
         textView.layer.masksToBounds = true
         return textView
     }()
-}
-
-extension SettingsCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()

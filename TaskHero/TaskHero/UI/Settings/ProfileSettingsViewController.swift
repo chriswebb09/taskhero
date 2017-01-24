@@ -28,9 +28,6 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     fileprivate var options = ["Email Address", "Name", "Profile Picture", "Username"]
     var username: String?
     var email: String?
-}
-
-extension ProfileSettingsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -64,9 +64,6 @@ final class TaskCell: UITableViewCell {
         ui.isEnabled = false
         return ui
     }()
-}
-
-extension TaskCell {
     
     // MARK: - Initialization
     
@@ -79,9 +76,6 @@ extension TaskCell {
         preservesSuperviewLayoutMargins = false
         contentView.backgroundColor = UIColor.clear
     }
-}
-
-extension TaskCell {
     
     // MARK: - Configure cell
     
@@ -91,9 +85,6 @@ extension TaskCell {
         configureTextView(label: taskNameLabel)
         setupConstraints()
     }
-}
-
-extension TaskCell {
     
     // MARK: - Reuse
     

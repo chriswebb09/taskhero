@@ -47,9 +47,6 @@ class SignupView: UIView {
         button.titleLabel?.font = Constants.Font.fontNormal
         return button
     }()
-}
-
-extension SignupView {
     
     override func layoutSubviews() {
         super.layoutSubviews()

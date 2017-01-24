@@ -50,9 +50,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         taskNameField.isHidden = true
         return taskNameField
     }()
-}
-
-extension ProfileSettingsCell {
     
     // MARK: - Initalization
     

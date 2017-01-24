@@ -79,9 +79,6 @@ extension TabBarController {
         tabBar.items?[3].title = "Settings"
         selectedIndex = 0
     }
-}
-
-extension TabBarController {
     
     fileprivate func setupHomeTab(homeVC:HomeViewController) -> UINavigationController {
         homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house-white-2")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "house-lightblue")?.withRenderingMode(.alwaysTemplate))
@@ -118,9 +115,6 @@ extension TabBarController {
         settingsTab.navigationBar.topItem?.title = "Settings"
         return settingsTab
     }
-}
-
-extension TabBarController {
     
     func configureTabBarItem(item:UITabBarItem) {
         item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)

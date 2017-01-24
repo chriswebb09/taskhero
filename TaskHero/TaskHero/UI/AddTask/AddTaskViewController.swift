@@ -28,9 +28,6 @@ final class AddTaskViewController: UIViewController  {
     var year: String = "2017"
     var taskViewModel = AddTaskViewModel()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:300, height:300))
-}
-
-extension AddTaskViewController {
     
     // MARK: - Initialization
     

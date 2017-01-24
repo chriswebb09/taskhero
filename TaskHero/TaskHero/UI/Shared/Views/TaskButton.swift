@@ -42,10 +42,6 @@ enum ButtonType {
         button.index = index
         return button
     }
-}
-
-
-extension ButtonType {
     
     public var newButton: UIButton {
         switch self {

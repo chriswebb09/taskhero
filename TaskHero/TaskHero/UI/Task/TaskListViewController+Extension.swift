@@ -26,9 +26,6 @@ extension TaskListViewController {
             addTasksLabel.isHidden = false
         }
     }
-}
-
-extension TaskListViewController {
     
     // MARK: - Configure
     
@@ -56,9 +53,6 @@ extension TaskListViewController: TaskHeaderCellDelegate {
         }
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
-}
-
-extension TaskListViewController {
     
     // MARK: - Setup navbar
     
@@ -68,9 +62,7 @@ extension TaskListViewController {
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
-}
-
-extension TaskListViewController {
+    
     // MARK: - Button methods
     
     func logoutButtonPressed() {
@@ -81,9 +73,6 @@ extension TaskListViewController {
             appDelegate.window?.rootViewController = loginVC
         }
     }
-}
-
-extension TaskListViewController {
     
     // MARK: - Task Actions
     
@@ -99,9 +88,6 @@ extension TaskListViewController {
         store.firebaseAPI.removeTask(ref: id, taskID: id)
         store.tasks.remove(at: indexPath.row)
     }
-}
-
-extension TaskListViewController {
     
     // MARK: - Cell Button Toggle Methods
     

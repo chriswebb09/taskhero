@@ -28,10 +28,6 @@ final class LoginViewController: UIViewController {
     var loginView = LoginView() // LoginView instantiated - will be added to viewcontroller view in viewdidload
     let store = UserDataStore.sharedInstance  // Singleton for the instance of the the authenticated user that shared by the entire application
     var loadingView = LoadingView() // Activity indicator and background container view instantiated - will be added to view on login button press
-}
-
-
-extension LoginViewController {
     
     // MARK: - ViewController Initialization Methods
     

@@ -19,9 +19,6 @@ final class ProfileSettingsViewControllerDataSource {
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance
-}
-
-extension ProfileSettingsViewControllerDataSource {
     
     func setupViews(profileSettingsView: ProfileSettingsView, tableView: UITableView, view:UIView) {
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,9 +30,6 @@ extension ProfileSettingsViewControllerDataSource {
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.tableViewHeight).isActive = true
     }
-}
-
-extension ProfileSettingsViewControllerDataSource {
     
     func updateUserName(cell: ProfileSettingsCell, name:[String]) {
         var name = cell.profileSettingField.text?.components(separatedBy: " ")
@@ -52,17 +46,4 @@ extension ProfileSettingsViewControllerDataSource {
         updatedUser.tasks = store.currentUser.tasks
         helpers.updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
     }
-    
-//    func updateUserName(cell:ProfileSettingsCell, name: [String]) {
-//        let updatedUser = User()
-//        updatedUser.username = cell.profileSettingField.text!
-//        updatedUser.email = store.currentUser.email
-//        updatedUser.profilePicture = "None"
-//        updatedUser.firstName = name[0]
-//        updatedUser.lastName = name[1]
-//        updatedUser.joinDate = store.currentUser.joinDate
-//        updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
-//        updatedUser.experiencePoints = store.currentUser.experiencePoints
-//        updatedUser.tasks = store.currentUser.tasks
-//    }
 }

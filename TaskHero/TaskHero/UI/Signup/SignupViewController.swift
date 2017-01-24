@@ -18,9 +18,6 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     var emailInvalidated = false
     let CharacterLimit = 11
     let helpers = Helpers()
-}
-
-extension SignupViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

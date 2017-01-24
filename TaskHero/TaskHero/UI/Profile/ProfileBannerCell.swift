@@ -25,9 +25,6 @@ final class ProfileBannerCell: UITableViewCell {
         imageView.layer.masksToBounds = true
         return imageView
     }()
-}
-
-extension ProfileBannerCell {
     
     // MARK: - Initialization
     

@@ -27,9 +27,6 @@ final class ProfileSettingsView: UIView {
         profileLabel.layer.masksToBounds = true
         return profileLabel
     }()
-}
-
-extension ProfileSettingsView {
     
     // MARK: - Initialization
     

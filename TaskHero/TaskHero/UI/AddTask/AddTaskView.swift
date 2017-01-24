@@ -58,9 +58,6 @@ final class AddTaskView: UIView {
         addTaskButton.setTitleColor(UIColor.white, for: .normal)
         return addTaskButton
     }()
-}
-
-extension AddTaskView {
     
     // MARK: - Initialization
     
