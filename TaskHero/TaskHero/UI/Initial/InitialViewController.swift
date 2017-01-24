@@ -16,9 +16,6 @@ final class InitialViewController: UIViewController {
         print("InitialViewController deallocated from memory")
     }
     let initView = InitView()
-}
-
-extension InitialViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +32,6 @@ extension InitialViewController {
             self.initView.zoomAnimation({ })
         }
     }
-}
-
-extension InitialViewController {
     
     func loginButtonTapped() {
         navigationController?.pushViewController(LoginViewController(), animated: false)

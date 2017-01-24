@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension TaskListViewController {
+extension TaskListViewController: TaskHeaderCellDelegate {
     
     // MARK: - TaskList UI
     
@@ -38,9 +38,6 @@ extension TaskListViewController {
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
     }
-}
-
-extension TaskListViewController: TaskHeaderCellDelegate {
     
     // MARK: - Public Methods
     
@@ -66,20 +63,16 @@ extension TaskListViewController: TaskHeaderCellDelegate {
     // MARK: - Button methods
     
     func logoutButtonPressed() {
-        DispatchQueue.main.async {
-            let loginVC = UINavigationController(rootViewController:LoginViewController())
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            UserDataStore.sharedInstance.logout()
-            appDelegate.window?.rootViewController = loginVC
-        }
+        let loginVC = UINavigationController(rootViewController:LoginViewController())
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        UserDataStore.sharedInstance.logout()
+        appDelegate.window?.rootViewController = loginVC
     }
     
     // MARK: - Task Actions
     
     dynamic fileprivate func addTaskButtonTapped() {
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
-        }
+        self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
     func deleteTasks(id:String, indexPath: IndexPath) {

@@ -192,7 +192,7 @@ final class APIClient {
     func registerUser(user: User) {
         userRef = dbRef.child("Users").child(user.uid)
         updateUsernameList(user: user)
-        var values = createValuesDictionary(user: user)
+        let values = createValuesDictionary(user: user)
         userRef.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
             if err != nil {
                 print(err ?? "unable to get specific error")

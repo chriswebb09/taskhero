@@ -78,10 +78,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
                         return
                     }
                     if let uid = FIRAuth.auth()?.currentUser?.uid {
-                        var newUser = self.createUser(uid: uid, username: username, email: email)
+                        let newUser = self.createUser(uid: uid, username: username, email: email)
                         self.setupUser(user: newUser)
                     }
-                    var tabBar = TabBarController()
+                    let tabBar = TabBarController()
                     self.helpers.loadTabBar(tabBar:tabBar)
                 }
             }

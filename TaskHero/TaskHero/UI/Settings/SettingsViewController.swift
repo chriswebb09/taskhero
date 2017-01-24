@@ -124,7 +124,6 @@ final class SettingsViewController: UITableViewController {
             self.notifyPop.popView.layer.opacity = 1
             self.notifyPop.containerView.layer.opacity = 0.1 }
         )
-        notifyPop
         //popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
     }
     

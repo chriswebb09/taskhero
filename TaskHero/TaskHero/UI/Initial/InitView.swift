@@ -48,9 +48,6 @@ final class InitView: UIView {
         view.isHidden = true
         return view
     }()
-}
-
-extension InitView {
     
     // MARK: - Configure
     
@@ -69,9 +66,6 @@ extension InitView {
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
-}
-
-extension InitView {
     
     // MARK: - Animation
     

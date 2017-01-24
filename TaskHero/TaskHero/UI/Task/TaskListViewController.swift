@@ -28,9 +28,6 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
         addTasksLabel.textAlignment = .center
         return addTasksLabel
     }()
-}
-
-extension TaskListViewController {
     
     // MARK: - Initialization
     
@@ -42,9 +39,7 @@ extension TaskListViewController {
         initializeBackgroundUI()
         tableView.reloadData()
     }
-}
-
-extension TaskListViewController {
+    
     /* Does setupfor tableview/emptytable view and navbar */
     
     func initializeBackgroundUI() {
@@ -52,9 +47,6 @@ extension TaskListViewController {
         setupTableView(tableView:tableView)
         setupNavItems(navController:navigationController)
     }
-}
-
-extension TaskListViewController {
     
     // FIXME: - Refactor ASAP
     
@@ -80,22 +72,16 @@ extension TaskListViewController {
         super.viewWillDisappear(false)
         store.firebaseAPI.tasksRef.removeObserver(withHandle: store.firebaseAPI.refHandle)
     }
-}
-
-extension TaskListViewController {
     
     // MARK: - UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.tasks.count
     }
-}
-
-extension TaskListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath as IndexPath) as! TaskCell
-        let height = tableView.rowHeight - 5
+        _ = tableView.rowHeight - 5
         taskViewModel = TaskCellViewModel(store.tasks[indexPath.row])
         taskCell.delegate = self
         let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(_:)))
