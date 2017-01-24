@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TaskListViewController: UITableViewController, TaskCellDelegate {
+final class TaskListViewController: UITableViewController, TaskCellDelegate, TaskHeaderCellDelegate {
     
     /* TaskListViewController is the viewcontroller that presents just the tasks that the user has added */
     // MARK: Properties
@@ -100,9 +100,6 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate {
             DispatchQueue.main.async { tableView.reloadData() }
         }
     }
-}
-
-extension TaskListViewController: TaskHeaderCellDelegate {
     
     // MARK: - TaskList UI
     

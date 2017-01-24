@@ -13,7 +13,7 @@ protocol TaskCellDelegate: class {
     func toggleForButtonState(_ sender:UIButton)
 }
 
-final class TaskCell: UITableViewCell {
+final class TaskCell: UITableViewCell, Toggable {
     
     // MARK: - Deallocation from memory
     
@@ -93,9 +93,6 @@ final class TaskCell: UITableViewCell {
         taskNameLabel.text = ""
         taskDescriptionLabel.text = ""
     }
-}
-
-extension TaskCell: Toggable {
     
     // MARK: - Delegate Methods
     // Button toggle methods
