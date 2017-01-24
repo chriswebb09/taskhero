@@ -101,6 +101,7 @@ extension LoginView {
 extension LoginView {
     
     /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
+    
     func setupLogin(_ viewController: LoginViewController) {
         layoutSubviews()
         emailField.delegate = viewController
@@ -110,21 +111,16 @@ extension LoginView {
         viewController.view.addGestureRecognizer(tap)
         loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
     }
-}
-
-extension LoginView {
     
     // MARK: - Configuring UI
-    fileprivate func configure(view:UIView) {
+    
+    private func setupView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        view.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Login.loginFieldHeight).isActive = true
+        view.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
-}
-
-extension LoginView {
     
     private func setupLogoImage() {
         addSubview(logoImageView)
@@ -133,12 +129,6 @@ extension LoginView {
         logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
-    }
-    
-    private func setupPassword() {
-        configure(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        passwordField.isSecureTextEntry = true
     }
     
     private func setupViewDivider() {
@@ -150,20 +140,14 @@ extension LoginView {
         viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
     }
     
-    private func setupView(view: UIView) {
-        addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        view.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
-        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    }
-    
     fileprivate func setupConstraints() {
         setupLogoImage()
-        configure(view: emailField)
+        setupView(view: emailField)
         emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        setupPassword()
-        configure(view: loginButton)
+        setupView(view: passwordField)
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+        passwordField.isSecureTextEntry = true
+        setupView(view: loginButton)
         loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
         setupViewDivider()
         setupView(view: registerLabel)
