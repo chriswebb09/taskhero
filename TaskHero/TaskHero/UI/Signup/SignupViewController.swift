@@ -69,6 +69,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
                 return
         }
         guard validateEmailInput(email: email, confirm: confirmFieldText) == true else { helpers.setupErrorAlert(viewController: self); return }
+        signupLogic(email: email, password: password, username: username, loadingView: loadingView)
+    }
+    
+    func signupLogic(email: String, password: String, username: String, loadingView: LoadingView) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
             if error != nil {
                 loadingView.hideActivityIndicator(viewController: self)
@@ -76,30 +80,19 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-            let newUser = self.createUser(uid: uid, username: username, email: email)
+            let newUser = self.helpers.createUser(uid: uid, username: username, email: email)
             self.setupUser(user: newUser)
             let tabBar = TabBarController()
             self.helpers.loadTabBar(tabBar:tabBar)
         }
     }
     
-    func setupUser(user:User) {
+    func setupUser(user: User) {
         store.firebaseAPI.registerUser(user: user)
         store.currentUserString = FIRAuth.auth()?.currentUser?.uid
         store.firebaseAPI.setupRefs()
         store.currentUser = user
     }
     
-    func createUser(uid: String, username:String, email:String) -> User {
-        let newUser = User()
-        newUser.uid = uid
-        newUser.username = username
-        newUser.email = email
-        newUser.profilePicture = "None"
-        newUser.firstName = "N/A"
-        newUser.lastName = "N/A"
-        newUser.experiencePoints = 0
-        newUser.tasks = [Task]()
-        return newUser
-    }
+
 }

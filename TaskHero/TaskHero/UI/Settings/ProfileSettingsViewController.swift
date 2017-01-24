@@ -92,4 +92,14 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
             tapCell.profileSettingField.isHidden = false
         }
     }
+    
+    fileprivate func separateNames(name:String) -> [String] {
+        let nameArray = name.components(separatedBy: " ")
+        return nameArray
+    }
+    
+    func editButtonTapped() {
+        tapped = true
+    }
 }
+

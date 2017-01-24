@@ -41,6 +41,20 @@ final class Helpers {
 }
 
 extension Helpers {
+    
+    func createUser(uid: String, username:String, email:String) -> User {
+        let newUser = User()
+        newUser.uid = uid
+        newUser.username = username
+        newUser.email = email
+        newUser.profilePicture = "None"
+        newUser.firstName = "N/A"
+        newUser.lastName = "N/A"
+        newUser.experiencePoints = 0
+        newUser.tasks = [Task]()
+        return newUser
+    }
+    
     func setupErrorAlert(viewController:UIViewController) {
         let alertController = UIAlertController(title: "Invalid", message: "Something is wrong here.", preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { result in print("Okay") }

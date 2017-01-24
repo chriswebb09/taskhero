@@ -27,7 +27,7 @@ final class SettingsViewController: UITableViewController {
     let notifyPop = NotificationPopover()
     var settingsViewModel:SettingsCellViewModel!
     let helpers = Helpers()
- 
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -49,13 +49,12 @@ final class SettingsViewController: UITableViewController {
         super.viewWillDisappear(false)
         hide()
     }
- 
+    
     // MARK: UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
- 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
@@ -68,7 +67,6 @@ final class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 82
     }
- 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if settings[indexPath.row] == "Edit Profile" {
@@ -83,7 +81,6 @@ final class SettingsViewController: UITableViewController {
             notificationPopup()
         }
     }
- 
     
     // MARK: Public Methods
     
@@ -106,8 +103,6 @@ final class SettingsViewController: UITableViewController {
         self.alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
     
- 
-
     // Displays popover when notifications cell is selected
     
     private func notificationPopInitialOpacity() {
@@ -147,8 +142,40 @@ final class SettingsViewController: UITableViewController {
         alertPop.containerView.isHidden = true
         alertPop.hidePopView(viewController: self)
     }
+    
+    // MARK: - Switch between segments
+    
+    func changeView(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            settings = userSettings
+            segmentControl.subviews[0].backgroundColor = UIColor.white
+            dump(segmentControl)
+        default:
+            settings = applicationSettings
+            segmentControl.subviews[1].backgroundColor = UIColor.white
+            dump(segmentControl)
+        }
+        tableView.reloadData()
+    }
+    
+    // MARK: - Segment Control UI
+    
+    func setupSegment() {
+        let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]
+        let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
+        segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
+        segmentControl.tintColor = UIColor.black
+        segmentControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
+        segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
+        segmentControl.topAnchor.constraint(equalTo: (tableView.tableHeaderView?.topAnchor)!).isActive = true
+        segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        segmentControl.heightAnchor.constraint(equalTo:(tableView.tableHeaderView?.heightAnchor)!).isActive = true
+        segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
+    }
 }
-
 
 protocol Hiddable {
     func hide(view:UIView)

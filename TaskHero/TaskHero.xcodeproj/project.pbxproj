@@ -61,10 +61,7 @@
 		A74553421E2346C9004300AA /* TaskHeroSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74553411E2346C9004300AA /* TaskHeroSpec.swift */; };
 		A75EB40D1E29E5EC002FE7EE /* HomeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75EB40C1E29E5EC002FE7EE /* HomeHelpers.swift */; };
 		A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */; };
-		A76562CC1DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */; };
 		A76562CD1DF93F2000E29AA9 /* HomeViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */; };
-		A76562CE1DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */; };
-		A76562CF1DF93F2000E29AA9 /* SettingsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */; };
 		A76562D31DF93F4800E29AA9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D11DF93F4800E29AA9 /* InitialViewController.swift */; };
 		A76562D41DF93F4800E29AA9 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D21DF93F4800E29AA9 /* InitView.swift */; };
 		A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */; };
@@ -159,10 +156,7 @@
 		A74553411E2346C9004300AA /* TaskHeroSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHeroSpec.swift; sourceTree = "<group>"; };
 		A75EB40C1E29E5EC002FE7EE /* HomeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHelpers.swift; sourceTree = "<group>"; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
-		A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FriendsSettingsViewController+Extension.swift"; path = "../Controller Extensions/FriendsSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HomeViewController+Extension.swift"; path = "../Controller Extensions/HomeViewController+Extension.swift"; sourceTree = "<group>"; };
-		A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProfileSettingsViewController+Extension.swift"; path = "../Controller Extensions/ProfileSettingsViewController+Extension.swift"; sourceTree = "<group>"; };
-		A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SettingsViewController+Extension.swift"; path = "../Controller Extensions/SettingsViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562D11DF93F4800E29AA9 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = Initial/InitialViewController.swift; sourceTree = "<group>"; };
 		A76562D21DF93F4800E29AA9 /* InitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitView.swift; path = Initial/InitView.swift; sourceTree = "<group>"; };
 		A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskCell+Extension.swift"; sourceTree = "<group>"; };
@@ -403,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				A70840011DEABB2800055B72 /* ProfileSettingsViewController.swift */,
-				A76562C91DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -429,7 +422,6 @@
 		A77DDFFB1E3747D100B2A64A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A76562CA1DF93F2000E29AA9 /* SettingsViewController+Extension.swift */,
 				A709CB091DE7735000877907 /* SettingsViewController.swift */,
 			);
 			name = ViewController;
@@ -457,7 +449,6 @@
 		A77DDFFE1E37481500B2A64A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A76562C71DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift */,
 				A70840051DEABBE200055B72 /* FriendsSettingsViewController.swift */,
 			);
 			name = ViewController;
@@ -889,7 +880,6 @@
 				A709CADE1DE7722300877907 /* String+Extension.swift in Sources */,
 				A709CAE21DE7723800877907 /* TextfieldExtension.swift in Sources */,
 				A709CACE1DE7719E00877907 /* AddTaskViewController.swift in Sources */,
-				A76562CC1DF93F2000E29AA9 /* FriendsSettingsViewController+Extension.swift in Sources */,
 				A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */,
 				A709CAF81DE772F700877907 /* AddTaskView.swift in Sources */,
 				A709CAFE1DE7731500877907 /* LoadingView.swift in Sources */,
@@ -904,7 +894,6 @@
 				A73B47BC1E1BD78E0090F699 /* ImageClient.swift in Sources */,
 				A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */,
 				A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */,
-				A76562CE1DF93F2000E29AA9 /* ProfileSettingsViewController+Extension.swift in Sources */,
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A7F019E01E093C8400B23667 /* SignupViewController+Extension.swift in Sources */,
@@ -925,7 +914,6 @@
 				A76562CD1DF93F2000E29AA9 /* HomeViewController+Extension.swift in Sources */,
 				A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */,
 				A709CAD61DE771F400877907 /* ProfileBannerCell.swift in Sources */,
-				A76562CF1DF93F2000E29AA9 /* SettingsViewController+Extension.swift in Sources */,
 				A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */,
 				A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */,
 				A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */,

@@ -17,6 +17,7 @@ protocol CellMake {
 }
 
 final class HomeViewControllerDataSource {
+    
     /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
     
     let store = UserDataStore.sharedInstance
