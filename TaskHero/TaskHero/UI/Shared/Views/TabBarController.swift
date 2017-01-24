@@ -14,9 +14,6 @@ class TabBarController: UITabBarController {
     
     let store = UserDataStore.sharedInstance
     let helpers = Helpers()
-}
-
-extension TabBarController {
     
     // MARK: - Initialization
     
@@ -27,13 +24,11 @@ extension TabBarController {
                 DispatchQueue.main.async {
                     self.setupTabs()
                 }
-                
             } else if self.store.currentUser == nil {
                 self.getUser()
                 DispatchQueue.main.async {
                     self.setupTabs()
                 }
-                
             }
         }
     }
@@ -42,10 +37,7 @@ extension TabBarController {
         super.viewWillLayoutSubviews()
         helpers.setupTabBar(tabBar:tabBar, view:view)
     }
-}
-
-
-extension TabBarController {
+    
     func getUser() {
         store.firebaseAPI.fetchUserData { user in
             self.store.currentUser = user
@@ -56,9 +48,6 @@ extension TabBarController {
         super.viewDidLoad()
         setupControllers()
     }
-}
-
-extension TabBarController {
     
     // MARK: - Setup ViewControllers
     

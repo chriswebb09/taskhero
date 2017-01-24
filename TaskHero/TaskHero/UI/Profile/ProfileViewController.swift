@@ -24,19 +24,13 @@ final class ProfileViewController: UITableViewController {
     // MARK: - Initialization
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         edgesForExtendedLayout = []
         registerCells()
         tableView.estimatedRowHeight = view.frame.height / 3
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-        // Setup UI on main thread
-        
-        DispatchQueue.main.async {
-            self.setupNavItems()
-            self.tableView.reloadData()
-        }
+        setupNavItems()
+        tableView.reloadData()
     }
     
     // On viewDidAppear ensure fresh user data from database is
@@ -44,9 +38,7 @@ final class ProfileViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
     
     func registerCells() {
@@ -68,25 +60,19 @@ final class ProfileViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         // If first row set banner image
-        
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
             return bannerCell
-            
             // If second row return ProfileHeaderCell
-            
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(headerCell.profilePictureTapped))
             headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
             return headerCell
-            
             // Beyond that it's all ProfileDataCells
-            
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
@@ -107,12 +93,10 @@ final class ProfileViewController: UITableViewController {
     // On logout button press sets RootViewController to LoginViewController on main thread
     
     func logoutButtonPressed() {
-        DispatchQueue.main.async {
-            let loginVC = UINavigationController(rootViewController:LoginViewController())
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            UserDataStore.sharedInstance.logout()
-            appDelegate.window?.rootViewController = loginVC
-        }
+        let loginVC = UINavigationController(rootViewController:LoginViewController())
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        UserDataStore.sharedInstance.logout()
+        appDelegate.window?.rootViewController = loginVC
     }
     
     func addTaskButtonTapped() {

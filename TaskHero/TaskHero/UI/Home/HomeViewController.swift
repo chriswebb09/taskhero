@@ -15,7 +15,8 @@ import UIKit
  - Not final setup - still a work in progress
  */
 
-final class HomeViewController: UITableViewController {
+final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
+    
     // MARK: - Deallocate HomeViewController From Memory
     
     deinit {
@@ -30,9 +31,7 @@ final class HomeViewController: UITableViewController {
     let picker = UIImagePickerController()      /* Used to pick profile picture in photoPopover */
     let helpers = Helpers()     /* Helper methods mainly for configuring */
     var index:IndexPath!   /* IndexPath property still figuring out if I need it */
-}
 
-extension HomeViewController: UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
