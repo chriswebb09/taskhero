@@ -160,32 +160,24 @@ extension LoginView {
         viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
     }
     
-    private func setupRegisterLabel() {
-        addSubview(registerLabel)
-        registerLabel.translatesAutoresizingMaskIntoConstraints = false
-        registerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        registerLabel.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
-        registerLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
+    private func setupView(view: UIView) {
+        addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
+        view.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
+        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
-    
-    private func setupSignupButton() {
-        addSubview(signupButton)
-        signupButton.translatesAutoresizingMaskIntoConstraints = false
-        signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        signupButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
-        signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
-    }
-    
+ 
     fileprivate func setupConstraints() {
         setupLogoImage()
         setupEmailField()
         setupPassword()
         setupLoginButton()
         setupViewDivider()
-        setupRegisterLabel()
-        setupSignupButton()
+        setupView(view: registerLabel)
+        registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
+        setupView(view: signupButton)
+        signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
     }
 }
 
