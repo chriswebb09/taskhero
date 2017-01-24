@@ -94,9 +94,6 @@ extension LoginView {
             self?.passwordField.layer.opacity = 1
         })
     }
-}
-
-extension LoginView {
     
     /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
     
@@ -153,9 +150,6 @@ extension LoginView {
         setupView(view: signupButton)
         signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
     }
-}
-
-extension LoginView {
     
     // MARK: - Animation
     
