@@ -46,7 +46,6 @@
 		A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */; };
 		A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5401E15A93500812FB4 /* SetupNav.swift */; };
 		A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */; };
-		A70F5B311E26EB2700BC4209 /* NavBarHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70F5B301E26EB2700BC4209 /* NavBarHelpers.swift */; };
 		A7111A031E1B6F7F008B33A9 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7111A021E1B6F7F008B33A9 /* Levels.swift */; };
 		A712BA6E1E298E3C00B91951 /* TaskCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */; };
 		A715C1D21E1B078C0096A18B /* HomeViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */; };
@@ -138,7 +137,6 @@
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A70DC5401E15A93500812FB4 /* SetupNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNav.swift; sourceTree = "<group>"; };
 		A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperations.swift; sourceTree = "<group>"; };
-		A70F5B301E26EB2700BC4209 /* NavBarHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavBarHelpers.swift; path = Views/NavBarHelpers.swift; sourceTree = "<group>"; };
 		A7111A021E1B6F7F008B33A9 /* Levels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellTextView.swift; sourceTree = "<group>"; };
 		A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerDataSource.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 				A709CB211DE77C1300877907 /* Extensions */,
 				A709CB221DE77C2600877907 /* Variables */,
 				A709CB231DE77C2E00877907 /* Views */,
-				A70F5B301E26EB2700BC4209 /* NavBarHelpers.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -890,7 +887,6 @@
 				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
 				A767FBA21E0830D5007767B6 /* SettingsCellViewModel.swift in Sources */,
-				A70F5B311E26EB2700BC4209 /* NavBarHelpers.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,
 				A708400A1DEB180800055B72 /* ProfileSettingsCell.swift in Sources */,
 				A7C5A9C51E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift in Sources */,

@@ -13,18 +13,6 @@ import Firebase
 
 public extension UITableView {
     
-//    fileprivate lazy var dateFormatter1: DateFormatter = {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy/MM/dd"
-//        return formatter
-//    }()
-//    fileprivate lazy var dateFormatter2: DateFormatter = {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        return formatter
-//    }()
-
-    
     public func setupTableView() {
         estimatedRowHeight = Constants.Settings.rowHeight
         layoutMargins = UIEdgeInsets.zero
