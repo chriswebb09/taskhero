@@ -64,7 +64,6 @@
 		A76562CD1DF93F2000E29AA9 /* HomeViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */; };
 		A76562D31DF93F4800E29AA9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D11DF93F4800E29AA9 /* InitialViewController.swift */; };
 		A76562D41DF93F4800E29AA9 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D21DF93F4800E29AA9 /* InitView.swift */; };
-		A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */; };
 		A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */; };
 		A76562E41DF991D000E29AA9 /* TaskHeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562E31DF991D000E29AA9 /* TaskHeroTests.swift */; };
 		A767FBA21E0830D5007767B6 /* SettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A767FBA11E0830D5007767B6 /* SettingsCellViewModel.swift */; };
@@ -80,8 +79,6 @@
 		A7C5A9C51E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */; };
 		A7DF774A1E37185800FB2DCE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF77491E37185800FB2DCE /* Secrets.swift */; };
 		A7F019DC1E0922FC00B23667 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F019DB1E0922FC00B23667 /* UITextView+Extensions.swift */; };
-		A7F019DE1E0925FF00B23667 /* TaskListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F019DD1E0925FF00B23667 /* TaskListViewController+Extension.swift */; };
-		A7F019E01E093C8400B23667 /* SignupViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */; };
 		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
@@ -159,7 +156,6 @@
 		A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HomeViewController+Extension.swift"; path = "../Controller Extensions/HomeViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562D11DF93F4800E29AA9 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = Initial/InitialViewController.swift; sourceTree = "<group>"; };
 		A76562D21DF93F4800E29AA9 /* InitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitView.swift; path = Initial/InitView.swift; sourceTree = "<group>"; };
-		A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskCell+Extension.swift"; sourceTree = "<group>"; };
 		A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		A76562E11DF991D000E29AA9 /* TaskHeroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskHeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A76562E31DF991D000E29AA9 /* TaskHeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHeroTests.swift; sourceTree = "<group>"; };
@@ -177,8 +173,6 @@
 		A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewControllerDataSource.swift; sourceTree = "<group>"; };
 		A7DF77491E37185800FB2DCE /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A7F019DB1E0922FC00B23667 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextView+Extensions.swift"; path = "TaskHero/UI/Shared/Extensions/UITextView+Extensions.swift"; sourceTree = SOURCE_ROOT; };
-		A7F019DD1E0925FF00B23667 /* TaskListViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskListViewController+Extension.swift"; sourceTree = "<group>"; };
-		A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SignupViewController+Extension.swift"; path = "TaskHero/UI/Controller Extensions/SignupViewController+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		ACD79247934EC1235C48C258 /* Pods-TaskHero-TaskHeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero-TaskHeroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero-TaskHeroTests/Pods-TaskHero-TaskHeroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,7 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				A709CB0B1DE7735B00877907 /* SignupViewController.swift */,
-				A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -440,7 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */,
-				A76562D51DF9533700E29AA9 /* TaskCell+Extension.swift */,
 				A709CAD71DE7720200877907 /* TaskCell.swift */,
 			);
 			name = TaskCell;
@@ -524,7 +516,6 @@
 			isa = PBXGroup;
 			children = (
 				A709CB111DE7737800877907 /* TaskListViewController.swift */,
-				A7F019DD1E0925FF00B23667 /* TaskListViewController+Extension.swift */,
 			);
 			name = TaskList;
 			sourceTree = "<group>";
@@ -874,13 +865,11 @@
 				A709CAD41DE771EB00877907 /* ProfileDataCell.swift in Sources */,
 				A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */,
 				A709CB0C1DE7735B00877907 /* SignupViewController.swift in Sources */,
-				A7F019DE1E0925FF00B23667 /* TaskListViewController+Extension.swift in Sources */,
 				A709CAD91DE7720200877907 /* TaskCell.swift in Sources */,
 				A709CAFC1DE7730D00877907 /* SignupView.swift in Sources */,
 				A709CADE1DE7722300877907 /* String+Extension.swift in Sources */,
 				A709CAE21DE7723800877907 /* TextfieldExtension.swift in Sources */,
 				A709CACE1DE7719E00877907 /* AddTaskViewController.swift in Sources */,
-				A76562D61DF9533700E29AA9 /* TaskCell+Extension.swift in Sources */,
 				A709CAF81DE772F700877907 /* AddTaskView.swift in Sources */,
 				A709CAFE1DE7731500877907 /* LoadingView.swift in Sources */,
 				A767FBA41E0832A1007767B6 /* TaskCellViewModel.swift in Sources */,
@@ -896,7 +885,6 @@
 				A70DC5411E15A93500812FB4 /* SetupNav.swift in Sources */,
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
-				A7F019E01E093C8400B23667 /* SignupViewController+Extension.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
 				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
