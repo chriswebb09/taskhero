@@ -116,7 +116,7 @@ extension Helpers {
         }
     }
     
-   func updateUserProfile(userID: String, user:User) {
+    func updateUserProfile(userID: String, user:User) {
         store.firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:store.tasks)
         store.tasks.forEach { task in
             self.store.firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)

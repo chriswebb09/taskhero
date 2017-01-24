@@ -14,15 +14,4 @@ extension UINavigationController {
         navigationBar.isHidden = false
         navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
     }
-    
-    func addTaskButtonTapped() {
-        pushViewController(AddTaskViewController(), animated:false)
-    }
-    
-    func logoutButtonPressed() {
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        UserDataStore.sharedInstance.logout()
-        appDelegate.window?.rootViewController = loginVC
-    }
 }
