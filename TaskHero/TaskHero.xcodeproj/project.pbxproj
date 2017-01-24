@@ -58,7 +58,6 @@
 		A74553421E2346C9004300AA /* TaskHeroSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74553411E2346C9004300AA /* TaskHeroSpec.swift */; };
 		A75EB40D1E29E5EC002FE7EE /* HomeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75EB40C1E29E5EC002FE7EE /* HomeHelpers.swift */; };
 		A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */; };
-		A76562CD1DF93F2000E29AA9 /* HomeViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */; };
 		A76562D31DF93F4800E29AA9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D11DF93F4800E29AA9 /* InitialViewController.swift */; };
 		A76562D41DF93F4800E29AA9 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D21DF93F4800E29AA9 /* InitView.swift */; };
 		A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */; };
@@ -147,7 +146,6 @@
 		A74553411E2346C9004300AA /* TaskHeroSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHeroSpec.swift; sourceTree = "<group>"; };
 		A75EB40C1E29E5EC002FE7EE /* HomeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHelpers.swift; sourceTree = "<group>"; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
-		A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HomeViewController+Extension.swift"; path = "../Controller Extensions/HomeViewController+Extension.swift"; sourceTree = "<group>"; };
 		A76562D11DF93F4800E29AA9 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = Initial/InitialViewController.swift; sourceTree = "<group>"; };
 		A76562D21DF93F4800E29AA9 /* InitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitView.swift; path = Initial/InitView.swift; sourceTree = "<group>"; };
 		A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
@@ -440,7 +438,6 @@
 		A77DDFFF1E37482F00B2A64A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A76562C81DF93F2000E29AA9 /* HomeViewController+Extension.swift */,
 				A709CACF1DE771B700877907 /* HomeViewController.swift */,
 			);
 			name = ViewController;
@@ -888,7 +885,6 @@
 				A709CB041DE7733300877907 /* User.swift in Sources */,
 				A7346D781DE8EC50005E3A5E /* AlertPopover.swift in Sources */,
 				A715C1D21E1B078C0096A18B /* HomeViewControllerDataSource.swift in Sources */,
-				A76562CD1DF93F2000E29AA9 /* HomeViewController+Extension.swift in Sources */,
 				A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */,
 				A709CAD61DE771F400877907 /* ProfileBannerCell.swift in Sources */,
 				A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */,

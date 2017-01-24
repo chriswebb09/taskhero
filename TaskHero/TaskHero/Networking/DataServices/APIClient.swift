@@ -165,10 +165,9 @@ final class APIClient {
         usernameRef.updateChildValues([user.username:user.email])
         userRef.keepSynced(true)
         if tasks.count != 0 {
-            if let tasks = user.tasks {
-                for task in tasks {
-                    addTasks(task: task)
-                }
+            guard let userTasks = user.tasks else { return }
+            for task in userTasks {
+                addTasks(task: task)
             }
         }
     }
