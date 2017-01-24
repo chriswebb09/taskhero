@@ -81,17 +81,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
             }
             guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
             let newUser = self.helpers.createUser(uid: uid, username: username, email: email)
-            self.setupUser(user: newUser)
+            self.helpers.setupUser(user: newUser)
             let tabBar = TabBarController()
             self.helpers.loadTabBar(tabBar:tabBar)
         }
-    }
-    
-    func setupUser(user: User) {
-        store.firebaseAPI.registerUser(user: user)
-        store.currentUserString = FIRAuth.auth()?.currentUser?.uid
-        store.firebaseAPI.setupRefs()
-        store.currentUser = user
     }
     
     // Checks text for valid email format and returns bool based on result

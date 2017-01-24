@@ -59,6 +59,13 @@ extension Helpers {
 
 extension Helpers {
     
+    func setupUser(user: User) {
+        store.firebaseAPI.registerUser(user: user)
+        store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+        store.firebaseAPI.setupRefs()
+        store.currentUser = user
+    }
+    
     func loadTabBar(tabBar:TabBarController) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
@@ -70,7 +77,7 @@ extension Helpers {
         nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
     }
     
-    func setupTabBar(tabBar:UITabBar, view:UIView) {
+    class func setupTabBar(tabBar:UITabBar, view:UIView) {
         var tabFrame = tabBar.frame
         let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
         tabFrame.size.height = tabBarHeight
