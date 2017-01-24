@@ -27,25 +27,25 @@ class TaskHeroTests: XCTestCase {
     
     func testTaskList() {
         let task = Task(taskID: "exampleID", taskName: "Example Task", taskDescription: "Task is an example", taskCreated: "01/2017", taskDue: "Example", taskCompleted: false , pointValue: 5)
-        let store = DataStore.sharedInstance
+        let store = UserDataStore.sharedInstance
         store.tasks = [task]
         XCTAssertEqual(store.tasks.count, 1, "Should be one task in tasks")
     }
     
     func testUserProperties() {
         let task = Task(taskID: "exampleID", taskName: "Example Task", taskDescription: "Task is an example", taskCreated: "01/2017", taskDue: "Example", taskCompleted: false , pointValue: 5)
-        let store = DataStore.sharedInstance
+        let store = UserDataStore.sharedInstance
         store.currentUser = User(uid: "exampleUserID", email: "example@email.com", firstName: "First", lastName: "Last", profilePicture: "None", username: "exampleUser", experiencePoints: 0, level: "Task Goat", joinDate: "Today", tasks: [task], numberOfTasksCompleted: 0)
         XCTAssertEqual(store.currentUser.tasks?.count, 1, "Should be one task in current user tasks")
     }
     
     func testSharedInstance() {
-        let shared = DataStore.sharedInstance
+        let shared = UserDataStore.sharedInstance
         XCTAssertNotNil(shared, "not nil")
     }
     
     func testLogin() {
-        var loginViewController = LoginViewController()
+        let loginViewController = LoginViewController()
         loginViewController.viewDidLoad()
         loginViewController.loginView.emailField.text = "chris.webb5249@gmail.com"
         loginViewController.loginView.passwordField.text = "123456"
