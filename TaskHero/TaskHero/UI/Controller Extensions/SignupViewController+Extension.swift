@@ -17,10 +17,7 @@ extension SignupViewController {
         let confirmLower = confirm.lowercased()
         if (email.isValidEmail()) && (emailLower == confirmLower) { return true } else { emailInvalidated = true; return false }
     }
-}
-
-extension SignupViewController {
-
+    
     // Checks that text has more than five characters / animates UITextField to blue color if true.
     
     func checkTextField(_ textField: UITextField) {
@@ -40,9 +37,6 @@ extension SignupViewController {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
     }
-}
-
-extension SignupViewController {
     
     // Sets selected textfield to the field below the current one on return key/ if last textfield cycles to top of fields and repeats.
     
@@ -105,9 +99,6 @@ extension SignupViewController {
             }
         }
     }
-}
-
-extension SignupViewController {
     
     fileprivate func invalidateStyleFor(field:UITextField) {
         field.layer.borderColor = Constants.Color.mainColor.cgColor

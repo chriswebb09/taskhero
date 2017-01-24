@@ -250,6 +250,7 @@
 				A709CAFB1DE7730D00877907 /* SignupView.swift */,
 				A767FBA71E0836F7007767B6 /* SignupViewModel.swift */,
 				A709CB0B1DE7735B00877907 /* SignupViewController.swift */,
+				A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -323,7 +324,6 @@
 				A709CADF1DE7722D00877907 /* UIColorExtension.swift */,
 				A709CAE31DE7724E00877907 /* UIView+Extension.swift */,
 				A76562D91DF95B7500E29AA9 /* UINavigationBar+Extension.swift */,
-				A7F019DF1E093C8400B23667 /* SignupViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

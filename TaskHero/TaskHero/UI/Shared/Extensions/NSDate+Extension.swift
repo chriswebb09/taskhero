@@ -8,17 +8,6 @@
 
 import Foundation
 
-//extension NSDate {
-//    func dateWithFormat() -> String {
-//        let todaysDate = NSDate()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MM-yyyy"
-//        let dateInFormat = dateFormatter.string(from: todaysDate as Date)
-//        return dateInFormat
-//    }
-//}
-
-
 extension Date {
     func dateStringFormatted() -> String {
         let today = Date()

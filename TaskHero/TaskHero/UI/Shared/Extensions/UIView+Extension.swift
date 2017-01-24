@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
+    
     func constrainEdges(to view: UIView) {
         leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true

@@ -38,9 +38,6 @@ extension TaskCell: Toggable {
             self.taskCompletedView.isUserInteractionEnabled = true
         }
     }
-}
-
-extension TaskCell {
     
     /* taskcompletedview delegate method */
     
@@ -61,9 +58,6 @@ extension TaskCell {
         taskCell(didToggleEditState: toggleState)
         return toggleState
     }
-}
-
-extension TaskCell {
     
     // MARK: - Configure cell subviews
     /* takes in textview returns configured textview*/
@@ -129,9 +123,6 @@ extension TaskCell {
         setupEditElements(element:saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
     }
-}
-
-extension TaskCell {
     
     /* methods used in VC to setup cell with data */
     
