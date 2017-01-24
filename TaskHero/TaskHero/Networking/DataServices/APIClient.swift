@@ -165,15 +165,7 @@ extension APIClient {
     
     func updateUserProfile(userID: String, user:User, tasks:[Task]) {
         userRef = dbRef.child("Users")
-        let userData: NSDictionary = [Constants.API.User.email: user.email,
-                                      Constants.API.User.firstName: user.firstName ?? " ",
-                                      Constants.API.User.lastName: user.lastName ?? " ",
-                                      Constants.API.User.profilePicture: user.profilePicture ?? " ",
-                                      Constants.API.User.experiencePoints: user.experiencePoints ,
-                                      Constants.API.User.level: user.level,
-                                      Constants.API.User.joinDate: user.joinDate,
-                                      Constants.API.User.username: user.username,
-                                      Constants.API.User.tasksCompleted: user.numberOfTasksCompleted]
+        let userData: NSDictionary = createValuesDictionary(user: user)
         userRef.updateChildValues(["/\(userID)": userData])
         usernameRef.updateChildValues([user.username:user.email])
         userRef.keepSynced(true)
@@ -186,18 +178,24 @@ extension APIClient {
         }
     }
     
-    func registerUser(user:User) {
+    func createValuesDictionary(user: User) -> NSDictionary {
+        let values: NSDictionary = [
+            Constants.API.User.email: user.email,
+            Constants.API.User.firstName: user.firstName ?? " ",
+            Constants.API.User.lastName: user.lastName ?? " ",
+            Constants.API.User.profilePicture: user.profilePicture ?? " ",
+            Constants.API.User.experiencePoints: user.experiencePoints ,
+            Constants.API.User.level: user.level,
+            Constants.API.User.joinDate: user.joinDate,
+            Constants.API.User.username: user.username,
+            Constants.API.User.tasksCompleted: user.numberOfTasksCompleted]
+        return values
+    }
+    
+    func registerUser(user: User) {
         userRef = dbRef.child("Users").child(user.uid)
         updateUsernameList(user: user)
-        let values: NSDictionary = [Constants.API.User.email: user.email,
-                                    Constants.API.User.firstName: user.firstName ?? " ",
-                                    Constants.API.User.lastName: user.lastName ?? " ",
-                                    Constants.API.User.profilePicture: user.profilePicture ?? " ",
-                                    Constants.API.User.experiencePoints: user.experiencePoints ,
-                                    Constants.API.User.level: user.level,
-                                    Constants.API.User.joinDate: user.joinDate,
-                                    Constants.API.User.username: user.username,
-                                    Constants.API.User.tasksCompleted: user.numberOfTasksCompleted]
+        var values = createValuesDictionary(user: user)
         userRef.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
             if err != nil {
                 print(err ?? "unable to get specific error")
