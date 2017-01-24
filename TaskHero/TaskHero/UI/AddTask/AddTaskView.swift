@@ -18,7 +18,7 @@ final class AddTaskView: UIView {
     
     // MARK: UI Elements
     
-    public lazy var taskNameLabel: UILabel = {
+    lazy var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
@@ -28,7 +28,7 @@ final class AddTaskView: UIView {
         return taskNameLabel
     }()
     
-    public lazy var taskNameField: TextFieldExtension = {
+    lazy var taskNameField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
         taskNameField.placeholder = "Task name"
         taskNameField.font = Constants.signupFieldFont
@@ -38,7 +38,7 @@ final class AddTaskView: UIView {
         return taskNameField
     }()
     
-    public lazy var taskDescriptionBox: UITextView = {
+    lazy var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
         taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
@@ -48,7 +48,7 @@ final class AddTaskView: UIView {
         return taskDescriptionBox
     }()
     
-    public lazy var addTaskButton: UIButton = {
+    lazy var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
@@ -82,9 +82,6 @@ extension AddTaskView {
         view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.07).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
-}
-
-extension AddTaskView {
     
     func addTaskDescriptionBox() {
         addSubview(taskDescriptionBox)

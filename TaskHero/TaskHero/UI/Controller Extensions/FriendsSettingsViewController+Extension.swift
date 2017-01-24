@@ -31,19 +31,16 @@ extension FriendsSettingsViewController {
     // Hides popover UI - prioritised to main thread when user hits dismiss button
     
     func dismissButton() {
-        DispatchQueue.main.async {
-            self.alertPop.popView.isHidden = true
-            self.alertPop.containerView.isHidden = true
-            self.alertPop.hidePopView(viewController: self)
-            UINavigationController().popViewController(animated: false)
-        }
+        self.alertPop.popView.isHidden = true
+        self.alertPop.containerView.isHidden = true
+        self.alertPop.hidePopView(viewController: self)
+        UINavigationController().popViewController(animated: false)
+        
     }
     
     func hide() {
-        DispatchQueue.main.async {
-            self.alertPop.popView.isHidden = true
-            self.alertPop.containerView.isHidden = true
-            self.alertPop.hidePopView(viewController: self)
-        }
+        self.alertPop.popView.isHidden = true
+        self.alertPop.containerView.isHidden = true
+        self.alertPop.hidePopView(viewController: self)
     }
 }

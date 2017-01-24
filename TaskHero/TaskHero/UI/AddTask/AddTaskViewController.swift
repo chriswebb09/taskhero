@@ -83,10 +83,8 @@ extension AddTaskViewController {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            DispatchQueue.main.async {
-                textView.text = "Describe what you want to get done."
-                textView.textColor = UIColor.lightGray
-            }
+            textView.text = "Describe what you want to get done."
+            textView.textColor = UIColor.lightGray
         }
     }
 }
@@ -195,7 +193,7 @@ extension AddTaskViewController {
         }
     }
     
-    // Hides keyboard 
+    // Hides keyboard
     
     func dismissKeyboard() {
         view.endEditing(true)

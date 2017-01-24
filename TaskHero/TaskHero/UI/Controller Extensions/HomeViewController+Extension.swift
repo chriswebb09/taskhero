@@ -78,7 +78,7 @@ extension HomeViewController {
     
     /* Hides popover view when operation has ended. */
     
-    func hidePopoverView() {
+    public func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
     }
 }
