@@ -25,8 +25,8 @@ final class TaskCell: UITableViewCell {
     
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
-    var toggled: Bool = false
     var taskViewModel: TaskCellViewModel!
+    var toggled: Bool = false
     
     // MARK: - Setup UI Elements
     

@@ -69,7 +69,7 @@ final class AddTaskView: UIView {
     
     // MARK: - Configure
     
-    fileprivate func configureView(view:UIView) {
+    fileprivate func configureView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
@@ -77,7 +77,7 @@ final class AddTaskView: UIView {
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    func addTaskDescriptionBox() {
+    func addTaskDescriptionBox(taskDescriptionBox: UITextView) {
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
@@ -86,7 +86,7 @@ final class AddTaskView: UIView {
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
     }
     
-    func addButton(addTaskButton:UIButton) {
+    func addButton(addTaskButton: UIButton) {
         addSubview(addTaskButton)
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
@@ -100,9 +100,8 @@ final class AddTaskView: UIView {
         taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
         configureView(view: taskNameField)
         taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
-        
         // UITextView for task description input
-        addTaskDescriptionBox()
+        addTaskDescriptionBox(taskDescriptionBox: taskDescriptionBox)
         addButton(addTaskButton: addTaskButton)
     }
 }
