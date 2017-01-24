@@ -68,25 +68,22 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
                 return
         }
         
-        if validateEmailInput(email:email, confirm:confirmFieldText) {
-            loadingView.showActivityIndicator(viewController: self)
-            FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
-                if error != nil {
-                    loadingView.hideActivityIndicator(viewController: self)
-                    print(error ?? "unable to get specific error")
-                    return
-                }
-                if let uid = FIRAuth.auth()?.currentUser?.uid {
-                    let newUser = self.createUser(uid: uid, username: username, email: email)
-                    self.setupUser(user: newUser)
-                }
-                let tabBar = TabBarController()
-                self.helpers.loadTabBar(tabBar:tabBar)
+        guard validateEmailInput(email: email, confirm: confirmFieldText) == true else { setupErrorAlert(); return }
+        loadingView.showActivityIndicator(viewController: self)
+        FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
+            if error != nil {
+                loadingView.hideActivityIndicator(viewController: self)
+                print(error ?? "unable to get specific error")
+                return
             }
-        } else {
-            setupErrorAlert()
-            return
+            if let uid = FIRAuth.auth()?.currentUser?.uid {
+                let newUser = self.createUser(uid: uid, username: username, email: email)
+                self.setupUser(user: newUser)
+            }
+            let tabBar = TabBarController()
+            self.helpers.loadTabBar(tabBar:tabBar)
         }
+        
     }
     
     func setupErrorAlert() {
