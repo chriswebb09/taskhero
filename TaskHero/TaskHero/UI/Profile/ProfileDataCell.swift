@@ -8,16 +8,22 @@
 
 import UIKit
 
+protocol ProfileDataCellDelegate: class {
+    func userStatsTapped()
+}
+
 final class ProfileDataCell: UITableViewCell {
+    
+    weak var delegate: ProfileDataCellDelegate?
+    
+    static let cellIdentifier = "ProfileDataCell"
     
     // MARK: - ProfileDataCell deallocated
     
     deinit {
         print("ProfileDataCell deallocated")
     }
-    
-    static let cellIdentifier = "ProfileDataCell"
-    
+
     // MARK: - UI Elements and cellModel
     
     lazy var dataCellModel: ProfileDataCellViewModel =  {
@@ -60,7 +66,7 @@ final class ProfileDataCell: UITableViewCell {
     // MARK: - Configuration
     /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - sets label to small green ovaly element with black border aligns content in center */
     
-    fileprivate func configureLabels(label:UILabel) {
+    private func configureLabels(label:UILabel) {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
         label.layer.masksToBounds = true
         label.textAlignment = .center
@@ -73,7 +79,7 @@ final class ProfileDataCell: UITableViewCell {
     
     // Most likely will be removed
     
-    fileprivate func configureConstraints(label:UILabel) {
+    private func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -110,7 +116,7 @@ final class ProfileDataCell: UITableViewCell {
         tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         addLevelLabel(levelLabel: levelLabel)
         addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
@@ -131,5 +137,9 @@ final class ProfileDataCell: UITableViewCell {
     override func prepareForReuse() {
         experiencePointsLabel.text = " "
         levelLabel.text = ""
+    }
+    
+    func userStateTapped() {
+        delegate?.userStatsTapped()
     }
 }

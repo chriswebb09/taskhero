@@ -34,14 +34,18 @@ final class AddTaskViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(addTaskView)
+        commonInit()
+        addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private func commonInit() {
         setupPick()
         setupDelegates()
         addTaskView.layoutSubviews()
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
-        addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
 }
 
