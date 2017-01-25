@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ProfileSettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class ProfileSettingsViewController: UIViewController,  UITableViewDataSource {
     
     // MARK: - Deallocation from memory
     
@@ -29,22 +29,31 @@ final class ProfileSettingsViewController: UIViewController, UITableViewDelegate
     var username: String?
     var email: String?
     
+}
+
+extension ProfileSettingsViewController: UITableViewDelegate {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        options = [self.store.currentUser.email,
-                   "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
-            "Profile Picture",
-            self.store.currentUser.username]
+        options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
+                    "Profile Picture", self.store.currentUser.username]
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
-        view.addSubview(profileSettingsView)
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
+        setupSubviews()
         profileSettingsView.layoutSubviews()
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
         tableView.setupTableView()
+    }
+    
+    func setupTableViewDelegates() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func setupSubviews() {
+        view.addSubview(profileSettingsView)
+        view.addSubview(tableView)
+        tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
     }
 }
 

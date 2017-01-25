@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TaskListViewController: UITableViewController, TaskCellDelegate, TaskHeaderCellDelegate {
+final class TaskListViewController: UITableViewController {
     
     /* TaskListViewController is the viewcontroller that presents just the tasks that the user has added */
     // MARK: Properties
@@ -72,8 +72,11 @@ final class TaskListViewController: UITableViewController, TaskCellDelegate, Tas
         super.viewWillDisappear(false)
         store.firebaseAPI.tasksRef.removeObserver(withHandle: store.firebaseAPI.refHandle)
     }
-    
-    // MARK: - UITableViewController Methods
+}
+
+
+// MARK: - UITableViewController Methods
+extension TaskListViewController: TaskCellDelegate {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.tasks.count
