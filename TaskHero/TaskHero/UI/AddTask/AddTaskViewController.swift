@@ -84,6 +84,13 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
             textView.textColor = UIColor.lightGray
         }
     }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Describe what you want to get done." {
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
+    }
 }
 
 extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -146,8 +153,8 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             year = taskViewModel.years[row]
         }
     }
+
     
-    // MARK: - Public methods
     /* When add task button pressed - data popover is show so user can pick task due data */
     
     dynamic fileprivate func addTaskButtonTapped() {
@@ -165,7 +172,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */
     
-    func formatTaskWithDate() {
+    dynamic fileprivate func formatTaskWithDate() {
         let newDate = "\(month)-\(day)-\(year)"
         let uid = UUID.init()
         guard let taskName = addTaskView.taskNameField.text else { return }

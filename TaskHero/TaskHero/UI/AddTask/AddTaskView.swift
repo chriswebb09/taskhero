@@ -18,7 +18,7 @@ final class AddTaskView: UIView {
     
     // MARK: UI Elements
     
-    lazy var taskNameLabel: UILabel = {
+    var taskNameLabel: UILabel {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
@@ -26,9 +26,9 @@ final class AddTaskView: UIView {
         taskNameLabel.textAlignment = .center
         taskNameLabel.layer.masksToBounds = true
         return taskNameLabel
-    }()
+    }
     
-    lazy var taskNameField: TextFieldExtension = {
+    var taskNameField: TextFieldExtension {
         let taskNameField = TextFieldExtension()
         taskNameField.placeholder = "Task name"
         taskNameField.font = Constants.signupFieldFont
@@ -36,9 +36,9 @@ final class AddTaskView: UIView {
         taskNameField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         taskNameField.layer.borderWidth = Constants.Border.borderWidth
         return taskNameField
-    }()
+    }
     
-    lazy var taskDescriptionBox: UITextView = {
+    var taskDescriptionBox: UITextView {
         let taskDescriptionBox = UITextView()
         taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
@@ -46,10 +46,10 @@ final class AddTaskView: UIView {
         taskDescriptionBox.font = Constants.signupFieldFont
         taskDescriptionBox.contentInset = Constants.TaskCell.Description.boxInset
         return taskDescriptionBox
-    }()
+    }
     
-    lazy var addTaskButton: UIButton = {
-        var addTaskButton = UIButton()
+    var addTaskButton: UIButton {
+        let addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
         addTaskButton.backgroundColor = Constants.Color.buttonColor
@@ -57,7 +57,7 @@ final class AddTaskView: UIView {
         addTaskButton.setTitle("Add Task", for: .normal)
         addTaskButton.setTitleColor(UIColor.white, for: .normal)
         return addTaskButton
-    }()
+    }
     
     // MARK: - Initialization
     
@@ -66,7 +66,7 @@ final class AddTaskView: UIView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-    
+
     // MARK: - Configure
     
     fileprivate func configureView(view: UIView) {
@@ -82,7 +82,7 @@ final class AddTaskView: UIView {
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
     }
     
-    func configureUIElements(view: UIView) {
+    fileprivate func configureUIElements(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true

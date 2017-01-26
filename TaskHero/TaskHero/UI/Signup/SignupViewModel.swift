@@ -13,7 +13,7 @@ class SignupViewModel {
     
     var signupTitle: String
     
-    init(signup:String) {
+    init(signup: String) {
         self.signupTitle = signup
     }
 }

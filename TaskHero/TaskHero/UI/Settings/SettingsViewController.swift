@@ -79,6 +79,7 @@ final class SettingsViewController: UITableViewController {
         }
         else if settings[indexPath.row] == "Notifications" {
             notificationPopup()
+            notifyPop.notifyPopView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
         }
     }
     
