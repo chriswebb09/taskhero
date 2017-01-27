@@ -13,6 +13,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
     
+    deinit {
+        print("SignupViewController deallocated from memory.")
+    }
+    
     let store = UserDataStore.sharedInstance
     let signupView = SignupView()
     var emailInvalidated = false
@@ -23,6 +27,8 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.addSubview(signupView)
         edgesForExtendedLayout = []
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor = Constants.Color.mainColor
         navigationController?.navigationBar.tintColor = UIColor.white
         setupSignupView()
         signupView.signupButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)

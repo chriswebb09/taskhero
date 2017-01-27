@@ -15,6 +15,9 @@ class AppScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(appScreenView)
+        appScreenView.layoutSubviews()
+        appScreenView.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        appScreenView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
     }
     
     func loginButtonTapped() {
