@@ -25,20 +25,15 @@ final class LoginViewController: UIViewController {
         print("LoginViewController deallocated from memory")
     }
     
-    let store = UserDataStore.sharedInstance
-    /* Singleton for the instance of the the authenticated user that shared by the entire application */
-    var loadingView = LoadingView()
-    /* Activity indicator and background container view instantiated - will be added to view on login button press */
-    
+    let store = UserDataStore.sharedInstance  /* Singleton for the instance of the the authenticated user that shared by the entire application */
+    var loadingView = LoadingView()  /* Activity indicator and background container view instantiated - will be added to view on login button press */
     var loginView: LoginView = LoginView()
-    
     var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
         didSet {
             loginViewModel.username = loginView.emailField.text!
             loginViewModel.password = loginView.passwordField.text!
         }
     }
-    
     
     // MARK: - ViewController Initialization Methods
     
@@ -103,7 +98,7 @@ extension LoginViewController: UITextFieldDelegate {
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
         loginViewModel.username = loginView.emailField.text!
-        FIRAuth.auth()?.signIn(withEmail: loginViewModel.username, password: loginViewModel.password) { user, error in
+        FIRAuth.auth()?.signIn(withEmail: loginViewModel.username, password: loginViewModel.password) { [unowned self] user, error in
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
@@ -117,7 +112,6 @@ extension LoginViewController: UITextFieldDelegate {
                 return
             }
             self.completeLogin()
-            
         }
     }
     
@@ -142,7 +136,7 @@ extension LoginViewController: UITextFieldDelegate {
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
             self.fetchData()
             /*  - On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.loadingView.hideActivityIndicator(viewController: self)
                 self.setupTabBar()
             }
@@ -192,7 +186,6 @@ extension LoginViewController: UITextFieldDelegate {
     // On beginning editting changes textfield UI properties
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
         textField.textColor = Constants.Color.backgroundColor
         textField.font = Constants.signupFieldFont
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor

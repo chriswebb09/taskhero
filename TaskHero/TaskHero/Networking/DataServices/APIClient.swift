@@ -36,13 +36,6 @@ final class APIClient {
     var usernameRef: FIRDatabaseReference!
     let userID = FIRAuth.auth()?.currentUser?.uid
     let database = FIRDatabase.database()
-    // App data properties
-    
-    var validUsernames = [String]()
-    var validUserData = [String]()
-    var userData = [String:AnyObject]()
-    var usernameEmailDict = [String: AnyObject]()
-    var tasksDict = [String:AnyObject]()
     
     init() {
         dbRef = FIRDatabase.database().reference()
