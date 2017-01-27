@@ -31,14 +31,15 @@ final class LoginViewController: UIViewController {
     /* Activity indicator and background container view instantiated - will be added to view on login button press */
     
     var loginView: LoginView = LoginView()
-//    
-//    var loginViewModel: LoginViewModel = LoginViewModel() {
-//        didSet {
-//            loginViewModel.userName = loginView.emailField.text
-//            loginViewModel.password = loginView.passwordField.text
-//        }
-//    }
-//    
+    
+    var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
+        didSet {
+            loginViewModel.username = loginView.emailField.text!
+            loginViewModel.password = loginView.passwordField.text!
+        }
+    }
+    
+    
     // MARK: - ViewController Initialization Methods
     
     override func viewDidLoad() {
@@ -101,8 +102,8 @@ extension LoginViewController: UITextFieldDelegate {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
-        guard let email = loginView.emailField.text, let password = loginView.passwordField.text else { return }
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
+        loginViewModel.username = loginView.emailField.text!
+        FIRAuth.auth()?.signIn(withEmail: loginViewModel.username, password: loginViewModel.password) { user, error in
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
@@ -115,28 +116,35 @@ extension LoginViewController: UITextFieldDelegate {
                 print(error ?? "Unknown error occured when attempting sign in authentication")
                 return
             }
+            self.completeLogin()
             
-            /*
-             - On global DispatchQueue with qos: userInituated sets self to unowned self
-             * creates new DataStore.sharedInstance
-             * sets new DataStore instance currentUserString property to userID
-             * sets up FirebaseAPI database reference handles
-             * calls new DataStore FirebaseAPI property and uses fetchUser method
-             * sets new DataStore instance currentUser property to user returned from fetchUser method call
-             * sets userDefaults proporties in AppManager to logged in
-             */
-            
-            DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-                UserDataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in UserDataStore.sharedInstance.currentUser = currentUser }
-                UserDataStore.sharedInstance.setLoggedInKey(userState: true)
-                UserDataStore.sharedInstance.hasLoggedIn()
-                
-                /*  - On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
-                
-                DispatchQueue.main.async {
-                    self.loadingView.hideActivityIndicator(viewController: self)
-                    self.setupTabBar()
-                }
+        }
+    }
+    
+    
+    func fetchData() {
+        UserDataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in UserDataStore.sharedInstance.currentUser = currentUser }
+        UserDataStore.sharedInstance.setLoggedInKey(userState: true)
+        UserDataStore.sharedInstance.hasLoggedIn()
+    }
+    
+    /*
+     - On global DispatchQueue with qos: userInituated sets self to unowned self
+     * creates new DataStore.sharedInstance
+     * sets new DataStore instance currentUserString property to userID
+     * sets up FirebaseAPI database reference handles
+     * calls new DataStore FirebaseAPI property and uses fetchUser method
+     * sets new DataStore instance currentUser property to user returned from fetchUser method call
+     * sets userDefaults proporties in AppManager to logged in
+     */
+    
+    func completeLogin() {
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            self.fetchData()
+            /*  - On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
+            DispatchQueue.main.async {
+                self.loadingView.hideActivityIndicator(viewController: self)
+                self.setupTabBar()
             }
         }
     }
