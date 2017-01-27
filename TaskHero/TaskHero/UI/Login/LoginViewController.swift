@@ -25,21 +25,20 @@ final class LoginViewController: UIViewController {
         print("LoginViewController deallocated from memory")
     }
     
-    var loginView: LoginView = LoginView() {
-        didSet {
-            loginView.loginButton.backgroundColor = loginViewModel.enableColor
-        }
-    }
+    let store = UserDataStore.sharedInstance
+    /* Singleton for the instance of the the authenticated user that shared by the entire application */
+    var loadingView = LoadingView()
+    /* Activity indicator and background container view instantiated - will be added to view on login button press */
     
-    let store = UserDataStore.sharedInstance  // Singleton for the instance of the the authenticated user that shared by the entire application
-    var loadingView = LoadingView() // Activity indicator and background container view instantiated - will be added to view on login button press
-    var loginViewModel: LoginViewModel = LoginViewModel() {
-        didSet {
-            loginViewModel.userName = loginView.emailField.text
-            loginViewModel.password = loginView.passwordField.text
-        }
-    }
-    
+    var loginView: LoginView = LoginView()
+//    
+//    var loginViewModel: LoginViewModel = LoginViewModel() {
+//        didSet {
+//            loginViewModel.userName = loginView.emailField.text
+//            loginViewModel.password = loginView.passwordField.text
+//        }
+//    }
+//    
     // MARK: - ViewController Initialization Methods
     
     override func viewDidLoad() {
@@ -49,8 +48,13 @@ final class LoginViewController: UIViewController {
         edgesForExtendedLayout = []
         loginView.setupLogin(self)
         loginView.loginButton.isEnabled = false
+        loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
+        loginView.loginButton.isEnabled = false
+        if loginView.loginButton.isEnabled == false {
+            loginView.loginButton.backgroundColor = UIColor.lightGray
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +88,7 @@ extension LoginViewController: UITextFieldDelegate {
     /*
      - handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
      - then it sets LoginViewController.view endEditting property to true
-     - next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController as parameter -
+     - next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController parameter -
      pass in self.
      - sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
      - calls firebase FIRAuth.auth.signIn method - which takes email and password
@@ -166,6 +170,14 @@ extension LoginViewController: UITextFieldDelegate {
         let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true
+    }
+    
+    
+    func textFieldDidChange(_ textField: UITextField) {
+        if (loginView.emailField.text?.characters.count)! > 4 && (loginView.passwordField.text?.characters.count)! >= 6 {
+            loginView.loginButton.backgroundColor = Constants.Color.buttonColor
+            loginView.loginButton.isEnabled = true
+        }
     }
     
     
