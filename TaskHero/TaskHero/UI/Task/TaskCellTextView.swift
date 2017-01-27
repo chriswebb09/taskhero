@@ -11,6 +11,50 @@ import Foundation
 
 import UIKit
 
+
+class TaskCellView: UIView {
+    
+    var taskNameLabel: UITextView {
+        let textView = UITextView().setupCellStyle()
+        return textView
+    }
+    
+    var taskDescriptionLabel: UITextView {
+        let textView = UITextView()
+        textView.labelTextViewStyle()
+        return textView
+    }
+    
+    var taskDueLabel: UITextView {
+        let textView = UITextView().setupCellStyle()
+        return textView
+    }
+    
+    var taskCompletedView: UIImageView {
+        let taskCompletedImageView = UIImageView()
+        taskCompletedImageView.isUserInteractionEnabled = true
+        return taskCompletedImageView
+    }
+    
+    var saveButton: UIButton {
+        let button = ButtonType.system(title: "Save", color: UIColor.black).newButton
+        button.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
+        button.isHidden = true
+        button.isEnabled = false
+        return button
+    }
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    func setupConstraints() {
+        
+    }
+}
+
+
 extension UITextView {
     
     func editTextViewStyle() {

@@ -21,20 +21,11 @@ final class HomeViewControllerDataSource {
     /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
     
     let store = UserDataStore.sharedInstance
+    
     fileprivate var taskViewModel: TaskCellViewModel!
     var delete: Bool = false
     
     /* Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell */
-    
-    var rows: Int {
-        get {
-            if (store.currentUser.tasks?.count)! < 1 {
-                return 1
-            } else {
-                return (store.currentUser.tasks!.count) + 1
-            }
-        }
-    }
     
     var tableIndexPath: IndexPath!
     var autoHeight: UIViewAutoresizing?
