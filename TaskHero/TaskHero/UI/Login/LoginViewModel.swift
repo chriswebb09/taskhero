@@ -18,7 +18,7 @@ struct LoginViewModel {
         didSet {
             if username != oldValue {
                 print(isValid)
-                getUserName()
+                getUserName(textFieldText: username)
             }
         }
     }
@@ -30,19 +30,19 @@ struct LoginViewModel {
         didSet {
             if password != oldValue {
                 print(isValid)
-                getUserName()
+                getUserName(textFieldText: password)
             }
         }
-        
     }
     
-    func getUserName() {
-        print("getting user credentials")
+    func getUserName(textFieldText: String) {
+    
+        print("getting user credentials\(textFieldText)")
     }
     
     
     var isValid: Bool {
-        if username.characters.count > 4 && password.characters.count > 5 {
+        if username.characters.count > 4 && password.characters.count > 8 {
             return true
         } else {
             return false
