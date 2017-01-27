@@ -25,9 +25,20 @@ final class LoginViewController: UIViewController {
         print("LoginViewController deallocated from memory")
     }
     
-    var loginView = LoginView() // LoginView instantiated - will be added to viewcontroller view in viewdidload
+    var loginView: LoginView = LoginView() {
+        didSet {
+            loginView.loginButton.backgroundColor = loginViewModel.enableColor
+        }
+    }
+    
     let store = UserDataStore.sharedInstance  // Singleton for the instance of the the authenticated user that shared by the entire application
     var loadingView = LoadingView() // Activity indicator and background container view instantiated - will be added to view on login button press
+    var loginViewModel: LoginViewModel = LoginViewModel() {
+        didSet {
+            loginViewModel.userName = loginView.emailField.text
+            loginViewModel.password = loginView.passwordField.text
+        }
+    }
     
     // MARK: - ViewController Initialization Methods
     
@@ -37,6 +48,7 @@ final class LoginViewController: UIViewController {
         setupDelegates()
         edgesForExtendedLayout = []
         loginView.setupLogin(self)
+        loginView.loginButton.isEnabled = false
         navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
     }
@@ -156,9 +168,11 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
+    
     // On beginning editting changes textfield UI properties
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         textField.textColor = Constants.Color.backgroundColor
         textField.font = Constants.signupFieldFont
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
@@ -172,5 +186,8 @@ extension LoginViewController: UITextFieldDelegate {
         textField.textColor = UIColor.lightGray
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
         checkForValidEmailInput()
+        if (loginView.emailField.text?.characters.count)! > 4 && (loginView.passwordField.text?.characters.count)! >= 6 {
+            loginView.loginButton.isEnabled = true
+        }
     }
 }

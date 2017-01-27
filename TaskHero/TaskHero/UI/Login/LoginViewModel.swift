@@ -6,7 +6,7 @@
 //  Copyright © 2017 Christopher Webb-Orenstein. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct LoginViewModel {
     
@@ -18,6 +18,14 @@ struct LoginViewModel {
             return true
         } else {
             return false
+        }
+    }
+    
+    var enableColor: UIColor {
+        if isValid == true {
+            return UIColor.blue
+        } else {
+            return UIColor.black
         }
     }
 }
