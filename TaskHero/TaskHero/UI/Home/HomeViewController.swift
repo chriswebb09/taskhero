@@ -25,6 +25,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     // MARK: Internal Properties
     
+    let homeViewModel = HomeViewModel()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  /* BackgroundQueue for background network */
     var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover()      /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
@@ -74,13 +75,13 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     // Returns number of rows based on count taskcount
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.rows
+        return homeViewModel.numberOfRows
     }
     
     // Gets rowheight from datasource and returns it - rowheight is UITableViewAutomaticDimension
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return dataSource.rowHeight
+        return homeViewModel.rowHeight
     }
 }
 

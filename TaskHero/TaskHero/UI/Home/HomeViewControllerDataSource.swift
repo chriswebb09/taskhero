@@ -35,7 +35,7 @@ final class HomeViewControllerDataSource {
             }
         }
     }
-    var rowHeight = UITableViewAutomaticDimension
+    
     var tableIndexPath: IndexPath!
     var autoHeight: UIViewAutoresizing?
 }

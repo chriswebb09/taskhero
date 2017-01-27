@@ -153,7 +153,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             year = taskViewModel.years[row]
         }
     }
-
+    
     
     /* When add task button pressed - data popover is show so user can pick task due data */
     

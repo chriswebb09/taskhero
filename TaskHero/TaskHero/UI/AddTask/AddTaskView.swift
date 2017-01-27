@@ -66,7 +66,7 @@ final class AddTaskView: UIView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-
+    
     // MARK: - Configure
     
     fileprivate func configureView(view: UIView) {

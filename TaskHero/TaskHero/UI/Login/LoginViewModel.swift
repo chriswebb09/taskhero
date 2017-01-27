@@ -27,18 +27,14 @@ struct LoginViewModel {
         willSet {
             print("About to set password to:  \(newValue)")
         }
-        
         didSet {
             if password != oldValue {
                 print(isValid)
                 getUserName()
             }
         }
-
+        
     }
-    
-    
-    
     
     func getUserName() {
         print("getting user credentials")
