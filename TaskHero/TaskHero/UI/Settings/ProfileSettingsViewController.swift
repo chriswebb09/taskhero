@@ -25,7 +25,7 @@ final class ProfileSettingsViewController: UIViewController,  UITableViewDataSou
     let tableView = UITableView()
     let helpers = Helpers()
     let dataSource = ProfileSettingsViewControllerDataSource()
-    fileprivate var options = ["Email Address", "Name", "Profile Picture", "Username"]
+    var options = ["Email Address", "Name", "Profile Picture", "Username"]
     var username: String?
     var email: String?
     

@@ -23,13 +23,17 @@ class TextFieldExtension: UITextField {
 
 extension TextFieldExtension {
     
-    func returnTextField(_ placeholder:String) -> TextFieldExtension {
+    func configureField(field:UITextField) {
+        field.font = Constants.signupFieldFont
+        field.layer.borderColor = Constants.signupFieldColor
+        field.layer.borderWidth = Constants.Border.borderWidth
+        field.layer.cornerRadius = 3
+    }
+    
+    func returnTextField(_ placeholder: String) -> TextFieldExtension {
         let returnTextField = TextFieldExtension()
         returnTextField.placeholder = placeholder
-        returnTextField.font = Constants.signupFieldFont
-        returnTextField.layer.borderColor = Constants.signupFieldColor
-        returnTextField.layer.borderWidth = Constants.Border.borderWidth
-        returnTextField.layer.cornerRadius = 3
+        configureField(field: returnTextField)
         returnTextField.keyboardType = .default
         return returnTextField
     }
@@ -37,10 +41,7 @@ extension TextFieldExtension {
     func emailField(_ placeholder:String) -> TextFieldExtension {
         let confirmEmailField = TextFieldExtension()
         confirmEmailField.placeholder = placeholder
-        confirmEmailField.font = Constants.signupFieldFont
-        confirmEmailField.layer.borderColor = Constants.signupFieldColor
-        confirmEmailField.layer.cornerRadius = 3
-        confirmEmailField.layer.borderWidth = Constants.Border.borderWidth
+        configureField(field: confirmEmailField)
         confirmEmailField.keyboardType = .emailAddress
         return confirmEmailField
     }
@@ -48,10 +49,7 @@ extension TextFieldExtension {
     func passwordField() -> TextFieldExtension {
         let passwordField = TextFieldExtension()
         passwordField.placeholder = "Enter password"
-        passwordField.font = Constants.signupFieldFont
-        passwordField.layer.borderColor = Constants.signupFieldColor
-        passwordField.layer.cornerRadius = 3
-        passwordField.layer.borderWidth = Constants.Border.borderWidth
+        configureField(field: passwordField)
         passwordField.isSecureTextEntry = true
         return passwordField
     }
