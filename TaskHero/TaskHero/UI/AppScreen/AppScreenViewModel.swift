@@ -25,5 +25,5 @@ class AppScreenViewModel {
     var logoImage: UIImage = {
         return UIImage()
     }()
-
+    
 }

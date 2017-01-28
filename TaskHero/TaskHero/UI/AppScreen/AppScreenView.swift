@@ -10,13 +10,17 @@ import UIKit
 
 class AppScreenView: UIView {
     
-    lazy var loginButton: UIButton = {
+    var viewModel: AppScreenViewModel = {
+        return AppScreenViewModel()
+    }()
+    
+     var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         return button.newButton
     }()
     
-    lazy var signupButton: UIButton = {
-        let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor)
+    var signupButton: UIButton = {
+        let button = ButtonType.system(title:"Register Now", color:viewModel.signupButtonColor)
         return button.newButton
     }()
     
