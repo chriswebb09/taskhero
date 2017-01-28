@@ -51,6 +51,7 @@
 		A714E1771E3BEA980014F990 /* AppScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1761E3BEA980014F990 /* AppScreenViewController.swift */; };
 		A714E1791E3BF52E0014F990 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1781E3BF52E0014F990 /* HomeViewModel.swift */; };
 		A714E17B1E3BFE190014F990 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E17A1E3BFE190014F990 /* TaskListViewModel.swift */; };
+		A714E17D1E3D0B8D0014F990 /* AppScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E17C1E3D0B8D0014F990 /* AppScreenViewModel.swift */; };
 		A715C1D21E1B078C0096A18B /* HomeViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */; };
 		A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */; };
 		A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */; };
@@ -143,6 +144,7 @@
 		A714E1761E3BEA980014F990 /* AppScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenViewController.swift; path = AppScreen/AppScreenViewController.swift; sourceTree = "<group>"; };
 		A714E1781E3BF52E0014F990 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		A714E17A1E3BFE190014F990 /* TaskListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
+		A714E17C1E3D0B8D0014F990 /* AppScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenViewModel.swift; path = AppScreen/AppScreenViewModel.swift; sourceTree = "<group>"; };
 		A715C1D11E1B078C0096A18B /* HomeViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerDataSource.swift; sourceTree = "<group>"; };
 		A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerPopover.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				A714E1741E3BEA8E0014F990 /* AppScreenView.swift */,
+				A714E17C1E3D0B8D0014F990 /* AppScreenViewModel.swift */,
 				A714E1761E3BEA980014F990 /* AppScreenViewController.swift */,
 			);
 			name = AppScreen;
@@ -893,6 +896,7 @@
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
+				A714E17D1E3D0B8D0014F990 /* AppScreenViewModel.swift in Sources */,
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
 				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
