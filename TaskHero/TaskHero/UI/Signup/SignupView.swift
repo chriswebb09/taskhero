@@ -10,10 +10,14 @@ import UIKit
 
 class SignupView: UIView {
     
+    var signupViewModel: SignupViewModel = {
+        return SignupViewModel(signup: "Become a Member")
+    }()
+    
     var signupViewLabel: UILabel {
         let signupViewLabel = UILabel()
         signupViewLabel.textColor = UIColor.black
-        signupViewLabel.text = "Become a Member"
+        signupViewLabel.text = signupViewModel.signupTitle
         signupViewLabel.font = Constants.Font.fontLarge
         signupViewLabel.textAlignment = .center
         return signupViewLabel
@@ -41,7 +45,7 @@ class SignupView: UIView {
     
     var signupButton: UIButton {
         let button = UIButton(type: .system)
-        button.backgroundColor = Constants.Color.mainColor
+        button.backgroundColor = signupViewModel.buttonColor
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = Constants.Font.fontNormal
