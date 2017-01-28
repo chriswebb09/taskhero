@@ -25,9 +25,20 @@ class TaskListViewModel {
     }
     
     var taskLabelText: String {
-        return "No tasks have been added yet."
+        if showTaskLabel == true {
+            return "No tasks have been added yet."
+        }
+        return ""
     }
     
+    var taskLabelColor: UIColor = {
+        return UIColor.lightGray
+    }()
+    
+    
+    let tableBackGroundColor: UIColor = {
+        return Constants.Color.tableViewBackgroundColor
+    }()
     
     
 }
