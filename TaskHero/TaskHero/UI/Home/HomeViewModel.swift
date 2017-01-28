@@ -9,6 +9,7 @@
 import UIKit
 
 class HomeViewModel {
+    
     var store = UserDataStore.sharedInstance
     
     var usernameText: String {

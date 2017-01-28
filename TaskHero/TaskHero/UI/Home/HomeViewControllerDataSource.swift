@@ -92,8 +92,7 @@ extension HomeViewControllerDataSource: CellMake {
     }
     
     /*
-     Deletes task at indexPath.row - 1
-     subtraction because TaskCells are below the profileHeader cell
+     Deletes task at indexPath.row - 1 (subtraction because TaskCells are below the profileHeader cell)
      */
     
     func deleteTask(indexPath: IndexPath, tableView:UITableView) {

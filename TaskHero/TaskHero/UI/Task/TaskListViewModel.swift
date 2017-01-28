@@ -9,6 +9,7 @@
 import UIKit
 
 class TaskListViewModel {
+    
     let store = UserDataStore.sharedInstance
     
     var numberOfRows: Int {
@@ -22,6 +23,11 @@ class TaskListViewModel {
         }
         return true
     }
+    
+    var taskLabelText: String {
+        return "No tasks have been added yet."
+    }
+    
     
     
 }

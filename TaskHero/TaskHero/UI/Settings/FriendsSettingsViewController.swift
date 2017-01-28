@@ -56,16 +56,16 @@ extension FriendsSettingsViewController: UITextFieldDelegate {
     // Hides popover UI - prioritised to main thread when user hits dismiss button
     
     func dismissButton() {
-        self.alertPop.popView.isHidden = true
-        self.alertPop.containerView.isHidden = true
-        self.alertPop.hidePopView(viewController: self)
+        alertPop.popView.isHidden = true
+        alertPop.containerView.isHidden = true
+        alertPop.hidePopView(viewController: self)
         UINavigationController().popViewController(animated: false)
         
     }
     
     func hide() {
-        self.alertPop.popView.isHidden = true
-        self.alertPop.containerView.isHidden = true
-        self.alertPop.hidePopView(viewController: self)
+        alertPop.popView.isHidden = true
+        alertPop.containerView.isHidden = true
+        alertPop.hidePopView(viewController: self)
     }
 }

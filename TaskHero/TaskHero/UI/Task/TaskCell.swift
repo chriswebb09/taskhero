@@ -120,14 +120,14 @@ final class TaskCell: UITableViewCell, Toggable {
     
     /* taskcompletedview delegate method */
     
-    func toggleForEditState(sender:UIGestureRecognizer) {
+    func toggleForEditState(sender: UIGestureRecognizer) {
         toggled = toggleState(state: toggled)
         delegate?.toggleForEditState(sender)
     }
     
     /* Button delegate method */
     
-    func toggleForButtonState(sender:UIButton) {
+    func toggleForButtonState(sender: UIButton) {
         toggled = toggleState(state: toggled)
         delegate?.toggleForButtonState(sender)
     }
@@ -141,7 +141,7 @@ final class TaskCell: UITableViewCell, Toggable {
     // MARK: - Configure cell subviews
     /* takes in textview returns configured textview*/
     
-    func configureTextView(label:UITextView) {
+    func configureTextView(label: UITextView) {
         label.textAlignment = .left
         label.layer.masksToBounds = true
         label.isScrollEnabled = false
@@ -152,7 +152,7 @@ final class TaskCell: UITableViewCell, Toggable {
     
     /* sets up taskNameLabel and taskDue label top, right and height constraints */
     
-    func configureView(view:UIView) {
+    func configureView(view: UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.nameLabelHeight).isActive = true
@@ -161,7 +161,7 @@ final class TaskCell: UITableViewCell, Toggable {
     
     /* taskdescription label configuration */
     
-    func setupDescriptionElements(element:UIView) {
+    func setupDescriptionElements(element: UIView) {
         contentView.addSubview(element)
         element.translatesAutoresizingMaskIntoConstraints = false
         element.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.Description.descriptionBoxHeight).isActive = true
@@ -172,7 +172,7 @@ final class TaskCell: UITableViewCell, Toggable {
     
     /* taskcompletedview and savebutton configuration */
     
-    func setupEditElements(element:UIView) {
+    func setupEditElements(element: UIView) {
         contentView.addSubview(element)
         element.translatesAutoresizingMaskIntoConstraints = false
         element.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.negativeOffset).isActive = true
@@ -205,7 +205,7 @@ final class TaskCell: UITableViewCell, Toggable {
     
     /* methods used in VC to setup cell with data */
     
-    func configureCell(taskVM:TaskCellViewModel) {
+    func configureCell(taskVM: TaskCellViewModel) {
         layoutSubviews()
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"

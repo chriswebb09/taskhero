@@ -18,7 +18,7 @@ final class FriendsSettingsView: UIView {
     
     // MARK: - UI Elements
     
-    lazy var friendsHeaderLabel: UILabel = {
+    var friendsHeaderLabel: UILabel {
         let friendsHeaderLabel = UILabel()
         friendsHeaderLabel.textColor = UIColor.black
         friendsHeaderLabel.text = "Add Friends"
@@ -26,9 +26,9 @@ final class FriendsSettingsView: UIView {
         friendsHeaderLabel.textAlignment = .center
         friendsHeaderLabel.layer.masksToBounds = true
         return friendsHeaderLabel
-    }()
+    }
     
-    lazy var searchField: TextFieldExtension = {
+    var searchField: TextFieldExtension {
         let searchField = TextFieldExtension()
         searchField.placeholder = "Search by email"
         searchField.font = Constants.signupFieldFont
@@ -36,9 +36,9 @@ final class FriendsSettingsView: UIView {
         searchField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         searchField.layer.borderWidth = Constants.Border.borderWidth
         return searchField
-    }()
+    }
     
-    lazy var searchButton: UIButton = {
+    var searchButton: UIButton {
         var searchButton = UIButton()
         searchButton.layer.borderWidth = Constants.Border.borderWidth
         searchButton.layer.borderColor = UIColor.white.cgColor
@@ -47,7 +47,7 @@ final class FriendsSettingsView: UIView {
         searchButton.setTitle("Search", for: .normal)
         searchButton.setTitleColor(UIColor.white, for: .normal)
         return searchButton
-    }()
+    }
     
     // MARK: - Initialization
     
@@ -59,7 +59,7 @@ final class FriendsSettingsView: UIView {
     
     // MARK: - Configure
     
-    fileprivate func configureView(view:UIView) {
+    fileprivate func configureView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.FriendsSetting.friendsHeaderLabelHeight).isActive = true

@@ -10,43 +10,43 @@ import UIKit
 
 class SignupView: UIView {
     
-    lazy var signupViewLabel: UILabel = {
+    var signupViewLabel: UILabel {
         let signupViewLabel = UILabel()
         signupViewLabel.textColor = UIColor.black
         signupViewLabel.text = "Become a Member"
         signupViewLabel.font = Constants.Font.fontLarge
         signupViewLabel.textAlignment = .center
         return signupViewLabel
-    }()
+    }
     
-    lazy var usernameField: TextFieldExtension = {
+    var usernameField: TextFieldExtension {
         let emailField = TextFieldExtension().emailField("Choose a username")
         return emailField
-    }()
+    }
     
-    lazy var emailField: TextFieldExtension = {
+    var emailField: TextFieldExtension {
         let emailField = TextFieldExtension().emailField("Enter email address")
         return emailField
-    }()
+    }
     
-    lazy var confirmEmailField: TextFieldExtension = {
+    var confirmEmailField: TextFieldExtension {
         let emailField = TextFieldExtension().emailField("Confirm email address")
         return emailField
-    }()
+    }
     
-    lazy var passwordField: TextFieldExtension = {
+    var passwordField: TextFieldExtension {
         let passwordField = TextFieldExtension().passwordField()
         return passwordField
-    }()
+    }
     
-    lazy var signupButton: UIButton = {
+    var signupButton: UIButton {
         let button = UIButton(type: .system)
         button.backgroundColor = Constants.Color.mainColor
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = Constants.Font.fontNormal
         return button
-    }()
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

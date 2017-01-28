@@ -9,10 +9,9 @@
 import UIKit
 
 /*
- - HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
- - All other cells are of type TaskCell
- - behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource
- - Not final setup - still a work in progress
+ HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+ All other cells are of type TaskCell behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource
+ Not final setup - still a work in progress
  */
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
@@ -32,7 +31,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     let picker = UIImagePickerController()      /* Used to pick profile picture in photoPopover */
     let helpers = Helpers()     /* Helper methods mainly for configuring */
     var index:IndexPath!   /* IndexPath property still figuring out if I need it */
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +44,11 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     /*
      Before view appears fetches tasks user data
-     - using helpers.getData method -
-     for current user, if currentUser.tasks is not nil,
-     it removes tasks from currentUser - regardless it then
-     fetches currentUser from database by calling APIClient before loading
-     - redundant functionality, definitely could be streamlined
+     using helpers.getData method then for current user,
+     if currentUser.tasks is not nil, it removes tasks from currentUser
+     Regardless it then fetches currentUser from database
+     calling APIClient before loading.
+     Redundant functionality, definitely could be streamlined
      */
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,11 +65,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillDisappear(false)
         helpers.removeRefHandle()
     }
-}
-
-// Extension for tableView delegate methods
-
-extension HomeViewController: ProfileHeaderCellDelegate {
+    
     // MARK: - UITableViewController Methods
     // Returns number of rows based on count taskcount
     
@@ -85,11 +80,11 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     }
 }
 
-extension HomeViewController: UITextViewDelegate, TaskCellDelegate {
+extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeaderCellDelegate {
     /*
-     - If first row returns profile header cell else returns task cell
-     - all cells configured within HomeViewController datasource class
-     - This setup is problematic when deleting task cells, causes tableview to lose track
+     If first row returns profile header cell else returns task cell
+     all cells configured within HomeViewController datasource class
+     This setup is problematic when deleting task cells, causes tableview to lose track
      of proper index path when tableView is reloaded. Need fix.
      */
     
@@ -126,15 +121,12 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate {
             tableView.endUpdates()
         }
     }
-}
-
-/*
- Extension that adds on features - sets up action for logout button press,
- add task button press and adds these as selectors on
- navigation items which are added to navigation controller.
- */
-
-extension HomeViewController {
+    
+    /*
+     Extension that adds on features - sets up action for logout button press,
+     add task button press and adds these as selectors on
+     navigation items which are added to navigation controller.
+     */
     
     // MARK: Selector Methods
     /* Logs out user by settings root ViewController to Loginview */
@@ -173,8 +165,6 @@ extension HomeViewController {
     /* Method toggles UI states from editing to not editing when save is pressed */
     
     func toggleForButtonState(_ sender:UIButton) {
-        print("inside toggleForButtonState")
-        print("-----------------------------")
         let superview = sender.superview
         let cell = superview?.superview as? TaskCell
         let indexPath = tableView.indexPath(for: cell!)

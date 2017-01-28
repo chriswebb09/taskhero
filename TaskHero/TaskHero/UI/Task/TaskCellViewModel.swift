@@ -9,6 +9,7 @@
 import UIKit
 
 struct TaskCellViewModel {
+    
     var taskName:String
     var taskDescription:String
     var taskDue:String
