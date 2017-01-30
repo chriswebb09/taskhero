@@ -22,8 +22,8 @@ class AppScreenViewModel {
         return UIColor.lightGray
     }()
     
-    var logoImage: UIImage = {
-        return UIImage()
-    }()
+    
+    
+    
     
 }

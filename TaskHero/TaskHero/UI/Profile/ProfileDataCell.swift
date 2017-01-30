@@ -59,6 +59,7 @@ final class ProfileDataCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        isUserInteractionEnabled = false 
         setupConstraints()
     }
     

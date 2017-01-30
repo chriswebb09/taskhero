@@ -27,6 +27,7 @@ struct LoginViewModel {
         willSet {
             print("About to set password to:  \(newValue)")
         }
+        
         didSet {
             if password != oldValue {
                 print(isValid)
@@ -36,7 +37,6 @@ struct LoginViewModel {
     }
     
     func getUserName(textFieldText: String) {
-    
         print("getting user credentials\(textFieldText)")
     }
     

@@ -18,23 +18,26 @@ protocol CellMake {
 
 final class HomeViewControllerDataSource {
     
-    /* Temporary abstraction of HomeViewController behavior. Not finalized will be organized into datasource and flowcontroller */
+    /* Temporary abstraction of HomeViewController behavior. 
+       Not finalized will be organized into datasource and flowcontroller */
+    /* Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell */
     
     let store = UserDataStore.sharedInstance
     
     fileprivate var taskViewModel: TaskCellViewModel!
+    
     var delete: Bool = false
     
-    /* Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell */
+    
     
     var tableIndexPath: IndexPath!
+    
     var autoHeight: UIViewAutoresizing?
 }
 
-/*
- Extension containing method for configuring cells in ViewController.
- If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell
- */
+
+
+/* Extension containing method for configuring cells in ViewController. If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
 
 extension HomeViewControllerDataSource: CellMake {
     
@@ -52,10 +55,9 @@ extension HomeViewControllerDataSource: CellMake {
         }
     }
     
-    // Methods for configure UIElements + registers cell types for tableView
-    /* Sets estimatedRowHeight and registers cell types */
+    /* Methods for configure UIElements + registers cell types for tableView sets estimatedRowHeight and registers cell types */
     
-    func setupView(tableView:UITableView, view:UIView) {
+    func setupView(tableView: UITableView, view: UIView) {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         tableView.setupTableView()
@@ -63,12 +65,9 @@ extension HomeViewControllerDataSource: CellMake {
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
     }
     
-    /*
-     Setup HeaderCell
-     - configuration and adding delegates to HomeViewController
-     */
+    /* Setup HeaderCell - configuration and adding delegates to HomeViewController */
     
-    func setupHeaderCell(headerCell:ProfileHeaderCell, viewController:HomeViewController) {
+    func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController) {
         headerCell.delegate = viewController
         headerCell.emailLabel.isHidden = true
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.profilePictureTapped))
@@ -91,9 +90,7 @@ extension HomeViewControllerDataSource: CellMake {
         viewController.present(picker, animated: true, completion: nil)
     }
     
-    /*
-     Deletes task at indexPath.row - 1 (subtraction because TaskCells are below the profileHeader cell)
-     */
+    /* Deletes task at indexPath.row - 1 (subtraction because TaskCells are below the profileHeader cell) */
     
     func deleteTask(indexPath: IndexPath, tableView:UITableView) {
         DispatchQueue.global(qos: .default).async {
@@ -111,10 +108,7 @@ extension HomeViewControllerDataSource: CellMake {
         print(self.store.tasks)
     }
     
-    /*
-     Selector method for taskCompletedView and SaveButton in TaskCell
-     - cycles between them depending on the state to either edit or save
-     */
+    /* Selector method for taskCompletedView and SaveButton in TaskCell - cycles between them depending on the state to either edit or save */
     
     func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell

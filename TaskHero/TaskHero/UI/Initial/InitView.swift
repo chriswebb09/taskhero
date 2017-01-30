@@ -23,7 +23,7 @@ final class InitView: UIView {
     
     // MARK: - UIElements
     
-    lazy var logoImageView: UIImageView = {
+    var logoImageView: UIImageView = {
         let image = UIImage(named: "TaskHeroLogoNew2")
         let imageView = UIImageView(image: image)
         return imageView
@@ -71,9 +71,9 @@ final class InitView: UIView {
     // MARK: - Animation
     
     func zoomAnimation(_ handler: completion? = nil) {
-        let duration: TimeInterval =  self.animationDuration * 0.5
+        let duration: TimeInterval = animationDuration * 0.5
         UIView.animate(withDuration: duration, animations:{ [weak self] in
-            if let zoom = self? .zoomOut() {
+            if let zoom = self?.zoomOut() {
                 self?.logoImageView.transform = zoom
             }
             self?.alpha = 0

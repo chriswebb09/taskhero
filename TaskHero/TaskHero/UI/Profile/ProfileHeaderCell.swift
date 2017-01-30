@@ -122,7 +122,6 @@ final class ProfileHeaderCell: UITableViewCell {
     
     private func addJoinDateLabel() {
         joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-        
         joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
         joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.mainOffset).isActive = true
         

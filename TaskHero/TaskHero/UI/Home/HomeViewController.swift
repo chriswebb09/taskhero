@@ -22,6 +22,14 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         print("HomeViewController deallocated")
     }
     
+    var store = UserDataStore.sharedInstance
+    
+    var tasks: [Task] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     // MARK: Internal Properties
     
     let homeViewModel = HomeViewModel()
@@ -42,24 +50,50 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         addNavItemsToController()
     }
     
-    /*
-     Before view appears fetches tasks user data
-     using helpers.getData method then for current user,
-     if currentUser.tasks is not nil, it removes tasks from currentUser
-     Regardless it then fetches currentUser from database
-     calling APIClient before loading.
-     Redundant functionality, definitely could be streamlined
-     */
+    /* Before view appears fetches tasks user data using helpers.getData method then for current user, if currentUser.tasks is not nil, it removes tasks from currentUser regardless it then fetches currentUser from database calling APIClient before loading. Redundant functionality, definitely could be streamlined */
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        helpers.getData(tableView: tableView)
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            if self.store.currentUser.tasks != nil {
+                self.store.currentUser.tasks?.removeAll()
+            }
+            self.fetchUser() { user in
+                self.store.currentUser = user
+                self.tasks = self.store.currentUser.tasks!
+            }
+            //helpers.getData(tableView: tableView)
+        }
     }
     
-    /*
-     Removes reference to database - necessary to prevent duplicate task cells from loading when
-     view will appears is called again. Called inside helpers class
-     */
+    func fetchUser(completion: @escaping UserCompletion) {
+        store.tasks.removeAll()
+        store.currentUser.tasks?.removeAll()
+        store.firebaseAPI.fetchUserData { user in
+            self.store.currentUser = user
+        }
+        store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
+            self.store.currentUser.tasks = tasks
+            self.store.tasks = tasks
+            dump(self.store.currentUser)
+            completion(self.store.currentUser)
+        }
+    }
+    
+    //    func getData(tableView:UITableView) {
+    //        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+    //            if self.store.currentUser.tasks != nil {
+    //                self.store.currentUser.tasks?.removeAll()
+    //            }
+    //            self.fetchUser() { user in
+    //                self.store.currentUser = user
+    //                DispatchQueue.main.async {
+    //                    tableView.reloadData()
+    //                }
+    //            }
+    //        }
+    
+    /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will appears is called again. Called inside helpers class */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -81,12 +115,10 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 }
 
 extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeaderCellDelegate {
-    /*
-     If first row returns profile header cell else returns task cell
-     all cells configured within HomeViewController datasource class
-     This setup is problematic when deleting task cells, causes tableview to lose track
-     of proper index path when tableView is reloaded. Need fix.
-     */
+    
+    /* If first row returns profile header cell else returns task cell all cells configured within HomeViewController datasource class
+     This setup is problematic when deleting task cells, causes tableview to lose track of proper index path when tableView is reloaded.
+     Need fix. */
     
     // FIXME: - Fix so that tableview can delete tasks with index out of range getting thrown
     
@@ -122,13 +154,11 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         }
     }
     
-    /*
-     Extension that adds on features - sets up action for logout button press,
-     add task button press and adds these as selectors on
-     navigation items which are added to navigation controller.
-     */
+    /* Extension that adds on features - sets up action for logout button press, add task button press and adds these as selectors on
+     navigation items which are added to navigation controller. */
     
     // MARK: Selector Methods
+    
     /* Logs out user by settings root ViewController to Loginview */
     
     func logoutButtonPressed() {

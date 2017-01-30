@@ -103,18 +103,18 @@ final class TaskCell: UITableViewCell, Toggable {
             textView.editTextViewStyle()
             textView.isEditable = true
             textView.isUserInteractionEnabled = true
-            self.saveButton.isEnabled = true
-            self.saveButton.isHidden = false
-            self.taskCompletedView.isHidden = true
-            self.taskCompletedView.isUserInteractionEnabled = false
+            saveButton.isEnabled = true
+            saveButton.isHidden = false
+            taskCompletedView.isHidden = true
+            taskCompletedView.isUserInteractionEnabled = false
         } else if state == false {
             textView.labelTextViewStyle()
             textView.isEditable = false
             textView.isUserInteractionEnabled = false
-            self.saveButton.isEnabled = false
-            self.saveButton.isHidden = true
-            self.taskCompletedView.isHidden = false
-            self.taskCompletedView.isUserInteractionEnabled = true
+            saveButton.isEnabled = false
+            saveButton.isHidden = true
+            taskCompletedView.isHidden = false
+            taskCompletedView.isUserInteractionEnabled = true
         }
     }
     
