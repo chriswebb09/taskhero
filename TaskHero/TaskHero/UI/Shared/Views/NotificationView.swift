@@ -50,7 +50,6 @@ extension NotificationView {
         dataLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         dataLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
         dataLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: bounds.height / 3).isActive = true
-        
     }
     
     func addDoneButton() {

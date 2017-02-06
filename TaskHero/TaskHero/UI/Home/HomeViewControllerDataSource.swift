@@ -41,7 +41,7 @@ final class HomeViewControllerDataSource {
 
 extension HomeViewControllerDataSource: CellMake {
     
-    func configure(indexPath:IndexPath, cellType:HomeCellType, tableView:UITableView) -> UITableViewCell {
+    func configure(indexPath:IndexPath, cellType: HomeCellType, tableView:UITableView) -> UITableViewCell {
         if cellType == .header {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
             return headerCell

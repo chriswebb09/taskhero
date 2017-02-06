@@ -124,16 +124,18 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         dataSource.tableIndexPath = indexPath
-        if indexPath.row == 0 {
+        let cellType: HomeCellType = indexPath.row > 0 ? .task : .header
+        switch cellType {
+        case .task:
+            let taskCell = dataSource.configure(indexPath: indexPath, cellType: cellType, tableView: tableView) as! TaskCell
+            dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
+            taskCell.tag = indexPath.row
+            return taskCell
+        case .header:
             let headerCell = dataSource.configure(indexPath: indexPath, cellType:.header, tableView: tableView) as! ProfileHeaderCell
             dataSource.setupHeaderCell(headerCell: headerCell, viewController:self)
             index = indexPath
             return headerCell
-        } else {
-            let taskCell = dataSource.configure(indexPath: indexPath, cellType:.task, tableView: tableView) as! TaskCell
-            dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
-            taskCell.saveButton.tag = indexPath.row
-            return taskCell
         }
     }
     
@@ -141,6 +143,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         guard indexPath.row != 0 else { return }
+        
         if editingStyle == .delete {
             tableView.beginUpdates()
             backgroundQueue.async {

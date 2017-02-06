@@ -33,15 +33,19 @@ extension BasePopoverAlert {
         containerView.frame = UIScreen.main.bounds
         containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
         viewController.view.addSubview(containerView)
+        popView.isHidden = false
+        containerView.isHidden = false
+        containerView.bringSubview(toFront: popView)
+        viewController.view.bringSubview(toFront: containerView)
     }
     
-    public func hidePopView(viewController:UIViewController){
+    public func hidePopView(viewController:UIViewController) {
+        popView.isHidden = true
+        containerView.isHidden = true
         viewController.view.sendSubview(toBack: containerView)
     }
     
     public func hide(viewController:UIViewController) {
-        popView.isHidden = true
-        containerView.isHidden = true
         hidePopView(viewController: viewController)
     }
     

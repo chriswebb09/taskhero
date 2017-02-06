@@ -73,7 +73,8 @@ public struct Constants {
     
     public struct Login {
         public static let loginSuccessColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-        public static let loginFieldHeight = CGFloat(0.07)
+       // public static let loginFieldHeight = CGFloat(0.07)
+        public static let loginFieldHeight = CGFloat(0.075)
         public static let loginFieldEditColor: UIColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
         public static let loginFieldEditBorderColor: CGColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
         public static let loginFieldWidth = CGFloat(0.85)
@@ -204,7 +205,7 @@ public struct Constants {
     
     public static let signupFieldHeight = CGFloat(0.07)
     public static let signupFieldWidth = CGFloat(0.94)
-    public static let signupFieldFont = UIFont(name: "HelveticaNeue-Thin" , size: 16)
+    public static let signupFieldFont = UIFont(name: "HelveticaNeue-Thin" , size: 18)
     public static let signupFieldColor = UIColor.lightGray.cgColor
     public static let barColor = UIColor(red:0.00, green:0.49, blue:0.76, alpha:1.0)
     
