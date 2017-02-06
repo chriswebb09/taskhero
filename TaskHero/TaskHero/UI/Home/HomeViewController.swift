@@ -132,7 +132,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             taskCell.tag = indexPath.row
             return taskCell
         case .header:
-            let headerCell = dataSource.configure(indexPath: indexPath, cellType:.header, tableView: tableView) as! ProfileHeaderCell
+            let headerCell = dataSource.configure(indexPath: indexPath, cellType: cellType, tableView: tableView) as! ProfileHeaderCell
             dataSource.setupHeaderCell(headerCell: headerCell, viewController:self)
             index = indexPath
             return headerCell
