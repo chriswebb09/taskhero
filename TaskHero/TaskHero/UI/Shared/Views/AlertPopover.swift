@@ -24,11 +24,13 @@ extension AlertPopover {
     
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
+        alertPopView.isHidden = false
         alertPopView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
         alertPopView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
         alertPopView.clipsToBounds = true
         viewController.view.addSubview(alertPopView)
         viewController.view.bringSubview(toFront: containerView)
+        
         viewController.view.bringSubview(toFront: alertPopView)
         
     }

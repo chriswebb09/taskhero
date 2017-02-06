@@ -32,6 +32,7 @@ final class TaskCell: UITableViewCell, Toggable {
     
     lazy var taskNameLabel: UITextView = {
         let textView = UITextView().setupCellStyle()
+        textView.font = Constants.Font.bolderFontNormal
         return textView
     }()
     

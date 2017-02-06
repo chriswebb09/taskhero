@@ -27,13 +27,17 @@ final class AddTaskViewController: UIViewController  {
     var day: String = "01"
     var year: String = "2017"
     var taskViewModel = AddTaskViewModel()
-    let pick = UIPickerView(frame: CGRect(x:0, y:200, width:300, height:300))
+    let pick = UIPickerView(frame: CGRect(x:0, y:200, width:290, height:290))
+
     
     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(addTaskView)
+        pick.layer.borderColor = UIColor.clear.cgColor
+        
+        //pick.backgroundColor = UIColor.lightGray
         commonInit()
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))

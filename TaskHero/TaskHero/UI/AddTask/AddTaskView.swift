@@ -87,9 +87,9 @@ extension AddTaskView {
     
     fileprivate func setupConstraints() {
         configureView(view: taskNameLabel)
-        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
+        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.05).isActive = true
         configureView(view: taskNameField)
-        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
+        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.05).isActive = true
         
         // UITextView for task description input
         
@@ -105,7 +105,7 @@ extension AddTaskView {
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height * Constants.AddTask.topAnchorOffset).isActive = true
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height *  0.05).isActive = true
     }
 }
 
