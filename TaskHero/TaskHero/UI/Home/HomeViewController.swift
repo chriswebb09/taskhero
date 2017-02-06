@@ -75,7 +75,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
             self.store.currentUser.tasks = tasks
             self.store.tasks = tasks
-            dump(self.store.currentUser)
             completion(self.store.currentUser)
         }
     }
@@ -133,7 +132,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             return taskCell
         case .header:
             let headerCell = dataSource.configure(indexPath: indexPath, cellType: cellType, tableView: tableView) as! ProfileHeaderCell
-            dataSource.setupHeaderCell(headerCell: headerCell, viewController:self)
+            dataSource.setupHeaderCell(headerCell: headerCell, viewController: self)
             index = indexPath
             return headerCell
         }
@@ -157,7 +156,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         }
     }
     
-    /* Extension that adds on features - sets up action for logout button press, add task button press and adds these as selectors on
+    /* Sets up action for logout button press, add task button press and adds these as selectors on
      navigation items which are added to navigation controller. */
     
     // MARK: Selector Methods
@@ -189,7 +188,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
     
     /* Hides popover view when operation has ended. */
     
-    public func hidePopoverView() {
+   internal func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
     }
     
@@ -220,7 +219,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // MARK: - Header cell Delegate Methods
     // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview - Add profile picture storage methods
     
-    func tapPickPhoto(_ sender:UIButton) {
+    internal func tapPickPhoto(_ sender:UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)
@@ -230,7 +229,7 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // MARK: - Popover
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
     
-    public func profilePictureTapped() {
+    internal func profilePictureTapped() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
         photoPopover.popView.isHidden = false
         photoPopover.showPopView(viewController: self)

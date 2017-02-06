@@ -28,8 +28,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(signupView)
         signupView.layoutSubviews()
         edgesForExtendedLayout = []
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.barTintColor = Constants.Color.mainColor
+        navigationController?.navigationBar.isHidden = false 
+        //navigationController?.navigationBar.tintColor = UIColor.white
+        //navigationController?.navigationBar.barTintColor = Constants.Color.mainColor
+        navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.tintColor = UIColor.white
         setupSignupView()
         //signupView.signupButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)

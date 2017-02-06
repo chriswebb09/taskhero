@@ -16,9 +16,14 @@ class AppScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(appScreenView)
+        navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         appScreenView.layoutSubviews()
         appScreenView.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         appScreenView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //navigationController?.navigationBar.isHidden = true
     }
     
     func loginButtonTapped() {

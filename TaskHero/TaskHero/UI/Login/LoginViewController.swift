@@ -43,6 +43,7 @@ final class LoginViewController: UIViewController {
         setupDelegates()
         edgesForExtendedLayout = []
         navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.isHidden = false
         loginView.setupLogin(self)
         loginView.loginButton.isEnabled = false
         loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)

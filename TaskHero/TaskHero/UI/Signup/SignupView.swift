@@ -102,17 +102,8 @@ class SignupView: UIView {
         registerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true
         registerLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
         registerLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        registerLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
+        registerLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.08).isActive = true
     }
-    
-//    private func setupViewDivider() {
-//        addSubview(viewDivider)
-//        viewDivider.translatesAutoresizingMaskIntoConstraints = false
-//        viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.dividerWidth).isActive = true
-//        viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true
-//        viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//        viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-//    }
     
     private func setupViewDivider(viewDivider: UIView) {
         addSubview(viewDivider)
@@ -125,128 +116,18 @@ class SignupView: UIView {
     
     fileprivate func setupConstraints() {
         setupLogoImage()
-        
         setupView(view: usernameField)
-        
-        usernameField.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        
+        usernameField.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * 0.065).isActive = true
         setupView(view: emailField)
-        
-        emailField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        
+        emailField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: bounds.height * 0.042).isActive = true
         setupView(view: confirmEmailField)
-        
-        confirmEmailField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+        confirmEmailField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.042).isActive = true
         setupView(view: passwordField)
-        
-        
-        passwordField.topAnchor.constraint(equalTo: confirmEmailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+        passwordField.topAnchor.constraint(equalTo: confirmEmailField.bottomAnchor, constant: bounds.height * 0.042).isActive = true
         passwordField.isSecureTextEntry = true
-        
-        
-        
         setupView(view: loginButton)
+        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * 0.085).isActive = true
         
-        
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        
-     //   setupViewDivider(viewDivider: loginButton)
-   //     setupView(view: registerLabel)
-//        registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
-      //  setupView(view: signupButton)
-//        signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
     }
 }
 
-    
-//    var signupViewModel: SignupViewModel = {
-//        return SignupViewModel(signup: "Become a Member")
-//    }()
-//    
-//    var signupViewLabel: UILabel {
-//        let signupViewLabel = UILabel()
-//        signupViewLabel.textColor = UIColor.black
-//        signupViewLabel.text = signupViewModel.signupTitle
-//        signupViewLabel.font = Constants.Font.fontLarge
-//        signupViewLabel.textAlignment = .center
-//        return signupViewLabel
-//    }
-//    
-//    var usernameField: TextFieldExtension {
-//        let emailField = TextFieldExtension().emailField("Choose a username")
-//        return emailField
-//    }
-//    
-//    var emailField: TextFieldExtension {
-//        let emailField = TextFieldExtension().emailField("Enter email address")
-//        return emailField
-//    }
-//    
-//    var confirmEmailField: TextFieldExtension {
-//        let emailField = TextFieldExtension().emailField("Confirm email address")
-//        return emailField
-//    }
-//    
-//    var passwordField: TextFieldExtension {
-//        let passwordField = TextFieldExtension().passwordField()
-//        return passwordField
-//    }
-//    
-//    var signupButton: UIButton {
-//        let button = UIButton(type: .system)
-//        button.backgroundColor = signupViewModel.buttonColor
-//        button.setTitle("Sign Up", for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        button.titleLabel?.font = Constants.Font.fontNormal
-//        return button
-//    }
-//    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        backgroundColor = UIColor.white
-//        frame = UIScreen.main.bounds
-//        self.addSubview(signupViewLabel)
-//        signupViewLabel.translatesAutoresizingMaskIntoConstraints = false
-//        //setupConstraints()
-//    }
-//}
-
-//    func configureField(field: UIView) {
-//        addSubview(field)
-//        field.translatesAutoresizingMaskIntoConstraints = false
-//        field.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Dimension.width).isActive = true
-//        field.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
-//        field.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//    }
-    
-    /* sets up constraints on signupview */
-    
-//    func setupConstraints() {
-//       // configureField(field: signupViewLabel)
-//      //  addSubview(signupViewLabel)
-//       // signupViewLabel.translatesAutoresizingMaskIntoConstraints = false
-//        //signupViewLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//        signupViewLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Dimension.width).isActive = true
-//        signupViewLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.buttonHeight).isActive = true
-//        signupViewLabel.topAnchor.constraint(equalTo: topAnchor , constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
-//        configureField(field: usernameField)
-//        usernameField.topAnchor.constraint(equalTo:signupViewLabel.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
-//        configureField(field: emailField)
-//        emailField.topAnchor.constraint(equalTo:usernameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
-//        configureField(field: confirmEmailField)
-//        confirmEmailField.topAnchor.constraint(equalTo:emailField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
-//        addPasswordField(passwordField: passwordField)
-//        addSignupButton(signupButton: signupButton)
- //   }
-    
-//    func addPasswordField(passwordField: UITextField) {
-//        configureField(field: passwordField)
-//        passwordField.topAnchor.constraint(equalTo:confirmEmailField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
-//        passwordField.isSecureTextEntry = true
-//    }
-//    
-//    func addSignupButton(signupButton: UIButton) {
-//        addSubview(signupButton)
-//        configureField(field: signupButton)
-//        signupButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Signup.buttonTopOffset).isActive = true
-//    }

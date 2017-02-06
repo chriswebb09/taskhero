@@ -36,7 +36,6 @@ final class LoginView: UIView {
             print(emailField.text)
         }
     }
-    //return emailField
     
     
     var passwordField: TextFieldExtension = {
@@ -129,44 +128,21 @@ final class LoginView: UIView {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.08).isActive = true
-        //logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true
-        //logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.1).isActive = true
-        //logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Login.loginLogoTopSpacing).isActive = true
+        logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.12).isActive = true
     }
-    
-    //    private func setupViewDivider() {
-    //        addSubview(viewDivider)
-    //        viewDivider.translatesAutoresizingMaskIntoConstraints = false
-    //        viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.dividerWidth).isActive = true
-    //        viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true
-    //        viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    //        viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-    //    }
     
     fileprivate func setupConstraints() {
         setupLogoImage()
         
         setupView(view: emailField)
-        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * 0.09).isActive = true
+        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * 0.08).isActive = true
         setupView(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.08).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.06).isActive = true
         passwordField.isSecureTextEntry = true
         setupView(view: loginButton)
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * 0.08).isActive = true
-        // emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        // setupView(view: passwordField)
-        // passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        //passwordField.isSecureTextEntry = true
-        
-        //        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
-        //setupViewDivider()
-        //        setupView(view: registerLabel)
-        //        registerLabel.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
-        //        setupView(view: signupButton)
-        //        signupButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * Constants.Login.loginSignupElementSpacing).isActive = true
+        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * 0.1).isActive = true
     }
     
     // MARK: - Animation
