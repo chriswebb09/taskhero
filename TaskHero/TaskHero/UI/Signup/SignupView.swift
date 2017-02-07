@@ -9,21 +9,6 @@
 import UIKit
 
 class SignupView: UIView {
-//    lazy var logoImageView: UIImageView = {
-//        let image = UIImage(named: "TaskHeroLogoNew2")
-//        let imageView = UIImageView(image: image)
-//        return imageView
-//    }()
-//    
-//    lazy var logoImageView: UILabel = {
-//        let label = UILabel()
-//        label.text = "Signup"
-//        return label
-////        let image = UIImage(named: "TaskHeroLogoNew2")
-////        let imageView = UIImageView(image: image)
-////        return imageView
-//    }()
-
     
     lazy var registerLabel: UILabel = {
         let registerLabel = UILabel()
