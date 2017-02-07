@@ -101,6 +101,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 }
 
 extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeaderCellDelegate {
+    
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
         print("here")
     }
@@ -125,8 +126,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         case .header:
             let headerCell = dataSource.configure(indexPath: indexPath, cellType: cellType, tableView: tableView) as! ProfileHeaderCell
             headerCell.delegate = self
-            headerCell.emailLabel.isHidden = true
-            headerCell.configureCell(user: self.store.currentUser)
+            dataSource.setupHeaderCell(headerCell: headerCell, viewController: self)
             return headerCell
         }
     }
@@ -221,11 +221,4 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // MARK: - Popover
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
     
-//    internal func profilePictureTapped() {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
-//        photoPopover.popView.isHidden = false
-//        photoPopover.showPopView(viewController: self)
-//        photoPopover.containerView.addGestureRecognizer(tap)
-//        photoPopover.photoPopView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
-//    }
 }

@@ -44,6 +44,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         signupView.layoutSubviews()
         signupView.emailField.delegate = self
         signupView.passwordField.delegate = self
+        signupView.loginButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - UITextfield Delegate Methods
@@ -63,6 +64,10 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
             let tabBar = TabBarController()
             self.helpers.loadTabBar(tabBar:tabBar)
         }
+    }
+    
+    func signupButtonTapped() {
+        signupLogic(email:signupView.emailField.text!, password: signupView.passwordField.text!, username: signupView.usernameField.text!, loadingView: LoadingView())
     }
     
     // Checks text for valid email format and returns bool based on result

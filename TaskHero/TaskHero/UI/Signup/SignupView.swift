@@ -40,7 +40,7 @@ class SignupView: UIView {
     }()
     
     lazy var loginButton: UIButton = {
-        let button = ButtonType.login(title: "Login")
+        let button = ButtonType.login(title: "Sign Up")
         return button.newButton
     }()
     

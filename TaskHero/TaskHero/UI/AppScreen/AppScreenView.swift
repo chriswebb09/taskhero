@@ -35,7 +35,6 @@ class AppScreenView: UIView {
         return view
     }()
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = UIColor.white
@@ -56,7 +55,6 @@ class AppScreenView: UIView {
         signupButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
-    
     
     private func setupLogoImage() {
         addSubview(logoImageView)
