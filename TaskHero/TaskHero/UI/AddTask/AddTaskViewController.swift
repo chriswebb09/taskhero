@@ -28,7 +28,7 @@ final class AddTaskViewController: UIViewController  {
     var year: String = "2017"
     var taskViewModel = AddTaskViewModel()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:290, height:290))
-
+    
     
     // MARK: - Initialization
     
@@ -36,8 +36,6 @@ final class AddTaskViewController: UIViewController  {
         super.viewDidLoad()
         view.addSubview(addTaskView)
         pick.layer.borderColor = UIColor.clear.cgColor
-        
-        //pick.backgroundColor = UIColor.lightGray
         commonInit()
         addTaskView.addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -131,17 +129,13 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             return taskViewModel.pickerMonths[row]
         } else if component == 1 {
             var dayString = String(describing: taskViewModel.range[row])
-            
             // second component is days if less than 2 digits adds zero before day
-            
             if dayString.characters.count < 2 {
                 day = "0\(dayString)"
             }
             return day
         } else {
-            
             // last component is years
-            
             return taskViewModel.years[row]
         }
     }

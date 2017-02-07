@@ -40,5 +40,4 @@ class TaskHeaderCell: UITableViewCell {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
     }
-    
 }

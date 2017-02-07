@@ -67,11 +67,18 @@ final class ProfileViewController: UITableViewController {
             return bannerCell
             // If second row return ProfileHeaderCell
         } else if indexPath.row == 1 {
+            
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(headerCell.profilePictureTapped))
-            headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
+            headerCell.configureCell(user: self.store.currentUser)
             return headerCell
+//            let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+//            headerCell.delegate = self
+//            headerCell.emailLabel.isHidden = true
+//            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileHeaderCell.profilePictureTapped(sender:)))
+////            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(headerCell.profilePictureTapped))
+//            headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
+            //return headerCell
             // Beyond that it's all ProfileDataCells
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
@@ -101,5 +108,13 @@ final class ProfileViewController: UITableViewController {
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
+    }
+}
+
+
+extension ProfileViewController: ProfileHeaderCellDelegate {
+    
+    func profilePictureTapped(sender: UIGestureRecognizer) {
+        print("tap")
     }
 }

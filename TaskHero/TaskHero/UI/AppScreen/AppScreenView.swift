@@ -19,7 +19,7 @@ class AppScreenView: UIView {
         let imageView = UIImageView(image: image)
         return imageView
     }()
-     var loginButton: UIButton = {
+    var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         return button.newButton
     }()
@@ -47,8 +47,6 @@ class AppScreenView: UIView {
         setupLogoImage()
         constraintSetup()
         setupViewDivider()
-       // logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-       // logoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         loginButton.bottomAnchor.constraint(equalTo: viewDivider.topAnchor, constant: UIScreen.main.bounds.height * -0.08).isActive = true
         loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
@@ -67,7 +65,6 @@ class AppScreenView: UIView {
         logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.075).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * -0.24).isActive = true
-        //logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: ).isActive = true
     }
     
     private func constraintSetup() {
@@ -88,14 +85,10 @@ class AppScreenView: UIView {
     }
     
     private func setupViewDivider() {
-        //viewDivider.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         viewDivider.centerYAnchor.constraint(equalTo: centerYAnchor, constant: UIScreen.main.bounds.height * 0.05).isActive = true
         viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
-        //viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.dividerWidth).isActive = true
         viewDivider.heightAnchor.constraint(equalTo: loginButton.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true
-        //viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }
 

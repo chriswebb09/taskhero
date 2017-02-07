@@ -21,9 +21,4 @@ class AppScreenViewModel {
     var viewDividerBackgroundColor: UIColor = {
         return UIColor.lightGray
     }()
-    
-    
-    
-    
-    
 }

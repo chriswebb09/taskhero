@@ -67,13 +67,13 @@ extension HomeViewControllerDataSource: CellMake {
     
     /* Setup HeaderCell - configuration and adding delegates to HomeViewController */
     
-    func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController) {
-        headerCell.delegate = viewController
-        headerCell.emailLabel.isHidden = true
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.profilePictureTapped))
-        headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
-    }
-    
+//    func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController) {
+//        headerCell.delegate = viewController
+//        headerCell.emailLabel.isHidden = true
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.p))
+//        headerCell.configureCell(autoHeight: UIViewAutoresizing.flexibleHeight, gesture:tap)
+//    }
+//    
     /* Setup TaskCell configuration and adding delegates to HomeViewController */
     
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {

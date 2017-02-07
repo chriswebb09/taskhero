@@ -44,7 +44,6 @@ class TaskCellView: UIView {
         return button
     }
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
     }

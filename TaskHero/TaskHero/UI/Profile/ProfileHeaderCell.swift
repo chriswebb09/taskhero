@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProfileHeaderCellDelegate: class {
-    func profilePictureTapped()
+    func profilePictureTapped(sender: UIGestureRecognizer)
 }
 
 final class ProfileHeaderCell: UITableViewCell {
@@ -148,22 +148,39 @@ final class ProfileHeaderCell: UITableViewCell {
      - called in ParentViewController - in this case that is either ProfileViewController or HomeViewController
      */
     
-    func configureCell(autoHeight: UIViewAutoresizing, gesture:UIGestureRecognizer) {
-        contentView.autoresizingMask = autoHeight
-        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
+//    func configureCell(autoHeight: UIViewAutoresizing, gesture:UIGestureRecognizer) {
+//        contentView.autoresizingMask = autoHeight
+//        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
+//        layoutMargins = UIEdgeInsets.zero
+//        preservesSuperviewLayoutMargins = false
+//        emailLabel.text = profileHeaderCellModel.emailLabel
+//        joinDateLabel.isHidden = profileHeaderCellModel.joinDateIsHidden
+//        usernameLabel.text = profileHeaderCellModel.usernameLabel
+//        levelLabel.text = profileHeaderCellModel.levelLabel
+//        joinDateLabel.text = profileHeaderCellModel.joinDate
+//        profilePicture.isUserInteractionEnabled = true
+//        profilePicture.image = UIImage(named: "defaultUserImage")
+//        profilePicture.addGestureRecognizer(gesture)
+//        layoutSubviews()
+//        layoutIfNeeded()
+//    }
+    
+    func configureCell(user: User) {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        emailLabel.text = profileHeaderCellModel.emailLabel
-        joinDateLabel.isHidden = profileHeaderCellModel.joinDateIsHidden
-        usernameLabel.text = profileHeaderCellModel.usernameLabel
-        levelLabel.text = profileHeaderCellModel.levelLabel
-        joinDateLabel.text = profileHeaderCellModel.joinDate
+        emailLabel.text = user.email
+        joinDateLabel.isHidden = true
+        usernameLabel.text = user.username
+        levelLabel.text = "Level: \(user.level)"
+        joinDateLabel.text = "Joined: \(user.joinDate)"
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
-        profilePicture.addGestureRecognizer(gesture)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
+        profilePicture.addGestureRecognizer(tap)
         layoutSubviews()
         layoutIfNeeded()
     }
+    
 }
 
 extension ProfileHeaderCell: ProfileHeaderCellDelegate {
@@ -171,9 +188,9 @@ extension ProfileHeaderCell: ProfileHeaderCellDelegate {
     // MARK: - Delegate Methods
     // Implementation of delegate method - May be deleted either in HomeViewController or ProfileViewController because functionality is redundant
     
-    public dynamic func profilePictureTapped() {
+    func profilePictureTapped(sender: UIGestureRecognizer) {
         print("profile pic tapped\n\n\n\n\n\n")
-        delegate?.profilePictureTapped()
+        delegate?.profilePictureTapped(sender: sender)
     }
     
     // MARK: - Reuse

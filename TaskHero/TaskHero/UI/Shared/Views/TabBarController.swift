@@ -49,8 +49,6 @@ class TabBarController: UITabBarController {
         setupControllers()
     }
     
-    
-    
     // MARK: - Setup ViewControllers
     
     fileprivate func setupControllers() {

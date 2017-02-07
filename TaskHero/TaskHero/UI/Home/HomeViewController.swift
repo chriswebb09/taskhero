@@ -79,19 +79,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         }
     }
     
-    //    func getData(tableView:UITableView) {
-    //        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-    //            if self.store.currentUser.tasks != nil {
-    //                self.store.currentUser.tasks?.removeAll()
-    //            }
-    //            self.fetchUser() { user in
-    //                self.store.currentUser = user
-    //                DispatchQueue.main.async {
-    //                    tableView.reloadData()
-    //                }
-    //            }
-    //        }
-    
     /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will appears is called again. Called inside helpers class */
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -114,6 +101,10 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 }
 
 extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeaderCellDelegate {
+    internal func profilePictureTapped(sender: UIGestureRecognizer) {
+        print("here")
+    }
+
     
     /* If first row returns profile header cell else returns task cell all cells configured within HomeViewController datasource class
      This setup is problematic when deleting task cells, causes tableview to lose track of proper index path when tableView is reloaded.
@@ -129,11 +120,13 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             let taskCell = dataSource.configure(indexPath: indexPath, cellType: cellType, tableView: tableView) as! TaskCell
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.tag = indexPath.row
+            taskCell.delegate = self
             return taskCell
         case .header:
             let headerCell = dataSource.configure(indexPath: indexPath, cellType: cellType, tableView: tableView) as! ProfileHeaderCell
-            dataSource.setupHeaderCell(headerCell: headerCell, viewController: self)
-            index = indexPath
+            headerCell.delegate = self
+            headerCell.emailLabel.isHidden = true
+            headerCell.configureCell(user: self.store.currentUser)
             return headerCell
         }
     }
@@ -211,7 +204,6 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
     }
 }
-
 // Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
 
 extension HomeViewController: UIImagePickerControllerDelegate {
@@ -229,11 +221,11 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     // MARK: - Popover
     /* If popover is not visible shows popover / if popover is displayed it hides popover */
     
-    internal func profilePictureTapped() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
-        photoPopover.popView.isHidden = false
-        photoPopover.showPopView(viewController: self)
-        photoPopover.containerView.addGestureRecognizer(tap)
-        photoPopover.photoPopView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
-    }
+//    internal func profilePictureTapped() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePopoverView))
+//        photoPopover.popView.isHidden = false
+//        photoPopover.showPopView(viewController: self)
+//        photoPopover.containerView.addGestureRecognizer(tap)
+//        photoPopover.photoPopView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
+//    }
 }
