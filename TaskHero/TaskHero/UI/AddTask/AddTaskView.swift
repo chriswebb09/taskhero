@@ -50,7 +50,7 @@ final class AddTaskView: UIView {
         return taskDescriptionBox
     }()
     
-    lazy var addTaskButton: UIButton = {
+    var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
