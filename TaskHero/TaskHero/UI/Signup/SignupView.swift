@@ -59,26 +59,6 @@ class SignupView: UIView {
         return button.newButton
     }()
     
-//    lazy var signupButton: UIButton = {
-//        let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor)
-//        return button.newButton
-//    }()
-    
-//    lazy var viewDivider: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = UIColor.lightGray
-//        return view
-//    }()
-    
-//    lazy var registerLabel: UILabel = {
-//        let registerLabel = UILabel()
-//        registerLabel.textColor = Constants.Color.backgroundColor
-//        registerLabel.text = "Don't have an account?"
-//        registerLabel.font = Constants.Font.fontLarge
-//        registerLabel.textAlignment = .center
-//        return registerLabel
-//    }()
-//    
     // MARK: Initialization
     
     override func layoutSubviews() {
