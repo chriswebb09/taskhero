@@ -27,9 +27,6 @@ class PhotoPickerPopover: BasePopoverAlert {
         popView.layer.cornerRadius = 10
         return popView
     }()
-}
-
-extension PhotoPickerPopover {
     
     // MARK: - Behavior methods
     
@@ -53,9 +50,6 @@ extension PhotoPickerPopover {
         viewController.view.addSubview(containerView)
         viewController.view.addSubview(popView)
     }
-}
-
-extension PhotoPickerPopover {
     
     func hideView(viewController:UIViewController) {
         popView.isHidden = true

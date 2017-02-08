@@ -25,9 +25,6 @@ class BasePopoverAlert: UIView {
         popView.layer.borderWidth = 1
         return popView
     }()
-}
-
-extension BasePopoverAlert {
     
     public func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
@@ -51,16 +48,3 @@ extension BasePopoverAlert {
     
     
 }
-
-//func dismissButton() {
-//    alertPop.popView.isHidden = true
-//    alertPop.containerView.isHidden = true
-//    alertPop.hidePopView(viewController: self)
-//}
-//
-//func hide() {
-//    alertPop.popView.isHidden = true
-//    alertPop.containerView.isHidden = true
-//    alertPop.hidePopView(viewController: self)
-//}
-//}

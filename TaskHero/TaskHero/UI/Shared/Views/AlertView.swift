@@ -53,27 +53,18 @@ final class AlertView: UIView {
         searchLabel.textAlignment = .center
         return searchLabel
     }()
-}
-
-extension AlertView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
         backgroundColor = UIColor.white
     }
-}
-
-extension AlertView {
     
     fileprivate func configureConstaints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         label.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
     }
-}
-
-extension AlertView {
     
     fileprivate func addSubviews() {
         addSubview(doneButton)
@@ -87,10 +78,6 @@ extension AlertView {
         configureConstaints(label: alertLabel)
         configureConstaints(label: resultLabel)
     }
-}
-
-
-extension AlertView {
     
     private func addHeaderBanner() {
         headBanner.translatesAutoresizingMaskIntoConstraints = false

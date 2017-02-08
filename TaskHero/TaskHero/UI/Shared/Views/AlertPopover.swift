@@ -18,9 +18,6 @@ class AlertPopover: BasePopoverAlert {
         popView.layer.borderWidth = 1
         return popView
     }()
-}
-
-extension AlertPopover {
     
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)

@@ -30,9 +30,6 @@ final class NotificationView: BasePopView {
         searchLabel.textAlignment = .center
         return searchLabel
     }()
-}
-
-extension NotificationView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -40,9 +37,6 @@ extension NotificationView {
         backgroundColor = UIColor.white
         setupConstraints()
     }
-}
-
-extension NotificationView {
     
     func addDataLabel() {
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -60,9 +54,6 @@ extension NotificationView {
         doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
     }
     
-}
-
-extension NotificationView {
     
     override func setupConstraints() {
         addSubview(dataLabel)

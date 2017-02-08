@@ -18,9 +18,6 @@ class NotificationPopover: BasePopoverAlert {
         popView.layer.borderWidth = 1
         return popView
     }()
-}
-
-extension NotificationPopover {
     
     override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
@@ -29,7 +26,6 @@ extension NotificationPopover {
         notifyPopView.clipsToBounds = true
         viewController.view.addSubview(notifyPopView)
         viewController.view.bringSubview(toFront: notifyPopView)
-       //bringSubview(toFront: viewController.view)
         notifyPopView.isHidden = false
         notifyPopView.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: 0).isActive = true
         notifyPopView.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 0).isActive = true
@@ -38,6 +34,6 @@ extension NotificationPopover {
     override func hidePopView(viewController: UIViewController) {
         notifyPopView.isHidden = true
         viewController.view.sendSubview(toBack: notifyPopView)
-        //notifyPopView.sendSubview(toBack: viewController.view)
+        
     }
 }

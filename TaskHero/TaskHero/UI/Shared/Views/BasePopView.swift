@@ -24,9 +24,6 @@ class BasePopView: UIView {
         searchLabel.textAlignment = .center
         return searchLabel
     }()
-}
-
-extension BasePopView {
     
     private func addHeaderBanner(headBanner:UIView) {
         addSubview(headBanner)
