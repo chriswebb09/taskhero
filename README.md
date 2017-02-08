@@ -2,6 +2,8 @@
 
 <h2>Work in progress </h2>
 
+<p>Adding new features and refactoring code</p>
+
 
 <h2>Implementing</h2>
 
