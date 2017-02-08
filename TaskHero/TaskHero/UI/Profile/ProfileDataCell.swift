@@ -122,7 +122,7 @@ final class ProfileDataCell: UITableViewCell {
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
     }
     
-    // configureCell method - called in ParentViewController - in this case ProfileViewController
+    // ConfigureCell method - called in ParentViewController - in this case ProfileViewController
     
     func configureCell() {
         levelLabel.text = "Level: \(dataCellModel.level)"

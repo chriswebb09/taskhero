@@ -30,20 +30,18 @@ final class AddTaskView: UIView {
         return taskNameLabel
     }()
     
-    var taskNameField: TextFieldExtension = {
-        let taskNameField = TextFieldExtension()
-        taskNameField.placeholder = "Task name"
-        taskNameField.font = Constants.signupFieldFont
-        taskNameField.layer.borderColor = UIColor.lightGray.cgColor
-        taskNameField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
-        taskNameField.layer.borderWidth = Constants.Border.borderWidth
-        return taskNameField
-    }()
+    var taskNameField = TextFieldExtension().emailField("Task name") {
+        didSet {
+            print(taskNameField.text)
+        }
+    }
     
     var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
+        taskDescriptionBox.text = "Describe what you want to get done."
         taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
+        taskDescriptionBox.textColor = UIColor.lightGray
         taskDescriptionBox.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         taskDescriptionBox.font = Constants.signupFieldFont
         taskDescriptionBox.contentInset = Constants.TaskCell.Description.boxInset

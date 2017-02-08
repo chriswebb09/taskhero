@@ -67,8 +67,6 @@ extension LoginViewController: UITextFieldDelegate {
     func setupDelegates() {
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
-       // loginView.emailField.text = Secrets.email
-       // loginView.passwordField.text = Secrets.password
     }
     
     func dismissKeyboard() {
@@ -87,11 +85,11 @@ extension LoginViewController: UITextFieldDelegate {
      - handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
      - then it sets LoginViewController.view endEditting property to true
      - next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController parameter -
-     pass in self.
+       pass in self.
      - sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
      - calls firebase FIRAuth.auth.signIn method - which takes email and password
      - FIRAuth.auth.signIn returns FIRUser and FIRError objects, if error is not nil - hides loadingView.activity indicator enters
-     switch statement to return proper error message
+       switch statement to return proper error message
      - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
      */
     
@@ -125,7 +123,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     /*
-     - On global DispatchQueue with qos: userInituated sets self to unowned self
+     * On global DispatchQueue with qos: userInituated sets self to unowned self
      * creates new DataStore.sharedInstance
      * sets new DataStore instance currentUserString property to userID
      * sets up FirebaseAPI database reference handles
@@ -176,14 +174,12 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
-    
     func textFieldDidChange(_ textField: UITextField) {
         if (loginView.emailField.text?.characters.count)! > 4 && (loginView.passwordField.text?.characters.count)! >= 6 {
             loginView.loginButton.backgroundColor = Constants.Color.buttonColor
             loginView.loginButton.isEnabled = true
         }
     }
-    
     
     // On beginning editting changes textfield UI properties
     

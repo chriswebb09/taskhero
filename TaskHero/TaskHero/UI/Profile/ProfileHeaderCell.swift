@@ -144,26 +144,9 @@ final class ProfileHeaderCell: UITableViewCell {
     }
     
     /*
-     - Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing
-     - called in ParentViewController - in this case that is either ProfileViewController or HomeViewController
+     Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing
+     called in ParentViewController - in this case that is either ProfileViewController or HomeViewController
      */
-    
-//    func configureCell(autoHeight: UIViewAutoresizing, gesture:UIGestureRecognizer) {
-//        contentView.autoresizingMask = autoHeight
-//        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
-//        layoutMargins = UIEdgeInsets.zero
-//        preservesSuperviewLayoutMargins = false
-//        emailLabel.text = profileHeaderCellModel.emailLabel
-//        joinDateLabel.isHidden = profileHeaderCellModel.joinDateIsHidden
-//        usernameLabel.text = profileHeaderCellModel.usernameLabel
-//        levelLabel.text = profileHeaderCellModel.levelLabel
-//        joinDateLabel.text = profileHeaderCellModel.joinDate
-//        profilePicture.isUserInteractionEnabled = true
-//        profilePicture.image = UIImage(named: "defaultUserImage")
-//        profilePicture.addGestureRecognizer(gesture)
-//        layoutSubviews()
-//        layoutIfNeeded()
-//    }
     
     func configureCell(user: User) {
         layoutMargins = UIEdgeInsets.zero
@@ -180,7 +163,6 @@ final class ProfileHeaderCell: UITableViewCell {
         layoutSubviews()
         layoutIfNeeded()
     }
-    
 }
 
 extension ProfileHeaderCell: ProfileHeaderCellDelegate {

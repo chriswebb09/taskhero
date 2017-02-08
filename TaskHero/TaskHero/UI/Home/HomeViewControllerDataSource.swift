@@ -19,26 +19,11 @@ final class HomeViewControllerDataSource {
     /* Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell */
     
     let store = UserDataStore.sharedInstance
-    
     fileprivate var taskViewModel: TaskCellViewModel!
-    
     var delete: Bool = false
-    
-    
-    
     var tableIndexPath: IndexPath!
-    
     var autoHeight: UIViewAutoresizing?
-}
 
-
-
-/* Extension containing method for configuring cells in ViewController. If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
-
-extension HomeViewControllerDataSource {
-    internal func configure(indexPath: IndexPath, cellType: HomeCellType, tableView: UITableView) -> UITableViewCell {
-        return UITableViewCell()
-    }
     /* Methods for configure UIElements + registers cell types for tableView sets estimatedRowHeight and registers cell types */
     
     func setupView(tableView: UITableView, view: UIView) {

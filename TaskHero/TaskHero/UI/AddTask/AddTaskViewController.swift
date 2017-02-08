@@ -60,6 +60,17 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
         addTaskView.taskDescriptionBox.delegate = self
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.placeholder = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            textField.placeholder = "Task name"
+        }
+        
+    }
+    
     // MARK: - TextField Methods
     // On return-key press hides keyboard
     

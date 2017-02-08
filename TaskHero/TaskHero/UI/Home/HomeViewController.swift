@@ -62,7 +62,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
                 self.store.currentUser = user
                 self.tasks = self.store.currentUser.tasks!
             }
-            //helpers.getData(tableView: tableView)
         }
     }
     
@@ -106,7 +105,6 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         print("here")
     }
     
-    
     /* If first row returns profile header cell else returns task cell all cells configured within HomeViewController datasource class
      This setup is problematic when deleting task cells, causes tableview to lose track of proper index path when tableView is reloaded.
      Need fix. */
@@ -118,10 +116,9 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         let cellType: HomeCellType = indexPath.row > 0 ? .task : .header
         switch cellType {
         case .task:
-            
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
             let reloadedIndex = indexPath.row - 1
-            var taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[reloadedIndex])!)
+            let taskViewModel = TaskCellViewModel((tasks[reloadedIndex]))
             taskCell.configureCell(taskVM: taskViewModel)
             dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.tag = indexPath.row
@@ -135,19 +132,10 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         }
     }
     
-    
-    // var taskViewModel: TaskCellViewModel!
-    //
-    //            self.store.currentUser.tasks = self.store.tasks
-    //
-    //            taskCell.configureCell(taskVM: taskViewModel)
-    
-    
     /* Logic for deleting tasks from database when user deletes tableview cell */
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         guard indexPath.row != 0 else { return }
-        
         if editingStyle == .delete {
             tableView.beginUpdates()
             backgroundQueue.async {
@@ -155,7 +143,6 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
                 self.dataSource.tableIndexPath.row = indexPath.row
             }
             tableView.endUpdates()
-            
         }
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
             if self.store.currentUser.tasks != nil {
@@ -165,10 +152,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
                 self.store.currentUser = user
                 self.tasks = self.store.currentUser.tasks!
             }
-            //helpers.getData(tableView: tableView)
-            
             DispatchQueue.main.async {
-                
                 tableView.reloadData()
             }
         }
@@ -210,14 +194,13 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         photoPopover.hidePopView(viewController: self)
     }
     
-    // Task cell Delegate Methods - Mainly toggling UI for edit state
-    // MARK: - TaskCell
-    /* Method toggles UI states from editing to not editing when save is pressed */
+    /* Task cell Delegate Methods - Mainly toggling UI for edit state
+     Method toggles UI states from editing to not editing when save is pressed */
     
     func toggleForButtonState(_ sender:UIButton) {
         let superview = sender.superview
-        let cell = superview?.superview as? TaskCell
-        let indexPath = tableView.indexPath(for: cell!)
+        let cell = superview?.superview as! TaskCell
+        let indexPath = tableView.indexPath(for: cell)
         dataSource.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!)
     }
     
@@ -242,8 +225,4 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         present(picker, animated: true, completion: nil)
         photoPopover.hideView(viewController: self)
     }
-    
-    // MARK: - Popover
-    /* If popover is not visible shows popover / if popover is displayed it hides popover */
-    
 }

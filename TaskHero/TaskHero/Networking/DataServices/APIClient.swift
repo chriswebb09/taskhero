@@ -121,7 +121,7 @@ final class APIClient {
     
     func fetchUserData(completion: @escaping UserCompletion) {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-        let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(userID!)/LastOnline")
+        let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(uid)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
             guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
