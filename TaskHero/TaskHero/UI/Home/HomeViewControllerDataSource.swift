@@ -34,21 +34,6 @@ final class HomeViewControllerDataSource {
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
     }
     
-    /* Setup HeaderCell - configuration and adding delegates to HomeViewController */
-    
-     func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController) {
-        headerCell.emailLabel.isHidden = true
-        headerCell.configureCell(user: store.currentUser)
-    }
-    
-    /* Setup TaskCell configuration and adding delegates to HomeViewController */
-    
-    func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
-        taskCell.delegate = viewController
-        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
-        taskCell.taskCompletedView.addGestureRecognizer(tap)
-    }
-    
     /* Method choosing profilePicture for Header cell */
     
     func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
@@ -59,5 +44,17 @@ final class HomeViewControllerDataSource {
     
     /* Deletes task at indexPath.row - 1 (subtraction because TaskCells are below the profileHeader cell) */
 }
+
+protocol Toggable {
+    func toggleState(state:Bool) -> Bool
+}
+
+extension Toggable {
+    func toggleState(state:Bool) -> Bool {
+        return !state
+    }
+}
+
+
 
 

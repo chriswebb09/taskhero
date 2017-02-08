@@ -19,3 +19,13 @@ extension UINavigationBar {
         addSubview(bottomBorderView)
     }
 }
+
+
+
+extension UINavigationController {
+    
+    func setupNav() {
+        navigationBar.isHidden = false
+        navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
+    }
+}

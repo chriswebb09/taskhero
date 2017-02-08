@@ -14,6 +14,11 @@ import UIKit
  Not final setup - still a work in progress
  */
 
+
+protocol TaskViewDelegate: class {
+    
+}
+
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
     
     // MARK: - Deallocate HomeViewController From Memory
@@ -118,16 +123,27 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             let reloadedIndex = indexPath.row - 1
             let taskViewModel = TaskCellViewModel((tasks[reloadedIndex]))
             taskCell.configureCell(taskVM: taskViewModel)
-            dataSource.setupTaskCell(taskCell: taskCell, viewController: self)
+            setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.tag = indexPath.row
             taskCell.delegate = self
             return taskCell
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
             headerCell.delegate = self
-            dataSource.setupHeaderCell(headerCell: headerCell, viewController: self)
+            setupHeaderCell(headerCell: headerCell, viewController: self)
             return headerCell
         }
+    }
+    
+    func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController) {
+        headerCell.emailLabel.isHidden = true
+        headerCell.configureCell(user: store.currentUser)
+    }
+    
+    func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
+        taskCell.delegate = viewController
+        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
+        taskCell.taskCompletedView.addGestureRecognizer(tap)
     }
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
