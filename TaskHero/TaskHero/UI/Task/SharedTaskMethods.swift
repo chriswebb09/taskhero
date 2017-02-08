@@ -24,9 +24,18 @@ class SharedTaskMethods {
         appDelegate.window?.rootViewController = loginVC
     }
     
-    func deleteTask(indexPath: IndexPath, tableView:UITableView) {
+    func deleteTask(indexPath: IndexPath, tableView:UITableView, type: TaskListType) {
+
+        var rowIndex: Int
+        switch type {
+        case .home:
+            rowIndex = indexPath.row - 1
+        case .taskList:
+            rowIndex = indexPath.row
+        }
+        
         DispatchQueue.global(qos: .default).async {
-            let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
+            let removeTaskID: String = self.store.currentUser.tasks![rowIndex].taskID
             if let tasks = self.store.currentUser.tasks { self.store.tasks = tasks }
             print(indexPath.row - 1)
             self.store.tasks.remove(at: indexPath.row - 1)

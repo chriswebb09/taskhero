@@ -105,8 +105,7 @@ extension TaskListViewController: TaskCellDelegate {
         if editingStyle == .delete {
             tableView.beginUpdates()
             let removeTaskID: String = self.store.tasks[indexPath.row].taskID
-            deleteTasks(id: removeTaskID, indexPath: indexPath)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .taskList)
             tableView.endUpdates()
             DispatchQueue.main.async {
                 self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
@@ -180,13 +179,6 @@ extension TaskListViewController: TaskCellDelegate {
     
     dynamic fileprivate func addTaskButtonTapped() {
         self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
-    
-    func deleteTasks(id:String, indexPath: IndexPath) {
-        store.updateUserScore()
-        store.firebaseAPI.registerUser(user: store.currentUser)
-        store.firebaseAPI.removeTask(ref: id, taskID: id)
-        store.tasks.remove(at: indexPath.row)
     }
     
     // MARK: - Cell Button Toggle Methods
