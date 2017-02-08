@@ -12,8 +12,7 @@ enum TaskListType {
     case home, taskList
 }
 
-
-class SharedTaskMethods {
+final class SharedTaskMethods {
     
     let store = UserDataStore.sharedInstance
     
@@ -42,13 +41,13 @@ class SharedTaskMethods {
             self.store.updateUserScore()
             self.store.firebaseAPI.registerUser(user: self.store.currentUser)
             self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
+            DispatchQueue.main.async {
+                tableView.reloadData()
+            }
         }
         print(self.store.tasks)
-        DispatchQueue.main.async {
-            tableView.reloadData()
-        }
+        
     }
-    
     
     func tapEdit(viewController: UIViewController, tableView: UITableView, atIndex:IndexPath, type: TaskListType) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell

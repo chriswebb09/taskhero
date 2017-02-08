@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskListViewModel {
+final class TaskListViewModel {
     
     let store = UserDataStore.sharedInstance
     

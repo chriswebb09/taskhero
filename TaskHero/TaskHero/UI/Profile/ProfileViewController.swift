@@ -20,6 +20,7 @@ final class ProfileViewController: UITableViewController {
     // MARK: - Internal Variables
     
     let store = UserDataStore.sharedInstance
+    var helpers = Helpers()
     
     // MARK: - Initialization
     
@@ -31,6 +32,7 @@ final class ProfileViewController: UITableViewController {
         self.tableView.separatorStyle = .none
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         setupNavItems()
+        
         tableView.reloadData()
     }
     

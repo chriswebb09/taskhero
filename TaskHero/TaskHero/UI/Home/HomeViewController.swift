@@ -22,16 +22,13 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         print("HomeViewController deallocated")
     }
     
+    // MARK: Internal Properties
     var store = UserDataStore.sharedInstance
-    
     var tasks: [Task] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-    
-    // MARK: Internal Properties
-    
     let homeViewModel = HomeViewModel()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  /* BackgroundQueue for background network */
     var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
@@ -46,7 +43,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewDidLoad()
         picker.delegate = self
         edgesForExtendedLayout = []
-        
         dataSource = HomeViewControllerDataSource()
         dataSource.setupView(tableView:tableView, view:view)
         addNavItemsToController()
@@ -144,9 +140,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
                 self.dataSource.tableIndexPath.row = indexPath.row
             }
-            DispatchQueue.main.async {
-                tableView.reloadData()
-            }
+            helpers.reload(tableView: tableView)
             tableView.endUpdates()
         }
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
@@ -157,11 +151,12 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
                 self.store.currentUser = user
                 self.tasks = self.store.currentUser.tasks!
             }
-            DispatchQueue.main.async {
-                tableView.reloadData()
-            }
+            self.helpers.reload(tableView: tableView)
         }
     }
+    
+    
+   
     
     /* Sets up action for logout button press, add task button press and adds these as selectors on
      navigation items which are added to navigation controller. */

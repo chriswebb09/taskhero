@@ -123,6 +123,12 @@ extension Helpers {
         }
     }
     
+    func reload(tableView: UITableView) {
+        DispatchQueue.main.async {
+            tableView.reloadData()
+        }
+    }
+    
     func getData(tableView:UITableView) {
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
             if self.store.currentUser.tasks != nil {
