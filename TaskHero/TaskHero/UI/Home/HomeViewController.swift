@@ -155,9 +155,6 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         }
     }
     
-    
-   
-    
     /* Sets up action for logout button press, add task button press and adds these as selectors on
      navigation items which are added to navigation controller. */
     
