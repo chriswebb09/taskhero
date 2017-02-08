@@ -58,9 +58,6 @@ final class AddTaskView: UIView {
         addTaskButton.setTitleColor(UIColor.white, for: .normal)
         return addTaskButton
     }()
-}
-
-extension AddTaskView {
     
     // MARK: - Initialization
     
@@ -69,9 +66,6 @@ extension AddTaskView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-}
-
-extension AddTaskView {
     
     // MARK: - Configure
     
@@ -88,16 +82,12 @@ extension AddTaskView {
         taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.05).isActive = true
         configureView(view: taskNameField)
         taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.05).isActive = true
-        
-        // UITextView for task description input
-        
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
         taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
-        
         addSubview(addTaskButton)
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true

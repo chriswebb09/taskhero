@@ -22,7 +22,6 @@ extension Toggable {
     }
 }
 
-
 final class HomeViewControllerDataSource {
     
     /* Temporary abstraction of HomeViewController behavior. 
