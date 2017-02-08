@@ -19,6 +19,7 @@ final class TaskListViewController: UITableViewController {
     let helpers = Helpers()
     let sharedTaskMethods = SharedTaskMethods()
     var listViewModel = TaskListViewModel()
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  // BackgroundQueue for background
     
     // MARK: - UI Elements
     /* Label for empty tasklist state, should disappear once task is added */
@@ -102,15 +103,24 @@ extension TaskListViewController: TaskCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard indexPath.row != 0 else { return }
         if editingStyle == .delete {
             tableView.beginUpdates()
-            let removeTaskID: String = self.store.tasks[indexPath.row].taskID
-            sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .taskList)
-            tableView.endUpdates()
-            DispatchQueue.main.async {
-                self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
-                tableView.reloadData()
+            backgroundQueue.async {
+                self.sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
             }
+            helpers.reload(tableView: tableView)
+            tableView.endUpdates()
+        }
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            if self.store.currentUser.tasks != nil {
+                self.store.currentUser.tasks?.removeAll()
+            }
+            self.fetchUser() { user in
+                self.store.currentUser = user
+            }
+             self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
+            self.helpers.reload(tableView: tableView)
         }
     }
     
@@ -130,6 +140,19 @@ extension TaskListViewController: TaskCellDelegate {
             addTasksLabel.isHidden = false
         } else {
             addTasksLabel.isHidden = true
+        }
+    }
+    
+    func fetchUser(completion: @escaping UserCompletion) {
+        store.tasks.removeAll()
+        store.currentUser.tasks?.removeAll()
+        store.firebaseAPI.fetchUserData { user in
+            self.store.currentUser = user
+        }
+        store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
+            self.store.currentUser.tasks = tasks
+            self.store.tasks = tasks
+            completion(self.store.currentUser)
         }
     }
     

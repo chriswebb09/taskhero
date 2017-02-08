@@ -19,10 +19,8 @@ final class HomeViewControllerDataSource {
     /* Number of rows in HomeViewController, if no tasks it returns 1 for ProfileHeaderCell */
     
     let store = UserDataStore.sharedInstance
-    fileprivate var taskViewModel: TaskCellViewModel!
-    var delete: Bool = false
     var tableIndexPath: IndexPath!
-    var autoHeight: UIViewAutoresizing?
+    //var autoHeight: UIViewAutoresizing?
 
     /* Methods for configure UIElements + registers cell types for tableView sets estimatedRowHeight and registers cell types */
     
