@@ -11,13 +11,6 @@ import UIKit
 final class LoginView: UIView {
     // MARK: - LoginView deallocated
     
-    var model = LoginViewModel(username: "", password: "") {
-        didSet {
-           // print(emailField.text)
-          //  model.username = emailField.text!
-        }
-    }
-    
     deinit {
         print("LoginView deallocated from memory")
     }
@@ -30,19 +23,16 @@ final class LoginView: UIView {
         return imageView
     }()
     
-    
     var emailField = TextFieldExtension().emailField("Enter email address") {
         didSet {
             print(emailField.text)
         }
     }
     
-    
     var passwordField: TextFieldExtension = {
         let passwordField = TextFieldExtension().passwordField()
         return passwordField
     }()
-    
     
     lazy var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
@@ -135,7 +125,6 @@ final class LoginView: UIView {
     
     fileprivate func setupConstraints() {
         setupLogoImage()
-        
         setupView(view: emailField)
         emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * 0.08).isActive = true
         setupView(view: passwordField)
