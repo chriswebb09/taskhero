@@ -42,12 +42,9 @@ final class LoginViewController: UIViewController {
         view.addSubview(loginView)
         setupDelegates()
         edgesForExtendedLayout = []
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.isHidden = false
         loginView.setupLogin(self)
         loginView.loginButton.isEnabled = false
         loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
         navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
         loginView.loginButton.isEnabled = false
         if loginView.loginButton.isEnabled == false {
@@ -85,11 +82,11 @@ extension LoginViewController: UITextFieldDelegate {
      - handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
      - then it sets LoginViewController.view endEditting property to true
      - next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController parameter -
-       pass in self.
+     pass in self.
      - sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
      - calls firebase FIRAuth.auth.signIn method - which takes email and password
      - FIRAuth.auth.signIn returns FIRUser and FIRError objects, if error is not nil - hides loadingView.activity indicator enters
-       switch statement to return proper error message
+     switch statement to return proper error message
      - sets guard condition for userID from user?.uid (FIRUser) / if not - returns
      */
     
@@ -97,16 +94,21 @@ extension LoginViewController: UITextFieldDelegate {
         checkForValidEmailInput()
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
-        loginViewModel.username = loginView.emailField.text!
+        if let emailText = loginView.emailField.text {
+            loginViewModel.username = emailText
+        }
         FIRAuth.auth()?.signIn(withEmail: loginViewModel.username, password: loginViewModel.password) { [unowned self] user, error in
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
-                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
-                    switch errCode {
-                    case .errorCodeInvalidEmail:
-                        print("Invalid Email For Sign In")
-                    default:
-                        print("User Authentication Error: \(error)") }
+                if let err = error {
+
+                    if let errCode = FIRAuthErrorCode(rawValue: err._code) {
+                        switch errCode {
+                        case .errorCodeInvalidEmail:
+                            print("Invalid Email For Sign In")
+                        default:
+                            print("User Authentication Error: \(error)") }
+                    }
                 }
                 print(error ?? "Unknown error occured when attempting sign in authentication")
                 return
@@ -175,9 +177,11 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     func textFieldDidChange(_ textField: UITextField) {
-        if (loginView.emailField.text?.characters.count)! > 4 && (loginView.passwordField.text?.characters.count)! >= 6 {
-            loginView.loginButton.backgroundColor = Constants.Color.buttonColor
-            loginView.loginButton.isEnabled = true
+        if let emailText = loginView.emailField.text, let passwordText = loginView.passwordField.text {
+            if (emailText.characters.count > 4) && (passwordText.characters.count >= 6) {
+                loginView.loginButton.backgroundColor = Constants.Color.buttonColor
+                loginView.loginButton.isEnabled = true
+            }
         }
     }
     
@@ -197,8 +201,5 @@ extension LoginViewController: UITextFieldDelegate {
         textField.textColor = UIColor.lightGray
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
         checkForValidEmailInput()
-        if (loginView.emailField.text?.characters.count)! > 4 && (loginView.passwordField.text?.characters.count)! >= 6 {
-            loginView.loginButton.isEnabled = true
-        }
     }
 }

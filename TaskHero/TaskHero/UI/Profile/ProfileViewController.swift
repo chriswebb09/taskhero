@@ -28,6 +28,7 @@ final class ProfileViewController: UITableViewController {
         edgesForExtendedLayout = []
         registerCells()
         tableView.estimatedRowHeight = view.frame.height / 3
+        self.tableView.separatorStyle = .none
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         setupNavItems()
         tableView.reloadData()

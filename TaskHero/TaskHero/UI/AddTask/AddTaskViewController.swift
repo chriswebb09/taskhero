@@ -47,7 +47,6 @@ final class AddTaskViewController: UIViewController  {
         setupDelegates()
         addTaskView.layoutSubviews()
         edgesForExtendedLayout = []
-        navigationController?.navigationBar.tintColor = UIColor.white
     }
 }
 

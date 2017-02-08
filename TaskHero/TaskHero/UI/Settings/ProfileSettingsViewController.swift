@@ -38,7 +38,6 @@ extension ProfileSettingsViewController: UITableViewDelegate {
         options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
                     "Profile Picture", self.store.currentUser.username]
         edgesForExtendedLayout = []
-        navigationController?.navigationBar.tintColor = UIColor.white
         setupSubviews()
         profileSettingsView.layoutSubviews()
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)

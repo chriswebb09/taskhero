@@ -28,9 +28,6 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(signupView)
         signupView.layoutSubviews()
         edgesForExtendedLayout = []
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
-        navigationController?.navigationBar.tintColor = UIColor.white
         setupSignupView()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)

@@ -29,7 +29,6 @@ final class FriendsSettingsViewController: UIViewController {
         view.addSubview(friendsSettingsView)
         friendsSettingsView.layoutSubviews()
         friendsSettingsView.searchField.delegate = self
-        navigationController?.navigationBar.tintColor = UIColor.white
         friendsSettingsView.searchButton.addTarget(self, action: #selector(popup), for: .touchUpInside)
     }
 }

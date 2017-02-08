@@ -54,12 +54,28 @@ final class ProfileDataCell: UITableViewCell {
         return taskCompletedLabel
     }()
     
+    var topDivider: UIView = {
+        let divider = UIView()
+        divider.backgroundColor = UIColor.black
+        return divider
+    }()
+    
+    var bottomDivider: UIView = {
+        let divider = UIView()
+        divider.backgroundColor = UIColor.black
+        return divider
+    }()
+
+    
     // MARK: - Initialization
     // Lays out subviews and calls setup constraints
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        isUserInteractionEnabled = false 
+        isUserInteractionEnabled = false
+        contentView.clipsToBounds = true
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         setupConstraints()
     }
     
@@ -96,6 +112,13 @@ final class ProfileDataCell: UITableViewCell {
         
     }
     
+    func configureDividers(view: UIView) {
+        contentView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.01).isActive = true
+    }
+    
     private func addExperiencePointLabel(experiencePointLabel:UILabel) {
         configureLabels(label: experiencePointsLabel)
         contentView.addSubview(experiencePointsLabel)
@@ -120,6 +143,12 @@ final class ProfileDataCell: UITableViewCell {
         addLevelLabel(levelLabel: levelLabel)
         addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
+        configureDividers(view: topDivider)
+        topDivider.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        topDivider.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true 
+        configureDividers(view: bottomDivider)
+        bottomDivider.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        bottomDivider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
     
     // ConfigureCell method - called in ParentViewController - in this case ProfileViewController
@@ -129,6 +158,8 @@ final class ProfileDataCell: UITableViewCell {
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"
         tasksCompletedLabel.text = "Tasks Completed: \(String(describing: dataCellModel.tasksCompleted))"
         layoutSubviews()
+        //contentView.layer.borderColor = UIColor.clear.cgColor
+        //layer.borderColor = UIColor.clear.cgColor
         layoutMargins = UIEdgeInsets.zero
     }
     

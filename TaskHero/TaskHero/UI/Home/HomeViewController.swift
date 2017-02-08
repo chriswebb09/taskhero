@@ -40,11 +40,13 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     let helpers = Helpers()     /* Helper methods mainly for configuring */
     var index:IndexPath!   /* IndexPath property still figuring out if I need it */
     
+    var taskMethods = SharedTaskMethods()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
         edgesForExtendedLayout = []
+        
         dataSource = HomeViewControllerDataSource()
         dataSource.setupView(tableView:tableView, view:view)
         addNavItemsToController()
@@ -201,7 +203,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         let superview = sender.superview
         let cell = superview?.superview as! TaskCell
         let indexPath = tableView.indexPath(for: cell)
-        dataSource.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!)
+        taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!, type: .home)
     }
     
     /* Kicks off cycling between taskcell editing states */
@@ -209,7 +211,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
     func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        dataSource.tapEdit(viewController:self, tableView:tableView, atIndex: tapIndex)
+        taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: tapIndex, type: .home)
     }
 }
 // Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture

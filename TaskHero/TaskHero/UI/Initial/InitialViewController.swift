@@ -23,10 +23,10 @@ final class InitialViewController: UIViewController {
         view.addSubview(initView)
         view.backgroundColor = UIColor.white
         initView.layoutSubviews()
-        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true 
         let when = DispatchTime.now() + 0.5 //
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.initView.zoomAnimation({

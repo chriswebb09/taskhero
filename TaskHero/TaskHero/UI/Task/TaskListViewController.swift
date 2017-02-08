@@ -17,6 +17,8 @@ final class TaskListViewController: UITableViewController {
     var tapped: Bool = false /* tracks taps on taskcell completedView and button */
     var taskViewModel: TaskCellViewModel!
     let helpers = Helpers()
+    let sharedTaskMethods = SharedTaskMethods()
+    var listViewModel = TaskListViewModel()
     
     // MARK: - UI Elements
     /* Label for empty tasklist state, should disappear once task is added */
@@ -28,6 +30,15 @@ final class TaskListViewController: UITableViewController {
         addTasksLabel.textAlignment = .center
         return addTasksLabel
     }()
+    
+    var hidden: Bool {
+        if let tasks = store.currentUser.tasks {
+            if tasks.count < 1 {
+                return false
+            }
+        }
+        return true
+    }
     
     // MARK: - Initialization
     
@@ -52,10 +63,6 @@ final class TaskListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        if store.tasks.count >= 1 {
-            addTasksLabel.isHidden = true
-            addTasksLabel.isEnabled = false
-        }
         store.tasks.removeAll()
         if store.currentUser.tasks != nil {
             store.currentUser.tasks?.removeAll()
@@ -63,6 +70,7 @@ final class TaskListViewController: UITableViewController {
         helpers.fetchUser() { user in
             self.store.currentUser = user
             DispatchQueue.main.async {
+                self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
                 self.tableView.reloadData()
             }
         }
@@ -100,7 +108,10 @@ extension TaskListViewController: TaskCellDelegate {
             deleteTasks(id: removeTaskID, indexPath: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            DispatchQueue.main.async { tableView.reloadData() }
+            DispatchQueue.main.async {
+                self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
+                tableView.reloadData()
+            }
         }
     }
     
@@ -110,7 +121,7 @@ extension TaskListViewController: TaskCellDelegate {
         if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
             view.addSubview(addTasksLabel)
             addTasksLabel.center = self.view.center
-            addTasksLabel.text = "No tasks have been added yet."
+            addTasksLabel.text = listViewModel.taskLabelText
             addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
             addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
             addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.Dimension.width).isActive = true
@@ -118,6 +129,8 @@ extension TaskListViewController: TaskCellDelegate {
             addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         } else if store.tasks.count < 1 {
             addTasksLabel.isHidden = false
+        } else {
+            addTasksLabel.isHidden = true
         }
     }
     
@@ -182,7 +195,7 @@ extension TaskListViewController: TaskCellDelegate {
         let superview = sender.superview
         guard let cell = superview?.superview as? TaskCell else { return }
         let indexPath = tableView.indexPath(for: cell)
-        editList(tableView: tableView, atIndex: indexPath!)
+        sharedTaskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!, type: .taskList)
     }
     
     // Kicks off cycling between taskcell editing states
@@ -190,19 +203,6 @@ extension TaskListViewController: TaskCellDelegate {
     func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        editList(tableView: tableView, atIndex: tapIndex)
-    }
-    
-    func editList(tableView: UITableView, atIndex:IndexPath) {
-        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-        if tapCell.toggled == false {
-            var newTask = self.store.tasks[atIndex.row]
-            newTask.taskDescription = tapCell.taskDescriptionLabel.text
-            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-            tapCell.taskDescriptionLabel.text = newTask.taskDescription
-        }
-        let tap = UIGestureRecognizer(target: self, action: #selector(toggleForEditState(_:)))
-        tapCell.taskCompletedView.addGestureRecognizer(tap)
-        tapCell.taskCompletedView.isUserInteractionEnabled = true
+        sharedTaskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: tapIndex, type: .taskList)
     }
 }

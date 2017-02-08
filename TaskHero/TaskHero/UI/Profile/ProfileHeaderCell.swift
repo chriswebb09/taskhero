@@ -161,8 +161,22 @@ final class ProfileHeaderCell: UITableViewCell {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePicture.addGestureRecognizer(tap)
         layoutSubviews()
+        setupShadow()
         layoutIfNeeded()
     }
+    
+    func setupShadow() {
+        let shadowOffset = CGSize(width:-0.45, height: 0.4)
+        let shadowRadius:CGFloat = 1.0
+        let shadowOpacity:Float = 0.4
+      //  let styledShadowOpacity: Float =  0.0
+       // let styledShadowRadius = CGSize(width: 0, height: 0)
+      //  let cornerRadius:CGFloat = 2.0
+        layer.shadowRadius = shadowRadius
+        layer.shadowOffset = shadowOffset
+        layer.shadowOpacity = shadowOpacity
+    }
+    
 }
 
 extension ProfileHeaderCell: ProfileHeaderCellDelegate {
