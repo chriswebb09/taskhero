@@ -56,7 +56,7 @@ final class TaskListViewController: UITableViewController {
     
     func initializeBackgroundUI() {
         emptyTableViewState(addTaskLabel: addTasksLabel)
-        setupTableView(tableView:tableView)
+        sharedTaskMethods.setupTableView(tableView:tableView, view: view)
         setupNavItems(navController:navigationController)
     }
     
@@ -154,18 +154,6 @@ extension TaskListViewController: TaskCellDelegate {
             self.store.tasks = tasks
             completion(self.store.currentUser)
         }
-    }
-    
-    // MARK: - Configure
-    
-    func setupTableView(tableView: UITableView) {
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
-        tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 4
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
     }
     
     // MARK: - Public Methods

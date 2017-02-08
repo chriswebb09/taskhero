@@ -10,7 +10,7 @@ import UIKit
 
 class SignupView: UIView {
     
-    lazy var registerLabel: UILabel = {
+    var registerLabel: UILabel = {
         let registerLabel = UILabel()
         registerLabel.textColor = Constants.Color.backgroundColor
         registerLabel.text = "Don't have an account?"
@@ -24,12 +24,12 @@ class SignupView: UIView {
         return usernameField
     }()
     
-    lazy var emailField: TextFieldExtension = {
+    var emailField: TextFieldExtension = {
         let emailField = TextFieldExtension().emailField("Enter email address")
         return emailField
     }()
     
-    lazy var confirmEmailField: TextFieldExtension = {
+    var confirmEmailField: TextFieldExtension = {
         let emailField = TextFieldExtension().emailField("Confirm email address")
         return emailField
     }()
@@ -39,7 +39,7 @@ class SignupView: UIView {
         return passwordField
     }()
     
-    lazy var loginButton: UIButton = {
+    var loginButton: UIButton = {
         let button = ButtonType.login(title: "Sign Up")
         return button.newButton
     }()

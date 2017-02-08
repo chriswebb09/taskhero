@@ -15,7 +15,8 @@ class AppScreenView: UIView {
     }()
     
     var logoImageView: UIImageView = {
-        let image = UIImage(named: "TaskHeroLogoNew2")
+        let image = UIImage(named: "taskherologo2")
+        //let image = UIImage(named: "TaskHeroLogoNew2")
         let imageView = UIImageView(image: image)
         return imageView
     }()
@@ -31,7 +32,7 @@ class AppScreenView: UIView {
     
     lazy var viewDivider: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = UIColor.clear
         return view
     }()
     
@@ -46,23 +47,24 @@ class AppScreenView: UIView {
         setupLogoImage()
         constraintSetup()
         setupViewDivider()
-        loginButton.bottomAnchor.constraint(equalTo: viewDivider.topAnchor, constant: UIScreen.main.bounds.height * -0.08).isActive = true
+        loginButton.bottomAnchor.constraint(equalTo: viewDivider.topAnchor, constant: UIScreen.main.bounds.height * -0.04).isActive = true
         loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
+        loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier:0.075).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        signupButton.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: UIScreen.main.bounds.height * 0.08).isActive = true
+        signupButton.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
         signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        signupButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
+        signupButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier:0.075).isActive = true
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     private func setupLogoImage() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.075).isActive = true
+        logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06).isActive = true
+        //logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.075).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * -0.24).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * -0.2).isActive = true
     }
     
     private func constraintSetup() {
@@ -83,7 +85,7 @@ class AppScreenView: UIView {
     }
     
     private func setupViewDivider() {
-        viewDivider.centerYAnchor.constraint(equalTo: centerYAnchor, constant: UIScreen.main.bounds.height * 0.05).isActive = true
+        viewDivider.centerYAnchor.constraint(equalTo: centerYAnchor, constant: UIScreen.main.bounds.height * 0.09).isActive = true
         viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.dividerWidth).isActive = true
         viewDivider.heightAnchor.constraint(equalTo: loginButton.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true

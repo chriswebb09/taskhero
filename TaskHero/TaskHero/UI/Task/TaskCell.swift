@@ -30,36 +30,36 @@ final class TaskCell: UITableViewCell, Toggable {
     
     // MARK: - Setup UI Elements
     
-    lazy var taskNameLabel: UITextView = {
+    var taskNameLabel: UITextView = {
         let textView = UITextView().setupCellStyle()
         textView.font = Constants.Font.bolderFontNormal
         return textView
     }()
     
-    lazy var taskDescriptionLabel: UITextView = {
+    var taskDescriptionLabel: UITextView = {
         let textView = UITextView()
         textView.labelTextViewStyle()
         return textView
     }()
     
-    lazy var taskDueLabel: UITextView = {
+    var taskDueLabel: UITextView = {
         let textView = UITextView().setupCellStyle()
         return textView
     }()
     
-    lazy var taskCompletedView: UIImageView = {
+    var taskCompletedView: UIImageView = {
         let taskCompletedImageView = UIImageView()
         taskCompletedImageView.isUserInteractionEnabled = true
         return taskCompletedImageView
     }()
     
-    lazy var saveButton: UIButton = {
-        let button = ButtonType.system(title: "Save", color: UIColor.black)
-        var ui = button.newButton
-        ui.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
-        ui.isHidden = true
-        ui.isEnabled = false
-        return ui
+    var saveButton: UIButton = {
+        let button = ButtonType.system(title: "Save", color: UIColor.black).newButton
+        // var ui = button.newButton
+        button.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
+        button.isHidden = true
+        button.isEnabled = false
+        return button
     }()
     
     // MARK: - Initialization
@@ -204,7 +204,6 @@ final class TaskCell: UITableViewCell, Toggable {
         setupEditElements(element:saveButton)
         saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
     }
-    
     
     func setupShadow() {
         let shadowOffset = CGSize(width:-0.45, height: 0.2)

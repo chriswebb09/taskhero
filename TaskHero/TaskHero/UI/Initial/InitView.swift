@@ -24,7 +24,9 @@ final class InitView: UIView {
     // MARK: - UIElements
     
     var logoImageView: UIImageView = {
-        let image = UIImage(named: "TaskHeroLogoNew2")
+        let image = UIImage(named: "taskherologo2")
+       
+        // let image = UIImage(named: "TaskHeroLogoNew2")
         let imageView = UIImageView(image: image)
         return imageView
     }()

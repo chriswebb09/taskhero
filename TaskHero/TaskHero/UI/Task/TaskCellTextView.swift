@@ -53,7 +53,6 @@ class TaskCellView: UIView {
     }
 }
 
-
 extension UITextView {
     
     func editTextViewStyle() {

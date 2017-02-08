@@ -38,6 +38,15 @@ extension UITextView {
     }
 }
 
+//func setupTableView(tableView: UITableView, view: UIView) {
+//    tableView.tableFooterView = UIView(frame: CGRect.zero)
+//    tableView.separatorStyle = .singleLine
+//    tableView.allowsSelection = false
+//    tableView.rowHeight = UITableViewAutomaticDimension
+//    tableView.estimatedRowHeight = view.frame.height / 4
+//    tableView.layoutMargins = UIEdgeInsets.zero
+//    tableView.separatorInset = UIEdgeInsets.zero
+//}
 
 public extension UITableView {
     

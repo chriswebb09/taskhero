@@ -26,25 +26,25 @@ final class ProfileHeaderCell: UITableViewCell {
     weak var delegate: ProfileHeaderCellDelegate?
     var profileHeaderCellModel = ProfileHeaderCellModel()
     
-    lazy var joinDateLabel: UILabel = {
+    var joinDateLabel: UILabel = {
         let joinDateLabel = UILabel()
         joinDateLabel.font = Constants.Font.fontLarge
         return joinDateLabel
     }()
     
-    lazy var usernameLabel: UILabel = {
+    var usernameLabel: UILabel = {
         let usernameLabel = UILabel()
         usernameLabel.font = Constants.Font.bolderFontLarge
         return usernameLabel
     }()
     
-    lazy var emailLabel: UILabel = {
+    var emailLabel: UILabel = {
         let emailLabel = UILabel()
         emailLabel.font = Constants.Font.fontLarge
         return emailLabel
     }()
     
-    lazy var levelLabel: UILabel = {
+    var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.font = Constants.Font.fontMedium
         levelLabel.textAlignment = .right
@@ -77,13 +77,13 @@ final class ProfileHeaderCell: UITableViewCell {
     
     // MARK: - Configuring Cell
     
-    fileprivate func configureLabel(label:UILabel) {
+    private func configureLabel(label:UILabel) {
         label.textColor = UIColor.black
         label.textAlignment = .right
         label.sizeToFit()
     }
     
-    fileprivate func configureConstraints(label:UILabel) {
+    private func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
@@ -92,7 +92,7 @@ final class ProfileHeaderCell: UITableViewCell {
     /* calls configureLabel on levelLabel, emailLabel, joinDateLabel, usernameLabel */
     /* calls configureConstraints on levelLabel, emailLabel, usernameLabel */
     
-    fileprivate func addConfigures() {
+    private func addConfigures() {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
@@ -135,7 +135,7 @@ final class ProfileHeaderCell: UITableViewCell {
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         addConfigures()
         addUsernameLabel()
         addlevelLabel()
@@ -173,13 +173,11 @@ final class ProfileHeaderCell: UITableViewCell {
         layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity
     }
-    
 }
 
 extension ProfileHeaderCell: ProfileHeaderCellDelegate {
     
     // MARK: - Delegate Methods
-    // Implementation of delegate method - May be deleted either in HomeViewController or ProfileViewController because functionality is redundant
     
     func profilePictureTapped(sender: UIGestureRecognizer) {
         print("profile pic tapped\n\n\n\n\n\n")

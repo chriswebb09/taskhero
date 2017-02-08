@@ -8,9 +8,11 @@
 
 import UIKit
 
-class HomeViewModel {
+struct HomeViewModel {
     
     var store = UserDataStore.sharedInstance
+    
+    var user: User!
     
     var usernameText: String {
         return store.currentUser.username
@@ -25,5 +27,11 @@ class HomeViewModel {
         return tasks.count + 1
     }
     
+    var tasks: [Task] {
+        guard let tasks = store.currentUser.tasks else { return [] }
+        return tasks
+    }
+    
     var rowHeight = UITableViewAutomaticDimension
+
 }

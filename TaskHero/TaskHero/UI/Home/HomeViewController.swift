@@ -36,14 +36,22 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         print("HomeViewController deallocated")
     }
     
-    // MARK: Internal Properties
+    var homeViewModel: HomeViewModel {
+        didSet {
+            print("\n\n\n Tasks \(tasks)")
+            tasks = homeViewModel.tasks
+        }
+    }
+    
     var store = UserDataStore.sharedInstance
+    
     var tasks: [Task] = [] {
         didSet {
+            print(homeViewModel)
             tableView.reloadData()
         }
     }
-    let homeViewModel = HomeViewModel()
+    
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
@@ -64,15 +72,29 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
      * currentUser from database calling APIClient before loading. Redundant functionality, definitely could be streamlined
      */
     
+    required convenience init(coder aDecoder: NSCoder) {
+        self.init(aDecoder)
+    }
+    
+    init(_ coder: NSCoder? = nil) {
+        self.homeViewModel = HomeViewModel()
+        if let coder = coder {
+            super.init(coder: coder)!
+        } else {
+            super.init(nibName: nil, bundle:nil)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
+        updateTasks()
+    }
+    
+    func updateTasks() {
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            if self.store.currentUser.tasks != nil {
-                self.store.currentUser.tasks?.removeAll()
-            }
             self.fetchUser() { user in
                 self.store.currentUser = user
-                self.tasks = self.store.currentUser.tasks!
+                self.tasks = self.homeViewModel.tasks
             }
         }
     }
@@ -81,6 +103,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         store.tasks.removeAll()
         store.currentUser.tasks?.removeAll()
         store.firebaseAPI.fetchUserData { user in
+            self.homeViewModel.user = user
             self.store.currentUser = user
         }
         store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
@@ -102,13 +125,12 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     func setupView(tableView: UITableView, view: UIView) {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        tableView.setupTableView()
+        taskMethods.setupTableView(tableView: tableView, view: view)
         tableView.estimatedRowHeight = view.frame.height / 4
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
     }
     
     // MARK: - UITableViewController Methods
-    
     /* Returns number of rows based on count taskcount */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

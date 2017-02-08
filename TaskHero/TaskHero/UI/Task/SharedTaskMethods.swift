@@ -49,6 +49,16 @@ final class SharedTaskMethods {
         
     }
     
+    func setupTableView(tableView: UITableView, view: UIView) {
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.separatorStyle = .singleLine
+        tableView.allowsSelection = false
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+    }
+    
     func tapEdit(viewController: UIViewController, tableView: UITableView, atIndex:IndexPath, type: TaskListType) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         var newTask: Task!

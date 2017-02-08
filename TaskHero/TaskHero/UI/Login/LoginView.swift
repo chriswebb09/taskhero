@@ -18,7 +18,7 @@ final class LoginView: UIView {
     // MARK: UIElements
     
     lazy var logoImageView: UIImageView = {
-        let image = UIImage(named: "TaskHeroLogoNew2")
+        let image = UIImage(named: "taskherologo2")
         let imageView = UIImageView(image: image)
         return imageView
     }()
@@ -118,7 +118,7 @@ final class LoginView: UIView {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.12).isActive = true
     }
@@ -126,7 +126,7 @@ final class LoginView: UIView {
     fileprivate func setupConstraints() {
         setupLogoImage()
         setupView(view: emailField)
-        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * 0.08).isActive = true
+        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * 0.1).isActive = true
         setupView(view: passwordField)
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.06).isActive = true
         passwordField.isSecureTextEntry = true
