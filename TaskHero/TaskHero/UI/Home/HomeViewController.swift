@@ -55,7 +55,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewDidLoad()
         picker.delegate = self
         edgesForExtendedLayout = []
-        // dataSource = HomeViewControllerDataSource()
         setupView(tableView:tableView, view:view)
         addNavItemsToController()
     }
