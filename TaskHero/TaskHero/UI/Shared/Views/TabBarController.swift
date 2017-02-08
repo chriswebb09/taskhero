@@ -73,7 +73,7 @@ class TabBarController: UITabBarController {
         homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house-white-2")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "house-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: homeVC.tabBarItem)
         let homeTab = UINavigationController(rootViewController: homeVC)
-        helpers.configureNav(nav: homeTab.navigationBar, view:view)
+        configureNav(nav: homeTab.navigationBar, view:view)
         homeTab.navigationBar.topItem?.title = "TaskHero"
         return homeTab
     }
@@ -82,7 +82,7 @@ class TabBarController: UITabBarController {
         profileVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "avatar-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "avatar-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: profileVC.tabBarItem)
         let profileTab = UINavigationController(rootViewController: profileVC)
-        helpers.configureNav(nav:profileTab.navigationBar, view:profileVC.view)
+        configureNav(nav:profileTab.navigationBar, view:profileVC.view)
         profileTab.navigationBar.topItem?.title = "Profile"
         return profileTab
     }
@@ -91,7 +91,7 @@ class TabBarController: UITabBarController {
         taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: taskListVC.tabBarItem)
         let taskListTab = UINavigationController(rootViewController: taskListVC)
-        helpers.configureNav(nav: taskListTab.navigationBar, view:taskListVC.view)
+        configureNav(nav: taskListTab.navigationBar, view:taskListVC.view)
         taskListTab.navigationBar.topItem?.title = "Task List"
         return taskListTab
     }
@@ -100,10 +100,17 @@ class TabBarController: UITabBarController {
         settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-2-white-1")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "settings-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: settingsVC.tabBarItem)
         let settingsTab = UINavigationController(rootViewController: settingsVC)
-        helpers.configureNav(nav: settingsTab.navigationBar, view:settingsVC.view)
+        configureNav(nav: settingsTab.navigationBar, view:settingsVC.view)
         settingsTab.navigationBar.topItem?.title = "Settings"
         return settingsTab
     }
+    
+    func configureNav(nav:UINavigationBar, view: UIView) {
+        nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
+        nav.barTintColor = Constants.Tabbar.tint
+        nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
+    }
+    
     
     func configureTabBarItem(item: UITabBarItem) {
         item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)

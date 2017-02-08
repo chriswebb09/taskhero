@@ -37,3 +37,17 @@ extension UITextView {
         return textView
     }
 }
+
+
+public extension UITableView {
+    
+    public func setupTableView() {
+        estimatedRowHeight = Constants.Settings.rowHeight
+        layoutMargins = UIEdgeInsets.zero
+        separatorInset = UIEdgeInsets.zero
+        separatorStyle = .singleLineEtched
+        rowHeight = UITableViewAutomaticDimension
+        tableFooterView = UIView(frame: CGRect.zero)
+        tableHeaderView?.backgroundColor = UIColor.white
+    }
+}

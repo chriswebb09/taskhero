@@ -28,6 +28,9 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(signupView)
         signupView.layoutSubviews()
         edgesForExtendedLayout = []
+        navigationController?.navigationBar.isHidden = false
+       // navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
+       // navigationController?.navigationBar.tintColor = UIColor.white
         setupSignupView()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -44,6 +47,14 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         signupView.loginButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
     }
     
+    func setupUser(user: User) {
+        store.firebaseAPI.registerUser(user: user)
+        store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+        store.firebaseAPI.setupRefs()
+        store.currentUser = user
+    }
+    
+    
     // MARK: - UITextfield Delegate Methods
     // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
     
@@ -57,7 +68,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
             }
             guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
             let newUser = self.helpers.createUser(uid: uid, username: username, email: email)
-            self.helpers.setupUser(user: newUser)
+            self.setupUser(user: newUser)
             let tabBar = TabBarController()
             self.helpers.loadTabBar(tabBar:tabBar)
         }

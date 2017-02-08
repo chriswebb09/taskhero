@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 final class ProfileSettingsViewControllerDataSource {
     
@@ -44,6 +45,21 @@ final class ProfileSettingsViewControllerDataSource {
         updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
         updatedUser.experiencePoints = store.currentUser.experiencePoints
         updatedUser.tasks = store.currentUser.tasks
-        helpers.updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
+        updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
     }
+    
+    func updateUserProfile(userID: String, user:User) {
+        store.firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:store.tasks)
+        store.tasks.forEach { task in
+            self.store.firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
+        }
+    }
+    
+        func setupUser(user: User) {
+            store.firebaseAPI.registerUser(user: user)
+            store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+            store.firebaseAPI.setupRefs()
+            store.currentUser = user
+        }
+
 }
