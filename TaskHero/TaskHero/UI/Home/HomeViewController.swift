@@ -15,8 +15,18 @@ import UIKit
  */
 
 
-protocol TaskViewDelegate: class {
-    
+enum HomeCellType {
+    case task, header
+}
+
+protocol Toggable {
+    func toggleState(state:Bool) -> Bool
+}
+
+extension Toggable {
+    func toggleState(state:Bool) -> Bool {
+        return !state
+    }
 }
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
@@ -36,11 +46,9 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     let homeViewModel = HomeViewModel()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  /* BackgroundQueue for background network */
-    var dataSource: HomeViewControllerDataSource!     /* Abstraction of tableView configuration methods */
     let photoPopover = PhotoPickerPopover()      /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
     let picker = UIImagePickerController()      /* Used to pick profile picture in photoPopover */
     let helpers = Helpers()     /* Helper methods mainly for configuring */
-    var index:IndexPath!   /* IndexPath property still figuring out if I need it */
     
     var taskMethods = SharedTaskMethods()
     
@@ -48,8 +56,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewDidLoad()
         picker.delegate = self
         edgesForExtendedLayout = []
-        dataSource = HomeViewControllerDataSource()
-        dataSource.setupView(tableView:tableView, view:view)
+       // dataSource = HomeViewControllerDataSource()
+        setupView(tableView:tableView, view:view)
         addNavItemsToController()
     }
     
@@ -88,6 +96,14 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         helpers.removeRefHandle()
     }
     
+    func setupView(tableView: UITableView, view: UIView) {
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        tableView.setupTableView()
+        tableView.estimatedRowHeight = view.frame.height / 4
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
+    }
+    
     // MARK: - UITableViewController Methods
     // Returns number of rows based on count taskcount
     
@@ -115,7 +131,6 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
     // FIXME: - Fix so that tableview can delete tasks with index out of range getting thrown
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        dataSource.tableIndexPath = indexPath
         let cellType: HomeCellType = indexPath.row > 0 ? .task : .header
         switch cellType {
         case .task:
@@ -154,7 +169,6 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             tableView.beginUpdates()
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
-                self.dataSource.tableIndexPath.row = indexPath.row
             }
             helpers.reload(tableView: tableView)
             tableView.endUpdates()
@@ -182,7 +196,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         let loginVC = LoginViewController()
         let rootNC = UINavigationController(rootViewController:loginVC)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        UserDataStore.sharedInstance.logout()
+        DataPeristence.shared.logout()
         appDelegate.window?.rootViewController = rootNC
     }
     
@@ -231,6 +245,12 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     // MARK: - Header cell Delegate Methods
     // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview - Add profile picture storage methods
+    
+    func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        viewController.present(picker, animated: true, completion: nil)
+    }
     
     internal func tapPickPhoto(_ sender:UIButton) {
         picker.allowsEditing = false

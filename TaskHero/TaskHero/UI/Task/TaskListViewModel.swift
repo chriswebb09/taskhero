@@ -37,10 +37,7 @@ final class TaskListViewModel {
         return UIColor.lightGray
     }()
     
-    
     let tableBackGroundColor: UIColor = {
         return Constants.Color.tableViewBackgroundColor
     }()
-    
-    
 }

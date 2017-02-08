@@ -88,31 +88,35 @@ final class APIClient {
     func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
         var taskList = taskList
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
-            guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
-            var newTask = Task()
-            newTask.taskID = snapshot.key
-            if let fetchName = snapshotValue[Constants.API.Task.taskName] as? String,
-                let fetchDescription = snapshotValue[Constants.API.Task.taskDescription] as? String,
-                let fetchCreated = snapshotValue[Constants.API.Task.taskCreated] as? String,
-                let fetchDue = snapshotValue[Constants.API.Task.taskDue] as? String,
-                let fetchCompleted = snapshotValue[Constants.API.Task.taskCompleted] as? Bool {
-                newTask.taskName = fetchName
-                newTask.taskDescription = fetchDescription
-                newTask.taskCreated = fetchCreated
-                newTask.taskDue = fetchDue
-                newTask.taskCompleted = fetchCompleted
+            let newTask = self.createTaskSnapshot(snapshot: snapshot)
+            if let task = newTask {
+                taskList.append(task)
             }
-            taskList.append(newTask)
             completion(taskList)
         })
     }
     
+    
+    func createTaskSnapshot(snapshot: FIRDataSnapshot) -> Task? {
+        var newTask = Task()
+        newTask.taskID = snapshot.key
+        guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return nil }
+        if let fetchName = snapshotValue[Constants.API.Task.taskName] as? String,
+            let fetchDescription = snapshotValue[Constants.API.Task.taskDescription] as? String,
+            let fetchCreated = snapshotValue[Constants.API.Task.taskCreated] as? String,
+            let fetchDue = snapshotValue[Constants.API.Task.taskDue] as? String,
+            let fetchCompleted = snapshotValue[Constants.API.Task.taskCompleted] as? Bool {
+            newTask.taskName = fetchName
+            newTask.taskDescription = fetchDescription
+            newTask.taskCreated = fetchCreated
+            newTask.taskDue = fetchDue
+            newTask.taskCompleted = fetchCompleted
+        }
+        return Optional(newTask)
+    }
+    
     func updateTask(ref:String, taskID: String, task:Task) {
-        let taskData: NSDictionary = [Constants.API.Task.taskName: task.taskName,
-                                      Constants.API.Task.taskDescription: task.taskDescription ,
-                                      Constants.API.Task.taskCreated: task.taskCreated ,
-                                      Constants.API.Task.taskDue: task.taskDue,
-                                      Constants.API.Task.taskCompleted: task.taskCompleted]
+        let taskData = createTasksDictionary(task: task)
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
     
@@ -124,31 +128,36 @@ final class APIClient {
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(uid)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
-            guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
             let tasks = [Task]()
             let user = User()
-            if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
-                let snapshotEmail = snapshotValue[Constants.API.User.email] as? String,
-                let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String,
-                let snapshotLastName = snapshotValue[Constants.API.User.lastName] as? String,
-                let snapshotLevel = snapshotValue[Constants.API.User.level] as? String,
-                let snapshotJoinDate = snapshotValue[Constants.API.User.joinDate] as? String,
-                let snapshotProfilePicture = snapshotValue[Constants.API.User.profilePicture] as? String,
-                let snapshotTasksCompleted = snapshotValue[Constants.API.User.tasksCompleted] as? Int,
-                let snapshotExperiencePoints = snapshotValue[Constants.API.User.experiencePoints] as? Int {
-                user.username = snapshotName
-                user.email = snapshotEmail
-                user.firstName = snapshotFirstName
-                user.lastName = snapshotLastName
-                user.level = snapshotLevel
-                user.joinDate = snapshotJoinDate
-                user.profilePicture = snapshotProfilePicture
-                user.numberOfTasksCompleted = snapshotTasksCompleted
-                user.experiencePoints = snapshotExperiencePoints
-            }
+            self.createUserSnapshot(snapshot: snapshot, user: user)
             user.tasks = tasks
             completion(user)
         })
+    }
+    
+    func createUserSnapshot(snapshot: FIRDataSnapshot, user: User) {
+        guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
+        if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
+            let snapshotEmail = snapshotValue[Constants.API.User.email] as? String,
+            let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String,
+            let snapshotLastName = snapshotValue[Constants.API.User.lastName] as? String,
+            let snapshotLevel = snapshotValue[Constants.API.User.level] as? String,
+            let snapshotJoinDate = snapshotValue[Constants.API.User.joinDate] as? String,
+            let snapshotProfilePicture = snapshotValue[Constants.API.User.profilePicture] as? String,
+            let snapshotTasksCompleted = snapshotValue[Constants.API.User.tasksCompleted] as? Int,
+            let snapshotExperiencePoints = snapshotValue[Constants.API.User.experiencePoints] as? Int {
+            user.username = snapshotName
+            user.email = snapshotEmail
+            user.firstName = snapshotFirstName
+            user.lastName = snapshotLastName
+            user.level = snapshotLevel
+            user.joinDate = snapshotJoinDate
+            user.profilePicture = snapshotProfilePicture
+            user.numberOfTasksCompleted = snapshotTasksCompleted
+            user.experiencePoints = snapshotExperiencePoints
+        }
+        
     }
     
     func updateUserProfile(userID: String, user:User, tasks:[Task]) {
@@ -163,6 +172,16 @@ final class APIClient {
                 addTasks(task: task)
             }
         }
+    }
+    
+    func createTasksDictionary(task: Task) -> NSDictionary {
+        let taskData: NSDictionary =
+            [Constants.API.Task.taskName: task.taskName,
+             Constants.API.Task.taskDescription: task.taskDescription ,
+             Constants.API.Task.taskCreated: task.taskCreated ,
+             Constants.API.Task.taskDue: task.taskDue,
+             Constants.API.Task.taskCompleted: task.taskCompleted]
+        return taskData
     }
     
     func createValuesDictionary(user: User) -> NSDictionary {

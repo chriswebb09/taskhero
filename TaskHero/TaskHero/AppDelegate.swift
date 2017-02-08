@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.barTintColor = UIColor.navigationBarColor()
         navigationBarAppearace.tintColor = UIColor.white
         window = UIWindow(frame: UIScreen.main.bounds)
-        UserDataStore.sharedInstance.hasLoggedIn()
+        DataPeristence.shared.hasLoggedIn()
         window?.rootViewController = UINavigationController(rootViewController: InitialViewController())
         window?.makeKeyAndVisible()
         return true

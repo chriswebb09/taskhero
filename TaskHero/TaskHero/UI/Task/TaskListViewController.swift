@@ -194,7 +194,7 @@ extension TaskListViewController: TaskCellDelegate {
     func logoutButtonPressed() {
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        UserDataStore.sharedInstance.logout()
+        DataPeristence.shared.logout()
         appDelegate.window?.rootViewController = loginVC
     }
     

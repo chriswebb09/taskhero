@@ -120,8 +120,8 @@ extension LoginViewController: UITextFieldDelegate {
     
     func fetchData() {
         UserDataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in UserDataStore.sharedInstance.currentUser = currentUser }
-        UserDataStore.sharedInstance.setLoggedInKey(userState: true)
-        UserDataStore.sharedInstance.hasLoggedIn()
+        DataPeristence.shared.setLoggedInKey(userState: true)
+        DataPeristence.shared.hasLoggedIn()
     }
     
     /*

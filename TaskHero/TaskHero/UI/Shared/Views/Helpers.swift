@@ -53,7 +53,7 @@ final class Helpers {
     
     func handleLogout() {
         do {
-            UserDataStore.sharedInstance.setLoggedInKey(userState: false)
+            DataPeristence.shared.setLoggedInKey(userState: false)
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)
