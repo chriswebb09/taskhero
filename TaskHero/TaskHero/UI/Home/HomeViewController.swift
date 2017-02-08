@@ -14,7 +14,6 @@ import UIKit
  Not final setup - still a work in progress
  */
 
-
 enum HomeCellType {
     case task, header
 }
@@ -45,9 +44,9 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         }
     }
     let homeViewModel = HomeViewModel()
-    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  /* BackgroundQueue for background network */
-    let photoPopover = PhotoPickerPopover()      /* Custom Alert/Popover view used for picking profile photo on profilePicture tap */
-    let picker = UIImagePickerController()      /* Used to pick profile picture in photoPopover */
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
+    let photoPopover = PhotoPickerPopover()
+    let picker = UIImagePickerController()
     let helpers = Helpers()     /* Helper methods mainly for configuring */
     
     var taskMethods = SharedTaskMethods()
@@ -56,12 +55,15 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewDidLoad()
         picker.delegate = self
         edgesForExtendedLayout = []
-       // dataSource = HomeViewControllerDataSource()
+        // dataSource = HomeViewControllerDataSource()
         setupView(tableView:tableView, view:view)
         addNavItemsToController()
     }
     
-    /* Before view appears fetches tasks user data using helpers.getData method then for current user, if currentUser.tasks is not nil, it removes tasks from currentUser regardless it then fetches currentUser from database calling APIClient before loading. Redundant functionality, definitely could be streamlined */
+    /* Before view appears fetches tasks user data using helpers.getData method then for current user
+     * if currentUser.tasks is not nil, it removes tasks from currentUser regardless it then fetches
+     * currentUser from database calling APIClient before loading. Redundant functionality, definitely could be streamlined
+     */
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -89,7 +91,9 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         }
     }
     
-    /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will appears is called again. Called inside helpers class */
+    /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will
+     * appears is called again. Called inside helpers class
+     */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -105,13 +109,14 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     // MARK: - UITableViewController Methods
-    // Returns number of rows based on count taskcount
+    
+    /* Returns number of rows based on count taskcount */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeViewModel.numberOfRows
     }
     
-    // Gets rowheight from datasource and returns it - rowheight is UITableViewAutomaticDimension
+    /* Gets rowheight from datasource and returns it - rowheight is UITableViewAutomaticDimension */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return homeViewModel.rowHeight
@@ -124,11 +129,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         print("here")
     }
     
-    /* If first row returns profile header cell else returns task cell all cells configured within HomeViewController datasource class
-     This setup is problematic when deleting task cells, causes tableview to lose track of proper index path when tableView is reloaded.
-     Need fix. */
-    
-    // FIXME: - Fix so that tableview can delete tasks with index out of range getting thrown
+    /* If first row returns profile header cell else returns task cell all cells configured within HomeViewController  */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellType: HomeCellType = indexPath.row > 0 ? .task : .header
@@ -200,8 +201,6 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         appDelegate.window?.rootViewController = rootNC
     }
     
-    /* Pushes AddTaskViewcontroller to current current view controller on button press */
-    
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
@@ -239,6 +238,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: tapIndex, type: .home)
     }
 }
+
 // Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
 
 extension HomeViewController: UIImagePickerControllerDelegate {
