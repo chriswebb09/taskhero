@@ -24,6 +24,22 @@ class SharedTaskMethods {
         appDelegate.window?.rootViewController = loginVC
     }
     
+    func deleteTask(indexPath: IndexPath, tableView:UITableView) {
+        DispatchQueue.global(qos: .default).async {
+            let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
+            if let tasks = self.store.currentUser.tasks { self.store.tasks = tasks }
+            print(indexPath.row - 1)
+            self.store.tasks.remove(at: indexPath.row - 1)
+            self.store.updateUserScore()
+            self.store.firebaseAPI.registerUser(user: self.store.currentUser)
+            self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
+        }
+        print(self.store.tasks)
+        DispatchQueue.main.async {
+            tableView.reloadData()
+        }
+    }
+    
     
     func tapEdit(viewController: UIViewController, tableView: UITableView, atIndex:IndexPath, type: TaskListType) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell

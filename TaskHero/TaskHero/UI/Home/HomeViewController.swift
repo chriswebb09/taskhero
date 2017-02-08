@@ -141,7 +141,7 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         if editingStyle == .delete {
             tableView.beginUpdates()
             backgroundQueue.async {
-                self.dataSource.deleteTask(indexPath:indexPath, tableView: self.tableView)
+                self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView)
                 self.dataSource.tableIndexPath.row = indexPath.row
             }
             tableView.endUpdates()

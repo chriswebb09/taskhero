@@ -58,22 +58,6 @@ final class HomeViewControllerDataSource {
     }
     
     /* Deletes task at indexPath.row - 1 (subtraction because TaskCells are below the profileHeader cell) */
-    
-    func deleteTask(indexPath: IndexPath, tableView:UITableView) {
-        DispatchQueue.global(qos: .default).async {
-            let removeTaskID: String = self.store.currentUser.tasks![indexPath.row - 1].taskID
-            if let tasks = self.store.currentUser.tasks { self.store.tasks = tasks }
-            print(indexPath.row - 1)
-            self.store.tasks.remove(at: indexPath.row - 1)
-            self.store.updateUserScore()
-            self.store.firebaseAPI.registerUser(user: self.store.currentUser)
-            self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
-        }
-        print(self.store.tasks)
-        DispatchQueue.main.async {
-            tableView.reloadData()
-        }
-    }
 }
 
 
