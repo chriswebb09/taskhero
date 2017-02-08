@@ -12,10 +12,6 @@ enum HomeCellType {
     case task, header
 }
 
-protocol CellMake {
-    func configure(indexPath: IndexPath, cellType: HomeCellType, tableView:UITableView) -> UITableViewCell
-}
-
 final class HomeViewControllerDataSource {
     
     /* Temporary abstraction of HomeViewController behavior. 
@@ -39,22 +35,10 @@ final class HomeViewControllerDataSource {
 
 /* Extension containing method for configuring cells in ViewController. If passed in indexPath.row is 0, the cell returned is ProfileHeaderCell */
 
-extension HomeViewControllerDataSource: CellMake {
-    
-    func configure(indexPath:IndexPath, cellType: HomeCellType, tableView:UITableView) -> UITableViewCell {
-        if cellType == .header {
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
-            return headerCell
-        } else {
-            var taskViewModel: TaskCellViewModel!
-            let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
-            self.store.currentUser.tasks = self.store.tasks
-            taskViewModel = TaskCellViewModel((self.store.currentUser.tasks?[indexPath.row - 1])!)
-            taskCell.configureCell(taskVM: taskViewModel)
-            return taskCell
-        }
+extension HomeViewControllerDataSource {
+    internal func configure(indexPath: IndexPath, cellType: HomeCellType, tableView: UITableView) -> UITableViewCell {
+        return UITableViewCell()
     }
-    
     /* Methods for configure UIElements + registers cell types for tableView sets estimatedRowHeight and registers cell types */
     
     func setupView(tableView: UITableView, view: UIView) {
@@ -99,11 +83,11 @@ extension HomeViewControllerDataSource: CellMake {
             self.store.updateUserScore()
             self.store.firebaseAPI.registerUser(user: self.store.currentUser)
             self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
-            DispatchQueue.main.async {
-                tableView.reloadData()
-            }
         }
         print(self.store.tasks)
+        DispatchQueue.main.async {
+            tableView.reloadData()
+        }
     }
     
     /* Selector method for taskCompletedView and SaveButton in TaskCell - cycles between them depending on the state to either edit or save */
