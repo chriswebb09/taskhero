@@ -27,6 +27,7 @@ class AppScreenViewController: UIViewController {
     }
     
     func loginButtonTapped() {
+        navigationController?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     

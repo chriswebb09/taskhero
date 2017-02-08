@@ -74,21 +74,6 @@ final class HomeViewControllerDataSource {
             tableView.reloadData()
         }
     }
-    
-    /* Selector method for taskCompletedView and SaveButton in TaskCell - cycles between them depending on the state to either edit or save */
-    
-//    func tapEdit(viewController: HomeViewController, tableView: UITableView, atIndex:IndexPath) {
-//        let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
-//        if tapCell.toggled == false {
-//            var newTask = self.store.tasks[atIndex.row - 1]
-//            newTask.taskDescription = tapCell.taskDescriptionLabel.text
-//            self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)
-//            tapCell.taskDescriptionLabel.text = newTask.taskDescription
-//        }
-//        let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
-//        tapCell.taskCompletedView.addGestureRecognizer(tap)
-//        tapCell.taskCompletedView.isUserInteractionEnabled = true
-//    }
 }
 
 

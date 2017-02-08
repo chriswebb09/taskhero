@@ -208,25 +208,12 @@ final class TaskCell: UITableViewCell, Toggable {
     
     func setupShadow() {
         let shadowOffset = CGSize(width:-0.45, height: 0.2)
-        let shadowRadius:CGFloat = 2.0
+        let shadowRadius:CGFloat = 1.0
         let shadowOpacity:Float = 0.4
-        let styledShadowOpacity: Float =  0.0
-        let styledShadowRadius = CGSize(width: 0, height: 0)
-        let cornerRadius:CGFloat = 2.0
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity
     }
-    
-//    private func setupShadow() {
-//        self.layer.cornerRadius = 8
-//        self.layer.shadowOffset = CGSize(width: 0, height: 3)
-//        self.layer.shadowRadius = 3
-//        self.layer.shadowOpacity = 0.3
-//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .AllCorners, cornerRadii: CGSize(width: 8, height: 8)).CGPath
-//        self.layer.shouldRasterize = true
-//        self.layer.rasterizationScale = UIScreen.mainScreen().scale
-    
     
     /* methods used in VC to setup cell with data */
     
