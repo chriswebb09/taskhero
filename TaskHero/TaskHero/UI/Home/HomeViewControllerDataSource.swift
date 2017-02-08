@@ -12,6 +12,17 @@ enum HomeCellType {
     case task, header
 }
 
+protocol Toggable {
+    func toggleState(state:Bool) -> Bool
+}
+
+extension Toggable {
+    func toggleState(state:Bool) -> Bool {
+        return !state
+    }
+}
+
+
 final class HomeViewControllerDataSource {
     
     /* Temporary abstraction of HomeViewController behavior. 
@@ -39,20 +50,4 @@ final class HomeViewControllerDataSource {
         picker.sourceType = .photoLibrary
         viewController.present(picker, animated: true, completion: nil)
     }
-    
-    /* Deletes task at indexPath.row - 1 (subtraction because TaskCells are below the profileHeader cell) */
 }
-
-protocol Toggable {
-    func toggleState(state:Bool) -> Bool
-}
-
-extension Toggable {
-    func toggleState(state:Bool) -> Bool {
-        return !state
-    }
-}
-
-
-
-
