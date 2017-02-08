@@ -12,7 +12,6 @@ class ConcurrentOperation: Operation {
     
     enum State: String {
         case isReady, isExecuting, isFinished
-        
         var keyPath: String {
             return "is" + rawValue
         }

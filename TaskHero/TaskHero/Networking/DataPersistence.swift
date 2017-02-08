@@ -15,8 +15,6 @@ class DataPeristence {
     
     let defaults = UserDefaults.standard
     
-    // Incomplete - will eventually pull stored data for log in persistence
-    
     func hasLoggedIn() {
         let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
         let user = defaults.data(forKey: "currentUser")
@@ -26,20 +24,20 @@ class DataPeristence {
         }
     }
     
-    // sets has logged in key for UserDefaults
+    /* Sets has logged in key for UserDefaults */
     
     func setLoggedInKey(userState:Bool) {
         defaults.set(userState, forKey: "hasLoggedIn")
     }
     
-    // incomplete - set currentUser and tasks on local storage after log in to mitigate constant log in fatigue
+    /* Incomplete - set currentUser and tasks on local storage after log in to mitigate constant log in fatigue */
     
     func setUserData(user: User) {
         defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "currentUser")
         defaults.synchronize()
     }
     
-    // incomplete - when finished method should remove currentUser and tasks from local storage when user taps logout
+    /* incomplete - when finished method should remove currentUser and tasks from local storage when user taps logout */
     
     func logout() {
         defaults.set(false, forKey: "hasLoggedIn")

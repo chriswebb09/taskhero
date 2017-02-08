@@ -52,7 +52,7 @@ final class AddTaskViewController: UIViewController  {
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
-    // Adds UITextFieldDelegate and UITextViewDelege to self - self = AddTaskViewController
+    /* Adds UITextFieldDelegate and UITextViewDelege to self - self = AddTaskViewController */
     
     func setupDelegates() {
         addTaskView.taskNameField.delegate = self
@@ -71,7 +71,7 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     }
     
     // MARK: - TextField Methods
-    // On return-key press hides keyboard
+    /* On return-key press hides keyboard */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -107,27 +107,27 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
 
 extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
-    // MARK: - Extension UIPickerView Methods
-    // DatePicker Initialization
+    /* MARK: - Extension UIPickerView Methods */
+    /* DatePicker Initialization */
     
     func setupPick() {
         pick.dataSource = self
     }
     
-    // 3 components in picker - day - month - year
+    /* 3 components in picker - day - month - year */
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        // Return picker options for number of months if at index 0
+        /* Return picker options for number of months if at index 0 */
         if component == 0 {
             return taskViewModel.pickerMonths.count
-            // Return numbers of days in month
+            /* Return numbers of days in month */
         } else if component == 1 {
             return 30
-            // Return years
+            /* Return years */
         } else {
             return 3
         }
@@ -135,22 +135,22 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            // first component is months
+            /* First component is months */
             return taskViewModel.pickerMonths[row]
         } else if component == 1 {
             var dayString = String(describing: taskViewModel.range[row])
-            // second component is days if less than 2 digits adds zero before day
+            /* Second component is days if less than 2 digits adds zero before day */
             if dayString.characters.count < 2 {
                 day = "0\(dayString)"
             }
             return day
         } else {
-            // last component is years
+            /* Last component is years */
             return taskViewModel.years[row]
         }
     }
     
-    // Sets UIPickerView data
+    /* Sets UIPickerView data */
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
@@ -195,7 +195,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
     }
     
-    // Hides keyboard
+    /* Hides keyboard */
     
     func dismissKeyboard() {
         view.endEditing(true)

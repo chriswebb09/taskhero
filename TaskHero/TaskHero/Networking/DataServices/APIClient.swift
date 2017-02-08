@@ -11,9 +11,6 @@ import Firebase
 typealias TaskCompletion = ([Task]) -> Void
 typealias UserCompletion = (User) -> Void
 
-// TODO: Finish refactoring class, remove duplicate functionality
-// FIXME: Remove duplicate fetch task and user methods
-
 final class APIClient {
     
     // MARK: - Deallocate APIClient
@@ -51,13 +48,13 @@ final class APIClient {
         tasksRef = dbRef.child("Users").child(userID).child("Tasks")
     }
     
-    // remove task from database
+    /* Remove task from database */
     
     func removeTask(ref:String, taskID: String) {
         tasksRef.child(ref).removeValue()
     }
     
-    // Fetch all valid usernames in database
+    /* Fetch all valid usernames in database */
     
     public func updateUsernameList(user: User) {
         ref = FIRDatabase.database().reference()
@@ -71,7 +68,7 @@ final class APIClient {
         }
     }
     
-    // Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller
+    /* Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller */
     
     func addTasks(task:Task) {
         tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
@@ -83,7 +80,7 @@ final class APIClient {
         tasksRef.keepSynced(true)
     }
     
-    // updates values of task when task is editted
+    /* Updates values of task when task is editted */
     
     func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
         var taskList = taskList
@@ -120,8 +117,8 @@ final class APIClient {
         tasksRef.updateChildValues(["/\(taskID)": taskData])
     }
     
-    // Updates user profile data in database
-    // Grab tasks from user profile in realtime user database
+    /* Updates user profile data in database */
+    /* Grab tasks from user profile in realtime user database */
     
     func fetchUserData(completion: @escaping UserCompletion) {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
