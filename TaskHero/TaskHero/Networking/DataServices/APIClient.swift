@@ -94,6 +94,18 @@ final class APIClient {
     }
     
     
+    func fetchTaskList(completion: @escaping TaskCompletion) {
+        var taskList = [Task]()
+        refHandle = tasksRef.observe(.childAdded, with: { snapshot in
+            let newTask = self.createTaskSnapshot(snapshot: snapshot)
+            if let task = newTask {
+                taskList.append(task)
+            }
+            completion(taskList)
+        })
+    }
+    
+    
     func createTaskSnapshot(snapshot: FIRDataSnapshot) -> Task? {
         var newTask = Task()
         newTask.taskID = snapshot.key

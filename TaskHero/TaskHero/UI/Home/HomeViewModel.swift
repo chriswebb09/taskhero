@@ -29,10 +29,10 @@ struct HomeViewModel {
         //return tasks.count + 1
     }
     
-    var tasks: [Task] {
-        guard let tasks = store.currentUser.tasks else { return [] }
-        return tasks
-    }
+//    var tasks: [Task] {
+//        guard let tasks = store.currentUser.tasks else { return [] }
+//        return tasks
+//    }
     
     var rowHeight = UITableViewAutomaticDimension
     
