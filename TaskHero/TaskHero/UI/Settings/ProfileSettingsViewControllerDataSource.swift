@@ -56,7 +56,7 @@ final class ProfileSettingsViewControllerDataSource {
     
         func setupUser(user: User) {
             store.firebaseAPI.registerUser(user: user)
-            store.currentUserString = FIRAuth.auth()?.currentUser?.uid
+           // store.currentUserString = FIRAuth.auth()?.currentUser?.uid
             store.firebaseAPI.setupRefs()
             store.currentUser = user
         }

@@ -24,7 +24,7 @@ final class SharedTaskMethods {
     }
     
     func deleteTask(indexPath: IndexPath, tableView:UITableView, type: TaskListType) {
-
+        
         var rowIndex: Int
         switch type {
         case .home:
@@ -34,26 +34,19 @@ final class SharedTaskMethods {
         }
         
         DispatchQueue.global(qos: .default).async {
-            var removeID: String = ""
-            if let currentUser = self.store.currentUser {
-                if let tasks = currentUser.tasks {
-                    removeID = tasks[rowIndex].taskID
-                    self.store.tasks = tasks
-                    self.store.tasks.remove(at: indexPath.row - 1)
-                    self.store.updateUserScore()
-                    self.store.firebaseAPI.registerUser(user: self.store.currentUser)
-                    self.store.firebaseAPI.removeTask(ref: removeID, taskID: removeID)
-
-                }
-            }
-            
-           // if let tasks = self.store.currentUser.tasks { self.store.tasks = tasks }
-            //print(indexPath.row - 1)
-            
+            let removeTaskID: String = self.store.currentUser.tasks![rowIndex].taskID
+            if let tasks = self.store.currentUser.tasks { self.store.tasks = tasks }
+            print(indexPath.row - 1)
+            self.store.tasks.remove(at: indexPath.row - 1)
+            self.store.updateUserScore()
+            self.store.firebaseAPI.registerUser(user: self.store.currentUser)
+            self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
             DispatchQueue.main.async {
                 tableView.reloadData()
             }
         }
+        print(self.store.tasks)
+        
     }
     
     func setupTableView(tableView: UITableView, view: UIView) {

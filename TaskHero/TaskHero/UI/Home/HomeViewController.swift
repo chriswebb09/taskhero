@@ -26,7 +26,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var homeViewModel: HomeViewModel {
         didSet {
-
+            
         }
     }
     
@@ -192,18 +192,22 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
             }
-        
-//            if self.store.currentUser.tasks != nil {
-//                self.store.currentUser.tasks?.removeAll()
-//            }
+            helpers.reload(tableView: tableView)
+            tableView.endUpdates()
+        }
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            if self.store.currentUser.tasks != nil {
+                self.store.currentUser.tasks?.removeAll()
+            }
             self.fetchUser() { user in
                 self.store.currentUser = user
                 self.tasks = self.store.currentUser.tasks!
             }
-            tableView.endUpdates()
             self.helpers.reload(tableView: tableView)
         }
     }
+    
+    
     
     /* Sets up action for logout button press, add task button press and adds these as selectors on
      navigation items which are added to navigation controller. */

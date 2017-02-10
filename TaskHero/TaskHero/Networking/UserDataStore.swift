@@ -19,7 +19,10 @@ final class UserDataStore {
     
     public let firebaseAPI = APIClient()
     public var currentUser: User!
-    public var currentUserString: String!
+    public var currentUserString: String {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return "Unable to get UID" }
+        return uid
+    }
     public var tasks = [Task]()
     var profilePicture: UIImage!
     var validUsernames = [String]()
