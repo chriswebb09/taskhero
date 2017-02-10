@@ -12,7 +12,12 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow?
+    
+    var window: UIWindow? = {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = UINavigationController(rootViewController: InitialViewController())
+        return window
+    }()
     
     override init() {
         FIRApp.configure()
@@ -20,14 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.barTintColor = UIColor.navigationBarColor()
         navigationBarAppearace.tintColor = UIColor.white
-        window = UIWindow(frame: UIScreen.main.bounds)
         DataPeristence.shared.hasLoggedIn()
-        window?.rootViewController = UINavigationController(rootViewController: InitialViewController())
         window?.makeKeyAndVisible()
         return true
     }

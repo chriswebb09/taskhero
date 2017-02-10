@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class DataPeristence {
     
     static let shared = DataPeristence() 

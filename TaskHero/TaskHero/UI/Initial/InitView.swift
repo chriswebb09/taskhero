@@ -90,7 +90,7 @@ final class InitView: UIView {
     }
     
     fileprivate func zoomOut() -> CGAffineTransform {
-        let zoomOutTranform: CGAffineTransform = CGAffineTransform(scaleX: 03, y: 03)
+        let zoomOutTranform: CGAffineTransform = CGAffineTransform(scaleX: 05, y: 05)
         return zoomOutTranform
     }
 }

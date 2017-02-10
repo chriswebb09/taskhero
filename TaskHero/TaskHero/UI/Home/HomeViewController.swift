@@ -14,19 +14,7 @@ import UIKit
  Not final setup - still a work in progress
  */
 
-enum HomeCellType {
-    case task, header
-}
 
-protocol Toggable {
-    func toggleState(state:Bool) -> Bool
-}
-
-extension Toggable {
-    func toggleState(state:Bool) -> Bool {
-        return !state
-    }
-}
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
     
@@ -38,8 +26,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var homeViewModel: HomeViewModel {
         didSet {
-            print("\n\n\n Tasks \(tasks)")
-            tasks = homeViewModel.tasks
+
         }
     }
     
@@ -91,25 +78,38 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     func updateTasks() {
-        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+        DispatchQueue.global(qos: .userInitiated).async {
             self.fetchUser() { user in
-                self.store.currentUser = user
-                self.tasks = self.homeViewModel.tasks
+                DispatchQueue.main.async {
+                    self.store.currentUser = user
+                    self.tasks = self.homeViewModel.tasks
+                }
             }
         }
     }
     
     func fetchUser(completion: @escaping UserCompletion) {
-        store.tasks.removeAll()
-        store.currentUser.tasks?.removeAll()
+        if let currentUser = store.currentUser {
+            if let userTasks = currentUser.tasks {
+                if store.tasks.count > 0 || userTasks.count > 0 {
+                    store.tasks.removeAll()
+                    store.currentUser.tasks?.removeAll()
+                }
+            }
+        }
         store.firebaseAPI.fetchUserData { user in
             self.homeViewModel.user = user
             self.store.currentUser = user
         }
-        store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
-            self.store.currentUser.tasks = tasks
-            self.store.tasks = tasks
-            completion(self.store.currentUser)
+        
+        if let currentUser = self.store.currentUser {
+            if let tasks = currentUser.tasks {
+                store.firebaseAPI.fetchTasks(taskList: tasks) { tasks in
+                    self.store.currentUser.tasks = tasks
+                    self.store.tasks = tasks
+                    completion(self.store.currentUser)
+                }
+            }
         }
     }
     
@@ -192,17 +192,15 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
             }
-            helpers.reload(tableView: tableView)
-            tableView.endUpdates()
-        }
-        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            if self.store.currentUser.tasks != nil {
-                self.store.currentUser.tasks?.removeAll()
-            }
+        
+//            if self.store.currentUser.tasks != nil {
+//                self.store.currentUser.tasks?.removeAll()
+//            }
             self.fetchUser() { user in
                 self.store.currentUser = user
                 self.tasks = self.store.currentUser.tasks!
             }
+            tableView.endUpdates()
             self.helpers.reload(tableView: tableView)
         }
     }

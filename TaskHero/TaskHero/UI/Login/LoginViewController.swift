@@ -120,7 +120,9 @@ extension LoginViewController: UITextFieldDelegate {
     
     
     func fetchData() {
-        UserDataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in UserDataStore.sharedInstance.currentUser = currentUser }
+        UserDataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in
+            UserDataStore.sharedInstance.currentUser = currentUser
+        }
         DataPeristence.shared.setLoggedInKey(userState: true)
         DataPeristence.shared.hasLoggedIn()
     }
@@ -136,10 +138,10 @@ extension LoginViewController: UITextFieldDelegate {
      */
     
     func completeLogin() {
-        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+        DispatchQueue.global(qos: .background).async {
             self.fetchData()
             /*  On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
-            DispatchQueue.main.async { [unowned self] in
+            DispatchQueue.main.async {
                 self.loadingView.hideActivityIndicator(viewController: self)
                 self.setupTabBar()
             }

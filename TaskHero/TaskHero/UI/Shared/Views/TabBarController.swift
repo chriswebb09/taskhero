@@ -21,13 +21,13 @@ class TabBarController: UITabBarController {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             self.view.backgroundColor = UIColor.white
             if user != nil && (self.store.currentUser != nil) {
-                DispatchQueue.main.async {
-                    self.setupTabs()
-                }
+                self.setupTabs()
             } else if self.store.currentUser == nil {
-                self.getUser()
-                DispatchQueue.main.async {
-                    self.setupTabs()
+                DispatchQueue.global(qos: .background).async {
+                    self.getUser()
+                    DispatchQueue.main.async {
+                        self.setupTabs()
+                    }
                 }
             }
         }

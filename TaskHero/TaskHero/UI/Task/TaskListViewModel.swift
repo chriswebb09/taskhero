@@ -18,12 +18,14 @@ final class TaskListViewModel {
     }
     
     var showTaskLabel: Bool {
-        guard let tasks = store.currentUser.tasks else { return false }
-        if tasks.count > 0 {
-            return false
-        } else {
-            return true
+        if let currentUser = store.currentUser {
+            if let tasks = currentUser.tasks {
+                if tasks.count > 0 {
+                    return false
+                }
+            }
         }
+        return true
     }
     
     var taskLabelText: String {
