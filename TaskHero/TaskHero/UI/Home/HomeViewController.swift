@@ -79,6 +79,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillAppear(false)
     }
     
+
     
     func fetchData() {
         backgroundQueue.async {
@@ -98,7 +99,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
                 }
             }
         }
-        
     }
     
     /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will
