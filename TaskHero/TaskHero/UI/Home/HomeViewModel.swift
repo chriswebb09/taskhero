@@ -1,13 +1,6 @@
-  //
-//  HomeViewModel.swift
-//  TaskHero
-//
-//  Created by Christopher Webb-Orenstein on 1/27/17.
-//  Copyright © 2017 Christopher Webb-Orenstein. All rights reserved.
-//
 
 import UIKit
-  
+
 
 
 struct HomeViewModel {
@@ -25,7 +18,7 @@ struct HomeViewModel {
     }
     
     var numberOfRows: Int {
-       // var rows = 0
+        // var rows = 0
         if let currentUser = store.currentUser {
             if let tasks = currentUser.tasks {
                 return tasks.count + 1
@@ -42,5 +35,5 @@ struct HomeViewModel {
     }
     
     var rowHeight = UITableViewAutomaticDimension
-
+    
 }

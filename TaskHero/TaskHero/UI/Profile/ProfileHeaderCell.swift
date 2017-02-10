@@ -88,9 +88,9 @@ final class ProfileHeaderCell: UITableViewCell {
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
     
-    /* adds levelLabel, emailLabel, joinDateLabel, usernameLabel, profilePicture to subview */
-    /* calls configureLabel on levelLabel, emailLabel, joinDateLabel, usernameLabel */
-    /* calls configureConstraints on levelLabel, emailLabel, usernameLabel */
+    /* adds levelLabel, emailLabel, joinDateLabel, usernameLabel, profilePicture to subview
+       calls configureLabel on levelLabel, emailLabel, joinDateLabel, usernameLabel
+       calls configureConstraints on levelLabel, emailLabel, usernameLabel */
     
     private func addConfigures() {
         contentView.addSubview(levelLabel)

@@ -25,7 +25,6 @@ final class LoginViewController: UIViewController {
         print("LoginViewController deallocated from memory")
     }
     
-    let store = UserDataStore.sharedInstance
     var loadingView = LoadingView()
     var loginView: LoginView = LoginView()
     

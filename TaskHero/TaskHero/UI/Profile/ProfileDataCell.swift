@@ -158,8 +158,6 @@ final class ProfileDataCell: UITableViewCell {
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"
         tasksCompletedLabel.text = "Tasks Completed: \(String(describing: dataCellModel.tasksCompleted))"
         layoutSubviews()
-        //contentView.layer.borderColor = UIColor.clear.cgColor
-        //layer.borderColor = UIColor.clear.cgColor
         layoutMargins = UIEdgeInsets.zero
     }
     
