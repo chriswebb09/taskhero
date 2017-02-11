@@ -44,7 +44,6 @@ final class SettingsViewController: UITableViewController {
         super.viewWillDisappear(false)
         hide()
     }
-    
 }
 
 extension SettingsViewController {
@@ -80,17 +79,20 @@ extension SettingsViewController {
             notifyPop.notifyPopView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
         }
     }
-    
+}
+
+extension SettingsViewController {
+
     // MARK: Public Methods
     
-    private func alertPopInitialOpacity() {
+    fileprivate func alertPopInitialOpacity() {
         alertPop.popView.layer.opacity = 0
         alertPop.popView.isHidden = false
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = 0
     }
     
-    private func launchPopupView() {
+    fileprivate func launchPopupView() {
         alertPopInitialOpacity()
         alertPop.showPopView(viewController: self)
         UIView.animate(withDuration: 0.1, animations: { [unowned self] in
@@ -110,7 +112,6 @@ extension SettingsViewController {
         notifyPop.containerView.layer.opacity = 0
         notifyPop.popView.layer.opacity = 0
     }
-    
 }
 
 extension SettingsViewController {
@@ -122,7 +123,6 @@ extension SettingsViewController {
             self.notifyPop.popView.layer.opacity = 1
             self.notifyPop.containerView.layer.opacity = 0.1 }
         )
-        //popView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
     }
     
     // MARK: - Setup buttons
@@ -145,7 +145,10 @@ extension SettingsViewController {
         alertPop.containerView.isHidden = true
         alertPop.hidePopView(viewController: self)
     }
-    
+}
+
+extension SettingsViewController {
+
     // MARK: - Switch between segments
     
     func changeView(sender: UISegmentedControl) {
