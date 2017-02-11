@@ -33,7 +33,6 @@ final class SharedTaskMethods {
         case .taskList:
             rowIndex = indexPath.row
         }
-        
         DispatchQueue.global(qos: .default).async {
             let removeTaskID: String = self.store.tasks[rowIndex].taskID
             print(indexPath.row - 1)
@@ -44,16 +43,12 @@ final class SharedTaskMethods {
             DispatchQueue.main.async {
                 tableView.reloadData()
             }
-            
         }
-        
         print(self.store.tasks)
-        
     }
     
     func setupTableView(tableView: UITableView, view: UIView) {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-       // tableView.separatorStyle = .singleLine
         tableView.separatorStyle = .singleLineEtched
         tableView.allowsSelection = false
         tableView.rowHeight = UITableViewAutomaticDimension

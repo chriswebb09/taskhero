@@ -9,12 +9,8 @@
 import UIKit
 
 final class NotificationView: BasePopView {
-    
-    deinit {
-        print("NotificationView deallocated from memory")
-    }
-    
-    lazy var doneButton: UIButton = {
+
+    var doneButton: UIButton = {
         var button = ButtonType.system(title: "Okay", color: UIColor.white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
@@ -22,7 +18,7 @@ final class NotificationView: BasePopView {
         return uiElement
     }()
     
-    lazy var dataLabel: UILabel = {
+    var dataLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = UIColor.black
         searchLabel.text = "Please try again later."
@@ -37,8 +33,11 @@ final class NotificationView: BasePopView {
         backgroundColor = UIColor.white
         setupConstraints()
     }
+}
+
+extension NotificationView {
     
-    func addDataLabel() {
+    private func addDataLabel() {
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
         dataLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         dataLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
@@ -46,14 +45,13 @@ final class NotificationView: BasePopView {
         dataLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: bounds.height / 3).isActive = true
     }
     
-    func addDoneButton() {
+    private func addDoneButton() {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         doneButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
     }
-    
     
     override func setupConstraints() {
         addSubview(dataLabel)

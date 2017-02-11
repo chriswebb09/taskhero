@@ -14,7 +14,6 @@ final class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Date().getYears()
         edgesForExtendedLayout = []
         view.addSubview(initView)
         view.backgroundColor = UIColor.white
@@ -26,11 +25,14 @@ final class InitialViewController: UIViewController {
         let when = DispatchTime.now() + 0.5 //
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.initView.zoomAnimation({
-                
+                print("Animating")
             })
         }
     }
     
+}
+
+extension InitialViewController {
     func loginButtonTapped() {
         navigationController?.pushViewController(LoginViewController(), animated: false)
     }

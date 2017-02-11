@@ -47,6 +47,10 @@ final class LoginView: UIView {
         animated()
     }
     
+}
+
+extension LoginView {
+
     func initialOpacity() {
         loginButton.layer.opacity = 0
         emailField.layer.opacity = 0
@@ -104,6 +108,10 @@ final class LoginView: UIView {
         loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height  * 0.1).isActive = true
     }
     
+}
+
+extension LoginView {
+
     
     func textInputAnimation() {
         if editState != true {

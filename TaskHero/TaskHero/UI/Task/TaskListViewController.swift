@@ -59,6 +59,9 @@ final class TaskListViewController: UITableViewController {
             super.init(nibName: nil, bundle:nil)
         }
     }
+}
+
+extension TaskListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,24 +75,12 @@ final class TaskListViewController: UITableViewController {
         tableView.reloadData()
     }
     
-}
-
-extension TaskListViewController {
-
-    func configureAddTaskLabel(label: UILabel) {
-        addTasksLabel.font = Constants.Font.fontNormal
-        addTasksLabel.textColor = UIColor.gray
-        addTasksLabel.textAlignment = .center
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        store.firebaseAPI.tasksRef.removeObserver(withHandle: store.firebaseAPI.refHandle)
     }
     
     /* Does setupfor tableview/emptytable view and navbar */
-    
-    func initializeBackgroundUI() {
-        sharedTaskMethods.setupTableView(tableView:tableView, view: view)
-        setupNavItems(navController:navigationController)
-    }
-    
-    // FIXME: - Refactor ASAP
     
     override func viewWillAppear(_ animated: Bool) {
         fetchUser()
@@ -101,6 +92,16 @@ extension TaskListViewController {
         super.viewWillAppear(false)
     }
     
+    func configureAddTaskLabel(label: UILabel) {
+        addTasksLabel.font = Constants.Font.fontNormal
+        addTasksLabel.textColor = UIColor.gray
+        addTasksLabel.textAlignment = .center
+    }
+    
+    func initializeBackgroundUI() {
+        sharedTaskMethods.setupTableView(tableView:tableView, view: view)
+        setupNavItems(navController:navigationController)
+    }
     
     func fetchUser() {
         self.store.firebaseAPI.fetchUserData() { user in
@@ -113,13 +114,7 @@ extension TaskListViewController {
             }
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(false)
-        store.firebaseAPI.tasksRef.removeObserver(withHandle: store.firebaseAPI.refHandle)
-    }
 }
-
 
 // MARK: - UITableViewController Methods
 
@@ -152,8 +147,6 @@ extension TaskListViewController: TaskCellDelegate {
             tableView.endUpdates()
         }
     }
-    
-    // MARK: - TaskList UI
     
     func emptyTableViewState(addTaskLabel:UILabel) {
         if (store.tasks.count <= 1) && (!addTasksLabel.isHidden) {
@@ -218,7 +211,6 @@ extension TaskListViewController: TaskCellDelegate {
         if let index = indexPath {
             sharedTaskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: index, type: .taskList)
         }
-        
     }
     
     // Kicks off cycling between taskcell editing states
