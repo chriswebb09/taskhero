@@ -16,12 +16,6 @@ import UIKit
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
     
-    // MARK: - Deallocate HomeViewController From Memory
-    
-    deinit {
-        print("HomeViewController deallocated")
-    }
-    
     var homeViewModel: HomeViewModel {
         didSet {
             print("HomeViewModel")
@@ -32,7 +26,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var tasks: [Task] = [] {
         didSet {
-            self.helpers.reload(tableView: tableView)
+            print("HERE")
             print("Tasks: \(tasks)")
             print("Tasks Count: \(tasks.count)")
         }
@@ -50,7 +44,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         picker.delegate = self
         edgesForExtendedLayout = []
         setupView(tableView:tableView, view:view)
-        addNavItemsToController()
+        self.addNavItemsToController()
     }
     
     /* Before view appears fetches tasks user data using helpers.getData method then for current user
@@ -187,7 +181,10 @@ extension HomeViewController {
             tableView.beginUpdates()
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
-                self.fetchUser()
+                DispatchQueue.main.async {
+                    self.fetchUser()
+                }
+                
             }
             tableView.endUpdates()
         }
@@ -199,10 +196,13 @@ extension HomeViewController {
     /* Sets up action for logout button press, add task button press and adds these as selectors on navigation items which are added to navigation controller. Logs out user by settings root ViewController to Loginview */
     
     func logoutButtonPressed() {
-        let loginVC = LoginViewController()
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "hasLoggedIn")
+        defaults.synchronize()
+        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
+        let loginVC = AppScreenViewController()
         let rootNC = UINavigationController(rootViewController:loginVC)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        DataPeristence.shared.logout()
         appDelegate.window?.rootViewController = rootNC
     }
     

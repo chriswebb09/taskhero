@@ -26,9 +26,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let navigationBarAppearace = UINavigationBar.appearance()
+        let defaults = UserDefaults.standard
         navigationBarAppearace.barTintColor = UIColor.navigationBarColor()
         navigationBarAppearace.tintColor = UIColor.white
-        DataPeristence.shared.hasLoggedIn()
+         print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
+        
+         print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
+        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
+        if defaults.bool(forKey: "hasLoggedIn") {
+            print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
+            window?.rootViewController = TabBarController()
+        }
         window?.makeKeyAndVisible()
         return true
     }

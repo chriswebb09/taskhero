@@ -50,7 +50,7 @@ final class AddTaskView: UIView {
     
     var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
-        //addTaskButton.layer.borderWidth = Constants.Border.borderWidth
+        addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
         addTaskButton.backgroundColor = Constants.Color.buttonColor
         addTaskButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
@@ -58,8 +58,6 @@ final class AddTaskView: UIView {
         addTaskButton.setTitleColor(UIColor.white, for: .normal)
         return addTaskButton
     }()
-    
-    
     
     // MARK: - Initialization
     
@@ -72,7 +70,6 @@ final class AddTaskView: UIView {
     func setBorder(view: UIView) {
         view.layer.borderWidth = Constants.Border.borderWidth
     }
-    
     
     // MARK: - Configure
     

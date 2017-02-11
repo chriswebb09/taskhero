@@ -28,8 +28,13 @@ class DataPeristence {
     /* Sets has logged in key for UserDefaults */
     
     func setLoggedInKey(userState:Bool) {
+       
+       // let appDefaults: [String:Any] = ["hasLoggedIn" : true]
+       // defaults.register(defaults: appDefaults)
         defaults.set(userState, forKey: "hasLoggedIn")
-        print(defaults)
+        defaults.synchronize()
+//
+//        print(defaults)
     }
     
     /* Incomplete - set currentUser and tasks on local storage after log in to mitigate constant log in fatigue */
@@ -42,9 +47,12 @@ class DataPeristence {
     /* incomplete - when finished method should remove currentUser and tasks from local storage when user taps logout */
     
     func logout() {
-        defaults.set(false, forKey: "hasLoggedIn")
-        defaults.removeObject(forKey: "currentUser")
-        defaults.removeObject(forKey: "UID")
-        defaults.synchronize()
+        DispatchQueue.main.async {
+            self.defaults.set(false, forKey: "hasLoggedIn")
+            self.defaults.removeObject(forKey: "currentUser")
+            self.defaults.removeObject(forKey: "UID")
+            self.defaults.synchronize()
+        }
+        
     }
 }

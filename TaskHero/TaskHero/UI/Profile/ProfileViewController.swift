@@ -95,9 +95,11 @@ final class ProfileViewController: UITableViewController {
     // On logout button press sets RootViewController to LoginViewController on main thread
     
     func logoutButtonPressed() {
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "hasLoggedIn")
+        defaults.synchronize()
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        DataPeristence.shared.logout()
         appDelegate.window?.rootViewController = loginVC
     }
     

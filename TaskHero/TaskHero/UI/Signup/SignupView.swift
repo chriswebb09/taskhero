@@ -44,6 +44,10 @@ class SignupView: UIView {
         return button.newButton
     }()
     
+}
+
+extension SignupView {
+
     // MARK: Initialization
     
     override func layoutSubviews() {

@@ -33,8 +33,10 @@ final class APIClient {
     var usernameRef: FIRDatabaseReference!
     let userID = FIRAuth.auth()?.currentUser?.uid
     let database = FIRDatabase.database()
+    let syncedUser = FIRDatabase.database().reference(withPath: "Users")
     
     init() {
+        syncedUser.keepSynced(true)
         dbRef = FIRDatabase.database().reference()
         usernameRef = dbRef.child("Usernames")
         setupRefs()

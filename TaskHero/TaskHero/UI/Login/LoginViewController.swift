@@ -25,6 +25,7 @@ final class LoginViewController: UIViewController {
         print("LoginViewController deallocated from memory")
     }
     
+    var defaults = UserDefaults.standard
     var loadingView = LoadingView()
     var loginView: LoginView = LoginView()
     
@@ -39,6 +40,7 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
         view.addSubview(loginView)
         setupDelegates()
         edgesForExtendedLayout = []
@@ -52,6 +54,7 @@ final class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
         super.viewWillAppear(false)
     }
 }
@@ -121,8 +124,6 @@ extension LoginViewController: UITextFieldDelegate {
         UserDataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in
             UserDataStore.sharedInstance.currentUser = currentUser
         }
-        DataPeristence.shared.setLoggedInKey(userState: true)
-        DataPeristence.shared.hasLoggedIn()
     }
     
     /*
@@ -136,10 +137,15 @@ extension LoginViewController: UITextFieldDelegate {
      */
     
     func completeLogin() {
+        
         DispatchQueue.global(qos: .background).async {
             self.fetchData()
             /*  On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
             DispatchQueue.main.async {
+                let defaults = UserDefaults.standard
+                defaults.set(true, forKey: "hasLoggedIn")
+                defaults.synchronize()
+                // DataPeristence.shared.setLoggedInKey(userState: true)
                 self.loadingView.hideActivityIndicator(viewController: self)
                 self.setupTabBar()
             }
