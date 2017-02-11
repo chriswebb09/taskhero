@@ -71,7 +71,6 @@ final class ProfileDataCell: UITableViewCell {
         contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         setupConstraints()
     }
-    
 }
 
 extension ProfileDataCell {
@@ -107,7 +106,6 @@ extension ProfileDataCell {
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
-        
     }
     
     func configureDividers(view: UIView) {
