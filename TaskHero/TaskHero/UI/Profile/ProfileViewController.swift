@@ -62,6 +62,7 @@ extension ProfileViewController {
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
+            bannerCell.isHidden = true
             return bannerCell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
@@ -81,10 +82,10 @@ extension ProfileViewController {
     // MARK: - Delegate Methods
     
     func setupNavItems() {
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
+        navigationController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: .white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
     }
     
     // MARK: - Button methods

@@ -32,13 +32,13 @@ class AppScreenView: UIView {
     
     var viewDivider: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = .clear
         return view
     }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = UIColor.white
+        backgroundColor = .white
         frame = UIScreen.main.bounds
         setupConstraints()
     }

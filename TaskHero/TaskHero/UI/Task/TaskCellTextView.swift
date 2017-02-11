@@ -37,8 +37,8 @@ class TaskCellView: UIView {
     }
     
     var saveButton: UIButton {
-        let button = ButtonType.system(title: "Save", color: UIColor.black).newButton
-        button.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
+        let button = ButtonType.system(title: "Save", color: .black).newButton
+        button.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: .black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
         button.isHidden = true
         button.isEnabled = false
         return button
@@ -58,8 +58,8 @@ extension UITextView {
     func editTextViewStyle() {
         print("Inside edit text view style")
         layer.borderWidth = Constants.Dimension.mainWidth
-        backgroundColor = UIColor.white
-        textColor = UIColor.black
+        backgroundColor = .white
+        textColor = .black
         layer.borderColor = UIColor.lightGray.cgColor
         layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         font = Constants.signupFieldFont
@@ -69,7 +69,7 @@ extension UITextView {
     func labelTextViewStyle() {
         backgroundColor = Constants.TaskCell.Description.descriptionLabelBackgroundColor
         font = Constants.Font.fontMedium
-        textColor = UIColor.white
+        textColor = .white
         isEditable = false
         isSelectable = false
         isUserInteractionEnabled = false

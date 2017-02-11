@@ -19,7 +19,7 @@ final class FriendsSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         view.addSubview(friendsSettingsView)
         friendsSettingsView.layoutSubviews()
         friendsSettingsView.searchField.delegate = self

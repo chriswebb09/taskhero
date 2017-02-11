@@ -28,14 +28,14 @@ final class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         settings = userSettings
         edgesForExtendedLayout = []
-        view.backgroundColor = UIColor.backgroundColor()
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
+        view.backgroundColor = .backgroundColor()
+        navigationController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
         let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
-        header.backgroundColor = UIColor.white
+        header.backgroundColor = .white
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
-        tableView.separatorColor = UIColor.blue
+        tableView.separatorColor = .blue
         tableView.setupTableView(view:self.view)
         setupSegment()
     }
@@ -155,11 +155,11 @@ extension SettingsViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             settings = userSettings
-            segmentControl.subviews[0].backgroundColor = UIColor.white
+            segmentControl.subviews[0].backgroundColor = .white
             dump(segmentControl)
         default:
             settings = applicationSettings
-            segmentControl.subviews[1].backgroundColor = UIColor.white
+            segmentControl.subviews[1].backgroundColor = .white
             dump(segmentControl)
         }
         tableView.reloadData()
@@ -168,10 +168,10 @@ extension SettingsViewController {
     // MARK: - Segment Control UI
     
     func setupSegment() {
-        let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]
-        let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
+        let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: .white]
+        let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: .black]
         segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
-        segmentControl.tintColor = UIColor.black
+        segmentControl.tintColor = .black
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)

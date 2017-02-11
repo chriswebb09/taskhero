@@ -26,6 +26,6 @@ extension UINavigationController {
     
     func setupNav() {
         navigationBar.isHidden = false
-        navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.Border.borderWidth)
+        navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
     }
 }

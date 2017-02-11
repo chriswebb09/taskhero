@@ -13,7 +13,7 @@ class AlertPopover: BasePopoverAlert {
     open lazy var alertPopView: AlertView = {
         let popView = AlertView()
         popView.layer.cornerRadius = 10
-        popView.backgroundColor = UIColor.white
+        popView.backgroundColor = .white
         popView.layer.borderColor = UIColor.black.cgColor
         popView.layer.borderWidth = 1
         return popView

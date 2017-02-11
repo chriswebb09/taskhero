@@ -76,7 +76,7 @@ extension ProfileHeaderCell {
     // MARK: - Configuring Cell
     
     private func configureLabel(label:UILabel) {
-        label.textColor = UIColor.black
+        label.textColor = .black
         label.textAlignment = .right
         label.sizeToFit()
     }

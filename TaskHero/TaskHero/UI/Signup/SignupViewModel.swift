@@ -28,7 +28,7 @@ class SignupViewModel {
         if isEnabled {
             return Constants.Color.mainColor
         }
-        return UIColor.lightGray
+        return .lightGray
     }
     
     init(signup: String) {

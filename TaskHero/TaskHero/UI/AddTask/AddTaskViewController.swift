@@ -86,14 +86,14 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Describe what you want to get done."
-            textView.textColor = UIColor.lightGray
+            textView.textColor = .lightGray
         }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "Describe what you want to get done." {
             textView.text = ""
-            textView.textColor = UIColor.black
+            textView.textColor = .black
         }
     }
 }
@@ -161,7 +161,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             self.pop.showPopView(viewController: self, pick: self.pick)
             self.stringDate = "\(self.month)-\(self.day)-\(self.year)"
         }
-        pop.poppupView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
+        pop.popupView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
     
     /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */

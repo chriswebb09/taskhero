@@ -19,7 +19,7 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            self.view.backgroundColor = UIColor.white
+            self.view.backgroundColor = .white
             if user != nil && (self.store.currentUser != nil) {
                 self.setupTabs()
             } else if self.store.currentUser == nil {
@@ -114,7 +114,7 @@ class TabBarController: UITabBarController {
     
     func configureTabBarItem(item: UITabBarItem) {
         item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
-        item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
+        item.setTitleTextAttributes([NSForegroundColorAttributeName: .white], for:.normal)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
     }
 }

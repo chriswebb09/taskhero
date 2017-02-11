@@ -13,7 +13,7 @@ class PhotoPickerView: BasePopView {
     // MARK: - UI Element
     
     lazy var button: UIButton = {
-        let button = ButtonType.system(title: "Change Profile Picture", color: UIColor.black)
+        let button = ButtonType.system(title: "Change Profile Picture", color: .black)
         return button.newButton
     }()
     
@@ -31,7 +31,7 @@ class PhotoPickerView: BasePopView {
         super.layoutSubviews()
         addSubview(button)
         setupConstraints()
-        backgroundColor = UIColor.white
+        backgroundColor = .white
         addButton(button: button)
     }
 }

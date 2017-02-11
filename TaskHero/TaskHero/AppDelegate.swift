@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let navigationBarAppearace = UINavigationBar.appearance()
         let defaults = UserDefaults.standard
-        navigationBarAppearace.barTintColor = UIColor.navigationBarColor()
-        navigationBarAppearace.tintColor = UIColor.white
+        navigationBarAppearace.barTintColor = .navigationBarColor()
+        navigationBarAppearace.tintColor = .white
          print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
         
          print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")

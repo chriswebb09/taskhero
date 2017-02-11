@@ -35,7 +35,7 @@ final class AddTaskView: UIView {
         taskDescriptionBox.text = "Describe what you want to get done."
         taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
-        taskDescriptionBox.textColor = UIColor.lightGray
+        taskDescriptionBox.textColor = .lightGray
         taskDescriptionBox.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         taskDescriptionBox.font = Constants.signupFieldFont
         taskDescriptionBox.contentInset = Constants.TaskCell.Description.boxInset
@@ -49,7 +49,7 @@ final class AddTaskView: UIView {
         addTaskButton.backgroundColor = Constants.Color.buttonColor
         addTaskButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         addTaskButton.setTitle("Add Task", for: .normal)
-        addTaskButton.setTitleColor(UIColor.white, for: .normal)
+        addTaskButton.setTitleColor(.white, for: .normal)
         return addTaskButton
     }()
     

@@ -50,9 +50,9 @@ struct LoginViewModel {
     
     var enableColor: UIColor {
         if isValid == true {
-            return UIColor.blue
+            return .blue
         } else {
-            return UIColor.lightGray
+            return .lightGray
         }
     }
 }

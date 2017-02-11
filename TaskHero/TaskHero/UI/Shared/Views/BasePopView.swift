@@ -12,13 +12,13 @@ class BasePopView: UIView {
     
     open lazy var headBanner: UIView = {
         let banner = UIView()
-        banner.backgroundColor = UIColor.black
+        banner.backgroundColor = .black
         return banner
     }()
     
     open lazy var alertLabel: UILabel = {
         let searchLabel = UILabel()
-        searchLabel.textColor = UIColor.white
+        searchLabel.textColor = .white
         searchLabel.text = "Notification"
         searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center

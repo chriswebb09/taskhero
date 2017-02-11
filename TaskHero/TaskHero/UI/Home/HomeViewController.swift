@@ -41,6 +41,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         picker.delegate = self
         edgesForExtendedLayout = []
         setupView(tableView:tableView, view:view)
@@ -93,17 +94,16 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillDisappear(false)
         helpers.removeRefHandle()
     }
-    
 }
 
 extension HomeViewController {
     
     func setupView(tableView: UITableView, view: UIView) {
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
+
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         taskMethods.setupTableView(tableView: tableView, view: view)
-        tableView.estimatedRowHeight = view.frame.height / 4
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor
     }
     
     // MARK: - UITableViewController Methods
@@ -174,7 +174,6 @@ extension HomeViewController {
     }
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         guard indexPath.row != 0 else { return }
         if editingStyle == .delete {
@@ -184,7 +183,6 @@ extension HomeViewController {
                 DispatchQueue.main.async {
                     self.fetchUser()
                 }
-                
             }
             tableView.endUpdates()
         }
@@ -211,11 +209,11 @@ extension HomeViewController {
     }
     
     // MARK: - Nav Items
+
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
-    
     func addNavItemsToController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: .white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
@@ -236,7 +234,7 @@ extension HomeViewController {
     }
     
     /* Kicks off cycling between taskcell editing states */
-    
+
     func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
@@ -245,7 +243,6 @@ extension HomeViewController {
 }
 
 // Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
-
 extension HomeViewController: UIImagePickerControllerDelegate {
     
     // MARK: - Header cell Delegate Methods

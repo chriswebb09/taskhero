@@ -14,7 +14,7 @@ final class ProfileSettingsView: UIView {
     
     var profileLabel: UILabel = {
         let profileLabel = UILabel()
-        profileLabel.textColor = UIColor.black
+        profileLabel.textColor = .black
         profileLabel.text = "User Settings"
         profileLabel.font = Constants.Font.fontLarge
         profileLabel.textAlignment = .center

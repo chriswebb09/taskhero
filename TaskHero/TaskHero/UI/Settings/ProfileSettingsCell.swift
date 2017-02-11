@@ -21,7 +21,7 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     var profileSettingLabel: UILabel = {
         let profileLabel = UILabel()
-        profileLabel.textColor = UIColor.settingsBackground()
+        profileLabel.textColor = .settingsBackground()
         profileLabel.font = Constants.Font.fontNormal
         profileLabel.textAlignment = .left
         profileLabel.layer.masksToBounds = true

@@ -16,7 +16,7 @@ final class InitialViewController: UIViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         view.addSubview(initView)
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         initView.layoutSubviews()
     }
     

@@ -17,7 +17,7 @@ class LoadingView: UIView {
     
     lazy var containerView: UIView = {
         let containerView = UIView()
-        containerView.backgroundColor = UIColor.clear
+        containerView.backgroundColor = .clear
         return containerView
     }()
     

@@ -12,12 +12,12 @@ final class AlertView: UIView {
     
     var headBanner: UIView = {
         let banner = UIView()
-        banner.backgroundColor = UIColor.lightGray
+        banner.backgroundColor = .lightGray
         return banner
     }()
     
     var cancelButton: UIButton = {
-        var button = ButtonType.system(title: "Cancel", color: UIColor.white)
+        var button = ButtonType.system(title: "Cancel", color: .white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
         uiElement.backgroundColor = Constants.Alert.CancelButton.cancelButtonColor
@@ -25,7 +25,7 @@ final class AlertView: UIView {
     }()
     
     var doneButton: UIButton = {
-        var button = ButtonType.system(title: "Add", color: UIColor.white)
+        var button = ButtonType.system(title: "Add", color: .white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
         uiElement.backgroundColor = Constants.Color.mainColor
@@ -35,7 +35,7 @@ final class AlertView: UIView {
     var resultLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.text = "Results"
-        searchLabel.textColor = UIColor.black
+        searchLabel.textColor = .black
         searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center
         return searchLabel
@@ -43,7 +43,7 @@ final class AlertView: UIView {
     
     var alertLabel: UILabel = {
         let searchLabel = UILabel()
-        searchLabel.textColor = UIColor.black
+        searchLabel.textColor = .black
         searchLabel.text = "Find Your Friends"
         searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center
@@ -53,7 +53,7 @@ final class AlertView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
-        backgroundColor = UIColor.white
+        backgroundColor = .white
     }
     
 }

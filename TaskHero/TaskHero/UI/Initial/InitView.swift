@@ -40,7 +40,7 @@ final class InitView: UIView {
     
     var viewDivider: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = .lightGray
         view.isHidden = true
         return view
     }()
@@ -49,7 +49,7 @@ final class InitView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = UIColor.white
+        backgroundColor = .white
         frame = UIScreen.main.bounds
         setupConstraints()
     }

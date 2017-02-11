@@ -14,7 +14,7 @@ class PhotoPickerPopover: BasePopoverAlert {
     
     lazy var searchLabel: UILabel = {
         let searchLabel = UILabel()
-        searchLabel.textColor = UIColor.black
+        searchLabel.textColor = .black
         searchLabel.text = "Become a Member"
         searchLabel.font = Constants.Font.fontLarge
         searchLabel.textAlignment = .center

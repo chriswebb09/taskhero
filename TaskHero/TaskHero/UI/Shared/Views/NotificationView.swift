@@ -11,16 +11,16 @@ import UIKit
 final class NotificationView: BasePopView {
 
     var doneButton: UIButton = {
-        var button = ButtonType.system(title: "Okay", color: UIColor.white)
+        var button = ButtonType.system(title: "Okay", color: .white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
-        uiElement.backgroundColor = UIColor.gray
+        uiElement.backgroundColor = .gray
         return uiElement
     }()
     
     var dataLabel: UILabel = {
         let searchLabel = UILabel()
-        searchLabel.textColor = UIColor.black
+        searchLabel.textColor = .black
         searchLabel.text = "Please try again later."
         searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center
@@ -29,8 +29,8 @@ final class NotificationView: BasePopView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        headBanner.backgroundColor = UIColor.black
-        backgroundColor = UIColor.white
+        headBanner.backgroundColor = .black
+        backgroundColor = .white
         setupConstraints()
     }
 }

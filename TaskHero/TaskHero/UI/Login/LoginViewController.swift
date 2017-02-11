@@ -40,7 +40,7 @@ final class LoginViewController: UIViewController {
         loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         loginView.loginButton.isEnabled = false
         if loginView.loginButton.isEnabled == false {
-            loginView.loginButton.backgroundColor = UIColor.lightGray
+            loginView.loginButton.backgroundColor = .lightGray
         }
     }
     
@@ -73,7 +73,6 @@ extension LoginViewController: UITextFieldDelegate {
 extension LoginViewController {
     
     // MARK: - Login Method Extension
-    
     
     /* HandleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
      * then it sets LoginViewController.view endEditting property to true
@@ -192,7 +191,7 @@ extension LoginViewController {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderWidth = 1
-        textField.textColor = UIColor.lightGray
+        textField.textColor = .lightGray
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
         checkForValidEmailInput()
     }

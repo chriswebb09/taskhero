@@ -31,9 +31,8 @@ final class ProfileDataCell: UITableViewCell {
         return levelLabel
     }()
     
-    /*
-     - Number of experience points for user - by adding together points of tasks completed
-     - at this point tasksCompleted means by tasks deleted - will be improved upon
+    /* Number of experience points for user - by adding together points of tasks completed
+     * at this point tasksCompleted means by tasks deleted - will be improved upon
      */
     
     var experiencePointsLabel: UILabel = {
@@ -50,13 +49,13 @@ final class ProfileDataCell: UITableViewCell {
     
     var topDivider: UIView = {
         let divider = UIView()
-        divider.backgroundColor = UIColor.black
+        divider.backgroundColor = .black
         return divider
     }()
     
     var bottomDivider: UIView = {
         let divider = UIView()
-        divider.backgroundColor = UIColor.black
+        divider.backgroundColor = .black
         return divider
     }()
     
@@ -83,8 +82,8 @@ extension ProfileDataCell {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
         label.layer.masksToBounds = true
         label.textAlignment = .center
-        label.backgroundColor = UIColor.experienceBackground()
-        label.textColor = UIColor.black
+        label.backgroundColor = .experienceBackground()
+        label.textColor = .black
         label.layer.borderWidth = 1
         label.font = Constants.Font.fontSmall
         label.sizeToFit()

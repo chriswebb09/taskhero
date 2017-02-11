@@ -94,7 +94,7 @@ extension TaskListViewController {
     
     func configureAddTaskLabel(label: UILabel) {
         addTasksLabel.font = Constants.Font.fontNormal
-        addTasksLabel.textColor = UIColor.gray
+        addTasksLabel.textColor = .gray
         addTasksLabel.textAlignment = .center
     }
     
@@ -181,9 +181,9 @@ extension TaskListViewController: TaskCellDelegate {
     // MARK: - Setup navbar
     
     func setupNavItems(navController:UINavigationController?) {
-        navController?.navigationBar.setBottomBorderColor(color: UIColor.lightGray, height: Constants.NavBar.bottomHeight)
+        navController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.NavBar.bottomHeight)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: .white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     

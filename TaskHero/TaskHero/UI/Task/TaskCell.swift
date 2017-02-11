@@ -50,8 +50,8 @@ final class TaskCell: UITableViewCell, Toggable {
     }()
     
     var saveButton: UIButton = {
-        let button = ButtonType.system(title: "Save", color: UIColor.black).newButton
-        button.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
+        let button = ButtonType.system(title: "Save", color: .black).newButton
+        button.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: .black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
         button.isHidden = true
         button.isEnabled = false
         return button
@@ -66,7 +66,7 @@ final class TaskCell: UITableViewCell, Toggable {
         contentView.layer.masksToBounds = true
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        contentView.backgroundColor = UIColor.clear
+        contentView.backgroundColor = .clear
         setupShadow()
     }
 }

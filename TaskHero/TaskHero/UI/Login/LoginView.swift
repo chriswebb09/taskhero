@@ -40,7 +40,7 @@ final class LoginView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = UIColor.white
+        backgroundColor = .white
         frame = UIScreen.main.bounds
         setupConstraints()
         initialOpacity()
@@ -138,7 +138,7 @@ extension LoginView {
                 DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
                     self.emailField.layer.borderWidth = 1
                     self.emailField.font = Constants.signupFieldFont
-                    self.emailField.textColor = UIColor.lightGray
+                    self.emailField.textColor = .lightGray
                     self.emailField.layer.borderColor = Constants.Color.backgroundColor.cgColor
                     self.emailField.layer.borderWidth = Constants.Border.borderWidth
                 }

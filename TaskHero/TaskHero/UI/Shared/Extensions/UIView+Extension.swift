@@ -32,7 +32,7 @@ extension UITextView {
     
     func setupCellStyle() -> UITextView {
         let textView = UITextView()
-        textView.textColor = UIColor.black
+        textView.textColor = .black
         textView.font = Constants.Font.fontMedium
         return textView
     }
@@ -48,6 +48,6 @@ public extension UITableView {
         separatorStyle = .singleLineEtched
         rowHeight = UITableViewAutomaticDimension
         tableFooterView = UIView(frame: CGRect.zero)
-        tableHeaderView?.backgroundColor = UIColor.white
+        tableHeaderView?.backgroundColor = .white
     }
 }

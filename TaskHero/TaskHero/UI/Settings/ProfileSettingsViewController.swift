@@ -37,7 +37,7 @@ extension ProfileSettingsViewController: UITableViewDelegate {
         profileSettingsView.layoutSubviews()
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
         tableView.setupTableView(view: self.view)
-        tableView.separatorColor = UIColor.black
+        tableView.separatorColor = .black
     }
     
     func setupTableViewDelegates() {

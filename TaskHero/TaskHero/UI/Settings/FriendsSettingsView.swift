@@ -14,7 +14,7 @@ final class FriendsSettingsView: UIView {
     
     var friendsHeaderLabel: UILabel = {
         let friendsHeaderLabel = UILabel()
-        friendsHeaderLabel.textColor = UIColor.black
+        friendsHeaderLabel.textColor = .black
         friendsHeaderLabel.text = "Add Friends"
         friendsHeaderLabel.font = Constants.Font.fontLarge
         friendsHeaderLabel.textAlignment = .center
@@ -39,7 +39,7 @@ final class FriendsSettingsView: UIView {
         searchButton.backgroundColor = Constants.Color.buttonColor
         searchButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         searchButton.setTitle("Search", for: .normal)
-        searchButton.setTitleColor(UIColor.white, for: .normal)
+        searchButton.setTitleColor(.white, for: .normal)
         return searchButton
     }()
     
