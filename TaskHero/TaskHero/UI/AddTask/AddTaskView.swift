@@ -12,12 +12,6 @@ import UIKit
 
 final class AddTaskView: UIView {
     
-    // MARK: - Deallocate AddTaskView From Memory
-    
-    deinit {
-        print("AddTaskView deallocated")
-    }
-    
     // MARK: UI Elements
     
     var taskNameLabel: UILabel = {

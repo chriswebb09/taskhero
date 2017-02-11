@@ -76,7 +76,8 @@ final class ProfileDataCell: UITableViewCell {
 extension ProfileDataCell {
 
     // MARK: - Configuration
-    /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - sets label to small green ovaly element with black border aligns content in center */
+    /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - 
+     * sets label to small green ovaly element with black border aligns content in center */
     
     private func configureLabels(label:UILabel) {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius

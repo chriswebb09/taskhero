@@ -10,12 +10,6 @@ import UIKit
 
 final class FriendsSettingsView: UIView {
     
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("FriendsSettingsView deallocated")
-    }
-    
     // MARK: - UI Elements
     
     var friendsHeaderLabel: UILabel = {

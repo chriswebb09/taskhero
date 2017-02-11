@@ -9,17 +9,12 @@
 import UIKit
 
 final class LoginView: UIView {
-    // MARK: - LoginView deallocated
-    
-    deinit {
-        print("LoginView deallocated from memory")
-    }
     
     // MARK: UIElements
     
     var editState: Bool = false
     
-    lazy var logoImageView: UIImageView = {
+    var logoImageView: UIImageView = {
         let image = UIImage(named: "taskherologo2")
         let imageView = UIImageView(image: image)
         return imageView

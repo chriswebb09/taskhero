@@ -12,14 +12,7 @@ typealias completion = () -> Void
 
 final class InitView: UIView {
     
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("InitView deallocated")
-    }
-    
     var animationDuration: Double = 0.8
-    
     
     // MARK: - UIElements
     
@@ -31,21 +24,21 @@ final class InitView: UIView {
         return imageView
     }()
     
-    lazy var loginButton: UIButton = {
+    var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         var loginButton = button.newButton
         loginButton.isHidden = true
         return loginButton
     }()
     
-    lazy var signupButton: UIButton = {
+    var signupButton: UIButton = {
         let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor)
         var signupButton = button.newButton
         signupButton.isHidden = true
         return signupButton
     }()
     
-    lazy var viewDivider: UIView = {
+    var viewDivider: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         view.isHidden = true
@@ -69,7 +62,10 @@ final class InitView: UIView {
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
-    
+}
+
+extension InitView {
+
     // MARK: - Animation
     
     func zoomAnimation(_ handler: completion? = nil) {

@@ -11,12 +11,6 @@ import Firebase
 
 final class SignupViewController: UIViewController, UITextFieldDelegate {
     
-    // MARK: - Properties
-    
-    deinit {
-        print("SignupViewController deallocated from memory.")
-    }
-    
     let store = UserDataStore.sharedInstance
     let signupView = SignupView()
     var emailInvalidated = false
@@ -52,7 +46,8 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     
     
     // MARK: - UITextfield Delegate Methods
-    // Checks for character length (implemented for username length) if characters exceed allowed range, text field will no longer except new characters
+    /* Checks for character length (implemented for username length) if characters exceed allowed range,
+    text field will no longer except new characters */
     
     
     func signupLogic(email: String, password: String, username: String, loadingView: LoadingView) {

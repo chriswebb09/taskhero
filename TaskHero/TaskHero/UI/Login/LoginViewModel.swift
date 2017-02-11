@@ -40,7 +40,6 @@ struct LoginViewModel {
         print("getting user credentials\(textFieldText)")
     }
     
-    
     var isValid: Bool {
         if username.characters.count > 4 && password.characters.count > 8 {
             return true

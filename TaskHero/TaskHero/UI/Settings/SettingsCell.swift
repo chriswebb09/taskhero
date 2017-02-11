@@ -12,15 +12,9 @@ final class SettingsCell: UITableViewCell {
     
     static let cellIdentifier = "SettingsCell"
     
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("SettingsCell deallocated")
-    }
-    
     // MARK: - UIElement
     
-    lazy var settingLabel: UILabel = {
+    var settingLabel: UILabel = {
         let textView = UILabel()
         textView.textColor = UIColor.white
         textView.font = Constants.Font.fontNormal

@@ -10,12 +10,6 @@ import UIKit
 
 final class ProfileSettingsViewController: UIViewController,  UITableViewDataSource {
     
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("ProfileSettingsViewController deallocated")
-    }
-    
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance

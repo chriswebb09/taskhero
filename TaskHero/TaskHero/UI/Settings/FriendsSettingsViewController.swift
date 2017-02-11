@@ -10,12 +10,6 @@ import UIKit
 
 final class FriendsSettingsViewController: UIViewController {
     
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("FriendsSettingsView deallocated")
-    }
-    
     // MARK: Properties
     
     let friendsSettingsView = FriendsSettingsView()

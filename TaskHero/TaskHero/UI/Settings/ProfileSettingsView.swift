@@ -10,15 +10,9 @@ import UIKit
 
 final class ProfileSettingsView: UIView {
     
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("ProfileSettingsView deallocated from memory")
-    }
-    
     // MARK: - UIElements
     
-    lazy var profileLabel: UILabel = {
+    var profileLabel: UILabel = {
         let profileLabel = UILabel()
         profileLabel.textColor = UIColor.black
         profileLabel.text = "User Settings"

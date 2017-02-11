@@ -11,12 +11,6 @@ import Firebase
 
 final class AddTaskViewController: UIViewController  {
     
-    // MARK: - Deallocate AddTaskViewController From Memory
-    
-    deinit {
-        print("AddTaskViewController deallocated")
-    }
-    
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance /* User state for application */

@@ -11,24 +11,15 @@ import Firebase
 
 final class LoginViewController: UIViewController {
     
-    /*
-     * LoginViewController is called after InitialViewController
+    /* LoginViewController is called after InitialViewController
      * InitialViewController should be deallocated from memory after LoginViewController loads
      * Contains form for logging in with email address and password and button to load SignupViewController
      * Subviews loaded in LoginView - LoginView contains all UI elements
-     * Large method for firebase sign in should be refactored as soon as is practical
-     */
-    
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("LoginViewController deallocated from memory")
-    }
+     * Large method for firebase sign in should be refactored as soon as is practical */
     
     var defaults = UserDefaults.standard
     var loadingView = LoadingView()
     var loginView: LoginView = LoginView()
-    
     var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
         didSet {
             loginViewModel.username = loginView.emailField.text!
@@ -83,12 +74,11 @@ extension LoginViewController {
     
     // MARK: - Login Method Extension
     
-    /*
-     * HandleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
+    
+    /* HandleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
      * then it sets LoginViewController.view endEditting property to true
      * next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController parameter -
-     * pass in self.
-     * Sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
+     * pass in self. Sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
      * calls firebase FIRAuth.auth.signIn method - which takes email and password
      * FIRAuth.auth.signIn returns FIRUser and FIRError objects, if error is not nil - hides loadingView.activity indicator enters
      * switch statement to return proper error message
@@ -121,20 +111,18 @@ extension LoginViewController {
         }
     }
     
-    
     func fetchData() {
         UserDataStore.sharedInstance.firebaseAPI.fetchUserData { currentUser in
             UserDataStore.sharedInstance.currentUser = currentUser
         }
     }
     
-     /* On global DispatchQueue with qos: userInituated sets self to unowned self
-     * creates new DataStore.sharedInstance
-     * sets new DataStore instance currentUserString property to userID
-     * sets up FirebaseAPI database reference handles
-     * calls new DataStore FirebaseAPI property and uses fetchUser method
-     * sets new DataStore instance currentUser property to user returned from fetchUser method call
-     * sets userDefaults proporties in AppManager to logged in
+    /* On global DispatchQueue with qos: userInituated sets self to unowned self
+     * creates new DataStore.sharedInstance sets new DataStore instance currentUserString 
+     * property to userID sets up FirebaseAPI database reference handles calls new DataStore 
+     * FirebaseAPI property and uses fetchUser method sets new DataStore instance currentUser
+     * property to user returned from fetchUser method call sets userDefaults proporties in AppManager 
+     * to logged in
      */
     
     func completeLogin() {
@@ -175,7 +163,6 @@ extension LoginViewController {
      * On return key press */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
         let nextField = (textField == loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true

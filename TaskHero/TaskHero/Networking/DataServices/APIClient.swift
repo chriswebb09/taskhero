@@ -12,13 +12,7 @@ typealias TaskCompletion = ([Task]) -> Void
 typealias UserCompletion = (User) -> Void
 
 final class APIClient {
-    
-    // MARK: - Deallocate APIClient
-    
-    deinit {
-        print("APIClient deallocated")
-    }
-    
+
     // Firebase properties
     
     let storage = FIRStorage.storage()
