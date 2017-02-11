@@ -17,6 +17,8 @@ final class LoginView: UIView {
     
     // MARK: UIElements
     
+    var editState: Bool = false
+    
     lazy var logoImageView: UIImageView = {
         let image = UIImage(named: "taskherologo2")
         let imageView = UIImageView(image: image)
@@ -131,7 +133,22 @@ final class LoginView: UIView {
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.06).isActive = true
         passwordField.isSecureTextEntry = true
         setupView(view: loginButton)
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * 0.1).isActive = true
+        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height  * 0.1).isActive = true
+    }
+    
+    
+    func textInputAnimation() {
+        if editState != true {
+            UIView.animate(withDuration: 0.5, animations: {
+                
+                self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.02).isActive = true
+                self.logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+                self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
+                self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: self.bounds.height * 0.06).isActive = true
+                self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: self.bounds.height  * 0.04).isActive = true
+            })
+            
+        }
     }
     
     // MARK: - Animation

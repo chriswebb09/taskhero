@@ -32,14 +32,13 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var store = UserDataStore.sharedInstance
     
-    var tasks: [Task] = [] {
-        didSet {
-            //print("Tasks: \(tasks)")
-            // print("Tasks Count: \(tasks.count)")
-            //print(homeViewModel)
-            //tableView.reloadData()
+        var tasks: [Task] = [] {
+            didSet {
+                self.helpers.reload(tableView: tableView)
+                print("Tasks: \(tasks)")
+                print("Tasks Count: \(tasks.count)")
+            }
         }
-    }
     
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
@@ -75,32 +74,29 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchData()
+        fetchUser()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        //self.helpers.reload(tableView: self.tableView)
         super.viewWillAppear(false)
     }
     
-
-    
-    func fetchData() {
-        backgroundQueue.async {
-            self.store.firebaseAPI.fetchUserData() { user in
-                self.store.currentUser = user
-                if let userTasks = self.store.currentUser.tasks {
-                    self.store.currentUser.tasks?.removeAll()
-                    self.store.tasks.removeAll()
-                }
-                self.store.firebaseAPI.fetchTaskList() { tasks in
-                    self.store.currentUser.tasks = tasks
-                    self.store.tasks = tasks
-                    DispatchQueue.main.async {
-                        self.tasks = self.store.tasks
-                        self.helpers.reload(tableView: self.tableView)
-                    }
+    func fetchUser() {
+        self.store.firebaseAPI.fetchUserData() { user in
+            self.store.firebaseAPI.fetchTaskList() { taskList in
+                DispatchQueue.main.async {
+                    self.store.currentUser = user
+                    self.store.tasks = taskList
+                    self.tasks = taskList
+                    
+                        self.tableView.reloadData()
+                    
+                    //self.helpers.reload(tableView: self.tableView)
                 }
             }
         }
     }
-    
     /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will
      * appears is called again. Called inside helpers class
      */
@@ -122,13 +118,17 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     /* Returns number of rows based on count taskcount */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return homeViewModel.numberOfRows
+        if self.store.tasks.count <= 0 {
+            return 1
+        } else {
+            return self.store.tasks.count + 1
+        }
     }
     
     /* Gets rowheight from datasource and returns it - rowheight is UITableViewAutomaticDimension */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return homeViewModel.rowHeight
+        return tableView.rowHeight
     }
 }
 
@@ -141,12 +141,15 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
     /* If first row returns profile header cell else returns task cell all cells configured within HomeViewController  */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellType: HomeCellType = indexPath.row > 0 ? .task : .header
+        var cellType: HomeCellType = indexPath.row > 0 ? .task : .header
+        if self.store.tasks.count <= 0 {
+            cellType = .header
+        }
         switch cellType {
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
             let reloadedIndex = indexPath.row - 1
-            let taskViewModel = TaskCellViewModel((tasks[reloadedIndex]))
+            let taskViewModel = TaskCellViewModel((self.store.tasks[reloadedIndex]))
             taskCell.configureCell(taskVM: taskViewModel)
             setupTaskCell(taskCell: taskCell, viewController: self)
             taskCell.tag = indexPath.row
@@ -162,7 +165,11 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
     
     func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController) {
         headerCell.emailLabel.isHidden = true
-        headerCell.configureCell(user: store.currentUser)
+        if let newUser = self.store.currentUser {
+            headerCell.configureCell(user: newUser)
+        } else {
+            return
+        }
     }
     
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
@@ -179,13 +186,11 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             tableView.beginUpdates()
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
+                self.fetchUser()
             }
-            fetchData()
             tableView.endUpdates()
         }
     }
-    
-    
     
     /* Sets up action for logout button press, add task button press and adds these as selectors on
      navigation items which are added to navigation controller. */

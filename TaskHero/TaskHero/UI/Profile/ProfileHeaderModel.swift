@@ -33,11 +33,31 @@ struct ProfileHeaderCellModel {
     // MARK: - Initialization
     
     init() {
-        self.emailLabel = (self.store.currentUser?.email)!
-        self.usernameLabel = (self.store.currentUser?.username)!
-        self.profilePicture = (self.store.currentUser?.profilePicture!)!
-        self.levelLabel = "Level: \((self.store.currentUser?.level)!)"
-        self.joinDate = "Joined: \((self.store.currentUser?.joinDate)!)"
-        self.joinDateIsHidden = true
+        
+        
+        if let user = self.store.currentUser {
+            
+            self.emailLabel = user.email
+            self.usernameLabel = user.username
+            if let profilePic = user.profilePicture {
+                self.profilePicture = profilePic
+            } else {
+                profilePicture = "Void"
+            }
+            //self.profilePicture = user.profilePicture
+            self.levelLabel = "Level: \(user.level)"
+            self.joinDate = "Joined: \(user.joinDate)"
+            self.joinDateIsHidden = true
+        } else {
+            self.emailLabel = "Void"
+            self.usernameLabel = "Void"
+            self.profilePicture = "Void"
+            //self.profilePicture = user.profilePicture
+            self.levelLabel = "Level: Void"
+            self.joinDate = "Joined:  Void"
+            self.joinDateIsHidden = true
+        }
+        
     }
+    
 }

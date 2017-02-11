@@ -214,7 +214,7 @@ final class TaskCell: UITableViewCell, Toggable {
         layer.shadowOpacity = shadowOpacity
     }
     
-    /* methods used in VC to setup cell with data */
+    /* Methods used in VC to setup cell with data */
     
     func configureCell(taskVM: TaskCellViewModel) {
         layoutSubviews()
@@ -222,8 +222,10 @@ final class TaskCell: UITableViewCell, Toggable {
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
+        NSLog(self.description)
         if taskVM.taskCompleted == "true" {
             taskCompletedView.image = UIImage(named:"checked")
+            
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
             taskCompletedView.addGestureRecognizer(tap)
             saveButton.addTarget(self, action: #selector(toggleForEditState), for: .touchUpInside)

@@ -19,6 +19,8 @@ class DataPeristence {
         let user = defaults.data(forKey: "currentUser")
         if hasLoggedIn {
             print("LOGGED IN")
+            print(defaults.description)
+            print(defaults.value(forKey: "hasLoggedIn").debugDescription)
             dump(user)
         }
     }
@@ -27,6 +29,7 @@ class DataPeristence {
     
     func setLoggedInKey(userState:Bool) {
         defaults.set(userState, forKey: "hasLoggedIn")
+        print(defaults)
     }
     
     /* Incomplete - set currentUser and tasks on local storage after log in to mitigate constant log in fatigue */

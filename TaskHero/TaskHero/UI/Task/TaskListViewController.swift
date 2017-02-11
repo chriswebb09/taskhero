@@ -11,37 +11,56 @@ import UIKit
 final class TaskListViewController: UITableViewController {
     
     /* TaskListViewController is the viewcontroller that presents just the tasks that the user has added */
+    
     // MARK: Properties
     
     let store = UserDataStore.sharedInstance /* userData store for application user state */
     var tapped: Bool = false /* tracks taps on taskcell completedView and button */
+    
     var taskViewModel: TaskCellViewModel!
     let helpers = Helpers()
     let sharedTaskMethods = SharedTaskMethods()
     var listViewModel = TaskListViewModel()
+    
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  // BackgroundQueue for background
     
     // MARK: - UI Elements
     /* Label for empty tasklist state, should disappear once task is added */
     
-    lazy var addTasksLabel:UILabel = {
-        let addTasksLabel = UILabel()
-        addTasksLabel.font = Constants.Font.fontNormal
-        addTasksLabel.textColor = UIColor.gray
-        addTasksLabel.textAlignment = .center
-        return addTasksLabel
-    }()
+    var addTasksLabel:UILabel {
+        didSet {
+            print("Label hidden \(hidden)")
+        }
+    }
     
     var hidden: Bool {
-        if let tasks = store.currentUser.tasks {
-            if tasks.count < 1 {
-                return false
+        var conditional: Bool = true
+        if let currentUser = store.currentUser {
+            if let tasks = currentUser.tasks {
+                if tasks.count < 1 {
+                    conditional = false
+                } else {
+                    conditional = true
+                }
             }
         }
-        return true
+        return conditional
     }
     
     // MARK: - Initialization
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        self.init(aDecoder)
+    }
+    
+    init(_ coder: NSCoder? = nil) {
+        self.addTasksLabel = UILabel()
+        if let coder = coder {
+            super.init(coder: coder)!
+        } else {
+            super.init(nibName: nil, bundle:nil)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,13 +68,21 @@ final class TaskListViewController: UITableViewController {
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         initializeBackgroundUI()
+        addTasksLabel = UILabel()
+        configureAddTaskLabel(label: self.addTasksLabel)
+        addTasksLabel.isHidden = hidden
         tableView.reloadData()
+    }
+    
+    func configureAddTaskLabel(label: UILabel) {
+        addTasksLabel.font = Constants.Font.fontNormal
+        addTasksLabel.textColor = UIColor.gray
+        addTasksLabel.textAlignment = .center
     }
     
     /* Does setupfor tableview/emptytable view and navbar */
     
     func initializeBackgroundUI() {
-        emptyTableViewState(addTaskLabel: addTasksLabel)
         sharedTaskMethods.setupTableView(tableView:tableView, view: view)
         setupNavItems(navController:navigationController)
     }
@@ -63,16 +90,24 @@ final class TaskListViewController: UITableViewController {
     // FIXME: - Refactor ASAP
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        store.tasks.removeAll()
-        if store.currentUser.tasks != nil {
-            store.currentUser.tasks?.removeAll()
+        fetchUser()
+        self.helpers.reload(tableView: tableView)
+        self.addTasksLabel.isHidden = hidden
+        DispatchQueue.main.async {
+            self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
         }
-        helpers.fetchUser() { user in
-            self.store.currentUser = user
-            DispatchQueue.main.async {
-                self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
-                self.tableView.reloadData()
+        super.viewWillAppear(false)
+    }
+    
+    
+    func fetchUser() {
+        self.store.firebaseAPI.fetchUserData() { user in
+            self.store.firebaseAPI.fetchTaskList() { taskList in
+                self.store.tasks = taskList
+                DispatchQueue.main.async {
+                    self.store.currentUser = user
+                    self.helpers.reload(tableView: self.tableView)
+                }
             }
         }
     }
@@ -85,6 +120,7 @@ final class TaskListViewController: UITableViewController {
 
 
 // MARK: - UITableViewController Methods
+
 extension TaskListViewController: TaskCellDelegate {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,56 +139,35 @@ extension TaskListViewController: TaskCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        guard indexPath.row != 0 else { return }
         if editingStyle == .delete {
+            guard self.store.tasks.count > 0 else { return }
             tableView.beginUpdates()
             backgroundQueue.async {
-                self.sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
+                self.sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .taskList)
             }
-            helpers.reload(tableView: tableView)
+            self.fetchUser()
+            addTasksLabel.isHidden = hidden
             tableView.endUpdates()
-        }
-        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            if self.store.currentUser.tasks != nil {
-                self.store.currentUser.tasks?.removeAll()
-            }
-            self.fetchUser() { user in
-                self.store.currentUser = user
-            }
-             self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
-            self.helpers.reload(tableView: tableView)
         }
     }
     
     // MARK: - TaskList UI
     
     func emptyTableViewState(addTaskLabel:UILabel) {
-        if (store.tasks.count < 1) && (!addTasksLabel.isHidden) {
+        if (store.tasks.count <= 1) && (!addTasksLabel.isHidden) {
             view.addSubview(addTasksLabel)
-            addTasksLabel.center = self.view.center
+            addTasksLabel.center = view.center
             addTasksLabel.text = listViewModel.taskLabelText
             addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
             addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
             addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.Dimension.width).isActive = true
             addTasksLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        } else if store.tasks.count < 1 {
             addTasksLabel.isHidden = false
-        } else {
+        } else if store.tasks.count < 1 {
             addTasksLabel.isHidden = true
-        }
-    }
-    
-    func fetchUser(completion: @escaping UserCompletion) {
-        store.tasks.removeAll()
-        store.currentUser.tasks?.removeAll()
-        store.firebaseAPI.fetchUserData { user in
-            self.store.currentUser = user
-        }
-        store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
-            self.store.currentUser.tasks = tasks
-            self.store.tasks = tasks
-            completion(self.store.currentUser)
+        } else if self.store.tasks.count == 0 {
+            addTasksLabel.isHidden = false
         }
     }
     

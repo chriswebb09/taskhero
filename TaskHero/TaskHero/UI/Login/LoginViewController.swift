@@ -45,7 +45,7 @@ final class LoginViewController: UIViewController {
         loginView.setupLogin(self)
         loginView.loginButton.isEnabled = false
         loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
+       // navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
         loginView.loginButton.isEnabled = false
         if loginView.loginButton.isEnabled == false {
             loginView.loginButton.backgroundColor = UIColor.lightGray
@@ -83,6 +83,7 @@ extension LoginViewController: UITextFieldDelegate {
      * then it sets LoginViewController.view endEditting property to true
      * next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController parameter -
      * pass in self.
+     
      * sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
      * calls firebase FIRAuth.auth.signIn method - which takes email and password
      * FIRAuth.auth.signIn returns FIRUser and FIRError objects, if error is not nil - hides loadingView.activity indicator enters
@@ -101,7 +102,6 @@ extension LoginViewController: UITextFieldDelegate {
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
                 if let err = error {
-                    
                     if let errCode = FIRAuthErrorCode(rawValue: err._code) {
                         switch errCode {
                         case .errorCodeInvalidEmail:
@@ -195,6 +195,8 @@ extension LoginViewController: UITextFieldDelegate {
         textField.font = Constants.signupFieldFont
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
         textField.layer.borderWidth = 1.1
+        loginView.textInputAnimation()
+        self.loginView.editState = true
     }
     
     /* When no longer using input fields changes textfield ui properties back to original */

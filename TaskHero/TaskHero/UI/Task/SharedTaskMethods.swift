@@ -24,34 +24,37 @@ final class SharedTaskMethods {
     }
     
     func deleteTask(indexPath: IndexPath, tableView:UITableView, type: TaskListType) {
-        
         var rowIndex: Int
         switch type {
         case .home:
+            guard indexPath.row != 0 else { return }
             rowIndex = indexPath.row - 1
+            print(rowIndex)
         case .taskList:
             rowIndex = indexPath.row
         }
         
         DispatchQueue.global(qos: .default).async {
-            let removeTaskID: String = self.store.currentUser.tasks![rowIndex].taskID
-            if let tasks = self.store.currentUser.tasks { self.store.tasks = tasks }
+            let removeTaskID: String = self.store.tasks[rowIndex].taskID
             print(indexPath.row - 1)
-            self.store.tasks.remove(at: indexPath.row - 1)
+            self.store.tasks.remove(at: rowIndex)
             self.store.updateUserScore()
             self.store.firebaseAPI.registerUser(user: self.store.currentUser)
             self.store.firebaseAPI.removeTask(ref: removeTaskID, taskID: removeTaskID)
             DispatchQueue.main.async {
                 tableView.reloadData()
             }
+            
         }
+        
         print(self.store.tasks)
         
     }
     
     func setupTableView(tableView: UITableView, view: UIView) {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .singleLine
+       // tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .singleLineEtched
         tableView.allowsSelection = false
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = view.frame.height / 4
