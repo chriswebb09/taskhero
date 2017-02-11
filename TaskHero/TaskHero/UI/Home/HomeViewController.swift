@@ -32,13 +32,13 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var store = UserDataStore.sharedInstance
     
-        var tasks: [Task] = [] {
-            didSet {
-                self.helpers.reload(tableView: tableView)
-                print("Tasks: \(tasks)")
-                print("Tasks Count: \(tasks.count)")
-            }
+    var tasks: [Task] = [] {
+        didSet {
+            self.helpers.reload(tableView: tableView)
+            print("Tasks: \(tasks)")
+            print("Tasks Count: \(tasks.count)")
         }
+    }
     
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
@@ -78,7 +78,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        //self.helpers.reload(tableView: self.tableView)
         super.viewWillAppear(false)
     }
     
@@ -89,10 +88,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
                     self.store.currentUser = user
                     self.store.tasks = taskList
                     self.tasks = taskList
-                    
-                        self.tableView.reloadData()
-                    
-                    //self.helpers.reload(tableView: self.tableView)
+                    self.tableView.reloadData()
                 }
             }
         }
