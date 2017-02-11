@@ -18,7 +18,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var homeViewModel: HomeViewModel {
         didSet {
-            print("HomeViewModel")
+            self.fetchUser()
+            //print("HomeViewModel")
         }
     }
     
@@ -51,7 +52,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     /* Before view appears fetches tasks user data using helpers.getData method then for current user
      if currentUser.tasks is not nil, it removes tasks from currentUser regardless it then fetches
-     currentUser from database calling APIClient before loading. Redundant functionality, definitely could be streamlined */
+     currentUser from database calling APIClient before loading. Redundant functionality,
+     definitely could be streamlined */
     
     required convenience init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -81,14 +83,14 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
                     self.store.currentUser = user
                     self.store.tasks = taskList
                     self.tasks = taskList
-                    
                     self.tableView.reloadData()
                 }
             }
         }
     }
     
-    /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will
+    /* Removes reference to database - necessary to prevent
+     * duplicate task cells from loading when view will
      * appears is called again. Called inside helpers class
      */
     
@@ -98,14 +100,12 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
 }
 
-extension HomeViewController {
+extension HomeViewController: UITextViewDelegate {
     
     func setupView(tableView: UITableView, view: UIView) {
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
-
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        
         taskMethods.setupTableView(tableView: tableView, view: view)
     }
     
@@ -113,21 +113,17 @@ extension HomeViewController {
     /* Returns number of rows based on count taskcount */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.store.tasks.count <= 0 {
-            return 1
-        } else {
-            return self.store.tasks.count + 1
-        }
+        return homeViewModel.numberOfRows
     }
     
     /* Gets rowheight from datasource and returns it - rowheight is UITableViewAutomaticDimension */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.rowHeight
+        return homeViewModel.rowHeight
     }
 }
 
-extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeaderCellDelegate {
+extension HomeViewController: TaskCellDelegate, ProfileHeaderCellDelegate {
     
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
         print("here")
@@ -141,45 +137,38 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             cellType = .header
         }
         switch cellType {
-            
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
-            
-            let reloadedIndex = indexPath.row - 1
-            let taskViewModel = TaskCellViewModel((self.store.tasks[reloadedIndex]))
-            
-            taskCell.configureCell(taskVM: taskViewModel)
-            setupTaskCell(taskCell: taskCell, viewController: self)
-            
-            taskCell.tag = indexPath.row
-            taskCell.delegate = self
-            
+            setupTaskCell(taskCell: taskCell, viewController: self, indexPath: indexPath)
             return taskCell
-            
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
-            setupHeaderCell(headerCell: headerCell, viewController: self)
-            headerCell.delegate = self
+            setupHeaderCell(headerCell: headerCell, viewController: self, indexPath: indexPath)
             return headerCell
         }
     }
 }
 
 extension HomeViewController {
-
-    func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController) {
+    
+    func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController, indexPath: IndexPath) {
         headerCell.emailLabel.isHidden = true
         if let newUser = self.store.currentUser {
             headerCell.configureCell(user: newUser)
+            headerCell.delegate = viewController
         } else {
             return
         }
     }
     
-    func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController) {
+    func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController, indexPath: IndexPath) {
+        let reloadedIndex = indexPath.row - 1
+        let taskViewModel = TaskCellViewModel((self.store.tasks[reloadedIndex]))
+        taskCell.configureCell(taskVM: taskViewModel)
         taskCell.delegate = viewController
         let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
+        taskCell.tag = indexPath.row
     }
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
@@ -221,7 +210,7 @@ extension HomeViewController {
     }
     
     // MARK: - Nav Items
-
+    
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     func addNavItemsToController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
@@ -246,7 +235,7 @@ extension HomeViewController {
     }
     
     /* Kicks off cycling between taskcell editing states */
-
+    
     func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }

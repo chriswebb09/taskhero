@@ -10,7 +10,7 @@ import UIKit
 
 final class TaskListViewController: UITableViewController {
     
-    /* TaskListViewController is the viewcontroller that presents just the tasks that the user has added */
+    /* TaskListViewController is the viewController that presents just the tasks that the user has added */
     
     // MARK: Properties
     
@@ -32,20 +32,9 @@ final class TaskListViewController: UITableViewController {
     }
     
     var hidden: Bool {
-        var conditional: Bool = true
-        if let currentUser = store.currentUser {
-            if let tasks = currentUser.tasks {
-                if tasks.count < 1 {
-                    conditional = false
-                } else {
-                    conditional = true
-                }
-            }
-        }
-        return conditional
+        var hideText: Bool = self.store.tasks.count < 1 ? false : true
+        return hideText
     }
-    
-    // MARK: - Initialization
     
     required convenience init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -143,7 +132,9 @@ extension TaskListViewController: TaskCellDelegate {
                 self.sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .taskList)
             }
             self.fetchUser()
-            addTasksLabel.isHidden = hidden
+            DispatchQueue.main.async {
+                self.addTasksLabel.isHidden = self.hidden
+            }
             tableView.endUpdates()
         }
     }
@@ -159,11 +150,9 @@ extension TaskListViewController: TaskCellDelegate {
             addTasksLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             addTasksLabel.isHidden = false
-        } else if store.tasks.count < 1 {
-            addTasksLabel.isHidden = true
-        } else if self.store.tasks.count == 0 {
-            addTasksLabel.isHidden = false
         }
+        var hideText: Bool = self.store.tasks.count < 1 ? false : true
+        addTaskLabel.isHidden = hideText
     }
     
     // MARK: - Public Methods

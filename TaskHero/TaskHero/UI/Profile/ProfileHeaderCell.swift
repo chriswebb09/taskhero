@@ -48,8 +48,10 @@ final class ProfileHeaderCell: UITableViewCell {
     
     var profilePicture: UIImageView = {
         let imageView = UIImageView()
+        
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = Constants.Dimension.mainWidth
+        
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -64,9 +66,11 @@ final class ProfileHeaderCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         selectionStyle = .none
         contentView.layoutIfNeeded()
         setupConstraints()
+        
         contentView.layer.masksToBounds = true
     }
 }
@@ -94,15 +98,19 @@ extension ProfileHeaderCell {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
+        
         contentView.addSubview(emailLabel)
         configureLabel(label: emailLabel)
         configureConstraints(label: emailLabel)
+        
         contentView.addSubview(joinDateLabel)
         configureLabel(label: joinDateLabel)
         configureConstraints(label: joinDateLabel)
+        
         contentView.addSubview(usernameLabel)
         configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)
+        
         contentView.addSubview(profilePicture)
     }
     
@@ -152,16 +160,19 @@ extension ProfileHeaderCell {
     func configureCell(user: User) {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
+        
         emailLabel.text = user.email
         joinDateLabel.isHidden = true
         usernameLabel.text = user.username
         levelLabel.text = "Level: \(user.level)"
         joinDateLabel.text = "Joined: \(user.joinDate)"
+        
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePicture.addGestureRecognizer(tap)
+        
         layoutSubviews()
         setupShadow()
         layoutIfNeeded()
@@ -171,6 +182,7 @@ extension ProfileHeaderCell {
         let shadowOffset = CGSize(width:-0.45, height: 0.4)
         let shadowRadius:CGFloat = 1.0
         let shadowOpacity:Float = 0.4
+        
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity

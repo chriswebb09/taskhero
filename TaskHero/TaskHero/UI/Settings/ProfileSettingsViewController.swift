@@ -29,8 +29,10 @@ extension ProfileSettingsViewController: UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
-                    "Profile Picture", self.store.currentUser.username]
+        options = [self.store.currentUser.email,
+                   "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
+                    "Profile Picture", self.store.currentUser.username
+                ]
         edgesForExtendedLayout = []
         setupTableViewDelegates()
         setupSubviews()
@@ -64,9 +66,11 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
         cell.configureCell(setting: options[indexPath.row])
+        
         cell.delegate = self
         cell.button.index = indexPath
         cell.button.tag = indexPath.row
+        
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)
         return cell
     }
@@ -89,7 +93,10 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
                 }
                 tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
             } else {
-                tapCell.profileSettingLabel.text = options[(indexTap?.row)!] }
+                if let tap = indexTap {
+                    tapCell.profileSettingLabel.text = options[tap.row]
+                }
+            }
             tapCell.profileSettingField.isHidden = true
             tapCell.profileSettingLabel.isHidden = false
         } else if tapped == false { tapped = true

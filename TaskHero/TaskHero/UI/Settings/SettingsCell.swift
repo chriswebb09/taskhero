@@ -16,10 +16,13 @@ final class SettingsCell: UITableViewCell {
     
     var settingLabel: UILabel = {
         let textView = UILabel()
+        
         textView.textColor = .white
         textView.font = Constants.Font.fontNormal
+        
         textView.textAlignment = .center
         textView.layer.masksToBounds = true
+        
         return textView
     }()
     
@@ -34,9 +37,12 @@ final class SettingsCell: UITableViewCell {
     fileprivate func setupConstraints() {
         contentView.backgroundColor = .settingsBackground()
         contentView.addSubview(settingLabel)
+        
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Dimension.height).isActive = true
         settingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        
         settingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         settingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }

@@ -58,12 +58,16 @@ extension LoginView {
         logoImageView.layer.opacity = 0
     }
     
+    func animatedOpacity() {
+        loginButton.layer.opacity = 1
+        emailField.layer.opacity = 1
+        passwordField.layer.opacity = 1
+        logoImageView.layer.opacity = 1
+    }
+    
     func animated() {
         UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.logoImageView.layer.opacity = 1
-            self?.loginButton.layer.opacity = 1
-            self?.emailField.layer.opacity = 1
-            self?.passwordField.layer.opacity = 1
+            self?.animatedOpacity()
         }
     }
     

@@ -10,16 +10,20 @@ import UIKit
 import Firebase
 
 final class ProfileSettingsViewControllerDataSource {
+    
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance
     
     func setupViews(profileSettingsView: ProfileSettingsView, tableView: UITableView, view:UIView) {
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
+        
         profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.tableViewHeight).isActive = true
@@ -47,11 +51,10 @@ final class ProfileSettingsViewControllerDataSource {
         }
     }
     
-        func setupUser(user: User) {
-            store.firebaseAPI.registerUser(user: user)
-           // store.currentUserString = FIRAuth.auth()?.currentUser?.uid
-            store.firebaseAPI.setupRefs()
-            store.currentUser = user
-        }
-
+    func setupUser(user: User) {
+        store.firebaseAPI.registerUser(user: user)
+        store.firebaseAPI.setupRefs()
+        store.currentUser = user
+    }
+    
 }

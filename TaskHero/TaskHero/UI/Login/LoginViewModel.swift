@@ -14,10 +14,8 @@ struct LoginViewModel {
         willSet {
             print("About to set username to:  \(newValue)")
         }
-        
         didSet {
             if username != oldValue {
-                print(isValid)
                 getUserName(textFieldText: username)
             }
         }
@@ -30,7 +28,6 @@ struct LoginViewModel {
         
         didSet {
             if password != oldValue {
-                print(isValid)
                 getUserName(textFieldText: password)
             }
         }

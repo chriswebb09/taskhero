@@ -18,18 +18,13 @@ final class TaskListViewModel {
     }
     
     var showTaskLabel: Bool {
-        if store.tasks.count > 0 {
-            print("tasks print \(self.store.tasks.count)")
-            return false
-        }
-        return true
+        let condition: Bool = store.tasks.count > 0 ? false : true
+        return condition
     }
     
     var taskLabelText: String {
-        if showTaskLabel == true {
-            return "No tasks have been added yet."
-        }
-        return ""
+        let labelText: String = showTaskLabel == true ? "No tasks have been added yet." : ""
+        return labelText
     }
     
     var taskLabelColor: UIColor = {

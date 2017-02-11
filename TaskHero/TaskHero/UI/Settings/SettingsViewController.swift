@@ -28,14 +28,17 @@ final class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         settings = userSettings
         edgesForExtendedLayout = []
-        view.backgroundColor = .backgroundColor()
-        navigationController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
+        
         let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
-        header.backgroundColor = .white
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
+        
+        header.backgroundColor = .white
+        view.backgroundColor = .backgroundColor()
         tableView.separatorColor = .blue
+        navigationController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
+        
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
         tableView.setupTableView(view:self.view)
         setupSegment()
     }
@@ -55,8 +58,10 @@ extension SettingsViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
         settingsViewModel = SettingsCellViewModel(settings[indexPath.row])
+        
         settingsCell.configureCell(setting: settingsViewModel)
         settingsCell.contentView.clipsToBounds = true
         return settingsCell
@@ -82,23 +87,25 @@ extension SettingsViewController {
 }
 
 extension SettingsViewController {
-
+    
     // MARK: Public Methods
     
     fileprivate func alertPopInitialOpacity() {
-        alertPop.popView.layer.opacity = 0
         alertPop.popView.isHidden = false
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = 0
+        alertPop.popView.layer.opacity = 0
     }
     
     fileprivate func launchPopupView() {
         alertPopInitialOpacity()
         alertPop.showPopView(viewController: self)
+        
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
         }
+        
         self.alertPop.alertPopView.resultLabel.text = "Try Again Later."
         self.alertPop.alertPopView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
         self.alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
@@ -115,10 +122,12 @@ extension SettingsViewController {
 }
 
 extension SettingsViewController {
-
+    
     func notificationPopup() {
         notificationPopInitialOpacity()
+        
         notifyPop.showPopView(viewController: self)
+        
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.notifyPop.popView.layer.opacity = 1
             self.notifyPop.containerView.layer.opacity = 0.1
@@ -149,19 +158,21 @@ extension SettingsViewController {
 }
 
 extension SettingsViewController {
-
+    
     // MARK: - Switch between segments
     
     func changeView(sender: UISegmentedControl) {
+        
         switch sender.selectedSegmentIndex {
+            
         case 0:
             settings = userSettings
             segmentControl.subviews[0].backgroundColor = .white
-            dump(segmentControl)
+    
         default:
             settings = applicationSettings
             segmentControl.subviews[1].backgroundColor = .white
-            dump(segmentControl)
+            
         }
         tableView.reloadData()
     }
@@ -171,17 +182,23 @@ extension SettingsViewController {
     func setupSegment() {
         let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]
         let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
-        segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
+        
         segmentControl.tintColor = .black
-        segmentControl.translatesAutoresizingMaskIntoConstraints = false
+        
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
+        
+        segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
+        
+        segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        
         if let header = self.tableView.tableHeaderView {
             segmentControl.topAnchor.constraint(equalTo:header.topAnchor).isActive = true
             segmentControl.heightAnchor.constraint(equalTo:header.heightAnchor).isActive = true
         }
+        
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
     }
 }
@@ -192,6 +209,6 @@ protocol Hiddable {
 
 extension Hiddable {
     func hide(view:UIView, viewController:UIViewController) {
-       print("Not implemented")
+        print("Not implemented")
     }
 }
