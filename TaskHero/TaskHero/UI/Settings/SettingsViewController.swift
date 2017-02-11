@@ -95,10 +95,10 @@ extension SettingsViewController {
     fileprivate func launchPopupView() {
         alertPopInitialOpacity()
         alertPop.showPopView(viewController: self)
-        UIView.animate(withDuration: 0.1, animations: { [unowned self] in
+        UIView.animate(withDuration: 0.1) { [unowned self] in
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
-        })
+        }
         self.alertPop.alertPopView.resultLabel.text = "Try Again Later."
         self.alertPop.alertPopView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
         self.alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
@@ -119,10 +119,11 @@ extension SettingsViewController {
     func notificationPopup() {
         notificationPopInitialOpacity()
         notifyPop.showPopView(viewController: self)
-        UIView.animate(withDuration: 0.1, animations: { [unowned self] in
+        UIView.animate(withDuration: 0.1) { [unowned self] in
             self.notifyPop.popView.layer.opacity = 1
-            self.notifyPop.containerView.layer.opacity = 0.1 }
-        )
+            self.notifyPop.containerView.layer.opacity = 0.1
+        }
+        
     }
     
     // MARK: - Setup buttons
@@ -168,8 +169,8 @@ extension SettingsViewController {
     // MARK: - Segment Control UI
     
     func setupSegment() {
-        let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: .white]
-        let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: .black]
+        let multipleAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.white]
+        let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
         segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
         segmentControl.tintColor = .black
         segmentControl.translatesAutoresizingMaskIntoConstraints = false

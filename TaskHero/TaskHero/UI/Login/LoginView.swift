@@ -59,12 +59,12 @@ extension LoginView {
     }
     
     func animated() {
-        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+        UIView.animate(withDuration: 0.5) { [weak self] in
             self?.logoImageView.layer.opacity = 1
             self?.loginButton.layer.opacity = 1
             self?.emailField.layer.opacity = 1
             self?.passwordField.layer.opacity = 1
-        })
+        }
     }
     
     /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
@@ -115,13 +115,13 @@ extension LoginView {
     
     func textInputAnimation() {
         if editState != true {
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.5) {
                 self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.02).isActive = true
                 self.logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
                 self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
                 self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: self.bounds.height * 0.06).isActive = true
                 self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: self.bounds.height  * 0.04).isActive = true
-            })
+            }
         }
     }
     

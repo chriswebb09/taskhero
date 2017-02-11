@@ -24,7 +24,7 @@ final class ProfileViewController: UITableViewController {
         registerCells()
         tableView.estimatedRowHeight = view.frame.height / 3
         self.tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableFooterView = UIView(frame: .zero)
         setupNavItems()
         tableView.reloadData()
     }
@@ -85,7 +85,7 @@ extension ProfileViewController {
         navigationController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: .white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
     }
     
     // MARK: - Button methods

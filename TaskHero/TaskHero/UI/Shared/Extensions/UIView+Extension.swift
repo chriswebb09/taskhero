@@ -47,7 +47,7 @@ public extension UITableView {
         separatorInset = UIEdgeInsets.zero
         separatorStyle = .singleLineEtched
         rowHeight = UITableViewAutomaticDimension
-        tableFooterView = UIView(frame: CGRect.zero)
+        tableFooterView = UIView(frame: .zero)
         tableHeaderView?.backgroundColor = .white
     }
 }

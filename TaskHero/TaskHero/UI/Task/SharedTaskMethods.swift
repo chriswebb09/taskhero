@@ -48,7 +48,7 @@ final class SharedTaskMethods {
     }
     
     func setupTableView(tableView: UITableView, view: UIView) {
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorStyle = .singleLineEtched
         tableView.allowsSelection = false
         tableView.rowHeight = UITableViewAutomaticDimension
