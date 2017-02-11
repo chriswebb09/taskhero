@@ -14,8 +14,6 @@ import UIKit
  Not final setup - still a work in progress
  */
 
-
-
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
     
     // MARK: - Deallocate HomeViewController From Memory
