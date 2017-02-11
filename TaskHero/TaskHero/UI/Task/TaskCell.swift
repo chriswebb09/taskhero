@@ -69,6 +69,9 @@ final class TaskCell: UITableViewCell, Toggable {
         contentView.backgroundColor = UIColor.clear
         setupShadow()
     }
+}
+
+extension TaskCell {
     
     // MARK: - Configure cell
     
@@ -135,7 +138,7 @@ final class TaskCell: UITableViewCell, Toggable {
     }
     
     // MARK: - Configure cell subviews
-    /* takes in textview returns configured textview*/
+    /* Takes in textview returns configured textview*/
     
     func configureTextView(label: UITextView) {
         label.textAlignment = .left
@@ -146,7 +149,7 @@ final class TaskCell: UITableViewCell, Toggable {
         label.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
     }
     
-    /* sets up taskNameLabel and taskDue label top, right and height constraints */
+    /* Sets up taskNameLabel and taskDue label top, right and height constraints */
     
     func configureView(view: UIView) {
         contentView.addSubview(view)
@@ -155,7 +158,7 @@ final class TaskCell: UITableViewCell, Toggable {
         view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
     }
     
-    /* taskdescription label configuration */
+    /* TaskDescription label configuration */
     
     func setupDescriptionElements(element: UIView) {
         contentView.addSubview(element)
@@ -166,7 +169,7 @@ final class TaskCell: UITableViewCell, Toggable {
         element.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
     
-    /* taskcompletedview and savebutton configuration */
+    /* TaskCompletedview and savebutton configuration */
     
     func setupEditElements(element: UIView) {
         contentView.addSubview(element)
