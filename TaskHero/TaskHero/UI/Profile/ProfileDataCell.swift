@@ -16,17 +16,17 @@ final class ProfileDataCell: UITableViewCell {
     
     weak var delegate: ProfileDataCellDelegate?
     static let cellIdentifier = "ProfileDataCell"
-
+    
     // MARK: - UI Elements and cellModel
     
-    lazy var dataCellModel: ProfileDataCellViewModel =  {
+    var dataCellModel: ProfileDataCellViewModel =  {
         var cellModel = ProfileDataCellViewModel()
         return cellModel
     }()
     
     // Level label - label for User Level - i.e. Task Goat, Task Wizard ect.
     
-    lazy var levelLabel: UILabel = {
+    var levelLabel: UILabel = {
         let levelLabel = UILabel()
         return levelLabel
     }()
@@ -36,14 +36,14 @@ final class ProfileDataCell: UITableViewCell {
      - at this point tasksCompleted means by tasks deleted - will be improved upon
      */
     
-    lazy var experiencePointsLabel: UILabel = {
+    var experiencePointsLabel: UILabel = {
         let experiencePointsLabel = UILabel()
         return experiencePointsLabel
     }()
     
     
     // Actual number of tasks completed - deleted - not pointvalue it is the number of tasks
-    lazy var tasksCompletedLabel: UILabel = {
+    var tasksCompletedLabel: UILabel = {
         let taskCompletedLabel = UILabel()
         return taskCompletedLabel
     }()
@@ -59,7 +59,7 @@ final class ProfileDataCell: UITableViewCell {
         divider.backgroundColor = UIColor.black
         return divider
     }()
-
+    
     
     // MARK: - Initialization
     // Lays out subviews and calls setup constraints
@@ -139,7 +139,7 @@ final class ProfileDataCell: UITableViewCell {
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
         configureDividers(view: topDivider)
         topDivider.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        topDivider.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true 
+        topDivider.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         configureDividers(view: bottomDivider)
         bottomDivider.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         bottomDivider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
