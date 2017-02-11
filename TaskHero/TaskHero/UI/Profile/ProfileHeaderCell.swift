@@ -69,10 +69,10 @@ final class ProfileHeaderCell: UITableViewCell {
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
-    
 }
 
 extension ProfileHeaderCell {
+    
     // MARK: - Configuring Cell
     
     private func configureLabel(label:UILabel) {
@@ -86,7 +86,7 @@ extension ProfileHeaderCell {
         label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
     }
     
-    /* adds levelLabel, emailLabel, joinDateLabel, usernameLabel, profilePicture to subview
+    /* Adds levelLabel, emailLabel, joinDateLabel, usernameLabel, profilePicture to subview
        calls configureLabel on levelLabel, emailLabel, joinDateLabel, usernameLabel
        calls configureConstraints on levelLabel, emailLabel, usernameLabel */
     
@@ -152,7 +152,6 @@ extension ProfileHeaderCell {
     func configureCell(user: User) {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        
         emailLabel.text = user.email
         joinDateLabel.isHidden = true
         usernameLabel.text = user.username
@@ -172,7 +171,6 @@ extension ProfileHeaderCell {
         let shadowOffset = CGSize(width:-0.45, height: 0.4)
         let shadowRadius:CGFloat = 1.0
         let shadowOpacity:Float = 0.4
-        
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity
