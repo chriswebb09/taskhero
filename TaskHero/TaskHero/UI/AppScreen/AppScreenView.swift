@@ -19,6 +19,7 @@ class AppScreenView: UIView {
         let imageView = UIImageView(image: image)
         return imageView
     }()
+    
     var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         return button.newButton
@@ -29,7 +30,7 @@ class AppScreenView: UIView {
         return button.newButton
     }()
     
-    lazy var viewDivider: UIView = {
+    var viewDivider: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.clear
         return view
@@ -69,7 +70,7 @@ extension AppScreenView {
     }
     
     func buttonSetup(buttons: [UIButton]) {
-        
+        // Not implemented yet
     }
     
     private func constraintSetup(views: [UIView]) {
