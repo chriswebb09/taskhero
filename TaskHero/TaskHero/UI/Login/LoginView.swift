@@ -36,29 +36,9 @@ final class LoginView: UIView {
         return passwordField
     }()
     
-    lazy var loginButton: UIButton = {
+    var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login")
         return button.newButton
-    }()
-    
-    lazy var signupButton: UIButton = {
-        let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor)
-        return button.newButton
-    }()
-    
-    lazy var viewDivider: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.lightGray
-        return view
-    }()
-    
-    lazy var registerLabel: UILabel = {
-        let registerLabel = UILabel()
-        registerLabel.textColor = Constants.Color.backgroundColor
-        registerLabel.text = "Don't have an account?"
-        registerLabel.font = Constants.Font.fontLarge
-        registerLabel.textAlignment = .center
-        return registerLabel
     }()
     
     // MARK: Initialization
@@ -76,9 +56,6 @@ final class LoginView: UIView {
         loginButton.layer.opacity = 0
         emailField.layer.opacity = 0
         passwordField.layer.opacity = 0
-        registerLabel.layer.opacity = 0
-        signupButton.layer.opacity = 0
-        viewDivider.layer.opacity = 0
         logoImageView.layer.opacity = 0
     }
     
@@ -86,9 +63,6 @@ final class LoginView: UIView {
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             self?.logoImageView.layer.opacity = 1
             self?.loginButton.layer.opacity = 1
-            self?.registerLabel.layer.opacity = 1
-            self?.signupButton.layer.opacity = 1
-            self?.viewDivider.layer.opacity = 1
             self?.emailField.layer.opacity = 1
             self?.passwordField.layer.opacity = 1
         })
@@ -100,7 +74,6 @@ final class LoginView: UIView {
         layoutSubviews()
         emailField.delegate = viewController
         passwordField.delegate = viewController
-        signupButton.addTarget(viewController, action: #selector(viewController.signupButtonTapped), for: .touchUpInside)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController, action: #selector(viewController.dismissKeyboard))
         viewController.view.addGestureRecognizer(tap)
         loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
@@ -140,21 +113,19 @@ final class LoginView: UIView {
     func textInputAnimation() {
         if editState != true {
             UIView.animate(withDuration: 0.5, animations: {
-                
                 self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.02).isActive = true
                 self.logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
                 self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
                 self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: self.bounds.height * 0.06).isActive = true
                 self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: self.bounds.height  * 0.04).isActive = true
             })
-            
         }
     }
     
     // MARK: - Animation
     
     func textFieldAnimation() {
-        UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
+        UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.emailField.layer.borderWidth = 1.2
                 self.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)

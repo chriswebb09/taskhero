@@ -170,10 +170,12 @@ final class SettingsViewController: UITableViewController {
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
-        segmentControl.topAnchor.constraint(equalTo: (tableView.tableHeaderView?.topAnchor)!).isActive = true
         segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        segmentControl.heightAnchor.constraint(equalTo:(tableView.tableHeaderView?.heightAnchor)!).isActive = true
+        if let header = self.tableView.tableHeaderView {
+            segmentControl.topAnchor.constraint(equalTo:header.topAnchor).isActive = true
+            segmentControl.heightAnchor.constraint(equalTo:header.heightAnchor).isActive = true
+        }
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
     }
 }

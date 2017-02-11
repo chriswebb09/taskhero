@@ -51,27 +51,6 @@ final class Helpers {
         tabBar.barTintColor = Constants.Color.backgroundColor
     }
     
-//    func fetchData(tableView: UITableView,  tasks: [Task], queue: DispatchQueue, handler: @escaping UserCompletion) {
-//        queue.async {
-//            self.store.firebaseAPI.fetchUserData() { user in
-//                self.store.currentUser = user
-//                if let userTasks = self.store.currentUser.tasks {
-//                    self.store.currentUser.tasks?.removeAll()
-//                    self.store.tasks.removeAll()
-//                }
-//                self.store.firebaseAPI.fetchTaskList() { taskList in
-//                    self.store.currentUser.tasks = taskList
-//                    self.store.tasks = taskList
-//                    DispatchQueue.main.async {
-//                        self.reload(tableView: tableView)
-//                        completion(taskList)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//    
-    
     func handleLogout() {
         do {
             DataPeristence.shared.setLoggedInKey(userState: false)

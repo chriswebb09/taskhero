@@ -45,7 +45,6 @@ final class LoginViewController: UIViewController {
         loginView.setupLogin(self)
         loginView.loginButton.isEnabled = false
         loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-       // navigationController?.navigationBar.setBottomBorderColor(color: UIColor.gray, height: 1.0)
         loginView.loginButton.isEnabled = false
         if loginView.loginButton.isEnabled == false {
             loginView.loginButton.backgroundColor = UIColor.lightGray
@@ -174,7 +173,8 @@ extension LoginViewController: UITextFieldDelegate {
     /* On return key press */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
+        // let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField
+        let nextField = (textField == loginView.emailField) ? loginView.passwordField : loginView.emailField
         nextField.becomeFirstResponder()
         return true
     }

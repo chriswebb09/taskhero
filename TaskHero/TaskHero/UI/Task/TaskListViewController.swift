@@ -213,7 +213,10 @@ extension TaskListViewController: TaskCellDelegate {
         let superview = sender.superview
         guard let cell = superview?.superview as? TaskCell else { return }
         let indexPath = tableView.indexPath(for: cell)
-        sharedTaskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!, type: .taskList)
+        if let index = indexPath {
+            sharedTaskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: index, type: .taskList)
+        }
+        
     }
     
     // Kicks off cycling between taskcell editing states

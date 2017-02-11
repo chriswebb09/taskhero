@@ -28,9 +28,6 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(signupView)
         signupView.layoutSubviews()
         edgesForExtendedLayout = []
-        navigationController?.navigationBar.isHidden = false
-       // navigationController?.navigationBar.barTintColor = UIColor.navigationBarColor()
-       // navigationController?.navigationBar.tintColor = UIColor.white
         setupSignupView()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -49,7 +46,6 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     
     func setupUser(user: User) {
         store.firebaseAPI.registerUser(user: user)
-        //store.currentUserString = FIRAuth.auth()?.currentUser?.uid
         store.firebaseAPI.setupRefs()
         store.currentUser = user
     }
@@ -75,7 +71,9 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     func signupButtonTapped() {
-        signupLogic(email:signupView.emailField.text!, password: signupView.passwordField.text!, username: signupView.usernameField.text!, loadingView: LoadingView())
+        if let emailText = signupView.emailField.text, let passwordText = signupView.passwordField.text, let userNameText = signupView.usernameField.text {
+            signupLogic(email: emailText, password: passwordText, username: userNameText, loadingView: LoadingView())
+        }
     }
     
     // Checks text for valid email format and returns bool based on result
@@ -89,14 +87,18 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     // Checks that text has more than five characters / animates UITextField to blue color if true.
     
     func checkTextField(_ textField: UITextField) {
-        if (textField.text?.characters.count)! > 5 {
-            UIView.animate(withDuration: 0.5,
-                           delay: 0.0,
-                           options: UIViewAnimationOptions.curveEaseOut,
-                           animations: { textField.layer.borderColor = UIColor.blue.cgColor },
-                           completion: nil)
+        if let textFieldText = textField.text {
+            if textFieldText.characters.count > 5 {
+                UIView.animate(withDuration: 0.5,
+                               delay: 0.0,
+                               options: UIViewAnimationOptions.curveEaseOut,
+                               animations: { textField.layer.borderColor = UIColor.blue.cgColor },
+                               completion: nil)
+            }
+            
         }
     }
+    
     
     func dismissKeyboard() {
         view.endEditing(true)
