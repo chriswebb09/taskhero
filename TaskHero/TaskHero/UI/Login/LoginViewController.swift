@@ -20,6 +20,7 @@ final class LoginViewController: UIViewController {
     var defaults = UserDefaults.standard
     var loadingView = LoadingView()
     var loginView: LoginView = LoginView()
+    
     var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
         didSet {
             loginViewModel.username = loginView.emailField.text!
@@ -31,13 +32,19 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
+        
         view.addSubview(loginView)
+        
         setupDelegates()
         edgesForExtendedLayout = []
+        
         loginView.setupLogin(self)
         loginView.loginButton.isEnabled = false
+        
         loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
         loginView.loginButton.isEnabled = false
         if loginView.loginButton.isEnabled == false {
             loginView.loginButton.backgroundColor = .lightGray
@@ -94,14 +101,13 @@ extension LoginViewController {
         FIRAuth.auth()?.signIn(withEmail: loginViewModel.username, password: loginViewModel.password) { [unowned self] user, error in
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
-                if let err = error {
-                    if let errCode = FIRAuthErrorCode(rawValue: err._code) {
-                        switch errCode {
-                        case .errorCodeInvalidEmail:
-                            print("Invalid Email For Sign In")
-                        default:
-                            print("User Authentication Error: \(error)") }
-                    }
+                if let err = error, let errCode = FIRAuthErrorCode(rawValue: err._code) {
+                    switch errCode {
+                    case .errorCodeInvalidEmail:
+                        print("Invalid Email For Sign In")
+                        
+                    default:
+                        print("User Authentication Error: \(error)") }
                 }
                 print(error ?? "Unknown error occured when attempting sign in authentication")
                 return
@@ -117,10 +123,10 @@ extension LoginViewController {
     }
     
     /* On global DispatchQueue with qos: userInituated sets self to unowned self
-     * creates new DataStore.sharedInstance sets new DataStore instance currentUserString 
-     * property to userID sets up FirebaseAPI database reference handles calls new DataStore 
+     * creates new DataStore.sharedInstance sets new DataStore instance currentUserString
+     * property to userID sets up FirebaseAPI database reference handles calls new DataStore
      * FirebaseAPI property and uses fetchUser method sets new DataStore instance currentUser
-     * property to user returned from fetchUser method call sets userDefaults proporties in AppManager 
+     * property to user returned from fetchUser method call sets userDefaults proporties in AppManager
      * to logged in
      */
     
@@ -128,9 +134,11 @@ extension LoginViewController {
         DispatchQueue.global(qos: .background).async {
             self.fetchData()
             DispatchQueue.main.async {
+                
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "hasLoggedIn")
                 defaults.synchronize()
+                
                 self.loadingView.hideActivityIndicator(viewController: self)
                 self.setupTabBar()
             }
@@ -183,6 +191,7 @@ extension LoginViewController {
         textField.font = Constants.signupFieldFont
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
         textField.layer.borderWidth = 1.1
+        
         loginView.textInputAnimation()
         self.loginView.editState = true
     }
@@ -193,6 +202,7 @@ extension LoginViewController {
         textField.layer.borderWidth = 1
         textField.textColor = .lightGray
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
+        
         checkForValidEmailInput()
     }
 }

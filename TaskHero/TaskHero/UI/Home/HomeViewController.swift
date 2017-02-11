@@ -44,6 +44,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         
         picker.delegate = self
         edgesForExtendedLayout = []
+        
         setupView(tableView:tableView, view:view)
         self.addNavItemsToController()
     }
@@ -80,6 +81,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
                     self.store.currentUser = user
                     self.store.tasks = taskList
                     self.tasks = taskList
+                    
                     self.tableView.reloadData()
                 }
             }
@@ -103,6 +105,7 @@ extension HomeViewController {
 
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        
         taskMethods.setupTableView(tableView: tableView, view: view)
     }
     
@@ -138,19 +141,25 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             cellType = .header
         }
         switch cellType {
+            
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
+            
             let reloadedIndex = indexPath.row - 1
             let taskViewModel = TaskCellViewModel((self.store.tasks[reloadedIndex]))
+            
             taskCell.configureCell(taskVM: taskViewModel)
             setupTaskCell(taskCell: taskCell, viewController: self)
+            
             taskCell.tag = indexPath.row
             taskCell.delegate = self
+            
             return taskCell
+            
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
-            headerCell.delegate = self
             setupHeaderCell(headerCell: headerCell, viewController: self)
+            headerCell.delegate = self
             return headerCell
         }
     }
@@ -197,10 +206,13 @@ extension HomeViewController {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.synchronize()
+        
         print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
+        
         let loginVC = AppScreenViewController()
         let rootNC = UINavigationController(rootViewController:loginVC)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         appDelegate.window?.rootViewController = rootNC
     }
     
