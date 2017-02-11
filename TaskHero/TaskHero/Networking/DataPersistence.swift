@@ -29,13 +29,8 @@ class DataPeristence {
     
     
     func setLoggedInKey(userState:Bool) {
-       
-       // let appDefaults: [String:Any] = ["hasLoggedIn" : true]
-       // defaults.register(defaults: appDefaults)
         defaults.set(userState, forKey: "hasLoggedIn")
         defaults.synchronize()
-//
-//        print(defaults)
     }
     
     /* Incomplete - set currentUser and tasks on local storage after log in to mitigate constant log in fatigue */

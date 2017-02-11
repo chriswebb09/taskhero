@@ -28,7 +28,10 @@ class AppScreenViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
     }
-    
+}
+
+extension AppScreenViewController {
+
     func loginButtonTapped() {
         navigationController?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         navigationController?.pushViewController(LoginViewController(), animated: true)
