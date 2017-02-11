@@ -41,8 +41,8 @@ final class ProfileDataCell: UITableViewCell {
         return experiencePointsLabel
     }()
     
-    
     // Actual number of tasks completed - deleted - not pointvalue it is the number of tasks
+    
     var tasksCompletedLabel: UILabel = {
         let taskCompletedLabel = UILabel()
         return taskCompletedLabel
@@ -60,7 +60,6 @@ final class ProfileDataCell: UITableViewCell {
         return divider
     }()
     
-    
     // MARK: - Initialization
     // Lays out subviews and calls setup constraints
     
@@ -74,6 +73,7 @@ final class ProfileDataCell: UITableViewCell {
     }
     
     // MARK: - Configuration
+    
     /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - sets label to small green ovaly element with black border aligns content in center */
     
     private func configureLabels(label:UILabel) {
