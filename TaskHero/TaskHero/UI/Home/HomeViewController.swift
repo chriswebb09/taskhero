@@ -24,7 +24,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var homeViewModel: HomeViewModel {
         didSet {
-            
+            print("HomeViewModel")
         }
     }
     
@@ -41,7 +41,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
-    let helpers = Helpers()     /* Helper methods mainly for configuring */
+    let helpers = Helpers()
     
     var taskMethods = SharedTaskMethods()
     
@@ -54,9 +54,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     /* Before view appears fetches tasks user data using helpers.getData method then for current user
-     * if currentUser.tasks is not nil, it removes tasks from currentUser regardless it then fetches
-     * currentUser from database calling APIClient before loading. Redundant functionality, definitely could be streamlined
-     */
+     if currentUser.tasks is not nil, it removes tasks from currentUser regardless it then fetches
+     currentUser from database calling APIClient before loading. Redundant functionality, definitely could be streamlined */
     
     required convenience init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -91,6 +90,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
             }
         }
     }
+    
     /* Removes reference to database - necessary to prevent duplicate task cells from loading when view will
      * appears is called again. Called inside helpers class
      */
@@ -99,6 +99,10 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillDisappear(false)
         helpers.removeRefHandle()
     }
+    
+}
+
+extension HomeViewController {
     
     func setupView(tableView: UITableView, view: UIView) {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
@@ -156,7 +160,10 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
             return headerCell
         }
     }
-    
+}
+
+extension HomeViewController {
+
     func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController) {
         headerCell.emailLabel.isHidden = true
         if let newUser = self.store.currentUser {
@@ -186,12 +193,10 @@ extension HomeViewController: UITextViewDelegate, TaskCellDelegate, ProfileHeade
         }
     }
     
-    /* Sets up action for logout button press, add task button press and adds these as selectors on
-     navigation items which are added to navigation controller. */
     
     // MARK: Selector Methods
     
-    /* Logs out user by settings root ViewController to Loginview */
+    /* Sets up action for logout button press, add task button press and adds these as selectors on navigation items which are added to navigation controller. Logs out user by settings root ViewController to Loginview */
     
     func logoutButtonPressed() {
         let loginVC = LoginViewController()

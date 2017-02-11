@@ -50,7 +50,7 @@ final class AddTaskView: UIView {
     
     var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
-        addTaskButton.layer.borderWidth = Constants.Border.borderWidth
+        //addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
         addTaskButton.backgroundColor = Constants.Color.buttonColor
         addTaskButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
@@ -59,6 +59,8 @@ final class AddTaskView: UIView {
         return addTaskButton
     }()
     
+    
+    
     // MARK: - Initialization
     
     override func layoutSubviews() {
@@ -66,6 +68,11 @@ final class AddTaskView: UIView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
+    
+    func setBorder(view: UIView) {
+        view.layer.borderWidth = Constants.Border.borderWidth
+    }
+    
     
     // MARK: - Configure
     

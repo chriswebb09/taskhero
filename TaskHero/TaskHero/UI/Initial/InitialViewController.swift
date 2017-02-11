@@ -19,6 +19,7 @@ final class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Date().getYears()
         edgesForExtendedLayout = []
         view.addSubview(initView)
         view.backgroundColor = UIColor.white
