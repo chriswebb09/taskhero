@@ -11,12 +11,6 @@ import Firebase
 
 final class ProfileViewController: UITableViewController {
     
-    // MARK: - Deallocation for ProfileViewController
-    
-    deinit {
-        print("ProfileViewController deallocated")
-    }
-    
     // MARK: - Internal Variables
     
     let store = UserDataStore.sharedInstance
@@ -32,7 +26,6 @@ final class ProfileViewController: UITableViewController {
         self.tableView.separatorStyle = .none
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         setupNavItems()
-        
         tableView.reloadData()
     }
     
@@ -66,18 +59,15 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // If first row set banner image
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
             bannerCell.configureCell()
             return bannerCell
-            // If second row return ProfileHeaderCell
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
             return headerCell
-            // Beyond that it's all ProfileDataCells
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
@@ -111,9 +101,7 @@ extension ProfileViewController {
     }
 }
 
-
 extension ProfileViewController: ProfileHeaderCellDelegate {
-    
     func profilePictureTapped(sender: UIGestureRecognizer) {
         print("tap")
     }
