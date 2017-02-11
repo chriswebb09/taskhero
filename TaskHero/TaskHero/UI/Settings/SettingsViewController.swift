@@ -194,5 +194,3 @@ extension Hiddable {
        print("Not implemented")
     }
 }
-
-

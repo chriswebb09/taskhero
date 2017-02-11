@@ -74,7 +74,10 @@ extension ProfileViewController {
             return dataCell
         }
     }
-    
+}
+
+extension ProfileViewController {
+
     // MARK: - Delegate Methods
     
     func setupNavItems() {
