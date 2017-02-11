@@ -24,7 +24,6 @@ final class AddTaskViewController: UIViewController  {
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:290, height:290))
     let datePicker = UIDatePicker()
     
-    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -62,7 +61,6 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
         if textField.text == "" {
             textField.placeholder = "Task name"
         }
-        
     }
     
     // MARK: - TextField Methods
@@ -116,13 +114,10 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        /* Return picker options for number of months if at index 0 */
         if component == 0 {
             return taskViewModel.pickerMonths.count
-            /* Return numbers of days in month */
         } else if component == 1 {
             return 30
-            /* Return years */
         } else {
             return 3
         }
@@ -130,17 +125,14 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            /* First component is months */
             return taskViewModel.pickerMonths[row]
         } else if component == 1 {
             var dayString = String(describing: taskViewModel.range[row])
-            /* Second component is days if less than 2 digits adds zero before day */
             if dayString.characters.count < 2 {
                 day = "0\(dayString)"
             }
             return day
         } else {
-            /* Last component is years */
             return taskViewModel.years[row]
         }
     }
@@ -156,7 +148,6 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             year = taskViewModel.years[row]
         }
     }
-    
     
     /* When add task button pressed - data popover is show so user can pick task due data */
     
