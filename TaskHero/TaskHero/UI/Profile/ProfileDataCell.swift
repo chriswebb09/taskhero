@@ -72,6 +72,10 @@ final class ProfileDataCell: UITableViewCell {
         setupConstraints()
     }
     
+}
+
+extension ProfileDataCell {
+
     // MARK: - Configuration
     
     /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - sets label to small green ovaly element with black border aligns content in center */
@@ -133,7 +137,7 @@ final class ProfileDataCell: UITableViewCell {
         tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
     }
     
-    private func setupConstraints() {
+    fileprivate func setupConstraints() {
         addLevelLabel(levelLabel: levelLabel)
         addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
@@ -144,7 +148,10 @@ final class ProfileDataCell: UITableViewCell {
         bottomDivider.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         bottomDivider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
-    
+}
+
+extension ProfileDataCell {
+
     // ConfigureCell method - called in ParentViewController - in this case ProfileViewController
     
     func configureCell() {

@@ -77,16 +77,18 @@ extension LoginViewController: UITextFieldDelegate {
     public func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
+}
+
+extension LoginViewController {
     
     // MARK: - Login Method Extension
     
     /*
-     * handleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
+     * HandleLogin starts by initially checking emailfield for text input formatted as valid email address - if not method returns
      * then it sets LoginViewController.view endEditting property to true
      * next loadingView (property implmemented at top) calls showActivity indicator method which takes viewController parameter -
      * pass in self.
-     
-     * sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
+     * Sets guard condition for email and password for emailfield.text and passwordfield.text - if not returns
      * calls firebase FIRAuth.auth.signIn method - which takes email and password
      * FIRAuth.auth.signIn returns FIRUser and FIRError objects, if error is not nil - hides loadingView.activity indicator enters
      * switch statement to return proper error message
@@ -126,8 +128,7 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    /*
-     * On global DispatchQueue with qos: userInituated sets self to unowned self
+     /* On global DispatchQueue with qos: userInituated sets self to unowned self
      * creates new DataStore.sharedInstance
      * sets new DataStore instance currentUserString property to userID
      * sets up FirebaseAPI database reference handles
@@ -139,12 +140,10 @@ extension LoginViewController: UITextFieldDelegate {
     func completeLogin() {
         DispatchQueue.global(qos: .background).async {
             self.fetchData()
-            /*  On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */
             DispatchQueue.main.async {
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "hasLoggedIn")
                 defaults.synchronize()
-                // DataPeristence.shared.setLoggedInKey(userState: true)
                 self.loadingView.hideActivityIndicator(viewController: self)
                 self.setupTabBar()
             }
@@ -173,9 +172,7 @@ extension LoginViewController: UITextFieldDelegate {
      * Hides keyboard/ ends view editting
      * Sets textfield text color and border to selected color
      * On ending edit textfield border color are set to deselect color
-     */
-    
-    /* On return key press */
+     * On return key press */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // let nextField = (textField === loginView.emailField) ? loginView.passwordField : loginView.emailField

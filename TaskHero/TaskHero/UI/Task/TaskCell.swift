@@ -25,14 +25,14 @@ final class TaskCell: UITableViewCell, Toggable {
     
     var taskNameLabel: UITextView = {
         let textView = UITextView().setupCellStyle()
-        textView.font = UIFont(name: "PingFangTC-Medium", size: 18)
+        textView.font = UIFont(name: "PingFangTC-Medium", size: 20)
         return textView
     }()
     
     var taskDescriptionLabel: UITextView = {
         let textView = UITextView()
         textView.labelTextViewStyle()
-        textView.font = UIFont(name: "PingFangTC-Light", size: 16)
+        textView.font = UIFont(name: "PingFangHK-Regular", size: 18)
         //textView.font = Constants.Font.bolderFontNormal
         
         return textView
@@ -88,8 +88,7 @@ final class TaskCell: UITableViewCell, Toggable {
     }
     
     // MARK: - Delegate Methods
-    // Button toggle methods
-    /* changes taskcell UI based on editstate value */
+    /* Button toggle methods changes taskcell UI based on editState value */
     
     func taskCell(didToggleEditState editState:Bool) {
         textViewToggle(state: editState, textView: taskDescriptionLabel)
@@ -220,7 +219,6 @@ final class TaskCell: UITableViewCell, Toggable {
         NSLog(self.description)
         if taskVM.taskCompleted == "true" {
             taskCompletedView.image = UIImage(named:"checked")
-            
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
             taskCompletedView.addGestureRecognizer(tap)
             saveButton.addTarget(self, action: #selector(toggleForEditState), for: .touchUpInside)

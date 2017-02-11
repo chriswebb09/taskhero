@@ -10,12 +10,6 @@ import UIKit
 
 final class SettingsViewController: UITableViewController {
     
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("SettingsViewController deallocated")
-    }
-    
     // MARK: - Properties
     
     let applicationSettings = ["Notifications"]
@@ -50,6 +44,10 @@ final class SettingsViewController: UITableViewController {
         super.viewWillDisappear(false)
         hide()
     }
+    
+}
+
+extension SettingsViewController {
     
     // MARK: UITableViewController Methods
     
@@ -92,7 +90,7 @@ final class SettingsViewController: UITableViewController {
         alertPop.containerView.layer.opacity = 0
     }
     
-    func launchPopupView() {
+    private func launchPopupView() {
         alertPopInitialOpacity()
         alertPop.showPopView(viewController: self)
         UIView.animate(withDuration: 0.1, animations: { [unowned self] in
@@ -106,13 +104,17 @@ final class SettingsViewController: UITableViewController {
     
     // Displays popover when notifications cell is selected
     
-    private func notificationPopInitialOpacity() {
+    fileprivate func notificationPopInitialOpacity() {
         notifyPop.popView.isHidden = false
         notifyPop.containerView.isHidden = false
         notifyPop.containerView.layer.opacity = 0
         notifyPop.popView.layer.opacity = 0
     }
     
+}
+
+extension SettingsViewController {
+
     func notificationPopup() {
         notificationPopInitialOpacity()
         notifyPop.showPopView(viewController: self)

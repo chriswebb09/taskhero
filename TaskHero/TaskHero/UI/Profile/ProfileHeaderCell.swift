@@ -18,6 +18,7 @@ final class ProfileHeaderCell: UITableViewCell {
     
     static let cellIdentifier = "ProfileHeaderCell"
     weak var delegate: ProfileHeaderCellDelegate?
+    
     var profileHeaderCellModel = ProfileHeaderCellModel()
     
     var joinDateLabel: UILabel = {
@@ -69,6 +70,9 @@ final class ProfileHeaderCell: UITableViewCell {
         contentView.layer.masksToBounds = true
     }
     
+}
+
+extension ProfileHeaderCell {
     // MARK: - Configuring Cell
     
     private func configureLabel(label:UILabel) {
@@ -129,14 +133,17 @@ final class ProfileHeaderCell: UITableViewCell {
         profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
     }
     
-    private func setupConstraints() {
+    fileprivate func setupConstraints() {
         addConfigures()
         addUsernameLabel()
         addlevelLabel()
         addJoinDateLabel()
         addProfilePicture()
     }
-    
+}
+
+extension ProfileHeaderCell {
+
     /*
      Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing
      called in ParentViewController - in this case that is either ProfileViewController or HomeViewController
@@ -145,6 +152,7 @@ final class ProfileHeaderCell: UITableViewCell {
     func configureCell(user: User) {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
+        
         emailLabel.text = user.email
         joinDateLabel.isHidden = true
         usernameLabel.text = user.username
@@ -152,6 +160,7 @@ final class ProfileHeaderCell: UITableViewCell {
         joinDateLabel.text = "Joined: \(user.joinDate)"
         profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePicture.addGestureRecognizer(tap)
         layoutSubviews()
@@ -163,6 +172,7 @@ final class ProfileHeaderCell: UITableViewCell {
         let shadowOffset = CGSize(width:-0.45, height: 0.4)
         let shadowRadius:CGFloat = 1.0
         let shadowOpacity:Float = 0.4
+        
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity
