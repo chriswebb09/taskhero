@@ -16,12 +16,10 @@ final class TaskListViewController: UITableViewController {
     
     let store = UserDataStore.sharedInstance /* userData store for application user state */
     var tapped: Bool = false /* tracks taps on taskcell completedView and button */
-    
     var taskViewModel: TaskCellViewModel!
     let helpers = Helpers()
     let sharedTaskMethods = SharedTaskMethods()
     var listViewModel = TaskListViewModel()
-    
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  // BackgroundQueue for background
     
     // MARK: - UI Elements
@@ -74,6 +72,10 @@ final class TaskListViewController: UITableViewController {
         tableView.reloadData()
     }
     
+}
+
+extension TaskListViewController {
+
     func configureAddTaskLabel(label: UILabel) {
         addTasksLabel.font = Constants.Font.fontNormal
         addTasksLabel.textColor = UIColor.gray

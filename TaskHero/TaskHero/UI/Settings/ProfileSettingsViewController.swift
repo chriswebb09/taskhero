@@ -38,10 +38,12 @@ extension ProfileSettingsViewController: UITableViewDelegate {
         options = [self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
                     "Profile Picture", self.store.currentUser.username]
         edgesForExtendedLayout = []
+        setupTableViewDelegates()
         setupSubviews()
         profileSettingsView.layoutSubviews()
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
-        tableView.setupTableView()
+        tableView.setupTableView(view: self.view)
+        tableView.separatorColor = UIColor.black
     }
     
     func setupTableViewDelegates() {
@@ -61,6 +63,7 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     // MARK: UITableViewController Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(options)
         return options.count
     }
     

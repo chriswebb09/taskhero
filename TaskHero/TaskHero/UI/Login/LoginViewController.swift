@@ -137,7 +137,6 @@ extension LoginViewController: UITextFieldDelegate {
      */
     
     func completeLogin() {
-        
         DispatchQueue.global(qos: .background).async {
             self.fetchData()
             /*  On main thread hides loadingView.activity indicator and sets appDelegate window to tabbarcontroller */

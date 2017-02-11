@@ -27,6 +27,7 @@ class DataPeristence {
     
     /* Sets has logged in key for UserDefaults */
     
+    
     func setLoggedInKey(userState:Bool) {
        
        // let appDefaults: [String:Any] = ["hasLoggedIn" : true]

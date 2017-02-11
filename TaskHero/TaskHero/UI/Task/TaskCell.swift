@@ -14,13 +14,6 @@ protocol TaskCellDelegate: class {
 }
 
 final class TaskCell: UITableViewCell, Toggable {
-    
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("Task cell deallocated")
-    }
-    
     // MARK: - Properties
     
     static let cellIdentifier = "TaskCell"
@@ -32,13 +25,16 @@ final class TaskCell: UITableViewCell, Toggable {
     
     var taskNameLabel: UITextView = {
         let textView = UITextView().setupCellStyle()
-        textView.font = Constants.Font.bolderFontNormal
+        textView.font = UIFont(name: "PingFangTC-Medium", size: 18)
         return textView
     }()
     
     var taskDescriptionLabel: UITextView = {
         let textView = UITextView()
         textView.labelTextViewStyle()
+        textView.font = UIFont(name: "PingFangTC-Light", size: 16)
+        //textView.font = Constants.Font.bolderFontNormal
+        
         return textView
     }()
     
@@ -55,7 +51,6 @@ final class TaskCell: UITableViewCell, Toggable {
     
     var saveButton: UIButton = {
         let button = ButtonType.system(title: "Save", color: UIColor.black).newButton
-        // var ui = button.newButton
         button.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
         button.isHidden = true
         button.isEnabled = false
@@ -185,14 +180,14 @@ final class TaskCell: UITableViewCell, Toggable {
     func addTaskNameLabel(taskNameLabel: UITextView) {
         configureView(view: taskNameLabel)
         print(contentView.frame.height * 0.2)
-        taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
-        taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
+        taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.bounds.height * 0.35).isActive = true
+        taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:contentView.bounds.width * 0.02).isActive = true
     }
     
     func addTaskDueLabel(taskDueLabel: UITextView) {
         configureView(view: taskDueLabel)
-        taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
-        taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
+        taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * 0.02).isActive = true
+        taskDueLabel.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: contentView.bounds.height * 0.06).isActive = true
     }
     
     func setupConstraints() {

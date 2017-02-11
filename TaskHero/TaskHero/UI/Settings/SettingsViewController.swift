@@ -41,7 +41,8 @@ final class SettingsViewController: UITableViewController {
         header.backgroundColor = UIColor.white
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
-        tableView.setupTableView()
+        tableView.separatorColor = UIColor.blue
+        tableView.setupTableView(view:self.view)
         setupSegment()
     }
     
@@ -73,7 +74,6 @@ final class SettingsViewController: UITableViewController {
             navigationController?.pushViewController(ProfileSettingsViewController(), animated: true)
         }
         else if settings[indexPath.row] == "Friends" {
-            
             let friendsVC = FriendsSettingsViewController()
             navigationController?.pushViewController(friendsVC, animated: true)
         }

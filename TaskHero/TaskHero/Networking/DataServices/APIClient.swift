@@ -61,6 +61,7 @@ final class APIClient {
     public func updateUsernameList(user: User) {
         ref = FIRDatabase.database().reference()
         let usernameRefs = ref.child("Usernames")
+        
         let usernameValues = [user.username:user.email] as [String : Any] as NSDictionary
         usernameRefs.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in
             if err != nil {
@@ -91,6 +92,7 @@ final class APIClient {
             if let task = newTask {
                 taskList.append(task)
             }
+            
             completion(taskList)
         })
     }
@@ -98,11 +100,13 @@ final class APIClient {
     
     func fetchTaskList(completion: @escaping TaskCompletion) {
         var taskList = [Task]()
+        
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             let newTask = self.createTaskSnapshot(snapshot: snapshot)
             if let task = newTask {
                 taskList.append(task)
             }
+            
             completion(taskList)
         })
     }
@@ -112,11 +116,13 @@ final class APIClient {
         var newTask = Task()
         newTask.taskID = snapshot.key
         guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return nil }
+        
         if let fetchName = snapshotValue[Constants.API.Task.taskName] as? String,
             let fetchDescription = snapshotValue[Constants.API.Task.taskDescription] as? String,
             let fetchCreated = snapshotValue[Constants.API.Task.taskCreated] as? String,
             let fetchDue = snapshotValue[Constants.API.Task.taskDue] as? String,
             let fetchCompleted = snapshotValue[Constants.API.Task.taskCompleted] as? Bool {
+            
             newTask.taskName = fetchName
             newTask.taskDescription = fetchDescription
             newTask.taskCreated = fetchCreated
@@ -135,9 +141,11 @@ final class APIClient {
     /* Grab tasks from user profile in realtime user database */
     
     func fetchUserData(completion: @escaping UserCompletion) {
+        
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(uid)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
+        
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
             let tasks = [Task]()
             let user = User()
@@ -149,6 +157,7 @@ final class APIClient {
     
     func createUserSnapshot(snapshot: FIRDataSnapshot, user: User) {
         guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
+        
         if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
             let snapshotEmail = snapshotValue[Constants.API.User.email] as? String,
             let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String,
@@ -158,6 +167,7 @@ final class APIClient {
             let snapshotProfilePicture = snapshotValue[Constants.API.User.profilePicture] as? String,
             let snapshotTasksCompleted = snapshotValue[Constants.API.User.tasksCompleted] as? Int,
             let snapshotExperiencePoints = snapshotValue[Constants.API.User.experiencePoints] as? Int {
+            
             user.username = snapshotName
             user.email = snapshotEmail
             user.firstName = snapshotFirstName
@@ -172,11 +182,13 @@ final class APIClient {
     }
     
     func updateUserProfile(userID: String, user:User, tasks:[Task]) {
+        
         userRef = dbRef.child("Users")
         let userData: NSDictionary = createValuesDictionary(user: user)
         userRef.updateChildValues(["/\(userID)": userData])
         usernameRef.updateChildValues([user.username:user.email])
         userRef.keepSynced(true)
+        
         if tasks.count != 0 {
             guard let userTasks = user.tasks else { return }
             for task in userTasks {
@@ -210,9 +222,11 @@ final class APIClient {
     }
     
     func registerUser(user: User) {
+        
         userRef = dbRef.child("Users").child(user.uid)
         updateUsernameList(user: user)
         let values = createValuesDictionary(user: user)
+        
         userRef.updateChildValues(values as! [AnyHashable : Any]) { err, ref in
             if err != nil {
                 print(err ?? "unable to get specific error")

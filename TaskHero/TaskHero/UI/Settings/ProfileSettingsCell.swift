@@ -17,15 +17,9 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     static let cellIdentifier = "ProfileSettingsCell"
     var delegate: ProfileSettingsCellDelegate?
     
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("ProfileSettingsCell deallocated")
-    }
-    
     // MARK: - UIElements
     
-    lazy var profileSettingLabel: UILabel = {
+    var profileSettingLabel: UILabel = {
         let profileLabel = UILabel()
         profileLabel.textColor = UIColor.settingsBackground()
         profileLabel.font = Constants.Font.fontNormal
@@ -34,14 +28,14 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         return profileLabel
     }()
     
-    lazy var button: TagButton = {
+    var button: TagButton = {
         let button = ButtonType.tag(title: "Edit", color: UIColor.blue, tag: 20, index: IndexPath())
         let uiElement = button.tagButton
         uiElement.layer.borderWidth = 0
         return uiElement
     }()
     
-    lazy var profileSettingField: TextFieldExtension = {
+    var profileSettingField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
@@ -72,7 +66,7 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     private func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Dimension.fieldHeight).isActive = true
+        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:1).isActive = true
         view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileSettingsLabelWidth).isActive = true
     }
     
@@ -85,7 +79,7 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     private func addButton() {
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.fieldHeight).isActive = true
+        button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1).isActive = true
         button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
         button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true

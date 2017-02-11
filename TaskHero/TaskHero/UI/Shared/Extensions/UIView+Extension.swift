@@ -41,8 +41,8 @@ extension UITextView {
 
 public extension UITableView {
     
-    public func setupTableView() {
-        estimatedRowHeight = Constants.Settings.rowHeight
+    public func setupTableView(view: UIView) {
+        estimatedRowHeight = view.frame.height / 4
         layoutMargins = UIEdgeInsets.zero
         separatorInset = UIEdgeInsets.zero
         separatorStyle = .singleLineEtched

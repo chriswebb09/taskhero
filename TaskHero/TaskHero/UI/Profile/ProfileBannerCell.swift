@@ -10,12 +10,6 @@ import UIKit
 
 final class ProfileBannerCell: UITableViewCell {
     
-    // MARK: - ProfileBanner deallocated
-    
-    deinit {
-        print("ProfileBannerCell")
-    }
-    
     static let cellIdentifier = "ProfileBannerCell"
     
     // MARK: - UI Elements
@@ -44,7 +38,10 @@ final class ProfileBannerCell: UITableViewCell {
         bannerImage.widthAnchor.constraint(equalTo:contentView.widthAnchor).isActive = true
         bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.Profile.profileBannerHeight).isActive = true
     }
-    
+}
+
+extension ProfileBannerCell {
+
     // Calls all methods that setup the subviews within the contentView and cell
     
     func configureCell() {

@@ -12,7 +12,7 @@ protocol TaskHeaderCellDelegate: class {
     
 }
 
-class TaskHeaderCell: UITableViewCell {
+final class TaskHeaderCell: UITableViewCell {
     
     let taskListNameLabel: UILabel = {
         let taskListNameLabel = UILabel()

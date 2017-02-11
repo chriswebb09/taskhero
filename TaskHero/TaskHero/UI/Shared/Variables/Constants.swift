@@ -110,7 +110,7 @@ public struct Constants {
     
     public struct Settings {
         public static let searchFieldButtonRadius: CGFloat = 2
-        public static let rowHeight: CGFloat = 100
+       // public static let rowHeight: CGFloat = 100
         public static let tableViewHeight:CGFloat = 0.75
         public static let dismissedOpacity:Float = 0
         public static let centerYOffset:CGFloat = 0.1
@@ -158,10 +158,10 @@ public struct Constants {
         public static let dueTopOffset:CGFloat = 60
         
         public struct Description {
-            public static let descriptionLabelWidth: CGFloat = 0.94
+            public static let descriptionLabelWidth: CGFloat = 0.96
             public static let descriptionLabelBackgroundColor: UIColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
-            public static let descriptionBoxHeight:CGFloat =  0.38
-            public static let boxInset: UIEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0)
+            public static let descriptionBoxHeight:CGFloat =  0.4
+            public static let boxInset: UIEdgeInsets = UIEdgeInsets(top: 4, left: 6, bottom: 0, right: 0)
         }
         
         public struct Shadow {

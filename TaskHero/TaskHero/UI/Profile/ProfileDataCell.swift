@@ -16,12 +16,6 @@ final class ProfileDataCell: UITableViewCell {
     
     weak var delegate: ProfileDataCellDelegate?
     static let cellIdentifier = "ProfileDataCell"
-    
-    // MARK: - ProfileDataCell deallocated
-    
-    deinit {
-        print("ProfileDataCell deallocated")
-    }
 
     // MARK: - UI Elements and cellModel
     

@@ -10,13 +10,6 @@ import UIKit
 import Firebase
 
 final class ProfileSettingsViewControllerDataSource {
-    
-    // MARK: - Deallocation from memory
-    
-    deinit {
-        print("ProfileSettingsViewControllerDataSource deallocated")
-    }
-    
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance

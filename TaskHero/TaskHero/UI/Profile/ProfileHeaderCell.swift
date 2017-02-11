@@ -13,13 +13,7 @@ protocol ProfileHeaderCellDelegate: class {
 }
 
 final class ProfileHeaderCell: UITableViewCell {
-    
-    // MARK: - ProfileHeaderCell deallocated from memory
-    
-    deinit {
-        print("ProfileHeaderCell deallocated")
-    }
-    
+
     // MARK: - Internal Variables
     
     static let cellIdentifier = "ProfileHeaderCell"
