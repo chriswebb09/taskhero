@@ -191,7 +191,7 @@ protocol Hiddable {
 
 extension Hiddable {
     func hide(view:UIView, viewController:UIViewController) {
-        // implementing
+       print("Not implemented")
     }
 }
 
