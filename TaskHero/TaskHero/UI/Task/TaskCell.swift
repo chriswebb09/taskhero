@@ -1,7 +1,3 @@
-
-
-
-
 import UIKit
 
 protocol TaskCellDelegate: class {

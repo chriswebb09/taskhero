@@ -1,8 +1,6 @@
 
 import UIKit
 
-
-
 struct HomeViewModel {
     
     var store = UserDataStore.sharedInstance

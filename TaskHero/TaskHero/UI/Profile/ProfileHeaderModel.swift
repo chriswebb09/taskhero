@@ -1,11 +1,3 @@
-//
-//  ProfileHeaderModel.swift
-//  TaskHero
-//
-//  Created by Christopher Webb-Orenstein on 12/8/16.
-//  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
-//
-
 import UIKit
 
 protocol ProfileHeaderModel {
