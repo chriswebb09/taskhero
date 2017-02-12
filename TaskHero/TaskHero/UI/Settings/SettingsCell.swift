@@ -1,3 +1,8 @@
+//
+//  SettingsCell.swift
+//  TaskHero
+//
+
 import UIKit
 
 final class SettingsCell: UITableViewCell {

@@ -1,3 +1,8 @@
+//
+//  ProfileBannerCell.swift
+//  TaskHero
+//
+
 import UIKit
 
 final class ProfileBannerCell: UITableViewCell {

@@ -1,3 +1,8 @@
+//
+//  ProfileHeaderModel.swift
+//  TaskHero
+//
+
 import UIKit
 
 protocol ProfileHeaderModel {

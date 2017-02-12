@@ -5,7 +5,6 @@ typealias TaskCompletion = ([Task]) -> Void
 typealias UserCompletion = (User) -> Void
 
 final class APIClient {
-
     // Firebase properties
     
     let storage = FIRStorage.storage()
@@ -18,6 +17,7 @@ final class APIClient {
     var imagesRef: FIRStorageReference!
     var userRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
+    
     var userID : String {
         var id: String = ""
         guard let auth = FIRAuth.auth() else { return id }
@@ -26,6 +26,7 @@ final class APIClient {
         }
         return id
     }
+    
     let database = FIRDatabase.database()
     let syncedUser = FIRDatabase.database().reference(withPath: "Users")
     

@@ -1,3 +1,8 @@
+//
+//  ProfileDataCellModel.swift
+//  TaskHero
+//
+
 import UIKit
 
 protocol ProfileDataCellModel {

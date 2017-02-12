@@ -1,3 +1,8 @@
+//
+//  ProfileSettingsCell.swift
+//  TaskHero
+//
+
 import UIKit
 
 protocol ProfileSettingsCellDelegate: class {
