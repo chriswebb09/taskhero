@@ -68,6 +68,8 @@ final class ProfileDataCell: UITableViewCell {
         contentView.clipsToBounds = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        var views = [levelLabel, experiencePointsLabel, tasksCompletedLabel, topDivider, bottomDivider]
+        setupViewsForConfig(views: views)
         setupConstraints()
     }
 }
@@ -78,7 +80,7 @@ extension ProfileDataCell {
     /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - 
      * sets label to small green ovaly element with black border aligns content in center */
     
-    private func configureLabels(label:UILabel) {
+    private func configureLabels(label: UILabel) {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
         label.layer.masksToBounds = true
         label.textAlignment = .center
@@ -89,18 +91,15 @@ extension ProfileDataCell {
         label.sizeToFit()
     }
     
-    // Most likely will be removed
-    
-    private func configureConstraints(label:UILabel) {
-        label.translatesAutoresizingMaskIntoConstraints = false
+    func setupViewsForConfig(views: [UIView]) {
+        _ = views.map { contentView.addSubview($0) }
+        _ = views.map { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
     // Adds constraints to labels to also adds experience points labels and tasksComleted labels to contentView
     
     private func addLevelLabel(levelLabel:UILabel) {
         configureLabels(label: levelLabel)
-        contentView.addSubview(levelLabel)
-        configureConstraints(label: levelLabel)
         levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
         levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
@@ -108,16 +107,12 @@ extension ProfileDataCell {
     }
     
     func configureDividers(view: UIView) {
-        contentView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.01).isActive = true
     }
     
     private func addExperiencePointLabel(experiencePointLabel:UILabel) {
         configureLabels(label: experiencePointsLabel)
-        contentView.addSubview(experiencePointsLabel)
-        configureConstraints(label: experiencePointsLabel)
         experiencePointsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         experiencePointsLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         experiencePointsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
@@ -126,8 +121,6 @@ extension ProfileDataCell {
     
     private func addTasksCompletedLabel(tasksCompletedLabel:UILabel) {
         configureLabels(label: tasksCompletedLabel)
-        contentView.addSubview(tasksCompletedLabel)
-        configureConstraints(label: tasksCompletedLabel)
         tasksCompletedLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.Settings.Profile.profileDataRightOffset).isActive = true
         tasksCompletedLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true

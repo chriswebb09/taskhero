@@ -48,10 +48,8 @@ final class ProfileHeaderCell: UITableViewCell {
     
     var profilePicture: UIImageView = {
         let imageView = UIImageView()
-        
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = Constants.Dimension.mainWidth
-        
         imageView.isUserInteractionEnabled = true
         return imageView
     }()

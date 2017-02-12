@@ -1,11 +1,3 @@
-//
-//  AppScreenView.swift
-//
-//
-//  Created by Christopher Webb-Orenstein on 1/27/17.
-//
-//
-
 import UIKit
 
 class AppScreenView: UIView {

@@ -1,11 +1,3 @@
-//
-//  HomeViewController.swift
-//  TaskHero
-//
-//  Created by Christopher Webb-Orenstein on 9/28/16.
-//  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
-//
-
 import UIKit
 
 /*
@@ -18,7 +10,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var homeViewModel: HomeViewModel {
         didSet {
-            self.fetchUser()
+           // self.fetchUser()
             //print("HomeViewModel")
         }
     }
@@ -42,11 +34,12 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        taskMethods.setupTableView(tableView: tableView, view: view)
         picker.delegate = self
         edgesForExtendedLayout = []
-        
-        setupView(tableView:tableView, view:view)
         self.addNavItemsToController()
     }
     
@@ -102,12 +95,9 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 
 extension HomeViewController: UITextViewDelegate {
     
-    func setupView(tableView: UITableView, view: UIView) {
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        taskMethods.setupTableView(tableView: tableView, view: view)
-    }
+//    func setupView(tableView: UITableView, view: UIView) {
+//     
+//    }
     
     // MARK: - UITableViewController Methods
     /* Returns number of rows based on count taskcount */
@@ -139,7 +129,8 @@ extension HomeViewController: TaskCellDelegate, ProfileHeaderCellDelegate {
         switch cellType {
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
-            setupTaskCell(taskCell: taskCell, viewController: self, indexPath: indexPath)
+            let reloadedIndex = indexPath.row - 1
+            setupTaskCell(taskCell: taskCell, viewController: self, taskIndex: reloadedIndex)
             return taskCell
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
@@ -161,19 +152,24 @@ extension HomeViewController {
         }
     }
     
-    func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController, indexPath: IndexPath) {
-        let reloadedIndex = indexPath.row - 1
-        let taskViewModel = TaskCellViewModel((self.store.tasks[reloadedIndex]))
-        taskCell.configureCell(taskVM: taskViewModel)
+    func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController, taskIndex: Int) {
+       
+        let taskViewModel = TaskCellViewModel(self.store.tasks[taskIndex])
         taskCell.delegate = viewController
+        taskCell.configureCell(taskVM: taskViewModel)
+
         let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
-        taskCell.tag = indexPath.row
+        taskCell.tag = taskIndex
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        var editable: Bool = indexPath.row == 0 ? false : true
+        return editable
     }
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        guard indexPath.row != 0 else { return }
         if editingStyle == .delete {
             tableView.beginUpdates()
             backgroundQueue.async {
@@ -186,7 +182,7 @@ extension HomeViewController {
         }
     }
     
-    
+
     // MARK: Selector Methods
     
     /* Sets up action for logout button press, add task button press and adds these as selectors on navigation items which are added to navigation controller. Logs out user by settings root ViewController to Loginview */

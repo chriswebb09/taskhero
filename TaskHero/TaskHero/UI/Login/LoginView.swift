@@ -1,11 +1,3 @@
-//
-//  LoginView.swift
-//  TaskTiger
-//
-//  Created by Christopher Webb-Orenstein on 9/24/16.
-//  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
-//
-
 import UIKit
 
 final class LoginView: UIView {
@@ -50,7 +42,7 @@ final class LoginView: UIView {
 }
 
 extension LoginView {
-
+    
     func initialOpacity() {
         loginButton.layer.opacity = 0
         emailField.layer.opacity = 0
@@ -115,7 +107,7 @@ extension LoginView {
 }
 
 extension LoginView {
-
+    
     
     func textInputAnimation() {
         if editState != true {
@@ -125,6 +117,7 @@ extension LoginView {
                 self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
                 self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: self.bounds.height * 0.06).isActive = true
                 self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: self.bounds.height  * 0.04).isActive = true
+                self.layoutIfNeeded()
             }
         }
     }

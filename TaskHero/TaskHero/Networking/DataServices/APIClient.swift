@@ -1,10 +1,3 @@
-//
-//  APIClient.swift
-//  TaskHero
-//
-//  Created by Christopher Webb-Orenstein on 12/6/16.
-//  Copyright © 2016 Christopher Webb-Orenstein. All rights reserved.
-//
 import UIKit
 import Firebase
 
@@ -25,7 +18,14 @@ final class APIClient {
     var imagesRef: FIRStorageReference!
     var userRef: FIRDatabaseReference!
     var usernameRef: FIRDatabaseReference!
-    let userID = FIRAuth.auth()?.currentUser?.uid
+    var userID : String {
+        var id: String = ""
+        guard let auth = FIRAuth.auth() else { return id }
+        if let user = auth.currentUser {
+            id = user.uid
+        }
+        return id
+    }
     let database = FIRDatabase.database()
     let syncedUser = FIRDatabase.database().reference(withPath: "Users")
     
@@ -67,7 +67,7 @@ final class APIClient {
     /* Adds new task to database - called from all viewcontrollers except popovers and addtaskviewcontroller */
     
     func addTasks(task:Task) {
-        tasksRef = dbRef.child("Users").child(userID!).child("Tasks")
+        tasksRef = dbRef.child("Users").child(userID).child("Tasks")
         tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskName)").setValue(task.taskName)
         tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskDescription)").setValue(task.taskDescription)
         tasksRef.child("\(task.taskID)/\(Constants.API.Task.taskCreated)").setValue(task.taskCreated)

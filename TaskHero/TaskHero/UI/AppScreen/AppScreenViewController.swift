@@ -1,11 +1,3 @@
-//
-//  AppScreen.swift
-//  TaskHero
-//
-//  Created by Christopher Webb-Orenstein on 1/27/17.
-//  Copyright © 2017 Christopher Webb-Orenstein. All rights reserved.
-//
-
 import UIKit
 
 class AppScreenViewController: UIViewController {

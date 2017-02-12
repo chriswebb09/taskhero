@@ -32,7 +32,7 @@ final class TaskListViewController: UITableViewController {
     }
     
     var hidden: Bool {
-        var hideText: Bool = self.store.tasks.count < 1 ? false : true
+        let hideText: Bool = self.store.tasks.count < 1 ? false : true
         return hideText
     }
     
@@ -151,7 +151,7 @@ extension TaskListViewController: TaskCellDelegate {
             addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             addTasksLabel.isHidden = false
         }
-        var hideText: Bool = self.store.tasks.count < 1 ? false : true
+        let hideText: Bool = self.store.tasks.count < 1 ? false : true
         addTaskLabel.isHidden = hideText
     }
     
