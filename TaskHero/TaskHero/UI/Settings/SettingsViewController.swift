@@ -20,16 +20,17 @@ final class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         settings = userSettings
         edgesForExtendedLayout = []
-        
-        let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
-        header.addSubview(segmentControl)
-        tableView.tableHeaderView = header
-        
-        header.backgroundColor = .white
         view.backgroundColor = .backgroundColor()
         tableView.separatorColor = .blue
         navigationController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
-        
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
+        header.addSubview(segmentControl)
+        tableView.tableHeaderView = header
+        header.backgroundColor = .white
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
         tableView.setupTableView(view:self.view)
         setupSegment()
@@ -117,14 +118,12 @@ extension SettingsViewController {
     
     func notificationPopup() {
         notificationPopInitialOpacity()
-        
         notifyPop.showPopView(viewController: self)
-        
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.notifyPop.popView.layer.opacity = 1
             self.notifyPop.containerView.layer.opacity = 0.1
+            self.notifyPop.layoutIfNeeded()
         }
-        
     }
     
     // MARK: - Setup buttons

@@ -13,15 +13,10 @@ protocol ProfileDataCellModel {
 
 struct ProfileDataCellViewModel {
     
-    // MARK: - Internal Variables
-    
     let store = UserDataStore.sharedInstance
-    
     internal var tasksCompleted: Int
     internal var experience: Int
     internal var level: String
-
-    // MARK: - Initialization
     
     init() {
         self.level = (self.store.currentUser.level)

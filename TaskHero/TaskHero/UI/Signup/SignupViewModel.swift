@@ -1,6 +1,6 @@
 import UIKit
 
-class SignupViewModel {
+struct SignupViewModel {
     
     var signupTitle: String
     var emailAddress: String = ""

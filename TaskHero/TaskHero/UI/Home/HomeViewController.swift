@@ -100,10 +100,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 
 extension HomeViewController: UITextViewDelegate {
     
-//    func setupView(tableView: UITableView, view: UIView) {
-//     
-//    }
-    
     // MARK: - UITableViewController Methods
     /* Returns number of rows based on count taskcount */
     

@@ -1,6 +1,6 @@
 import UIKit
 
-class DataPeristence {
+struct DataPeristence {
     
     static let shared = DataPeristence() 
     

@@ -1,6 +1,6 @@
 import UIKit
 
-final class SettingsCellViewModel {
+struct SettingsCellViewModel {
     var setting: String
     
     init(_ setting:String) {

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class AppScreenViewModel {
+struct AppScreenViewModel {
     
     var signupButtonColor: UIColor = {
         return Constants.Color.backgroundColor

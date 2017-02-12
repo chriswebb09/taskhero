@@ -42,10 +42,12 @@ extension AppScreenView {
         setupLogoImage(logoImageView: logoImageView)
         constraintSetup(views: [viewDivider, loginButton, signupButton])
         setupViewDivider(viewDivider: viewDivider)
+        
         loginButton.bottomAnchor.constraint(equalTo: viewDivider.topAnchor, constant: UIScreen.main.bounds.height * -0.04).isActive = true
         loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier:0.075).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
         signupButton.topAnchor.constraint(equalTo: viewDivider.bottomAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
         signupButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         signupButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier:0.075).isActive = true
@@ -53,7 +55,9 @@ extension AppScreenView {
     }
     
     private func setupLogoImage(logoImageView: UIView) {
+        
         addSubview(logoImageView)
+        
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06).isActive = true
