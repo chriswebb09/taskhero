@@ -1,7 +1,7 @@
 import UIKit
 
 protocol TaskHeaderCellDelegate: class {
-    
+    // not implemented
 }
 
 final class TaskHeaderCell: UITableViewCell {

@@ -13,15 +13,16 @@ import UIKit
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
     
+    // MARK: - Data Properties
+    
     var homeViewModel: HomeViewModel {
         didSet {
-           // self.fetchUser()
+            // self.fetchUser()
             //print("HomeViewModel")
         }
     }
-    
     var store = UserDataStore.sharedInstance
-    
+    var taskMethods = SharedTaskMethods()
     var tasks: [Task] = [] {
         didSet {
             print("HERE")
@@ -30,12 +31,14 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         }
     }
     
+    // MARK: - Not data properties
+    
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
     let helpers = Helpers()
     
-    var taskMethods = SharedTaskMethods()
+    // MARK: - Initializers
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +77,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillAppear(false)
     }
     
+    // MARK: - Fetching Data methods
+    
     func fetchUser() {
         self.store.firebaseAPI.fetchUserData() { user in
             self.store.firebaseAPI.fetchTaskList() { taskList in
@@ -86,6 +91,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
             }
         }
     }
+    
+    // MARK: - Deinitializing method
     
     /* Removes reference to database - necessary to prevent
      * duplicate task cells from loading when view will
@@ -114,12 +121,17 @@ extension HomeViewController: UITextViewDelegate {
     }
 }
 
-extension HomeViewController: TaskCellDelegate, ProfileHeaderCellDelegate {
+// MARK: - ProfileHeaderCell Delegate Method
+
+extension HomeViewController: ProfileHeaderCellDelegate {
+    
+    // MARK: - Header cell Delegate Methods
     
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
         print("here")
     }
     
+    // MARK: - Return cells Dequeue Method
     /* If first row returns profile header cell else returns task cell all cells configured within HomeViewController  */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -141,7 +153,9 @@ extension HomeViewController: TaskCellDelegate, ProfileHeaderCellDelegate {
     }
 }
 
-extension HomeViewController {
+// MARK: - Setup Cells Methods
+
+extension HomeViewController: TaskCellDelegate {
     
     func setupHeaderCell(headerCell: ProfileHeaderCell, viewController: HomeViewController, indexPath: IndexPath) {
         headerCell.emailLabel.isHidden = true
@@ -154,15 +168,15 @@ extension HomeViewController {
     }
     
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController, taskIndex: Int) {
-       
         let taskViewModel = TaskCellViewModel(self.store.tasks[taskIndex])
         taskCell.delegate = viewController
         taskCell.configureCell(taskVM: taskViewModel)
-
         let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
         taskCell.tag = taskIndex
     }
+    
+    // MARK: - Deletes Tasks logic
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         var editable: Bool = indexPath.row == 0 ? false : true
@@ -170,6 +184,7 @@ extension HomeViewController {
     }
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
@@ -183,9 +198,7 @@ extension HomeViewController {
         }
     }
     
-
     // MARK: Selector Methods
-    
     /* Sets up action for logout button press, add task button press and adds these as selectors on navigation items which are added to navigation controller. Logs out user by settings root ViewController to Loginview */
     
     func logoutButtonPressed() {
@@ -207,20 +220,22 @@ extension HomeViewController {
     }
     
     // MARK: - Nav Items
-    
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
+    
     func addNavItemsToController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
+    // MARK: - Popover Methods
     /* Hides popover view when operation has ended. */
     
     internal func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
     }
     
+    // MARK: - Toggle state methods
     /* Task cell Delegate Methods - Mainly toggling UI for edit state
      Method toggles UI states from editing to not editing when save is pressed */
     
@@ -243,7 +258,6 @@ extension HomeViewController {
 // Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
 extension HomeViewController: UIImagePickerControllerDelegate {
     
-    // MARK: - Header cell Delegate Methods
     // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview - Add profile picture storage methods
     
     func selectImage(picker:UIImagePickerController, viewController: UIViewController) {

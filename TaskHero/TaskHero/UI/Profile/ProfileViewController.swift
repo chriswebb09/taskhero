@@ -8,8 +8,6 @@ import Firebase
 
 final class ProfileViewController: UITableViewController {
     
-    // MARK: - Internal Variables
-    
     let store = UserDataStore.sharedInstance
     var helpers = Helpers()
     

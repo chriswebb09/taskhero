@@ -10,8 +10,6 @@ protocol ProfileHeaderCellDelegate: class {
 }
 
 final class ProfileHeaderCell: UITableViewCell {
-
-    // MARK: - Internal Variables
     
     static let cellIdentifier = "ProfileHeaderCell"
     weak var delegate: ProfileHeaderCellDelegate?
