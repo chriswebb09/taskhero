@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 protocol TaskCellDelegate: class {
     func toggleForEditState(_ sender:UIGestureRecognizer)
@@ -142,8 +143,10 @@ final class TaskCell: UITableViewCell, Toggable {
     func configureView(view: UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.nameLabelHeight).isActive = true
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.dueWidth).isActive = true
+        view.snp.makeConstraints { make in
+            make.height.equalTo(self).multipliedBy(Constants.TaskCell.nameLabelHeight)
+            make.width.equalTo(self).multipliedBy(Constants.TaskCell.dueWidth)
+        }
     }
     
     /* taskDescription label configuration */
@@ -151,10 +154,12 @@ final class TaskCell: UITableViewCell, Toggable {
     func setupDescriptionElements(element: UIView) {
         contentView.addSubview(element)
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.TaskCell.Description.descriptionBoxHeight).isActive = true
-        element.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.TaskCell.Description.descriptionLabelWidth).isActive = true
-        element.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.bottomOffset).isActive = true
-        element.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        element.snp.makeConstraints { make in
+            make.height.equalTo(contentView.snp.height).multipliedBy(Constants.TaskCell.Description.descriptionBoxHeight)
+            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.TaskCell.Description.descriptionLabelWidth)
+            make.bottom.equalTo(contentView.snp.bottom).offset(Constants.Dimension.bottomOffset)
+            make.centerX.equalTo(contentView.snp.centerX)
+        }
     }
     
     /* taskCompletedView and saveButton configuration */
@@ -162,9 +167,11 @@ final class TaskCell: UITableViewCell, Toggable {
     func setupEditElements(element: UIView) {
         contentView.addSubview(element)
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.TaskCell.negativeOffset).isActive = true
-        element.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.mainOffset).isActive = true
-        element.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Dimension.saveButtonHeight).isActive = true
+        element.snp.makeConstraints { make in
+            make.right.equalTo(contentView.snp.right).offset(Constants.TaskCell.negativeOffset)
+            make.top.equalTo(contentView.snp.top).offset(Constants.Dimension.mainOffset)
+            make.height.equalTo(UIScreen.main.bounds.height * Constants.Dimension.saveButtonHeight)
+        }
     }
     
     func addTaskNameLabel(taskNameLabel: UITextView) {

@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class LoginView: UIView {
     
@@ -48,6 +49,8 @@ final class LoginView: UIView {
 
 extension LoginView {
     
+    // MARK: View Opacity Methods
+    
     func initialOpacity() {
         loginButton.layer.opacity = 0
         emailField.layer.opacity = 0
@@ -62,11 +65,7 @@ extension LoginView {
         logoImageView.layer.opacity = 1
     }
     
-    func animated() {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.animatedOpacity()
-        }
-    }
+    // MARK: Setup 
     
     /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
     
@@ -84,50 +83,73 @@ extension LoginView {
     private func setupView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        view.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
-        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        view.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
+            make.height.equalTo(self).multipliedBy(Constants.Login.loginFieldHeight)
+            make.centerX.equalTo(self)
+        }
     }
     
     private func setupLogoImage() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06).isActive = true
-        logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.12).isActive = true
+        logoImageView.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(0.07)
+            make.height.equalTo(self).multipliedBy(0.7)
+            make.centerX.equalTo(self)
+            make.top.equalTo(self).offset(bounds.height * 0.12)
+        }
     }
     
     fileprivate func setupConstraints() {
         setupLogoImage()
         setupView(view: emailField)
-        emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: bounds.height * 0.1).isActive = true
         setupView(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.06).isActive = true
-        passwordField.isSecureTextEntry = true
         setupView(view: loginButton)
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height  * 0.1).isActive = true
+        emailField.snp.makeConstraints { make in
+            make.top.equalTo(logoImageView.snp.bottom).offset(bounds.height * 0.1)
+        }
+        
+        passwordField.snp.makeConstraints { make in
+            make.top.equalTo(emailField.snp.bottom).offset(bounds.height * 0.06)
+        }
+        
+        passwordField.isSecureTextEntry = true
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordField.snp.bottom).offset(bounds.height * 0.1)
+        }
     }
     
 }
 
 extension LoginView {
     
+    // MARK: Animation
+    
+    func animated() {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.animatedOpacity()
+        }
+    }
     
     func textInputAnimation() {
         if editState != true {
-            UIView.animate(withDuration: 0.5) {
-                self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.02).isActive = true
-                self.logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-                self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
-                self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: self.bounds.height * 0.06).isActive = true
-                self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: self.bounds.height  * 0.04).isActive = true
+            UIView.animate(withDuration: 0.02) {
+                self.logoImageView.snp.makeConstraints { make in
+                    make.height.equalTo(self).multipliedBy(0.02)
+                    make.width.equalTo(self).multipliedBy(0.5)
+                    make.top.equalTo(self).offset(self.bounds.height * 0.05)
+                }
+                self.emailField.snp.makeConstraints { make in
+                    make.top.equalTo(self.logoImageView.snp.top).offset(self.bounds.height * 0.06)
+                }
+                self.loginButton.snp.makeConstraints { make in
+                    make.top.equalTo(passwordField.snp.bottom).offset(bounds.height * 0.04)
+                }
                 self.layoutIfNeeded()
             }
         }
     }
-    
-    // MARK: - Animation
     
     func textFieldAnimation() {
         UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in

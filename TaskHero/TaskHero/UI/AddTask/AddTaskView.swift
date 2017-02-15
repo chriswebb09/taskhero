@@ -88,4 +88,24 @@ final class AddTaskView: UIView {
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height *  0.05).isActive = true
     }
+    
+    func animatiedPostion() {
+        UIView.animate(withDuration: 0.05) {
+            self.taskNameLabel.isHidden = true
+            if self.taskNameField.isFirstResponder {
+                self.taskNameField.layer.borderColor = UIColor.gray.cgColor
+            } else if self.taskDescriptionBox.isFirstResponder {
+                self.taskDescriptionBox.layer.borderColor = UIColor.gray.cgColor
+            }
+            self.taskNameField.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.04).isActive = true
+            self.taskDescriptionBox.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
+            self.taskDescriptionBox.topAnchor.constraint(equalTo: self.taskNameField.bottomAnchor, constant: self.bounds.height * 0.02).isActive = true
+            self.addTaskButton.topAnchor.constraint(equalTo: self.taskDescriptionBox.bottomAnchor, constant: self.bounds.height *  0.02).isActive = true
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func normal() {
+        
+    }
 }
