@@ -48,18 +48,26 @@ final class FriendsSettingsView: UIView {
     fileprivate func configureView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.FriendsSetting.friendsHeaderLabelHeight).isActive = true
-        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.07).isActive = true
-        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        view.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(Constants.Settings.FriendsSetting.friendsHeaderLabelHeight)
+            make.height.equalTo(self).multipliedBy(0.07)
+            make.centerX.equalTo(self)
+        }
     }
     
     fileprivate func setupConstraints() {
         configureView(view: friendsHeaderLabel)
-        friendsHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Settings.FriendsSetting.friendsHeaderLabelTopOffset).isActive = true
+        friendsHeaderLabel.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(bounds.height * Constants.Settings.FriendsSetting.friendsHeaderLabelTopOffset)
+        }
         configureView(view: searchField)
-        searchField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Dimension.mainOffset).isActive = true
-        searchField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bounds.height * Constants.Settings.centerYOffset).isActive = true
+        searchField.snp.makeConstraints { make in
+            make.leading.equalTo(self).offset(Constants.Dimension.mainOffset)
+            make.centerY.equalTo(self).offset(-bounds.height * Constants.Settings.centerYOffset)
+        }
         configureView(view: searchButton)
-        searchButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * Constants.Settings.centerYOffset).isActive = true
+        searchButton.snp.makeConstraints { make in
+            make.centerY.equalTo(self).offset(bounds.height * Constants.Settings.centerYOffset)
+        }
     }
 }

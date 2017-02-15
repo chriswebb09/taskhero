@@ -27,9 +27,11 @@ final class ProfileSettingsView: UIView {
     fileprivate func setupConstraints() {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
-        profileLabel.widthAnchor.constraint(equalTo:widthAnchor, multiplier: Constants.Settings.FriendsSetting.friendsHeaderLabelHeight).isActive = true
-        profileLabel.heightAnchor.constraint(equalTo:heightAnchor, multiplier: Constants.Dimension.height).isActive = true // 0.5
-        profileLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        profileLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * Constants.Profile.Offset.labelTopOffset).isActive = true
+        profileLabel.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(Constants.Settings.FriendsSetting.friendsHeaderLabelHeight)
+            make.height.equalTo(self).multipliedBy(Constants.Dimension.height)
+            make.centerX.equalTo(self)
+            make.top.equalTo(self).offset(bounds.height * Constants.Profile.Offset.labelTopOffset)
+        }
     }
 }

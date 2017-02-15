@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 typealias completion = () -> Void
 
@@ -49,10 +50,12 @@ final class InitView: UIView {
     private func setupConstraints() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
-        logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        logoImageView.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(Constants.Logo.logoImageWidth)
+            make.height.equalTo(self).multipliedBy(Constants.Logo.logoImageHeight)
+            make.centerX.equalTo(self)
+            make.centerY.equalTo(self)
+        }
     }
 }
 

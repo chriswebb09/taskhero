@@ -9,16 +9,19 @@ final class ProfileSettingsViewControllerDataSource {
     
     func setupViews(profileSettingsView: ProfileSettingsView, tableView: UITableView, view:UIView) {
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
-        
-        profileSettingsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        profileSettingsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        profileSettingsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
+        profileSettingsView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top)
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(view.snp.height).multipliedBy(Constants.Settings.Profile.profileViewHeightAnchor)
+        }
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Settings.tableViewHeight).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.bottom.equalTo(view.snp.bottom)
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(view.snp.height).multipliedBy(Constants.Settings.tableViewHeight)
+        }
     }
     
     func updateUserName(cell: ProfileSettingsCell, name:[String]) {

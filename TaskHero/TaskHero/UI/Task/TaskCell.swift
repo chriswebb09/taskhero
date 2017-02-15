@@ -144,8 +144,8 @@ final class TaskCell: UITableViewCell, Toggable {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.snp.makeConstraints { make in
-            make.height.equalTo(self).multipliedBy(Constants.TaskCell.nameLabelHeight)
-            make.width.equalTo(self).multipliedBy(Constants.TaskCell.dueWidth)
+            make.height.equalTo(contentView.snp.height).multipliedBy(Constants.TaskCell.nameLabelHeight)
+            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.TaskCell.dueWidth)
         }
     }
     

@@ -94,10 +94,10 @@ extension LoginView {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.snp.makeConstraints { make in
-            make.width.equalTo(self).multipliedBy(0.07)
-            make.height.equalTo(self).multipliedBy(0.7)
+            make.width.equalTo(self).multipliedBy(0.7)
+            make.height.equalTo(self).multipliedBy(0.07)
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(bounds.height * 0.12)
+            make.top.equalTo(self).offset(self.bounds.height * 0.12)
         }
     }
     
@@ -138,13 +138,13 @@ extension LoginView {
                 self.logoImageView.snp.makeConstraints { make in
                     make.height.equalTo(self).multipliedBy(0.02)
                     make.width.equalTo(self).multipliedBy(0.5)
-                    make.top.equalTo(self).offset(self.bounds.height * 0.05)
+                    make.top.equalTo(self).offset(self.bounds.height * 0.04)
                 }
                 self.emailField.snp.makeConstraints { make in
-                    make.top.equalTo(self.logoImageView.snp.top).offset(self.bounds.height * 0.06)
+                    make.top.equalTo(self.logoImageView.snp.bottom).offset(self.bounds.height * 0.06)
                 }
                 self.loginButton.snp.makeConstraints { make in
-                    make.top.equalTo(passwordField.snp.bottom).offset(bounds.height * 0.04)
+                    make.top.equalTo(self.passwordField.snp.bottom).offset(self.bounds.height * 0.04)
                 }
                 self.layoutIfNeeded()
             }

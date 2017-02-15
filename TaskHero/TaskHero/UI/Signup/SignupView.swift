@@ -63,7 +63,6 @@ extension SignupView {
     private func setupLogoImage() {
         addSubview(registerLabel)
         registerLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         registerLabel.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(Constants.Logo.logoImageWidth)
             make.height.equalTo(self).multipliedBy(Constants.Logo.logoImageHeight)
@@ -85,18 +84,29 @@ extension SignupView {
     
     fileprivate func setupConstraints() {
         setupLogoImage()
+        
         setupView(view: usernameField)
-        usernameField.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: bounds.height * 0.065).isActive = true
+        usernameField.snp.makeConstraints { make in
+            make.top.equalTo(registerLabel.snp.bottom).offset(bounds.height * 0.062)
+        }
+        
         setupView(view: emailField)
-        emailField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: bounds.height * 0.042).isActive = true
+        emailField.snp.makeConstraints { make in
+            make.top.equalTo(usernameField.snp.bottom).offset(bounds.height * 0.042)
+        }
         setupView(view: confirmEmailField)
-        confirmEmailField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.042).isActive = true
+        confirmEmailField.snp.makeConstraints { make in
+            make.top.equalTo(emailField.snp.bottom).offset(bounds.height * 0.042)
+        }
         setupView(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: confirmEmailField.bottomAnchor, constant: bounds.height * 0.042).isActive = true
+        passwordField.snp.makeConstraints { make in
+            make.top.equalTo(confirmEmailField.snp.bottom).offset(bounds.height * 0.042)
+        }
         passwordField.isSecureTextEntry = true
         setupView(view: loginButton)
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: bounds.height * 0.085).isActive = true
-        
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordField.snp.bottom).offset(bounds.height * 0.085)
+        }
     }
 }
 
