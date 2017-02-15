@@ -103,7 +103,6 @@ class TabBarController: UITabBarController {
         nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
     }
     
-    
     func configureTabBarItem(item: UITabBarItem) {
         item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)

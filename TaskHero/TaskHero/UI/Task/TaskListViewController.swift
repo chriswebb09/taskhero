@@ -137,10 +137,12 @@ extension TaskListViewController: TaskCellDelegate {
             addTasksLabel.center = view.center
             addTasksLabel.text = listViewModel.taskLabelText
             addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
-            addTasksLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-            addTasksLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.Dimension.width).isActive = true
-            addTasksLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            addTasksLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+            addTaskLabel.snp.makeConstraints { make in
+                make.height.equalTo(view.snp.height).multipliedBy(Constants.Dimension.mainHeight)
+                make.width.equalTo(view.snp.width).multipliedBy(Constants.Dimension.width)
+                make.centerX.equalTo(view.snp.centerX)
+                make.centerY.equalTo(view.snp.centerY)
+            }
             addTasksLabel.isHidden = false
         }
         let hideText: Bool = self.store.tasks.count < 1 ? false : true

@@ -21,12 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         navigationBarAppearace.barTintColor = .navigationBarColor()
         navigationBarAppearace.tintColor = .white
-        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
-        
-        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
-        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
         if defaults.bool(forKey: "hasLoggedIn") {
-            print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
             window?.rootViewController = TabBarController()
         }
         window?.makeKeyAndVisible()

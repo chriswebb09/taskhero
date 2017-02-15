@@ -36,11 +36,10 @@ class SignupView: UIView {
         let button = ButtonType.login(title: "Sign Up")
         return button.newButton
     }()
-    
 }
 
 extension SignupView {
-
+    
     // MARK: Initialization
     
     override func layoutSubviews() {
@@ -84,12 +83,10 @@ extension SignupView {
     
     fileprivate func setupConstraints() {
         setupLogoImage()
-        
         setupView(view: usernameField)
         usernameField.snp.makeConstraints { make in
             make.top.equalTo(registerLabel.snp.bottom).offset(bounds.height * 0.062)
         }
-        
         setupView(view: emailField)
         emailField.snp.makeConstraints { make in
             make.top.equalTo(usernameField.snp.bottom).offset(bounds.height * 0.042)

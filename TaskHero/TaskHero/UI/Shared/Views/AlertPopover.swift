@@ -19,9 +19,7 @@ class AlertPopover: BasePopoverAlert {
         alertPopView.clipsToBounds = true
         viewController.view.addSubview(alertPopView)
         viewController.view.bringSubview(toFront: containerView)
-        
         viewController.view.bringSubview(toFront: alertPopView)
-        
     }
     
     public override func hidePopView(viewController: UIViewController) {
@@ -30,5 +28,4 @@ class AlertPopover: BasePopoverAlert {
         viewController.view.sendSubview(toBack: alertPopView)
         viewController.view.sendSubview(toBack: containerView)
     }
-
 }

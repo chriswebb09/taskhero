@@ -11,7 +11,7 @@ final class InitView: UIView {
     
     var logoImageView: UIImageView = {
         let image = UIImage(named: "taskherologo2")
-       
+        
         // let image = UIImage(named: "TaskHeroLogoNew2")
         let imageView = UIImageView(image: image)
         return imageView
@@ -60,7 +60,7 @@ final class InitView: UIView {
 }
 
 extension InitView {
-
+    
     // MARK: - Animation
     
     func zoomAnimation(_ handler: completion? = nil) {

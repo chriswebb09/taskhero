@@ -20,19 +20,23 @@ class BasePopView: UIView {
     private func addHeaderBanner(headBanner:UIView) {
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
-        headBanner.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        headBanner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-        headBanner.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+        headBanner.snp.makeConstraints { make in
+            make.top.equalTo(self)
+            make.centerX.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.25)
+            make.width.equalTo(self)
+        }
     }
     
     private func addAlertLabel(label:UILabel) {
         addSubview(alertLabel)
         alertLabel.translatesAutoresizingMaskIntoConstraints = false
-        alertLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        alertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        alertLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-        alertLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+        alertLabel.snp.makeConstraints { make in
+            make.top.equalTo(self)
+            make.centerX.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.25)
+            make.width.equalTo(self)
+        }
     }
     
     open func setupConstraints() {

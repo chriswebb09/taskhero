@@ -13,7 +13,7 @@ final class InitialViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true 
+        navigationController?.navigationBar.isHidden = true
         let when = DispatchTime.now() + 0.5 //
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.initView.zoomAnimation({
@@ -21,7 +21,6 @@ final class InitialViewController: UIViewController {
             })
         }
     }
-    
 }
 
 extension InitialViewController {

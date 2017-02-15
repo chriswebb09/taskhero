@@ -13,10 +13,12 @@ class PhotoPickerView: BasePopView {
     
     func addButton(button:UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
-        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier:Constants.Dimension.width).isActive = true
-        button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
+        button.snp.makeConstraints { make in
+            make.centerX.equalTo(self)
+            make.centerY.equalTo(self).offset(20)
+            make.width.equalTo(self).multipliedBy(Constants.Dimension.width)
+            make.height.equalTo(self).multipliedBy(0.15)
+        }
     }
     
     override func layoutSubviews() {
