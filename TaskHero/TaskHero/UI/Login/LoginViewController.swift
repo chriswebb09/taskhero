@@ -5,6 +5,7 @@
 
 import UIKit
 import Firebase
+import SnapKit
 
 final class LoginViewController: UIViewController {
     
@@ -189,9 +190,37 @@ extension LoginViewController {
         textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
         textField.layer.borderWidth = 1.1
         
-        loginView.textInputAnimation()
+        textInputAnimation()
         self.loginView.editState = true
     }
+    
+    func textInputAnimation() {
+        view.layoutIfNeeded()
+        self.loginView.layoutIfNeeded()
+        if loginView.editState != true {
+            UIView.animate(withDuration: 0.3) {
+                self.loginView.constraintsForInput()
+              //  self.loginView.layoutIfNeeded()
+                self.view.layoutIfNeeded()
+                
+            }
+        }
+    }
+    
+    func constraintsForInput() {
+        self.loginView.logoImageView.snp.makeConstraints { make in
+            make.height.equalTo(loginView.snp.height).multipliedBy(0.02)
+            make.width.equalTo(loginView.snp.width).multipliedBy(0.5)
+            make.top.equalTo(loginView.snp.top).offset(self.loginView.bounds.height * 0.05)
+        }
+        self.loginView.emailField.snp.makeConstraints { make in
+            make.top.equalTo(self.loginView.logoImageView.snp.bottom).offset(self.loginView.bounds.height * 0.06)
+        }
+        self.loginView.loginButton.snp.makeConstraints { make in
+            make.top.equalTo(self.loginView.passwordField.snp.bottom).offset(self.loginView.bounds.height * 0.04)
+        }
+    }
+    
     
     /* When no longer using input fields changes textfield ui properties back to original */
     

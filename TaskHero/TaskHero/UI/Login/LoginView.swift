@@ -66,7 +66,6 @@ extension LoginView {
     }
     
     // MARK: Setup
-    
     /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
     
     func setupLogin(_ viewController: LoginViewController) {
@@ -95,7 +94,7 @@ extension LoginView {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(0.7)
-            make.height.equalTo(self).multipliedBy(0.07)
+            make.height.equalTo(self).multipliedBy(0.06)
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(self.bounds.height * 0.12)
         }
@@ -109,11 +108,9 @@ extension LoginView {
         emailField.snp.makeConstraints { make in
             make.top.equalTo(logoImageView.snp.bottom).offset(bounds.height * 0.1)
         }
-        
         passwordField.snp.makeConstraints { make in
             make.top.equalTo(emailField.snp.bottom).offset(bounds.height * 0.06)
         }
-        
         passwordField.isSecureTextEntry = true
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordField.snp.bottom).offset(bounds.height * 0.1)
@@ -132,24 +129,33 @@ extension LoginView {
         }
     }
     
-    func textInputAnimation() {
-        if editState != true {
-            UIView.animate(withDuration: 0.02) {
-                self.logoImageView.snp.makeConstraints { make in
-                    make.height.equalTo(self).multipliedBy(0.02)
-                    make.width.equalTo(self).multipliedBy(0.5)
-                    make.top.equalTo(self).offset(self.bounds.height * 0.04)
-                }
-                self.emailField.snp.makeConstraints { make in
-                    make.top.equalTo(self.logoImageView.snp.bottom).offset(self.bounds.height * 0.06)
-                }
-                self.loginButton.snp.makeConstraints { make in
-                    make.top.equalTo(self.passwordField.snp.bottom).offset(self.bounds.height * 0.04)
-                }
-                self.layoutIfNeeded()
-            }
+    func constraintsForInput() {
+        self.logoImageView.snp.makeConstraints { make in
+            make.height.equalTo(self).multipliedBy(0.02)
+            make.width.equalTo(self).multipliedBy(0.5)
+            make.top.equalTo(self).offset(self.bounds.height * 0.05)
+        }
+        self.emailField.snp.makeConstraints { make in
+            make.top.equalTo(self.logoImageView.snp.bottom).offset(self.bounds.height * 0.06)
+        }
+        self.loginButton.snp.makeConstraints { make in
+            make.top.equalTo(self.passwordField.snp.bottom).offset(self.bounds.height * 0.04)
         }
     }
+    
+    
+//    
+//    func textInputAnimation() {
+//        layoutIfNeeded()
+//        if editState != true {
+//            UIView.animate(withDuration: 0.3) {
+//                self.constraintsForInput()
+//                self.layoutIfNeeded()
+//                
+//            }
+//        }
+//    }
+    
     
     func textFieldAnimation() {
         UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in

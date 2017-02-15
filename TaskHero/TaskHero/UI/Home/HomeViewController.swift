@@ -17,8 +17,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var homeViewModel: HomeViewModel {
         didSet {
-            // self.fetchUser()
-            //print("HomeViewModel")
+            print("HomeViewModel")
         }
     }
     var store = UserDataStore.sharedInstance
@@ -26,8 +25,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     var tasks: [Task] = [] {
         didSet {
             print("HERE")
-            print("Tasks: \(tasks)")
-            print("Tasks Count: \(tasks.count)")
         }
     }
     
@@ -205,13 +202,9 @@ extension HomeViewController: TaskCellDelegate {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.synchronize()
-        
-        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
-        
         let loginVC = AppScreenViewController()
         let rootNC = UINavigationController(rootViewController:loginVC)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         appDelegate.window?.rootViewController = rootNC
     }
     

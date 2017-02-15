@@ -121,8 +121,4 @@ final class AddTaskView: UIView {
             self.layoutIfNeeded()
         }
     }
-    
-    func normal() {
-        
-    }
 }

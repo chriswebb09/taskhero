@@ -7,7 +7,6 @@ class AppScreenViewController: UIViewController {
     var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
-        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
         super.viewDidLoad()
         view.addSubview(appScreenView)
         appScreenView.layoutSubviews()
@@ -16,7 +15,6 @@ class AppScreenViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
     }

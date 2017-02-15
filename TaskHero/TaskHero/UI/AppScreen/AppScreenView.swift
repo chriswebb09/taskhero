@@ -58,7 +58,6 @@ extension AppScreenView {
     }
     
     private func setupLogoImage(logoImageView: UIView) {
-        
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.snp.makeConstraints { make in
