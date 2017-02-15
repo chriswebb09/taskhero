@@ -176,14 +176,18 @@ final class TaskCell: UITableViewCell, Toggable {
     
     func addTaskNameLabel(taskNameLabel: UITextView) {
         configureView(view: taskNameLabel)
-        taskNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Dimension.topOffset).isActive = true
-        taskNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:Constants.TaskCell.nameLabelLeftOffset).isActive = true
+        taskNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.top).offset(Constants.Dimension.topOffset)
+            make.left.equalTo(contentView.snp.left).offset(Constants.TaskCell.nameLabelLeftOffset)
+        }
     }
     
     func addTaskDueLabel(taskDueLabel: UITextView) {
         configureView(view: taskDueLabel)
-        taskDueLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
-        taskDueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:Constants.TaskCell.dueTopOffset).isActive = true
+        taskDueLabel.snp.makeConstraints { make in
+            make.left.equalTo(contentView.snp.left).offset(10)
+            make.top.equalTo(contentView.snp.top).offset(Constants.TaskCell.dueTopOffset)
+        }
     }
     
     func setupConstraints() {
@@ -191,9 +195,13 @@ final class TaskCell: UITableViewCell, Toggable {
         addTaskDueLabel(taskDueLabel: taskDueLabel)
         setupDescriptionElements(element: taskDescriptionLabel)
         setupEditElements(element: taskCompletedView)
-        taskCompletedView.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth * 0.5).isActive = true
+        taskCompletedView.snp.makeConstraints { make in
+            make.width.equalTo(Constants.TaskCell.saveButtonWidth * 0.5)
+        }
         setupEditElements(element:saveButton)
-        saveButton.widthAnchor.constraint(equalToConstant: Constants.TaskCell.saveButtonWidth).isActive = true
+        saveButton.snp.makeConstraints { make in
+            make.width.equalTo(Constants.TaskCell.saveButtonWidth)
+        }
     }
     
     func setupShadow() {
