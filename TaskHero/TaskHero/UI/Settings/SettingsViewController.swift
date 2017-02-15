@@ -175,21 +175,18 @@ extension SettingsViewController {
         let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
         
         segmentControl.tintColor = .black
-        
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
-        
         segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
-        
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        segmentControl.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        
-        if let header = self.tableView.tableHeaderView {
-            segmentControl.topAnchor.constraint(equalTo:header.topAnchor).isActive = true
-            segmentControl.heightAnchor.constraint(equalTo:header.heightAnchor).isActive = true
+        segmentControl.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.width.equalTo(view.snp.width)
+            if let header = self.tableView.tableHeaderView {
+                make.top.equalTo(header.snp.top)
+                make.height.equalTo(header.snp.height)
+            }
         }
-        
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
     }
 }
