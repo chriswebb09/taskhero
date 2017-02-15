@@ -25,5 +25,4 @@ struct HomeViewModel {
     }
 
     var rowHeight = UITableViewAutomaticDimension
-    
 }

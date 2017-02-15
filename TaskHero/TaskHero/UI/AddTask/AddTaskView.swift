@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class AddTaskView: UIView {
     
@@ -65,28 +66,38 @@ final class AddTaskView: UIView {
     fileprivate func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
-        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.07).isActive = true
-        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        view.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(0.85)
+            make.height.equalTo(self).multipliedBy(0.07)
+            make.centerX.equalTo(self)
+        }
     }
     
     fileprivate func setupConstraints() {
         configureView(view: taskNameLabel)
-        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.05).isActive = true
+        taskNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(bounds.height * 0.05)
+        }
         configureView(view: taskNameField)
-        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.05).isActive = true
+        taskNameField.snp.makeConstraints { make in
+            make.top.equalTo(taskNameLabel.snp.bottom).offset(bounds.height * 0.05)
+        }
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
-        taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
+        taskDescriptionBox.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(0.85)
+            make.height.equalTo(self).multipliedBy(0.3)
+            make.centerX.equalTo(self)
+            make.top.equalTo(taskNameField.snp.bottom).offset(bounds.height * Constants.Dimension.settingsOffset)
+        }
         addSubview(addTaskButton)
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
-        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
-        addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height *  0.05).isActive = true
+        addTaskButton.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(0.4)
+            make.height.equalTo(self).multipliedBy(0.07)
+            make.centerX.equalTo(self)
+            make.top.equalTo(taskDescriptionBox.snp.bottom).offset(bounds.height * 0.05)
+        }
     }
     
     func animatiedPostion() {
@@ -97,10 +108,16 @@ final class AddTaskView: UIView {
             } else if self.taskDescriptionBox.isFirstResponder {
                 self.taskDescriptionBox.layer.borderColor = UIColor.gray.cgColor
             }
-            self.taskNameField.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.04).isActive = true
-            self.taskDescriptionBox.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
-            self.taskDescriptionBox.topAnchor.constraint(equalTo: self.taskNameField.bottomAnchor, constant: self.bounds.height * 0.02).isActive = true
-            self.addTaskButton.topAnchor.constraint(equalTo: self.taskDescriptionBox.bottomAnchor, constant: self.bounds.height *  0.02).isActive = true
+            self.taskNameField.snp.makeConstraints { make in
+                make.top.equalTo(self).offset(self.bounds.height * 0.04)
+            }
+            self.taskDescriptionBox.snp.makeConstraints { make in
+                make.height.equalTo(self).multipliedBy(0.2)
+                make.top.equalTo(self.taskNameField.snp.bottom).offset(self.bounds.height * 0.02)
+            }
+            self.addTaskButton.snp.makeConstraints { make in
+                make.top.equalTo(self.taskDescriptionBox.snp.bottom).offset(self.bounds.height * 0.02)
+            }
             self.layoutIfNeeded()
         }
     }

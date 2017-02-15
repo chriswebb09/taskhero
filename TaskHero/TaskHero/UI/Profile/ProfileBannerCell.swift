@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ProfileBannerCell: UITableViewCell {
     
@@ -39,7 +40,7 @@ final class ProfileBannerCell: UITableViewCell {
 }
 
 extension ProfileBannerCell {
-
+    
     // Calls all methods that setup the subviews within the contentView and cell
     
     func configureCell() {

@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol ProfileHeaderCellDelegate: class {
     func profilePictureTapped(sender: UIGestureRecognizer)
@@ -59,11 +60,9 @@ final class ProfileHeaderCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         selectionStyle = .none
         contentView.layoutIfNeeded()
         setupConstraints()
-        
         contentView.layer.masksToBounds = true
     }
 }
@@ -80,7 +79,9 @@ extension ProfileHeaderCell {
     
     private func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:Constants.Dimension.bottomOffset).isActive = true
+        label.snp.makeConstraints { make in
+            make.right.equalTo(contentView.snp.right).offset(Constants.Dimension.bottomOffset)
+        }
     }
     
     /* Adds levelLabel, emailLabel, joinDateLabel, usernameLabel, profilePicture to subview
@@ -108,30 +109,37 @@ extension ProfileHeaderCell {
     }
     
     private func addUsernameLabel() {
-        usernameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-        usernameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
-        usernameLabel.topAnchor.constraint(equalTo: profilePicture.topAnchor).isActive  = true
+        usernameLabel.snp.makeConstraints { make in
+            make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.mainHeight)
+            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Dimension.mainWidth)
+            make.top.equalTo(profilePicture.snp.top)
+        }
     }
     
     private func addlevelLabel() {
-        levelLabel.bottomAnchor.constraint(equalTo: profilePicture.bottomAnchor).isActive = true
-        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
+        levelLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(profilePicture.snp.bottom)
+            make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.mainHeight)
+            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Dimension.mainWidth)
+        }
     }
     
     private func addJoinDateLabel() {
-        joinDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-        joinDateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Dimension.mainWidth).isActive = true
-        joinDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Dimension.mainOffset).isActive = true
-        
+        joinDateLabel.snp.makeConstraints { make in
+            make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.mainHeight)
+            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Dimension.mainWidth)
+            make.bottom.equalTo(contentView.snp.bottom).offset(Constants.Dimension.mainOffset)
+        }
     }
     
     private func addProfilePicture() {
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
-        profilePicture.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight).isActive = true
-        profilePicture.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * Constants.Profile.ProfilePicture.profilePictureWidth).isActive = true
-        profilePicture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Profile.Offset.topOffset).isActive = true
-        profilePicture.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
+        profilePicture.snp.makeConstraints { make in
+            make.height.equalTo(UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight)
+            make.width.equalTo(UIScreen.main.bounds.width * Constants.Profile.ProfilePicture.profilePictureWidth)
+            make.top.equalTo(contentView.snp.top).offset(Constants.Profile.Offset.topOffset)
+            make.left.equalTo(contentView.snp.left).offset(Constants.Dimension.topOffset)
+        }
     }
     
     fileprivate func setupConstraints() {

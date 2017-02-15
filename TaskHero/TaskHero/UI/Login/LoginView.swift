@@ -65,7 +65,7 @@ extension LoginView {
         logoImageView.layer.opacity = 1
     }
     
-    // MARK: Setup 
+    // MARK: Setup
     
     /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
     

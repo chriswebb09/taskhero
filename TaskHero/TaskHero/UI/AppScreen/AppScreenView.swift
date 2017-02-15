@@ -38,7 +38,7 @@ class AppScreenView: UIView {
 }
 
 extension AppScreenView {
-
+    
     fileprivate func setupConstraints() {
         setupLogoImage(logoImageView: logoImageView)
         constraintSetup(views: [viewDivider, loginButton, signupButton])
