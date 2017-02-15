@@ -53,27 +53,34 @@ extension SignupView {
     private func setupView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        view.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
-        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        view.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
+            make.height.equalTo(self).multipliedBy(Constants.Login.loginFieldHeight)
+            make.centerX.equalTo(self)
+        }
     }
     
     private func setupLogoImage() {
         addSubview(registerLabel)
         registerLabel.translatesAutoresizingMaskIntoConstraints = false
-        registerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Logo.logoImageWidth).isActive = true
-        registerLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Logo.logoImageHeight).isActive = true
-        registerLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        registerLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.08).isActive = true
+        
+        registerLabel.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(Constants.Logo.logoImageWidth)
+            make.height.equalTo(self).multipliedBy(Constants.Logo.logoImageHeight)
+            make.centerX.equalTo(self)
+            make.top.equalTo(self).offset(bounds.height * 0.08)
+        }
     }
     
     private func setupViewDivider(viewDivider: UIView) {
         addSubview(viewDivider)
         viewDivider.translatesAutoresizingMaskIntoConstraints = false
-        viewDivider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.dividerWidth).isActive = true
-        viewDivider.heightAnchor.constraint(equalTo: passwordField.heightAnchor, multiplier:  Constants.Login.dividerHeight).isActive = true
-        viewDivider.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        viewDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: bounds.height * Constants.Login.loginElementSpacing).isActive = true
+        viewDivider.snp.makeConstraints { make in
+            make.width.equalTo(self).multipliedBy(Constants.Login.dividerWidth)
+            make.height.equalTo(self).multipliedBy(Constants.Login.dividerHeight)
+            make.centerX.equalTo(self)
+            make.top.equalTo(loginButton.snp.bottom).offset(bounds.height * Constants.Login.loginElementSpacing)
+        }
     }
     
     fileprivate func setupConstraints() {
