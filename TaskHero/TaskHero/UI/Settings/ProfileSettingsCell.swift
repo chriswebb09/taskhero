@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol ProfileSettingsCellDelegate: class {
     func editButtonTapped()
@@ -26,10 +27,9 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     }()
     
     var button: TagButton = {
-        let button = ButtonType.tag(title: "Edit", color: UIColor.blue, tag: 20, index: IndexPath())
-        let uiElement = button.tagButton
-        uiElement.layer.borderWidth = 0
-        return uiElement
+        let button = ButtonType.tag(title: "Edit", color: UIColor.blue, tag: 20, index: IndexPath()).tagButton
+        button.layer.borderWidth = 0
+        return button
     }()
     
     var profileSettingField: TextFieldExtension = {
@@ -63,30 +63,37 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     private func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:1).isActive = true
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileSettingsLabelWidth).isActive = true
+        view.snp.makeConstraints { make in
+            make.height.equalTo(contentView.snp.height)
+            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Settings.Profile.profileSettingsLabelWidth)
+        }
     }
     
     private func addProfileSetttingLabel() {
         configureView(view: profileSettingLabel)
-        profileSettingLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Dimension.settingsOffset).isActive = true
-        profileSettingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        profileSettingLabel.snp.makeConstraints { make in
+            make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
+            make.centerY.equalTo(contentView.snp.centerY)
+        }
     }
     
     private func addButton() {
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1).isActive = true
-        button.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: Constants.Settings.Profile.profileViewHeightAnchor).isActive = true
-        button.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
+        button.snp.makeConstraints { make in
+            make.height.equalTo(contentView.snp.height)
+            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Settings.Profile.profileViewHeightAnchor)
+            make.right.equalTo(contentView.snp.right)
+            make.centerY.equalTo(contentView.snp.centerY)
+        }
     }
     
     private func addProfileSettingsField() {
         configureView(view: profileSettingField)
-        profileSettingField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: contentView.bounds.width * Constants.Dimension.settingsOffset).isActive = true
-        profileSettingField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        profileSettingField.snp.makeConstraints { make in
+            make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
+            make.centerY.equalTo(contentView.snp.centerY)
+        }
     }
     
     fileprivate func setupConstraints() {

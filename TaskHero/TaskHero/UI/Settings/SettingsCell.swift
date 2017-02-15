@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SettingsCell: UITableViewCell {
     
@@ -36,10 +37,12 @@ final class SettingsCell: UITableViewCell {
     
     func settingsLabelSetup() {
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
-        settingLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier:Constants.Dimension.height).isActive = true
-        settingLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        settingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        settingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        settingLabel.snp.makeConstraints { make in
+            make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.height)
+            make.width.equalTo(contentView.snp.width)
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.centerY.equalTo(contentView.snp.centerY)
+        }
     }
     
     func configureCell(setting: SettingsCellViewModel) {
