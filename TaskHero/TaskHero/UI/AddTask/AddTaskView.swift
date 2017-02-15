@@ -100,24 +100,24 @@ final class AddTaskView: UIView {
         }
     }
     
-    func animatiedPostion() {
+    func animatedPostion() {
+        self.taskNameLabel.isHidden = true
+        if self.taskNameField.isFirstResponder {
+            self.taskNameField.layer.borderColor = UIColor.gray.cgColor
+        } else if self.taskDescriptionBox.isFirstResponder {
+            self.taskDescriptionBox.layer.borderColor = UIColor.gray.cgColor
+        }
+        self.taskNameField.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(self.bounds.height * 0.04)
+        }
+        self.taskDescriptionBox.snp.makeConstraints { make in
+            make.height.equalTo(self).multipliedBy(0.2)
+            make.top.equalTo(self.taskNameField.snp.bottom).offset(self.bounds.height * 0.02)
+        }
+        self.addTaskButton.snp.makeConstraints { make in
+            make.top.equalTo(self.taskDescriptionBox.snp.bottom).offset(self.bounds.height * 0.02)
+        }
         UIView.animate(withDuration: 0.05) {
-            self.taskNameLabel.isHidden = true
-            if self.taskNameField.isFirstResponder {
-                self.taskNameField.layer.borderColor = UIColor.gray.cgColor
-            } else if self.taskDescriptionBox.isFirstResponder {
-                self.taskDescriptionBox.layer.borderColor = UIColor.gray.cgColor
-            }
-            self.taskNameField.snp.makeConstraints { make in
-                make.top.equalTo(self).offset(self.bounds.height * 0.04)
-            }
-            self.taskDescriptionBox.snp.makeConstraints { make in
-                make.height.equalTo(self).multipliedBy(0.2)
-                make.top.equalTo(self.taskNameField.snp.bottom).offset(self.bounds.height * 0.02)
-            }
-            self.addTaskButton.snp.makeConstraints { make in
-                make.top.equalTo(self.taskDescriptionBox.snp.bottom).offset(self.bounds.height * 0.02)
-            }
             self.layoutIfNeeded()
         }
     }

@@ -7,7 +7,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow? = {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UINavigationController(rootViewController: InitialViewController())
+         window.rootViewController = UINavigationController(rootViewController: InitialViewController())
+         //window.rootViewController = UINavigationController(rootViewController: HomeHeaderView())
         return window
     }()
     
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         navigationBarAppearace.barTintColor = .navigationBarColor()
         navigationBarAppearace.tintColor = .white
+    
         if defaults.bool(forKey: "hasLoggedIn") {
             window?.rootViewController = TabBarController()
         }

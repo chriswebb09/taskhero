@@ -17,7 +17,9 @@ final class LoginViewController: UIViewController {
     
     var defaults = UserDefaults.standard
     var loadingView = LoadingView()
-    var loginView: LoginView = LoginView()
+    var loginView: LoginView = LoginView() 
+       // loginView.loginButton.isEnabled
+    
     
     var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
         didSet {
@@ -44,13 +46,13 @@ final class LoginViewController: UIViewController {
         loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         loginView.loginButton.isEnabled = false
+        
         if loginView.loginButton.isEnabled == false {
             loginView.loginButton.backgroundColor = .lightGray
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("LOGGED IN \(defaults.bool(forKey: "hasLoggedIn"))")
         super.viewWillAppear(false)
     }
 }
@@ -132,11 +134,9 @@ extension LoginViewController {
         DispatchQueue.global(qos: .background).async {
             self.fetchData()
             DispatchQueue.main.async {
-                
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "hasLoggedIn")
                 defaults.synchronize()
-                
                 self.loadingView.hideActivityIndicator(viewController: self)
                 self.setupTabBar()
             }
@@ -175,6 +175,7 @@ extension LoginViewController {
     
     func textFieldDidChange(_ textField: UITextField) {
         if let emailText = loginView.emailField.text, let passwordText = loginView.passwordField.text {
+            
             if (emailText.characters.count > 4) && (passwordText.characters.count >= 6) {
                 loginView.loginButton.backgroundColor = Constants.Color.buttonColor
                 loginView.loginButton.isEnabled = true

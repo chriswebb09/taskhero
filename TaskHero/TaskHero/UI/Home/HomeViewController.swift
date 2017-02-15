@@ -24,7 +24,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     var taskMethods = SharedTaskMethods()
     var tasks: [Task] = [] {
         didSet {
-            print("HERE")
+          //  print("HERE")
         }
     }
     

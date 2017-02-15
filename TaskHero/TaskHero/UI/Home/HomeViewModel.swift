@@ -24,5 +24,8 @@ struct HomeViewModel {
         return rows
     }
 
+    var taskList: [Task] {
+       return self.store.tasks
+    }
     var rowHeight = UITableViewAutomaticDimension
 }

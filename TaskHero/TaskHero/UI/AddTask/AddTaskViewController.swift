@@ -51,7 +51,7 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.addTaskView.animatiedPostion()
+        self.addTaskView.animatedPostion()
         textField.placeholder = ""
     }
     

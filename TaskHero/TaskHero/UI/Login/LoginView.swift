@@ -30,8 +30,9 @@ final class LoginView: UIView {
     }()
     
     var loginButton: UIButton = {
-        let button = ButtonType.login(title: "Login")
-        return button.newButton
+        let button = ButtonType.login(title: "Login").newButton
+     //   button.backgroundColor = button.isEnabled ? UIColor.newButtonColor() : UIColor.lightGray
+        return button
     }()
     
     // MARK: Initialization
@@ -142,20 +143,6 @@ extension LoginView {
             make.top.equalTo(self.passwordField.snp.bottom).offset(self.bounds.height * 0.04)
         }
     }
-    
-    
-//    
-//    func textInputAnimation() {
-//        layoutIfNeeded()
-//        if editState != true {
-//            UIView.animate(withDuration: 0.3) {
-//                self.constraintsForInput()
-//                self.layoutIfNeeded()
-//                
-//            }
-//        }
-//    }
-    
     
     func textFieldAnimation() {
         UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
