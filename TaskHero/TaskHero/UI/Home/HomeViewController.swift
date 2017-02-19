@@ -34,11 +34,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor
-        tableViewSetupMethods()
-        picker.delegate = self
-        edgesForExtendedLayout = []
-        self.addNavItemsToController()
+        viewSetup()
+      
     }
     
     /* Before view appears fetches tasks user data using helpers.getData method then for current user
@@ -46,10 +43,14 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
      currentUser from database calling APIClient before loading. Redundant functionality,
      definitely could be streamlined */
     
-    func tableViewSetupMethods() {
+    func viewSetup() {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
         taskMethods.setupTableView(tableView: tableView, view: view)
+        picker.delegate = self
+        edgesForExtendedLayout = []
+        addNavItemsToController()
     }
     
     required convenience init(coder aDecoder: NSCoder) {
