@@ -9,7 +9,14 @@ struct HomeViewModel {
     
     var store = UserDataStore.sharedInstance
     
-    var user: User!
+    fileprivate let concurrentQueue =
+        DispatchQueue(
+            label: "com.taskHero.concurrentQueue",
+            attributes: .concurrent)
+    
+    var user: User {
+        return self.store.currentUser
+    }
     
     var usernameText: String {
         return store.currentUser.username
@@ -27,5 +34,21 @@ struct HomeViewModel {
     var taskList: [Task] {
        return self.store.tasks
     }
+    
     var rowHeight = UITableViewAutomaticDimension
+    
+    func fetchTasks(tableView: UITableView) {
+        self.store.firebaseAPI.fetchUserData() { user in
+            self.store.firebaseAPI.fetchTaskList() { taskList in
+                self.concurrentQueue.async {
+                    self.store.currentUser = user
+                    self.store.tasks = taskList
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                    }
+                }
+              
+            }
+        }
+    }
 }

@@ -12,6 +12,12 @@ struct Task {
 
 extension Task {
     init() {
-        self.init(taskID: "", taskName: "", taskDescription:"", taskCreated:Date().dateStringFormatted(), taskDue:"", taskCompleted:false, pointValue: 5)
+        self.init(taskID: "",
+                  taskName: "",
+                  taskDescription:"",
+                  taskCreated:Date().dateStringFormatted(),
+                  taskDue:"",
+                  taskCompleted:false,
+                  pointValue: 5)
     }
 }
