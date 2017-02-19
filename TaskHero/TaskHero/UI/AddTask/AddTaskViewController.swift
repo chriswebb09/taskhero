@@ -13,7 +13,6 @@ final class AddTaskViewController: UIViewController  {
     let store = UserDataStore.sharedInstance /* User state for application */
     let addTaskView = AddTaskView()
     let pop = PopMenu() // Popover for datepicker for adding due date to task
-   // var stringDate = ""
     var addTaskViewModel = AddTaskViewModel()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:290, height:290))
     let datePicker = UIDatePicker()

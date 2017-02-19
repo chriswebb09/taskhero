@@ -4,8 +4,6 @@ class AppScreenViewController: UIViewController {
     
     let appScreenView = AppScreenView()
     
-    var defaults = UserDefaults.standard
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(appScreenView)
@@ -18,9 +16,6 @@ class AppScreenViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
     }
-}
-
-extension AppScreenViewController {
     
     func loginButtonTapped() {
         navigationController?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
