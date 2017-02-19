@@ -17,7 +17,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var homeViewModel: HomeViewModel {
         didSet {
-            print("HomeViewModel")
+            print("\(homeViewModel.taskList)")
         }
     }
     var taskMethods = SharedTaskMethods()
@@ -31,7 +31,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         viewSetup()
-      
     }
     
     /* Before view appears fetches tasks user data using helpers.getData method then for current user
