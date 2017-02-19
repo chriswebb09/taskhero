@@ -43,6 +43,7 @@
 		A709CB0C1DE7735B00877907 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0B1DE7735B00877907 /* SignupViewController.swift */; };
 		A709CB101DE7737100877907 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0F1DE7737100877907 /* TabBarController.swift */; };
 		A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB111DE7737800877907 /* TaskListViewController.swift */; };
+		A70B7F611E5A474D003E587A /* Reachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B7F601E5A474D003E587A /* Reachable.swift */; };
 		A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */; };
 		A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */; };
 		A712BA6E1E298E3C00B91951 /* TaskCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */; };
@@ -135,6 +136,7 @@
 		A709CB0B1DE7735B00877907 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		A709CB0F1DE7737100877907 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A709CB111DE7737800877907 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		A70B7F601E5A474D003E587A /* Reachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachable.swift; path = TaskHero/Networking/Reachable.swift; sourceTree = SOURCE_ROOT; };
 		A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperations.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */,
 				A752A3531E4B1CDF006FD395 /* DataPersistence.swift */,
 				A72B5F711E4E31D60096645F /* Cache.swift */,
+				A70B7F601E5A474D003E587A /* Reachable.swift */,
 			);
 			name = Networking;
 			path = DataServices;
@@ -899,6 +902,7 @@
 				A714E17D1E3D0B8D0014F990 /* AppScreenViewModel.swift in Sources */,
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
 				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
+				A70B7F611E5A474D003E587A /* Reachable.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
 				A767FBA21E0830D5007767B6 /* SettingsCellViewModel.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,

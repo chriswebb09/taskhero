@@ -6,10 +6,22 @@ class TabBarController: UITabBarController {
     
     let store = UserDataStore.sharedInstance
     let helpers = Helpers()
+    var reachability: Reachability? = Reachability.networkReachabilityForInternetConnection()
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        reachability?.stopNotifier()
+    }
     
     // MARK: - Initialization
     
+    
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(_:)), name: NSNotification.Name(rawValue: ReachabilityDidChangeNotificationName), object: nil)
+
+        
+        var reachableNotification = reachability?.startNotifier()
+        
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             self.view.backgroundColor = .white
             if user != nil && (self.store.currentUser != nil) {
@@ -23,6 +35,25 @@ class TabBarController: UITabBarController {
                 }
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkReachability()
+    }
+    
+    
+    func checkReachability() {
+        guard let r = reachability else { return }
+        if r.isReachable  {
+            print("Reachable")
+        } else {
+            print("Unreachable")
+        }
+    }
+    
+    func reachabilityDidChange(_ notification: Notification) {
+        checkReachability()
     }
     
     override func viewDidLayoutSubviews() {

@@ -17,11 +17,9 @@ final class ProfileViewController: UITableViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         registerCells()
-        
         tableView.estimatedRowHeight = view.frame.height / 3
         self.tableView.separatorStyle = .none
         tableView.tableFooterView = UIView(frame: .zero)
-        
         setupNavItems()
         tableView.reloadData()
     }
@@ -59,20 +57,14 @@ extension ProfileViewController {
         
         if indexPath.row == 0 {
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
-            
             bannerCell.configureCell()
             bannerCell.isHidden = true
-            
             return bannerCell
-            
         } else if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
-            
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
-            
             return headerCell
-            
         } else {
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()

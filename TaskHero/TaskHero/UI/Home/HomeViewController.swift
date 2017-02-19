@@ -24,11 +24,15 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     var taskMethods = SharedTaskMethods()
     var tasks: [Task] = [] {
         didSet {
-          //  print("HERE")
+          
         }
     }
     
     // MARK: - Not data properties
+    fileprivate let concurrentQueue =
+        DispatchQueue(
+            label: "com.taskHero.concurrentQueue",
+            attributes: .concurrent)
     
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
@@ -40,9 +44,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        taskMethods.setupTableView(tableView: tableView, view: view)
+        tableViewSetupMethods()
         picker.delegate = self
         edgesForExtendedLayout = []
         self.addNavItemsToController()
@@ -52,6 +54,12 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
      if currentUser.tasks is not nil, it removes tasks from currentUser regardless it then fetches
      currentUser from database calling APIClient before loading. Redundant functionality,
      definitely could be streamlined */
+    
+    func tableViewSetupMethods() {
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        taskMethods.setupTableView(tableView: tableView, view: view)
+    }
     
     required convenience init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -79,12 +87,19 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     func fetchUser() {
         self.store.firebaseAPI.fetchUserData() { user in
             self.store.firebaseAPI.fetchTaskList() { taskList in
-                DispatchQueue.main.async {
+                self.concurrentQueue.async {
                     self.store.currentUser = user
                     self.store.tasks = taskList
                     self.tasks = taskList
-                    self.tableView.reloadData()
+                    
                 }
+                self.tableView.reloadData()
+//                DispatchQueue.main.async {
+//                    self.store.currentUser = user
+//                    self.store.tasks = taskList
+//                    self.tasks = taskList
+//                    self.tableView.reloadData()
+//                }
             }
         }
     }
@@ -133,14 +148,14 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cellType: HomeCellType = indexPath.row > 0 ? .task : .header
-        if self.store.tasks.count <= 0 {
+        if tasks.count <= 0 {
             cellType = .header
         }
         switch cellType {
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
-            let reloadedIndex = indexPath.row - 1
-            setupTaskCell(taskCell: taskCell, viewController: self, taskIndex: reloadedIndex)
+           // let reloadedIndex = indexPath.row - 1
+            setupTaskCell(taskCell: taskCell, viewController: self, taskIndex: indexPath.row)
             return taskCell
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
@@ -165,7 +180,7 @@ extension HomeViewController: TaskCellDelegate {
     }
     
     func setupTaskCell(taskCell:TaskCell, viewController:HomeViewController, taskIndex: Int) {
-        let taskViewModel = TaskCellViewModel(self.store.tasks[taskIndex])
+        let taskViewModel = TaskCellViewModel(tasks[taskIndex - 1])
         taskCell.delegate = viewController
         taskCell.configureCell(taskVM: taskViewModel)
         let tap = UIGestureRecognizer(target: viewController, action: #selector(viewController.toggleForEditState(_:)))
@@ -187,9 +202,10 @@ extension HomeViewController: TaskCellDelegate {
             tableView.beginUpdates()
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
-                DispatchQueue.main.async {
-                    self.fetchUser()
-                }
+                self.fetchUser()
+//                DispatchQueue.main.async {
+//                    self.fetchUser()
+//                }
             }
             tableView.endUpdates()
         }
