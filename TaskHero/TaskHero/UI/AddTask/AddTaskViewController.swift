@@ -13,11 +13,8 @@ final class AddTaskViewController: UIViewController  {
     let store = UserDataStore.sharedInstance /* User state for application */
     let addTaskView = AddTaskView()
     let pop = PopMenu() // Popover for datepicker for adding due date to task
-    var stringDate = ""
-    var month: String = "Jan"
-    var day: String = "01"
-    var year: String = "2017"
-    var taskViewModel = AddTaskViewModel()
+   // var stringDate = ""
+    var addTaskViewModel = AddTaskViewModel()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:290, height:290))
     let datePicker = UIDatePicker()
     
@@ -113,7 +110,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
-            return taskViewModel.pickerMonths.count
+            return addTaskViewModel.pickerMonths.count
         } else if component == 1 {
             return 30
         } else {
@@ -123,15 +120,15 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            return taskViewModel.pickerMonths[row]
+            return addTaskViewModel.pickerMonths[row]
         } else if component == 1 {
-            var dayString = String(describing: taskViewModel.range[row])
+            var dayString = String(describing: addTaskViewModel.range[row])
             if dayString.characters.count < 2 {
-                day = "0\(dayString)"
+                addTaskViewModel.day = "0\(dayString)"
             }
-            return day
+            return addTaskViewModel.day
         } else {
-            return taskViewModel.years[row]
+            return addTaskViewModel.years[row]
         }
     }
     
@@ -139,11 +136,11 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            month = String(describing:taskViewModel.pickerMonths[row])
+            addTaskViewModel.month = String(describing:addTaskViewModel.pickerMonths[row])
         } else if component == 1 {
-            day = String(describing: taskViewModel.range[row])
+            addTaskViewModel.day = String(describing: addTaskViewModel.range[row])
         } else {
-            year = taskViewModel.years[row]
+            addTaskViewModel.year = addTaskViewModel.years[row]
         }
     }
     
@@ -157,7 +154,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             self.pick.frame = self.pop.popView.frame
             self.pick.layer.borderWidth = 1
             self.pop.showPopView(viewController: self, pick: self.pick)
-            self.stringDate = "\(self.month)-\(self.day)-\(self.year)"
+           print(self.addTaskViewModel.stringDate)
         }
         pop.popupView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
@@ -165,7 +162,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */
     
     dynamic fileprivate func formatTaskWithDate() {
-        let newDate = "\(month)-\(day)-\(year)"
+        let newDate = "\(addTaskViewModel.month)-\(addTaskViewModel.day)-\(addTaskViewModel.year)"
         let uid = UUID.init()
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
