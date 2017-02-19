@@ -47,8 +47,10 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
-        selectionStyle = UITableViewCellSelectionStyle.none
+        selectionStyle = .none
         contentView.layer.masksToBounds = true
+        layoutMargins = UIEdgeInsets.zero
+        preservesSuperviewLayoutMargins = false
     }
     
     // MARK: - Configure Cell Methods
@@ -72,6 +74,7 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     private func addProfileSetttingLabel() {
         configureView(view: profileSettingLabel)
         profileSettingLabel.snp.makeConstraints { make in
+            make.height.equalTo(self)
             make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
             make.centerY.equalTo(contentView.snp.centerY)
         }
@@ -91,6 +94,7 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     private func addProfileSettingsField() {
         configureView(view: profileSettingField)
         profileSettingField.snp.makeConstraints { make in
+            make.height.equalTo(self)
             make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
             make.centerY.equalTo(contentView.snp.centerY)
         }

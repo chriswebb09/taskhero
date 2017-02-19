@@ -155,7 +155,6 @@ extension SettingsViewController {
     func changeView(sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
-            
         case 0:
             settings = userSettings
             segmentControl.subviews[0].backgroundColor = .white

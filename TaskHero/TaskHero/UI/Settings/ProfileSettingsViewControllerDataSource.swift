@@ -14,9 +14,7 @@ final class ProfileSettingsViewControllerDataSource {
             make.width.equalTo(view.snp.width)
             make.height.equalTo(view.snp.height).multipliedBy(Constants.Settings.Profile.profileViewHeightAnchor)
         }
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
         tableView.snp.makeConstraints { make in
             make.bottom.equalTo(view.snp.bottom)
             make.width.equalTo(view.snp.width)
@@ -30,8 +28,13 @@ final class ProfileSettingsViewControllerDataSource {
         updatedUser.username = store.currentUser.username
         updatedUser.email = store.currentUser.email
         updatedUser.profilePicture = "None"
-        updatedUser.firstName = name?[0]
-        updatedUser.lastName = name?[1]
+        
+        if let changedName = name {
+            updatedUser.firstName = changedName[0]
+            if changedName.count > 1 {
+                 updatedUser.lastName = changedName[1]
+            }
+        }
         updatedUser.joinDate = store.currentUser.joinDate
         updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
         updatedUser.experiencePoints = store.currentUser.experiencePoints

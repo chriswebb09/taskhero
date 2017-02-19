@@ -62,7 +62,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        homeViewModel.fetchTasks(tableView: self.tableView)
+        homeViewModel.fetchTasks(tableView: tableView)
         super.viewWillAppear(false)
     }
     
@@ -215,8 +215,10 @@ extension HomeViewController: TaskCellDelegate {
     
     func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
-        guard let tapIndex = tableView.indexPathForRow(at: tapLocation) else { return }
-        taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: tapIndex, type: .home)
+        let tapIndex = tableView.indexPathForRow(at: tapLocation)
+        if let index = tapIndex {
+            taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex:index, type: .home)
+        }
     }
 }
 

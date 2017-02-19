@@ -20,7 +20,7 @@ final class LoginView: UIView {
     
     var emailField = TextFieldExtension().emailField("Enter email address") {
         didSet {
-            print(emailField.text)
+            print(emailField.text ?? "No text entered in emailfield")
         }
     }
     
@@ -45,7 +45,6 @@ final class LoginView: UIView {
         initialOpacity()
         animated()
     }
-    
 }
 
 extension LoginView {
@@ -117,7 +116,6 @@ extension LoginView {
             make.top.equalTo(passwordField.snp.bottom).offset(bounds.height * 0.1)
         }
     }
-    
 }
 
 extension LoginView {

@@ -30,10 +30,22 @@ extension ProfileSettingsViewController: UITableViewDelegate {
         setupSubviews()
         profileSettingsView.layoutSubviews()
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
-        tableView.setupTableView(view: self.view)
+        tableView.setupTableView(view: view)
+        //setupTableView(tableView: tableView)
         tableView.separatorColor = .black
     }
     
+    
+//    func setupTableView(tableView: UITableView) {
+//        tableView.tableFooterView = UIView(frame: .zero)
+//        tableView.separatorStyle = .singleLineEtched
+//        tableView.allowsSelection = false
+//        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = view.frame.height / 4
+//        tableView.layoutMargins = UIEdgeInsets.zero
+//        tableView.separatorInset = UIEdgeInsets.zero
+//    }
+//    
     func setupTableViewDelegates() {
         tableView.delegate = self
         tableView.dataSource = self

@@ -57,9 +57,6 @@ PODS:
   - GTMSessionFetcher/Core (1.1.7)
   - Nimble (5.1.1)
   - Quick (1.0.0)
-  - RxCocoa (3.2.0):
-    - RxSwift (~> 3.1)
-  - RxSwift (3.2.0)
   - SnapKit (3.1.2)
 
 DEPENDENCIES:
@@ -70,8 +67,6 @@ DEPENDENCIES:
   - FirebaseDatabase
   - Nimble
   - Quick
-  - RxCocoa
-  - RxSwift
   - SnapKit
 
 SPEC CHECKSUMS:
@@ -89,10 +84,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
-  RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
-  RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
 
-PODFILE CHECKSUM: fdd764e249fb5bd1d486b3f4f74f4ffd802e4298
+PODFILE CHECKSUM: 02ed4af2fe8f80f25dbc8a45b0d9e6d5d94afb29
 
 COCOAPODS: 1.1.1
