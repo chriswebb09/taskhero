@@ -1,6 +1,7 @@
 import Foundation
 
 extension Date {
+    
     func dateStringFormatted() -> String {
         let today = Date()
         let dateFormat = DateFormatter()
@@ -14,10 +15,10 @@ extension Date {
         dateFormat.dateFormat = "yyyy"
         var years = [String]()
         var now = Date()
-        var currentYear = dateFormat.string(from: now as Date)
+        let currentYear = dateFormat.string(from: now as Date)
         years.append(currentYear)
         let oneYear = TimeInterval(60 * 60 * 24 * 365)
-        for i in 1...3 {
+        for _ in 1...3 {
             now = now + oneYear
             let dateInFormat = dateFormat.string(from: now as Date)
             years.append(dateInFormat)
@@ -26,9 +27,9 @@ extension Date {
         return years
     }
     
-    func getCalendarDates() {
-        let userCalendar = Calendar.current
-        
+    func getCalendarDates() -> Calendar {
+        return Calendar.current
+       
     }
     
 //    func getMonths() -> [String] {

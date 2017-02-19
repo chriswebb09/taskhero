@@ -5,16 +5,28 @@
 
 import UIKit
 
+enum HomeCellType {
+    case task, header
+}
+
+protocol Toggable {
+    func toggleState(state:Bool) -> Bool
+}
+
+extension Toggable {
+    func toggleState(state:Bool) -> Bool {
+        return !state
+    }
+}
+
 struct HomeViewModel {
     
     var store = UserDataStore.sharedInstance
     
-    fileprivate let concurrentQueue =
-        DispatchQueue(
-            label: "com.taskHero.concurrentQueue",
-            attributes: .concurrent)
+    fileprivate let concurrentQueue = DispatchQueue(label: "com.taskHero.concurrentQueue", attributes: .concurrent)
     
-    var user: User {
+    var user: User? {
+        
         return self.store.currentUser
     }
     
@@ -38,7 +50,7 @@ struct HomeViewModel {
     var rowHeight = UITableViewAutomaticDimension
     
     func fetchTasks(tableView: UITableView) {
-        self.store.firebaseAPI.fetchUserData() { user in
+        store.firebaseAPI.fetchUserData() { user in
             self.store.firebaseAPI.fetchTaskList() { taskList in
                 self.concurrentQueue.async {
                     self.store.currentUser = user
@@ -52,5 +64,7 @@ struct HomeViewModel {
         }
     }
     
-    
+    func getViewModelForTask(taskIndex: Int) -> TaskCellViewModel {
+        return TaskCellViewModel(taskList[taskIndex - 1])
+    }
 }

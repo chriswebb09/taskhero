@@ -13,18 +13,14 @@ import UIKit
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
     
-    // MARK: - Data Properties
+    // MARK: - Properties
     
     var homeViewModel: HomeViewModel {
         didSet {
             print("HomeViewModel")
         }
     }
-    
     var taskMethods = SharedTaskMethods()
-    
-    // MARK: - Not data properties
-
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
@@ -120,10 +116,12 @@ extension HomeViewController: ProfileHeaderCellDelegate {
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
             setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
+            taskCell.delegate = self
             return taskCell
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
             setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
+            headerCell.delegate = self
             return headerCell
         }
     }
@@ -135,13 +133,13 @@ extension HomeViewController: TaskCellDelegate {
     
     func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
         headerCell.emailLabel.isHidden = true
-        headerCell.configureCell(user: homeViewModel.user)
-        headerCell.delegate = self
+        if let user = homeViewModel.user {
+            headerCell.configureCell(user: user)
+        }
     }
     
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
-        let taskViewModel = TaskCellViewModel(homeViewModel.taskList[taskIndex - 1])
-        taskCell.delegate = self
+        let taskViewModel = homeViewModel.getViewModelForTask(taskIndex: taskIndex)
         taskCell.configureCell(taskVM: taskViewModel)
         let tap = UIGestureRecognizer(target:self, action: #selector(toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
@@ -151,7 +149,7 @@ extension HomeViewController: TaskCellDelegate {
     // MARK: - Deletes Tasks logic
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        var editable: Bool = indexPath.row == 0 ? false : true
+        let editable: Bool = indexPath.row == 0 ? false : true
         return editable
     }
     
@@ -209,7 +207,9 @@ extension HomeViewController: TaskCellDelegate {
         let superview = sender.superview
         let cell = superview?.superview as! TaskCell
         let indexPath = tableView.indexPath(for: cell)
-        taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: indexPath!, type: .home)
+        if let index = indexPath {
+            taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: index, type: .home)
+        }
     }
     
     /* Kicks off cycling between taskcell editing states */

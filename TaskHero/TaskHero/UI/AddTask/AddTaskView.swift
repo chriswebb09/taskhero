@@ -22,7 +22,7 @@ final class AddTaskView: UIView {
     
     var taskNameField = TextFieldExtension().emailField("Task name") {
         didSet {
-            print(taskNameField.text)
+            print(taskNameField.text ?? "No task name")
         }
     }
     

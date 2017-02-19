@@ -61,7 +61,6 @@
 		A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7D1DE93688005E3A5E /* TaskButton.swift */; };
 		A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D871DEA6A08005E3A5E /* DataPicker.swift */; };
 		A74553421E2346C9004300AA /* TaskHeroSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74553411E2346C9004300AA /* TaskHeroSpec.swift */; };
-		A74D63D81E4BC710006C84E8 /* HomeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D63D71E4BC710006C84E8 /* HomeHelpers.swift */; };
 		A752A3521E4AB587006FD395 /* SharedTaskMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752A3511E4AB587006FD395 /* SharedTaskMethods.swift */; };
 		A752A3541E4B1CDF006FD395 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752A3531E4B1CDF006FD395 /* DataPersistence.swift */; };
 		A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */; };
@@ -155,7 +154,6 @@
 		A7346D7D1DE93688005E3A5E /* TaskButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
 		A7346D871DEA6A08005E3A5E /* DataPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
 		A74553411E2346C9004300AA /* TaskHeroSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHeroSpec.swift; sourceTree = "<group>"; };
-		A74D63D71E4BC710006C84E8 /* HomeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHelpers.swift; sourceTree = "<group>"; };
 		A752A3511E4AB587006FD395 /* SharedTaskMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTaskMethods.swift; sourceTree = "<group>"; };
 		A752A3531E4B1CDF006FD395 /* DataPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPersistence.swift; path = TaskHero/Networking/DataPersistence.swift; sourceTree = SOURCE_ROOT; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 			children = (
 				A709CACF1DE771B700877907 /* HomeViewController.swift */,
 				A714E1781E3BF52E0014F990 /* HomeViewModel.swift */,
-				A74D63D71E4BC710006C84E8 /* HomeHelpers.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -889,7 +886,6 @@
 				A709CAFE1DE7731500877907 /* LoadingView.swift in Sources */,
 				A767FBA41E0832A1007767B6 /* TaskCellViewModel.swift in Sources */,
 				A76562D31DF93F4800E29AA9 /* InitialViewController.swift in Sources */,
-				A74D63D81E4BC710006C84E8 /* HomeHelpers.swift in Sources */,
 				A709CAE61DE7725F00877907 /* SettingsCell.swift in Sources */,
 				A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */,
 				A709CB001DE7731F00877907 /* Constants.swift in Sources */,
