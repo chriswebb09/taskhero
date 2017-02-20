@@ -33,7 +33,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
      below navbar, adds button items to navcontroller navbar
-     -- called in viewDidLoad
+     -> called in viewDidLoad
      */
     
     func viewSetup() {
@@ -66,7 +66,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     /* Removes reference to database - necessary to prevent
      * duplicate task cells from loading when viewWillAppear is called again.
-     -- Functionality implemented in helper class
+     -> Functionality implemented in helper class
      */
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,7 +102,6 @@ extension HomeViewController: UITextViewDelegate {
             setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
             taskCell.delegate = self
             return taskCell
-            
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
             setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
@@ -145,7 +144,6 @@ extension HomeViewController: TaskCellDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
                 self.homeViewModel.fetchTasks(tableView: self.tableView)
