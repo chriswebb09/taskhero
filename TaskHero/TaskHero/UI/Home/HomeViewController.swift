@@ -94,23 +94,11 @@ extension HomeViewController: UITextViewDelegate {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return homeViewModel.rowHeight
     }
-}
-
-// MARK: - ProfileHeaderCell Delegate Method
-
-extension HomeViewController: ProfileHeaderCellDelegate {
-    
-    // MARK: - Header cell Delegate Methods
-    
-    internal func profilePictureTapped(sender: UIGestureRecognizer) {
-        // need to be implemented
-        print("here")
-    }
     
     // MARK: - Return cells for index - dequeueReusableCell
     
     /* If first row returns profile headerCell else returns taskCell
-       all cells configured within HomeViewController using setupCell methods  */
+     all cells configured within HomeViewController using setupCell methods  */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cellType: HomeCellType = indexPath.row > 0 ? .task : .header
@@ -227,6 +215,17 @@ extension HomeViewController: TaskCellDelegate {
         }
     }
 }
+
+// MARK: - ProfileHeaderCell Delegate Method
+
+extension HomeViewController: ProfileHeaderCellDelegate {
+    
+    internal func profilePictureTapped(sender: UIGestureRecognizer) {
+        // need to be implemented
+        print("here")
+    }
+}
+
 
 // Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
 
