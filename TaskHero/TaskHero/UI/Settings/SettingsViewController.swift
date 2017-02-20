@@ -21,12 +21,13 @@ final class SettingsViewController: UITableViewController {
         edgesForExtendedLayout = []
         view.backgroundColor = .backgroundColor()
         tableView.separatorColor = .blue
-        navigationController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
+        navigationController?.navigationBar.setBottomBorderColor(color: .lightGray,
+                                                                 height: Constants.Border.borderWidth)
         setupTableView()
     }
     
     func setupTableView() {
-        let header = UIView(frame:CGRect(x:0, y:0, width: Int(view.bounds.width), height: 50))
+        let header = UIView(frame:CGRect(x: 0, y: 0, width: Int(view.bounds.width), height: 50))
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
         header.backgroundColor = .white
@@ -39,9 +40,6 @@ final class SettingsViewController: UITableViewController {
         super.viewWillDisappear(false)
         hide()
     }
-}
-
-extension SettingsViewController {
     
     // MARK: UITableViewController Methods
     
@@ -50,10 +48,8 @@ extension SettingsViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
         settingsViewModel = SettingsCellViewModel(settings[indexPath.row])
-        
         settingsCell.configureCell(setting: settingsViewModel)
         settingsCell.contentView.clipsToBounds = true
         return settingsCell
@@ -64,21 +60,14 @@ extension SettingsViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if settings[indexPath.row] == "Edit Profile" {
-            navigationController?.pushViewController(ProfileSettingsViewController(), animated: true)
-        }
-        else if settings[indexPath.row] == "Friends" {
-            let friendsVC = FriendsSettingsViewController()
-            navigationController?.pushViewController(friendsVC, animated: true)
-        }
-        else if settings[indexPath.row] == "Notifications" {
+        var pushedVC: UIViewController = settings[indexPath.row] == "Edit Profile" ? ProfileSettingsViewController() : FriendsSettingsViewController()
+        if settings[indexPath.row] == "Notifications" {
             notificationPopup()
             notifyPop.notifyPopView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
+        } else {
+            navigationController?.pushViewController(pushedVC, animated: true)
         }
     }
-}
-
-extension SettingsViewController {
     
     // MARK: Public Methods
     
@@ -92,7 +81,6 @@ extension SettingsViewController {
     fileprivate func launchPopupView() {
         alertPopInitialOpacity()
         alertPop.showPopView(viewController: self)
-        
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
@@ -104,15 +92,12 @@ extension SettingsViewController {
     
     // Displays popover when notifications cell is selected
     
-    fileprivate func notificationPopInitialOpacity() {
+    private func notificationPopInitialOpacity() {
         notifyPop.popView.isHidden = false
         notifyPop.containerView.isHidden = false
         notifyPop.containerView.layer.opacity = 0
         notifyPop.popView.layer.opacity = 0
     }
-}
-
-extension SettingsViewController {
     
     func notificationPopup() {
         notificationPopInitialOpacity()
@@ -155,11 +140,10 @@ extension SettingsViewController {
         case 0:
             settings = userSettings
             segmentControl.subviews[0].backgroundColor = .white
-    
+            
         default:
             settings = applicationSettings
             segmentControl.subviews[1].backgroundColor = .white
-            
         }
         tableView.reloadData()
     }
@@ -175,6 +159,7 @@ extension SettingsViewController {
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
         segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
+        
         segmentControl.snp.makeConstraints { make in
             make.centerX.equalTo(view.snp.centerX)
             make.width.equalTo(view.snp.width)

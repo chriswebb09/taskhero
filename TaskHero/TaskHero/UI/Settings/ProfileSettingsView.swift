@@ -14,20 +14,15 @@ final class ProfileSettingsView: UIView {
         return profileLabel
     }()
     
-    // MARK: - Initialization
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
         setupConstraints()
     }
     
-    // MARK: - Configure
-    
     fileprivate func setupConstraints() {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         profileLabel.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(Constants.Settings.FriendsSetting.friendsHeaderLabelHeight)
             make.height.equalTo(self).multipliedBy(Constants.Dimension.height)

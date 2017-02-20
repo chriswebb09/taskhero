@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class NotificationPopover: BasePopoverAlert {
     
@@ -13,14 +14,20 @@ class NotificationPopover: BasePopoverAlert {
     
     override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
-        notifyPopView.frame = CGRect(x:0, y:0, width:UIScreen.main.bounds.width * 0.8, height:UIScreen.main.bounds.height * 0.35)
-        notifyPopView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY * 0.7)
+        notifyPopView.frame = CGRect(x: 0,
+                                     y: 0,
+                                     width: UIScreen.main.bounds.width * 0.8,
+                                     height: UIScreen.main.bounds.height * 0.35)
+        notifyPopView.center = CGPoint(x: UIScreen.main.bounds.midX,
+                                       y: UIScreen.main.bounds.midY * 0.7)
         notifyPopView.clipsToBounds = true
         viewController.view.addSubview(notifyPopView)
         viewController.view.bringSubview(toFront: notifyPopView)
         notifyPopView.isHidden = false
-        notifyPopView.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: 0).isActive = true
-        notifyPopView.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 0).isActive = true
+        notifyPopView.snp.makeConstraints { make in
+            make.centerY.equalTo(viewController.view.snp.centerY)
+            make.centerX.equalTo(viewController.view.snp.centerX)
+        }
     }
     
     override func hidePopView(viewController: UIViewController) {

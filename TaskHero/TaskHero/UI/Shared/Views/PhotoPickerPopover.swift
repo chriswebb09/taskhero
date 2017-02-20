@@ -31,8 +31,12 @@ class PhotoPickerPopover: BasePopoverAlert {
     }
     
     func popViewCentered(popView:PhotoPickerView) {
-        popView.frame = CGRect(x:UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.35, width:UIScreen.main.bounds.width * 0.75, height:UIScreen.main.bounds.height * 0.35)
-        popView.center = CGPoint(x: UIScreen.main.bounds.width * 0.5, y:UIScreen.main.bounds.height * 0.4)
+        popView.frame = CGRect(x: UIScreen.main.bounds.width * 0.5,
+                               y: UIScreen.main.bounds.height * 0.35,
+                               width: UIScreen.main.bounds.width * 0.75,
+                               height: UIScreen.main.bounds.height * 0.35)
+        popView.center = CGPoint(x: UIScreen.main.bounds.width * 0.5,
+                                 y: UIScreen.main.bounds.height * 0.4)
     }
     
     override func showPopView(viewController: UIViewController) {

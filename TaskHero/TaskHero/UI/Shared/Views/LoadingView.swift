@@ -16,13 +16,17 @@ class LoadingView: UIView {
     lazy var loadingView: UIView = {
         let loadingView = UIView()
         loadingView.layer.cornerRadius = 10
-        loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
+        loadingView.backgroundColor = UIColor(red:0.27,
+                                              green:0.27,
+                                              blue:0.27,
+                                              alpha:0.8)
         return loadingView
     }()
     
     func addLoadingView() {
         loadingView.frame = CGRect(x:0, y:0, width:60, height:60)
-        loadingView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+        loadingView.center = CGPoint(x: UIScreen.main.bounds.midX,
+                                     y: UIScreen.main.bounds.midY)
         loadingView.clipsToBounds = true
     }
     
@@ -41,7 +45,8 @@ class LoadingView: UIView {
     
     func showActivityIndicator(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
-        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2.5)
+        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2,
+                                       y: UIScreen.main.bounds.height/2.5)
         addLoadingView()
         activityIndicatorSetup()
         addSubviews(viewController: viewController)

@@ -20,7 +20,8 @@ class BasePopoverAlert: UIView {
     
     public func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
-        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
+        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2,
+                                       y: UIScreen.main.bounds.height/2)
         viewController.view.addSubview(containerView)
         popView.isHidden = false
         containerView.isHidden = false
