@@ -213,8 +213,6 @@ final class TaskCell: UITableViewCell, Toggable {
         layer.shadowOpacity = shadowOpacity
     }
     
-    /* methods used in VC to setup cell with data */
-    
     func configureCell(taskVM: TaskCellViewModel) {
         layoutSubviews()
         taskNameLabel.text = taskVM.taskName

@@ -7,12 +7,8 @@ final class InitView: UIView {
     
     var animationDuration: Double = 0.8
     
-    // MARK: - UIElements
-    
     var logoImageView: UIImageView = {
         let image = UIImage(named: "taskherologo2")
-        
-        // let image = UIImage(named: "TaskHeroLogoNew2")
         let imageView = UIImageView(image: image)
         return imageView
     }()
@@ -65,8 +61,7 @@ final class InitView: UIView {
             if let zoom = self?.zoomOut() {
                 self?.logoImageView.transform = zoom
             }
-            self?.alpha = 0
-            }, completion: { finished in
+            self?.alpha = 0 }, completion: { finished in
                 DispatchQueue.main.async {
                     let appScreenVC = UINavigationController(rootViewController:AppScreenViewController())
                     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate

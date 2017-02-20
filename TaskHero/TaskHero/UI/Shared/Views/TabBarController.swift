@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 
 class TabBarController: UITabBarController {
-   
+    
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance
@@ -10,7 +10,6 @@ class TabBarController: UITabBarController {
     // MARK: - Initialization
     
     override func viewDidLoad() {
-        
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             self.view.backgroundColor = .white
             if user != nil && (self.store.currentUser != nil) {
@@ -25,7 +24,6 @@ class TabBarController: UITabBarController {
             }
         }
     }
-    
     
     override func viewDidLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -42,7 +40,6 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = Constants.Tabbar.tint
         tabBar.barTintColor = Constants.Color.backgroundColor.setColor
     }
-
     
     func getUser() {
         store.firebaseAPI.fetchUserData { user in

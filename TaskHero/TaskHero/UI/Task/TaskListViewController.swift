@@ -3,7 +3,6 @@ import UIKit
 final class TaskListViewController: UITableViewController {
     
     /* TaskListViewController is the viewController that presents just the tasks that the user has added */
-    
     // MARK: Properties
     
     let store = UserDataStore.sharedInstance /* userData store for application user state */
@@ -41,7 +40,6 @@ final class TaskListViewController: UITableViewController {
         edgesForExtendedLayout = []
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
-            //.tableViewBackgroundColor
         initializeBackgroundUI()
         addTasksLabel = UILabel()
         listViewModel.configureAddTaskLabel(label: addTasksLabel)

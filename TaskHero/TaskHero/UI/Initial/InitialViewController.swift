@@ -16,9 +16,9 @@ final class InitialViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         let when = DispatchTime.now() + 0.5 //
         DispatchQueue.main.asyncAfter(deadline: when) {
-            self.initView.zoomAnimation({
+            self.initView.zoomAnimation() {
                 print("Animating")
-            })
+            }
         }
     }
     
