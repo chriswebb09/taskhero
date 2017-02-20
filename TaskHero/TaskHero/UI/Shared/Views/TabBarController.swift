@@ -86,7 +86,6 @@ class TabBarController: UITabBarController {
         return profileTab
     }
     
-    
     fileprivate func setupTaskTab(taskListVC: TaskListViewController) -> UINavigationController {
         taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: taskListVC.tabBarItem)
