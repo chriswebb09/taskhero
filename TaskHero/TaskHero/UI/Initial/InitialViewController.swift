@@ -21,9 +21,7 @@ final class InitialViewController: UIViewController {
             })
         }
     }
-}
-
-extension InitialViewController {
+    
     func loginButtonTapped() {
         navigationController?.pushViewController(LoginViewController(), animated: false)
     }

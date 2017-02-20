@@ -11,11 +11,7 @@ final class TaskListViewController: UITableViewController {
     var taskViewModel: TaskCellViewModel!
     let sharedTaskMethods = SharedTaskMethods()
     var listViewModel = TaskListViewModel()
-    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  // BackgroundQueue for background
-    
-    // MARK: - UI Elements
-    /* Label for empty tasklist state, should disappear once task is added */
-    
+    let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     var addTasksLabel:UILabel {
         didSet {
             print("Label hidden \(hidden)")
@@ -39,9 +35,6 @@ final class TaskListViewController: UITableViewController {
             super.init(nibName: nil, bundle:nil)
         }
     }
-}
-
-extension TaskListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -57,12 +57,8 @@ final class InitView: UIView {
             make.centerY.equalTo(self)
         }
     }
-}
-
-extension InitView {
     
     // MARK: - Animation
-    
     func zoomAnimation(_ handler: completion? = nil) {
         let duration: TimeInterval = animationDuration * 0.5
         UIView.animate(withDuration: duration, animations:{ [weak self] in
@@ -80,7 +76,7 @@ extension InitView {
         })
     }
     
-    fileprivate func zoomOut() -> CGAffineTransform {
+    private func zoomOut() -> CGAffineTransform {
         let zoomOutTranform: CGAffineTransform = CGAffineTransform(scaleX: 05, y: 05)
         return zoomOutTranform
     }
