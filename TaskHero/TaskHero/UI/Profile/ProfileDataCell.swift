@@ -70,12 +70,9 @@ final class ProfileDataCell: UITableViewCell {
         setupViewsForConfig(views: views)
         setupConstraints()
     }
-}
-
-extension ProfileDataCell {
-
+    
     // MARK: - Configuration
-    /* Called on levelLabel, experiencePointsLabel, tasksCompleted label - 
+    /* Called on levelLabel, experiencePointsLabel, tasksCompleted label -
      * sets label to small green ovaly element with black border aligns content in center */
     
     private func configureLabels(label: UILabel) {
@@ -125,10 +122,12 @@ extension ProfileDataCell {
     
     private func addTasksCompletedLabel(tasksCompletedLabel:UILabel) {
         configureLabels(label: tasksCompletedLabel)
-        tasksCompletedLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        tasksCompletedLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: Constants.Settings.Profile.profileDataRightOffset).isActive = true
-        tasksCompletedLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        tasksCompletedLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
+        tasksCompletedLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView.snp.centerY)
+            make.right.equalTo(contentView.snp.right).offset(Constants.Settings.Profile.profileDataRightOffset)
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+        }
     }
     
     fileprivate func setupConstraints() {
@@ -136,16 +135,17 @@ extension ProfileDataCell {
         addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
         configureDividers(view: topDivider)
-        topDivider.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        topDivider.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        topDivider.snp.makeConstraints { make in
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.top.equalTo(contentView.snp.top)
+        }
         configureDividers(view: bottomDivider)
-        bottomDivider.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        bottomDivider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        bottomDivider.snp.makeConstraints { make in
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.bottom.equalTo(contentView.snp.bottom)
+        }
     }
-}
-
-extension ProfileDataCell {
-
+    
     // ConfigureCell method - called in ParentViewController - in this case ProfileViewController
     
     func configureCell() {
