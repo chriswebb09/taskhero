@@ -73,8 +73,6 @@ extension TaskListViewController {
         super.viewWillAppear(false)
     }
     
-   
-    
     func initializeBackgroundUI() {
         sharedTaskMethods.setupTableView(tableView:tableView, view: view)
         setupNavItems(navController:navigationController)
