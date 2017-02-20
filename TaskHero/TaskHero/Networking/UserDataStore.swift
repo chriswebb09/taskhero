@@ -19,13 +19,6 @@ final class UserDataStore {
     var profilePicture: UIImage!
     var validUsernames = [String]()
     
-//    class func allTasks() -> [Task] {
-//        if let taskList = tasks {
-//            return taskList
-//        }
-//        return []
-//    }
-//    
     func setupStore() {
         tasks.removeAll()
         if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
