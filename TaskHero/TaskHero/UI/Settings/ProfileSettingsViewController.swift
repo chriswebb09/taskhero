@@ -1,28 +1,22 @@
 import UIKit
 
-final class ProfileSettingsViewController: UIViewController,  UITableViewDataSource {
+final class ProfileSettingsViewController: UIViewController {
     
     // MARK: - Properties
     
-    let store = UserDataStore.sharedInstance
     let profileSettingsView = ProfileSettingsView()
     var tapped: Bool = false
     var indexTap: IndexPath?
     let tableView = UITableView()
     let dataSource = ProfileSettingsViewControllerDataSource()
-    var options = ["Email Address", "Name", "Profile Picture", "Username"]
     var username: String?
     var email: String?
 }
 
-extension ProfileSettingsViewController: UITableViewDelegate {
+extension ProfileSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        options = [self.store.currentUser.email,
-                   "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
-            "Profile Picture", self.store.currentUser.username
-        ]
         edgesForExtendedLayout = []
         setupTableViewDelegates()
         setupSubviews()
@@ -49,18 +43,16 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     // MARK: UITableViewController Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(options)
-        return options.count
+        print(dataSource.options)
+        return dataSource.options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
-        cell.configureCell(setting: options[indexPath.row])
-        
+        cell.configureCell(setting: dataSource.options[indexPath.row])
         cell.delegate = self
         cell.button.index = indexPath
         cell.button.tag = indexPath.row
-        
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)
         return cell
     }
@@ -71,27 +63,30 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     }
     
     fileprivate func tapEdit() {
-        let tapCell = tableView.cellForRow(at: indexTap!) as! ProfileSettingsCell
-        if tapped == true {
-            tapped = false
-            if (tapCell.profileSettingField.text?.characters.count)! > 0 {
-                guard let name = tapCell.profileSettingField.text?.components(separatedBy: " ") else { return }
-                if indexTap?.row == 1 {
-                    dataSource.updateUserName(cell: tapCell, name: name)
-                } else if indexTap?.row == 3 {
-                    dataSource.updateUserName(cell: tapCell, name: name)
+        if let index = indexTap {
+            let tapCell = tableView.cellForRow(at: index) as! ProfileSettingsCell
+            if tapped == true {
+                tapped = false
+                if let cellText = tapCell.profileSettingField.text {
+                    if cellText.characters.count > 0 {
+                        guard let name = tapCell.profileSettingField.text?.components(separatedBy: " ") else { return }
+                        if index.row == 1 {
+                            dataSource.updateUserName(cell: tapCell, name: name)
+                        } else if index.row == 3 {
+                            dataSource.updateUserName(cell: tapCell, name: name)
+                        }
+                        tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
+                    } else {
+                        tapCell.profileSettingLabel.text = dataSource.options[index.row]
+                    }
+                    tapCell.profileSettingField.isHidden = true
+                    tapCell.profileSettingLabel.isHidden = false
                 }
-                tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
             } else {
-                if let tap = indexTap {
-                    tapCell.profileSettingLabel.text = options[tap.row]
-                }
+                tapped = true
+                tapCell.profileSettingLabel.isHidden = true
+                tapCell.profileSettingField.isHidden = false
             }
-            tapCell.profileSettingField.isHidden = true
-            tapCell.profileSettingLabel.isHidden = false
-        } else if tapped == false { tapped = true
-            tapCell.profileSettingLabel.isHidden = true
-            tapCell.profileSettingField.isHidden = false
         }
     }
     
@@ -104,4 +99,6 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
         tapped = true
     }
 }
+
+
 

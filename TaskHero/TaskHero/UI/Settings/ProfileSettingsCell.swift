@@ -36,13 +36,11 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     var profileSettingField: TextFieldExtension = {
         let taskNameField = TextFieldExtension()
-        
         taskNameField.font = Constants.signupFieldFont
         taskNameField.layer.borderColor = UIColor.lightGray.cgColor
         taskNameField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         taskNameField.layer.borderWidth = Constants.Border.borderWidth
         taskNameField.isHidden = true
-        
         return taskNameField
     }()
     
@@ -69,7 +67,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     private func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        
         view.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.height)
             make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Settings.Profile.profileSettingsLabelWidth)
@@ -78,7 +75,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     private func addProfileSetttingLabel() {
         configureView(view: profileSettingLabel)
-        
         profileSettingLabel.snp.makeConstraints { make in
             make.height.equalTo(self)
             make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
@@ -89,7 +85,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     private func addButton() {
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         button.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.height)
             make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Settings.Profile.profileViewHeightAnchor)
@@ -100,7 +95,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
     
     private func addProfileSettingsField() {
         configureView(view: profileSettingField)
-        
         profileSettingField.snp.makeConstraints { make in
             make.height.equalTo(self)
             make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)

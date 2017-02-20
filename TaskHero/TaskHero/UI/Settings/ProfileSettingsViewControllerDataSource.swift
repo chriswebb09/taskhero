@@ -7,6 +7,15 @@ final class ProfileSettingsViewControllerDataSource {
     
     let store = UserDataStore.sharedInstance
     
+    var options: [String] {
+        return [
+            self.store.currentUser.email,
+            "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
+            "Profile Picture",
+            self.store.currentUser.username
+        ]
+    }
+    
     func setupViews(profileSettingsView: ProfileSettingsView, tableView: UITableView, view:UIView) {
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
         profileSettingsView.snp.makeConstraints { make in
