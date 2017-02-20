@@ -27,8 +27,6 @@ final class ProfileViewController: UITableViewController {
         super.viewDidAppear(false)
         tableView.reloadData()
     }
-    
-   
 }
 
 extension ProfileViewController {
