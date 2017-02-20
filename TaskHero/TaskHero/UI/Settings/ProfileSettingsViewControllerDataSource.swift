@@ -54,5 +54,4 @@ final class ProfileSettingsViewControllerDataSource {
         store.firebaseAPI.setupRefs()
         store.currentUser = user
     }
-    
 }

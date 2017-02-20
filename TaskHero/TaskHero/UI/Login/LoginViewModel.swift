@@ -22,7 +22,6 @@ struct LoginViewModel {
         willSet {
             print("About to set password to:  \(newValue)")
         }
-        
         didSet {
             if password != oldValue {
                 getUserName(textFieldText: password)

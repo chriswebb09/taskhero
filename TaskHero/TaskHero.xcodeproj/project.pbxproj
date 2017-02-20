@@ -22,7 +22,7 @@
 		A709CAD41DE771EB00877907 /* ProfileDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAD31DE771EB00877907 /* ProfileDataCell.swift */; };
 		A709CAD61DE771F400877907 /* ProfileBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAD51DE771F400877907 /* ProfileBannerCell.swift */; };
 		A709CAD91DE7720200877907 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAD71DE7720200877907 /* TaskCell.swift */; };
-		A709CADC1DE7721300877907 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CADB1DE7721300877907 /* NSDate+Extension.swift */; };
+		A709CADC1DE7721300877907 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CADB1DE7721300877907 /* Date+Extension.swift */; };
 		A709CADE1DE7722300877907 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CADD1DE7722300877907 /* String+Extension.swift */; };
 		A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CADF1DE7722D00877907 /* UIColorExtension.swift */; };
 		A709CAE21DE7723800877907 /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAE11DE7723800877907 /* TextfieldExtension.swift */; };
@@ -42,7 +42,6 @@
 		A709CB0C1DE7735B00877907 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0B1DE7735B00877907 /* SignupViewController.swift */; };
 		A709CB101DE7737100877907 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB0F1DE7737100877907 /* TabBarController.swift */; };
 		A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB111DE7737800877907 /* TaskListViewController.swift */; };
-		A70B7F611E5A474D003E587A /* Reachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B7F601E5A474D003E587A /* Reachable.swift */; };
 		A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */; };
 		A714E1751E3BEA8E0014F990 /* AppScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1741E3BEA8E0014F990 /* AppScreenView.swift */; };
 		A714E1771E3BEA980014F990 /* AppScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1761E3BEA980014F990 /* AppScreenViewController.swift */; };
@@ -76,6 +75,8 @@
 		A7AFCDE11DF72C4B004D607C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFCDE01DF72C4B004D607C /* APIClient.swift */; };
 		A7C5A9C51E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */; };
 		A7DF774A1E37185800FB2DCE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF77491E37185800FB2DCE /* Secrets.swift */; };
+		A7E991181E5A8BE1001CE354 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E991171E5A8BE1001CE354 /* Reachability.swift */; };
+		A7E9911A1E5A8CBE001CE354 /* InternetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E991191E5A8CBE001CE354 /* InternetStatus.swift */; };
 		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
@@ -110,7 +111,7 @@
 		A709CAD31DE771EB00877907 /* ProfileDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataCell.swift; sourceTree = "<group>"; };
 		A709CAD51DE771F400877907 /* ProfileBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBannerCell.swift; sourceTree = "<group>"; };
 		A709CAD71DE7720200877907 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
-		A709CADB1DE7721300877907 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
+		A709CADB1DE7721300877907 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		A709CADD1DE7722300877907 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A709CADF1DE7722D00877907 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A709CAE11DE7723800877907 /* TextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		A709CB0B1DE7735B00877907 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		A709CB0F1DE7737100877907 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A709CB111DE7737800877907 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
-		A70B7F601E5A474D003E587A /* Reachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachable.swift; path = TaskHero/Networking/Reachable.swift; sourceTree = SOURCE_ROOT; };
 		A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A714E1741E3BEA8E0014F990 /* AppScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenView.swift; path = AppScreen/AppScreenView.swift; sourceTree = "<group>"; };
@@ -167,6 +167,8 @@
 		A7AFCDE01DF72C4B004D607C /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewControllerDataSource.swift; sourceTree = "<group>"; };
 		A7DF77491E37185800FB2DCE /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		A7E991171E5A8BE1001CE354 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		A7E991191E5A8CBE001CE354 /* InternetStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetStatus.swift; sourceTree = "<group>"; };
 		ACD79247934EC1235C48C258 /* Pods-TaskHero-TaskHeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero-TaskHeroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero-TaskHeroTests/Pods-TaskHero-TaskHeroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,7 +287,8 @@
 			children = (
 				A7AFCDE01DF72C4B004D607C /* APIClient.swift */,
 				A752A3531E4B1CDF006FD395 /* DataPersistence.swift */,
-				A70B7F601E5A474D003E587A /* Reachable.swift */,
+				A7E991171E5A8BE1001CE354 /* Reachability.swift */,
+				A7E991191E5A8CBE001CE354 /* InternetStatus.swift */,
 			);
 			name = Networking;
 			path = DataServices;
@@ -294,7 +297,7 @@
 		A709CB211DE77C1300877907 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A709CADB1DE7721300877907 /* NSDate+Extension.swift */,
+				A709CADB1DE7721300877907 /* Date+Extension.swift */,
 				A709CADD1DE7722300877907 /* String+Extension.swift */,
 				A709CAE11DE7723800877907 /* TextfieldExtension.swift */,
 				A709CADF1DE7722D00877907 /* UIColorExtension.swift */,
@@ -884,14 +887,13 @@
 				A714E17D1E3D0B8D0014F990 /* AppScreenViewModel.swift in Sources */,
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
 				A76562DA1DF95B7500E29AA9 /* UINavigationBar+Extension.swift in Sources */,
-				A70B7F611E5A474D003E587A /* Reachable.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
 				A767FBA21E0830D5007767B6 /* SettingsCellViewModel.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,
 				A708400A1DEB180800055B72 /* ProfileSettingsCell.swift in Sources */,
 				A7C5A9C51E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift in Sources */,
 				A70840001DEABB1700055B72 /* ProfileSettingsView.swift in Sources */,
-				A709CADC1DE7721300877907 /* NSDate+Extension.swift in Sources */,
+				A709CADC1DE7721300877907 /* Date+Extension.swift in Sources */,
 				A709CB041DE7733300877907 /* User.swift in Sources */,
 				A7346D781DE8EC50005E3A5E /* AlertPopover.swift in Sources */,
 				A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */,
@@ -902,6 +904,7 @@
 				A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */,
 				A77FBCCD1DEB8A190014C380 /* Helpers.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,
+				A7E991181E5A8BE1001CE354 /* Reachability.swift in Sources */,
 				A709CAEE1DE7727E00877907 /* ProfileDataCellModel.swift in Sources */,
 				A752A3521E4AB587006FD395 /* SharedTaskMethods.swift in Sources */,
 				A7DF774A1E37185800FB2DCE /* Secrets.swift in Sources */,
@@ -913,6 +916,7 @@
 				A76562D41DF93F4800E29AA9 /* InitView.swift in Sources */,
 				A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */,
 				A714E17B1E3BFE190014F990 /* TaskListViewModel.swift in Sources */,
+				A7E9911A1E5A8CBE001CE354 /* InternetStatus.swift in Sources */,
 				A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */,
 				A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */,
 				A714E1751E3BEA8E0014F990 /* AppScreenView.swift in Sources */,

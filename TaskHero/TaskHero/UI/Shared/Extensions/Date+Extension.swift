@@ -31,13 +31,6 @@ extension Date {
         return Calendar.current
        
     }
-    
-//    func getMonths() -> [String] {
-//        let dateFormat = DateFormatter()
-//        dateFormat.dateFormat = "yyyy"
-//
-//    }
-
 }
 
 

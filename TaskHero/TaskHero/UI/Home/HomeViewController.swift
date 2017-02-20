@@ -40,8 +40,9 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     func viewSetup() {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor
         taskMethods.setupTableView(tableView: tableView, view: view)
+        
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor
         picker.delegate = self
         edgesForExtendedLayout = []
         addNavItemsToController()
@@ -101,11 +102,14 @@ extension HomeViewController: UITextViewDelegate {
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
             setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
+            
             taskCell.delegate = self
             return taskCell
+            
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
             setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
+            
             headerCell.delegate = self
             return headerCell
         }
@@ -126,9 +130,10 @@ extension HomeViewController: TaskCellDelegate {
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
         let taskViewModel = homeViewModel.getViewModelForTask(taskIndex: taskIndex)
         taskCell.configureCell(taskVM: taskViewModel)
+        taskCell.tag = taskIndex
+        
         let tap = UIGestureRecognizer(target:self, action: #selector(toggleForEditState(_:)))
         taskCell.taskCompletedView.addGestureRecognizer(tap)
-        taskCell.tag = taskIndex
     }
     
     // MARK: - Delete Task logic
@@ -144,6 +149,7 @@ extension HomeViewController: TaskCellDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
+            
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
                 self.homeViewModel.fetchTasks(tableView: self.tableView)

@@ -4,6 +4,7 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var reachability: Reachability? = Reachability()!
     
     var window: UIWindow? = {
         let window = UIWindow(frame: UIScreen.main.bounds)
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        reachabilitySetup()
         let navigationBarAppearace = UINavigationBar.appearance()
         let defaults = UserDefaults.standard
         navigationBarAppearace.barTintColor = .navigationBarColor()
@@ -28,6 +30,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window?.makeKeyAndVisible()
         return true
+    }
+    
+    
+    func reachabilitySetup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged)
+            ,name: ReachabilityChangedNotification,object: reachability)
+        
+        do {
+            try reachability?.startNotifier()
+        } catch let error as NSError {
+            print("ERROR: couldn't start notifier \(error.localizedDescription)")
+        }
+    }
+    
+    func reachabilityChanged() {
+        guard let reachability = reachability else { return }
+        let status = InternetStatus.shared
+        if reachability.isReachable {
+            if reachability.isReachableViaWiFi {
+                status.hasInternet = true
+                print("Reachable via WiFi")
+            } else {
+                status.hasInternet = true
+                print("Reachable via Cellular")
+            }
+        } else {
+            status.hasInternet = false
+            print("Network not reachable")
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
