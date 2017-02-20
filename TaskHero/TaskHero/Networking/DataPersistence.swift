@@ -2,7 +2,7 @@ import UIKit
 
 struct DataPeristence {
     
-    static let shared = DataPeristence() 
+    static let shared = DataPeristence()
     
     let defaults = UserDefaults.standard
     
@@ -35,12 +35,9 @@ struct DataPeristence {
     /* incomplete - when finished method should remove currentUser and tasks from local storage when user taps logout */
     
     func logout() {
-        DispatchQueue.main.async {
-            self.defaults.set(false, forKey: "hasLoggedIn")
-            self.defaults.removeObject(forKey: "currentUser")
-            self.defaults.removeObject(forKey: "UID")
-            self.defaults.synchronize()
-        }
-        
+        self.defaults.set(false, forKey: "hasLoggedIn")
+        self.defaults.removeObject(forKey: "currentUser")
+        self.defaults.removeObject(forKey: "UID")
+        self.defaults.synchronize()
     }
 }

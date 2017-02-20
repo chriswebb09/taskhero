@@ -65,9 +65,6 @@ final class ProfileHeaderCell: UITableViewCell {
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
-}
-
-extension ProfileHeaderCell {
     
     // MARK: - Configuring Cell
     
@@ -93,19 +90,15 @@ extension ProfileHeaderCell {
         contentView.addSubview(levelLabel)
         configureLabel(label: levelLabel)
         configureConstraints(label: levelLabel)
-        
         contentView.addSubview(emailLabel)
         configureLabel(label: emailLabel)
         configureConstraints(label: emailLabel)
-        
         contentView.addSubview(joinDateLabel)
         configureLabel(label: joinDateLabel)
         configureConstraints(label: joinDateLabel)
-        
         contentView.addSubview(usernameLabel)
         configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)
-        
         contentView.addSubview(profilePicture)
     }
     
@@ -163,7 +156,6 @@ extension ProfileHeaderCell {
     func configureCell(user: User) {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        
         emailLabel.text = user.email
         joinDateLabel.isHidden = true
         usernameLabel.text = user.username

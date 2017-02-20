@@ -39,7 +39,7 @@ final class AddTaskViewController: UIViewController  {
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
-    /* Adds UITextFieldDelegate and UITextViewDelege to self - self = AddTaskViewController */
+    /* Adds UITextFieldDelegate and UITextViewDelege to AddTaskViewController */
     
     func setupDelegates() {
         addTaskView.taskNameField.delegate = self

@@ -3,10 +3,6 @@ import SnapKit
 
 class AppScreenView: UIView {
     
-    var viewModel: AppScreenViewModel = {
-        return AppScreenViewModel()
-    }()
-    
     var logoImageView: UIImageView = {
         let image = UIImage(named: "taskherologo2")
         let imageView = UIImageView(image: image)

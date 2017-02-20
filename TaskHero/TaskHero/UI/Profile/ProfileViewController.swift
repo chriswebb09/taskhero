@@ -34,7 +34,6 @@ final class ProfileViewController: UITableViewController {
     
     func registerCells() {
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
-        tableView.register(ProfileBannerCell.self, forCellReuseIdentifier: ProfileBannerCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
     }
 }
@@ -54,13 +53,7 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.row == 0 {
-            let bannerCell = tableView.dequeueReusableCell(withIdentifier: ProfileBannerCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileBannerCell
-            bannerCell.configureCell()
-            bannerCell.isHidden = true
-            return bannerCell
-        } else if indexPath.row == 1 {
+        if indexPath.row == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
@@ -71,9 +64,6 @@ extension ProfileViewController {
             return dataCell
         }
     }
-}
-
-extension ProfileViewController {
 
     // MARK: - Delegate Methods
     
@@ -91,7 +81,6 @@ extension ProfileViewController {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.synchronize()
-        
         let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
