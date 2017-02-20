@@ -51,7 +51,7 @@ extension TaskListViewController {
         view.backgroundColor = Constants.Color.tableViewBackgroundColor
         initializeBackgroundUI()
         addTasksLabel = UILabel()
-        configureAddTaskLabel(label: self.addTasksLabel)
+        listViewModel.configureAddTaskLabel(label: addTasksLabel)
         addTasksLabel.isHidden = hidden
         tableView.reloadData()
     }
@@ -68,16 +68,13 @@ extension TaskListViewController {
         self.helpers.reload(tableView: tableView)
         self.addTasksLabel.isHidden = hidden
         DispatchQueue.main.async {
-            self.emptyTableViewState(addTaskLabel: self.addTasksLabel)
+            self.listViewModel.emptyTableViewState(view: self.view, addTaskLabel: self.addTasksLabel)
+            self.tableView.reloadOnMain()
         }
         super.viewWillAppear(false)
     }
     
-    func configureAddTaskLabel(label: UILabel) {
-        addTasksLabel.font = Constants.Font.fontNormal
-        addTasksLabel.textColor = .gray
-        addTasksLabel.textAlignment = .center
-    }
+   
     
     func initializeBackgroundUI() {
         sharedTaskMethods.setupTableView(tableView:tableView, view: view)
@@ -90,7 +87,7 @@ extension TaskListViewController {
                 self.store.tasks = taskList
                 DispatchQueue.main.async {
                     self.store.currentUser = user
-                    self.helpers.reload(tableView: self.tableView)
+                    self.tableView.reloadOnMain()
                 }
             }
         }
@@ -126,27 +123,11 @@ extension TaskListViewController: TaskCellDelegate {
             self.fetchUser()
             DispatchQueue.main.async {
                 self.addTasksLabel.isHidden = self.hidden
+               
             }
+            self.tableView.reloadOnMain()
             tableView.endUpdates()
         }
-    }
-    
-    func emptyTableViewState(addTaskLabel:UILabel) {
-        if (store.tasks.count <= 1) && (!addTasksLabel.isHidden) {
-            view.addSubview(addTasksLabel)
-            addTasksLabel.center = view.center
-            addTasksLabel.text = listViewModel.taskLabelText
-            addTasksLabel.translatesAutoresizingMaskIntoConstraints = false
-            addTaskLabel.snp.makeConstraints { make in
-                make.height.equalTo(view.snp.height).multipliedBy(Constants.Dimension.mainHeight)
-                make.width.equalTo(view.snp.width).multipliedBy(Constants.Dimension.width)
-                make.centerX.equalTo(view.snp.centerX)
-                make.centerY.equalTo(view.snp.centerY)
-            }
-            addTasksLabel.isHidden = false
-        }
-        let hideText: Bool = self.store.tasks.count < 1 ? false : true
-        addTaskLabel.isHidden = hideText
     }
     
     // MARK: - Public Methods

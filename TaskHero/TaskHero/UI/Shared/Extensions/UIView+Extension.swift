@@ -42,4 +42,10 @@ public extension UITableView {
         tableFooterView = UIView(frame: .zero)
         tableHeaderView?.backgroundColor = .white
     }
+    
+    func reloadOnMain() {
+        DispatchQueue.main.async {
+            self.reloadData()
+        }
+    }
 }

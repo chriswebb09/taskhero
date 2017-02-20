@@ -55,9 +55,7 @@ struct HomeViewModel {
                 self.concurrentQueue.async {
                     self.store.currentUser = user
                     self.store.tasks = taskList
-                    DispatchQueue.main.async {
-                        tableView.reloadData()
-                    }
+                    tableView.reloadOnMain()
                 }
             }
         }
