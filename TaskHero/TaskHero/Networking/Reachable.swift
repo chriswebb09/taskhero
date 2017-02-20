@@ -13,10 +13,10 @@ enum ReachabilityStatus {
 }
 
 class Reachability: NSObject {
-
+    
     private var networkReachability: SCNetworkReachability?
     private var notifying: Bool = false
-   
+    
     private var flags: SCNetworkReachabilityFlags {
         
         var flags = SCNetworkReachabilityFlags(rawValue: 0)
@@ -28,26 +28,21 @@ class Reachability: NSObject {
             return []
         }
     }
-
+    
     var currentReachabilityStatus: ReachabilityStatus {
         
         if flags.contains(.reachable) == false {
-            // The target host is not reachable.
             return .notReachable
         }
         else if flags.contains(.isWWAN) == true {
-            // WWAN connections are OK if the calling application is using the CFNetwork APIs.
             return .reachableViaWWAN
         }
         else if flags.contains(.connectionRequired) == false {
-            // If the target host is reachable and no connection is required then we'll assume that you're on Wi-Fi...
             return .reachableViaWiFi
         }
         else if (flags.contains(.connectionOnDemand) == true || flags.contains(.connectionOnTraffic) == true) && flags.contains(.interventionRequired) == false {
-            // The connection is on-demand (or on-traffic) if the calling application is using the CFSocketStream or higher APIs and no [user] intervention is needed
             return .reachableViaWiFi
-        } 
-        else {
+        } else {
             return .notReachable
         }
     }
@@ -61,11 +56,10 @@ class Reachability: NSObject {
         }
     }
     
-    
     deinit {
         stopNotifier()
     }
-  
+    
     init?(hostName: String) {
         networkReachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, (hostName as NSString).utf8String!)
         super.init()
@@ -138,7 +132,5 @@ class Reachability: NSObject {
         localWifiAddress.sin_addr.s_addr = 0xA9FE0000
         return Reachability(hostAddress: localWifiAddress)
     }
-    
-    
 }
 

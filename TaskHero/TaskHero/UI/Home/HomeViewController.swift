@@ -6,9 +6,8 @@
 import UIKit
 
 /*
- HomeViewController is the first tab in the Bar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
- All other cells are of type TaskCell behavior is is currently being abstracted out HomeViewController to HomeViewControllerDataSource
- Not final setup - still a work in progress
+ HomeViewController is the first tab in the tabbar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+ All other cells are of type TaskCell
  */
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
@@ -33,10 +32,12 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         viewSetup()
     }
     
-    /* Before view appears fetches tasks user data using helpers.getData method then for current user
-     if currentUser.tasks is not nil, it removes tasks from currentUser regardless it then fetches
-     currentUser from database calling APIClient before loading. Redundant functionality,
-     definitely could be streamlined */
+    
+    /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start 
+       below navbar, adds button items to navcontroller navbar
+     
+       -- called in viewDidLoad
+    */
     
     func viewSetup() {
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
@@ -67,8 +68,9 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     /* Removes reference to database - necessary to prevent
-     * duplicate task cells from loading when view will
-     * appears is called again. Called inside helpers class
+     * duplicate task cells from loading when viewWillAppear is called again.
+       
+       -- Functionality implemented in helper class
      */
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -80,13 +82,14 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 extension HomeViewController: UITextViewDelegate {
     
     // MARK: - UITableViewController Methods
-    /* Returns number of rows based on count taskcount */
+    
+    /* Returns number of rows from view model based on task count in currentUser */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeViewModel.numberOfRows
     }
     
-    /* Gets rowheight from datasource and returns it - rowheight is UITableViewAutomaticDimension */
+    /* Gets rowheight from view model and returns it - rowheight is UITableViewAutomaticDimension */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return homeViewModel.rowHeight
@@ -100,11 +103,14 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     // MARK: - Header cell Delegate Methods
     
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
+        // need to be implemented
         print("here")
     }
     
-    // MARK: - Return cells Dequeue Method
-    /* If first row returns profile header cell else returns task cell all cells configured within HomeViewController  */
+    // MARK: - Return cells for index - dequeueReusableCell
+    
+    /* If first row returns profile headerCell else returns taskCell
+       all cells configured within HomeViewController using setupCell methods  */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cellType: HomeCellType = indexPath.row > 0 ? .task : .header
@@ -123,7 +129,7 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     }
 }
 
-// MARK: - Setup Cells Methods
+// MARK: - Extension for setting up cells & TaskCell delegate logic implementation
 
 extension HomeViewController: TaskCellDelegate {
     
@@ -142,7 +148,9 @@ extension HomeViewController: TaskCellDelegate {
         taskCell.tag = taskIndex
     }
     
-    // MARK: - Deletes Tasks logic
+    // MARK: - Delete Task logic
+    
+    /* Cannot edit cell at tableview index row 0 */
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let editable: Bool = indexPath.row == 0 ? false : true
@@ -163,7 +171,8 @@ extension HomeViewController: TaskCellDelegate {
     }
     
     // MARK: Selector Methods
-    /* Sets up action for logout button press, add task button press and adds these as selectors on navigation items which are added to navigation controller. Logs out user by settings root ViewController to Loginview */
+    
+    /* Sets up logoutButtonPressed() , addTaskButtonTapped() selector methods */
     
     func logoutButtonPressed() {
         let defaults = UserDefaults.standard
@@ -195,9 +204,9 @@ extension HomeViewController: TaskCellDelegate {
         photoPopover.hidePopView(viewController: self)
     }
     
-    // MARK: - Toggle state methods
-    /* Task cell Delegate Methods - Mainly toggling UI for edit state
-     Method toggles UI states from editing to not editing when save is pressed */
+    // MARK:  TaskCell Delegate Methods
+    
+    /* Methods for toggling taskCell edit state. */
     
     func toggleForButtonState(_ sender:UIButton) {
         let superview = sender.superview
@@ -220,6 +229,7 @@ extension HomeViewController: TaskCellDelegate {
 }
 
 // Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
+
 extension HomeViewController: UIImagePickerControllerDelegate {
     
     // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview - Add profile picture storage methods
