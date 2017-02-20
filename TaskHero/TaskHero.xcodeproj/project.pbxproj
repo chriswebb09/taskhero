@@ -45,7 +45,6 @@
 		A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB111DE7737800877907 /* TaskListViewController.swift */; };
 		A70B7F611E5A474D003E587A /* Reachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B7F601E5A474D003E587A /* Reachable.swift */; };
 		A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */; };
-		A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */; };
 		A712BA6E1E298E3C00B91951 /* TaskCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */; };
 		A714E1751E3BEA8E0014F990 /* AppScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1741E3BEA8E0014F990 /* AppScreenView.swift */; };
 		A714E1771E3BEA980014F990 /* AppScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1761E3BEA980014F990 /* AppScreenViewController.swift */; };
@@ -53,7 +52,6 @@
 		A714E17B1E3BFE190014F990 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E17A1E3BFE190014F990 /* TaskListViewModel.swift */; };
 		A714E17D1E3D0B8D0014F990 /* AppScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E17C1E3D0B8D0014F990 /* AppScreenViewModel.swift */; };
 		A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */; };
-		A72B5F721E4E31D60096645F /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B5F711E4E31D60096645F /* Cache.swift */; };
 		A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */; };
 		A7346D781DE8EC50005E3A5E /* AlertPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D771DE8EC50005E3A5E /* AlertPopover.swift */; };
 		A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */; };
@@ -138,7 +136,6 @@
 		A70B7F601E5A474D003E587A /* Reachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachable.swift; path = TaskHero/Networking/Reachable.swift; sourceTree = SOURCE_ROOT; };
 		A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperations.swift; sourceTree = "<group>"; };
 		A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellTextView.swift; sourceTree = "<group>"; };
 		A714E1741E3BEA8E0014F990 /* AppScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenView.swift; path = AppScreen/AppScreenView.swift; sourceTree = "<group>"; };
 		A714E1761E3BEA980014F990 /* AppScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenViewController.swift; path = AppScreen/AppScreenViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +143,6 @@
 		A714E17A1E3BFE190014F990 /* TaskListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		A714E17C1E3D0B8D0014F990 /* AppScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenViewModel.swift; path = AppScreen/AppScreenViewModel.swift; sourceTree = "<group>"; };
 		A71C97881DFF718C00F855AA /* AddTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
-		A72B5F711E4E31D60096645F /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		A7346D751DE8EC40005E3A5E /* PhotoPickerPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerPopover.swift; sourceTree = "<group>"; };
 		A7346D771DE8EC50005E3A5E /* AlertPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPopover.swift; sourceTree = "<group>"; };
 		A7346D791DE90A0F005E3A5E /* PhotoPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
@@ -292,9 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				A7AFCDE01DF72C4B004D607C /* APIClient.swift */,
-				A70DC5441E15F73D00812FB4 /* ConcurrentOperations.swift */,
 				A752A3531E4B1CDF006FD395 /* DataPersistence.swift */,
-				A72B5F711E4E31D60096645F /* Cache.swift */,
 				A70B7F601E5A474D003E587A /* Reachable.swift */,
 			);
 			name = Networking;
@@ -926,14 +920,12 @@
 				A709CB101DE7737100877907 /* TabBarController.swift in Sources */,
 				A76562D41DF93F4800E29AA9 /* InitView.swift in Sources */,
 				A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */,
-				A72B5F721E4E31D60096645F /* Cache.swift in Sources */,
 				A714E17B1E3BFE190014F990 /* TaskListViewModel.swift in Sources */,
 				A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */,
 				A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */,
 				A714E1751E3BEA8E0014F990 /* AppScreenView.swift in Sources */,
 				A714E1771E3BEA980014F990 /* AppScreenViewController.swift in Sources */,
 				A70840041DEABBD000055B72 /* FriendsSettingsView.swift in Sources */,
-				A70DC5451E15F73D00812FB4 /* ConcurrentOperations.swift in Sources */,
 				A709CAF41DE772CD00877907 /* ProfileViewController.swift in Sources */,
 				A7346D7C1DE90DF1005E3A5E /* AlertView.swift in Sources */,
 				A709CAD01DE771B700877907 /* HomeViewController.swift in Sources */,

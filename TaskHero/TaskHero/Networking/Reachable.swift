@@ -12,7 +12,6 @@ enum ReachabilityStatus {
     case reachableViaWWAN
 }
 
-
 class Reachability: NSObject {
 
     private var networkReachability: SCNetworkReachability?
