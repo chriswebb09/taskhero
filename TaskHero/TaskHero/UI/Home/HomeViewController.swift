@@ -100,14 +100,12 @@ extension HomeViewController: UITextViewDelegate {
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
             setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
-            
             taskCell.delegate = self
             return taskCell
             
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath) as! ProfileHeaderCell
             setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
-            
             headerCell.delegate = self
             return headerCell
         }
