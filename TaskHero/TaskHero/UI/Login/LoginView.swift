@@ -31,7 +31,6 @@ final class LoginView: UIView {
     
     var loginButton: UIButton = {
         let button = ButtonType.login(title: "Login").newButton
-     //   button.backgroundColor = button.isEnabled ? UIColor.newButtonColor() : UIColor.lightGray
         return button
     }()
     
@@ -45,9 +44,6 @@ final class LoginView: UIView {
         initialOpacity()
         animated()
     }
-}
-
-extension LoginView {
     
     // MARK: View Opacity Methods
     
@@ -100,7 +96,7 @@ extension LoginView {
         }
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         setupLogoImage()
         setupView(view: emailField)
         setupView(view: passwordField)
@@ -116,9 +112,6 @@ extension LoginView {
             make.top.equalTo(passwordField.snp.bottom).offset(bounds.height * 0.1)
         }
     }
-}
-
-extension LoginView {
     
     // MARK: Animation
     

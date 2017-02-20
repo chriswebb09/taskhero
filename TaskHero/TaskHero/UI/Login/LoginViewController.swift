@@ -17,8 +17,8 @@ final class LoginViewController: UIViewController {
     
     var defaults = UserDefaults.standard
     var loadingView = LoadingView()
-    var loginView: LoginView = LoginView() 
-       // loginView.loginButton.isEnabled
+    var loginView: LoginView = LoginView()
+    // loginView.loginButton.isEnabled
     
     
     var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
@@ -75,9 +75,6 @@ extension LoginViewController: UITextFieldDelegate {
     public func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
     }
-}
-
-extension LoginViewController {
     
     // MARK: - Login Method Extension
     
@@ -202,7 +199,7 @@ extension LoginViewController {
         if loginView.editState != true {
             UIView.animate(withDuration: 0.3) {
                 self.loginView.constraintsForInput()
-              //  self.loginView.layoutIfNeeded()
+                //  self.loginView.layoutIfNeeded()
                 self.view.layoutIfNeeded()
                 
             }

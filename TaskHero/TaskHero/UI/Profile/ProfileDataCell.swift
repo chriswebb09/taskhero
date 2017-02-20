@@ -59,6 +59,7 @@ final class ProfileDataCell: UITableViewCell {
     
     // MARK: - Initialization
     /* Lays out subviews and calls setup constraints */
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         isUserInteractionEnabled = false
@@ -68,7 +69,7 @@ final class ProfileDataCell: UITableViewCell {
         setupConstraints()
     }
     
-    func setupContentView() {
+    private func setupContentView() {
         contentView.clipsToBounds = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
@@ -105,7 +106,7 @@ final class ProfileDataCell: UITableViewCell {
         }
     }
     
-    func configureDividers(view: UIView) {
+    private func configureDividers(view: UIView) {
         view.snp.makeConstraints { make in
             make.width.equalTo(contentView.snp.width)
             make.height.equalTo(contentView.snp.height).multipliedBy(0.01)
@@ -132,7 +133,7 @@ final class ProfileDataCell: UITableViewCell {
         }
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         addLevelLabel(levelLabel: levelLabel)
         addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)

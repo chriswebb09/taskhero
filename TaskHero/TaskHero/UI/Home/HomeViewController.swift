@@ -6,8 +6,8 @@
 import UIKit
 
 /*
- HomeViewController is the first tab in the tabbar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
- All other cells are of type TaskCell
+ * HomeViewController is the first tab in the tabbar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+ * All other cells are of type TaskCell
  */
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
@@ -32,8 +32,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
-     below navbar, adds button items to navcontroller navbar
-     -> called in viewDidLoad
+     * below navbar, adds button items to navcontroller navbar -> called in viewDidLoad
      */
     
     func viewSetup() {
@@ -65,8 +64,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     /* Removes reference to database - necessary to prevent
-     * duplicate task cells from loading when viewWillAppear is called again.
-     -> Functionality implemented in helper class
+     * duplicate task cells from loading when viewWillAppear is called again. -> Functionality implemented in helper class
      */
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,7 +90,8 @@ extension HomeViewController: UITextViewDelegate {
     
     // MARK: - Return cells for index - dequeueReusableCell
     /* If first row returns profile headerCell else returns taskCell
-     all cells configured within HomeViewController using setupCell methods  */
+     * all cells configured within HomeViewController using setupCell methods
+     */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellType: HomeCellType = indexPath.row > 0 ? .task : .header

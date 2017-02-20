@@ -147,7 +147,7 @@ final class ProfileHeaderCell: UITableViewCell {
         }
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         addConfigures()
         addUsernameLabel()
         addlevelLabel()
