@@ -49,3 +49,27 @@ public extension UITableView {
         }
     }
 }
+
+extension UITextView {
+    
+    func editTextViewStyle() {
+        print("Inside edit text view style")
+        layer.borderWidth = Constants.Dimension.mainWidth
+        backgroundColor = .white
+        textColor = .black
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
+        font = Constants.signupFieldFont
+        contentInset = Constants.TaskCell.Description.boxInset
+    }
+    
+    func labelTextViewStyle() {
+        backgroundColor = Constants.TaskCell.Description.descriptionLabelBackgroundColor
+        font = Constants.Font.fontMedium
+        textColor = .white
+        isEditable = false
+        isSelectable = false
+        isUserInteractionEnabled = false
+    }
+}
+

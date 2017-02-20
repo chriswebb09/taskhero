@@ -58,7 +58,6 @@ final class SharedTaskMethods {
         case .taskList:
             newTask = self.store.tasks[atIndex.row]
         }
-        
         if tapCell.toggled == false {
             newTask.taskDescription = tapCell.taskDescriptionLabel.text
             self.store.firebaseAPI.updateTask(ref: newTask.taskID, taskID: newTask.taskID, task: newTask)

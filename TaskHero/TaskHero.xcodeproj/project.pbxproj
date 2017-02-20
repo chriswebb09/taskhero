@@ -44,7 +44,6 @@
 		A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CB111DE7737800877907 /* TaskListViewController.swift */; };
 		A70B7F611E5A474D003E587A /* Reachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B7F601E5A474D003E587A /* Reachable.swift */; };
 		A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */; };
-		A712BA6E1E298E3C00B91951 /* TaskCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */; };
 		A714E1751E3BEA8E0014F990 /* AppScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1741E3BEA8E0014F990 /* AppScreenView.swift */; };
 		A714E1771E3BEA980014F990 /* AppScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1761E3BEA980014F990 /* AppScreenViewController.swift */; };
 		A714E1791E3BF52E0014F990 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714E1781E3BF52E0014F990 /* HomeViewModel.swift */; };
@@ -134,7 +133,6 @@
 		A70B7F601E5A474D003E587A /* Reachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachable.swift; path = TaskHero/Networking/Reachable.swift; sourceTree = SOURCE_ROOT; };
 		A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellTextView.swift; sourceTree = "<group>"; };
 		A714E1741E3BEA8E0014F990 /* AppScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenView.swift; path = AppScreen/AppScreenView.swift; sourceTree = "<group>"; };
 		A714E1761E3BEA980014F990 /* AppScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenViewController.swift; path = AppScreen/AppScreenViewController.swift; sourceTree = "<group>"; };
 		A714E1781E3BF52E0014F990 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -433,7 +431,6 @@
 			isa = PBXGroup;
 			children = (
 				A767FBA31E0832A1007767B6 /* TaskCellViewModel.swift */,
-				A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */,
 				A709CAD71DE7720200877907 /* TaskCell.swift */,
 			);
 			name = TaskCell;
@@ -880,7 +877,6 @@
 				A709CAE61DE7725F00877907 /* SettingsCell.swift in Sources */,
 				A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */,
 				A709CB001DE7731F00877907 /* Constants.swift in Sources */,
-				A712BA6E1E298E3C00B91951 /* TaskCellTextView.swift in Sources */,
 				A77FBCC41DEB5B410014C380 /* NotificationView.swift in Sources */,
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
