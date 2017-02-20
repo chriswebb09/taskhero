@@ -1,10 +1,8 @@
 import UIKit
 import Firebase
 
-// MARK: - MAJOR Refactor Necessary - Temporary setup
-
-
 final class Helpers {
+    
     let store = UserDataStore.sharedInstance
     
     func createUser(uid: String, username:String, email:String) -> User {
