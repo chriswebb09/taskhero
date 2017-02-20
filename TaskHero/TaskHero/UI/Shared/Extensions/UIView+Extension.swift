@@ -28,29 +28,6 @@ extension UITextView {
         textView.font = Constants.Font.fontMedium
         return textView
     }
-}
-
-
-public extension UITableView {
-    
-    public func setupTableView(view: UIView) {
-        estimatedRowHeight = view.frame.height / 4
-        layoutMargins = UIEdgeInsets.zero
-        separatorInset = UIEdgeInsets.zero
-        separatorStyle = .singleLineEtched
-        rowHeight = UITableViewAutomaticDimension
-        tableFooterView = UIView(frame: .zero)
-        tableHeaderView?.backgroundColor = .white
-    }
-    
-    func reloadOnMain() {
-        DispatchQueue.main.async {
-            self.reloadData()
-        }
-    }
-}
-
-extension UITextView {
     
     func editTextViewStyle() {
         print("Inside edit text view style")
@@ -73,3 +50,22 @@ extension UITextView {
     }
 }
 
+
+public extension UITableView {
+    
+    public func setupTableView(view: UIView) {
+        estimatedRowHeight = view.frame.height / 4
+        layoutMargins = UIEdgeInsets.zero
+        separatorInset = UIEdgeInsets.zero
+        separatorStyle = .singleLineEtched
+        rowHeight = UITableViewAutomaticDimension
+        tableFooterView = UIView(frame: .zero)
+        tableHeaderView?.backgroundColor = .white
+    }
+    
+    func reloadOnMain() {
+        DispatchQueue.main.async {
+            self.reloadData()
+        }
+    }
+}

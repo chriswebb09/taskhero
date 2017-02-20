@@ -13,7 +13,7 @@ final class ProfileSettingsViewController: UIViewController {
     var email: String?
 }
 
-extension ProfileSettingsViewController: UITableViewDelegate, UITableViewDataSource {
+extension ProfileSettingsViewController: UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,10 @@ extension ProfileSettingsViewController: UITableViewDelegate, UITableViewDataSou
         tableView.setupTableView(view: view)
         tableView.separatorColor = .black
     }
+    
+}
+
+extension ProfileSettingsViewController: UITableViewDataSource {
     
     func setupTableViewDelegates() {
         tableView.delegate = self
@@ -43,7 +47,6 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     // MARK: UITableViewController Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(dataSource.options)
         return dataSource.options.count
     }
     
@@ -65,29 +68,37 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     fileprivate func tapEdit() {
         if let index = indexTap {
             let tapCell = tableView.cellForRow(at: index) as! ProfileSettingsCell
-            if tapped == true {
-                tapped = false
-                if let cellText = tapCell.profileSettingField.text {
-                    if cellText.characters.count > 0 {
-                        guard let name = tapCell.profileSettingField.text?.components(separatedBy: " ") else { return }
-                        if index.row == 1 {
-                            dataSource.updateUserName(cell: tapCell, name: name)
-                        } else if index.row == 3 {
-                            dataSource.updateUserName(cell: tapCell, name: name)
-                        }
-                        tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
-                    } else {
-                        tapCell.profileSettingLabel.text = dataSource.options[index.row]
-                    }
-                    tapCell.profileSettingField.isHidden = true
-                    tapCell.profileSettingLabel.isHidden = false
-                }
+            if tapped {
+                cellTapped(tapCell: tapCell, index: index)
             } else {
-                tapped = true
-                tapCell.profileSettingLabel.isHidden = true
-                tapCell.profileSettingField.isHidden = false
+                cellNotTapped(tapCell: tapCell)
             }
         }
+    }
+    
+    func cellTapped(tapCell: ProfileSettingsCell, index: IndexPath) {
+        tapped = false
+        if let cellText = tapCell.profileSettingField.text {
+            if cellText.characters.count > 0 {
+                guard let name = tapCell.profileSettingField.text?.components(separatedBy: " ") else { return }
+                if index.row == 1 {
+                    dataSource.updateUserName(cell: tapCell, name: name)
+                } else if index.row == 3 {
+                    dataSource.updateUserName(cell: tapCell, name: name)
+                }
+                tapCell.profileSettingLabel.text = tapCell.profileSettingField.text
+            } else {
+                tapCell.profileSettingLabel.text = dataSource.options[index.row]
+            }
+            tapCell.profileSettingField.isHidden = true
+            tapCell.profileSettingLabel.isHidden = false
+        }
+    }
+    
+    func cellNotTapped(tapCell: ProfileSettingsCell) {
+        tapped = true
+        tapCell.profileSettingLabel.isHidden = true
+        tapCell.profileSettingField.isHidden = false
     }
     
     fileprivate func separateNames(name:String) -> [String] {

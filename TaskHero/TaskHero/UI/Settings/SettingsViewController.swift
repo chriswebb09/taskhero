@@ -21,8 +21,6 @@ final class SettingsViewController: UITableViewController {
         edgesForExtendedLayout = []
         view.backgroundColor = .backgroundColor()
         tableView.separatorColor = .blue
-        navigationController?.navigationBar.setBottomBorderColor(color: .lightGray,
-                                                                 height: Constants.Border.borderWidth)
         setupTableView()
     }
     

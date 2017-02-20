@@ -8,12 +8,7 @@ final class ProfileSettingsViewControllerDataSource {
     let store = UserDataStore.sharedInstance
     
     var options: [String] {
-        return [
-            self.store.currentUser.email,
-            "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
-            "Profile Picture",
-            self.store.currentUser.username
-        ]
+        return [ self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
     }
     
     func setupViews(profileSettingsView: ProfileSettingsView, tableView: UITableView, view:UIView) {
@@ -33,6 +28,7 @@ final class ProfileSettingsViewControllerDataSource {
     
     func updateUserName(cell: ProfileSettingsCell, name:[String]) {
         let name = cell.profileSettingField.text?.components(separatedBy: " ")
+        
         let updatedUser = User()
         updatedUser.username = store.currentUser.username
         updatedUser.email = store.currentUser.email
@@ -44,10 +40,12 @@ final class ProfileSettingsViewControllerDataSource {
                 updatedUser.lastName = changedName[1]
             }
         }
+        
         updatedUser.joinDate = store.currentUser.joinDate
         updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
         updatedUser.experiencePoints = store.currentUser.experiencePoints
         updatedUser.tasks = store.currentUser.tasks
+        
         updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
     }
     

@@ -5,11 +5,6 @@ struct SettingsCellViewModel {
     init(_ setting: String) {
         self.setting = setting
     }
-  //  var settingsType: Settings
-//    init(_ setting: String, type: Settings) {
-//        self.setting = setting
-//        self.settingsType = type
-//    }
 }
 
 
