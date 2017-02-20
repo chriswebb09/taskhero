@@ -12,7 +12,6 @@ final class SettingsViewController: UITableViewController {
     let alertPop = AlertPopover()
     let notifyPop = NotificationPopover()
     var settingsViewModel:SettingsCellViewModel!
-    let helpers = Helpers()
     
     // MARK: - Initialization
     
@@ -98,7 +97,6 @@ extension SettingsViewController {
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
         }
-        
         self.alertPop.alertPopView.resultLabel.text = "Try Again Later."
         self.alertPop.alertPopView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
         self.alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
@@ -153,7 +151,6 @@ extension SettingsViewController {
     // MARK: - Switch between segments
     
     func changeView(sender: UISegmentedControl) {
-        
         switch sender.selectedSegmentIndex {
         case 0:
             settings = userSettings

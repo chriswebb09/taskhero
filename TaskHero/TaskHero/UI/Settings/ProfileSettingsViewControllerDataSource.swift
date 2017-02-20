@@ -23,7 +23,7 @@ final class ProfileSettingsViewControllerDataSource {
     }
     
     func updateUserName(cell: ProfileSettingsCell, name:[String]) {
-        var name = cell.profileSettingField.text?.components(separatedBy: " ")
+        let name = cell.profileSettingField.text?.components(separatedBy: " ")
         let updatedUser = User()
         updatedUser.username = store.currentUser.username
         updatedUser.email = store.currentUser.email

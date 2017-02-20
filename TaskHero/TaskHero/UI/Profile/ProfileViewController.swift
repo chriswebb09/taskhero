@@ -9,7 +9,7 @@ import Firebase
 final class ProfileViewController: UITableViewController {
     
     let store = UserDataStore.sharedInstance
-    var helpers = Helpers()
+    
     
     // MARK: - Initialization
     

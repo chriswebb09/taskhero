@@ -9,7 +9,6 @@ final class TaskListViewController: UITableViewController {
     let store = UserDataStore.sharedInstance /* userData store for application user state */
     var tapped: Bool = false /* tracks taps on taskcell completedView and button */
     var taskViewModel: TaskCellViewModel!
-    let helpers = Helpers()
     let sharedTaskMethods = SharedTaskMethods()
     var listViewModel = TaskListViewModel()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)  // BackgroundQueue for background

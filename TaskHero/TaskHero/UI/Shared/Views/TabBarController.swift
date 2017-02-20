@@ -2,13 +2,12 @@ import UIKit
 import Firebase
 
 class TabBarController: UITabBarController {
+   
     // MARK: - Properties
     
     let store = UserDataStore.sharedInstance
-    let helpers = Helpers()
     
     // MARK: - Initialization
-    
     
     override func viewDidLoad() {
         

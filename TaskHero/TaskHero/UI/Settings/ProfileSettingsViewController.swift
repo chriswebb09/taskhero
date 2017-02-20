@@ -9,7 +9,6 @@ final class ProfileSettingsViewController: UIViewController,  UITableViewDataSou
     var tapped: Bool = false
     var indexTap: IndexPath?
     let tableView = UITableView()
-    let helpers = Helpers()
     let dataSource = ProfileSettingsViewControllerDataSource()
     var options = ["Email Address", "Name", "Profile Picture", "Username"]
     var username: String?

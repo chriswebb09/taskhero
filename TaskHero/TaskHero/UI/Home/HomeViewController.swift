@@ -23,7 +23,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
-    let helpers = Helpers()
     
     // MARK: - Initializers
     
@@ -97,7 +96,7 @@ extension HomeViewController: UITextViewDelegate {
        all cells configured within HomeViewController using setupCell methods  */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cellType: HomeCellType = indexPath.row > 0 ? .task : .header
+        let cellType: HomeCellType = indexPath.row > 0 ? .task : .header
         switch cellType {
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell

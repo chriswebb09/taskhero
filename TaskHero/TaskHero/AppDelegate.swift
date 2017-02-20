@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         reachabilitySetup()
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         let navigationBarAppearace = UINavigationBar.appearance()
         let defaults = UserDefaults.standard
         navigationBarAppearace.barTintColor = .navigationBarColor()

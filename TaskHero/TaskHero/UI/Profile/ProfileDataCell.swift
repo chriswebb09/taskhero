@@ -65,7 +65,7 @@ final class ProfileDataCell: UITableViewCell {
         contentView.clipsToBounds = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-        var views = [levelLabel, experiencePointsLabel, tasksCompletedLabel, topDivider, bottomDivider]
+        let views = [levelLabel, experiencePointsLabel, tasksCompletedLabel, topDivider, bottomDivider]
         setupViewsForConfig(views: views)
         setupConstraints()
     }
