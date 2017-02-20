@@ -160,27 +160,27 @@ final class ProfileHeaderCell: UITableViewCell {
      */
     
     func configureCell(user: User) {
-        layoutMargins = UIEdgeInsets.zero
-        preservesSuperviewLayoutMargins = false
-        
+        configureUI()
         emailLabel.text = user.email
         joinDateLabel.isHidden = true
         usernameLabel.text = user.username
         levelLabel.text = "Level: \(user.level)"
         joinDateLabel.text = "Joined: \(user.joinDate)"
-        
-        profilePicture.isUserInteractionEnabled = true
         profilePicture.image = UIImage(named: "defaultUserImage")
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePicture.addGestureRecognizer(tap)
-        
-        layoutSubviews()
-        setupShadow()
         layoutIfNeeded()
     }
     
-    func setupShadow() {
+    private func configureUI() {
+        layoutSubviews()
+        layoutMargins = UIEdgeInsets.zero
+        preservesSuperviewLayoutMargins = false
+        profilePicture.isUserInteractionEnabled = true
+        setupShadow()
+    }
+    
+    private func setupShadow() {
         let shadowOffset = CGSize(width:-0.45, height: 0.4)
         let shadowRadius:CGFloat = 1.0
         let shadowOpacity:Float = 0.4

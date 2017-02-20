@@ -13,38 +13,25 @@ final class ProfileSettingsViewController: UIViewController,  UITableViewDataSou
     var options = ["Email Address", "Name", "Profile Picture", "Username"]
     var username: String?
     var email: String?
-    
 }
 
 extension ProfileSettingsViewController: UITableViewDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         options = [self.store.currentUser.email,
                    "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
-                    "Profile Picture", self.store.currentUser.username
-                ]
+            "Profile Picture", self.store.currentUser.username
+        ]
         edgesForExtendedLayout = []
         setupTableViewDelegates()
         setupSubviews()
         profileSettingsView.layoutSubviews()
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
         tableView.setupTableView(view: view)
-        //setupTableView(tableView: tableView)
         tableView.separatorColor = .black
     }
     
-    
-//    func setupTableView(tableView: UITableView) {
-//        tableView.tableFooterView = UIView(frame: .zero)
-//        tableView.separatorStyle = .singleLineEtched
-//        tableView.allowsSelection = false
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = view.frame.height / 4
-//        tableView.layoutMargins = UIEdgeInsets.zero
-//        tableView.separatorInset = UIEdgeInsets.zero
-//    }
-//    
     func setupTableViewDelegates() {
         tableView.delegate = self
         tableView.dataSource = self
