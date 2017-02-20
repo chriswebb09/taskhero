@@ -70,4 +70,12 @@ struct HomeViewModel {
     func getViewModelForTask(taskIndex: Int) -> TaskCellViewModel {
         return TaskCellViewModel(taskList[taskIndex - 1])
     }
+    
+    func objectAtIndexPath(indexPath: IndexPath) -> Task? {
+        return taskList.indices.contains(indexPath.row) ? taskList[indexPath.row] : nil
+    }
+    
+    func numberOfItemsInSection(section: Int) -> Int {
+        return taskList.count
+    }
 }
