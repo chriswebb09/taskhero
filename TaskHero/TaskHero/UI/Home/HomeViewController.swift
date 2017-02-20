@@ -6,8 +6,8 @@
 import UIKit
 
 /*
- HomeViewController is the first tab in the tabbar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
- All other cells are of type TaskCell
+  HomeViewController is the first tab in the tabbar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+  All other cells are of type TaskCell
  */
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
@@ -35,7 +35,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start 
        below navbar, adds button items to navcontroller navbar
-     
        -- called in viewDidLoad
     */
     
@@ -69,7 +68,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     /* Removes reference to database - necessary to prevent
      * duplicate task cells from loading when viewWillAppear is called again.
-       
        -- Functionality implemented in helper class
      */
     
@@ -82,7 +80,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 extension HomeViewController: UITextViewDelegate {
     
     // MARK: - UITableViewController Methods
-    
     /* Returns number of rows from view model based on task count in currentUser */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,9 +93,8 @@ extension HomeViewController: UITextViewDelegate {
     }
     
     // MARK: - Return cells for index - dequeueReusableCell
-    
     /* If first row returns profile headerCell else returns taskCell
-     all cells configured within HomeViewController using setupCell methods  */
+       all cells configured within HomeViewController using setupCell methods  */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cellType: HomeCellType = indexPath.row > 0 ? .task : .header
@@ -137,7 +133,6 @@ extension HomeViewController: TaskCellDelegate {
     }
     
     // MARK: - Delete Task logic
-    
     /* Cannot edit cell at tableview index row 0 */
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -159,7 +154,6 @@ extension HomeViewController: TaskCellDelegate {
     }
     
     // MARK: Selector Methods
-    
     /* Sets up logoutButtonPressed() , addTaskButtonTapped() selector methods */
     
     func logoutButtonPressed() {
@@ -193,7 +187,6 @@ extension HomeViewController: TaskCellDelegate {
     }
     
     // MARK:  TaskCell Delegate Methods
-    
     /* Methods for toggling taskCell edit state. */
     
     func toggleForButtonState(_ sender:UIButton) {
@@ -227,7 +220,7 @@ extension HomeViewController: ProfileHeaderCellDelegate {
 }
 
 
-// Extension for header cell delegate methods and UIImagePicker implementation - mainly for ProfilePicture
+// Mark: Extension for UIImagePicker Delegate
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
