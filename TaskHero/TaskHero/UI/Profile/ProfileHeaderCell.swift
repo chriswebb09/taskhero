@@ -82,24 +82,36 @@ final class ProfileHeaderCell: UITableViewCell {
         }
     }
     
-    /* Adds levelLabel, emailLabel, joinDateLabel, usernameLabel, profilePicture to subview
-       calls configureLabel on levelLabel, emailLabel, joinDateLabel, usernameLabel
-       calls configureConstraints on levelLabel, emailLabel, usernameLabel */
-    
     private func addConfigures() {
-        contentView.addSubview(levelLabel)
-        configureLabel(label: levelLabel)
-        configureConstraints(label: levelLabel)
-        contentView.addSubview(emailLabel)
-        configureLabel(label: emailLabel)
-        configureConstraints(label: emailLabel)
-        contentView.addSubview(joinDateLabel)
-        configureLabel(label: joinDateLabel)
-        configureConstraints(label: joinDateLabel)
+        setupLevelLabel()
+        setupEmailLabel()
+        setupJoinDateLabel()
+        setupUsernameLabel()
+        contentView.addSubview(profilePicture)
+    }
+    
+    private func setupUsernameLabel() {
         contentView.addSubview(usernameLabel)
         configureLabel(label: usernameLabel)
         configureConstraints(label: usernameLabel)
-        contentView.addSubview(profilePicture)
+    }
+    
+    private func setupLevelLabel() {
+        contentView.addSubview(levelLabel)
+        configureLabel(label: levelLabel)
+        configureConstraints(label: levelLabel)
+    }
+    
+    private func setupEmailLabel() {
+        contentView.addSubview(emailLabel)
+        configureLabel(label: emailLabel)
+        configureConstraints(label: emailLabel)
+    }
+    
+    private func setupJoinDateLabel() {
+        contentView.addSubview(joinDateLabel)
+        configureLabel(label: joinDateLabel)
+        configureConstraints(label: joinDateLabel)
     }
     
     private func addUsernameLabel() {
@@ -147,7 +159,7 @@ final class ProfileHeaderCell: UITableViewCell {
 }
 
 extension ProfileHeaderCell {
-
+    
     /*
      Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing
      called in ParentViewController - in this case that is either ProfileViewController or HomeViewController

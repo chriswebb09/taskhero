@@ -18,26 +18,23 @@ final class ProfileViewController: UITableViewController {
         registerCells()
         setupTableViewUI()
         setupNavItems()
-        tableView.reloadData()
+        tableView.reloadOnMain()
     }
     
     /* On viewDidAppear ensure fresh user data from database is loaded and reloads TableView */
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        tableView.reloadData()
+        tableView.reloadOnMain()
     }
-}
-
-extension ProfileViewController {
     
-    func setupTableViewUI() {
+    private func setupTableViewUI() {
         tableView.estimatedRowHeight = view.frame.height / 3
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView(frame: .zero)
     }
     
-    func registerCells() {
+    private func registerCells() {
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
     }
@@ -67,8 +64,6 @@ extension ProfileViewController {
         }
     }
     
-    // MARK: - Delegate Methods
-    
     func setupNavItems() {
         navigationController?.navigationBar.setBottomBorderColor(color: .lightGray, height: Constants.Border.borderWidth)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
@@ -76,8 +71,7 @@ extension ProfileViewController {
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
     }
     
-    // MARK: - Button methods
-    // On logout button press sets RootViewController to LoginViewController on main thread
+    // MARK: - Selector Methods
     
     func logoutButtonPressed() {
         let defaults = UserDefaults.standard
