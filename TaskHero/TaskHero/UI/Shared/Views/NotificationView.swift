@@ -25,9 +25,6 @@ final class NotificationView: BasePopView {
         backgroundColor = .white
         setupConstraints()
     }
-}
-
-extension NotificationView {
     
     private func addDataLabel() {
         dataLabel.translatesAutoresizingMaskIntoConstraints = false

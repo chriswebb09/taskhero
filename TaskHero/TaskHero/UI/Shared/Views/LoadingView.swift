@@ -19,9 +19,6 @@ class LoadingView: UIView {
         loadingView.backgroundColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
         return loadingView
     }()
-}
-
-extension LoadingView {
     
     func addLoadingView() {
         loadingView.frame = CGRect(x:0, y:0, width:60, height:60)
@@ -34,9 +31,6 @@ extension LoadingView {
         containerView.addSubview(loadingView)
         viewController.view.addSubview(containerView)
     }
-}
-
-extension LoadingView {
     
     func activityIndicatorSetup() {
         activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
@@ -44,9 +38,6 @@ extension LoadingView {
         activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
                                            y:loadingView.frame.size.height / 2)
     }
-}
-
-extension LoadingView {
     
     func showActivityIndicator(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds

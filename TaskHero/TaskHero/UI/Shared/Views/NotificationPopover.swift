@@ -26,6 +26,5 @@ class NotificationPopover: BasePopoverAlert {
     override func hidePopView(viewController: UIViewController) {
         notifyPopView.isHidden = true
         viewController.view.sendSubview(toBack: notifyPopView)
-        
     }
 }

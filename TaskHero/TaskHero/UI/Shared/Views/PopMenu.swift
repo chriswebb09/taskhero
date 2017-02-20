@@ -6,9 +6,6 @@ class PopMenu: BasePopoverAlert {
         let pick = DataPickerView()
         return pick
     }()
-}
-
-extension PopMenu {
     
     func showPopView(viewController: UIViewController, pick: UIPickerView?) {
         super.showPopView(viewController: viewController)

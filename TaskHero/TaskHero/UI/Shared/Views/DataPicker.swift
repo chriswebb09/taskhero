@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class DataPickerView: BasePopView {
     
@@ -25,9 +26,6 @@ final class DataPickerView: BasePopView {
         picker.layer.borderWidth = 0
         return picker
     }()
-}
-
-extension DataPickerView {
     
     // MARK: - Initialization
     
@@ -39,36 +37,45 @@ extension DataPickerView {
         layer.borderColor = UIColor.black.cgColor
         setupConstraints()
     }
-}
-
-extension DataPickerView {
-
+    
     // MARK: - Configure
     
     internal override func setupConstraints() {
-        
+        addPicker(picker: picker)
+        addAlertLabel(dataAlertlabel: dataAlertLabel)
+        addButton(button: button)
+    }
+    
+    func addPicker(picker: UIPickerView) {
         addSubview(picker)
-        
         picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.centerYAnchor.constraint(equalTo: centerYAnchor, constant: bounds.height * -0.08).isActive = true
-        picker.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        picker.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
-        picker.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
-        
-        addSubview(dataAlertLabel)
-        
-        dataAlertLabel.translatesAutoresizingMaskIntoConstraints = false
-        dataAlertLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        dataAlertLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        dataAlertLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
-        dataAlertLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.94).isActive = true
-        
+        picker.snp.makeConstraints { make in
+            make.centerY.equalTo(self).offset(bounds.height * -0.08)
+            make.centerX.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.2)
+            make.width.equalTo(self).multipliedBy(0.7)
+        }
+    }
+    
+    func addButton(button: UIButton) {
         addSubview(button)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: bounds.height * -0.14).isActive = true
-        button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
-        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
+        button.snp.makeConstraints { make in
+            make.bottom.equalTo(self).offset(bounds.height * -0.14)
+            make.centerX.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.2)
+            make.width.equalTo(self).multipliedBy(0.7)
+        }
+    }
+    
+    func addAlertLabel(dataAlertlabel: UILabel) {
+        addSubview(dataAlertLabel)
+        dataAlertLabel.translatesAutoresizingMaskIntoConstraints = false
+        dataAlertLabel.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(10)
+            make.centerX.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.25)
+            make.width.equalTo(self).multipliedBy(0.94)
+        }
     }
 }
