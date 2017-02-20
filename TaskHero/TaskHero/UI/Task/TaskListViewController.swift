@@ -118,10 +118,7 @@ extension TaskListViewController: TaskCellDelegate {
                 self.sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .taskList)
             }
             self.fetchUser()
-            DispatchQueue.main.async {
-                self.addTasksLabel.isHidden = self.hidden
-               
-            }
+            DispatchQueue.main.async { self.addTasksLabel.isHidden = self.hidden }
             self.tableView.reloadOnMain()
             tableView.endUpdates()
         }
