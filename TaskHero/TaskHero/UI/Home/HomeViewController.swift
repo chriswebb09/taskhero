@@ -40,9 +40,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
         taskMethods.setupTableView(tableView: tableView, view: view)
-        
         view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
-            //.tableViewBackgroundColor
         picker.delegate = self
         edgesForExtendedLayout = []
         addNavItemsToController()
