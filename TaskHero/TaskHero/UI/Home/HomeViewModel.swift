@@ -61,6 +61,12 @@ struct HomeViewModel {
         }
     }
     
+    func removeRefHandle() {
+        if store.firebaseAPI.refHandle != nil {
+            self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
+        }
+    }
+    
     func getViewModelForTask(taskIndex: Int) -> TaskCellViewModel {
         return TaskCellViewModel(taskList[taskIndex - 1])
     }

@@ -30,8 +30,20 @@ class TabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        Helpers.setupTabBar(tabBar:tabBar, view:view)
+        self.setupTabBar(tabBar: tabBar, view: view)
     }
+    
+    func setupTabBar(tabBar:UITabBar, view:UIView) {
+        var tabFrame = tabBar.frame
+        let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
+        tabFrame.size.height = tabBarHeight
+        tabFrame.origin.y = view.frame.size.height - tabBarHeight
+        tabBar.frame = tabFrame
+        tabBar.isTranslucent = true
+        tabBar.tintColor = Constants.Tabbar.tint
+        tabBar.barTintColor = Constants.Color.backgroundColor
+    }
+
     
     func getUser() {
         store.firebaseAPI.fetchUserData { user in

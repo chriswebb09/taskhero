@@ -73,7 +73,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        helpers.removeRefHandle()
+        homeViewModel.removeRefHandle()
     }
 }
 

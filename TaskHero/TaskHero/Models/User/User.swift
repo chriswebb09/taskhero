@@ -61,6 +61,19 @@ class User: NSObject, NSCoding {
         aCoder.encode(joinDate, forKey: "joinDate")
         aCoder.encode(numberOfTasksCompleted, forKey: "numberOfTasksCompleted")
     }
+    
+    class func createUser(uid: String, username:String, email:String) -> User {
+        let newUser = User()
+        newUser.uid = uid
+        newUser.username = username
+        newUser.email = email
+        newUser.profilePicture = "None"
+        newUser.firstName = "N/A"
+        newUser.lastName = "N/A"
+        newUser.experiencePoints = 0
+        newUser.tasks = [Task]()
+        return newUser
+    }
 }
 
 struct Levels {

@@ -71,7 +71,6 @@
 		A77FBCC61DEB5B8C0014C380 /* NotificationPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */; };
 		A77FBCC91DEB74670014C380 /* BasePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC81DEB74670014C380 /* BasePopView.swift */; };
 		A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCCA1DEB78880014C380 /* BasePopoverAlert.swift */; };
-		A77FBCCD1DEB8A190014C380 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCCC1DEB8A190014C380 /* Helpers.swift */; };
 		A7AFCDE11DF72C4B004D607C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFCDE01DF72C4B004D607C /* APIClient.swift */; };
 		A7C5A9C51E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */; };
 		A7DF774A1E37185800FB2DCE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF77491E37185800FB2DCE /* Secrets.swift */; };
@@ -163,7 +162,6 @@
 		A77FBCC51DEB5B8C0014C380 /* NotificationPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPopover.swift; sourceTree = "<group>"; };
 		A77FBCC81DEB74670014C380 /* BasePopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePopView.swift; sourceTree = "<group>"; };
 		A77FBCCA1DEB78880014C380 /* BasePopoverAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePopoverAlert.swift; sourceTree = "<group>"; };
-		A77FBCCC1DEB8A190014C380 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A7AFCDE01DF72C4B004D607C /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewControllerDataSource.swift; sourceTree = "<group>"; };
 		A7DF77491E37185800FB2DCE /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 				A76562D81DF953C500E29AA9 /* Popover */,
 				A709CB0F1DE7737100877907 /* TabBarController.swift */,
 				A7346D7D1DE93688005E3A5E /* TaskButton.swift */,
-				A77FBCCC1DEB8A190014C380 /* Helpers.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -902,7 +899,6 @@
 				A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */,
 				A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */,
 				A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */,
-				A77FBCCD1DEB8A190014C380 /* Helpers.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,
 				A7E991181E5A8BE1001CE354 /* Reachability.swift in Sources */,
 				A709CAEE1DE7727E00877907 /* ProfileDataCellModel.swift in Sources */,
