@@ -22,7 +22,6 @@
 		A709CAD41DE771EB00877907 /* ProfileDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAD31DE771EB00877907 /* ProfileDataCell.swift */; };
 		A709CAD61DE771F400877907 /* ProfileBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAD51DE771F400877907 /* ProfileBannerCell.swift */; };
 		A709CAD91DE7720200877907 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAD71DE7720200877907 /* TaskCell.swift */; };
-		A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CAD81DE7720200877907 /* TaskHeaderCell.swift */; };
 		A709CADC1DE7721300877907 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CADB1DE7721300877907 /* NSDate+Extension.swift */; };
 		A709CADE1DE7722300877907 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CADD1DE7722300877907 /* String+Extension.swift */; };
 		A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709CADF1DE7722D00877907 /* UIColorExtension.swift */; };
@@ -112,7 +111,6 @@
 		A709CAD31DE771EB00877907 /* ProfileDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataCell.swift; sourceTree = "<group>"; };
 		A709CAD51DE771F400877907 /* ProfileBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBannerCell.swift; sourceTree = "<group>"; };
 		A709CAD71DE7720200877907 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
-		A709CAD81DE7720200877907 /* TaskHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHeaderCell.swift; sourceTree = "<group>"; };
 		A709CADB1DE7721300877907 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		A709CADD1DE7722300877907 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A709CADF1DE7722D00877907 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -434,6 +432,7 @@
 		A77DDFFD1E3747F100B2A64A /* TaskCell */ = {
 			isa = PBXGroup;
 			children = (
+				A767FBA31E0832A1007767B6 /* TaskCellViewModel.swift */,
 				A712BA6D1E298E3C00B91951 /* TaskCellTextView.swift */,
 				A709CAD71DE7720200877907 /* TaskCell.swift */,
 			);
@@ -509,7 +508,6 @@
 			isa = PBXGroup;
 			children = (
 				A77DDFFD1E3747F100B2A64A /* TaskCell */,
-				A709CAD81DE7720200877907 /* TaskHeaderCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -643,10 +641,9 @@
 		AFE9E6BF1DBDA76E0023C232 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				A752A3511E4AB587006FD395 /* SharedTaskMethods.swift */,
 				A7DF77501E37266800FB2DCE /* Cells */,
 				A7DF77511E37267900FB2DCE /* TaskList */,
-				A767FBA31E0832A1007767B6 /* TaskCellViewModel.swift */,
-				A752A3511E4AB587006FD395 /* SharedTaskMethods.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -885,7 +882,6 @@
 				A709CB001DE7731F00877907 /* Constants.swift in Sources */,
 				A712BA6E1E298E3C00B91951 /* TaskCellTextView.swift in Sources */,
 				A77FBCC41DEB5B410014C380 /* NotificationView.swift in Sources */,
-				A709CADA1DE7720200877907 /* TaskHeaderCell.swift in Sources */,
 				A767FBA61E0836CC007767B6 /* ProfileSettingsCellViewModel.swift in Sources */,
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
