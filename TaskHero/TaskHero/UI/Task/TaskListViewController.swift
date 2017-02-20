@@ -65,7 +65,7 @@ extension TaskListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         fetchUser()
-        self.helpers.reload(tableView: tableView)
+        tableView.reloadOnMain()
         self.addTasksLabel.isHidden = hidden
         DispatchQueue.main.async {
             self.listViewModel.emptyTableViewState(view: self.view, addTaskLabel: self.addTasksLabel)

@@ -31,7 +31,6 @@ final class Helpers {
         appDelegate.window?.rootViewController = tabBar
     }
     
-   
     class func setupTabBar(tabBar:UITabBar, view:UIView) {
         var tabFrame = tabBar.frame
         let tabBarHeight = view.frame.height * Constants.Tabbar.tabbarFrameHeight
@@ -52,25 +51,5 @@ final class Helpers {
         }; let loginController = LoginViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginController
-    }
-    
-    func fetchUser(completion: @escaping UserCompletion) {
-        store.tasks.removeAll()
-        store.currentUser.tasks?.removeAll()
-        store.firebaseAPI.fetchUserData { user in
-            self.store.currentUser = user
-        }
-        store.firebaseAPI.fetchTasks(taskList: self.store.currentUser.tasks!) { tasks in
-            self.store.currentUser.tasks = tasks
-            self.store.tasks = tasks
-            dump(self.store.currentUser)
-            completion(self.store.currentUser)
-        }
-    }
-    
-    func reload(tableView: UITableView) {
-        DispatchQueue.main.async {
-            tableView.reloadData()
-        }
     }
 }

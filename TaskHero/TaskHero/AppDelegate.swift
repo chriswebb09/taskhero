@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         navigationBarAppearace.barTintColor = .navigationBarColor()
         navigationBarAppearace.tintColor = .white
-    
         if defaults.bool(forKey: "hasLoggedIn") {
             window?.rootViewController = TabBarController()
         }
@@ -34,8 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func reachabilitySetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged)
-            ,name: ReachabilityChangedNotification,object: reachability)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reachabilityChanged),
+                                               name: ReachabilityChangedNotification,
+                                               object: reachability)
         
         do {
             try reachability?.startNotifier()
