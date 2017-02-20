@@ -34,11 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func reachabilitySetup() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reachabilityChanged),
-                                               name: ReachabilityChangedNotification,
-                                               object: reachability)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification, object: reachability)
         do {
             try reachability?.startNotifier()
         } catch let error as NSError {

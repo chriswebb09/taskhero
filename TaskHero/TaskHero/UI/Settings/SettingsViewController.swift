@@ -18,20 +18,7 @@ final class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         settings = userSettings
-        edgesForExtendedLayout = []
-        view.backgroundColor = .backgroundColor()
-        tableView.separatorColor = .blue
         setupTableView()
-    }
-    
-    func setupTableView() {
-        let header = UIView(frame:CGRect(x: 0, y: 0, width: Int(view.bounds.width), height: 50))
-        header.addSubview(segmentControl)
-        tableView.tableHeaderView = header
-        header.backgroundColor = .white
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
-        tableView.setupTableView(view:self.view)
-        setupSegment()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,13 +45,26 @@ final class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var pushedVC: UIViewController = settings[indexPath.row] == "Edit Profile" ? ProfileSettingsViewController() : FriendsSettingsViewController()
+        let pushedVC: UIViewController = settings[indexPath.row] == "Edit Profile" ? ProfileSettingsViewController() : FriendsSettingsViewController()
         if settings[indexPath.row] == "Notifications" {
             notificationPopup()
             notifyPop.notifyPopView.doneButton.addTarget(self, action: #selector(dismissNotificationButton), for: .touchUpInside)
         } else {
             navigationController?.pushViewController(pushedVC, animated: true)
         }
+    }
+    
+    func setupTableView() {
+        let header = UIView(frame:CGRect(x: 0, y: 0, width: Int(view.bounds.width), height: 50))
+        header.addSubview(segmentControl)
+        tableView.tableHeaderView = header
+        header.backgroundColor = .white
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
+        tableView.setupTableView(view:self.view)
+        edgesForExtendedLayout = []
+        view.backgroundColor = .backgroundColor()
+        tableView.separatorColor = .blue
+        setupSegment()
     }
     
     // MARK: Public Methods
@@ -127,9 +127,6 @@ final class SettingsViewController: UITableViewController {
         alertPop.containerView.isHidden = true
         alertPop.hidePopView(viewController: self)
     }
-}
-
-extension SettingsViewController {
     
     // MARK: - Switch between segments
     
@@ -143,7 +140,7 @@ extension SettingsViewController {
             settings = applicationSettings
             segmentControl.subviews[1].backgroundColor = .white
         }
-        tableView.reloadData()
+        tableView.reloadOnMain()
     }
     
     // MARK: - Segment Control UI
@@ -170,12 +167,3 @@ extension SettingsViewController {
     }
 }
 
-protocol Hiddable {
-    func hide(view:UIView)
-}
-
-extension Hiddable {
-    func hide(view:UIView, viewController:UIViewController) {
-        print("Not implemented")
-    }
-}

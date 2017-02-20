@@ -15,12 +15,7 @@ class TabBarController: UITabBarController {
             if user != nil && (self.store.currentUser != nil) {
                 self.setupTabs()
             } else if self.store.currentUser == nil {
-                DispatchQueue.global(qos: .background).async {
-                    self.getUser()
-                    DispatchQueue.main.async {
-                        self.setupTabs()
-                    }
-                }
+                self.getUser()
             }
         }
     }
@@ -42,8 +37,11 @@ class TabBarController: UITabBarController {
     }
     
     func getUser() {
-        store.firebaseAPI.fetchUserData { user in
-            self.store.currentUser = user
+        DispatchQueue.global(qos: .background).async {
+            self.store.firebaseAPI.fetchUserData { user in
+                self.store.currentUser = user
+            }
+            DispatchQueue.main.async { self.setupTabs() }
         }
     }
     
@@ -51,8 +49,6 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         setupControllers()
     }
-    
-    // MARK: - Setup ViewControllers
     
     fileprivate func setupControllers() {
         let homeTab = self.setupHomeTab(homeVC: HomeViewController())
@@ -90,6 +86,7 @@ class TabBarController: UITabBarController {
         return profileTab
     }
     
+    
     fileprivate func setupTaskTab(taskListVC: TaskListViewController) -> UINavigationController {
         taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: taskListVC.tabBarItem)
@@ -110,7 +107,6 @@ class TabBarController: UITabBarController {
     
     func configureNav(nav:UINavigationBar, view: UIView) {
         nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
-        nav.barTintColor = Constants.Tabbar.tint
         nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
     }
     

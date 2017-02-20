@@ -7,7 +7,16 @@ struct SettingsCellViewModel {
     }
 }
 
-
 enum Settings {
     case editProfile, friends, notifications
+}
+
+protocol Hiddable {
+    func hide(view:UIView)
+}
+
+extension Hiddable {
+    func hide(view:UIView, viewController:UIViewController) {
+        print("Not implemented")
+    }
 }
