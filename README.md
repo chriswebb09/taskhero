@@ -34,6 +34,16 @@
     <li>Add tests to LoginViewController</li>
 </ul>
 
+___
+
+<h2 align="center">Log In</h2>
+
+<p align="center">
+<br><br>
+<img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/LoginScreen.png">
+<img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/LoginScreen%202.png">
+<img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/LoginScreen%203.png">
+</p>
 
 ___
 
@@ -50,16 +60,6 @@ ___
 <p align="center">
   <br><br>
   <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/emptytableview.png">
-</p>
-___
-
-<h2 align="center">Log In</h2>
-
-<p align="center">
-  <br><br>
-  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/LoginScreen.png">
-  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/LoginScreen%202.png">
-  <img src="https://raw.githubusercontent.com/chriswebb09/taskhero/master/Assets/LoginScreen%203.png">
 </p>
 ___
 
