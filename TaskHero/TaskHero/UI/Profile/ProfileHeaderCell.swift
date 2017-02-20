@@ -79,6 +79,7 @@ extension ProfileHeaderCell {
     
     private func configureConstraints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         label.snp.makeConstraints { make in
             make.right.equalTo(contentView.snp.right).offset(Constants.Dimension.bottomOffset)
         }
@@ -134,6 +135,7 @@ extension ProfileHeaderCell {
     
     private func addProfilePicture() {
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
+        
         profilePicture.snp.makeConstraints { make in
             make.height.equalTo(UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight)
             make.width.equalTo(UIScreen.main.bounds.width * Constants.Profile.ProfilePicture.profilePictureWidth)

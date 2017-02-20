@@ -33,6 +33,7 @@ final class ProfileBannerCell: UITableViewCell {
     private func setupConstraints() {
         contentView.addSubview(bannerImage)
         bannerImage.translatesAutoresizingMaskIntoConstraints = false
+        
         bannerImage.center = contentView.center
         bannerImage.widthAnchor.constraint(equalTo:contentView.widthAnchor).isActive = true
         bannerImage.heightAnchor.constraint(equalToConstant: Constants.Settings.Profile.profileBannerHeight).isActive = true

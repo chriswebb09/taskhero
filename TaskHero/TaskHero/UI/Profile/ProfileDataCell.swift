@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol ProfileDataCellDelegate: class {
     func userStatsTapped()
@@ -97,23 +98,29 @@ extension ProfileDataCell {
     
     private func addLevelLabel(levelLabel:UILabel) {
         configureLabels(label: levelLabel)
-        levelLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Dimension.topOffset).isActive = true
-        levelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        levelLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        levelLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
+        levelLabel.snp.makeConstraints { make in
+            make.left.equalTo(contentView.snp.left).offset(Constants.Dimension.topOffset)
+            make.centerY.equalTo(contentView.snp.centerY)
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+        }
     }
     
     func configureDividers(view: UIView) {
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.01).isActive = true
+        view.snp.makeConstraints { make in
+            make.width.equalTo(contentView.snp.width)
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.01)
+        }
     }
     
     private func addExperiencePointLabel(experiencePointLabel:UILabel) {
         configureLabels(label: experiencePointsLabel)
-        experiencePointsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        experiencePointsLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        experiencePointsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        experiencePointsLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
+        experiencePointLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView.snp.centerY)
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+        }
     }
     
     private func addTasksCompletedLabel(tasksCompletedLabel:UILabel) {
