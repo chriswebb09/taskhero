@@ -20,12 +20,7 @@ extension ProfileSettingsViewController: UITableViewDelegate {
         edgesForExtendedLayout = []
         setupTableViewDelegates()
         setupSubviews()
-        profileSettingsView.layoutSubviews()
-        dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
-        tableView.setupTableView(view: view)
-        tableView.separatorColor = .black
     }
-    
 }
 
 extension ProfileSettingsViewController: UITableViewDataSource {
@@ -39,6 +34,10 @@ extension ProfileSettingsViewController: UITableViewDataSource {
         view.addSubview(profileSettingsView)
         view.addSubview(tableView)
         tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
+        profileSettingsView.layoutSubviews()
+        dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
+        tableView.setupTableView(view: view)
+        tableView.separatorColor = .black
     }
 }
 
