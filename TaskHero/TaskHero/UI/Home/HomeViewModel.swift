@@ -42,9 +42,9 @@ struct HomeViewModel {
         let rows: Int = self.store.tasks.count <= 0 ? 1 : self.store.tasks.count + 1
         return rows
     }
-
+    
     var taskList: [Task] {
-       return self.store.tasks
+        return self.store.tasks
     }
     
     var rowHeight = UITableViewAutomaticDimension

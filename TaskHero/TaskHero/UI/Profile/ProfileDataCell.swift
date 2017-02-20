@@ -58,22 +58,24 @@ final class ProfileDataCell: UITableViewCell {
     }()
     
     // MARK: - Initialization
-    // Lays out subviews and calls setup constraints
-    
+    /* Lays out subviews and calls setup constraints */
     override func layoutSubviews() {
         super.layoutSubviews()
         isUserInteractionEnabled = false
-        contentView.clipsToBounds = true
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        setupContentView()
         let views = [levelLabel, experiencePointsLabel, tasksCompletedLabel, topDivider, bottomDivider]
         setupViewsForConfig(views: views)
         setupConstraints()
     }
     
+    func setupContentView() {
+        contentView.clipsToBounds = true
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+    }
+    
     // MARK: - Configuration
-    /* Called on levelLabel, experiencePointsLabel, tasksCompleted label -
-     * sets label to small green ovaly element with black border aligns content in center */
+    /* Called on levelLabel, experiencePointsLabel, tasksCompleted label sets label to small green ovaly element with black border aligns content in center */
     
     private func configureLabels(label: UILabel) {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
@@ -91,7 +93,7 @@ final class ProfileDataCell: UITableViewCell {
         _ = views.map { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
-    // Adds constraints to labels to also adds experience points labels and tasksComleted labels to contentView
+    /* Adds constraints to labels to also adds experience points labels and tasksComleted labels to contentView */
     
     private func addLevelLabel(levelLabel:UILabel) {
         configureLabels(label: levelLabel)
@@ -146,7 +148,7 @@ final class ProfileDataCell: UITableViewCell {
         }
     }
     
-    // ConfigureCell method - called in ParentViewController - in this case ProfileViewController
+    /* ConfigureCell method - called in ParentViewController - in this case ProfileViewController */
     
     func configureCell() {
         levelLabel.text = "Level: \(dataCellModel.level)"

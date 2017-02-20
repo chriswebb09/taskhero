@@ -10,40 +10,44 @@ final class ProfileViewController: UITableViewController {
     
     let store = UserDataStore.sharedInstance
     
-    
     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         registerCells()
-        tableView.estimatedRowHeight = view.frame.height / 3
-        self.tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView(frame: .zero)
+        setupTableViewUI()
         setupNavItems()
         tableView.reloadData()
     }
     
-    // On viewDidAppear ensure fresh user data from database is
-    // loaded and reloads TableView
+    /* On viewDidAppear ensure fresh user data from database is loaded and reloads TableView */
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         tableView.reloadData()
     }
     
+   
+}
+
+extension ProfileViewController {
+    
+    func setupTableViewUI() {
+        tableView.estimatedRowHeight = view.frame.height / 3
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
     func registerCells() {
         tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
     }
-}
-
-extension ProfileViewController {
-
+    
     // MARK: UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     /* Gives an automatic dimension to tableView based on given default value for rowheight*/
@@ -53,7 +57,7 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 1 {
+        if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
             headerCell.configureCell(user: self.store.currentUser)
@@ -64,7 +68,7 @@ extension ProfileViewController {
             return dataCell
         }
     }
-
+    
     // MARK: - Delegate Methods
     
     func setupNavItems() {

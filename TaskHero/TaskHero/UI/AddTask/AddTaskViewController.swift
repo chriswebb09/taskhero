@@ -153,7 +153,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             self.pick.frame = self.pop.popView.frame
             self.pick.layer.borderWidth = 1
             self.pop.showPopView(viewController: self, pick: self.pick)
-           print(self.addTaskViewModel.stringDate)
+            print(self.addTaskViewModel.stringDate)
         }
         pop.popupView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
