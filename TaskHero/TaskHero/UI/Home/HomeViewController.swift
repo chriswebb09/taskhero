@@ -32,7 +32,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         viewSetup()
     }
     
-    
     /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start 
        below navbar, adds button items to navcontroller navbar
        -- called in viewDidLoad
