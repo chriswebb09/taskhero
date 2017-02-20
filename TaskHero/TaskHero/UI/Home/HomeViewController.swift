@@ -108,9 +108,6 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cellType: HomeCellType = indexPath.row > 0 ? .task : .header
-        if homeViewModel.taskList.count <= 0 {
-            cellType = .header
-        }
         switch cellType {
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: TaskCell.cellIdentifier, for: indexPath) as! TaskCell
