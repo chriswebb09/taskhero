@@ -28,7 +28,7 @@ final class FriendsSettingsView: UIView {
         var searchButton = UIButton()
         searchButton.layer.borderWidth = Constants.Border.borderWidth
         searchButton.layer.borderColor = UIColor.white.cgColor
-        searchButton.backgroundColor = Constants.Color.buttonColor
+        searchButton.backgroundColor = Constants.Color.buttonColor.setColor
         searchButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         searchButton.setTitle("Search", for: .normal)
         searchButton.setTitleColor(.white, for: .normal)

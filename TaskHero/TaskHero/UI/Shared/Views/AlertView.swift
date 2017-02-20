@@ -20,7 +20,7 @@ final class AlertView: UIView {
         var button = ButtonType.system(title: "Add", color: .white)
         var uiElement = button.newButton
         uiElement.layer.cornerRadius = 0
-        uiElement.backgroundColor = Constants.Color.mainColor
+        uiElement.backgroundColor = Constants.Color.mainColor.setColor
         return uiElement
     }()
     

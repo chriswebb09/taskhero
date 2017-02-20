@@ -6,7 +6,7 @@ enum ButtonType {
     
     fileprivate func setupLoginButton(with title:String) -> UIButton {
         let button = UIButton()
-        button.backgroundColor = Constants.Color.mainColor
+        button.backgroundColor = Constants.Color.mainColor.setColor
         button.setAttributedTitle( NSAttributedString(string: title, attributes: [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
         configureButton(button: button)
         return button

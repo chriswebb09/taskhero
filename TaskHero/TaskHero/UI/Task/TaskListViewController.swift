@@ -40,7 +40,8 @@ final class TaskListViewController: UITableViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
+            //.tableViewBackgroundColor
         initializeBackgroundUI()
         addTasksLabel = UILabel()
         listViewModel.configureAddTaskLabel(label: addTasksLabel)

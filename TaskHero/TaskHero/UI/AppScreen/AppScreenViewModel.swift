@@ -8,7 +8,7 @@ import UIKit
 struct AppScreenViewModel {
     
     var signupButtonColor: UIColor = {
-        return Constants.Color.backgroundColor
+        return Constants.Color.backgroundColor.setColor
     }()
     
     var signupButtonText: String = {

@@ -177,7 +177,8 @@ extension LoginViewController {
         if let emailText = loginView.emailField.text, let passwordText = loginView.passwordField.text {
             
             if (emailText.characters.count > 4) && (passwordText.characters.count >= 6) {
-                loginView.loginButton.backgroundColor = Constants.Color.buttonColor
+                loginView.loginButton.backgroundColor = Constants.Color.buttonColor.setColor
+                //buttonColor
                 loginView.loginButton.isEnabled = true
             }
         }
@@ -186,9 +187,9 @@ extension LoginViewController {
     /* On beginning editting changes textfield UI properties */
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.textColor = Constants.Color.backgroundColor
+        textField.textColor = Constants.Color.backgroundColor.setColor
         textField.font = Constants.signupFieldFont
-        textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
+        textField.layer.borderColor = Constants.Color.backgroundColor.setColor.cgColor
         textField.layer.borderWidth = 1.1
         
         textInputAnimation()
@@ -228,7 +229,7 @@ extension LoginViewController {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderWidth = 1
         textField.textColor = .lightGray
-        textField.layer.borderColor = Constants.Color.backgroundColor.cgColor
+        textField.layer.borderColor = Constants.Color.backgroundColor.setColor.cgColor
         
         checkForValidEmailInput()
     }

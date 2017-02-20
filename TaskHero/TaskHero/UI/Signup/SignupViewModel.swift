@@ -17,7 +17,7 @@ struct SignupViewModel {
     
     var buttonColor: UIColor {
         if isEnabled {
-            return Constants.Color.mainColor
+            return Constants.Color.mainColor.setColor
         }
         return .lightGray
     }

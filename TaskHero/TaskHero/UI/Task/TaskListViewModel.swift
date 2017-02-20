@@ -24,7 +24,7 @@ struct TaskListViewModel {
     }()
     
     let tableBackGroundColor: UIColor = {
-        return Constants.Color.tableViewBackgroundColor
+        return Constants.Color.tableViewBackgroundColor.setColor
     }()
     
     func configureAddTaskLabel(label: UILabel) {

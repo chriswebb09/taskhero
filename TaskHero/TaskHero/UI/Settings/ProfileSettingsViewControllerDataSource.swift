@@ -9,12 +9,15 @@ final class ProfileSettingsViewControllerDataSource {
     
     func setupViews(profileSettingsView: ProfileSettingsView, tableView: UITableView, view:UIView) {
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
+        
         profileSettingsView.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top)
             make.width.equalTo(view.snp.width)
             make.height.equalTo(view.snp.height).multipliedBy(Constants.Settings.Profile.profileViewHeightAnchor)
         }
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         tableView.snp.makeConstraints { make in
             make.bottom.equalTo(view.snp.bottom)
             make.width.equalTo(view.snp.width)
@@ -24,6 +27,7 @@ final class ProfileSettingsViewControllerDataSource {
     
     func updateUserName(cell: ProfileSettingsCell, name:[String]) {
         let name = cell.profileSettingField.text?.components(separatedBy: " ")
+        
         let updatedUser = User()
         updatedUser.username = store.currentUser.username
         updatedUser.email = store.currentUser.email
@@ -39,6 +43,7 @@ final class ProfileSettingsViewControllerDataSource {
         updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
         updatedUser.experiencePoints = store.currentUser.experiencePoints
         updatedUser.tasks = store.currentUser.tasks
+        
         updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
     }
     

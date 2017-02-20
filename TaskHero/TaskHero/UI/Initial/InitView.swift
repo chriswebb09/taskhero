@@ -25,7 +25,7 @@ final class InitView: UIView {
     }()
     
     var signupButton: UIButton = {
-        let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor)
+        let button = ButtonType.system(title:"Register Now", color:Constants.Color.backgroundColor.setColor)
         var signupButton = button.newButton
         signupButton.isHidden = true
         return signupButton

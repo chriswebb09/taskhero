@@ -2,15 +2,21 @@ import UIKit
 
 public struct Constants {
     
-    public struct Color {
-        public static let mainColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-        public static let backgroundColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
-        public static let buttonColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
-        public static let tableViewBackgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-    }
-    
-    public struct AttributedTextFontNames {
+    enum Color {
+        case mainColor, backgroundColor, buttonColor, tableViewBackgroundColor
         
+        var setColor: UIColor {
+            switch self {
+            case .mainColor:
+                return UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
+            case .backgroundColor:
+                return UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
+            case .buttonColor:
+                return UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
+            case .tableViewBackgroundColor:
+                return UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+            }
+        }
     }
     
     public struct Dimension {

@@ -19,7 +19,7 @@ class AppScreenView: UIView {
     }()
     
     var signupButton: UIButton = {
-        let button = ButtonType.system(title:"Register Now", color: Constants.Color.mainColor)
+        let button = ButtonType.system(title:"Register Now", color: Constants.Color.mainColor.setColor)
         return button.newButton
     }()
     

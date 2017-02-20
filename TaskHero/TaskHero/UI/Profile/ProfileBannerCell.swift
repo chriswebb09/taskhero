@@ -48,7 +48,7 @@ extension ProfileBannerCell {
         isUserInteractionEnabled = false
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
-        backgroundColor = Constants.Color.mainColor
+        backgroundColor = Constants.Color.mainColor.setColor
     }
     
     // Prepare for reuse

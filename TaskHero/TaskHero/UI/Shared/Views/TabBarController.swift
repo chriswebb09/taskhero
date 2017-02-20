@@ -40,7 +40,7 @@ class TabBarController: UITabBarController {
         tabBar.frame = tabFrame
         tabBar.isTranslucent = true
         tabBar.tintColor = Constants.Tabbar.tint
-        tabBar.barTintColor = Constants.Color.backgroundColor
+        tabBar.barTintColor = Constants.Color.backgroundColor.setColor
     }
 
     

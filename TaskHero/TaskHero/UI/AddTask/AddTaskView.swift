@@ -42,7 +42,7 @@ final class AddTaskView: UIView {
         var addTaskButton = UIButton()
         addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
-        addTaskButton.backgroundColor = Constants.Color.buttonColor
+        addTaskButton.backgroundColor = Constants.Color.buttonColor.setColor
         addTaskButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         addTaskButton.setTitle("Add Task", for: .normal)
         addTaskButton.setTitleColor(.white, for: .normal)

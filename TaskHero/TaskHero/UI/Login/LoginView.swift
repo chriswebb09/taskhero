@@ -147,14 +147,15 @@ extension LoginView {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.emailField.layer.borderWidth = 1.2
                 self.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
-                self.emailField.textColor =  Constants.Color.backgroundColor
+                self.emailField.textColor =  Constants.Color.backgroundColor.setColor
             } }, completion: { _ in
                 let when = DispatchTime.now() + 0.32
                 DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
                     self.emailField.layer.borderWidth = 1
                     self.emailField.font = Constants.signupFieldFont
                     self.emailField.textColor = .lightGray
-                    self.emailField.layer.borderColor = Constants.Color.backgroundColor.cgColor
+                    self.emailField.layer.borderColor = Constants.Color.backgroundColor.setColor.cgColor
+                    //backgroundColor.cgColor
                     self.emailField.layer.borderWidth = Constants.Border.borderWidth
                 }
         })

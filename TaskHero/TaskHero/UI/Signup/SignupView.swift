@@ -5,7 +5,7 @@ class SignupView: UIView {
     
     var registerLabel: UILabel = {
         let registerLabel = UILabel()
-        registerLabel.textColor = Constants.Color.backgroundColor
+        registerLabel.textColor = Constants.Color.backgroundColor.setColor
         registerLabel.text = "Don't have an account?"
         registerLabel.font = Constants.Font.fontLarge
         registerLabel.textAlignment = .center
