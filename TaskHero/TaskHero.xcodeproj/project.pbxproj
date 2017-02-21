@@ -69,7 +69,6 @@
 		A77FBCC91DEB74670014C380 /* BasePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCC81DEB74670014C380 /* BasePopView.swift */; };
 		A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCCA1DEB78880014C380 /* BasePopoverAlert.swift */; };
 		A7AABD591E5C096B0052AF1B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABD581E5C096B0052AF1B /* ProfileViewModel.swift */; };
-		A7AABD5B1E5C1B580052AF1B /* SharedProfileMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABD5A1E5C1B580052AF1B /* SharedProfileMethods.swift */; };
 		A7AABD5D1E5C1D8F0052AF1B /* SharedMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABD5C1E5C1D8F0052AF1B /* SharedMethods.swift */; };
 		A7AFCDE11DF72C4B004D607C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFCDE01DF72C4B004D607C /* APIClient.swift */; };
 		A7C5A9C51E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */; };
@@ -160,7 +159,6 @@
 		A77FBCC81DEB74670014C380 /* BasePopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePopView.swift; sourceTree = "<group>"; };
 		A77FBCCA1DEB78880014C380 /* BasePopoverAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePopoverAlert.swift; sourceTree = "<group>"; };
 		A7AABD581E5C096B0052AF1B /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		A7AABD5A1E5C1B580052AF1B /* SharedProfileMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedProfileMethods.swift; path = TaskHero/UI/Profile/SharedProfileMethods.swift; sourceTree = SOURCE_ROOT; };
 		A7AABD5C1E5C1D8F0052AF1B /* SharedMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedMethods.swift; sourceTree = "<group>"; };
 		A7AFCDE01DF72C4B004D607C /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewControllerDataSource.swift; sourceTree = "<group>"; };
@@ -467,7 +465,6 @@
 				A77DDFF91E3747BC00B2A64A /* Views */,
 				A77DDFFA1E3747C300B2A64A /* Models/Data */,
 				A77DDFF81E3747B000B2A64A /* ViewController */,
-				A7AABD5A1E5C1B580052AF1B /* SharedProfileMethods.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -929,7 +926,6 @@
 				A7346D7C1DE90DF1005E3A5E /* AlertView.swift in Sources */,
 				A709CAD01DE771B700877907 /* HomeViewController.swift in Sources */,
 				A709CAD21DE771E100877907 /* ProfileHeaderCell.swift in Sources */,
-				A7AABD5B1E5C1B580052AF1B /* SharedProfileMethods.swift in Sources */,
 				A709CACB1DE7718B00877907 /* LoginView.swift in Sources */,
 				A7AFCDE11DF72C4B004D607C /* APIClient.swift in Sources */,
 			);

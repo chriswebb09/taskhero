@@ -5,15 +5,12 @@
 
 import UIKit
 
-/* HomeViewController is the first tab in the tabbar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
- - All other cells are of type TaskCell */
+/* HomeViewController is the first tab in the tabbar. It is a subclass of UITableViewController. At index.row 0 the cell type returned is ProfileHeaderCell after that all other cells are of type TaskCell */
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
     
     var homeViewModel: HomeViewModel
-    
     var taskMethods = SharedTaskMethods()
-    var profileMethods = SharedProfileMethods()
     
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     
@@ -45,8 +42,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillAppear(false)
     }
     
-    /*  Removes reference to database - necessary to prevent duplicate task cells from loading when viewWillAppear is called again.
-     -> Functionality implemented in helper class */
+    /*  Removes reference to database (necessary to prevent duplicate taskCells from being create everytime viewWillAppear is called) - functionality implemented in helper class */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -56,10 +52,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 }
 
 extension HomeViewController {
-
-    /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
-     below navbar, adds button items to navcontroller navbar
-     -> called in viewDidLoad */
+    
+    /*  Registers cells to tableview & sets background color for view & sets picker delegate to self(HomeViewController) & extends layout to start below navbar & adds button items to navcontroller navbar -> called in viewDidLoad */
     
     func viewSetup() {
         registerCellsToTableView()
@@ -86,20 +80,19 @@ extension HomeViewController {
 
 extension HomeViewController {
     
-    /* Returns number of rows from view model based on task count in currentUser */
+    /* Get number of rows from viewModel - number of row is equal to number of tasks in currentUser plus one */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeViewModel.numberOfRows
     }
     
-    /* Gets rowheight from view model and returns it - rowheight is UITableViewAutomaticDimension */
+    /* Get rowheight from viewModel - rowheight is UITableViewAutomaticDimension */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return homeViewModel.rowHeight
     }
     
-    /* If first row returns profile headerCell else returns taskCell
-     -> all cells configured within HomeViewController using setupCell methods */
+    /* first row returns profile headerCell all other rows are type taskCell -> cells configured within this controller using setupCell methods */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let type: HomeCellType = indexPath.row > 0 ? .task : .header

@@ -199,7 +199,6 @@ extension LoginViewController: UITextFieldDelegate {
         if loginView.editState != true {
             UIView.animate(withDuration: 0.3) {
                 self.loginView.constraintsForInput()
-                //  self.loginView.layoutIfNeeded()
                 self.view.layoutIfNeeded()
                 
             }

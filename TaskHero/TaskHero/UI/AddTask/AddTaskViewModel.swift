@@ -5,6 +5,10 @@
 
 import UIKit
 
+enum ComponentType {
+    case months, days, years
+}
+
 public struct AddTaskViewModel {
     
     // TODO: - Incomplete needs to accurate data - continue refactoring data out of vc
@@ -19,5 +23,9 @@ public struct AddTaskViewModel {
     
     var stringDate: String {
         return "\(month)-\(day)-\(year)"
+    }
+    
+    var numberOfComponents: Int {
+        return 3
     }
 }

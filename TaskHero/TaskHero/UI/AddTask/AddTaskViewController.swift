@@ -39,7 +39,6 @@ final class AddTaskViewController: UIViewController  {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
-    
 }
 
 // MARK: - TextField Methods
@@ -63,6 +62,9 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
             textField.placeholder = "Task name"
         }
     }
+}
+
+extension AddTaskViewController {
     
     /* On return-key press hides keyboard */
     
@@ -74,11 +76,9 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     /* If textfield input is equal to newline - return - hides keyboard */
     
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
-        if (replacementText.isEqual("\n")) {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
+        let shouldChangeText: Bool = replacementText.isEqual("\n")
+        if shouldChangeText { textView.resignFirstResponder() }
+        return !shouldChangeText
     }
     
     /* If user is done editting && user has not entered anything - sets taskdescription box default text */
@@ -109,29 +109,39 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     /* 3 components in picker - day - month - year */
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 3
+        return addTaskViewModel.numberOfComponents
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
+        var type: ComponentType = (component == 0) ? .months : .days
+        if component < 2 {
+            type = .years
+        }
+        switch type {
+        case .months:
             return addTaskViewModel.pickerMonths.count
-        } else if component == 1 {
+        case .days:
             return 30
-        } else {
+        case .years:
             return 3
         }
     }
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
+        var type: ComponentType = (component == 0) ? .months : .days
+        if component < 2 {
+            type = .years
+        }
+        switch type {
+        case .months:
             return addTaskViewModel.pickerMonths[row]
-        } else if component == 1 {
+        case .days:
             var dayString = String(describing: addTaskViewModel.range[row])
             if dayString.characters.count < 2 {
                 addTaskViewModel.day = "0\(dayString)"
             }
             return addTaskViewModel.day
-        } else {
+        case .years:
             return addTaskViewModel.years[row]
         }
     }
@@ -139,11 +149,16 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     /* Sets UIPickerView data */
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0 {
+        var type: ComponentType = (component == 0) ? .months : .days
+        if component > 2 {
+            type = .years
+        }
+        switch type {
+        case .months:
             addTaskViewModel.month = String(describing:addTaskViewModel.pickerMonths[row])
-        } else if component == 1 {
+        case .days:
             addTaskViewModel.day = String(describing: addTaskViewModel.range[row])
-        } else {
+        case .years:
             addTaskViewModel.year = addTaskViewModel.years[row]
         }
     }
