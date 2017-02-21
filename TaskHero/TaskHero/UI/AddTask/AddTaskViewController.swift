@@ -13,11 +13,9 @@ final class AddTaskViewController: UIViewController  {
     let addTaskView = AddTaskView()
     var addTaskViewModel = AddTaskViewModel()
     
-    let pop = PopMenu() // Popover for datepicker for adding due date to task
+    let pop = PopMenu()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:290, height:290))
     let datePicker = UIDatePicker()
-    
-    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,9 +112,11 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var type: ComponentType = (component == 0) ? .months : .days
+        
         if component >= 2 {
             type = .years
         }
+        
         switch type {
         case .months:
             return addTaskViewModel.pickerMonths.count
@@ -129,6 +129,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var type: ComponentType = (component == 0) ? .months : .days
+        
         if component >= 2 {
             type = .years
         }
@@ -137,9 +138,11 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             return addTaskViewModel.pickerMonths[row]
         case .days:
             var dayString = String(describing: addTaskViewModel.range[row])
+            
             if dayString.characters.count < 2 {
                 addTaskViewModel.day = "0\(dayString)"
             }
+            
             return addTaskViewModel.day
         case .years:
             return addTaskViewModel.years[row]
@@ -150,6 +153,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         var type: ComponentType = (component == 0) ? .months : .days
+        
         if component >= 2 {
             type = .years
         }
@@ -167,9 +171,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     dynamic fileprivate func addTaskButtonTapped() {
         view.endEditing(true)
-        DispatchQueue.main.async {
-            self.changePopViewUI()
-        }
+        DispatchQueue.main.async { self.changePopViewUI() }
         pop.popupView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
     
@@ -185,6 +187,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     dynamic fileprivate func formatTaskWithDate() {
         
         let uid = UUID.init()
+        
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
         
@@ -201,6 +204,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         
         DispatchQueue.main.async {
             self.pop.hidePopView(viewController: self)
+            
             self.pop.popView.isHidden = true
             self.navigationController?.popToRootViewController(animated: false)
         }

@@ -54,6 +54,7 @@ final class AddTaskView: UIView {
     }
     
     private func configureView(view:UIView) {
+        
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.snp.makeConstraints { make in
@@ -64,14 +65,17 @@ final class AddTaskView: UIView {
     }
     
     private func setupConstraints() {
+        
         configureView(view: taskNameLabel)
         taskNameLabel.snp.makeConstraints { make in
             make.top.equalTo(self).offset(bounds.height * 0.05)
         }
+        
         configureView(view: taskNameField)
         taskNameField.snp.makeConstraints { make in
             make.top.equalTo(taskNameLabel.snp.bottom).offset(bounds.height * 0.05)
         }
+        
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionBox.snp.makeConstraints { make in
@@ -80,6 +84,7 @@ final class AddTaskView: UIView {
             make.centerX.equalTo(self)
             make.top.equalTo(taskNameField.snp.bottom).offset(bounds.height * Constants.Dimension.settingsOffset)
         }
+        
         addSubview(addTaskButton)
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.snp.makeConstraints { make in
@@ -92,8 +97,10 @@ final class AddTaskView: UIView {
     
     func animatedPostion() {
         self.taskNameLabel.isHidden = true
+        
         if self.taskNameField.isFirstResponder {
             self.taskNameField.layer.borderColor = UIColor.gray.cgColor
+            
         } else if self.taskDescriptionBox.isFirstResponder {
             self.taskDescriptionBox.layer.borderColor = UIColor.gray.cgColor
         }
@@ -107,6 +114,7 @@ final class AddTaskView: UIView {
         self.addTaskButton.snp.makeConstraints { make in
             make.top.equalTo(self.taskDescriptionBox.snp.bottom).offset(self.bounds.height * 0.02)
         }
+        
         UIView.animate(withDuration: 0.05) {
             self.layoutIfNeeded()
         }
