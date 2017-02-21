@@ -48,7 +48,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillDisappear(false)
         homeViewModel.removeRefHandle()
     }
-    
 }
 
 extension HomeViewController {
