@@ -107,7 +107,6 @@ extension HomeViewController {
         let type: HomeCellType = indexPath.row > 0 ? .task : .header
         
         switch type {
-            
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! TaskCell
             setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
@@ -209,7 +208,6 @@ extension HomeViewController: TaskCellDelegate {
         let superview = sender.superview
         let cell = superview?.superview as! TaskCell
         let indexPath = tableView.indexPath(for: cell)
-        
         if let index = indexPath {
             taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: index, type: .home)
         }

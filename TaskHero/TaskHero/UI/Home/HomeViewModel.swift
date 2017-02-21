@@ -18,10 +18,12 @@ enum HomeCellType {
 }
 
 struct HomeViewModel {
-    
     var store = UserDataStore.sharedInstance
+    
     fileprivate let concurrentQueue = DispatchQueue(label: "com.taskHero.concurrentQueue", attributes: .concurrent)
+    
     var profilePic: UIImage?
+    
     var user: User? {
         return self.store.currentUser
     }
