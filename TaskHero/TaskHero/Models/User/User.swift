@@ -1,9 +1,6 @@
 import UIKit
 
 class User: NSObject, NSCoding {
-    
-    // FIXME: Remove NSCoding and NSObject to bring up to Swift 3 standards
-    
     var uid: String
     var email: String
     var username: String
@@ -46,7 +43,17 @@ class User: NSObject, NSCoding {
     }
     
     override convenience init() {
-        self.init(uid:" ", email:" ", firstName: " ", lastName:" ", profilePicture: "None", username: " ", experiencePoints: 0, level: "Task Goat", joinDate: Date().dateStringFormatted(), tasks:[Task](), numberOfTasksCompleted: 0)
+        self.init(uid:" ",
+                  email:" ",
+                  firstName: " ",
+                  lastName:" ",
+                  profilePicture: "None",
+                  username: " ",
+                  experiencePoints: 0,
+                  level: "Task Goat",
+                  joinDate: Date().dateStringFormatted(),
+                  tasks:[Task](),
+                  numberOfTasksCompleted: 0)
     }
     
     public func encode(with aCoder: NSCoder) {
