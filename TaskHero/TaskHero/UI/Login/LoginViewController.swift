@@ -164,10 +164,8 @@ extension LoginViewController: UITextFieldDelegate {
     
     func textFieldDidChange(_ textField: UITextField) {
         if let emailText = loginView.emailField.text, let passwordText = loginView.passwordField.text {
-            
             if (emailText.characters.count > 4) && (passwordText.characters.count >= 6) {
                 loginView.loginButton.backgroundColor = Constants.Color.buttonColor.setColor
-                //buttonColor
                 loginView.loginButton.isEnabled = true
             }
         }
@@ -186,28 +184,11 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     func textInputAnimation() {
-        view.layoutIfNeeded()
-        self.loginView.layoutIfNeeded()
+        loginView.constraintsForInput()
         if loginView.editState != true {
             UIView.animate(withDuration: 0.3) {
-                self.loginView.constraintsForInput()
-                self.view.layoutIfNeeded()
-                
+                self.loginView.layoutIfNeeded()
             }
-        }
-    }
-    
-    func constraintsForInput() {
-        self.loginView.logoImageView.snp.makeConstraints { make in
-            make.height.equalTo(loginView.snp.height).multipliedBy(0.02)
-            make.width.equalTo(loginView.snp.width).multipliedBy(0.5)
-            make.top.equalTo(loginView.snp.top).offset(self.loginView.bounds.height * 0.05)
-        }
-        self.loginView.emailField.snp.makeConstraints { make in
-            make.top.equalTo(self.loginView.logoImageView.snp.bottom).offset(self.loginView.bounds.height * 0.06)
-        }
-        self.loginView.loginButton.snp.makeConstraints { make in
-            make.top.equalTo(self.loginView.passwordField.snp.bottom).offset(self.loginView.bounds.height * 0.04)
         }
     }
     

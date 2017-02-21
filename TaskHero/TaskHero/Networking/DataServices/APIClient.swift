@@ -5,6 +5,7 @@ typealias TaskCompletion = ([Task]) -> Void
 typealias UserCompletion = (User) -> Void
 
 final class APIClient {
+    
     let storage = FIRStorage.storage()
     var storageRef:FIRStorageReference!
     var tasksRef: FIRDatabaseReference!

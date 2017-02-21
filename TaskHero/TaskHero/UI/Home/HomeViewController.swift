@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Firebase
 
 /* HomeViewController is the first tab in the tabbar. It is a subclass of UITableViewController. At index.row 0 the cell type returned is ProfileHeaderCell after that all other cells are of type TaskCell */
 
@@ -134,10 +135,8 @@ extension HomeViewController {
     
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
         let taskViewModel = homeViewModel.getViewModelForTask(taskIndex: taskIndex)
-        
         taskCell.configureCell(taskVM: taskViewModel)
         taskCell.tag = taskIndex
-        
         addInteractionToCell(cell: taskCell)
     }
     
@@ -163,12 +162,10 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
                 self.taskMethods.fetchUser(tableView: self.tableView)
             }
-            
             tableView.endUpdates()
         }
     }
@@ -180,9 +177,17 @@ extension HomeViewController {
     
     func logoutButtonPressed() {
         setupUserDefaults()
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
+        if FIRAuth.auth()?.currentUser != nil {
+            do {
+                try FIRAuth.auth()?.signOut()
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
+            } catch {
+                print("Error")
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
+            }
+        }
     }
     
     func setupUserDefaults() {

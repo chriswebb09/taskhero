@@ -1,6 +1,16 @@
 import UIKit
 import SnapKit
 
+
+protocol Toggable {
+    func toggleState(state:Bool) -> Bool
+}
+
+extension Toggable {
+    func toggleState(state:Bool) -> Bool {
+        return !state
+    }
+}
 protocol TaskCellDelegate: class {
     func toggleForEditState(_ sender:UIGestureRecognizer)
     func toggleForButtonState(_ sender:UIButton)
@@ -38,9 +48,12 @@ final class TaskCell: UITableViewCell, Toggable {
     
     var saveButton: UIButton = {
         let button = ButtonType.system(title: "Save", color: UIColor.black).newButton
-        button.setAttributedTitle(NSAttributedString(string: "Save", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]), for: .normal)
+        var attributes: [String: Any] =  [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]
+        
+        button.setAttributedTitle(NSAttributedString(string: "Save", attributes:attributes), for: .normal)
         button.isHidden = true
         button.isEnabled = false
+        
         return button
     }()
     
@@ -48,10 +61,12 @@ final class TaskCell: UITableViewCell, Toggable {
         super.layoutSubviews()
         selectionStyle = .none
         setupConfigures()
+        
         contentView.layer.masksToBounds = true
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         contentView.backgroundColor = UIColor.clear
+        
         setupShadow()
     }
     
@@ -59,6 +74,7 @@ final class TaskCell: UITableViewCell, Toggable {
         configureTextView(label: taskDescriptionLabel)
         configureTextView(label: taskDueLabel)
         configureTextView(label: taskNameLabel)
+        
         setupConstraints()
     }
     
@@ -81,8 +97,10 @@ final class TaskCell: UITableViewCell, Toggable {
         } else if state == false {
             textView.labelTextViewStyle()
         }
+        
         textView.isEditable = state
         textView.isUserInteractionEnabled = state
+        
         saveButton.isEnabled = state
         saveButton.isHidden = !state
         taskCompletedView.isHidden = state
@@ -126,6 +144,7 @@ final class TaskCell: UITableViewCell, Toggable {
     func configureView(view: UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         view.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.height).multipliedBy(Constants.TaskCell.nameLabelHeight)
             make.width.equalTo(contentView.snp.width).multipliedBy(Constants.TaskCell.dueWidth)
@@ -137,6 +156,7 @@ final class TaskCell: UITableViewCell, Toggable {
     func setupDescriptionElements(element: UIView) {
         contentView.addSubview(element)
         element.translatesAutoresizingMaskIntoConstraints = false
+        
         element.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.height).multipliedBy(Constants.TaskCell.Description.descriptionBoxHeight)
             make.width.equalTo(contentView.snp.width).multipliedBy(Constants.TaskCell.Description.descriptionLabelWidth)
@@ -150,6 +170,7 @@ final class TaskCell: UITableViewCell, Toggable {
     func setupEditElements(element: UIView) {
         contentView.addSubview(element)
         element.translatesAutoresizingMaskIntoConstraints = false
+        
         element.snp.makeConstraints { make in
             make.right.equalTo(contentView.snp.right).offset(Constants.TaskCell.negativeOffset)
             make.top.equalTo(contentView.snp.top).offset(Constants.Dimension.mainOffset)
@@ -159,6 +180,7 @@ final class TaskCell: UITableViewCell, Toggable {
     
     func addTaskNameLabel(taskNameLabel: UITextView) {
         configureView(view: taskNameLabel)
+        
         taskNameLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top).offset(Constants.Dimension.topOffset)
             make.left.equalTo(contentView.snp.left).offset(Constants.TaskCell.nameLabelLeftOffset)
@@ -167,6 +189,7 @@ final class TaskCell: UITableViewCell, Toggable {
     
     func addTaskDueLabel(taskDueLabel: UITextView) {
         configureView(view: taskDueLabel)
+        
         taskDueLabel.snp.makeConstraints { make in
             make.left.equalTo(contentView.snp.left).offset(10)
             make.top.equalTo(contentView.snp.top).offset(Constants.TaskCell.dueTopOffset)
@@ -174,14 +197,19 @@ final class TaskCell: UITableViewCell, Toggable {
     }
     
     func setupConstraints() {
+        
         addTaskNameLabel(taskNameLabel:taskNameLabel)
         addTaskDueLabel(taskDueLabel: taskDueLabel)
         setupDescriptionElements(element: taskDescriptionLabel)
+        
         setupEditElements(element: taskCompletedView)
+        
         taskCompletedView.snp.makeConstraints { make in
             make.width.equalTo(Constants.TaskCell.saveButtonWidth * 0.5)
         }
+        
         setupEditElements(element:saveButton)
+        
         saveButton.snp.makeConstraints { make in
             make.width.equalTo(Constants.TaskCell.saveButtonWidth)
         }
@@ -191,6 +219,7 @@ final class TaskCell: UITableViewCell, Toggable {
         let shadowOffset = CGSize(width:-0.45, height: 0.2)
         let shadowRadius:CGFloat = 1.0
         let shadowOpacity:Float = 0.4
+        
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity
@@ -198,15 +227,19 @@ final class TaskCell: UITableViewCell, Toggable {
     
     func configureCell(taskVM: TaskCellViewModel) {
         layoutSubviews()
+        
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
+        
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
         if taskVM.taskCompleted == "true" {
+            
             taskCompletedView.image = UIImage(named:"checked")
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
             taskCompletedView.addGestureRecognizer(tap)
             saveButton.addTarget(self, action: #selector(toggleForEditState), for: .touchUpInside)
+            
         } else {
             taskCompletedView.image = UIImage(named:"edit")
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))

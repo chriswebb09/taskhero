@@ -17,15 +17,7 @@ enum HomeCellType {
     }
 }
 
-protocol Toggable {
-    func toggleState(state:Bool) -> Bool
-}
 
-extension Toggable {
-    func toggleState(state:Bool) -> Bool {
-        return !state
-    }
-}
 
 struct HomeViewModel {
     

@@ -15,7 +15,6 @@ final class UserDataStore {
     }
     
     public var tasks = [Task]()
-    
     var profilePicture: UIImage!
     var validUsernames = [String]()
     

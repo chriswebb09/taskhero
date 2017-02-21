@@ -1,12 +1,14 @@
-//
-//  AddTaskView.swift
-//  TaskHero
-//
-
 import UIKit
-import SnapKit
+
+
+enum FieldSelected {
+    case nameField, descriptionBox
+}
+
 
 final class AddTaskView: UIView {
+    
+    // MARK: UI Elements
     
     var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
@@ -18,7 +20,11 @@ final class AddTaskView: UIView {
         return taskNameLabel
     }()
     
-    var taskNameField = TextFieldExtension().emailField("Task name")
+    var taskNameField = TextFieldExtension().emailField("Task name") {
+        didSet {
+            print(taskNameField.text)
+        }
+    }
     
     var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
@@ -43,6 +49,8 @@ final class AddTaskView: UIView {
         return addTaskButton
     }()
     
+    // MARK: - Initialization
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
@@ -53,69 +61,54 @@ final class AddTaskView: UIView {
         view.layer.borderWidth = Constants.Border.borderWidth
     }
     
-    private func configureView(view:UIView) {
-        
+    // MARK: - Configure
+    
+    fileprivate func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.snp.makeConstraints { make in
-            make.width.equalTo(self).multipliedBy(0.85)
-            make.height.equalTo(self).multipliedBy(0.07)
-            make.centerX.equalTo(self)
-        }
+        view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
+        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.07).isActive = true
+        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    private func setupConstraints() {
-        
+    fileprivate func setupConstraints() {
         configureView(view: taskNameLabel)
-        taskNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(bounds.height * 0.05)
-        }
+        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.05).isActive = true
         
         configureView(view: taskNameField)
-        taskNameField.snp.makeConstraints { make in
-            make.top.equalTo(taskNameLabel.snp.bottom).offset(bounds.height * 0.05)
-        }
+        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.05).isActive = true
         
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.snp.makeConstraints { make in
-            make.width.equalTo(self).multipliedBy(0.85)
-            make.height.equalTo(self).multipliedBy(0.3)
-            make.centerX.equalTo(self)
-            make.top.equalTo(taskNameField.snp.bottom).offset(bounds.height * Constants.Dimension.settingsOffset)
-        }
-        
+        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
+        taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         addSubview(addTaskButton)
+        
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.snp.makeConstraints { make in
-            make.width.equalTo(self).multipliedBy(0.4)
-            make.height.equalTo(self).multipliedBy(0.07)
-            make.centerX.equalTo(self)
-            make.top.equalTo(taskDescriptionBox.snp.bottom).offset(bounds.height * 0.05)
-        }
+        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
+        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
+        addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height *  0.05).isActive = true
     }
     
-    func animatedPostion() {
-        self.taskNameLabel.isHidden = true
-        
-        if self.taskNameField.isFirstResponder {
-            self.taskNameField.layer.borderColor = UIColor.gray.cgColor
-            
-        } else if self.taskDescriptionBox.isFirstResponder {
-            self.taskDescriptionBox.layer.borderColor = UIColor.gray.cgColor
-        }
-        self.taskNameField.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(self.bounds.height * 0.04)
-        }
-        self.taskDescriptionBox.snp.makeConstraints { make in
-            make.height.equalTo(self).multipliedBy(0.2)
-            make.top.equalTo(self.taskNameField.snp.bottom).offset(self.bounds.height * 0.02)
-        }
-        self.addTaskButton.snp.makeConstraints { make in
-            make.top.equalTo(self.taskDescriptionBox.snp.bottom).offset(self.bounds.height * 0.02)
+    func animatedPosition() {
+        taskNameLabel.isHidden = false
+        var selected: FieldSelected = taskNameField.isFirstResponder ? .nameField : .descriptionBox
+        switch selected {
+        case .nameField:
+            taskNameField.layer.borderColor = UIColor.gray.cgColor
+        case .descriptionBox:
+            taskDescriptionBox.layer.borderColor = UIColor.gray.cgColor
         }
         
-        UIView.animate(withDuration: 0.05) {
+        taskNameField.topAnchor.constraint(equalTo: topAnchor, constant: self.bounds.height * 0.04)
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2)
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: self.bounds.height * 0.02)
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: self.bounds.height * 0.02)
+        
+        UIView.animate(withDuration: 0.5) {
             self.layoutIfNeeded()
         }
     }

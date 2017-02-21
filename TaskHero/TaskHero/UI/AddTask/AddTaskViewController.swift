@@ -51,7 +51,7 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.addTaskView.animatedPostion()
+        addTaskView.animatedPosition()
         textField.placeholder = ""
     }
     
@@ -60,9 +60,6 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
             textField.placeholder = "Task name"
         }
     }
-}
-
-extension AddTaskViewController {
     
     /* On return-key press hides keyboard */
     
@@ -104,19 +101,13 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         pick.dataSource = self
     }
     
-    /* 3 components in picker - day - month - year */
-    
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return addTaskViewModel.numberOfComponents
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var type: ComponentType = (component == 0) ? .months : .days
-        
-        if component >= 2 {
-            type = .years
-        }
-        
+        if component >= 2 { type = .years }
         switch type {
         case .months:
             return addTaskViewModel.pickerMonths.count
@@ -129,20 +120,15 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var type: ComponentType = (component == 0) ? .months : .days
-        
-        if component >= 2 {
-            type = .years
-        }
+        if component >= 2 { type = .years }
         switch type {
         case .months:
             return addTaskViewModel.pickerMonths[row]
         case .days:
             var dayString = String(describing: addTaskViewModel.range[row])
-            
             if dayString.characters.count < 2 {
                 addTaskViewModel.day = "0\(dayString)"
             }
-            
             return addTaskViewModel.day
         case .years:
             return addTaskViewModel.years[row]
@@ -153,7 +139,6 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         var type: ComponentType = (component == 0) ? .months : .days
-        
         if component >= 2 {
             type = .years
         }
@@ -185,12 +170,9 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */
     dynamic fileprivate func formatTaskWithDate() {
-        
         let uid = UUID.init()
-        
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
-        
         let newTask = Task(taskID: uid.uuidString,
                            taskName: taskName,
                            taskDescription: taskDescription,
@@ -198,17 +180,16 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
                            taskDue:addTaskViewModel.stringDate,
                            taskCompleted: false,
                            pointValue:5)
-        
         store.firebaseAPI.addTasks(task: newTask)
         store.currentUser.tasks!.append(newTask)
-        
         DispatchQueue.main.async {
             self.pop.hidePopView(viewController: self)
-            
             self.pop.popView.isHidden = true
             self.navigationController?.popToRootViewController(animated: false)
         }
     }
+    
+    
     
     /* Hides keyboard */
     
