@@ -152,8 +152,7 @@ extension HomeViewController {
     /* Cannot edit cell at tableview index row 0 */
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let editable: Bool = indexPath.row == 0 ? false : true
-        return editable
+        return indexPath.row != 0
     }
     
     /* Logic for deleting tasks from database when user deletes tableview cell */
