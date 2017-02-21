@@ -30,6 +30,7 @@ final class APIClient {
     
     init() {
         syncedUser.keepSynced(true)
+        
         dbRef = FIRDatabase.database().reference()
         usernameRef = dbRef.child("Usernames")
         setupRefs()
@@ -39,6 +40,7 @@ final class APIClient {
     
     func setupRefs() {
         guard let userID = FIRAuth.auth()?.currentUser?.uid else { return }
+        
         userRef = dbRef.child("Users").child(userID)
         tasksRef = dbRef.child("Users").child(userID).child("Tasks")
     }
@@ -80,6 +82,7 @@ final class APIClient {
     
     func fetchTasks(taskList: [Task], completion: @escaping TaskCompletion) {
         var taskList = taskList
+        
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             let newTask = self.createTaskSnapshot(snapshot: snapshot)
             if let task = newTask { taskList.append(task) }
@@ -90,6 +93,7 @@ final class APIClient {
     
     func fetchTaskList(completion: @escaping TaskCompletion) {
         var taskList = [Task]()
+        
         refHandle = tasksRef.observe(.childAdded, with: { snapshot in
             let newTask = self.createTaskSnapshot(snapshot: snapshot)
             if let task = newTask {
@@ -102,6 +106,7 @@ final class APIClient {
     
     func createTaskSnapshot(snapshot: FIRDataSnapshot) -> Task? {
         var newTask = Task()
+        
         newTask.taskID = snapshot.key
         guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return nil }
         
@@ -130,8 +135,10 @@ final class APIClient {
     
     func fetchUserData(completion: @escaping UserCompletion) {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+        
         let userLastOnlineRef = FIRDatabase.database().reference(withPath: "Users/\(uid)/LastOnline")
         userLastOnlineRef.onDisconnectSetValue(FIRServerValue.timestamp())
+        
         database.reference().child("Users").child(uid).observe(.value, with: { snapshot in
             let tasks = [Task]()
             let user = User()
@@ -206,6 +213,7 @@ final class APIClient {
     }
     
     func registerUser(user: User) {
+        
         userRef = dbRef.child("Users").child(user.uid)
         updateUsernameList(user: user)
         let values = createValuesDictionary(user: user)
