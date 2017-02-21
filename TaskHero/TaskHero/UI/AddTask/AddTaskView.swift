@@ -22,7 +22,7 @@ final class AddTaskView: UIView {
     
     var taskNameField = TextFieldExtension().emailField("Task name") {
         didSet {
-            print(taskNameField.text)
+            print(taskNameField.text ?? "No text entered")
         }
     }
     
@@ -66,36 +66,43 @@ final class AddTaskView: UIView {
     fileprivate func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo:widthAnchor, multiplier: 0.85).isActive = true
-        view.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.07).isActive = true
+        view.widthAnchor.constraint(equalTo: widthAnchor,
+                                    multiplier: 0.85).isActive = true
+        view.heightAnchor.constraint(equalTo: heightAnchor,
+                                     multiplier: 0.07).isActive = true
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     fileprivate func setupConstraints() {
         configureView(view: taskNameLabel)
-        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * 0.05).isActive = true
-        
+        taskNameLabel.topAnchor.constraint(equalTo: topAnchor,
+                                           constant: bounds.height * 0.05).isActive = true
         configureView(view: taskNameField)
-        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * 0.05).isActive = true
-        
+        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor,
+                                           constant: bounds.height * 0.05).isActive = true
         addSubview(taskDescriptionBox)
         taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85).isActive = true
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
+        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor,
+                                                  multiplier: 0.85).isActive = true
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor,
+                                                   multiplier: 0.3).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor,
+                                                constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
         addSubview(addTaskButton)
-        
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
-        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07).isActive = true
+        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor,
+                                             multiplier: 0.4).isActive = true
+        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor,
+                                              multiplier: 0.07).isActive = true
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height *  0.05).isActive = true
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor,
+                                           constant: bounds.height *  0.05).isActive = true
     }
     
     func animatedPosition() {
         taskNameLabel.isHidden = false
-        var selected: FieldSelected = taskNameField.isFirstResponder ? .nameField : .descriptionBox
+        let selected: FieldSelected = taskNameField.isFirstResponder ? .nameField : .descriptionBox
         switch selected {
         case .nameField:
             taskNameField.layer.borderColor = UIColor.gray.cgColor
@@ -104,9 +111,13 @@ final class AddTaskView: UIView {
         }
         
         taskNameField.topAnchor.constraint(equalTo: topAnchor, constant: self.bounds.height * 0.04)
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2)
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: self.bounds.height * 0.02)
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: self.bounds.height * 0.02)
+        
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor,
+                                                   multiplier: 0.2)
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor,
+                                                constant: self.bounds.height * 0.02)
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor,
+                                           constant: self.bounds.height * 0.02)
         
         UIView.animate(withDuration: 0.5) {
             self.layoutIfNeeded()

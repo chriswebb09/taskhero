@@ -85,7 +85,7 @@ class User: NSObject, NSCoding {
 
 struct Levels {
     func getLevelFor(_ user:User) -> String {
-        var level: String = user.experiencePoints < 20 ? "Task Goat" : "Task Wizard"
+        let level: String = user.experiencePoints < 20 ? "Task Goat" : "Task Wizard"
         return level
     }
 }

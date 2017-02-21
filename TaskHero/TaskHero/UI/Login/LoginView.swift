@@ -14,7 +14,7 @@ final class LoginView: UIView {
     
     var emailField = TextFieldExtension().emailField("Enter email address") {
         didSet {
-            print(emailField.text)
+            print(emailField.text ?? "Email field")
         }
     }
     
