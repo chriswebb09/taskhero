@@ -196,7 +196,6 @@ final class APIClient {
                          Constants.API.Task.taskCreated: task.taskCreated ,
                          Constants.API.Task.taskDue: task.taskDue,
                          Constants.API.Task.taskCompleted: task.taskCompleted])
-        
     }
     
     func createValuesDictionary(user: User) -> NSDictionary {
