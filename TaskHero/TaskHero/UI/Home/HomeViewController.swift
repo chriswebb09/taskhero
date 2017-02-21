@@ -5,22 +5,16 @@
 
 import UIKit
 
-/*
- * HomeViewController is the first tab in the tabbar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
- * All other cells are of type TaskCell
- */
+/* HomeViewController is the first tab in the tabbar. It is a tableView that consists of a ProfileHeaderCell at indexPath.row 0
+ - All other cells are of type TaskCell */
 
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
-    
-    // MARK: - Properties
     
     var homeViewModel: HomeViewModel
     var taskMethods = SharedTaskMethods()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
-    
-    // MARK: - Initializers
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,22 +39,16 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillAppear(false)
     }
     
-    /*
-     * Removes reference to database - necessary to prevent
-     * duplicate task cells from loading when viewWillAppear is called again.
-     * -> Functionality implemented in helper class
-     */
+    /*  Removes reference to database - necessary to prevent duplicate task cells from loading when viewWillAppear is called again.
+     -> Functionality implemented in helper class */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         homeViewModel.removeRefHandle()
     }
     
-    /*
-     * Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
-     * below navbar, adds button items to navcontroller navbar
-     * -> called in viewDidLoad
-     */
+    /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
+     below navbar, adds button items to navcontroller navbar -> called in viewDidLoad */
     
     func viewSetup() {
         registerCellsToTableView()
@@ -75,7 +63,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
     }
-    
 }
 
 // MARK: - UITableViewController Methods
@@ -96,10 +83,7 @@ extension HomeViewController {
     
     // MARK: - Return cells for index - dequeueReusableCell
     
-    /* 
-     * If first row returns profile headerCell else returns taskCell
-     * all cells configured within HomeViewController using setupCell methods
-     */
+    /* If first row returns profile headerCell else returns taskCell all cells configured within HomeViewController using setupCell methods */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let type: HomeCellType = indexPath.row > 0 ? .task : .header
