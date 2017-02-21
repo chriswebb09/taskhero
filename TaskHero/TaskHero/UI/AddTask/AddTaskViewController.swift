@@ -42,6 +42,8 @@ final class AddTaskViewController: UIViewController  {
     
 }
 
+// MARK: - TextField Methods
+
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
     /* Adds UITextFieldDelegate and UITextViewDelege to AddTaskViewController */
@@ -62,7 +64,6 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
         }
     }
     
-    // MARK: - TextField Methods
     /* On return-key press hides keyboard */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

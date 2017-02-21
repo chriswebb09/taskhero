@@ -2,8 +2,6 @@ import UIKit
 
 final class ProfileSettingsView: UIView {
     
-    // MARK: - UIElements
-    
     var profileLabel: UILabel = {
         let profileLabel = UILabel()
         profileLabel.textColor = .black

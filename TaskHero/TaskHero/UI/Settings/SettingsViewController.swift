@@ -55,16 +55,24 @@ final class SettingsViewController: UITableViewController {
     }
     
     func setupTableView() {
+        setupHeader()
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
+        tableView.setupTableView(view:self.view)
+        setupTableViewUI()
+        setupSegment()
+    }
+    
+    func setupHeader() {
         let header = UIView(frame:CGRect(x: 0, y: 0, width: Int(view.bounds.width), height: 50))
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
         header.backgroundColor = .white
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
-        tableView.setupTableView(view:self.view)
+    }
+    
+    func setupTableViewUI() {
         edgesForExtendedLayout = []
         view.backgroundColor = .backgroundColor()
         tableView.separatorColor = .blue
-        setupSegment()
     }
     
     // MARK: Public Methods
@@ -83,6 +91,10 @@ final class SettingsViewController: UITableViewController {
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
         }
+        setPopView()
+    }
+    
+    func setPopView() {
         self.alertPop.alertPopView.resultLabel.text = "Try Again Later."
         self.alertPop.alertPopView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
         self.alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
