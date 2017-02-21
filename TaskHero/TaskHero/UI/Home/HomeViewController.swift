@@ -36,13 +36,17 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
      */
     
     func viewSetup() {
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        registerCellsToTableView()
         taskMethods.setupTableView(tableView: tableView, view: view)
         view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         picker.delegate = self
         edgesForExtendedLayout = []
         addNavItemsToController()
+    }
+    
+    func registerCellsToTableView() {
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -125,9 +129,12 @@ extension HomeViewController: TaskCellDelegate {
         let taskViewModel = homeViewModel.getViewModelForTask(taskIndex: taskIndex)
         taskCell.configureCell(taskVM: taskViewModel)
         taskCell.tag = taskIndex
-        
+        addInteractionToCell(cell: taskCell)
+    }
+    
+    func addInteractionToCell(cell: TaskCell) {
         let tap = UIGestureRecognizer(target:self, action: #selector(toggleForEditState(_:)))
-        taskCell.taskCompletedView.addGestureRecognizer(tap)
+        cell.taskCompletedView.addGestureRecognizer(tap)
     }
     
     // MARK: - Delete Task logic
@@ -155,13 +162,15 @@ extension HomeViewController: TaskCellDelegate {
     /* Sets up logoutButtonPressed() , addTaskButtonTapped() selector methods */
     
     func logoutButtonPressed() {
+        setupUserDefaults()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
+    }
+    
+    func setupUserDefaults() {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.synchronize()
-        let loginVC = AppScreenViewController()
-        let rootNC = UINavigationController(rootViewController:loginVC)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = rootNC
     }
     
     func addTaskButtonTapped() {
@@ -172,9 +181,18 @@ extension HomeViewController: TaskCellDelegate {
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     
     func addNavItemsToController() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
+        var leftItemAttributes: [String: Any] = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!]
+        var rightItemImage: UIImage? = UIImage(named: "add-white-2")
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out",
+                                                           style: .done,
+                                                           target: self,
+                                                           action: #selector(logoutButtonPressed))
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes(leftItemAttributes, for: .normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightItemImage?.withRenderingMode(.alwaysOriginal),
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(addTaskButtonTapped))
     }
     
     // MARK: - Popover Methods
