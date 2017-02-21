@@ -29,13 +29,16 @@ final class ProfileViewController: UITableViewController {
     func setupMethods() {
         registerCells()
         setupTableViewUI()
-        setupNavItems()
     }
     
     private func setupTableViewUI() {
         tableView.estimatedRowHeight = view.frame.height / 3
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView(frame: .zero)
+        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+        let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(logoutButtonPressed), viewController: self)
+        let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(addTaskButtonTapped), viewController: self)
+        SharedMethods.setupNavItems(navigationItem: navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
     }
     
     private func registerCells() {
@@ -56,7 +59,7 @@ final class ProfileViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var type: ProfileCellType = indexPath.row == 0 ? .header : .data
+        let type: ProfileCellType = indexPath.row == 0 ? .header : .data
         switch type {
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath as IndexPath) as! ProfileHeaderCell
@@ -72,21 +75,6 @@ final class ProfileViewController: UITableViewController {
     func setupHeader(headerCell: ProfileHeaderCell) {
         headerCell.emailLabel.isHidden = true
         headerCell.configureCell(user: viewModel.user)
-    }
-    
-    func setupNavItems() {
-        let rightBarImage: UIImage? = UIImage(named: "add-white-2")
-        let leftBarAttributes: [String: Any] = [NSForegroundColorAttributeName: UIColor.white,
-                                                NSFontAttributeName: Constants.Font.fontMedium]
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out",
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(logoutButtonPressed))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightBarImage?.withRenderingMode(.alwaysOriginal),
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(addTaskButtonTapped))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes(leftBarAttributes, for: .normal)
     }
     
     // MARK: - Selector Methods

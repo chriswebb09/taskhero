@@ -67,7 +67,10 @@ final class TaskListViewController: UITableViewController {
     
     func initializeBackgroundUI() {
         sharedTaskMethods.setupTableView(tableView:tableView, view: view)
-        setupNavItems(navController:navigationController)
+        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+        let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(logoutButtonPressed), viewController: self)
+        let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(addTaskButtonTapped), viewController: self)
+        SharedMethods.setupNavItems(navigationItem: navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
     }
     
     func fetchUser() {
@@ -126,14 +129,6 @@ extension TaskListViewController: TaskCellDelegate {
             print("Tasks Completed")
         }
         DispatchQueue.main.async { self.tableView.reloadData() }
-    }
-    
-    // MARK: - Setup navbar
-    
-    func setupNavItems(navController:UINavigationController?) {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
     
     // MARK: - Button methods

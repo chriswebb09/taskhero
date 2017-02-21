@@ -12,6 +12,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     var homeViewModel: HomeViewModel
     var taskMethods = SharedTaskMethods()
+    var profileMethods = SharedProfileMethods()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
@@ -56,7 +57,10 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         picker.delegate = self
         edgesForExtendedLayout = []
-        addNavItemsToController()
+        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+        let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(logoutButtonPressed), viewController: self)
+        let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(addTaskButtonTapped), viewController: self)
+        SharedMethods.setupNavItems(navigationItem: navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
     }
     
     func registerCellsToTableView() {
@@ -173,18 +177,6 @@ extension HomeViewController {
     
     func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
-    
-    /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
-    
-    func addNavItemsToController() {
-        let leftItemAttributes: [String: Any] = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!]
-        let rightItemImage: UIImage? = UIImage(named: "add-white-2")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self,
-                                                           action: #selector(logoutButtonPressed))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes(leftItemAttributes, for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightItemImage?.withRenderingMode(.alwaysOriginal),
-                                                            style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
 }
 
