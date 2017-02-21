@@ -78,7 +78,9 @@ final class LoginView: UIView {
     private func setupView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         view.snp.makeConstraints { make in
+            
             make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
             make.height.equalTo(self).multipliedBy(Constants.Login.loginFieldHeight)
             make.centerX.equalTo(self)
@@ -88,7 +90,9 @@ final class LoginView: UIView {
     private func setupLogoImage() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
         logoImageView.snp.makeConstraints { make in
+            
             make.width.equalTo(self).multipliedBy(0.7)
             make.height.equalTo(self).multipliedBy(0.06)
             make.centerX.equalTo(self)
@@ -101,13 +105,17 @@ final class LoginView: UIView {
         setupView(view: emailField)
         setupView(view: passwordField)
         setupView(view: loginButton)
+        
         emailField.snp.makeConstraints { make in
             make.top.equalTo(logoImageView.snp.bottom).offset(bounds.height * 0.1)
         }
+        
         passwordField.snp.makeConstraints { make in
             make.top.equalTo(emailField.snp.bottom).offset(bounds.height * 0.06)
         }
+        
         passwordField.isSecureTextEntry = true
+        
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordField.snp.bottom).offset(bounds.height * 0.1)
         }
@@ -122,14 +130,17 @@ final class LoginView: UIView {
     }
     
     func constraintsForInput() {
+        
         self.logoImageView.snp.makeConstraints { make in
             make.height.equalTo(self).multipliedBy(0.02)
             make.width.equalTo(self).multipliedBy(0.5)
             make.top.equalTo(self).offset(self.bounds.height * 0.05)
         }
+        
         self.emailField.snp.makeConstraints { make in
             make.top.equalTo(self.logoImageView.snp.bottom).offset(self.bounds.height * 0.06)
         }
+        
         self.loginButton.snp.makeConstraints { make in
             make.top.equalTo(self.passwordField.snp.bottom).offset(self.bounds.height * 0.04)
         }
@@ -138,17 +149,19 @@ final class LoginView: UIView {
     func textFieldAnimation() {
         UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                
                 self.emailField.layer.borderWidth = 1.2
                 self.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
                 self.emailField.textColor =  Constants.Color.backgroundColor.setColor
+                
             } }, completion: { _ in
                 let when = DispatchTime.now() + 0.32
                 DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
+                    
                     self.emailField.layer.borderWidth = 1
                     self.emailField.font = Constants.signupFieldFont
                     self.emailField.textColor = .lightGray
                     self.emailField.layer.borderColor = Constants.Color.backgroundColor.setColor.cgColor
-                    //backgroundColor.cgColor
                     self.emailField.layer.borderWidth = Constants.Border.borderWidth
                 }
         })

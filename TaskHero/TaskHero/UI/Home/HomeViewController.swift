@@ -42,9 +42,9 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillAppear(false)
     }
     
-    /*  
+    /*
      Removes reference to database (necessary to prevent duplicate taskCells from being create everytime viewWillAppear is called)
-     - functionality implemented in helper class 
+     - functionality implemented in helper class
      */
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,7 +58,7 @@ extension HomeViewController {
     /*
      Registers cells to tableview & sets background color for view
      & sets picker delegate to self(HomeViewController)
-     & extends layout to start below navbar 
+     & extends layout to start below navbar
      & adds button items to navcontroller navbar
      -> called in viewDidLoad
      */
@@ -104,12 +104,15 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let type: HomeCellType = indexPath.row > 0 ? .task : .header
+        
         switch type {
+            
         case .task:
             let taskCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! TaskCell
             setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
             taskCell.delegate = self
             return taskCell
+            
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! ProfileHeaderCell
             setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
@@ -131,8 +134,10 @@ extension HomeViewController {
     
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
         let taskViewModel = homeViewModel.getViewModelForTask(taskIndex: taskIndex)
+        
         taskCell.configureCell(taskVM: taskViewModel)
         taskCell.tag = taskIndex
+        
         addInteractionToCell(cell: taskCell)
     }
     
@@ -158,10 +163,12 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
+            
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
                 self.taskMethods.fetchUser(tableView: self.tableView)
             }
+            
             tableView.endUpdates()
         }
     }
@@ -173,6 +180,7 @@ extension HomeViewController {
     
     func logoutButtonPressed() {
         setupUserDefaults()
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
     }
@@ -196,6 +204,7 @@ extension HomeViewController: TaskCellDelegate {
         let superview = sender.superview
         let cell = superview?.superview as! TaskCell
         let indexPath = tableView.indexPath(for: cell)
+        
         if let index = indexPath {
             taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: index, type: .home)
         }
@@ -206,6 +215,7 @@ extension HomeViewController: TaskCellDelegate {
     func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         let tapIndex = tableView.indexPathForRow(at: tapLocation)
+        
         if let index = tapIndex {
             taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex:index, type: .home)
         }
