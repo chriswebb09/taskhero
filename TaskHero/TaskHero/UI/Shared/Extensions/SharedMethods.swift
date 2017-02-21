@@ -10,6 +10,8 @@ import UIKit
 
 class SharedMethods {
     
+    
+    
     class func getLeftBarItem(selector: Selector, viewController: UIViewController) -> UIBarButtonItem {
         return UIBarButtonItem(title: "Log Out", style: .done, target: viewController, action: selector)
     }
@@ -32,4 +34,5 @@ class SharedMethods {
         navigationItem.rightBarButtonItem = rightItem
         navigationItem.leftBarButtonItem?.setTitleTextAttributes(leftBarAttributes, for: .normal)
     }
+    
 }

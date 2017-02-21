@@ -3,6 +3,7 @@ import UIKit
 final class TaskListViewController: UITableViewController {
     
     /* TaskListViewController is the viewController that presents just the tasks that the user has added */
+    
     // MARK: Properties
     
     let store = UserDataStore.sharedInstance /* userData store for application user state */
@@ -55,7 +56,7 @@ final class TaskListViewController: UITableViewController {
     /* Does setupfor tableview/emptytable view and navbar */
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchUser()
+        sharedTaskMethods.fetchUser(tableView: tableView)
         tableView.reloadOnMain()
         self.addTasksLabel.isHidden = hidden
         DispatchQueue.main.async {
@@ -71,18 +72,6 @@ final class TaskListViewController: UITableViewController {
         let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(logoutButtonPressed), viewController: self)
         let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(addTaskButtonTapped), viewController: self)
         SharedMethods.setupNavItems(navigationItem: navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
-    }
-    
-    func fetchUser() {
-        self.store.firebaseAPI.fetchUserData() { user in
-            self.store.firebaseAPI.fetchTaskList() { taskList in
-                self.store.tasks = taskList
-                DispatchQueue.main.async {
-                    self.store.currentUser = user
-                    self.tableView.reloadOnMain()
-                }
-            }
-        }
     }
 }
 
@@ -112,7 +101,8 @@ extension TaskListViewController: TaskCellDelegate {
             backgroundQueue.async {
                 self.sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .taskList)
             }
-            self.fetchUser()
+            sharedTaskMethods.fetchUser(tableView: tableView)
+            tableView.reloadOnMain()
             DispatchQueue.main.async { self.addTasksLabel.isHidden = self.hidden }
             self.tableView.reloadOnMain()
             tableView.endUpdates()

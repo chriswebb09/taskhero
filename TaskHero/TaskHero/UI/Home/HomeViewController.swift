@@ -36,7 +36,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        homeViewModel.fetchTasks(tableView: tableView)
+        //homeViewModel.fetchTasks(tableView: tableView)
+        taskMethods.fetchUser(tableView: tableView)
         super.viewWillAppear(false)
     }
     
@@ -151,7 +152,8 @@ extension HomeViewController {
             tableView.beginUpdates()
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
-                self.homeViewModel.fetchTasks(tableView: self.tableView)
+                self.taskMethods.fetchUser(tableView: self.tableView)
+                //self.taskMethods.fetchTasks(tableView: self.tableView)
             }
             tableView.endUpdates()
         }

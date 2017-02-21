@@ -58,19 +58,7 @@ struct HomeViewModel {
     }
     
     var rowHeight = UITableViewAutomaticDimension
-    
-    func fetchTasks(tableView: UITableView) {
-        store.firebaseAPI.fetchUserData() { user in
-            self.store.firebaseAPI.fetchTaskList() { taskList in
-                self.concurrentQueue.async {
-                    self.store.currentUser = user
-                    self.store.tasks = taskList
-                    tableView.reloadOnMain()
-                }
-            }
-        }
-    }
-    
+
     func removeRefHandle() {
         if store.firebaseAPI.refHandle != nil {
             self.store.firebaseAPI.tasksRef.removeObserver(withHandle: self.store.firebaseAPI.refHandle)
