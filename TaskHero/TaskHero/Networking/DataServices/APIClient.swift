@@ -58,7 +58,6 @@ final class APIClient {
         let usernameRefs = ref.child("Usernames")
         
         let usernameValues = [user.username:user.email] as [String : Any] as NSDictionary
-        
         usernameRefs.updateChildValues(usernameValues as! [AnyHashable : Any]) { err, ref in
             if err != nil { print(err ?? "unable to get specific error"); return }
         }
