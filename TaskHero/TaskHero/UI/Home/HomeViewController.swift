@@ -45,7 +45,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillAppear(false)
     }
     
-    /* Removes reference to database - necessary to prevent
+    /*
+     * Removes reference to database - necessary to prevent
      * duplicate task cells from loading when viewWillAppear is called again.
      * -> Functionality implemented in helper class
      */
@@ -55,8 +56,10 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         homeViewModel.removeRefHandle()
     }
     
-    /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
-     * below navbar, adds button items to navcontroller navbar -> called in viewDidLoad
+    /*
+     * Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
+     * below navbar, adds button items to navcontroller navbar
+     * -> called in viewDidLoad
      */
     
     func viewSetup() {
@@ -79,16 +82,13 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 
 extension HomeViewController {
     
-    
     /* Returns number of rows from view model based on task count in currentUser */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeViewModel.numberOfRows
     }
     
-    /* Gets rowheight from view model and returns it
-     * rowheight is UITableViewAutomaticDimension
-     */
+    /* Gets rowheight from view model and returns it - rowheight is UITableViewAutomaticDimension */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return homeViewModel.rowHeight
@@ -96,7 +96,8 @@ extension HomeViewController {
     
     // MARK: - Return cells for index - dequeueReusableCell
     
-    /* If first row returns profile headerCell else returns taskCell
+    /* 
+     * If first row returns profile headerCell else returns taskCell
      * all cells configured within HomeViewController using setupCell methods
      */
     
@@ -167,14 +168,12 @@ extension HomeViewController {
             tableView.endUpdates()
         }
     }
-    
 }
 
 // MARK: Selector Methods
+/* Sets up logoutButtonPressed() , addTaskButtonTapped() selector methods */
 
 extension HomeViewController {
-    
-    /* Sets up logoutButtonPressed() , addTaskButtonTapped() selector methods */
     
     func logoutButtonPressed() {
         setupUserDefaults()
@@ -192,31 +191,23 @@ extension HomeViewController {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
-    // MARK: - Nav Items
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     
     func addNavItemsToController() {
         let leftItemAttributes: [String: Any] = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!]
         let rightItemImage: UIImage? = UIImage(named: "add-white-2")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out",
-                                                           style: .done,
-                                                           target: self,
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self,
                                                            action: #selector(logoutButtonPressed))
         navigationItem.leftBarButtonItem?.setTitleTextAttributes(leftItemAttributes, for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightItemImage?.withRenderingMode(.alwaysOriginal),
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(addTaskButtonTapped))
+                                                            style: .done, target: self, action: #selector(addTaskButtonTapped))
     }
-    
-    
 }
 
 // MARK:  TaskCell Delegate Methods
+/* Methods for toggling taskCell edit state. */
 
 extension HomeViewController: TaskCellDelegate {
-    
-    /* Methods for toggling taskCell edit state. */
     
     func toggleForButtonState(_ sender:UIButton) {
         let superview = sender.superview
@@ -243,7 +234,6 @@ extension HomeViewController: TaskCellDelegate {
 extension HomeViewController: ProfileHeaderCellDelegate {
     
     // MARK: - Popover Methods
-    /* Hides popover view when operation has ended. */
     
     internal func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
