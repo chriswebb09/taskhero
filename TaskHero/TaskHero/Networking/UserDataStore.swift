@@ -2,6 +2,7 @@ import UIKit
 import Firebase
 
 final class UserDataStore {
+    
     private static let _shared = UserDataStore()
     private init() { }
     
