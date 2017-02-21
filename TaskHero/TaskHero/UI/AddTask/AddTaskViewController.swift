@@ -8,12 +8,12 @@ import Firebase
 
 final class AddTaskViewController: UIViewController  {
     
-    // MARK: - Properties
-    
     let store = UserDataStore.sharedInstance /* User state for application */
+    
     let addTaskView = AddTaskView()
-    let pop = PopMenu() // Popover for datepicker for adding due date to task
     var addTaskViewModel = AddTaskViewModel()
+    
+    let pop = PopMenu() // Popover for datepicker for adding due date to task
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:290, height:290))
     let datePicker = UIDatePicker()
     
@@ -114,7 +114,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var type: ComponentType = (component == 0) ? .months : .days
-        if component < 2 {
+        if component >= 2 {
             type = .years
         }
         switch type {
@@ -129,7 +129,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var type: ComponentType = (component == 0) ? .months : .days
-        if component < 2 {
+        if component >= 2 {
             type = .years
         }
         switch type {
@@ -150,7 +150,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         var type: ComponentType = (component == 0) ? .months : .days
-        if component > 2 {
+        if component >= 2 {
             type = .years
         }
         switch type {
@@ -182,7 +182,6 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */
-    
     dynamic fileprivate func formatTaskWithDate() {
         
         let uid = UUID.init()
@@ -203,7 +202,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         DispatchQueue.main.async {
             self.pop.hidePopView(viewController: self)
             self.pop.popView.isHidden = true
-            _ = self.navigationController?.popToRootViewController(animated: false)
+            self.navigationController?.popToRootViewController(animated: false)
         }
     }
     
