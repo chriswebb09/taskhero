@@ -14,11 +14,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     // MARK: - Properties
     
-    var homeViewModel: HomeViewModel {
-        didSet {
-            print("\(homeViewModel.taskList)")
-        }
-    }
+    var homeViewModel: HomeViewModel
     var taskMethods = SharedTaskMethods()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     let photoPopover = PhotoPickerPopover()
@@ -120,9 +116,7 @@ extension HomeViewController: TaskCellDelegate {
     
     func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
         headerCell.emailLabel.isHidden = true
-        if let user = homeViewModel.user {
-            headerCell.configureCell(user: user)
-        }
+        if let user = homeViewModel.user { headerCell.configureCell(user: user) }
     }
     
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
@@ -181,9 +175,8 @@ extension HomeViewController: TaskCellDelegate {
     /* Adds two methods above to as selector methods in navigation items and adds navigation items to navigation controller */
     
     func addNavItemsToController() {
-        var leftItemAttributes: [String: Any] = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!]
-        var rightItemImage: UIImage? = UIImage(named: "add-white-2")
-        
+        let leftItemAttributes: [String: Any] = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!]
+        let rightItemImage: UIImage? = UIImage(named: "add-white-2")
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out",
                                                            style: .done,
                                                            target: self,
