@@ -218,7 +218,6 @@ extension HomeViewController: TaskCellDelegate {
     func toggleForEditState(_ sender:UIGestureRecognizer) {
         let tapLocation = sender.location(in: self.tableView)
         let tapIndex = tableView.indexPathForRow(at: tapLocation)
-        
         if let index = tapIndex {
             taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex:index, type: .home)
         }
