@@ -41,6 +41,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     override func viewWillAppear(_ animated: Bool) {
         taskMethods.fetchUser(tableView: tableView)
+        tableView.reloadOnMain()
         super.viewWillAppear(false)
     }
     
@@ -52,6 +53,10 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         homeViewModel.removeRefHandle()
     }
     
+}
+
+extension HomeViewController {
+
     /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
      below navbar, adds button items to navcontroller navbar
      -> called in viewDidLoad */
@@ -114,8 +119,6 @@ extension HomeViewController {
     }
 }
 
-// MARK: - Extension for setting up cells & TaskCell delegate logic implementation
-
 extension HomeViewController {
     
     func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
@@ -138,7 +141,7 @@ extension HomeViewController {
     }
 }
 
-// MARK: - Delete Task logic
+// MARK: - Delete Tasks
 
 extension HomeViewController {
     
@@ -185,7 +188,6 @@ extension HomeViewController {
 }
 
 // MARK:  TaskCell Delegate Methods
-/* Methods for toggling taskCell edit state. */
 
 extension HomeViewController: TaskCellDelegate {
     
@@ -209,7 +211,7 @@ extension HomeViewController: TaskCellDelegate {
     }
 }
 
-// MARK: - ProfileHeaderCell Delegate Method
+// MARK: - ProfileHeaderCell Delegate
 
 extension HomeViewController: ProfileHeaderCellDelegate {
     
@@ -223,7 +225,7 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     }
 }
 
-// Mark: Extension for UIImagePicker Delegate
+// Mark: - UIImagePicker Delegate
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     

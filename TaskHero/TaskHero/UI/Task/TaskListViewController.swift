@@ -12,6 +12,7 @@ final class TaskListViewController: UITableViewController {
     let sharedTaskMethods = SharedTaskMethods()
     var listViewModel = TaskListViewModel()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
+    
     var addTasksLabel:UILabel {
         didSet {
             print("Label hidden \(hidden)")
@@ -100,11 +101,13 @@ extension TaskListViewController: TaskCellDelegate {
             tableView.beginUpdates()
             backgroundQueue.async {
                 self.sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .taskList)
+                self.sharedTaskMethods.fetchUser(tableView: tableView)
+                DispatchQueue.main.async {
+                    self.addTasksLabel.isHidden = self.hidden
+                }
+                self.tableView.reloadOnMain()
             }
-            sharedTaskMethods.fetchUser(tableView: tableView)
-            tableView.reloadOnMain()
-            DispatchQueue.main.async { self.addTasksLabel.isHidden = self.hidden }
-            self.tableView.reloadOnMain()
+            
             tableView.endUpdates()
         }
     }
@@ -118,16 +121,15 @@ extension TaskListViewController: TaskCellDelegate {
         default:
             print("Tasks Completed")
         }
-        DispatchQueue.main.async { self.tableView.reloadData() }
+        tableView.reloadOnMain()
     }
     
     // MARK: - Button methods
     
     func logoutButtonPressed() {
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         DataPeristence.shared.logout()
-        appDelegate.window?.rootViewController = loginVC
+        appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
     }
     
     // MARK: - Task Actions
