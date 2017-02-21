@@ -7,6 +7,14 @@ import UIKit
 
 enum HomeCellType {
     case task, header
+    var identifier: String {
+        switch self {
+        case .header:
+            return ProfileHeaderCell.cellIdentifier
+        case .task:
+            return TaskCell.cellIdentifier
+        }
+    }
 }
 
 protocol Toggable {

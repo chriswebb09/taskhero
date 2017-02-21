@@ -59,15 +59,19 @@ final class ProfileViewController: UITableViewController {
         var type: ProfileCellType = indexPath.row == 0 ? .header : .data
         switch type {
         case .header:
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
-            headerCell.emailLabel.isHidden = true
-            headerCell.configureCell(user: viewModel.user)
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath as IndexPath) as! ProfileHeaderCell
+            setupHeader(headerCell: headerCell)
             return headerCell
         case .data:
-            let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
+            let dataCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
             return dataCell
         }
+    }
+    
+    func setupHeader(headerCell: ProfileHeaderCell) {
+        headerCell.emailLabel.isHidden = true
+        headerCell.configureCell(user: viewModel.user)
     }
     
     func setupNavItems() {

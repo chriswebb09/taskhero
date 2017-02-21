@@ -28,4 +28,13 @@ struct ProfileViewModel {
 
 enum ProfileCellType {
     case header, data
+    
+    var identifier: String {
+        switch self {
+        case .header:
+            return ProfileHeaderCell.cellIdentifier
+        case .data:
+            return ProfileDataCell.cellIdentifier
+        }
+    }
 }
