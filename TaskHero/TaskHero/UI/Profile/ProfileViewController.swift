@@ -10,7 +10,7 @@ final class ProfileViewController: UITableViewController {
     
     var viewModel = ProfileViewModel()
     
-     // MARK: - Initialization
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,18 +71,18 @@ final class ProfileViewController: UITableViewController {
     }
     
     func setupNavItems() {
+        let rightBarImage: UIImage? = UIImage(named: "add-white-2")
+        let leftBarAttributes: [String: Any] = [NSForegroundColorAttributeName: UIColor.white,
+                                                NSFontAttributeName: Constants.Font.fontMedium]
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out",
                                                            style: .done,
                                                            target: self,
                                                            action: #selector(logoutButtonPressed))
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal),
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightBarImage?.withRenderingMode(.alwaysOriginal),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(addTaskButtonTapped))
-        
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium],
-                                                                 for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes(leftBarAttributes, for: .normal)
     }
     
     // MARK: - Selector Methods
