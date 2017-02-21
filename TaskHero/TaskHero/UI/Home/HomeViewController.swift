@@ -11,15 +11,19 @@ import UIKit
 final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
     
     var homeViewModel: HomeViewModel
+    
     var taskMethods = SharedTaskMethods()
     var profileMethods = SharedProfileMethods()
+    
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
+    
     let photoPopover = PhotoPickerPopover()
     let picker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewSetup()
+        barSetup()
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -36,7 +40,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //homeViewModel.fetchTasks(tableView: tableView)
         taskMethods.fetchUser(tableView: tableView)
         super.viewWillAppear(false)
     }
@@ -50,7 +53,8 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
-     below navbar, adds button items to navcontroller navbar -> called in viewDidLoad */
+     below navbar, adds button items to navcontroller navbar
+     -> called in viewDidLoad */
     
     func viewSetup() {
         registerCellsToTableView()
@@ -58,6 +62,9 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         picker.delegate = self
         edgesForExtendedLayout = []
+    }
+    
+    func barSetup() {
         let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
         let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(logoutButtonPressed), viewController: self)
         let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(addTaskButtonTapped), viewController: self)
@@ -86,9 +93,8 @@ extension HomeViewController {
         return homeViewModel.rowHeight
     }
     
-    // MARK: - Return cells for index - dequeueReusableCell
-    
-    /* If first row returns profile headerCell else returns taskCell all cells configured within HomeViewController using setupCell methods */
+    /* If first row returns profile headerCell else returns taskCell
+     -> all cells configured within HomeViewController using setupCell methods */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let type: HomeCellType = indexPath.row > 0 ? .task : .header
@@ -102,9 +108,7 @@ extension HomeViewController {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! ProfileHeaderCell
             setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
             headerCell.delegate = self
-            if homeViewModel.profilePic != nil {
-                headerCell.profilePicture.image = homeViewModel.profilePic!
-            }
+            if homeViewModel.profilePic != nil { headerCell.profilePicture.image = homeViewModel.profilePic! }
             return headerCell
         }
     }
@@ -153,7 +157,6 @@ extension HomeViewController {
             backgroundQueue.async {
                 self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
                 self.taskMethods.fetchUser(tableView: self.tableView)
-                //self.taskMethods.fetchTasks(tableView: self.tableView)
             }
             tableView.endUpdates()
         }
@@ -161,7 +164,6 @@ extension HomeViewController {
 }
 
 // MARK: Selector Methods
-/* Sets up logoutButtonPressed() , addTaskButtonTapped() selector methods */
 
 extension HomeViewController {
     
@@ -210,8 +212,6 @@ extension HomeViewController: TaskCellDelegate {
 // MARK: - ProfileHeaderCell Delegate Method
 
 extension HomeViewController: ProfileHeaderCellDelegate {
-    
-    // MARK: - Popover Methods
     
     internal func hidePopoverView() {
         photoPopover.hidePopView(viewController: self)
