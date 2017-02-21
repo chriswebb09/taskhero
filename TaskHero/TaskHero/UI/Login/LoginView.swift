@@ -102,6 +102,7 @@ final class LoginView: UIView {
     
     private func setupConstraints() {
         setupLogoImage()
+        
         setupView(view: emailField)
         setupView(view: passwordField)
         setupView(view: loginButton)
@@ -148,6 +149,7 @@ final class LoginView: UIView {
     
     func textFieldAnimation() {
         UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 
                 self.emailField.layer.borderWidth = 1.2
@@ -155,6 +157,7 @@ final class LoginView: UIView {
                 self.emailField.textColor =  Constants.Color.backgroundColor.setColor
                 
             } }, completion: { _ in
+                
                 let when = DispatchTime.now() + 0.32
                 DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
                     

@@ -22,15 +22,14 @@ final class ProfileDataCell: UITableViewCell {
         return cellModel
     }()
     
-    // Level label - label for User Level - i.e. Task Goat, Task Wizard ect.
-    
     var levelLabel: UILabel = {
         let levelLabel = UILabel()
         return levelLabel
     }()
     
-    /* Number of experience points for user - by adding together points of tasks completed
-     * at this point tasksCompleted means by tasks deleted - will be improved upon
+    /*
+     Number of experience points for user - by adding together points of tasks completed
+     at this point tasksCompleted means by tasks deleted - will be improved upon
      */
     
     var experiencePointsLabel: UILabel = {
@@ -57,9 +56,6 @@ final class ProfileDataCell: UITableViewCell {
         return divider
     }()
     
-    // MARK: - Initialization
-    /* Lays out subviews and calls setup constraints */
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         isUserInteractionEnabled = false
@@ -74,9 +70,6 @@ final class ProfileDataCell: UITableViewCell {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
     }
-    
-    // MARK: - Configuration
-    /* Called on levelLabel, experiencePointsLabel, tasksCompleted label sets label to small green ovaly element with black border aligns content in center */
     
     private func configureLabels(label: UILabel) {
         label.layer.cornerRadius = Constants.Settings.Profile.profileDataRadius
@@ -97,8 +90,10 @@ final class ProfileDataCell: UITableViewCell {
     /* Adds constraints to labels to also adds experience points labels and tasksComleted labels to contentView */
     
     private func addLevelLabel(levelLabel:UILabel) {
+        
         configureLabels(label: levelLabel)
         levelLabel.snp.makeConstraints { make in
+            
             make.left.equalTo(contentView.snp.left).offset(Constants.Dimension.topOffset)
             make.centerY.equalTo(contentView.snp.centerY)
             make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
@@ -108,14 +103,17 @@ final class ProfileDataCell: UITableViewCell {
     
     private func configureDividers(view: UIView) {
         view.snp.makeConstraints { make in
+            
             make.width.equalTo(contentView.snp.width)
             make.height.equalTo(contentView.snp.height).multipliedBy(0.01)
         }
     }
     
     private func addExperiencePointLabel(experiencePointLabel:UILabel) {
+        
         configureLabels(label: experiencePointsLabel)
         experiencePointLabel.snp.makeConstraints { make in
+            
             make.centerY.equalTo(contentView.snp.centerY)
             make.centerX.equalTo(contentView.snp.centerX)
             make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
@@ -124,8 +122,10 @@ final class ProfileDataCell: UITableViewCell {
     }
     
     private func addTasksCompletedLabel(tasksCompletedLabel:UILabel) {
+        
         configureLabels(label: tasksCompletedLabel)
         tasksCompletedLabel.snp.makeConstraints { make in
+            
             make.centerY.equalTo(contentView.snp.centerY)
             make.right.equalTo(contentView.snp.right).offset(Constants.Settings.Profile.profileDataRightOffset)
             make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
@@ -134,14 +134,17 @@ final class ProfileDataCell: UITableViewCell {
     }
     
     private func setupConstraints() {
+        
         addLevelLabel(levelLabel: levelLabel)
         addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
+        
         configureDividers(view: topDivider)
         topDivider.snp.makeConstraints { make in
             make.centerX.equalTo(contentView.snp.centerX)
             make.top.equalTo(contentView.snp.top)
         }
+        
         configureDividers(view: bottomDivider)
         bottomDivider.snp.makeConstraints { make in
             make.centerX.equalTo(contentView.snp.centerX)
