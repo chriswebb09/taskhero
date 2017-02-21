@@ -33,15 +33,18 @@ class AppScreenView: UIView {
     }
     
     private func setupConstraints() {
+        
         setupLogoImage(logoImageView: logoImageView)
         constraintSetup(views: [viewDivider, loginButton, signupButton])
         setupViewDivider(viewDivider: viewDivider)
+        
         loginButton.snp.makeConstraints { make in
             make.bottom.equalTo(viewDivider.snp.top).offset(UIScreen.main.bounds.height * -0.04)
             make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
             make.height.equalTo(self).multipliedBy(0.075)
             make.centerX.equalTo(self)
         }
+        
         signupButton.snp.makeConstraints { make in
             make.top.equalTo(viewDivider.snp.bottom).offset(UIScreen.main.bounds.height * 0.04)
             make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
@@ -51,8 +54,10 @@ class AppScreenView: UIView {
     }
     
     private func setupLogoImage(logoImageView: UIView) {
+        
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
         logoImageView.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(0.75)
             make.height.equalTo(self).multipliedBy(0.06)
@@ -71,8 +76,10 @@ class AppScreenView: UIView {
     }
     
     private func setupView(view: UIView) {
+        
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         view.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
             make.height.equalTo(self).multipliedBy(Constants.Login.loginFieldHeight)

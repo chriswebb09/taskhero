@@ -5,8 +5,6 @@ typealias TaskCompletion = ([Task]) -> Void
 typealias UserCompletion = (User) -> Void
 
 final class APIClient {
-    // Firebase properties
-    
     let storage = FIRStorage.storage()
     var storageRef:FIRStorageReference!
     var tasksRef: FIRDatabaseReference!
@@ -121,6 +119,7 @@ final class APIClient {
             newTask.taskDue = fetchDue
             newTask.taskCompleted = fetchCompleted
         }
+        
         return Optional(newTask)
     }
     
@@ -149,6 +148,7 @@ final class APIClient {
     
     func createUserSnapshot(snapshot: FIRDataSnapshot, user: User) {
         guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
+        
         if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
             let snapshotEmail = snapshotValue[Constants.API.User.email] as? String,
             let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String,
