@@ -1,17 +1,17 @@
 import UIKit
 
 class User: NSObject, NSCoding {
-    var uid: String
-    var email: String
-    var username: String
+    var uid: String = ""
+    var email: String = ""
+    var username: String = ""
     var firstName: String?
     var lastName: String?
     var profilePicture: String?
-    var experiencePoints: Int
-    var level: String
-    var joinDate: String
+    var experiencePoints: Int = 0
+    var level: String = ""
+    var joinDate: String = ""
     var tasks: [Task]?
-    var numberOfTasksCompleted: Int
+    var numberOfTasksCompleted: Int = 0 
     
     init(uid: String,  email: String, firstName: String?, lastName: String?, profilePicture: String?, username: String, experiencePoints: Int, level: String, joinDate: String, tasks: [Task]?, numberOfTasksCompleted: Int) {
         self.uid = uid

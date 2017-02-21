@@ -8,8 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow? = {
         let window = UIWindow(frame: UIScreen.main.bounds)
-         window.rootViewController = UINavigationController(rootViewController: InitialViewController())
-         //window.rootViewController = UINavigationController(rootViewController: HomeHeaderView())
+        window.rootViewController = UINavigationController(rootViewController: InitialViewController())
+        //window.rootViewController = UINavigationController(rootViewController: HomeHeaderView())
         return window
     }()
     

@@ -1,23 +1,11 @@
 import UIKit
 
 struct Task {
-    var taskID: String
-    var taskName: String
-    var taskDescription:String
-    var taskCreated: String
-    var taskDue: String
-    var taskCompleted: Bool
-    var pointValue: Int
-}
-
-extension Task {
-    init() {
-        self.init(taskID: "",
-                  taskName: "",
-                  taskDescription:"",
-                  taskCreated:Date().dateStringFormatted(),
-                  taskDue:"",
-                  taskCompleted:false,
-                  pointValue: 5)
-    }
+    var taskID: String = ""
+    var taskName: String = ""
+    var taskDescription: String = ""
+    var taskCreated: String = Date().dateStringFormatted()
+    var taskDue: String = ""
+    var taskCompleted: Bool = false
+    var pointValue: Int = 5
 }
