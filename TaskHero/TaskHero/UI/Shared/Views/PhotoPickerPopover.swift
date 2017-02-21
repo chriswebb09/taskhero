@@ -22,7 +22,7 @@ class PhotoPickerPopover: BasePopoverAlert {
     
     // MARK: - Behavior methods
     
-    func popViewSettings(popView:PhotoPickerView) {
+    func popViewSettings(popView: PhotoPickerView) {
         popView.layer.borderColor = UIColor.black.cgColor
         popView.layer.borderWidth = 1
         popView.clipsToBounds = true
@@ -30,27 +30,27 @@ class PhotoPickerPopover: BasePopoverAlert {
         popView.layer.opacity = 1
     }
     
-    func popViewCentered(popView:PhotoPickerView) {
-        popView.frame = CGRect(x: UIScreen.main.bounds.width * 0.5,
-                               y: UIScreen.main.bounds.height * 0.35,
-                               width: UIScreen.main.bounds.width * 0.75,
-                               height: UIScreen.main.bounds.height * 0.35)
-        popView.center = CGPoint(x: UIScreen.main.bounds.width * 0.5,
-                                 y: UIScreen.main.bounds.height * 0.4)
+    func popViewCentered(popView: PhotoPickerView) {
+        photoPopView.frame = CGRect(x: UIScreen.main.bounds.width * 0.5,
+                                    y: UIScreen.main.bounds.height * 0.35,
+                                    width: UIScreen.main.bounds.width * 0.75,
+                                    height: UIScreen.main.bounds.height * 0.35)
+        photoPopView.center = CGPoint(x: UIScreen.main.bounds.width * 0.5,
+                                      y: UIScreen.main.bounds.height * 0.4)
     }
     
     override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
-        popViewCentered(popView: popView as! PhotoPickerView)
-        popViewSettings(popView: popView as! PhotoPickerView)
+        popViewCentered(popView: photoPopView)
+        popViewSettings(popView: photoPopView)
         viewController.view.addSubview(containerView)
-        viewController.view.addSubview(popView)
+        viewController.view.addSubview(photoPopView)
     }
     
-    func hideView(viewController:UIViewController) {
-        popView.isHidden = true
+    func hideView(viewController: UIViewController) {
+        photoPopView.isHidden = true
         hidePopView(viewController: viewController)
-        popView.layer.opacity = 0
+        photoPopView.layer.opacity = 0
         containerView.layer.opacity = 0
     }
 }

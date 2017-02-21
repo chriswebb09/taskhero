@@ -27,24 +27,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         viewSetup()
     }
     
-    /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
-     * below navbar, adds button items to navcontroller navbar -> called in viewDidLoad
-     */
-    
-    func viewSetup() {
-        registerCellsToTableView()
-        taskMethods.setupTableView(tableView: tableView, view: view)
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
-        picker.delegate = self
-        edgesForExtendedLayout = []
-        addNavItemsToController()
-    }
-    
-    func registerCellsToTableView() {
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-    }
-    
     required convenience init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
     }
@@ -64,31 +46,56 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     /* Removes reference to database - necessary to prevent
-     * duplicate task cells from loading when viewWillAppear is called again. -> Functionality implemented in helper class
+     * duplicate task cells from loading when viewWillAppear is called again.
+     * -> Functionality implemented in helper class
      */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         homeViewModel.removeRefHandle()
     }
+    
+    /* Registers cells to tableview, sets background color for view, sets picker delegate to self(HomeViewController), extends layout to start
+     * below navbar, adds button items to navcontroller navbar -> called in viewDidLoad
+     */
+    
+    func viewSetup() {
+        registerCellsToTableView()
+        taskMethods.setupTableView(tableView: tableView, view: view)
+        view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
+        picker.delegate = self
+        edgesForExtendedLayout = []
+        addNavItemsToController()
+    }
+    
+    func registerCellsToTableView() {
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+    }
+    
 }
 
-extension HomeViewController: UITextViewDelegate {
+// MARK: - UITableViewController Methods
+
+extension HomeViewController {
     
-    // MARK: - UITableViewController Methods
+    
     /* Returns number of rows from view model based on task count in currentUser */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeViewModel.numberOfRows
     }
     
-    /* Gets rowheight from view model and returns it - rowheight is UITableViewAutomaticDimension */
+    /* Gets rowheight from view model and returns it
+     * rowheight is UITableViewAutomaticDimension
+     */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return homeViewModel.rowHeight
     }
     
     // MARK: - Return cells for index - dequeueReusableCell
+    
     /* If first row returns profile headerCell else returns taskCell
      * all cells configured within HomeViewController using setupCell methods
      */
@@ -105,6 +112,9 @@ extension HomeViewController: UITextViewDelegate {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! ProfileHeaderCell
             setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
             headerCell.delegate = self
+            if homeViewModel.profilePic != nil {
+                headerCell.profilePicture.image = homeViewModel.profilePic!
+            }
             return headerCell
         }
     }
@@ -112,11 +122,13 @@ extension HomeViewController: UITextViewDelegate {
 
 // MARK: - Extension for setting up cells & TaskCell delegate logic implementation
 
-extension HomeViewController: TaskCellDelegate {
+extension HomeViewController {
     
     func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
         headerCell.emailLabel.isHidden = true
         if let user = homeViewModel.user { headerCell.configureCell(user: user) }
+        let tap = UIGestureRecognizer(target:self, action: #selector(profilePictureTapped(sender:)))
+        headerCell.profilePicture.addGestureRecognizer(tap)
     }
     
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
@@ -130,8 +142,12 @@ extension HomeViewController: TaskCellDelegate {
         let tap = UIGestureRecognizer(target:self, action: #selector(toggleForEditState(_:)))
         cell.taskCompletedView.addGestureRecognizer(tap)
     }
+}
+
+// MARK: - Delete Task logic
+
+extension HomeViewController {
     
-    // MARK: - Delete Task logic
     /* Cannot edit cell at tableview index row 0 */
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -152,7 +168,12 @@ extension HomeViewController: TaskCellDelegate {
         }
     }
     
-    // MARK: Selector Methods
+}
+
+// MARK: Selector Methods
+
+extension HomeViewController {
+    
     /* Sets up logoutButtonPressed() , addTaskButtonTapped() selector methods */
     
     func logoutButtonPressed() {
@@ -188,14 +209,13 @@ extension HomeViewController: TaskCellDelegate {
                                                             action: #selector(addTaskButtonTapped))
     }
     
-    // MARK: - Popover Methods
-    /* Hides popover view when operation has ended. */
     
-    internal func hidePopoverView() {
-        photoPopover.hidePopView(viewController: self)
-    }
+}
+
+// MARK:  TaskCell Delegate Methods
+
+extension HomeViewController: TaskCellDelegate {
     
-    // MARK:  TaskCell Delegate Methods
     /* Methods for toggling taskCell edit state. */
     
     func toggleForButtonState(_ sender:UIButton) {
@@ -222,9 +242,16 @@ extension HomeViewController: TaskCellDelegate {
 
 extension HomeViewController: ProfileHeaderCellDelegate {
     
+    // MARK: - Popover Methods
+    /* Hides popover view when operation has ended. */
+    
+    internal func hidePopoverView() {
+        photoPopover.hidePopView(viewController: self)
+    }
+    
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
-        // need to be implemented
-        print("here")
+        photoPopover.showPopView(viewController: self)
+        photoPopover.photoPopView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
     }
 }
 
@@ -232,9 +259,7 @@ extension HomeViewController: ProfileHeaderCellDelegate {
 
 extension HomeViewController: UIImagePickerControllerDelegate {
     
-    // FIXME: - Fix so that image picker can be dismissed by clicking on popover containerview - Add profile picture storage methods
-    
-    func selectImage(picker:UIImagePickerController, viewController: UIViewController) {
+    func selectImage(picker: UIImagePickerController, viewController: UIViewController) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
         viewController.present(picker, animated: true, completion: nil)
@@ -245,5 +270,14 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)
         photoPopover.hideView(viewController: self)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            homeViewModel.profilePic = image
+        } else {
+            print("Something went wrong")
+        }
+        dismiss(animated: true, completion: nil)
     }
 }

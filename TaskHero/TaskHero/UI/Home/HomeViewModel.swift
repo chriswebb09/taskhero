@@ -33,8 +33,10 @@ struct HomeViewModel {
     
     fileprivate let concurrentQueue = DispatchQueue(label: "com.taskHero.concurrentQueue", attributes: .concurrent)
     
-    var user: User? {
+    var profilePic: UIImage?
         
+    
+    var user: User? {
         return self.store.currentUser
     }
     

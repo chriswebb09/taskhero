@@ -11,7 +11,7 @@ class PhotoPickerView: BasePopView {
     
     // MARK: - Configuration
     
-    func addButton(button:UIButton) {
+    func addButton(button: UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.snp.makeConstraints { make in
             make.centerX.equalTo(self)
