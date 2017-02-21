@@ -34,10 +34,14 @@ final class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellIdentifier, for: indexPath as IndexPath) as! SettingsCell
+        setupSettingsCell(settingsCell: settingsCell, indexPath: indexPath)
+        return settingsCell
+    }
+    
+    func setupSettingsCell(settingsCell: SettingsCell, indexPath: IndexPath) {
         settingsViewModel = SettingsCellViewModel(settings[indexPath.row])
         settingsCell.configureCell(setting: settingsViewModel)
         settingsCell.contentView.clipsToBounds = true
-        return settingsCell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -56,8 +60,6 @@ final class SettingsViewController: UITableViewController {
     
     func setupTableView() {
         setupHeader()
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
-        tableView.setupTableView(view:self.view)
         setupTableViewUI()
         setupSegment()
     }
@@ -70,6 +72,8 @@ final class SettingsViewController: UITableViewController {
     }
     
     func setupTableViewUI() {
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
+        tableView.setupTableView(view:self.view)
         edgesForExtendedLayout = []
         view.backgroundColor = .backgroundColor()
         tableView.separatorColor = .blue
