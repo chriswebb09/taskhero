@@ -44,8 +44,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         return taskNameField
     }()
     
-    // MARK: - Initalization
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
@@ -54,8 +52,6 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         layoutMargins = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
     }
-    
-    // MARK: - Configure Cell Methods
     
     func configureCell(setting:String) {
         layoutSubviews()

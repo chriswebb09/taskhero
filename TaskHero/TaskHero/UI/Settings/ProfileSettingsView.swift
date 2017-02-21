@@ -18,7 +18,7 @@ final class ProfileSettingsView: UIView {
         setupConstraints()
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
         profileLabel.snp.makeConstraints { make in

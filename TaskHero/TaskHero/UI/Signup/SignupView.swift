@@ -36,11 +36,6 @@ class SignupView: UIView {
         let button = ButtonType.login(title: "Sign Up")
         return button.newButton
     }()
-}
-
-extension SignupView {
-    
-    // MARK: Initialization
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -81,7 +76,7 @@ extension SignupView {
         }
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         setupLogoImage()
         setupView(view: usernameField)
         usernameField.snp.makeConstraints { make in

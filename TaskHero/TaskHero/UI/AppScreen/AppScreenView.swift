@@ -31,11 +31,8 @@ class AppScreenView: UIView {
         frame = UIScreen.main.bounds
         setupConstraints()
     }
-}
-
-extension AppScreenView {
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         setupLogoImage(logoImageView: logoImageView)
         constraintSetup(views: [viewDivider, loginButton, signupButton])
         setupViewDivider(viewDivider: viewDivider)

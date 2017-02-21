@@ -7,13 +7,12 @@ final class SettingsViewController: UITableViewController {
     let applicationSettings = ["Notifications"]
     let userSettings = ["Edit Profile", "Friends"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
+    
     let label = UILabel()
     var settings = [String]()
     let alertPop = AlertPopover()
     let notifyPop = NotificationPopover()
     var settingsViewModel:SettingsCellViewModel!
-    
-    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +24,6 @@ final class SettingsViewController: UITableViewController {
         super.viewWillDisappear(false)
         hide()
     }
-    
-    // MARK: UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
@@ -79,16 +76,14 @@ final class SettingsViewController: UITableViewController {
         tableView.separatorColor = .blue
     }
     
-    // MARK: Public Methods
-    
-    fileprivate func alertPopInitialOpacity() {
+    private func alertPopInitialOpacity() {
         alertPop.popView.isHidden = false
         alertPop.containerView.isHidden = false
         alertPop.containerView.layer.opacity = 0
         alertPop.popView.layer.opacity = 0
     }
     
-    fileprivate func launchPopupView() {
+    private func launchPopupView() {
         alertPopInitialOpacity()
         alertPop.showPopView(viewController: self)
         UIView.animate(withDuration: 0.1) { [unowned self] in
@@ -122,9 +117,6 @@ final class SettingsViewController: UITableViewController {
             self.notifyPop.layoutIfNeeded()
         }
     }
-    
-    // MARK: - Setup buttons
-    // Hides notification popover
     
     func dismissNotificationButton() {
         notifyPop.popView.isHidden = true

@@ -37,11 +37,14 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+// MARK: - UITextfield Delegate Methods
+
 extension SignupViewController {
     
-    // MARK: - UITextfield Delegate Methods
-    /* Checks for character length (implemented for username length) if characters exceed allowed range,
-     text field will no longer except new characters */
+    /*
+     Checks for character length (implemented for username length) if characters exceed allowed range,
+     text field will no longer except new characters
+     */
     
     func signupLogic(email: String, password: String, username: String, loadingView: LoadingView) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in

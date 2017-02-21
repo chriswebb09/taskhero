@@ -56,8 +56,6 @@ final class ProfileHeaderCell: UITableViewCell {
         return label
     }
     
-    // MARK: - Initialization
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         selectionStyle = .none
@@ -65,8 +63,6 @@ final class ProfileHeaderCell: UITableViewCell {
         setupConstraints()
         contentView.layer.masksToBounds = true
     }
-    
-    // MARK: - Configuring Cell
     
     private func configureLabel(label:UILabel) {
         label.textColor = .black
@@ -155,8 +151,9 @@ final class ProfileHeaderCell: UITableViewCell {
         addProfilePicture()
     }
     
-    /* Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing
-     * called in ParentViewController - in this case that is either ProfileViewController or HomeViewController
+    /* 
+     Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing - called in ParentViewController
+     in this case that is either ProfileViewController or HomeViewController
      */
     
     func configureCell(user: User) {

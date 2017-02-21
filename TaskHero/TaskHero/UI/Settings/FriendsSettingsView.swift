@@ -2,8 +2,6 @@ import UIKit
 
 final class FriendsSettingsView: UIView {
     
-    // MARK: - UI Elements
-    
     var friendsHeaderLabel: UILabel = {
         let friendsHeaderLabel = UILabel()
         friendsHeaderLabel.textColor = .black
@@ -35,17 +33,13 @@ final class FriendsSettingsView: UIView {
         return searchButton
     }()
     
-    // MARK: - Initialization
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
         setupConstraints()
     }
     
-    // MARK: - Configure
-    
-    fileprivate func configureView(view: UIView) {
+    private func configureView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.snp.makeConstraints { make in
@@ -55,7 +49,7 @@ final class FriendsSettingsView: UIView {
         }
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         configureView(view: friendsHeaderLabel)
         friendsHeaderLabel.snp.makeConstraints { make in
             make.top.equalTo(self).offset(bounds.height * Constants.Settings.FriendsSetting.friendsHeaderLabelTopOffset)

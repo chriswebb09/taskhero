@@ -8,8 +8,6 @@ import SnapKit
 
 final class AddTaskView: UIView {
     
-    // MARK: UI Elements
-    
     var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
         taskNameLabel.textColor = UIColor.black
@@ -20,11 +18,7 @@ final class AddTaskView: UIView {
         return taskNameLabel
     }()
     
-    var taskNameField = TextFieldExtension().emailField("Task name") {
-        didSet {
-            print(taskNameField.text ?? "No task name")
-        }
-    }
+    var taskNameField = TextFieldExtension().emailField("Task name")
     
     var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
@@ -49,8 +43,6 @@ final class AddTaskView: UIView {
         return addTaskButton
     }()
     
-    // MARK: - Initialization
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         frame = UIScreen.main.bounds
@@ -61,9 +53,7 @@ final class AddTaskView: UIView {
         view.layer.borderWidth = Constants.Border.borderWidth
     }
     
-    // MARK: - Configure
-    
-    fileprivate func configureView(view:UIView) {
+    private func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.snp.makeConstraints { make in
@@ -73,7 +63,7 @@ final class AddTaskView: UIView {
         }
     }
     
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         configureView(view: taskNameLabel)
         taskNameLabel.snp.makeConstraints { make in
             make.top.equalTo(self).offset(bounds.height * 0.05)

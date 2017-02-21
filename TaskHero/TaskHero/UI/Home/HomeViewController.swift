@@ -42,7 +42,10 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
         super.viewWillAppear(false)
     }
     
-    /*  Removes reference to database (necessary to prevent duplicate taskCells from being create everytime viewWillAppear is called) - functionality implemented in helper class */
+    /*  
+     Removes reference to database (necessary to prevent duplicate taskCells from being create everytime viewWillAppear is called)
+     - functionality implemented in helper class 
+     */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -52,7 +55,13 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
 
 extension HomeViewController {
     
-    /*  Registers cells to tableview & sets background color for view & sets picker delegate to self(HomeViewController) & extends layout to start below navbar & adds button items to navcontroller navbar -> called in viewDidLoad */
+    /*
+     Registers cells to tableview & sets background color for view
+     & sets picker delegate to self(HomeViewController)
+     & extends layout to start below navbar 
+     & adds button items to navcontroller navbar
+     -> called in viewDidLoad
+     */
     
     func viewSetup() {
         registerCellsToTableView()

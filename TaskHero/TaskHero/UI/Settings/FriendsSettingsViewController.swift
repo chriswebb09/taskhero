@@ -2,17 +2,17 @@ import UIKit
 
 final class FriendsSettingsViewController: UIViewController {
     
-    // MARK: Properties
-    
     let friendsSettingsView = FriendsSettingsView()
     let alertPop = AlertPopover()
-    
-    // MARK: ViewController Initialization Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(friendsSettingsView)
+        setupFriendsSettingView()
+    }
+    
+    func setupFriendsSettingView() {
         friendsSettingsView.layoutSubviews()
         friendsSettingsView.searchField.delegate = self
         friendsSettingsView.searchButton.addTarget(self, action: #selector(popup), for: .touchUpInside)

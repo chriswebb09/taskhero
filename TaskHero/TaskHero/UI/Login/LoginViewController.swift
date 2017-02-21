@@ -211,7 +211,10 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    /* When no longer using input fields changes textfield ui properties back to original */
+    /*
+     When no longer using input fields 
+     textfield properties change back to original
+     */
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderWidth = 1

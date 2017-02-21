@@ -12,8 +12,8 @@ protocol ProfileDataCellModel {
 }
 
 struct ProfileDataCellViewModel {
-    
     let store = UserDataStore.sharedInstance
+    
     internal var tasksCompleted: Int
     internal var experience: Int
     internal var level: String
