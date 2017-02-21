@@ -8,14 +8,10 @@ protocol TaskCellDelegate: class {
 
 final class TaskCell: UITableViewCell, Toggable {
     
-    // MARK: - Properties
-    
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
     var taskViewModel: TaskCellViewModel!
     var toggled: Bool = false
-    
-    // MARK: - Setup UI Elements
     
     var taskNameLabel: UITextView = {
         let textView = UITextView().setupCellStyle()
@@ -59,15 +55,12 @@ final class TaskCell: UITableViewCell, Toggable {
         setupShadow()
     }
     
-    
     private func setupConfigures() {
         configureTextView(label: taskDescriptionLabel)
         configureTextView(label: taskDueLabel)
         configureTextView(label: taskNameLabel)
         setupConstraints()
     }
-    
-    // MARK: - Reuse
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -76,7 +69,6 @@ final class TaskCell: UITableViewCell, Toggable {
     }
     
     // MARK: - Delegate Methods
-
     /* Button toggle methods - changes taskCell UI based on editstate value */
     
     func taskCell(didToggleEditState editState:Bool) {
@@ -118,7 +110,7 @@ final class TaskCell: UITableViewCell, Toggable {
     }
     
     // MARK: - Configure cell subviews
-    /* takes in textview returns configured textview*/
+    /*  takes in textview returns configured textview */
     
     func configureTextView(label: UITextView) {
         label.textAlignment = .left
