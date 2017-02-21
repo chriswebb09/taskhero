@@ -48,8 +48,6 @@ final class TaskCell: UITableViewCell, Toggable {
         return button
     }()
     
-    // MARK: - Initialization
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         selectionStyle = .none
@@ -61,9 +59,8 @@ final class TaskCell: UITableViewCell, Toggable {
         setupShadow()
     }
     
-    // MARK: - Configure cell
     
-    fileprivate func setupConfigures() {
+    private func setupConfigures() {
         configureTextView(label: taskDescriptionLabel)
         configureTextView(label: taskDueLabel)
         configureTextView(label: taskNameLabel)
@@ -79,8 +76,8 @@ final class TaskCell: UITableViewCell, Toggable {
     }
     
     // MARK: - Delegate Methods
-    // Button toggle methods
-    /* changes taskCell UI based on editstate value */
+
+    /* Button toggle methods - changes taskCell UI based on editstate value */
     
     func taskCell(didToggleEditState editState:Bool) {
         textViewToggle(state: editState, textView: taskDescriptionLabel)
@@ -89,21 +86,15 @@ final class TaskCell: UITableViewCell, Toggable {
     func textViewToggle(state: Bool, textView: UITextView) {
         if state == true {
             textView.editTextViewStyle()
-            textView.isEditable = true
-            textView.isUserInteractionEnabled = true
-            saveButton.isEnabled = true
-            saveButton.isHidden = false
-            taskCompletedView.isHidden = true
-            taskCompletedView.isUserInteractionEnabled = false
         } else if state == false {
             textView.labelTextViewStyle()
-            textView.isEditable = false
-            textView.isUserInteractionEnabled = false
-            saveButton.isEnabled = false
-            saveButton.isHidden = true
-            taskCompletedView.isHidden = false
-            taskCompletedView.isUserInteractionEnabled = true
         }
+        textView.isEditable = state
+        textView.isUserInteractionEnabled = state
+        saveButton.isEnabled = state
+        saveButton.isHidden = !state
+        taskCompletedView.isHidden = state
+        taskCompletedView.isUserInteractionEnabled = !state
     }
     
     /* taskCompletedView delegate method */
