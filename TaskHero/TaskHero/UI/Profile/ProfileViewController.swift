@@ -8,16 +8,14 @@ import Firebase
 
 final class ProfileViewController: UITableViewController {
     
-    let store = UserDataStore.sharedInstance
+    var viewModel = ProfileViewModel()
     
-    // MARK: - Initialization
+     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        registerCells()
-        setupTableViewUI()
-        setupNavItems()
+        setupMethods()
         tableView.reloadOnMain()
     }
     
@@ -26,6 +24,12 @@ final class ProfileViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         tableView.reloadOnMain()
+    }
+    
+    func setupMethods() {
+        registerCells()
+        setupTableViewUI()
+        setupNavItems()
     }
     
     private func setupTableViewUI() {
@@ -42,22 +46,24 @@ final class ProfileViewController: UITableViewController {
     // MARK: UITableViewController Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.numberOfRows
     }
     
     /* Gives an automatic dimension to tableView based on given default value for rowheight*/
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return viewModel.rowHeight
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        var type: ProfileCellType = indexPath.row == 0 ? .header : .data
+        switch type {
+        case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: ProfileHeaderCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             headerCell.emailLabel.isHidden = true
-            headerCell.configureCell(user: self.store.currentUser)
+            headerCell.configureCell(user: viewModel.user)
             return headerCell
-        } else {
+        case .data:
             let dataCell = tableView.dequeueReusableCell(withIdentifier: ProfileDataCell.cellIdentifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
             return dataCell
@@ -65,9 +71,18 @@ final class ProfileViewController: UITableViewController {
     }
     
     func setupNavItems() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logoutButtonPressed))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(addTaskButtonTapped))
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium], for: .normal)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out",
+                                                           style: .done,
+                                                           target: self,
+                                                           action: #selector(logoutButtonPressed))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-white-2")?.withRenderingMode(.alwaysOriginal),
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(addTaskButtonTapped))
+        
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium],
+                                                                 for: .normal)
     }
     
     // MARK: - Selector Methods
