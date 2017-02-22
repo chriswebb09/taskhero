@@ -11,9 +11,6 @@ struct DataPeristence {
         let user = defaults.data(forKey: "currentUser")
         if hasLoggedIn {
             print("LOGGED IN")
-            print(defaults.description)
-            print(defaults.value(forKey: "hasLoggedIn").debugDescription)
-            dump(user)
         }
     }
     

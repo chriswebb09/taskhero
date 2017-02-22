@@ -54,6 +54,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
 }
 
+// MAKR: - Setup Methods
 extension HomeViewController {
     
     /*
@@ -105,43 +106,7 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let type: HomeCellType = indexPath.row > 0 ? .task : .header
-        
-        switch type {
-        case .task:
-            let taskCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! TaskCell
-            setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
-            taskCell.delegate = self
-            return taskCell
-            
-        case .header:
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! ProfileHeaderCell
-            setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
-            headerCell.delegate = self
-            if homeViewModel.profilePic != nil { headerCell.profilePicture.image = homeViewModel.profilePic! }
-            return headerCell
-        }
-    }
-}
-
-extension HomeViewController {
-    
-    func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
-        headerCell.emailLabel.isHidden = true
-        if let user = homeViewModel.user { headerCell.configureCell(user: user) }
-        let tap = UIGestureRecognizer(target:self, action: #selector(profilePictureTapped(sender:)))
-        headerCell.profilePicture.addGestureRecognizer(tap)
-    }
-    
-    func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
-        let taskViewModel = homeViewModel.getViewModelForTask(taskIndex: taskIndex)
-        taskCell.configureCell(taskVM: taskViewModel)
-        taskCell.tag = taskIndex
-        addInteractionToCell(cell: taskCell)
-    }
-    
-    func addInteractionToCell(cell: TaskCell) {
-        let tap = UIGestureRecognizer(target:self, action: #selector(toggleForEditState(_:)))
-        cell.taskCompletedView.addGestureRecognizer(tap)
+        return homeViewModel.returnCell(tableViewController: self, type: type, for: indexPath)
     }
 }
 

@@ -30,7 +30,7 @@ final class SettingsCell: UITableViewCell {
     // MARK: - Configure constraints
     
     fileprivate func setupConstraints() {
-        contentView.backgroundColor = .settingsBackground()
+        contentView.backgroundColor = .settingsBackground
         contentView.addSubview(settingLabel)
         settingsLabelSetup()
     }

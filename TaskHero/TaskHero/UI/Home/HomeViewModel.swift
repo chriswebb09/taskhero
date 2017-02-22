@@ -64,4 +64,41 @@ struct HomeViewModel {
     func numberOfItemsInSection(section: Int) -> Int {
         return taskList.count
     }
+    
+    
+    func returnCell(tableViewController: HomeViewController, type: HomeCellType, for indexPath: IndexPath) -> UITableViewCell {
+        switch type {
+        case .task:
+            let taskCell = tableViewController.tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! TaskCell
+            setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
+            taskCell.delegate = tableViewController
+            addInteractionToCell(cell: taskCell, viewController: tableViewController)
+            return taskCell
+            
+        case .header:
+            let headerCell = tableViewController.tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! ProfileHeaderCell
+            setupHeaderCell(headerCell: headerCell, indexPath: indexPath)
+            headerCell.delegate = tableViewController
+            let tap = UIGestureRecognizer(target:self, action: #selector(tableViewController.profilePictureTapped(sender:)))
+            headerCell.profilePicture.addGestureRecognizer(tap)
+            if profilePic != nil { headerCell.profilePicture.image = profilePic! }
+            return headerCell
+        }
+    }
+    
+    func addInteractionToCell(cell: TaskCell, viewController: HomeViewController) {
+        let tap = UIGestureRecognizer(target:self, action: #selector(viewController.toggleForEditState(_:)))
+        cell.taskCompletedView.addGestureRecognizer(tap)
+    }
+    func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
+        headerCell.emailLabel.isHidden = true
+        if let user = user { headerCell.configureCell(user: user) }
+        
+    }
+    
+    func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
+        let taskViewModel = getViewModelForTask(taskIndex: taskIndex)
+        taskCell.configureCell(taskVM: taskViewModel)
+        taskCell.tag = taskIndex
+    }
 }

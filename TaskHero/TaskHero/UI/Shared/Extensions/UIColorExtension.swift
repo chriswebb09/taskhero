@@ -1,6 +1,14 @@
 import UIKit
 
 extension UIColor {
+    
+   
+    
+    static let midnightBlue: UIColor = UIColor(red:0.44, green:0.62, blue:0.80, alpha: 1.0)
+    static let settingsBackground: UIColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
+    static let background: UIColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+    
+    
     class func midnightBlueColor()-> UIColor {
         return UIColor(red:0.44, green:0.62, blue:0.80, alpha: 1.0)
     }
@@ -33,9 +41,9 @@ extension UIColor {
         return UIColor(red:0.95, green:0.06, blue:0.06, alpha:1.0)
     }
     
-    class func settingsBackground() -> UIColor {
-        return UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
-    }
+//    class func settingsBackground() -> UIColor {
+//        return UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
+//    }
     
     class func experienceBackground() -> UIColor {
         return UIColor(red:0.29, green:0.85, blue:0.39, alpha:1.0)
