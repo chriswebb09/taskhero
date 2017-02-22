@@ -20,7 +20,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewSetup()
+        homeViewModel.viewSetup(viewController: self)
         homeViewModel.barSetup(controller: self)
     }
     
@@ -51,31 +51,6 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         homeViewModel.removeRefHandle()
-    }
-}
-
-// MAKR: - Setup Methods
-extension HomeViewController {
-    
-    /*
-     Registers cells to tableview & sets background color for view
-     & sets picker delegate to self(HomeViewController)
-     & extends layout to start below navbar
-     & adds button items to navcontroller navbar
-     -> called in viewDidLoad
-     */
-    
-    func viewSetup() {
-        registerCellsToTableView()
-        taskMethods.setupTableView(tableView: tableView, view: view)
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
-        picker.delegate = self
-        edgesForExtendedLayout = []
-    }
-    
-    func registerCellsToTableView() {
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
     }
 }
 

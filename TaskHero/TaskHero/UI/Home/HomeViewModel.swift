@@ -23,6 +23,7 @@ struct HomeViewModel {
     fileprivate let concurrentQueue = DispatchQueue(label: "com.taskHero.concurrentQueue", attributes: .concurrent)
     
     var profilePic: UIImage?
+    var taskMethods = SharedTaskMethods()
     
     var user: User? {
         return self.store.currentUser
@@ -63,6 +64,19 @@ struct HomeViewModel {
     
     func numberOfItemsInSection(section: Int) -> Int {
         return taskList.count
+    }
+    
+    func viewSetup(viewController: HomeViewController) {
+        registerCellsToTableView(tableView: viewController.tableView)
+        taskMethods.setupTableView(tableView: viewController.tableView, view: viewController.view)
+        viewController.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
+        viewController.picker.delegate = viewController
+        viewController.edgesForExtendedLayout = []
+    }
+    
+    func registerCellsToTableView(tableView: UITableView) {
+        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
     }
     
     
