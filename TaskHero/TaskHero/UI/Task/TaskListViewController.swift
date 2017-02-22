@@ -39,13 +39,8 @@ final class TaskListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = []
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-        view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
-        initializeBackgroundUI()
-        addTasksLabel = UILabel()
+        listViewModel.initializeBackgroundUI(controller: self)
         listViewModel.configureAddTaskLabel(label: addTasksLabel)
-        addTasksLabel.isHidden = hidden
         tableView.reloadData()
     }
     
@@ -65,14 +60,6 @@ final class TaskListViewController: UITableViewController {
             self.tableView.reloadOnMain()
         }
         super.viewWillAppear(false)
-    }
-    
-    func initializeBackgroundUI() {
-        sharedTaskMethods.setupTableView(tableView:tableView, view: view)
-        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
-        let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(logoutButtonPressed), viewController: self)
-        let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(addTaskButtonTapped), viewController: self)
-        SharedMethods.setupNavItems(navigationItem: navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
     }
 }
 
@@ -134,7 +121,7 @@ extension TaskListViewController: TaskCellDelegate {
     
     // MARK: - Task Actions
     
-    dynamic fileprivate func addTaskButtonTapped() {
+    @objc func addTaskButtonTapped() {
         self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     

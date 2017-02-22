@@ -14,11 +14,8 @@ final class FriendsSettingsViewController: UIViewController {
     
     func setupFriendsSettingView() {
         friendsSettingsView.layoutSubviews()
-        
         friendsSettingsView.searchField.delegate = self
-        friendsSettingsView.searchButton.addTarget(self,
-                                                   action: #selector(popup),
-                                                   for: .touchUpInside)
+        friendsSettingsView.searchButton.addTarget(self, action: #selector(popup), for: .touchUpInside)
     }
 }
 
@@ -32,21 +29,17 @@ extension FriendsSettingsViewController: UITextFieldDelegate {
     func popup() {
         alertPop.showPopView(viewController: self)
         friendsSettingsView.searchField.resignFirstResponder()
+        
         alertPop.alertPopView.resultLabel.text = "No results found."
-        
-        alertPop.alertPopView.doneButton.addTarget(self,
-                                                   action: #selector(hide),
-                                                   for: .touchUpInside)
-        
-        alertPop.alertPopView.cancelButton.addTarget(self,
-                                                     action: #selector(dismissButton),
-                                                     for: .touchUpInside)
+        alertPop.alertPopView.doneButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
+        alertPop.alertPopView.cancelButton.addTarget(self,action: #selector(dismissButton),for: .touchUpInside)
     }
     
     func dismissButton() {
         alertPop.popView.isHidden = true
         alertPop.containerView.isHidden = true
         alertPop.hidePopView(viewController: self)
+        
         UINavigationController().popViewController(animated: false)
     }
     

@@ -68,7 +68,7 @@ struct LoginViewModel {
         controller.loginView.setupLogin(controller)
         controller.loginView.loginButton.isEnabled = false
         controller.loginView.passwordField.addTarget(self, action: #selector(controller.textFieldDidChange(_:)), for: .editingChanged)
-        var buttonColor: UIColor = controller.loginView.loginButton.isEnabled ? .lightGray : enableColor
+        let buttonColor: UIColor = controller.loginView.loginButton.isEnabled ? .lightGray : enableColor
         controller.loginView.loginButton.backgroundColor = buttonColor
     }
     

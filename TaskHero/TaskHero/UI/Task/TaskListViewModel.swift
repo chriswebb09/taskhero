@@ -4,6 +4,8 @@ struct TaskListViewModel {
     
     let store = UserDataStore.sharedInstance
     
+    var sharedTaskMethods = SharedTaskMethods()
+    
     var numberOfRows: Int {
         guard let tasks = store.currentUser.tasks else { return 0 }
         return tasks.count
@@ -49,5 +51,18 @@ struct TaskListViewModel {
         }
         let hideText: Bool = self.store.tasks.count < 1 ? false : true
         addTaskLabel.isHidden = hideText
+    }
+    
+    func initializeBackgroundUI(controller: TaskListViewController) {
+        controller.tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        controller.edgesForExtendedLayout = []
+        controller.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
+        sharedTaskMethods.setupTableView(tableView: controller.tableView, view: controller.view)
+        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+        let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
+        let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
+        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
+        controller.addTasksLabel = UILabel()
+        controller.addTasksLabel.isHidden = controller.hidden
     }
 }
