@@ -21,7 +21,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         viewSetup()
-        barSetup()
+        homeViewModel.barSetup(controller: self)
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -71,13 +71,6 @@ extension HomeViewController {
         view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         picker.delegate = self
         edgesForExtendedLayout = []
-    }
-    
-    func barSetup() {
-        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
-        let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(logoutButtonPressed), viewController: self)
-        let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(addTaskButtonTapped), viewController: self)
-        SharedMethods.setupNavItems(navigationItem: navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
     }
     
     func registerCellsToTableView() {

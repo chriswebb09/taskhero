@@ -86,10 +86,20 @@ struct HomeViewModel {
         }
     }
     
+    func barSetup(controller: HomeViewController) {
+        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
+        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
+        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
+    }
+    
+    
     func addInteractionToCell(cell: TaskCell, viewController: HomeViewController) {
         let tap = UIGestureRecognizer(target:self, action: #selector(viewController.toggleForEditState(_:)))
         cell.taskCompletedView.addGestureRecognizer(tap)
     }
+    
+    
     func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
         headerCell.emailLabel.isHidden = true
         if let user = user { headerCell.configureCell(user: user) }
