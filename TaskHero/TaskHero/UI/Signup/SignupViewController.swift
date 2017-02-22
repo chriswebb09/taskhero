@@ -5,6 +5,7 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
     
     let store = UserDataStore.sharedInstance
     let signupView = SignupView()
+    let signupViewModel = SignupViewModel()
     var emailInvalidated = false
     let CharacterLimit = 11
     
@@ -14,26 +15,13 @@ final class SignupViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(signupView)
         signupView.layoutSubviews()
         edgesForExtendedLayout = []
-        setupSignupView()
+        signupViewModel.setupSignupView(controller: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-    }
-    
-    fileprivate func setupSignupView() {
-        signupView.layoutSubviews()
-        signupView.emailField.delegate = self
-        signupView.passwordField.delegate = self
-        signupView.loginButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
-    }
-    
-    func setupUser(user: User) {
-        store.firebaseAPI.registerUser(user: user)
-        store.firebaseAPI.setupRefs()
-        store.currentUser = user
     }
 }
 
@@ -55,7 +43,7 @@ extension SignupViewController {
             }
             guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
             let newUser = User.createUser(uid: uid, username: username, email: email)
-            self.setupUser(user: newUser)
+            self.signupViewModel.setupUser(user: newUser)
             let tabBar = TabBarController()
             self.loadTabBar(tabBar:tabBar)
         }

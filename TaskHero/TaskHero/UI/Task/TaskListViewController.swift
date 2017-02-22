@@ -13,7 +13,7 @@ final class TaskListViewController: UITableViewController {
     var listViewModel = TaskListViewModel()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     
-    var addTasksLabel:UILabel {
+    var addTasksLabel: UILabel {
         didSet {
             print("Label hidden \(hidden)")
         }
@@ -54,7 +54,7 @@ final class TaskListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         sharedTaskMethods.fetchUser(tableView: tableView)
         tableView.reloadOnMain()
-        self.addTasksLabel.isHidden = hidden
+        addTasksLabel.isHidden = hidden
         DispatchQueue.main.async {
             self.listViewModel.emptyTableViewState(view: self.view, addTaskLabel: self.addTasksLabel)
             self.tableView.reloadOnMain()
@@ -68,7 +68,7 @@ final class TaskListViewController: UITableViewController {
 extension TaskListViewController: TaskCellDelegate {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store.tasks.count
+        return listViewModel.numberOfRows
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

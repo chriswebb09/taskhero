@@ -27,4 +27,10 @@ public struct AddTaskViewModel {
     var numberOfComponents: Int {
         return 3
     }
+    
+    func setUIInteraction(controller: AddTaskViewController) {
+        controller.addTaskView.addTaskButton.addTarget(controller, action: #selector(controller.addTaskButtonTapped), for: .touchUpInside)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(controller.dismissKeyboard))
+        controller.view.addGestureRecognizer(tap)
+    }
 }

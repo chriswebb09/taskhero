@@ -144,7 +144,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         switch type {
         case .months:
-            addTaskViewModel.month = String(describing:addTaskViewModel.pickerMonths[row])
+            addTaskViewModel.month = String(describing: addTaskViewModel.pickerMonths[row])
         case .days:
             addTaskViewModel.day = String(describing: addTaskViewModel.range[row])
         case .years:
@@ -154,22 +154,22 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     /* When add task button pressed - data popover is show so user can pick task due data */
     
-    dynamic fileprivate func addTaskButtonTapped() {
+    dynamic func addTaskButtonTapped() {
         view.endEditing(true)
         DispatchQueue.main.async { self.changePopViewUI() }
         pop.popupView.button.addTarget(self, action: #selector(formatTaskWithDate), for: .touchUpInside)
     }
     
     func changePopViewUI() {
-        self.pop.popView.isHidden = false
-        self.pick.showsSelectionIndicator = true
-        self.pick.frame = self.pop.popView.frame
-        self.pick.layer.borderWidth = 1
-        self.pop.showPopView(viewController: self, pick: self.pick)
+        pop.popView.isHidden = false
+        pick.showsSelectionIndicator = true
+        pick.frame = pop.popView.frame
+        pick.layer.borderWidth = 1
+        pop.showPopView(viewController: self, pick: self.pick)
     }
     
     /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */
-    dynamic fileprivate func formatTaskWithDate() {
+    dynamic func formatTaskWithDate() {
         let uid = UUID.init()
         guard let taskName = addTaskView.taskNameField.text else { return }
         guard let taskDescription = addTaskView.taskDescriptionBox.text else { return }
@@ -188,8 +188,6 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             self.navigationController?.popToRootViewController(animated: false)
         }
     }
-    
-    
     
     /* Hides keyboard */
     

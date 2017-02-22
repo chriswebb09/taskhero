@@ -7,13 +7,14 @@ struct TaskListViewModel {
     var sharedTaskMethods = SharedTaskMethods()
     
     var numberOfRows: Int {
-        guard let tasks = store.currentUser.tasks else { return 0 }
-        return tasks.count
+        if let user = store.currentUser, let tasks = user.tasks {
+            return tasks.count
+        }
+        return 0
     }
     
     var showTaskLabel: Bool {
-        let condition: Bool = store.tasks.count > 0 ? false : true
-        return condition
+        return store.tasks.count > 0 ? false : true
     }
     
     var taskLabelText: String {
@@ -28,6 +29,13 @@ struct TaskListViewModel {
     let tableBackGroundColor: UIColor = {
         return Constants.Color.tableViewBackgroundColor.setColor
     }()
+    
+    var tasks: [Task] {
+        if let tasks = store.currentUser.tasks {
+            return tasks
+        }
+        return [Task]()
+    }
     
     func configureAddTaskLabel(label: UILabel) {
         label.font = Constants.Font.fontNormal
