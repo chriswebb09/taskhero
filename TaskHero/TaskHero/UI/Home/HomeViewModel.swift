@@ -18,6 +18,7 @@ enum HomeCellType {
 }
 
 struct HomeViewModel {
+    
     var store = UserDataStore.sharedInstance
     
     fileprivate let concurrentQueue = DispatchQueue(label: "com.taskHero.concurrentQueue", attributes: .concurrent)
@@ -69,6 +70,7 @@ struct HomeViewModel {
     func viewSetup(viewController: HomeViewController) {
         registerCellsToTableView(tableView: viewController.tableView)
         taskMethods.setupTableView(tableView: viewController.tableView, view: viewController.view)
+        
         viewController.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         viewController.picker.delegate = viewController
         viewController.edgesForExtendedLayout = []
@@ -81,7 +83,9 @@ struct HomeViewModel {
     
     
     func returnCell(tableViewController: HomeViewController, type: HomeCellType, for indexPath: IndexPath) -> UITableViewCell {
+        
         switch type {
+            
         case .task:
             let taskCell = tableViewController.tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as! TaskCell
             setupTaskCell(taskCell: taskCell, taskIndex: indexPath.row)
@@ -113,11 +117,15 @@ struct HomeViewModel {
         cell.taskCompletedView.addGestureRecognizer(tap)
     }
     
+    func setupUserDefaults() {
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "hasLoggedIn")
+        defaults.synchronize()
+    }
     
     func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
         headerCell.emailLabel.isHidden = true
         if let user = user { headerCell.configureCell(user: user) }
-        
     }
     
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {

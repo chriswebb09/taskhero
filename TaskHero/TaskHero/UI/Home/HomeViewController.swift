@@ -107,7 +107,7 @@ extension HomeViewController {
 extension HomeViewController {
     
     func logoutButtonPressed() {
-        setupUserDefaults()
+        homeViewModel.setupUserDefaults()
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
@@ -119,12 +119,6 @@ extension HomeViewController {
                 appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
             }
         }
-    }
-    
-    func setupUserDefaults() {
-        let defaults = UserDefaults.standard
-        defaults.set(false, forKey: "hasLoggedIn")
-        defaults.synchronize()
     }
     
     func addTaskButtonTapped() {
