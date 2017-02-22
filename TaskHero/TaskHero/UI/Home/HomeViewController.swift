@@ -38,8 +38,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        taskMethods.fetchUser(tableView: tableView)
-        tableView.reloadOnMain()
+        homeViewModel.onViewWillAppear(controller: self)
         super.viewWillAppear(false)
     }
     
@@ -111,12 +110,10 @@ extension HomeViewController {
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
+                homeViewModel.setupAppScreen()
             } catch {
                 print("Error")
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
+                homeViewModel.setupAppScreen()
             }
         }
     }
@@ -142,11 +139,7 @@ extension HomeViewController: TaskCellDelegate {
     /* Kicks off cycling between taskcell editing states */
     
     func toggleForEditState(_ sender:UIGestureRecognizer) {
-        let tapLocation = sender.location(in: self.tableView)
-        let tapIndex = tableView.indexPathForRow(at: tapLocation)
-        if let index = tapIndex {
-            taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex:index, type: .home)
-        }
+        homeViewModel.editTap(sender: sender, controller: self)
     }
 }
 

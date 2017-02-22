@@ -133,4 +133,22 @@ struct HomeViewModel {
         taskCell.configureCell(taskVM: taskViewModel)
         taskCell.tag = taskIndex
     }
+    
+    func setupAppScreen() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = UINavigationController(rootViewController:AppScreenViewController())
+    }
+    
+    func onViewWillAppear(controller: HomeViewController) {
+        taskMethods.fetchUser(tableView: controller.tableView)
+        controller.tableView.reloadOnMain()
+    }
+    
+    func editTap(sender: UIGestureRecognizer, controller: HomeViewController) {
+        let tapLocation = sender.location(in: controller.tableView)
+        let tapIndex = controller.tableView.indexPathForRow(at: tapLocation)
+        if let index = tapIndex {
+            taskMethods.tapEdit(viewController: controller, tableView: controller.tableView, atIndex:index, type: .home)
+        }
+    }
 }

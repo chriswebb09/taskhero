@@ -55,7 +55,7 @@ struct LoginViewModel {
         appDelegate.window?.rootViewController = tabBar
     }
     
-   func checkForValidEmailInput(loginView: LoginView) {
+    func checkForValidEmailInput(loginView: LoginView) {
         if loginView.emailField.text == nil || (loginView.emailField.text?.characters.count)! < 5 {
             loginView.textFieldAnimation()
         }
