@@ -128,12 +128,7 @@ extension HomeViewController {
 extension HomeViewController: TaskCellDelegate {
     
     func toggleForButtonState(_ sender:UIButton) {
-        let superview = sender.superview
-        let cell = superview?.superview as! TaskCell
-        let indexPath = tableView.indexPath(for: cell)
-        if let index = indexPath {
-            taskMethods.tapEdit(viewController: self, tableView: tableView, atIndex: index, type: .home)
-        }
+        homeViewModel.buttonTap(sender: sender, controller: self)
     }
     
     /* Kicks off cycling between taskcell editing states */

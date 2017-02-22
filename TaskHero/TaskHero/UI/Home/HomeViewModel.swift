@@ -151,4 +151,13 @@ struct HomeViewModel {
             taskMethods.tapEdit(viewController: controller, tableView: controller.tableView, atIndex:index, type: .home)
         }
     }
+    
+    func buttonTap(sender: UIButton, controller: HomeViewController) {
+        let superview = sender.superview
+        let cell = superview?.superview as! TaskCell
+        let indexPath = controller.tableView.indexPath(for: cell)
+        if let index = indexPath {
+            taskMethods.tapEdit(viewController: controller, tableView: controller.tableView, atIndex: index, type: .home)
+        }
+    }
 }
