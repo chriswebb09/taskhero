@@ -20,7 +20,6 @@ final class LoginViewController: UIViewController {
     var defaults = UserDefaults.standard
     var loadingView = LoadingView()
     var loginView: LoginView = LoginView()
-    
     var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
         didSet {
             loginViewModel.username = loginView.emailField.text!
@@ -78,7 +77,7 @@ extension LoginViewController: UITextFieldDelegate {
      */
     
     func handleLogin() {
-        checkForValidEmailInput()
+        loginViewModel.checkForValidEmailInput(loginView: loginView)
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
         if let emailText = loginView.emailField.text {
@@ -124,27 +123,14 @@ extension LoginViewController: UITextFieldDelegate {
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "hasLoggedIn")
                 defaults.synchronize()
+                
                 self.loadingView.hideActivityIndicator(viewController: self)
-                self.setupTabBar()
+                self.loginViewModel.setupTabBar()
             }
         }
     }
     
-    // MARK: - Load TabbarController
-    
-    fileprivate func setupTabBar() {
-        let tabBar = TabBarController()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = tabBar
-    }
-    
     /* Checks that text has been entered and exceeds five characters in length */
-    
-    fileprivate func checkForValidEmailInput() {
-        if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
-            loginView.textFieldAnimation()
-        }
-    }
     
     // MARK: - Textfield delegate methods
     
@@ -180,7 +166,7 @@ extension LoginViewController: UITextFieldDelegate {
         textField.layer.borderWidth = 1.1
         
         textInputAnimation()
-        self.loginView.editState = true
+        loginView.editState = true
     }
     
     func textInputAnimation() {
@@ -201,7 +187,6 @@ extension LoginViewController: UITextFieldDelegate {
         textField.layer.borderWidth = 1
         textField.textColor = .lightGray
         textField.layer.borderColor = Constants.Color.backgroundColor.setColor.cgColor
-        
-        checkForValidEmailInput()
+        loginViewModel.checkForValidEmailInput(loginView: loginView)
     }
 }

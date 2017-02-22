@@ -48,5 +48,18 @@ struct LoginViewModel {
             return .lightGray
         }
     }
+    
+    func setupTabBar() {
+        let tabBar = TabBarController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = tabBar
+    }
+    
+   func checkForValidEmailInput(loginView: LoginView) {
+        if loginView.emailField.text == nil || (loginView.emailField.text?.characters.count)! < 5 {
+            loginView.textFieldAnimation()
+        }
+    }
+    
 }
 

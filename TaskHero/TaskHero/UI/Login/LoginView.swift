@@ -46,7 +46,6 @@ final class LoginView: UIView {
         initialOpacity()
         animated()
     }
-    
 }
 
 extension LoginView {
