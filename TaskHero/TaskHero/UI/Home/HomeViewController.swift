@@ -91,12 +91,7 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            tableView.beginUpdates()
-            backgroundQueue.async {
-                self.taskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .home)
-                self.taskMethods.fetchUser(tableView: self.tableView)
-            }
-            tableView.endUpdates()
+            self.homeViewModel.delete(controller: self, at: indexPath)
         }
     }
 }
@@ -157,16 +152,11 @@ extension HomeViewController: ProfileHeaderCellDelegate {
 extension HomeViewController: UIImagePickerControllerDelegate {
     
     func selectImage(picker: UIImagePickerController, viewController: UIViewController) {
-        picker.allowsEditing = false
-        picker.sourceType = .photoLibrary
-        viewController.present(picker, animated: true, completion: nil)
+        homeViewModel.imageSelection(controller: self)
     }
     
     internal func tapPickPhoto(_ sender:UIButton) {
-        picker.allowsEditing = false
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true, completion: nil)
-        photoPopover.hideView(viewController: self)
+        homeViewModel.photoTapped(controller: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

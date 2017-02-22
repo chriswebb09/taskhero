@@ -160,4 +160,28 @@ struct HomeViewModel {
             taskMethods.tapEdit(viewController: controller, tableView: controller.tableView, atIndex: index, type: .home)
         }
     }
+    
+    func delete(controller: HomeViewController, at indexPath: IndexPath) {
+        controller.tableView.beginUpdates()
+        controller.backgroundQueue.async {
+            self.taskMethods.deleteTask(indexPath: indexPath, tableView: controller.tableView, type: .home)
+            self.taskMethods.fetchUser(tableView: controller.tableView)
+        }
+        controller.tableView.endUpdates()
+    }
+    
+    func imageSelection(controller: HomeViewController) {
+        controller.picker.allowsEditing = false
+        controller.picker.sourceType = .photoLibrary
+        controller.present(controller.picker, animated: true, completion: nil)
+        controller.photoPopover.hideView(viewController: controller)
+    }
+    
+    func photoTapped(controller: HomeViewController) {
+        controller.picker.allowsEditing = false
+        controller.picker.sourceType = .photoLibrary
+        controller.present(controller.picker, animated: true, completion: nil)
+        controller.photoPopover.hideView(viewController: controller)
+    }
 }
+
