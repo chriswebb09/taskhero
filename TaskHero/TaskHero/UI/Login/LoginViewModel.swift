@@ -61,5 +61,16 @@ struct LoginViewModel {
         }
     }
     
+    func setupUI(controller: LoginViewController) {
+        controller.view.addSubview(controller.loginView)
+        controller.setupDelegates()
+        controller.edgesForExtendedLayout = []
+        controller.loginView.setupLogin(controller)
+        controller.loginView.loginButton.isEnabled = false
+        controller.loginView.passwordField.addTarget(self, action: #selector(controller.textFieldDidChange(_:)), for: .editingChanged)
+        var buttonColor: UIColor = controller.loginView.loginButton.isEnabled ? .lightGray : enableColor
+        controller.loginView.loginButton.backgroundColor = buttonColor
+    }
+    
 }
 

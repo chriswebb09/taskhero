@@ -29,20 +29,7 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(loginView)
-        setupDelegates()
-        edgesForExtendedLayout = []
-        loginView.setupLogin(self)
-        loginView.loginButton.isEnabled = false
-        loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        loginView.loginButton.isEnabled = false
-        if loginView.loginButton.isEnabled == false {
-            loginView.loginButton.backgroundColor = .lightGray
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
+        loginViewModel.setupUI(controller: self)
     }
 }
 
@@ -123,7 +110,6 @@ extension LoginViewController: UITextFieldDelegate {
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "hasLoggedIn")
                 defaults.synchronize()
-                
                 self.loadingView.hideActivityIndicator(viewController: self)
                 self.loginViewModel.setupTabBar()
             }
