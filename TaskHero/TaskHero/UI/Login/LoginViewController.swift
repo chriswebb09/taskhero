@@ -9,12 +9,12 @@ import SnapKit
 
 final class LoginViewController: UIViewController {
     
-    /* 
+    /*
      LoginViewController is called after InitialViewController
      InitialViewController should be deallocated from memory after LoginViewController loads
      Contains form for logging in with email address and password and button to load SignupViewController
      Subviews loaded in LoginView - LoginView contains all UI elements
-     Large method for firebase sign in should be refactored as soon as is practical 
+     Large method for firebase sign in should be refactored as soon as is practical
      */
     
     var defaults = UserDefaults.standard
@@ -67,9 +67,7 @@ extension LoginViewController: UITextFieldDelegate {
         loginViewModel.checkForValidEmailInput(loginView: loginView)
         view.endEditing(true)
         loadingView.showActivityIndicator(viewController: self)
-        if let emailText = loginView.emailField.text {
-            loginViewModel.username = emailText
-        }
+        if let emailText = loginView.emailField.text { loginViewModel.username = emailText }
         FIRAuth.auth()?.signIn(withEmail: loginViewModel.username, password: loginViewModel.password) { [unowned self] user, error in
             if error != nil {
                 self.loadingView.hideActivityIndicator(viewController:self)
@@ -77,7 +75,6 @@ extension LoginViewController: UITextFieldDelegate {
                     switch errCode {
                     case .errorCodeInvalidEmail:
                         print("Invalid Email For Sign In")
-                        
                     default:
                         print("User Authentication Error: \(error)") }
                 }
@@ -94,7 +91,7 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    /* 
+    /*
      On global DispatchQueue with qos: userInituated sets self to unowned self
      creates new DataStore.sharedInstance sets new DataStore instance currentUserString
      property to userID sets up FirebaseAPI database reference handles calls new DataStore
@@ -120,12 +117,12 @@ extension LoginViewController: UITextFieldDelegate {
     
     // MARK: - Textfield delegate methods
     
-    /* 
+    /*
      If email field selected cycles to password field / if password field cycles to emailfield.
      Hides keyboard/ ends view editting
      Sets textfield text color and border to selected color
      On ending edit textfield border color are set to deselect color
-     On return key press 
+     On return key press
      */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -165,7 +162,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     /*
-     When no longer using input fields 
+     When no longer using input fields
      textfield properties change back to original
      */
     

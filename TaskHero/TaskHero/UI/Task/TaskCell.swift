@@ -197,19 +197,14 @@ final class TaskCell: UITableViewCell, Toggable {
     }
     
     func setupConstraints() {
-        
         addTaskNameLabel(taskNameLabel:taskNameLabel)
         addTaskDueLabel(taskDueLabel: taskDueLabel)
         setupDescriptionElements(element: taskDescriptionLabel)
-        
         setupEditElements(element: taskCompletedView)
-        
         taskCompletedView.snp.makeConstraints { make in
             make.width.equalTo(Constants.TaskCell.saveButtonWidth * 0.5)
         }
-        
         setupEditElements(element:saveButton)
-        
         saveButton.snp.makeConstraints { make in
             make.width.equalTo(Constants.TaskCell.saveButtonWidth)
         }
@@ -231,15 +226,13 @@ final class TaskCell: UITableViewCell, Toggable {
         taskNameLabel.text = taskVM.taskName
         taskDueLabel.text = "Due date: \(taskVM.taskDue)"
         taskDescriptionLabel.text = taskVM.taskDescription
-        
         saveButton.addTarget(self, action: #selector(toggleForButtonState(sender:)), for: .touchUpInside)
+        
         if taskVM.taskCompleted == "true" {
-            
             taskCompletedView.image = UIImage(named:"checked")
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))
             taskCompletedView.addGestureRecognizer(tap)
             saveButton.addTarget(self, action: #selector(toggleForEditState), for: .touchUpInside)
-            
         } else {
             taskCompletedView.image = UIImage(named:"edit")
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleForEditState))

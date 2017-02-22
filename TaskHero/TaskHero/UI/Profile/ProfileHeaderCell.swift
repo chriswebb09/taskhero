@@ -151,7 +151,7 @@ final class ProfileHeaderCell: UITableViewCell {
         addProfilePicture()
     }
     
-    /* 
+    /*
      Public configureCell method - taskes autoHeight parameter of type UIViewAutoresizing - called in ParentViewController
      in this case that is either ProfileViewController or HomeViewController
      */

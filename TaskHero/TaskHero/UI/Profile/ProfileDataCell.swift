@@ -110,7 +110,6 @@ final class ProfileDataCell: UITableViewCell {
     }
     
     private func addExperiencePointLabel(experiencePointLabel:UILabel) {
-        
         configureLabels(label: experiencePointsLabel)
         experiencePointLabel.snp.makeConstraints { make in
             
@@ -122,7 +121,6 @@ final class ProfileDataCell: UITableViewCell {
     }
     
     private func addTasksCompletedLabel(tasksCompletedLabel:UILabel) {
-        
         configureLabels(label: tasksCompletedLabel)
         tasksCompletedLabel.snp.makeConstraints { make in
             
@@ -134,7 +132,6 @@ final class ProfileDataCell: UITableViewCell {
     }
     
     private func setupConstraints() {
-        
         addLevelLabel(levelLabel: levelLabel)
         addExperiencePointLabel(experiencePointLabel: experiencePointsLabel)
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)

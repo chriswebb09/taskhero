@@ -94,7 +94,6 @@ extension TaskListViewController: TaskCellDelegate {
                 }
                 self.tableView.reloadOnMain()
             }
-            
             tableView.endUpdates()
         }
     }
