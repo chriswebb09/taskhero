@@ -6,7 +6,7 @@
 import UIKit
 import SnapKit
 
-final class SettingsCell: UITableViewCell {
+final class SettingsCell: BaseCell {
     
     static let cellIdentifier = "SettingsCell"
     

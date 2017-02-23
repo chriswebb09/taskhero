@@ -98,14 +98,6 @@ struct HomeViewModel {
         }
     }
     
-    func barSetup(controller: HomeViewController) {
-        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
-        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
-        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
-        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
-    }
-    
-    
     func addInteractionToCell(cell: TaskCell, viewController: HomeViewController) {
         let tap = UIGestureRecognizer(target:self, action: #selector(viewController.toggleForEditState(_:)))
         cell.taskCompletedView.addGestureRecognizer(tap)
@@ -177,5 +169,20 @@ struct HomeViewModel {
         controller.present(controller.picker, animated: true, completion: nil)
         controller.photoPopover.hideView(viewController: controller)
     }
+    
+    func profilePictureTapped(controller: HomeViewController) {
+        controller.photoPopover.showPopView(viewController: controller)
+        controller.photoPopover.photoPopView.button.addTarget(controller, action: #selector(controller.tapPickPhoto(_:)), for: .touchUpInside)
+    }
+    
+    mutating func photoForPicker(controller: HomeViewController, info: [String: Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profilePic = image
+        } else {
+            print("Something went wrong")
+        }
+       controller.dismiss(animated: true, completion: nil)
+    }
+
 }
 

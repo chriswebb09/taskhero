@@ -142,8 +142,7 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     }
     
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
-        photoPopover.showPopView(viewController: self)
-        photoPopover.photoPopView.button.addTarget(self, action: #selector(tapPickPhoto(_:)), for: .touchUpInside)
+        homeViewModel.profilePictureTapped(controller: self)
     }
 }
 
@@ -155,16 +154,11 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         homeViewModel.imageSelection(controller: self)
     }
     
-    internal func tapPickPhoto(_ sender:UIButton) {
+    internal func tapPickPhoto(_ sender: UIButton) {
         homeViewModel.photoTapped(controller: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            homeViewModel.profilePic = image
-        } else {
-            print("Something went wrong")
-        }
-        dismiss(animated: true, completion: nil)
+        homeViewModel.photoForPicker(controller: self, info: info)
     }
 }

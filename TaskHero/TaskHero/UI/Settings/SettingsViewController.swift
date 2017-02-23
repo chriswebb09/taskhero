@@ -69,7 +69,8 @@ final class SettingsViewController: UITableViewController {
     }
     
     func setupTableViewUI() {
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
+        AppFunctions.register(tableView: tableView, cells: [SettingsCell.self])
+        //tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
         tableView.setupTableView(view:self.view)
         edgesForExtendedLayout = []
         view.backgroundColor = .backgroundColor()
