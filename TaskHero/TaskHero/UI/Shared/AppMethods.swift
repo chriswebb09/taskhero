@@ -73,5 +73,14 @@ class AppFunctions {
         controller.dismiss(animated: true, completion: nil)
     }
     
+   class func setupTableView(tableView: UITableView, view: UIView) {
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.separatorStyle = .singleLineEtched
+        tableView.allowsSelection = false
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+    }
 }
 

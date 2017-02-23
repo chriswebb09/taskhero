@@ -8,13 +8,6 @@ final class SharedTaskMethods {
     
     let store = UserDataStore.sharedInstance
     
-    @objc func logoutButtonPressed() {
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        DataPeristence.shared.logout()
-        appDelegate.window?.rootViewController = loginVC
-    }
-    
     func deleteTask(indexPath: IndexPath, tableView:UITableView, type: TaskListType) {
         var rowIndex: Int
         switch type {
@@ -38,17 +31,7 @@ final class SharedTaskMethods {
         }
         print(self.store.tasks)
     }
-    
-    func setupTableView(tableView: UITableView, view: UIView) {
-        tableView.tableFooterView = UIView(frame: .zero)
-        tableView.separatorStyle = .singleLineEtched
-        tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 4
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-    }
-    
+  
     func tapEdit(viewController: UIViewController, tableView: UITableView, atIndex:IndexPath, type: TaskListType) {
         let tapCell = tableView.cellForRow(at: atIndex) as! TaskCell
         var newTask: Task!

@@ -36,17 +36,4 @@ struct SignupViewModel {
         store.firebaseAPI.setupRefs()
         store.currentUser = user
     }
-    
-    //    fileprivate func setupSignupView() {
-    //        signupView.layoutSubviews()
-    //        signupView.emailField.delegate = self
-    //        signupView.passwordField.delegate = self
-    //        signupView.loginButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
-    //    }
-    //
-    //    func setupUser(user: User) {
-    //        store.firebaseAPI.registerUser(user: user)
-    //        store.firebaseAPI.setupRefs()
-    //        store.currentUser = user
-    //    }
 }

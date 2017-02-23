@@ -68,8 +68,7 @@ class HomeViewModel: BaseProfileViewModel {
     
     func viewSetup(viewController: HomeViewController) {
         AppFunctions.register(tableView: viewController.tableView, cells: [TaskCell.self, ProfileHeaderCell.self])
-        taskMethods.setupTableView(tableView: viewController.tableView, view: viewController.view)
-        
+        AppFunctions.setupTableView(tableView: viewController.tableView, view: viewController.view)
         viewController.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         viewController.picker.delegate = viewController
         viewController.edgesForExtendedLayout = []
