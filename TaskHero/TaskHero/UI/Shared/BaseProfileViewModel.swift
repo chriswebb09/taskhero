@@ -8,6 +8,6 @@
 
 import UIKit
 
-class BaseProfileViewModel {
-    var profilePic: UIImage?
+protocol BaseModelProtocol {
+    var profilePic: UIImage? { get set }
 }

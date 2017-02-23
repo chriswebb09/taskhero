@@ -7,7 +7,7 @@ import UIKit
 
 struct LoginViewModel {
     
-    var username: String {
+    var username: String = "" {
         willSet {
             print("About to set username to:  \(newValue)")
         }
@@ -34,7 +34,7 @@ struct LoginViewModel {
     }
     
     var isValid: Bool {
-        if username.characters.count > 4 && password.characters.count > 8 {
+        if username.characters.count >= 4 && password.characters.count >= 6 {
             return true
         } else {
             return false
@@ -43,16 +43,10 @@ struct LoginViewModel {
     
     var enableColor: UIColor {
         if isValid == true {
-            return .blue
+            return .button
         } else {
             return .lightGray
         }
-    }
-    
-    func setupTabBar() {
-        let tabBar = TabBarController()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = tabBar
     }
     
     func checkForValidEmailInput(loginView: LoginView) {
@@ -63,13 +57,13 @@ struct LoginViewModel {
     
     func setupUI(controller: LoginViewController) {
         controller.view.addSubview(controller.loginView)
-        controller.setupDelegates()
-        controller.edgesForExtendedLayout = []
         controller.loginView.setupLogin(controller)
-        controller.loginView.loginButton.isEnabled = false
         controller.loginView.passwordField.addTarget(self, action: #selector(controller.textFieldDidChange(_:)), for: .editingChanged)
-        let buttonColor: UIColor = controller.loginView.loginButton.isEnabled ? .lightGray : enableColor
-        controller.loginView.loginButton.backgroundColor = buttonColor
+        controller.loginView.loginButton.addTarget(controller, action: #selector(controller.handleLogin), for: .touchUpInside)
+        controller.loginView.emailField.delegate = controller
+        controller.loginView.passwordField.delegate = controller
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: controller, action: #selector(controller.dismissKeyboard))
+        controller.view.addGestureRecognizer(tap)
     }
     
 }

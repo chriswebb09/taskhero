@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ProfileViewModel: BaseProfileViewModel {
+class ProfileViewModel: BaseModelProtocol {
+    
+    var profilePic: UIImage?
     
     let store = UserDataStore.sharedInstance
     
@@ -22,6 +24,21 @@ class ProfileViewModel: BaseProfileViewModel {
     
     var rowHeight: CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    func setupHeader(headerCell: ProfileHeaderCell, controller: ProfileViewController) {
+        headerCell.emailLabel.isHidden = true
+        headerCell.configureCell(user: user)
+        let tap = UIGestureRecognizer(target:self, action: #selector(controller.profilePictureTapped(sender:)))
+        headerCell.profilePicture.addGestureRecognizer(tap)
+        headerCell.delegate = controller
+    }
+    
+    func setupTableViewUI(controller: ProfileViewController) {
+        controller.tableView.estimatedRowHeight = controller.view.frame.height / 3
+        controller.tableView.separatorStyle = .none
+        controller.tableView.tableFooterView = UIView(frame: .zero)
+        SharedMethods.barSetup(controller: controller)
     }
     
     //var profilePic: UIImage?

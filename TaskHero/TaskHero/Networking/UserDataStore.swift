@@ -27,4 +27,10 @@ final class UserDataStore {
         currentUser.experiencePoints += 1
         currentUser.numberOfTasksCompleted += 1
     }
+    
+    func setupUser(user: User) {
+        firebaseAPI.registerUser(user: user)
+        firebaseAPI.setupRefs()
+        currentUser = user
+    }
 }

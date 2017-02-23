@@ -17,13 +17,21 @@ enum HomeCellType {
     }
 }
 
-class HomeViewModel: BaseProfileViewModel {
+struct TaskView {
+    let view: UIView
+    let viewModel: TaskCellViewModel
+    let indexRow: Int
+    let tag: Int
+}
+
+class HomeViewModel: BaseModelProtocol {
     
     var store = UserDataStore.sharedInstance
     
     fileprivate let concurrentQueue = DispatchQueue(label: "com.taskHero.concurrentQueue", attributes: .concurrent)
     
     var taskMethods = SharedTaskMethods()
+    var profilePic: UIImage?
     
     var user: User? {
         return self.store.currentUser
@@ -68,7 +76,7 @@ class HomeViewModel: BaseProfileViewModel {
     
     func viewSetup(controller: HomeViewController) {
         controller.register(tableView: controller.tableView, cells: [TaskCell.self, ProfileHeaderCell.self])
-        AppFunctions.setupTableView(tableView: controller.tableView, view: controller.view)
+        SharedMethods.setupTableView(tableView: controller.tableView, view: controller.view)
         controller.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         controller.picker.delegate = controller
         controller.edgesForExtendedLayout = []
@@ -112,7 +120,10 @@ class HomeViewModel: BaseProfileViewModel {
         if let user = user { headerCell.configureCell(user: user) }
     }
     
+    
+    
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
+        
         let taskViewModel = getViewModelForTask(taskIndex: taskIndex)
         taskCell.configureCell(taskVM: taskViewModel)
         taskCell.tag = taskIndex

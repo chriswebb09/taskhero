@@ -9,97 +9,87 @@
 import UIKit
 import Firebase
 
-class BaseViewController: UIViewController {
+protocol Loginable {
+    //func getLoginViewController()
+}
+
+extension Loginable {
+    
+    func setLoginViewController() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
+    }
+    
+//    typealias B = BaseTableViewController
+//    
+//    @discardableResult
+//    static func barSetup<B: BaseTableViewController>(controller: B) -> B {
+//        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+//        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
+//        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
+//        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
+//        return controller
+//    }
+}
+
+class BaseViewController: UIViewController, Loginable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func logoutButtonPressed() {
-        
+    func setLoginViewController() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
     }
     
-    func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
-}
-
-
-class BaseTableViewController: UITableViewController, UserDataProtocol, Identifiable {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    func logoutButtonPressed() {
-        
-    }
-    
-    func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
-}
-
-
-class BaseProfileViewController: BaseTableViewController, ProfileViewable {
-    
-    internal var photoPopover: PhotoPickerPopover = PhotoPickerPopover()
-    
-    
-    var picker: UIImagePickerController = UIImagePickerController()
-    
-    override func logoutButtonPressed() {
+    func setupDefaults() {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.synchronize()
+    }
+    
+    typealias B = BaseTableViewController
+    
+    @discardableResult
+    static func barSetup<B: BaseTableViewController>(controller: B) -> B {
+        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
+        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
+        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
+        return controller
+    }
+    
+    func getLoginViewController() {
+        //var data = DataPeristence.shared
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
-                let loginVC = UINavigationController(rootViewController:LoginViewController())
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = loginVC
+                DispatchQueue.main.async {
+                    self.setupDefaults()
+                    //DataPeristence.shared.logout()
+                    self.setLoginViewController()
+                }
             } catch {
                 print("Error")
-                let loginVC = UINavigationController(rootViewController:LoginViewController())
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = loginVC
+                DispatchQueue.main.async {
+                    self.setupDefaults()
+                    self.setLoginViewController()
+                }
+                
             }
         }
     }
-    
-    override func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
-    
-    internal func tapPickPhoto(_ sender: UIButton) {
-        AppFunctions.photoTapped(controller: self)
-        //homeViewModel.photoTapped(controller: self)
-    }
-    
-}
 
-protocol ProfileViewable {
-    var picker: UIImagePickerController { get set }
-    var photoPopover: PhotoPickerPopover { get set }
-    func logoutButtonPressed()
-    func addTaskButtonTapped()
-    func tapPickPhoto(_ sender: UIButton)
-}
-
-extension ProfileViewable {
     
     func logoutButtonPressed() {
-        // not implemented
+        getLoginViewController()
     }
     
     func addTaskButtonTapped() {
-        // not implemented
+        navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
-    
-    func tapPickPhoto(_ sender: UIButton) {
-        // AppFunctions.photoTapped(controller: self)
-        //homeViewModel.photoTapped(controller: self)
-    }
-    
 }
+
+
 

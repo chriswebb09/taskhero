@@ -43,16 +43,11 @@ extension SignupViewController {
             }
             guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
             let newUser = User.createUser(uid: uid, username: username, email: email)
-            self.signupViewModel.setupUser(user: newUser)
-            let tabBar = TabBarController()
-            self.loadTabBar(tabBar:tabBar)
+            self.store.setupUser(user: newUser)
+            SharedMethods.loadTabBar(tabBar: TabBarController())
         }
     }
     
-    func loadTabBar(tabBar:TabBarController) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = tabBar
-    }
     
     func signupButtonTapped() {
         if let emailText = signupView.emailField.text, let passwordText = signupView.passwordField.text, let userNameText = signupView.usernameField.text {

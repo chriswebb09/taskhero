@@ -9,6 +9,7 @@
 import UIKit
 
 class BaseCell: UITableViewCell {
+    
     static var cellID: String {
         return String(describing: self)
     }

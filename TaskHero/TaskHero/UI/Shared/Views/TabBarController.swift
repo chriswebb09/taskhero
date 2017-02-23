@@ -1,9 +1,7 @@
 import UIKit
 import Firebase
 
-class TabBarController: UITabBarController {
-    
-    // MARK: - Properties
+final class TabBarController: UITabBarController {
     
     let store = UserDataStore.sharedInstance
     

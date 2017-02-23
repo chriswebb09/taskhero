@@ -18,7 +18,7 @@ final class HomeViewController: BaseProfileViewController, UINavigationControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel.viewSetup(controller: self)
-        AppFunctions.barSetup(controller: self)
+        SharedMethods.barSetup(controller: self)
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -117,7 +117,7 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     }
     
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
-        AppFunctions.profilePictureTapped(controller: self)
+        SharedMethods.profilePictureTapped(controller: self)
     }
 }
 
@@ -126,14 +126,14 @@ extension HomeViewController: ProfileHeaderCellDelegate {
 extension HomeViewController: UIImagePickerControllerDelegate {
     
     func selectImage(picker: UIImagePickerController, viewController: UIViewController) {
-        AppFunctions.imageSelection(controller: self)
+        SharedMethods.imageSelection(controller: self)
     }
     
     internal override func tapPickPhoto(_ sender: UIButton) {
-        AppFunctions.photoTapped(controller: self)
+        SharedMethods.photoTapped(controller: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        AppFunctions.photoForPicker(controller: self, info: info, viewModel: homeViewModel)
+        homeViewModel.profilePic = SharedMethods.photoForPicker(controller: self, info: info)
     }
 }

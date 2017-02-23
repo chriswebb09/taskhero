@@ -52,7 +52,8 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         preservesSuperviewLayoutMargins = false
     }
     
-    func configureCell(setting:String) {
+    func configureCell(setting:String, controller: ProfileSettingsViewController) {
+        delegate = controller
         layoutSubviews()
         profileSettingLabel.text = setting
         if setting.contains("N/A") { profileSettingLabel.text = "FirstName LastName" }

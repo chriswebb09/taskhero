@@ -28,6 +28,8 @@ final class LoginView: UIView {
         return button.newButton
     }()
     
+    var viewModel = LoginViewModel(username: "", password: "")
+    
     
     var logoTopConstraint: NSLayoutConstraint!
     var logoHeightAnchor: NSLayoutConstraint!
@@ -74,11 +76,9 @@ extension LoginView {
     
     func setupLogin(_ viewController: LoginViewController) {
         layoutSubviews()
-        emailField.delegate = viewController
-        passwordField.delegate = viewController
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController, action: #selector(viewController.dismissKeyboard))
-        viewController.view.addGestureRecognizer(tap)
-        loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
+        viewController.edgesForExtendedLayout = []
+        loginButton.isEnabled = false
+        loginButton.backgroundColor = viewModel.enableColor
     }
     
     // MARK: - Configuring UI
@@ -95,12 +95,12 @@ extension LoginView {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoWidthConstraint = logoImageView.widthAnchor.constraint(equalTo: widthAnchor)
-        logoWidthConstraint.constant = bounds.width * -0.3
+        logoWidthConstraint.constant = bounds.width * LoginConstants.logoImageWidth
         logoHeightAnchor = logoImageView.heightAnchor.constraint(equalTo: heightAnchor)
-        logoHeightAnchor.constant = bounds.height * -0.93
+        logoHeightAnchor.constant = bounds.height * LoginConstants.logoImageHeight
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoTopConstraint = logoImageView.topAnchor.constraint(equalTo: topAnchor)
-        logoTopConstraint.constant = bounds.height * 0.12
+        logoTopConstraint.constant = bounds.height * LoginConstants.logoImageTopOffset
         
     }
     
@@ -108,14 +108,14 @@ extension LoginView {
         setupLogoImage()
         setupView(view: emailField)
         emailFieldTopConstraint = emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor)
-        emailFieldTopConstraint.constant = bounds.height * 0.1
+        emailFieldTopConstraint.constant = bounds.height * LoginConstants.emailFieldTopOffset
         
         setupView(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.06).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * LoginConstants.passwordFieldTopOffset).isActive = true
         passwordField.isSecureTextEntry = true
         setupView(view: loginButton)
         loginButtonTopConstraint = loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor)
-        loginButtonTopConstraint.constant = bounds.height * 0.1
+        loginButtonTopConstraint.constant = bounds.height * LoginConstants.loginButtonTopOffset
         NSLayoutConstraint.activate([logoTopConstraint, logoWidthConstraint, logoHeightAnchor, emailFieldTopConstraint, loginButtonTopConstraint])
     }
     
@@ -141,11 +141,11 @@ extension LoginView {
     func textFieldAnimation() {
         UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.emailField.layer.borderWidth = 1.2
-                self.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
+                self.emailField.layer.borderWidth = LoginConstants.textFieldAnimationWidth
+                self.emailField.font = UIFont(name: "HelveticaNeue" , size: LoginConstants.fontSize)
                 self.emailField.textColor =  Constants.Color.backgroundColor.setColor
             } }, completion: { _ in
-                let when = DispatchTime.now() + 0.32
+                let when = DispatchTime.now() + LoginConstants.textFieldAnimationDelay
                 DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
                     self.emailField.layer.borderWidth = 1
                     self.emailField.font = Constants.signupFieldFont
@@ -157,10 +157,10 @@ extension LoginView {
     }
     
     func constraintsForInput() {
-        logoTopConstraint.constant = bounds.height * 0.05
-        logoWidthConstraint.constant = bounds.height * 0.7
-        emailFieldTopConstraint.constant = bounds.height * 0.06
-        loginButtonTopConstraint.constant = bounds.height * 0.04
+        logoTopConstraint.constant = bounds.height * LoginConstants.Input.logoTopOffset
+        logoWidthConstraint.constant = bounds.height * LoginConstants.Input.logoWidth
+        emailFieldTopConstraint.constant = bounds.height * LoginConstants.Input.emailFieldTopOffset
+        loginButtonTopConstraint.constant = bounds.height * LoginConstants.Input.loginButtonTopOffset
     }
     
 }

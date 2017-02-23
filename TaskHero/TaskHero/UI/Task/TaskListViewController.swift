@@ -8,7 +8,7 @@ final class TaskListViewController: BaseTableViewController {
     
     let store = UserDataStore.sharedInstance /* userData store for application user state */
     var tapped: Bool = false /* tracks taps on taskcell completedView and button */
-    var taskViewModel: TaskCellViewModel!
+    var taskViewModel: TaskCellViewModel! 
     let sharedTaskMethods = SharedTaskMethods()
     var listViewModel = TaskListViewModel()
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
@@ -115,7 +115,8 @@ extension TaskListViewController: TaskCellDelegate {
     
     override func logoutButtonPressed() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        DataPeristence.shared.logout()
+        //DataPeristence.shared.logout()
+        //DataPeristence.shared.logout()
         appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
     }
     

@@ -65,8 +65,8 @@ struct TaskListViewModel {
         controller.register(tableView: controller.tableView, cells: [TaskCell.self])
         controller.edgesForExtendedLayout = []
         controller.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
-        AppFunctions.setupTableView(tableView: controller.tableView, view: controller.view)
-        AppFunctions.barSetup(controller: controller)
+        SharedMethods.setupTableView(tableView: controller.tableView, view: controller.view)
+        SharedMethods.barSetup(controller: controller)
         controller.addTasksLabel = UILabel()
         controller.addTasksLabel.isHidden = controller.hidden
     }

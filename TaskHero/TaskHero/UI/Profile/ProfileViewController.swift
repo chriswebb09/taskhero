@@ -28,14 +28,7 @@ final class ProfileViewController: BaseProfileViewController {
     
     func setupMethods() {
         register(tableView: tableView, cells: [ProfileHeaderCell.self, ProfileDataCell.self])
-        setupTableViewUI()
-    }
-    
-    private func setupTableViewUI() {
-        tableView.estimatedRowHeight = view.frame.height / 3
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView(frame: .zero)
-        AppFunctions.barSetup(controller: self)
+        viewModel.setupTableViewUI(controller: self)
     }
     
     // MARK: UITableViewController Methods
@@ -55,23 +48,13 @@ final class ProfileViewController: BaseProfileViewController {
         switch type {
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath as IndexPath) as! ProfileHeaderCell
-            setupHeader(headerCell: headerCell)
-            let tap = UIGestureRecognizer(target:self, action: #selector(profilePictureTapped(sender:)))
-            headerCell.profilePicture.addGestureRecognizer(tap)
-            headerCell.delegate = self
+            viewModel.setupHeader(headerCell: headerCell, controller: self)
             return headerCell
         case .data:
             let dataCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for:indexPath as IndexPath) as! ProfileDataCell
             dataCell.configureCell()
             return dataCell
         }
-    }
-    
-    func setupHeader(headerCell: ProfileHeaderCell) {
-        headerCell.emailLabel.isHidden = true
-        headerCell.configureCell(user: viewModel.user)
-        let tap = UIGestureRecognizer(target:self, action: #selector(profilePictureTapped(sender:)))
-        headerCell.profilePicture.addGestureRecognizer(tap)
     }
 }
 // MARK: - ProfileHeaderCell Delegate
@@ -83,7 +66,7 @@ extension ProfileViewController: ProfileHeaderCellDelegate {
     }
     
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
-        AppFunctions.profilePictureTapped(controller: self)
+        SharedMethods.profilePictureTapped(controller: self)
     }
 }
 
@@ -92,15 +75,15 @@ extension ProfileViewController: ProfileHeaderCellDelegate {
 extension ProfileViewController: UIImagePickerControllerDelegate {
     
     func selectImage(picker: UIImagePickerController, viewController: UIViewController) {
-        AppFunctions.imageSelection(controller: self)
+        SharedMethods.imageSelection(controller: self)
     }
     
     internal override func tapPickPhoto(_ sender: UIButton) {
-        AppFunctions.photoTapped(controller: self)
+        SharedMethods.photoTapped(controller: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        AppFunctions.photoForPicker(controller: self, info: info, viewModel: viewModel)
+        viewModel.profilePic = SharedMethods.photoForPicker(controller: self, info: info)
     }
 }
 

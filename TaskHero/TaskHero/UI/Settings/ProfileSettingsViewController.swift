@@ -51,8 +51,7 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
-        cell.configureCell(setting: dataSource.options[indexPath.row])
-        cell.delegate = self
+        cell.configureCell(setting: dataSource.options[indexPath.row], controller: self)
         cell.button.index = indexPath
         cell.button.tag = indexPath.row
         cell.button.addTarget(self, action:#selector(connected(sender:)), for: .touchUpInside)

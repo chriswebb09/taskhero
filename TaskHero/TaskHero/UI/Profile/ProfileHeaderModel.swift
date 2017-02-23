@@ -25,23 +25,23 @@ struct ProfileHeaderCellModel {
     
     init() {
         if let user = self.store.currentUser {
-            self.emailLabel = user.email
-            self.usernameLabel = user.username
+            emailLabel = user.email
+            usernameLabel = user.username
             if let profilePic = user.profilePicture {
-                self.profilePicture = profilePic
+                profilePicture = profilePic
             } else {
                 profilePicture = "Void"
             }
-            self.levelLabel = "Level: \(user.level)"
-            self.joinDate = "Joined: \(user.joinDate)"
-            self.joinDateIsHidden = true
+            levelLabel = "Level: \(user.level)"
+            joinDate = "Joined: \(user.joinDate)"
+            joinDateIsHidden = true
         } else {
-            self.emailLabel = "Void"
-            self.usernameLabel = "Void"
-            self.profilePicture = "Void"
-            self.levelLabel = "Level: Void"
-            self.joinDate = "Joined:  Void"
-            self.joinDateIsHidden = true
+            emailLabel = "Void"
+            usernameLabel = "Void"
+            profilePicture = "Void"
+            levelLabel = "Level: Void"
+            joinDate = "Joined:  Void"
+            joinDateIsHidden = true
         }
     }
 }

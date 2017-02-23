@@ -7,6 +7,7 @@ extension UIColor {
     static let midnightBlue: UIColor = UIColor(red:0.44, green:0.62, blue:0.80, alpha: 1.0)
     static let settingsBackground: UIColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
     static let background: UIColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+    static let button: UIColor = UIColor(red:0.10, green:0.71, blue:1.00, alpha:1.0)
     
     
     class func midnightBlueColor()-> UIColor {
