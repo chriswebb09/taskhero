@@ -15,9 +15,6 @@ final class HomeViewController: BaseProfileViewController, UINavigationControlle
     
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     
-    //let photoPopover = PhotoPickerPopover()
-    //let picker = UIImagePickerController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel.viewSetup(viewController: self)
