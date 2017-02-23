@@ -62,7 +62,7 @@ struct TaskListViewModel {
     }
     
     func initializeBackgroundUI(controller: TaskListViewController) {
-        AppFunctions.register(tableView: controller.tableView, cells: [TaskCell.self])
+        controller.register(tableView: controller.tableView, cells: [TaskCell.self])
         controller.edgesForExtendedLayout = []
         controller.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         AppFunctions.setupTableView(tableView: controller.tableView, view: controller.view)

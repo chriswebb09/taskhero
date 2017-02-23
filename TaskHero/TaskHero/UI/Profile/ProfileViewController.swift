@@ -27,7 +27,7 @@ final class ProfileViewController: BaseProfileViewController {
     }
     
     func setupMethods() {
-        AppFunctions.register(tableView: tableView, cells: [ProfileHeaderCell.self, ProfileDataCell.self])
+        register(tableView: tableView, cells: [ProfileHeaderCell.self, ProfileDataCell.self])
         setupTableViewUI()
     }
     

@@ -25,7 +25,7 @@ class BaseViewController: UIViewController {
 }
 
 
-class BaseTableViewController: UITableViewController {
+class BaseTableViewController: UITableViewController, UserDataProtocol, Identifiable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,18 +44,9 @@ class BaseTableViewController: UITableViewController {
 class BaseProfileViewController: BaseTableViewController, ProfileViewable {
     
     internal var photoPopover: PhotoPickerPopover = PhotoPickerPopover()
-
+    
     
     var picker: UIImagePickerController = UIImagePickerController()
-   
-//    override func logoutButtonPressed() {
-//        let defaults = UserDefaults.standard
-//        defaults.set(false, forKey: "hasLoggedIn")
-//        defaults.synchronize()
-//        let loginVC = UINavigationController(rootViewController:LoginViewController())
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        appDelegate.window?.rootViewController = loginVC
-//    }
     
     override func logoutButtonPressed() {
         let defaults = UserDefaults.standard
@@ -106,7 +97,7 @@ extension ProfileViewable {
     }
     
     func tapPickPhoto(_ sender: UIButton) {
-       // AppFunctions.photoTapped(controller: self)
+        // AppFunctions.photoTapped(controller: self)
         //homeViewModel.photoTapped(controller: self)
     }
     

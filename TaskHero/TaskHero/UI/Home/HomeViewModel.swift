@@ -66,12 +66,12 @@ class HomeViewModel: BaseProfileViewModel {
         return taskList.count
     }
     
-    func viewSetup(viewController: HomeViewController) {
-        AppFunctions.register(tableView: viewController.tableView, cells: [TaskCell.self, ProfileHeaderCell.self])
-        AppFunctions.setupTableView(tableView: viewController.tableView, view: viewController.view)
-        viewController.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
-        viewController.picker.delegate = viewController
-        viewController.edgesForExtendedLayout = []
+    func viewSetup(controller: HomeViewController) {
+        controller.register(tableView: controller.tableView, cells: [TaskCell.self, ProfileHeaderCell.self])
+        AppFunctions.setupTableView(tableView: controller.tableView, view: controller.view)
+        controller.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
+        controller.picker.delegate = controller
+        controller.edgesForExtendedLayout = []
     }
     
     func returnCell(tableViewController: HomeViewController, type: HomeCellType, for indexPath: IndexPath) -> UITableViewCell {
@@ -124,7 +124,7 @@ class HomeViewModel: BaseProfileViewModel {
     }
     
     func onViewWillAppear(controller: HomeViewController) {
-        AppFunctions.fetchUser(tableView: controller.tableView)
+        controller.fetchUser(tableView: controller.tableView)
         controller.tableView.reloadOnMain()
     }
     
@@ -149,7 +149,7 @@ class HomeViewModel: BaseProfileViewModel {
         controller.tableView.beginUpdates()
         controller.backgroundQueue.async {
             self.taskMethods.deleteTask(indexPath: indexPath, tableView: controller.tableView, type: .home)
-            AppFunctions.fetchUser(tableView: controller.tableView)
+            controller.fetchUser(tableView: controller.tableView)
         }
         controller.tableView.endUpdates()
     }

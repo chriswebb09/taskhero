@@ -17,7 +17,7 @@ final class HomeViewController: BaseProfileViewController, UINavigationControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeViewModel.viewSetup(viewController: self)
+        homeViewModel.viewSetup(controller: self)
         AppFunctions.barSetup(controller: self)
     }
     

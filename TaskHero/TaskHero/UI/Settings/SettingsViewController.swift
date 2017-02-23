@@ -1,6 +1,6 @@
 import UIKit
 
-final class SettingsViewController: UITableViewController {
+final class SettingsViewController: UITableViewController, Identifiable {
     
     // MARK: - Properties
     
@@ -69,8 +69,7 @@ final class SettingsViewController: UITableViewController {
     }
     
     func setupTableViewUI() {
-        AppFunctions.register(tableView: tableView, cells: [SettingsCell.self])
-        //tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellIdentifier)
+        register(tableView: tableView, cells: [SettingsCell.self])
         tableView.setupTableView(view:self.view)
         edgesForExtendedLayout = []
         view.backgroundColor = .backgroundColor()
