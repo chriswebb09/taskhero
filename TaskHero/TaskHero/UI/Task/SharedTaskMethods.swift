@@ -67,16 +67,4 @@ final class SharedTaskMethods {
         tapCell.taskCompletedView.addGestureRecognizer(tap)
         tapCell.taskCompletedView.isUserInteractionEnabled = true
     }
-    
-    func fetchUser(tableView: UITableView) {
-        store.firebaseAPI.fetchUserData() { user in
-            self.store.firebaseAPI.fetchTaskList() { taskList in
-                self.store.tasks = taskList
-                DispatchQueue.main.async {
-                    self.store.currentUser = user
-                    tableView.reloadOnMain()
-                }
-            }
-        }
-    }
 }

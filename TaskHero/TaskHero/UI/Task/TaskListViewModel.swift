@@ -70,12 +70,4 @@ struct TaskListViewModel {
         controller.addTasksLabel = UILabel()
         controller.addTasksLabel.isHidden = controller.hidden
     }
-    
-    func barSetup(controller: TaskListViewController) {
-        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
-        let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
-        let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
-        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
-    }
-    
 }

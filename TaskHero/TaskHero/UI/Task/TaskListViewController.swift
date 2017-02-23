@@ -52,7 +52,8 @@ final class TaskListViewController: BaseTableViewController {
     /* Does setupfor tableview/emptytable view and navbar */
     
     override func viewWillAppear(_ animated: Bool) {
-        sharedTaskMethods.fetchUser(tableView: tableView)
+        AppFunctions.fetchUser(tableView: tableView)
+       // sharedTaskMethods.fetchUser(tableView: tableView)
         tableView.reloadOnMain()
         addTasksLabel.isHidden = hidden
         DispatchQueue.main.async {
@@ -88,7 +89,7 @@ extension TaskListViewController: TaskCellDelegate {
             tableView.beginUpdates()
             backgroundQueue.async {
                 self.sharedTaskMethods.deleteTask(indexPath: indexPath, tableView: self.tableView, type: .taskList)
-                self.sharedTaskMethods.fetchUser(tableView: tableView)
+                AppFunctions.fetchUser(tableView: tableView)
                 DispatchQueue.main.async {
                     self.addTasksLabel.isHidden = self.hidden
                 }

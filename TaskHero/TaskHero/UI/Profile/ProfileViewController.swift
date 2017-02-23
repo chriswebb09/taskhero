@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 
-final class ProfileViewController: UITableViewController {
+final class ProfileViewController: BaseProfileViewController {
     
     var viewModel = ProfileViewModel()
     
@@ -27,7 +27,7 @@ final class ProfileViewController: UITableViewController {
     }
     
     func setupMethods() {
-        registerCells()
+        AppFunctions.register(tableView: tableView, cells: [ProfileHeaderCell.self, ProfileDataCell.self])
         setupTableViewUI()
     }
     
@@ -35,15 +35,7 @@ final class ProfileViewController: UITableViewController {
         tableView.estimatedRowHeight = view.frame.height / 3
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView(frame: .zero)
-        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
-        let leftBarItem = SharedMethods.getLeftBarItem(selector: #selector(logoutButtonPressed), viewController: self)
-        let rightBarItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(addTaskButtonTapped), viewController: self)
-        SharedMethods.setupNavItems(navigationItem: navigationItem, leftBarItem: leftBarItem, rightItem: rightBarItem)
-    }
-    
-    private func registerCells() {
-        tableView.register(ProfileDataCell.self, forCellReuseIdentifier: ProfileDataCell.cellIdentifier)
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
+        AppFunctions.barSetup(controller: self)
     }
     
     // MARK: UITableViewController Methods
@@ -64,6 +56,9 @@ final class ProfileViewController: UITableViewController {
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             setupHeader(headerCell: headerCell)
+            let tap = UIGestureRecognizer(target:self, action: #selector(profilePictureTapped(sender:)))
+            headerCell.profilePicture.addGestureRecognizer(tap)
+            headerCell.delegate = self
             return headerCell
         case .data:
             let dataCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for:indexPath as IndexPath) as! ProfileDataCell
@@ -75,11 +70,13 @@ final class ProfileViewController: UITableViewController {
     func setupHeader(headerCell: ProfileHeaderCell) {
         headerCell.emailLabel.isHidden = true
         headerCell.configureCell(user: viewModel.user)
+        let tap = UIGestureRecognizer(target:self, action: #selector(profilePictureTapped(sender:)))
+        headerCell.profilePicture.addGestureRecognizer(tap)
     }
     
     // MARK: - Selector Methods
     
-    func logoutButtonPressed() {
+    override func logoutButtonPressed() {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "hasLoggedIn")
         defaults.synchronize()
@@ -88,13 +85,37 @@ final class ProfileViewController: UITableViewController {
         appDelegate.window?.rootViewController = loginVC
     }
     
-    func addTaskButtonTapped() {
+    override func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
 }
+// MARK: - ProfileHeaderCell Delegate
 
 extension ProfileViewController: ProfileHeaderCellDelegate {
-    func profilePictureTapped(sender: UIGestureRecognizer) {
-        print("tap")
+    
+    internal func hidePopoverView() {
+        photoPopover.hidePopView(viewController: self)
+    }
+    
+    internal func profilePictureTapped(sender: UIGestureRecognizer) {
+        AppFunctions.profilePictureTapped(controller: self)
     }
 }
+
+// Mark: - UIImagePicker Delegate
+
+extension ProfileViewController: UIImagePickerControllerDelegate {
+    
+    func selectImage(picker: UIImagePickerController, viewController: UIViewController) {
+        AppFunctions.imageSelection(controller: self)
+    }
+    
+    internal override func tapPickPhoto(_ sender: UIButton) {
+        AppFunctions.photoTapped(controller: self)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        AppFunctions.photoForPicker(controller: self, info: info, viewModel: viewModel)
+    }
+}
+

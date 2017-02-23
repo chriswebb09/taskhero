@@ -17,13 +17,12 @@ enum HomeCellType {
     }
 }
 
-struct HomeViewModel {
+class HomeViewModel: BaseProfileViewModel {
     
     var store = UserDataStore.sharedInstance
     
     fileprivate let concurrentQueue = DispatchQueue(label: "com.taskHero.concurrentQueue", attributes: .concurrent)
     
-    var profilePic: UIImage?
     var taskMethods = SharedTaskMethods()
     
     var user: User? {
@@ -126,7 +125,7 @@ struct HomeViewModel {
     }
     
     func onViewWillAppear(controller: HomeViewController) {
-        taskMethods.fetchUser(tableView: controller.tableView)
+        AppFunctions.fetchUser(tableView: controller.tableView)
         controller.tableView.reloadOnMain()
     }
     
@@ -151,38 +150,9 @@ struct HomeViewModel {
         controller.tableView.beginUpdates()
         controller.backgroundQueue.async {
             self.taskMethods.deleteTask(indexPath: indexPath, tableView: controller.tableView, type: .home)
-            self.taskMethods.fetchUser(tableView: controller.tableView)
+            AppFunctions.fetchUser(tableView: controller.tableView)
         }
         controller.tableView.endUpdates()
     }
-    
-    func imageSelection(controller: HomeViewController) {
-        controller.picker.allowsEditing = false
-        controller.picker.sourceType = .photoLibrary
-        controller.present(controller.picker, animated: true, completion: nil)
-        controller.photoPopover.hideView(viewController: controller)
-    }
-    
-    func photoTapped(controller: HomeViewController) {
-        controller.picker.allowsEditing = false
-        controller.picker.sourceType = .photoLibrary
-        controller.present(controller.picker, animated: true, completion: nil)
-        controller.photoPopover.hideView(viewController: controller)
-    }
-    
-    func profilePictureTapped(controller: HomeViewController) {
-        controller.photoPopover.showPopView(viewController: controller)
-        controller.photoPopover.photoPopView.button.addTarget(controller, action: #selector(controller.tapPickPhoto(_:)), for: .touchUpInside)
-    }
-    
-    mutating func photoForPicker(controller: HomeViewController, info: [String: Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            profilePic = image
-        } else {
-            print("Something went wrong")
-        }
-       controller.dismiss(animated: true, completion: nil)
-    }
-
 }
 

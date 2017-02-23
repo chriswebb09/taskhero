@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ProfileViewModel {
+class ProfileViewModel: BaseProfileViewModel {
     
     let store = UserDataStore.sharedInstance
     
@@ -23,6 +23,8 @@ struct ProfileViewModel {
     var rowHeight: CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    //var profilePic: UIImage?
 }
 
 

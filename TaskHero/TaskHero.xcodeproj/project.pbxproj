@@ -57,6 +57,7 @@
 		A746FB0A1E5E680100D3BF65 /* AppMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746FB091E5E680100D3BF65 /* AppMethods.swift */; };
 		A746FB0C1E5E688800D3BF65 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746FB0B1E5E688800D3BF65 /* BaseViewController.swift */; };
 		A746FB0E1E5E68D500D3BF65 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746FB0D1E5E68D500D3BF65 /* BaseCell.swift */; };
+		A746FB101E5E814800D3BF65 /* BaseProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746FB0F1E5E814800D3BF65 /* BaseProfileViewModel.swift */; };
 		A752A3521E4AB587006FD395 /* SharedTaskMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752A3511E4AB587006FD395 /* SharedTaskMethods.swift */; };
 		A752A3541E4B1CDF006FD395 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752A3531E4B1CDF006FD395 /* DataPersistence.swift */; };
 		A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */; };
@@ -148,6 +149,7 @@
 		A746FB091E5E680100D3BF65 /* AppMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMethods.swift; sourceTree = "<group>"; };
 		A746FB0B1E5E688800D3BF65 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A746FB0D1E5E68D500D3BF65 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		A746FB0F1E5E814800D3BF65 /* BaseProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseProfileViewModel.swift; sourceTree = "<group>"; };
 		A752A3511E4AB587006FD395 /* SharedTaskMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTaskMethods.swift; sourceTree = "<group>"; };
 		A752A3531E4B1CDF006FD395 /* DataPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPersistence.swift; path = TaskHero/Networking/DataPersistence.swift; sourceTree = SOURCE_ROOT; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				A746FB091E5E680100D3BF65 /* AppMethods.swift */,
 				A746FB0B1E5E688800D3BF65 /* BaseViewController.swift */,
 				A746FB0D1E5E68D500D3BF65 /* BaseCell.swift */,
+				A746FB0F1E5E814800D3BF65 /* BaseProfileViewModel.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -914,6 +917,7 @@
 				A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */,
 				A709CAE01DE7722D00877907 /* UIColorExtension.swift in Sources */,
 				A70840061DEABBE200055B72 /* FriendsSettingsViewController.swift in Sources */,
+				A746FB101E5E814800D3BF65 /* BaseProfileViewModel.swift in Sources */,
 				A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */,
 				A709CB121DE7737800877907 /* TaskListViewController.swift in Sources */,
 				A7E991181E5A8BE1001CE354 /* Reachability.swift in Sources */,

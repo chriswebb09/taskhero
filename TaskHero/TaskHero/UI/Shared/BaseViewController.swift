@@ -38,3 +38,24 @@ class BaseTableViewController: UITableViewController {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
 }
+
+
+class BaseProfileViewController: BaseTableViewController {
+    
+    var picker: UIImagePickerController = UIImagePickerController()
+    let photoPopover = PhotoPickerPopover()
+    override func logoutButtonPressed() {
+        
+    }
+    
+    override func addTaskButtonTapped() {
+        navigationController?.pushViewController(AddTaskViewController(), animated:false)
+    }
+    
+    internal func tapPickPhoto(_ sender: UIButton) {
+        AppFunctions.photoTapped(controller: self)
+        //homeViewModel.photoTapped(controller: self)
+    }
+    
+}
+

@@ -10,7 +10,7 @@ protocol ProfileDataCellDelegate: class {
     func userStatsTapped()
 }
 
-final class ProfileDataCell: UITableViewCell {
+final class ProfileDataCell: BaseCell {
     
     weak var delegate: ProfileDataCellDelegate?
     static let cellIdentifier = "ProfileDataCell"

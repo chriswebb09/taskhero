@@ -8,15 +8,15 @@ import Firebase
 
 /* HomeViewController is the first tab in the tabbar. It is a subclass of UITableViewController. At index.row 0 the cell type returned is ProfileHeaderCell after that all other cells are of type TaskCell */
 
-final class HomeViewController: BaseTableViewController, UINavigationControllerDelegate {
+final class HomeViewController: BaseProfileViewController, UINavigationControllerDelegate {
     
     var homeViewModel: HomeViewModel
     var taskMethods = SharedTaskMethods()
     
     let backgroundQueue = DispatchQueue(label: "com.taskhero.queue", qos: .background, target: nil)
     
-    let photoPopover = PhotoPickerPopover()
-    let picker = UIImagePickerController()
+    //let photoPopover = PhotoPickerPopover()
+    //let picker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,7 +142,7 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     }
     
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
-        homeViewModel.profilePictureTapped(controller: self)
+        AppFunctions.profilePictureTapped(controller: self)
     }
 }
 
@@ -151,14 +151,14 @@ extension HomeViewController: ProfileHeaderCellDelegate {
 extension HomeViewController: UIImagePickerControllerDelegate {
     
     func selectImage(picker: UIImagePickerController, viewController: UIViewController) {
-        homeViewModel.imageSelection(controller: self)
+        AppFunctions.imageSelection(controller: self)
     }
     
-    internal func tapPickPhoto(_ sender: UIButton) {
-        homeViewModel.photoTapped(controller: self)
+    internal override func tapPickPhoto(_ sender: UIButton) {
+        AppFunctions.photoTapped(controller: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        homeViewModel.photoForPicker(controller: self, info: info)
+        AppFunctions.photoForPicker(controller: self, info: info, viewModel: homeViewModel)
     }
 }
