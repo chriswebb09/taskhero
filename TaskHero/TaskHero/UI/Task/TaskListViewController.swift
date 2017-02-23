@@ -1,6 +1,6 @@
 import UIKit
 
-final class TaskListViewController: UITableViewController {
+final class TaskListViewController: BaseTableViewController {
     
     /* TaskListViewController is the viewController that presents just the tasks that the user has added */
     
@@ -112,7 +112,7 @@ extension TaskListViewController: TaskCellDelegate {
     
     // MARK: - Button methods
     
-    func logoutButtonPressed() {
+    override func logoutButtonPressed() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         DataPeristence.shared.logout()
         appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
@@ -120,7 +120,7 @@ extension TaskListViewController: TaskCellDelegate {
     
     // MARK: - Task Actions
     
-    @objc func addTaskButtonTapped() {
+    @objc override func addTaskButtonTapped() {
         self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     

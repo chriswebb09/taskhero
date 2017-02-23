@@ -54,6 +54,9 @@
 		A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D7D1DE93688005E3A5E /* TaskButton.swift */; };
 		A7346D881DEA6A08005E3A5E /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346D871DEA6A08005E3A5E /* DataPicker.swift */; };
 		A74553421E2346C9004300AA /* TaskHeroSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74553411E2346C9004300AA /* TaskHeroSpec.swift */; };
+		A746FB0A1E5E680100D3BF65 /* AppMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746FB091E5E680100D3BF65 /* AppMethods.swift */; };
+		A746FB0C1E5E688800D3BF65 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746FB0B1E5E688800D3BF65 /* BaseViewController.swift */; };
+		A746FB0E1E5E68D500D3BF65 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746FB0D1E5E68D500D3BF65 /* BaseCell.swift */; };
 		A752A3521E4AB587006FD395 /* SharedTaskMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752A3511E4AB587006FD395 /* SharedTaskMethods.swift */; };
 		A752A3541E4B1CDF006FD395 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752A3531E4B1CDF006FD395 /* DataPersistence.swift */; };
 		A76562C61DF932E400E29AA9 /* ProfileHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */; };
@@ -142,6 +145,9 @@
 		A7346D7D1DE93688005E3A5E /* TaskButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
 		A7346D871DEA6A08005E3A5E /* DataPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
 		A74553411E2346C9004300AA /* TaskHeroSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHeroSpec.swift; sourceTree = "<group>"; };
+		A746FB091E5E680100D3BF65 /* AppMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMethods.swift; sourceTree = "<group>"; };
+		A746FB0B1E5E688800D3BF65 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A746FB0D1E5E68D500D3BF65 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A752A3511E4AB587006FD395 /* SharedTaskMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTaskMethods.swift; sourceTree = "<group>"; };
 		A752A3531E4B1CDF006FD395 /* DataPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPersistence.swift; path = TaskHero/Networking/DataPersistence.swift; sourceTree = SOURCE_ROOT; };
 		A76562C51DF932E400E29AA9 /* ProfileHeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderModel.swift; sourceTree = "<group>"; };
@@ -258,6 +264,9 @@
 				A709CB211DE77C1300877907 /* Extensions */,
 				A709CB221DE77C2600877907 /* Variables */,
 				A709CB231DE77C2E00877907 /* Views */,
+				A746FB091E5E680100D3BF65 /* AppMethods.swift */,
+				A746FB0B1E5E688800D3BF65 /* BaseViewController.swift */,
+				A746FB0D1E5E68D500D3BF65 /* BaseCell.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -874,6 +883,7 @@
 				A709CADE1DE7722300877907 /* String+Extension.swift in Sources */,
 				A752A3541E4B1CDF006FD395 /* DataPersistence.swift in Sources */,
 				A709CAE21DE7723800877907 /* TextfieldExtension.swift in Sources */,
+				A746FB0A1E5E680100D3BF65 /* AppMethods.swift in Sources */,
 				A7AABD5D1E5C1D8F0052AF1B /* SharedMethods.swift in Sources */,
 				A709CACE1DE7719E00877907 /* AddTaskViewController.swift in Sources */,
 				A709CAF81DE772F700877907 /* AddTaskView.swift in Sources */,
@@ -881,6 +891,7 @@
 				A7AABD591E5C096B0052AF1B /* ProfileViewModel.swift in Sources */,
 				A767FBA41E0832A1007767B6 /* TaskCellViewModel.swift in Sources */,
 				A76562D31DF93F4800E29AA9 /* InitialViewController.swift in Sources */,
+				A746FB0C1E5E688800D3BF65 /* BaseViewController.swift in Sources */,
 				A709CAE61DE7725F00877907 /* SettingsCell.swift in Sources */,
 				A7346D7A1DE90A0F005E3A5E /* PhotoPickerView.swift in Sources */,
 				A709CB001DE7731F00877907 /* Constants.swift in Sources */,
@@ -889,6 +900,7 @@
 				A709CAE41DE7724E00877907 /* UIView+Extension.swift in Sources */,
 				A709CAF61DE772EC00877907 /* PopMenu.swift in Sources */,
 				A7346D761DE8EC40005E3A5E /* PhotoPickerPopover.swift in Sources */,
+				A746FB0E1E5E68D500D3BF65 /* BaseCell.swift in Sources */,
 				A709CB0A1DE7735000877907 /* SettingsViewController.swift in Sources */,
 				A767FBA21E0830D5007767B6 /* SettingsCellViewModel.swift in Sources */,
 				AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */,

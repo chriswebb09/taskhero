@@ -8,7 +8,7 @@ import Firebase
 
 /* HomeViewController is the first tab in the tabbar. It is a subclass of UITableViewController. At index.row 0 the cell type returned is ProfileHeaderCell after that all other cells are of type TaskCell */
 
-final class HomeViewController: UITableViewController, UINavigationControllerDelegate {
+final class HomeViewController: BaseTableViewController, UINavigationControllerDelegate {
     
     var homeViewModel: HomeViewModel
     var taskMethods = SharedTaskMethods()
@@ -21,7 +21,7 @@ final class HomeViewController: UITableViewController, UINavigationControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel.viewSetup(viewController: self)
-        homeViewModel.barSetup(controller: self)
+        AppFunctions.barSetup(controller: self)
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -100,7 +100,7 @@ extension HomeViewController {
 
 extension HomeViewController {
     
-    func logoutButtonPressed() {
+    override func logoutButtonPressed() {
         homeViewModel.setupUserDefaults()
         if FIRAuth.auth()?.currentUser != nil {
             do {
@@ -113,7 +113,7 @@ extension HomeViewController {
         }
     }
     
-    func addTaskButtonTapped() {
+    override func addTaskButtonTapped() {
         navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
 }

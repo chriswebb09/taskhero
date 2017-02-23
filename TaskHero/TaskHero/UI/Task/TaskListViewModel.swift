@@ -62,11 +62,11 @@ struct TaskListViewModel {
     }
     
     func initializeBackgroundUI(controller: TaskListViewController) {
-        controller.tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
+        AppFunctions.register(tableView: controller.tableView, cells: [TaskCell.self])
         controller.edgesForExtendedLayout = []
         controller.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         sharedTaskMethods.setupTableView(tableView: controller.tableView, view: controller.view)
-        barSetup(controller: controller)
+        AppFunctions.barSetup(controller: controller)
         controller.addTasksLabel = UILabel()
         controller.addTasksLabel.isHidden = controller.hidden
     }

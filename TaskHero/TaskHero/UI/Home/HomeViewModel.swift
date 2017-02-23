@@ -68,19 +68,13 @@ struct HomeViewModel {
     }
     
     func viewSetup(viewController: HomeViewController) {
-        registerCellsToTableView(tableView: viewController.tableView)
+        AppFunctions.register(tableView: viewController.tableView, cells: [TaskCell.self, ProfileHeaderCell.self])
         taskMethods.setupTableView(tableView: viewController.tableView, view: viewController.view)
         
         viewController.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         viewController.picker.delegate = viewController
         viewController.edgesForExtendedLayout = []
     }
-    
-    func registerCellsToTableView(tableView: UITableView) {
-        tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: ProfileHeaderCell.cellIdentifier)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.cellIdentifier)
-    }
-    
     
     func returnCell(tableViewController: HomeViewController, type: HomeCellType, for indexPath: IndexPath) -> UITableViewCell {
         

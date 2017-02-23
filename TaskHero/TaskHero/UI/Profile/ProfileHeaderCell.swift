@@ -10,7 +10,7 @@ protocol ProfileHeaderCellDelegate: class {
     func profilePictureTapped(sender: UIGestureRecognizer)
 }
 
-final class ProfileHeaderCell: UITableViewCell {
+final class ProfileHeaderCell: BaseCell {
     
     static let cellIdentifier = "ProfileHeaderCell"
     weak var delegate: ProfileHeaderCellDelegate?

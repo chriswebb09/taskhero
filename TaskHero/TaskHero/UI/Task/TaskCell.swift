@@ -16,7 +16,7 @@ protocol TaskCellDelegate: class {
     func toggleForButtonState(_ sender:UIButton)
 }
 
-final class TaskCell: UITableViewCell, Toggable {
+final class TaskCell: BaseCell, Toggable {
     
     static let cellIdentifier = "TaskCell"
     weak var delegate: TaskCellDelegate?
