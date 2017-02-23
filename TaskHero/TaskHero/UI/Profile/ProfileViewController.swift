@@ -73,21 +73,6 @@ final class ProfileViewController: BaseProfileViewController {
         let tap = UIGestureRecognizer(target:self, action: #selector(profilePictureTapped(sender:)))
         headerCell.profilePicture.addGestureRecognizer(tap)
     }
-    
-    // MARK: - Selector Methods
-    
-    override func logoutButtonPressed() {
-        let defaults = UserDefaults.standard
-        defaults.set(false, forKey: "hasLoggedIn")
-        defaults.synchronize()
-        let loginVC = UINavigationController(rootViewController:LoginViewController())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginVC
-    }
-    
-    override func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
 }
 // MARK: - ProfileHeaderCell Delegate
 

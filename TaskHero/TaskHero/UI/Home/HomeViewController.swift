@@ -93,28 +93,6 @@ extension HomeViewController {
     }
 }
 
-// MARK: Selector Methods
-
-extension HomeViewController {
-    
-    override func logoutButtonPressed() {
-        homeViewModel.setupUserDefaults()
-        if FIRAuth.auth()?.currentUser != nil {
-            do {
-                try FIRAuth.auth()?.signOut()
-                homeViewModel.setupAppScreen()
-            } catch {
-                print("Error")
-                homeViewModel.setupAppScreen()
-            }
-        }
-    }
-    
-    override func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
-}
-
 // MARK:  TaskCell Delegate Methods
 
 extension HomeViewController: TaskCellDelegate {
