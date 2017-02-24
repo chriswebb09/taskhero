@@ -20,8 +20,15 @@ class BaseProfileViewController: BaseTableViewController, ProfileViewable{
     }
     
     internal func tapPickPhoto(_ sender: UIButton) {
-        SharedMethods.photoTapped(controller: self)
+        UINavigationController.photoTapped(controller: self)
     }
+    
+//    class func photoTapped(controller: BaseProfileViewController) {
+//        controller.picker.allowsEditing = false
+//        controller.picker.sourceType = .photoLibrary
+//        controller.present(controller.picker, animated: true, completion: nil)
+//        controller.photoPopover.hideView(viewController: controller)
+//    }
     
 }
 
@@ -31,6 +38,13 @@ protocol ProfileViewable {
     func logoutButtonPressed()
     func addTaskButtonTapped()
     func tapPickPhoto(_ sender: UIButton)
+}
+
+extension BaseViewController {
+    class func profilePictureTapped(controller: BaseProfileViewController) {
+        controller.photoPopover.showPopView(viewController: controller)
+        controller.photoPopover.photoPopView.button.addTarget(controller, action: #selector(controller.tapPickPhoto(_:)), for: .touchUpInside)
+    }
 }
 
 extension ProfileViewable {

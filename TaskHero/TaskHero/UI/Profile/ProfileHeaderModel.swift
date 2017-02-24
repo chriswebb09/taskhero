@@ -14,7 +14,7 @@ protocol ProfileHeaderModel {
 }
 
 struct ProfileHeaderCellModel {
-
+    
     let store = UserDataStore.sharedInstance
     internal var emailLabel: String
     internal var usernameLabel: String

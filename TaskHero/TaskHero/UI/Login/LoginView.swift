@@ -28,7 +28,7 @@ final class LoginView: UIView {
         return button.newButton
     }()
     
-    var viewModel = LoginViewModel(username: "", password: "")
+    var viewModel = LoginViewModel()
     
     
     var logoTopConstraint: NSLayoutConstraint!

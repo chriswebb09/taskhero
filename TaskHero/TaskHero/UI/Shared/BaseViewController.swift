@@ -20,16 +20,16 @@ extension Loginable {
         appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
     }
     
-//    typealias B = BaseTableViewController
-//    
-//    @discardableResult
-//    static func barSetup<B: BaseTableViewController>(controller: B) -> B {
-//        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
-//        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
-//        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
-//        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
-//        return controller
-//    }
+    //    typealias B = BaseTableViewController
+    //
+    //    @discardableResult
+    //    static func barSetup<B: BaseTableViewController>(controller: B) -> B {
+    //        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+    //        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
+    //        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
+    //        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
+    //        return controller
+    //    }
 }
 
 class BaseViewController: UIViewController, Loginable {
@@ -53,15 +53,15 @@ class BaseViewController: UIViewController, Loginable {
     
     @discardableResult
     static func barSetup<B: BaseTableViewController>(controller: B) -> B {
-        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
-        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
-        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
-        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
+        let rightBarImage: UIImage = UIImage.getAddTaskImage()!
+        let leftItem = UINavigationController.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
+        let rightItem = UINavigationController.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
+        UINavigationController.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
         return controller
     }
     
     func getLoginViewController() {
-        //var data = DataPeristence.shared
+
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
@@ -80,7 +80,7 @@ class BaseViewController: UIViewController, Loginable {
             }
         }
     }
-
+    
     
     func logoutButtonPressed() {
         getLoginViewController()

@@ -34,3 +34,14 @@ extension Date {
 }
 
 
+
+extension UserDefaults {
+    class func loginDefaults() {
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "hasLoggedIn")
+        defaults.synchronize()
+    }
+}
+
+
+

@@ -11,6 +11,26 @@ extension UIView {
     }
 }
 
+extension BaseViewController {
+    class func loadTabBar(tabBar: TabBarController) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = tabBar
+    }
+}
+
+extension UITableViewController {
+    
+    class func setupTableView(tableView: UITableView, view: UIView) {
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.separatorStyle = .singleLineEtched
+        tableView.allowsSelection = false
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+    }
+}
+
 extension UITextView {
     
     func setupStyledTextView() -> UITextView {
@@ -66,6 +86,20 @@ public extension UITableView {
     func reloadOnMain() {
         DispatchQueue.main.async {
             self.reloadData()
+        }
+    }
+}
+
+extension BaseViewController {
+    
+    class func photoForPicker(controller: BaseProfileViewController, info: [String: Any]) -> UIImage? {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            controller.dismiss(animated: true, completion: nil)
+            return image
+        } else {
+            print("Something went wrong")
+            controller.dismiss(animated: true, completion: nil)
+            return nil
         }
     }
 }

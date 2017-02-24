@@ -42,6 +42,21 @@ extension UserDataProtocol {
     }
 }
 
+extension BaseTableViewController {
+    class func imageSelection(controller: BaseProfileViewController) {
+        controller.picker.allowsEditing = false
+        controller.picker.sourceType = .photoLibrary
+        controller.present(controller.picker, animated: true, completion: nil)
+        controller.photoPopover.hideView(viewController: controller)
+    }
+
+}
+
+extension BaseTableViewController {
+    
+
+}
+
 class BaseTableViewController: UITableViewController, UserDataProtocol, Identifiable {
     
     override func viewDidLoad() {

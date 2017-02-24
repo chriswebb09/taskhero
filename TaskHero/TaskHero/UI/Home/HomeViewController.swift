@@ -117,7 +117,7 @@ extension HomeViewController: ProfileHeaderCellDelegate {
     }
     
     internal func profilePictureTapped(sender: UIGestureRecognizer) {
-        SharedMethods.profilePictureTapped(controller: self)
+        BaseTableViewController.profilePictureTapped(controller: self)
     }
 }
 
@@ -126,14 +126,14 @@ extension HomeViewController: ProfileHeaderCellDelegate {
 extension HomeViewController: UIImagePickerControllerDelegate {
     
     func selectImage(picker: UIImagePickerController, viewController: UIViewController) {
-        SharedMethods.imageSelection(controller: self)
+        BaseTableViewController.imageSelection(controller: self)
     }
     
     internal override func tapPickPhoto(_ sender: UIButton) {
-        SharedMethods.photoTapped(controller: self)
+        UITableViewController.photoTapped(controller: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        homeViewModel.profilePic = SharedMethods.photoForPicker(controller: self, info: info)
+        homeViewModel.profilePic = BaseViewController.photoForPicker(controller: self, info: info)
     }
 }

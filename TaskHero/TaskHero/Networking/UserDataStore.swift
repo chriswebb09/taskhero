@@ -4,8 +4,8 @@ import Firebase
 final class UserDataStore {
     private static let _shared = UserDataStore()
     private init() { }
-    
     public static var sharedInstance: UserDataStore { return _shared }
+    
     public let firebaseAPI = APIClient()
     public var currentUser: User!
     

@@ -44,7 +44,7 @@ extension SignupViewController {
             guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
             let newUser = User.createUser(uid: uid, username: username, email: email)
             self.store.setupUser(user: newUser)
-            SharedMethods.loadTabBar(tabBar: TabBarController())
+            BaseViewController.loadTabBar(tabBar: TabBarController())
         }
     }
     

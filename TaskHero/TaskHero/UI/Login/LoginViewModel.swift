@@ -5,7 +5,19 @@
 
 import UIKit
 
-struct LoginViewModel {
+protocol LoginViewModelProtocol: class {
+    var username: String { get set }
+    var password: String { get set }
+    //var isValid: String { get }
+    var enableColor: UIColor { get }
+    func getUserName(textFieldText: String)
+    
+    func checkForValidEmailInput(loginView: LoginView)
+    
+    func setupUI(controller: LoginViewController)
+}
+
+class LoginViewModel: LoginViewModelProtocol {
     
     var username: String = "" {
         willSet {
@@ -18,7 +30,7 @@ struct LoginViewModel {
         }
     }
     
-    var password: String {
+    var password: String = "" {
         willSet {
             print("About to set password to:  \(newValue)")
         }
@@ -49,6 +61,10 @@ struct LoginViewModel {
         }
     }
     
+    //   convenience init() {
+    //
+    //    }
+    //
     func checkForValidEmailInput(loginView: LoginView) {
         if loginView.emailField.text == nil || (loginView.emailField.text?.characters.count)! < 5 {
             loginView.textFieldAnimation()

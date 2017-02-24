@@ -20,16 +20,30 @@ final class LoginViewController: UIViewController {
     var defaults = UserDefaults.standard
     var loadingView = LoadingView()
     var loginView: LoginView = LoginView()
+//    var viewModel: GreetingViewModelProtocol! {
+//        didSet {
+//            self.viewModel.greetingDidChange = { [unowned self] viewModel in
+//                self.greetingLabel.text = viewModel.greeting
+//            }
+//        }
+ //   }
     
-    var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
+    var loginViewModel: LoginViewModel = LoginViewModel() {
+        
         willSet {
             print("New viewModel value \(newValue)")
         }
-        
         didSet {
+        
             loginView.loginButton.isEnabled = loginViewModel.isValid
             loginView.loginButton.backgroundColor = loginViewModel.enableColor
             loginViewModel.username = loginView.emailField.text!
+//            loginViewModel.username = { [unowned self] loginViewModel in
+//                loginView.emailField.text!
+//            }
+//            
+//            }
+        
             loginViewModel.password = loginView.passwordField.text!
             print(loginView.emailField.text!)
         }
@@ -116,9 +130,9 @@ extension LoginViewController: UITextFieldDelegate {
         DispatchQueue.global(qos: .background).async {
             self.fetchData()
             DispatchQueue.main.async {
-                SharedMethods.loginDefaults()
+                UserDefaults.loginDefaults()
                 self.loadingView.hideActivityIndicator(viewController: self)
-                SharedMethods.loadTabBar(tabBar: TabBarController())
+                BaseViewController.loadTabBar(tabBar: TabBarController())
             }
         }
     }

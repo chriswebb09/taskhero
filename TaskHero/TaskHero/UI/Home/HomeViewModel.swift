@@ -24,7 +24,16 @@ struct TaskView {
     let tag: Int
 }
 
+struct TaskItem: Any {}
+struct Header: Any {}
+
 class HomeViewModel: BaseModelProtocol {
+    
+    //var sections: [[Any]] = [[Array<TaskItem>.init(repeating: , count: UserDataStore.sharedInstance.currentUse.tasks.count)]]
+    
+   // var sections: [[BaseCell]] = [[BaseCell]]()
+    
+    //var sections: [[BaseCell]] = [[TaskCell.init(]]
     
     var store = UserDataStore.sharedInstance
     
@@ -76,7 +85,7 @@ class HomeViewModel: BaseModelProtocol {
     
     func viewSetup(controller: HomeViewController) {
         controller.register(tableView: controller.tableView, cells: [TaskCell.self, ProfileHeaderCell.self])
-        SharedMethods.setupTableView(tableView: controller.tableView, view: controller.view)
+        UITableViewController.setupTableView(tableView: controller.tableView, view: controller.view)
         controller.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
         controller.picker.delegate = controller
         controller.edgesForExtendedLayout = []
