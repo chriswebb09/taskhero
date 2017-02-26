@@ -8,7 +8,7 @@ class DataPeristence {
     
     func hasLoggedIn() {
         let hasLoggedIn = defaults.bool(forKey: "hasLoggedIn")
-        let user = defaults.data(forKey: "currentUser")
+        _ = defaults.data(forKey: "currentUser")
         if hasLoggedIn {
             print("LOGGED IN")
         }

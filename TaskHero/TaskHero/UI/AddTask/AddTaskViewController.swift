@@ -185,7 +185,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         DispatchQueue.main.async {
             self.pop.hidePopView(viewController: self)
             self.pop.popView.isHidden = true
-            self.navigationController?.popToRootViewController(animated: false)
+            _ = self.navigationController?.popToRootViewController(animated: false)
         }
     }
     

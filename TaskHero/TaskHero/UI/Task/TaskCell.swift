@@ -48,7 +48,7 @@ final class TaskCell: BaseCell, Toggable {
     
     var saveButton: UIButton = {
         let button = ButtonType.system(title: "Save", color: UIColor.black).newButton
-        var attributes: [String: Any] =  [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall]
+        var attributes: [String: Any] =  [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Constants.Font.fontSmall as Any]
         button.setAttributedTitle(NSAttributedString(string: "Save", attributes:attributes), for: .normal)
         button.isHidden = true
         button.isEnabled = false

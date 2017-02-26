@@ -16,12 +16,12 @@ protocol ProfileHeaderModel {
 struct ProfileHeaderCellModel {
     
     let store = UserDataStore.sharedInstance
-    internal var emailLabel: String
-    internal var usernameLabel: String
-    internal var profilePicture: String
-    internal var levelLabel: String
-    internal var joinDate: String
-    internal var joinDateIsHidden: Bool
+    var emailLabel: String
+    var usernameLabel: String
+    var profilePicture: String
+    var levelLabel: String
+    var joinDate: String
+    var joinDateIsHidden: Bool
     
     init() {
         if let user = self.store.currentUser {
