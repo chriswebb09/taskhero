@@ -29,8 +29,8 @@ final class APIClient {
     
     init() {
         syncedUser.keepSynced(true)
-        
         dbRef = FIRDatabase.database().reference()
+        
         usernameRef = dbRef.child("Usernames")
         setupRefs()
     }

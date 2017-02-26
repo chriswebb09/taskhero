@@ -20,7 +20,9 @@ final class UserDataStore {
     
     func setupStore() {
         tasks.removeAll()
-        if currentUser.tasks != nil { currentUser.tasks?.removeAll() }
+        if currentUser.tasks != nil {
+            currentUser.tasks?.removeAll()
+        }
     }
     
     func updateUserScore() {

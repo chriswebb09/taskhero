@@ -16,7 +16,7 @@ class DataPeristence {
     
     /* Sets has logged in key for UserDefaults */
     
-    func setLoggedInKey(userState:Bool) {
+    func setLoggedInKey(userState: Bool) {
         defaults.set(userState, forKey: "hasLoggedIn")
         defaults.synchronize()
     }

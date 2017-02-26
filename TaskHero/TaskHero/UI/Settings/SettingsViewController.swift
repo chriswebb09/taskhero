@@ -143,7 +143,6 @@ final class SettingsViewController: UITableViewController, Identifiable {
         case 0:
             settings = userSettings
             segmentControl.subviews[0].backgroundColor = .white
-            
         default:
             settings = applicationSettings
             segmentControl.subviews[1].backgroundColor = .white

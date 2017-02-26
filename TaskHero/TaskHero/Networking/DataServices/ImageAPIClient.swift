@@ -16,14 +16,9 @@ extension UIImageView {
     func loadImageUsingCacheWithUrlString(_ urlString: String) {
         
         self.image = nil
-        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
-            self.image = cachedImage
-            return
-        }
-        
-        
+        if let cachedImage = imageCache.object(forKey: urlString as NSString) { self.image = cachedImage; return }
         let url = URL(string: urlString)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+        URLSession.shared.dataTask(with: url!, completionHandler: { data, response, error in
             if error != nil {
                 print(error)
                 return
@@ -54,14 +49,16 @@ class ImageAPIClient {
         }
         
         if let selectedImage = selectedImageFromPicker {
-            uploadToFirebaseStorageUsingImage(selectedImage, completion: { (imageUrl) in
+            uploadToFirebaseStorageUsingImage(selectedImage, completion: { imageUrl in
                 self.imageUrl(imageUrl, image: selectedImage)
             })
         }
     }
     
     fileprivate func imageUrl(_ imageUrl: String, image: UIImage) {
-        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject, "imageWidth": image.size.width as AnyObject, "imageHeight": image.size.height as AnyObject]
+        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject,
+                                               "imageWidth": image.size.width as AnyObject,
+                                               "imageHeight": image.size.height as AnyObject]
         imageWithProperties(properties)
     }
     
@@ -71,7 +68,7 @@ class ImageAPIClient {
         let profilePicRef = FIRStorage.storage().reference().child("profileImages").child(imageName)
         
         if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
-            profilePicRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+            profilePicRef.put(uploadData, metadata: nil, completion: { metadata, error in
                 
                 if error != nil {
                     print("Failed to upload image:", error)
@@ -95,20 +92,20 @@ class ImageAPIClient {
         }
         
         let url = URL(string: urlString)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+        URLSession.shared.dataTask(with: url!, completionHandler: { data, response, error in
             if error != nil { print(error); return }
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
                 if let downloadedImage = UIImage(data: data!) {
                     imageCache.setObject(downloadedImage, forKey: urlString as NSString)
                     self.image = downloadedImage
                 }
-            })
+            }
         }).resume()
     }
     
     
     fileprivate func imageWithProperties(_ properties: [String: AnyObject]) {
-        let ref = FIRDatabase.database().reference().child("messages")
+        let ref = FIRDatabase.database().reference().child("profile_pictures")
         let childRef = ref.childByAutoId()
         let toId = UserDataStore.sharedInstance.currentUser.uid
         let fromId = FIRAuth.auth()!.currentUser!.uid
@@ -117,12 +114,12 @@ class ImageAPIClient {
         var values: [String: AnyObject] = ["toId": toId as AnyObject, "fromId": fromId as AnyObject, "timestamp": timestamp]
         properties.forEach({values[$0] = $1})
         
-        childRef.updateChildValues(values) { (error, ref) in
+        childRef.updateChildValues(values) { error, ref in
             if error != nil {
                 print(error)
                 return
             }
-            let userPicRef = FIRDatabase.database().reference().child("profile_pic").child(fromId).child(toId)
+            let userPicRef = FIRDatabase.database().reference().child("profile_pictures").child(fromId).child(toId)
             
             let picKey = childRef.key
             userPicRef.updateChildValues([picKey: 1])

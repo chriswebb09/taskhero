@@ -118,18 +118,10 @@ class HomeViewModel: BaseModelProtocol {
         cell.taskCompletedView.addGestureRecognizer(tap)
     }
     
-    func setupUserDefaults() {
-        let defaults = UserDefaults.standard
-        defaults.set(false, forKey: "hasLoggedIn")
-        defaults.synchronize()
-    }
-    
     func setupHeaderCell(headerCell: ProfileHeaderCell, indexPath: IndexPath) {
         headerCell.emailLabel.isHidden = true
         if let user = user { headerCell.configureCell(user: user) }
     }
-    
-    
     
     func setupTaskCell(taskCell:TaskCell, taskIndex: Int) {
         
