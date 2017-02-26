@@ -210,8 +210,8 @@ final class TaskCell: BaseCell, Toggable {
     
     func setupShadow() {
         let shadowOffset = CGSize(width:-0.45, height: 0.2)
-        let shadowRadius:CGFloat = 1.0
-        let shadowOpacity:Float = 0.4
+        let shadowRadius: CGFloat = 1.0
+        let shadowOpacity: Float = 0.4
         
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = shadowOffset

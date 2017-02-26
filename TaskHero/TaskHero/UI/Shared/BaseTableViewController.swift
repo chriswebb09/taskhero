@@ -9,54 +9,6 @@
 import UIKit
 import Firebase
 
-protocol Identifiable {
-    typealias T = BaseCell
-    func register<T: BaseCell>(tableView: UITableView, cells: [T.Type]) -> T
-}
-
-extension Identifiable {
-    @discardableResult
-    func register<T: BaseCell>(tableView: UITableView, cells: [T.Type]) -> T {
-        cells.forEach {
-            tableView.register($0, forCellReuseIdentifier: $0.cellID)
-        }
-        return T()
-    }
-}
-
-protocol UserDataProtocol {
-    func fetchUser(tableView: UITableView)
-}
-
-extension UserDataProtocol {
-    func fetchUser(tableView: UITableView) {
-        UserDataStore.sharedInstance.firebaseAPI.fetchUserData() { user in
-            UserDataStore.sharedInstance.firebaseAPI.fetchTaskList() { taskList in
-                UserDataStore.sharedInstance.tasks = taskList
-                DispatchQueue.main.async {
-                    UserDataStore.sharedInstance.currentUser = user
-                    tableView.reloadOnMain()
-                }
-            }
-        }
-    }
-}
-
-extension BaseTableViewController {
-    class func imageSelection(controller: BaseProfileViewController) {
-        controller.picker.allowsEditing = false
-        controller.picker.sourceType = .photoLibrary
-        controller.present(controller.picker, animated: true, completion: nil)
-        controller.photoPopover.hideView(viewController: controller)
-    }
-
-}
-
-extension BaseTableViewController {
-    
-
-}
-
 class BaseTableViewController: UITableViewController, UserDataProtocol, Identifiable {
     
     override func viewDidLoad() {

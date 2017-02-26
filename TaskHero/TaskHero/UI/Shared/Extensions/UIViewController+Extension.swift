@@ -7,7 +7,64 @@
 //
 
 import UIKit
+import Firebase
 
+protocol Identifiable {
+    typealias T = BaseCell
+    func register<T: BaseCell>(tableView: UITableView, cells: [T.Type]) -> T
+}
+
+extension Identifiable {
+    @discardableResult
+    func register<T: BaseCell>(tableView: UITableView, cells: [T.Type]) -> T {
+        cells.forEach {
+            tableView.register($0, forCellReuseIdentifier: $0.cellID)
+        }
+        return T()
+    }
+}
+
+protocol UserDataProtocol {
+    func fetchUser(tableView: UITableView)
+}
+
+extension UserDataProtocol {
+    func fetchUser(tableView: UITableView) {
+        UserDataStore.sharedInstance.firebaseAPI.fetchUserData() { user in
+            UserDataStore.sharedInstance.firebaseAPI.fetchTaskList() { taskList in
+                UserDataStore.sharedInstance.tasks = taskList
+                DispatchQueue.main.async {
+                    UserDataStore.sharedInstance.currentUser = user
+                    tableView.reloadOnMain()
+                }
+            }
+        }
+    }
+}
+
+
+protocol Loginable {
+    //func getLoginViewController()
+}
+
+extension Loginable {
+    
+    func setLoginViewController() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
+    }
+    
+    //    typealias B = BaseTableViewController
+    //
+    //    @discardableResult
+    //    static func barSetup<B: BaseTableViewController>(controller: B) -> B {
+    //        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
+    //        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
+    //        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
+    //        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
+    //        return controller
+    //    }
+}
 
 extension UIViewController {
     
@@ -17,5 +74,8 @@ extension UIViewController {
 
 
 extension BaseViewController {
-
+    class func profilePictureTapped(controller: BaseProfileViewController) {
+        controller.photoPopover.showPopView(viewController: controller)
+        controller.photoPopover.photoPopView.button.addTarget(controller, action: #selector(controller.tapPickPhoto(_:)), for: .touchUpInside)
+    }
 }

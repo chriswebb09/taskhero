@@ -40,12 +40,7 @@ protocol ProfileViewable {
     func tapPickPhoto(_ sender: UIButton)
 }
 
-extension BaseViewController {
-    class func profilePictureTapped(controller: BaseProfileViewController) {
-        controller.photoPopover.showPopView(viewController: controller)
-        controller.photoPopover.photoPopView.button.addTarget(controller, action: #selector(controller.tapPickPhoto(_:)), for: .touchUpInside)
-    }
-}
+
 
 extension ProfileViewable {
     
