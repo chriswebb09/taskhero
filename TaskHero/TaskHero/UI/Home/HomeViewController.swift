@@ -18,7 +18,7 @@ final class HomeViewController: BaseProfileViewController, UINavigationControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel.viewSetup(controller: self)
-        SharedMethods.barSetup(controller: self)
+        BaseViewController.barSetup(controller: self)
     }
     
     required convenience init(coder aDecoder: NSCoder) {

@@ -279,11 +279,7 @@
 				A709CB211DE77C1300877907 /* Extensions */,
 				A709CB221DE77C2600877907 /* Variables */,
 				A709CB231DE77C2E00877907 /* Views */,
-				A746FB0B1E5E688800D3BF65 /* BaseViewController.swift */,
-				A72112701E5ED29200404F01 /* BaseTableViewController.swift */,
-				A72112721E5ED2B700404F01 /* BaseProfileViewController.swift */,
-				A746FB0D1E5E68D500D3BF65 /* BaseCell.swift */,
-				A746FB0F1E5E814800D3BF65 /* BaseProfileViewModel.swift */,
+				A7A497DA1E63505E00F336C7 /* Base */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -478,6 +474,18 @@
 				A714E1781E3BF52E0014F990 /* HomeViewModel.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		A7A497DA1E63505E00F336C7 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A746FB0B1E5E688800D3BF65 /* BaseViewController.swift */,
+				A72112701E5ED29200404F01 /* BaseTableViewController.swift */,
+				A72112721E5ED2B700404F01 /* BaseProfileViewController.swift */,
+				A746FB0D1E5E68D500D3BF65 /* BaseCell.swift */,
+				A746FB0F1E5E814800D3BF65 /* BaseProfileViewModel.swift */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 		A7AABD571E5C09570052AF1B /* Controller */ = {

@@ -90,16 +90,4 @@ public extension UITableView {
     }
 }
 
-extension BaseViewController {
-    
-    class func photoForPicker(controller: BaseProfileViewController, info: [String: Any]) -> UIImage? {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            controller.dismiss(animated: true, completion: nil)
-            return image
-        } else {
-            print("Something went wrong")
-            controller.dismiss(animated: true, completion: nil)
-            return nil
-        }
-    }
-}
+

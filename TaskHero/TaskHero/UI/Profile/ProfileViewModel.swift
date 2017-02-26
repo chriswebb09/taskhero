@@ -38,7 +38,7 @@ class ProfileViewModel: BaseModelProtocol {
         controller.tableView.estimatedRowHeight = controller.view.frame.height / 3
         controller.tableView.separatorStyle = .none
         controller.tableView.tableFooterView = UIView(frame: .zero)
-        SharedMethods.barSetup(controller: controller)
+        BaseViewController.barSetup(controller: controller)
     }
     
     //var profilePic: UIImage?

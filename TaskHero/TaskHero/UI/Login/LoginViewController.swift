@@ -20,39 +20,30 @@ final class LoginViewController: UIViewController {
     var defaults = UserDefaults.standard
     var loadingView = LoadingView()
     var loginView: LoginView = LoginView()
-//    var viewModel: GreetingViewModelProtocol! {
-//        didSet {
-//            self.viewModel.greetingDidChange = { [unowned self] viewModel in
-//                self.greetingLabel.text = viewModel.greeting
-//            }
-//        }
- //   }
     
-    var loginViewModel: LoginViewModel = LoginViewModel() {
-        
-        willSet {
-            print("New viewModel value \(newValue)")
-        }
+    var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
         didSet {
-        
-            loginView.loginButton.isEnabled = loginViewModel.isValid
-            loginView.loginButton.backgroundColor = loginViewModel.enableColor
             loginViewModel.username = loginView.emailField.text!
-//            loginViewModel.username = { [unowned self] loginViewModel in
-//                loginView.emailField.text!
-//            }
-//            
-//            }
-        
             loginViewModel.password = loginView.passwordField.text!
-            print(loginView.emailField.text!)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // logvi
-        loginViewModel.setupUI(controller: self)
+        view.addSubview(loginView)
+        setupDelegates()
+        edgesForExtendedLayout = []
+        loginView.setupLogin(self)
+        loginView.loginButton.isEnabled = false
+        loginView.passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        loginView.loginButton.isEnabled = false
+        if loginView.loginButton.isEnabled == false {
+            loginView.loginButton.backgroundColor = .lightGray
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
     }
 }
 
@@ -87,28 +78,28 @@ extension LoginViewController: UITextFieldDelegate {
      */
     
     func handleLogin() {
-        if loginViewModel.isValid {
-            dismissKeyboard()
-            loadingView.showActivityIndicator(viewController: self)
-            FIRAuth.auth()?.signIn(withEmail: loginViewModel.username, password: loginViewModel.password) { [unowned self] user, error in
-                if error != nil {
-                    self.loadingView.hideActivityIndicator(viewController:self)
-                    if let err = error, let errCode = FIRAuthErrorCode(rawValue: err._code) {
-                        switch errCode {
-                        case .errorCodeInvalidEmail:
-                            print("Invalid Email For Sign In")
-                        default:
-                            print("User Authentication Error: \(error)") }
-                    }
-                    print(error ?? "Unknown error occured when attempting sign in authentication")
-                    return
-                }
-                self.completeLogin()
-            }
-        } else {
-            return
+        checkForValidEmailInput()
+        view.endEditing(true)
+        loadingView.showActivityIndicator(viewController: self)
+        if let emailText = loginView.emailField.text {
+            loginViewModel.username = emailText
         }
-      
+        FIRAuth.auth()?.signIn(withEmail: loginViewModel.username, password: loginViewModel.password) { [unowned self] user, error in
+            if error != nil {
+                self.loadingView.hideActivityIndicator(viewController:self)
+                if let err = error, let errCode = FIRAuthErrorCode(rawValue: err._code) {
+                    switch errCode {
+                    case .errorCodeInvalidEmail:
+                        print("Invalid Email For Sign In")
+                        
+                    default:
+                        print("User Authentication Error: \(error)") }
+                }
+                print(error ?? "Unknown error occured when attempting sign in authentication")
+                return
+            }
+            self.completeLogin()
+        }
     }
     
     func fetchData() {
@@ -130,14 +121,30 @@ extension LoginViewController: UITextFieldDelegate {
         DispatchQueue.global(qos: .background).async {
             self.fetchData()
             DispatchQueue.main.async {
-                UserDefaults.loginDefaults()
+                let defaults = UserDefaults.standard
+                defaults.set(true, forKey: "hasLoggedIn")
+                defaults.synchronize()
                 self.loadingView.hideActivityIndicator(viewController: self)
-                BaseViewController.loadTabBar(tabBar: TabBarController())
+                self.setupTabBar()
             }
         }
     }
     
+    // MARK: - Load TabbarController
+    
+    fileprivate func setupTabBar() {
+        let tabBar = TabBarController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = tabBar
+    }
+    
     /* Checks that text has been entered and exceeds five characters in length */
+    
+    fileprivate func checkForValidEmailInput() {
+        if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
+            loginView.textFieldAnimation()
+        }
+    }
     
     // MARK: - Textfield delegate methods
     
@@ -157,13 +164,12 @@ extension LoginViewController: UITextFieldDelegate {
     
     func textFieldDidChange(_ textField: UITextField) {
         if let emailText = loginView.emailField.text, let passwordText = loginView.passwordField.text {
-            loginViewModel.username = emailText
-            loginViewModel.password = passwordText
-            print("ENABLED \(loginViewModel.isValid)")
+            if (emailText.characters.count > 4) && (passwordText.characters.count >= 6) {
+                loginView.loginButton.backgroundColor = Constants.Color.buttonColor.setColor
+                loginView.loginButton.isEnabled = true
+            }
         }
     }
-    
-   
     
     /* On beginning editting changes textfield UI properties */
     
@@ -174,7 +180,7 @@ extension LoginViewController: UITextFieldDelegate {
         textField.layer.borderWidth = 1.1
         
         textInputAnimation()
-        loginView.editState = true
+        self.loginView.editState = true
     }
     
     func textInputAnimation() {
@@ -195,6 +201,8 @@ extension LoginViewController: UITextFieldDelegate {
         textField.layer.borderWidth = 1
         textField.textColor = .lightGray
         textField.layer.borderColor = Constants.Color.backgroundColor.setColor.cgColor
-        loginViewModel.checkForValidEmailInput(loginView: loginView)
+        
+        checkForValidEmailInput()
     }
 }
+
