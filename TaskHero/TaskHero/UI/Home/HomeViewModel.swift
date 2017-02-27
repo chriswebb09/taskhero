@@ -27,7 +27,7 @@ struct TaskView {
 struct TaskItem: Any {}
 struct Header: Any {}
 
-class HomeViewModel: BaseModelProtocol {
+final class HomeViewModel: BaseModelProtocol {
     
     //var sections: [[Any]] = [[Array<TaskItem>.init(repeating: , count: UserDataStore.sharedInstance.currentUse.tasks.count)]]
     

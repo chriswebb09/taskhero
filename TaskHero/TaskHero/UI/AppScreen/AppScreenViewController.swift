@@ -1,6 +1,6 @@
 import UIKit
 
-class AppScreenViewController: UIViewController {
+final class AppScreenViewController: UIViewController {
     
     let appScreenView = AppScreenView()
     

@@ -11,7 +11,7 @@ struct AppScreenConstants {
     static let dividerCenterYOffset: CGFloat = 0.09
 }
 
-class AppScreenView: UIView {
+final class AppScreenView: UIView {
     
     var logoImageView: UIImageView = {
         let image = UIImage(named: "taskherologo2")
