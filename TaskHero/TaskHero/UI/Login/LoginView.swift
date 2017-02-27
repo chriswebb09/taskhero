@@ -2,8 +2,6 @@ import UIKit
 
 final class LoginView: UIView {
     
-    // MARK: UIElements
-    
     var editState: Bool = false
     
     var logoImageView: UIImageView = {
@@ -45,7 +43,6 @@ final class LoginView: UIView {
         initialOpacity()
         animated()
     }
-    
 }
 
 extension LoginView {
@@ -70,7 +67,7 @@ extension LoginView {
         }
     }
     
-    /* Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap*/
+    // Lays out subviews, adds delegate to textFields, adds selector method to signup button and loginButton add gesture recognizer tap
     
     func setupLogin(_ viewController: LoginViewController) {
         layoutSubviews()
@@ -86,9 +83,10 @@ extension LoginView {
     private func setupView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
         view.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
-        view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     private func setupLogoImage() {
@@ -106,13 +104,16 @@ extension LoginView {
     
     fileprivate func setupConstraints() {
         setupLogoImage()
+        
         setupView(view: emailField)
         emailFieldTopConstraint = emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor)
         emailFieldTopConstraint.constant = bounds.height * LoginViewConstants.emailFieldTopConstant
         
         setupView(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * LoginViewConstants.passwordFieldTopMultiplier).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor,
+                                           constant: bounds.height * LoginViewConstants.passwordFieldTopMultiplier).isActive = true
         passwordField.isSecureTextEntry = true
+        
         setupView(view: loginButton)
         loginButtonTopConstraint = loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor)
         loginButtonTopConstraint.constant = bounds.height * LoginViewConstants.loginButtonTopConstant

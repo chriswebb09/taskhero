@@ -10,8 +10,6 @@ final class SettingsCell: BaseCell {
     
     static let cellIdentifier = "SettingsCell"
     
-    // MARK: - UIElement
-    
     var settingLabel: UILabel = {
         let textView = UILabel()
         textView.textColor = .white

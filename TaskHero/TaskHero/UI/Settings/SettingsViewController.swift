@@ -1,5 +1,10 @@
 import UIKit
 
+struct SettingsViewConstants {
+    static let rowHeight: CGFloat = 82
+    static let headerXYOrigin: CGFloat = 0
+}
+
 final class SettingsViewController: UITableViewController, Identifiable {
     
     // MARK: - Properties
@@ -42,7 +47,7 @@ final class SettingsViewController: UITableViewController, Identifiable {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 82
+        return SettingsViewConstants.rowHeight
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -62,7 +67,11 @@ final class SettingsViewController: UITableViewController, Identifiable {
     }
     
     func setupHeader() {
-        let header = UIView(frame:CGRect(x: 0, y: 0, width: Int(view.bounds.width), height: 50))
+        let headerRect: CGRect =  CGRect(x: SettingsViewConstants.headerXYOrigin,
+                                         y: SettingsViewConstants.headerXYOrigin,
+                                         width: view.bounds.width,
+                                         height: 50)
+        let header = UIView(frame: headerRect)
         header.addSubview(segmentControl)
         tableView.tableHeaderView = header
         header.backgroundColor = .white
@@ -86,10 +95,12 @@ final class SettingsViewController: UITableViewController, Identifiable {
     private func launchPopupView() {
         alertPopInitialOpacity()
         alertPop.showPopView(viewController: self)
+        
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.alertPop.popView.layer.opacity = 1
             self.alertPop.containerView.layer.opacity = 0.1
         }
+        
         setPopView()
     }
     
@@ -111,6 +122,7 @@ final class SettingsViewController: UITableViewController, Identifiable {
     func notificationPopup() {
         notificationPopInitialOpacity()
         notifyPop.showPopView(viewController: self)
+        
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.notifyPop.popView.layer.opacity = 1
             self.notifyPop.containerView.layer.opacity = 0.1
@@ -157,8 +169,10 @@ final class SettingsViewController: UITableViewController, Identifiable {
         let multipleUnselectedAttributes: [String : Any] = [NSForegroundColorAttributeName: UIColor.black]
         
         segmentControl.tintColor = .black
+        
         segmentControl.setTitleTextAttributes(multipleAttributes, for: .selected)
         segmentControl.setTitleTextAttributes(multipleUnselectedAttributes, for:.normal)
+        
         segmentControl.layer.cornerRadius = Constants.Settings.Segment.segmentBorderRadius
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         
@@ -170,6 +184,7 @@ final class SettingsViewController: UITableViewController, Identifiable {
                 make.height.equalTo(header.snp.height)
             }
         }
+        
         segmentControl.addTarget(self, action: #selector(changeView), for: .valueChanged)
     }
 }
