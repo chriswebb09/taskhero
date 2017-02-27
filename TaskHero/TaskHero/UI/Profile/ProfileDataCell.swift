@@ -94,8 +94,8 @@ final class ProfileDataCell: BaseCell {
     /* Adds constraints to labels to also adds experience points labels and tasksComleted labels to contentView */
     
     private func addLevelLabel(levelLabel:UILabel) {
-        
         configureLabels(label: levelLabel)
+        
         levelLabel.snp.makeConstraints { make in
             make.centerY.equalTo(contentView.snp.centerY)
             make.left.equalTo(contentView.snp.left).offset(Constants.Dimension.topOffset)
@@ -144,14 +144,14 @@ final class ProfileDataCell: BaseCell {
         
         configureDividers(view: topDivider)
         topDivider.snp.makeConstraints { make in
-            make.centerX.equalTo(contentView.snp.centerX)
             make.top.equalTo(contentView.snp.top)
+            make.centerX.equalTo(contentView.snp.centerX)
         }
         
         configureDividers(view: bottomDivider)
         bottomDivider.snp.makeConstraints { make in
-            make.centerX.equalTo(contentView.snp.centerX)
             make.bottom.equalTo(contentView.snp.bottom)
+            make.centerX.equalTo(contentView.snp.centerX)
         }
     }
     

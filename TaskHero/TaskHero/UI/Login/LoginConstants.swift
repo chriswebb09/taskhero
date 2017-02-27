@@ -8,35 +8,15 @@
 
 import UIKit
 
-struct LoginConstants {
-    static let logoImageWidth: CGFloat = -0.3
-    static let logoImageHeight: CGFloat = -0.93
-    static let logoImageTopOffset: CGFloat = 0.12
-    static let emailFieldTopOffset: CGFloat = 0.1
-    static let loginButtonTopOffset: CGFloat = 0.1
-    static let passwordFieldTopOffset: CGFloat = 0.06
-    
-    
-    struct Input {
-        static let logoTopOffset: CGFloat = 0.05
-        static let logoWidth: CGFloat = 0.7
-        static let emailFieldTopOffset: CGFloat = 0.06
-        static let loginButtonTopOffset: CGFloat = 0.04
-    }
-    
-   
-}
-
-
-
-
 struct LoginViewConstants {
+    
     static let animatedImageViewHeight: CGFloat = 0.06
     static let animatedImageViewHeightMultiplier: CGFloat = -0.02
     static let animatedImageViewWidthMultiplier: CGFloat = 0.5
     static let animatedImageViewTopOffset: CGFloat = 0.5
     static let animatedEmailFieldTopOffset: CGFloat = 0.06
     static let animatedLoginButtonTopOffset: CGFloat = 0.04
+    
     static let borderWidth: CGFloat = 1
     static let animatedBorderWidth: CGFloat = 1.2
     static let loginButtonTopConstant: CGFloat = 0.1
