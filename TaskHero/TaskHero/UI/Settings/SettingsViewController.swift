@@ -177,8 +177,10 @@ final class SettingsViewController: UITableViewController, Identifiable {
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         
         segmentControl.snp.makeConstraints { make in
+            
             make.centerX.equalTo(view.snp.centerX)
             make.width.equalTo(view.snp.width)
+            
             if let header = self.tableView.tableHeaderView {
                 make.top.equalTo(header.snp.top)
                 make.height.equalTo(header.snp.height)

@@ -13,9 +13,9 @@ final class SettingsCell: BaseCell {
     var settingLabel: UILabel = {
         let textView = UILabel()
         textView.textColor = .white
-        textView.font = Constants.Font.fontNormal
         textView.textAlignment = .center
         textView.layer.masksToBounds = true
+        textView.font = Constants.Font.fontNormal
         return textView
     }()
     
@@ -36,10 +36,10 @@ final class SettingsCell: BaseCell {
     func settingsLabelSetup() {
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
         settingLabel.snp.makeConstraints { make in
-            make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.height)
             make.width.equalTo(contentView.snp.width)
             make.centerX.equalTo(contentView.snp.centerX)
             make.centerY.equalTo(contentView.snp.centerY)
+            make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.height)
         }
     }
     

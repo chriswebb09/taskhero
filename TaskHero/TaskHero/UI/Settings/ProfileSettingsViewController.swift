@@ -31,10 +31,10 @@ extension ProfileSettingsViewController: UITableViewDataSource {
     }
     
     func setupSubviews() {
-        view.addSubview(profileSettingsView)
         view.addSubview(tableView)
-        tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
+        view.addSubview(profileSettingsView)
         profileSettingsView.layoutSubviews()
+        tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
         dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
         tableView.setupTableView(view: view)
         tableView.separatorColor = .black

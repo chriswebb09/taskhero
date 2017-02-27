@@ -14,9 +14,7 @@ final class ProfileViewController: BaseProfileViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = []
         setupMethods()
-        tableView.reloadOnMain()
     }
     
     /* On viewDidAppear ensure fresh user data from database is loaded and reloads TableView */
@@ -27,8 +25,10 @@ final class ProfileViewController: BaseProfileViewController {
     }
     
     func setupMethods() {
+        edgesForExtendedLayout = []
         register(tableView: tableView, cells: [ProfileHeaderCell.self, ProfileDataCell.self])
         viewModel.setupTableViewUI(controller: self)
+        tableView.reloadOnMain()
     }
     
     // MARK: UITableViewController Methods

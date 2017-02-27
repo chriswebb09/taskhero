@@ -60,7 +60,11 @@ final class ProfileDataCell: BaseCell {
         super.layoutSubviews()
         isUserInteractionEnabled = false
         setupContentView()
-        let views = [levelLabel, experiencePointsLabel, tasksCompletedLabel, topDivider, bottomDivider]
+        let views = [levelLabel,
+                     experiencePointsLabel,
+                     tasksCompletedLabel,
+                     topDivider,
+                     bottomDivider]
         setupViewsForConfig(views: views)
         setupConstraints()
     }
@@ -93,11 +97,11 @@ final class ProfileDataCell: BaseCell {
         
         configureLabels(label: levelLabel)
         levelLabel.snp.makeConstraints { make in
-            
-            make.left.equalTo(contentView.snp.left).offset(Constants.Dimension.topOffset)
             make.centerY.equalTo(contentView.snp.centerY)
-            make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
-            make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+            make.left.equalTo(contentView.snp.left).offset(Constants.Dimension.topOffset)
+            
+            make.width.equalTo(contentView.snp.width).multipliedBy(ProfileDataCellConstants.widthMultiplier)
+            make.height.equalTo(contentView.snp.height).multipliedBy(ProfileDataCellConstants.heightMultiplier)
         }
     }
     
@@ -105,29 +109,31 @@ final class ProfileDataCell: BaseCell {
         view.snp.makeConstraints { make in
             
             make.width.equalTo(contentView.snp.width)
-            make.height.equalTo(contentView.snp.height).multipliedBy(0.01)
+            make.height.equalTo(contentView.snp.height).multipliedBy(ProfileDataCellConstants.dividerHeightMultiplier)
         }
     }
     
     private func addExperiencePointLabel(experiencePointLabel:UILabel) {
         configureLabels(label: experiencePointsLabel)
+        
         experiencePointLabel.snp.makeConstraints { make in
-            
             make.centerY.equalTo(contentView.snp.centerY)
             make.centerX.equalTo(contentView.snp.centerX)
-            make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
-            make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+            
+            make.width.equalTo(contentView.snp.width).multipliedBy(ProfileDataCellConstants.widthMultiplier)
+            make.height.equalTo(contentView.snp.height).multipliedBy(ProfileDataCellConstants.heightMultiplier)
         }
     }
     
     private func addTasksCompletedLabel(tasksCompletedLabel:UILabel) {
         configureLabels(label: tasksCompletedLabel)
+        
         tasksCompletedLabel.snp.makeConstraints { make in
-            
             make.centerY.equalTo(contentView.snp.centerY)
+            
+            make.width.equalTo(contentView.snp.width).multipliedBy(ProfileDataCellConstants.widthMultiplier)
             make.right.equalTo(contentView.snp.right).offset(Constants.Settings.Profile.profileDataRightOffset)
-            make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
-            make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+            make.height.equalTo(contentView.snp.height).multipliedBy(ProfileDataCellConstants.heightMultiplier)
         }
     }
     
@@ -169,4 +175,10 @@ final class ProfileDataCell: BaseCell {
     func userStateTapped() {
         delegate?.userStatsTapped()
     }
+}
+
+struct ProfileDataCellConstants {
+    static let widthMultiplier: CGFloat = 0.3
+    static let heightMultiplier: CGFloat = 0.5
+    static let dividerHeightMultiplier: CGFloat = 0.01
 }

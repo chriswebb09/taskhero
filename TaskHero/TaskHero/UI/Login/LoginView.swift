@@ -165,6 +165,7 @@ extension LoginView {
                             self.emailField.textColor =  Constants.Color.backgroundColor.setColor
                             
                         } }, completion: { _ in
+                            
                             let when = DispatchTime.now() + 0.32
                             DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
                                 

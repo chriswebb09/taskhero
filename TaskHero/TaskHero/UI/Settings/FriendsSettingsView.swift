@@ -6,9 +6,9 @@ final class FriendsSettingsView: UIView {
         let friendsHeaderLabel = UILabel()
         friendsHeaderLabel.textColor = .black
         friendsHeaderLabel.text = "Add Friends"
-        friendsHeaderLabel.font = Constants.Font.fontLarge
         friendsHeaderLabel.textAlignment = .center
         friendsHeaderLabel.layer.masksToBounds = true
+        friendsHeaderLabel.font = Constants.Font.fontLarge
         return friendsHeaderLabel
     }()
     
@@ -17,19 +17,19 @@ final class FriendsSettingsView: UIView {
         searchField.placeholder = "Search by email"
         searchField.font = Constants.signupFieldFont
         searchField.layer.borderColor = UIColor.lightGray.cgColor
-        searchField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         searchField.layer.borderWidth = Constants.Border.borderWidth
+        searchField.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         return searchField
     }()
     
     var searchButton: UIButton = {
         var searchButton = UIButton()
-        searchButton.layer.borderWidth = Constants.Border.borderWidth
-        searchButton.layer.borderColor = UIColor.white.cgColor
-        searchButton.backgroundColor = Constants.Color.buttonColor.setColor
-        searchButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         searchButton.setTitle("Search", for: .normal)
         searchButton.setTitleColor(.white, for: .normal)
+        searchButton.layer.borderColor = UIColor.white.cgColor
+        searchButton.layer.borderWidth = Constants.Border.borderWidth
+        searchButton.backgroundColor = Constants.Color.buttonColor.setColor
+        searchButton.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         return searchButton
     }()
     
@@ -43,9 +43,9 @@ final class FriendsSettingsView: UIView {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.snp.makeConstraints { make in
-            make.width.equalTo(self).multipliedBy(Constants.Settings.FriendsSetting.friendsHeaderLabelHeight)
-            make.height.equalTo(self).multipliedBy(0.07)
             make.centerX.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.07)
+            make.width.equalTo(self).multipliedBy(Constants.Settings.FriendsSetting.friendsHeaderLabelHeight)
         }
     }
     

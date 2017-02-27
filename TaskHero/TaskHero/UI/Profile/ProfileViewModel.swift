@@ -35,10 +35,10 @@ class ProfileViewModel: BaseModelProtocol {
     }
     
     func setupTableViewUI(controller: ProfileViewController) {
-        controller.tableView.estimatedRowHeight = controller.view.frame.height / 3
         controller.tableView.separatorStyle = .none
-        controller.tableView.tableFooterView = UIView(frame: .zero)
         BaseViewController.barSetup(controller: controller)
+        controller.tableView.tableFooterView = UIView(frame: .zero)
+        controller.tableView.estimatedRowHeight = controller.view.frame.height / 3
     }
     
     //var profilePic: UIImage?

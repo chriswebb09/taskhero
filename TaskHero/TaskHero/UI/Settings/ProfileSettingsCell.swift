@@ -73,8 +73,8 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         configureView(view: profileSettingLabel)
         profileSettingLabel.snp.makeConstraints { make in
             make.height.equalTo(self)
-            make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
             make.centerY.equalTo(contentView.snp.centerY)
+            make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
         }
     }
     
@@ -82,10 +82,10 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.snp.makeConstraints { make in
-            make.height.equalTo(contentView.snp.height)
-            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Settings.Profile.profileViewHeightAnchor)
             make.right.equalTo(contentView.snp.right)
+            make.height.equalTo(contentView.snp.height)
             make.centerY.equalTo(contentView.snp.centerY)
+            make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Settings.Profile.profileViewHeightAnchor)
         }
     }
     
@@ -93,8 +93,8 @@ final class ProfileSettingsCell: UITableViewCell, ProfileSettingsCellDelegate {
         configureView(view: profileSettingField)
         profileSettingField.snp.makeConstraints { make in
             make.height.equalTo(self)
-            make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
             make.centerY.equalTo(contentView.snp.centerY)
+            make.left.equalTo(contentView.snp.left).offset(contentView.bounds.width * Constants.Dimension.settingsOffset)
         }
     }
     

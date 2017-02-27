@@ -20,8 +20,8 @@ final class ProfileSettingsViewControllerDataSource {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.snp.makeConstraints { make in
-            make.bottom.equalTo(view.snp.bottom)
             make.width.equalTo(view.snp.width)
+            make.bottom.equalTo(view.snp.bottom)
             make.height.equalTo(view.snp.height).multipliedBy(Constants.Settings.tableViewHeight)
         }
     }

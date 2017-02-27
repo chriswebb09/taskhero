@@ -22,10 +22,10 @@ final class ProfileSettingsView: UIView {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
         profileLabel.snp.makeConstraints { make in
-            make.width.equalTo(self).multipliedBy(Constants.Settings.FriendsSetting.friendsHeaderLabelHeight)
-            make.height.equalTo(self).multipliedBy(Constants.Dimension.height)
             make.centerX.equalTo(self)
+            make.height.equalTo(self).multipliedBy(Constants.Dimension.height)
             make.top.equalTo(self).offset(bounds.height * Constants.Profile.Offset.labelTopOffset)
+            make.width.equalTo(self).multipliedBy(Constants.Settings.FriendsSetting.friendsHeaderLabelHeight)
         }
     }
 }

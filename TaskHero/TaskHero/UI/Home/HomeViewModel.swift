@@ -31,7 +31,7 @@ final class HomeViewModel: BaseModelProtocol {
     
     //var sections: [[Any]] = [[Array<TaskItem>.init(repeating: , count: UserDataStore.sharedInstance.currentUse.tasks.count)]]
     
-   // var sections: [[BaseCell]] = [[BaseCell]]()
+    // var sections: [[BaseCell]] = [[BaseCell]]()
     
     //var sections: [[BaseCell]] = [[TaskCell.init(]]
     
@@ -144,7 +144,10 @@ final class HomeViewModel: BaseModelProtocol {
         let tapLocation = sender.location(in: controller.tableView)
         let tapIndex = controller.tableView.indexPathForRow(at: tapLocation)
         if let index = tapIndex {
-            taskMethods.tapEdit(viewController: controller, tableView: controller.tableView, atIndex:index, type: .home)
+            taskMethods.tapEdit(viewController: controller,
+                                tableView: controller.tableView,
+                                atIndex:index,
+                                type: .home)
         }
     }
     
@@ -153,14 +156,19 @@ final class HomeViewModel: BaseModelProtocol {
         let cell = superview?.superview as! TaskCell
         let indexPath = controller.tableView.indexPath(for: cell)
         if let index = indexPath {
-            taskMethods.tapEdit(viewController: controller, tableView: controller.tableView, atIndex: index, type: .home)
+            taskMethods.tapEdit(viewController: controller,
+                                tableView: controller.tableView,
+                                atIndex: index,
+                                type: .home)
         }
     }
     
     func delete(controller: HomeViewController, at indexPath: IndexPath) {
         controller.tableView.beginUpdates()
         controller.backgroundQueue.async {
-            self.taskMethods.deleteTask(indexPath: indexPath, tableView: controller.tableView, type: .home)
+            self.taskMethods.deleteTask(indexPath: indexPath,
+                                        tableView: controller.tableView,
+                                        type: .home)
             controller.fetchUser(tableView: controller.tableView)
         }
         controller.tableView.endUpdates()

@@ -38,8 +38,8 @@ extension FriendsSettingsViewController: UITextFieldDelegate {
     func dismissButton() {
         alertPop.popView.isHidden = true
         alertPop.containerView.isHidden = true
-        alertPop.hidePopView(viewController: self)
         
+        alertPop.hidePopView(viewController: self)
         UINavigationController().popViewController(animated: false)
     }
     
