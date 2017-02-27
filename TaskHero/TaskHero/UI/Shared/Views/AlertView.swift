@@ -9,27 +9,25 @@ final class AlertView: UIView {
     }()
     
     var cancelButton: UIButton = {
-        var button = ButtonType.system(title: "Cancel", color: .white)
-        var uiElement = button.newButton
-        uiElement.layer.cornerRadius = 0
-        uiElement.backgroundColor = Constants.Alert.CancelButton.cancelButtonColor
-        return uiElement
+        var button = ButtonType.system(title: "Cancel", color: .white).newButton
+        button.backgroundColor = Constants.Alert.CancelButton.cancelButtonColor
+        button.layer.cornerRadius = 0
+        return button
     }()
     
     var doneButton: UIButton = {
-        var button = ButtonType.system(title: "Add", color: .white)
-        var uiElement = button.newButton
-        uiElement.layer.cornerRadius = 0
-        uiElement.backgroundColor = Constants.Color.mainColor.setColor
-        return uiElement
+        var button = ButtonType.system(title: "Add", color: .white).newButton
+        button.backgroundColor = Constants.Color.mainColor.setColor
+        button.layer.cornerRadius = 0
+        return button
     }()
     
     var resultLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.text = "Results"
         searchLabel.textColor = .black
-        searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center
+        searchLabel.font = Constants.Font.fontNormal
         return searchLabel
     }()
     
@@ -37,8 +35,8 @@ final class AlertView: UIView {
         let searchLabel = UILabel()
         searchLabel.textColor = .black
         searchLabel.text = "Find Your Friends"
-        searchLabel.font = Constants.Font.fontNormal
         searchLabel.textAlignment = .center
+        searchLabel.font = Constants.Font.fontNormal
         return searchLabel
     }()
     
@@ -51,11 +49,11 @@ final class AlertView: UIView {
 }
 
 extension AlertView {
-
+    
     fileprivate func configureConstaints(label:UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
         label.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
     }
     
     fileprivate func addSubviews() {
@@ -74,9 +72,9 @@ extension AlertView {
     private func addHeaderBanner() {
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         headBanner.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        headBanner.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         headBanner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         headBanner.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Constants.Dimension.mainHeight).isActive = true
-        headBanner.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
     }
     
     private func addDoneButton() {

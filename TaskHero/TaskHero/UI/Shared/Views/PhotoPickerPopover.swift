@@ -2,7 +2,7 @@ import UIKit
 
 final class PhotoPickerPopover: BasePopoverAlert {
     
-    // MARK: - UI Elements
+    var displayed: Bool = false
     
     lazy var searchLabel: UILabel = {
         let searchLabel = UILabel()
@@ -33,6 +33,7 @@ final class PhotoPickerPopover: BasePopoverAlert {
     func popViewCentered(popView: PhotoPickerView) {
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
+        
         photoPopView.frame = CGRect(x: screenWidth * PhotoPickerConstants.multiplyX,
                                     y: screenHeight * PhotoPickerConstants.multiplyYFrame,
                                     width: screenWidth * PhotoPickerConstants.frameWidth,
@@ -55,7 +56,8 @@ final class PhotoPickerPopover: BasePopoverAlert {
     func hideView(viewController: UIViewController) {
         photoPopView.isHidden = true
         hidePopView(viewController: viewController)
-        photoPopView.layer.opacity = 0
-        containerView.layer.opacity = 0
+        
+        photoPopView.layer.opacity = displayed == false ? 0 : 1
+        containerView.layer.opacity = displayed == false ? 0 : 1
     }
 }
