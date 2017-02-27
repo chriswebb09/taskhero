@@ -1,13 +1,5 @@
 import UIKit
 
-struct BasePopoverConstants {
-    static let popViewBorderWidth: CGFloat = 1
-    static let popViewCornerRadius: CGFloat = 10
-    static let containerViewCenterX: CGFloat = UIScreen.main.bounds.width / 2
-    static let containerViewCenterY: CGFloat = UIScreen.main.bounds.height / 2
-    static let containerViewOpacity: CGFloat = 0.5
-}
-
 class BasePopoverAlert: UIView {
     
     public lazy var containerView: BasePopView = {
@@ -47,6 +39,4 @@ class BasePopoverAlert: UIView {
     public func hide(viewController:UIViewController) {
         hidePopView(viewController: viewController)
     }
-    
-    
 }

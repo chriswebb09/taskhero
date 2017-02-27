@@ -120,15 +120,3 @@ final class AddTaskView: UIView {
         }
     }
 }
-
-struct AddTaskViewConstants {
-    static let topOffset: CGFloat = 0.02
-    static let widthMultiplier: CGFloat = 0.85
-    static let heightMultiplier: CGFloat = 0.07
-    static let nameLabelTopMultiplier: CGFloat = 0.05
-    static let descriptionBoxHeightMultiplier:CGFloat = 0.3
-    static let addTaskButtonWidthMultiplier: CGFloat = 0.4
-    static let addTaskButtonTopOffset: CGFloat = 0.05
-    static let taskNameFieldTopMultiplier: CGFloat = 0.04
-    static let taskDescriptionBoxHeightMultiplier: CGFloat = 0.2
-}

@@ -1,16 +1,6 @@
 import UIKit
 import SnapKit
 
-struct AppScreenConstants {
-    static let loginButtonBottonOffset: CGFloat = -0.04
-    static let signupButtonTopOffset: CGFloat = 0.04
-    static let heightMultiplier: CGFloat = 0.075
-    static let logoHeight: CGFloat = 0.06
-    static let logoWidth: CGFloat = 0.75
-    static let logoCenterYOffset: CGFloat = -0.2
-    static let dividerCenterYOffset: CGFloat = 0.09
-}
-
 final class AppScreenView: UIView {
     
     var logoImageView: UIImageView = {

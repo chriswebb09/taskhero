@@ -105,9 +105,9 @@ final class SettingsViewController: UITableViewController, Identifiable {
     }
     
     func setPopView() {
-        self.alertPop.alertPopView.resultLabel.text = "Try Again Later."
-        self.alertPop.alertPopView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
-        self.alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
+        alertPop.alertPopView.resultLabel.text = "Try Again Later."
+        alertPop.alertPopView.doneButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
+        alertPop.alertPopView.cancelButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
     }
     
     // Displays popover when notifications cell is selected

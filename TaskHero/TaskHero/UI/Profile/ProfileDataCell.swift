@@ -176,9 +176,3 @@ final class ProfileDataCell: BaseCell {
         delegate?.userStatsTapped()
     }
 }
-
-struct ProfileDataCellConstants {
-    static let widthMultiplier: CGFloat = 0.3
-    static let heightMultiplier: CGFloat = 0.5
-    static let dividerHeightMultiplier: CGFloat = 0.01
-}

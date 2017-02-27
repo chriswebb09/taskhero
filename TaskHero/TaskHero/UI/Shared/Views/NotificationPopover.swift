@@ -1,15 +1,6 @@
 import UIKit
 import SnapKit
 
-struct NotificationPopoverConstants {
-    static let originXY: CGFloat = 0
-    static let widthMultiplier: CGFloat = 0.8
-    static let heightMultiplier: CGFloat = 0.35
-    static let centerMidYMultiplier: CGFloat = 0.7
-    static let cornerRadius: CGFloat = 10
-    static let borderWidth: CGFloat = 1
-}
-
 class NotificationPopover: BasePopoverAlert {
     
     lazy var notifyPopView: NotificationView = {

@@ -1,5 +1,50 @@
 import UIKit
 
+struct BasePopoverConstants {
+    static let popViewBorderWidth: CGFloat = 1
+    static let popViewCornerRadius: CGFloat = 10
+    static let containerViewCenterX: CGFloat = UIScreen.main.bounds.width / 2
+    static let containerViewCenterY: CGFloat = UIScreen.main.bounds.height / 2
+    static let containerViewOpacity: Float = 0.5
+}
+
+struct NotificationPopoverConstants {
+    static let originXY: CGFloat = 0
+    static let widthMultiplier: CGFloat = 0.8
+    static let heightMultiplier: CGFloat = 0.35
+    static let centerMidYMultiplier: CGFloat = 0.7
+    static let cornerRadius: CGFloat = 10
+    static let borderWidth: CGFloat = 1
+}
+
+struct AppScreenConstants {
+    static let loginButtonBottonOffset: CGFloat = -0.04
+    static let signupButtonTopOffset: CGFloat = 0.04
+    static let heightMultiplier: CGFloat = 0.075
+    static let logoHeight: CGFloat = 0.06
+    static let logoWidth: CGFloat = 0.75
+    static let logoCenterYOffset: CGFloat = -0.2
+    static let dividerCenterYOffset: CGFloat = 0.09
+}
+
+struct ProfileDataCellConstants {
+    static let widthMultiplier: CGFloat = 0.3
+    static let heightMultiplier: CGFloat = 0.5
+    static let dividerHeightMultiplier: CGFloat = 0.01
+}
+
+struct AddTaskViewConstants {
+    static let topOffset: CGFloat = 0.02
+    static let widthMultiplier: CGFloat = 0.85
+    static let heightMultiplier: CGFloat = 0.07
+    static let nameLabelTopMultiplier: CGFloat = 0.05
+    static let descriptionBoxHeightMultiplier:CGFloat = 0.3
+    static let addTaskButtonWidthMultiplier: CGFloat = 0.4
+    static let addTaskButtonTopOffset: CGFloat = 0.05
+    static let taskNameFieldTopMultiplier: CGFloat = 0.04
+    static let taskDescriptionBoxHeightMultiplier: CGFloat = 0.2
+}
+
 public struct Constants {
     
     enum Color {
