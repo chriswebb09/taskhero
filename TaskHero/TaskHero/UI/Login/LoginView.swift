@@ -96,12 +96,12 @@ extension LoginView {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoWidthConstraint = logoImageView.widthAnchor.constraint(equalTo: widthAnchor)
-        logoWidthConstraint.constant = bounds.width * -0.3
+        logoWidthConstraint.constant = bounds.width * LoginViewConstants.logoWidthMultiplier
         logoHeightAnchor = logoImageView.heightAnchor.constraint(equalTo: heightAnchor)
-        logoHeightAnchor.constant = bounds.height * -0.93
+        logoHeightAnchor.constant = bounds.height * LoginViewConstants.logoHeightMultiplier
         logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logoTopConstraint = logoImageView.topAnchor.constraint(equalTo: topAnchor)
-        logoTopConstraint.constant = bounds.height * 0.12
+        logoTopConstraint.constant = bounds.height * LoginViewConstants.logoTopMultiplier
         
     }
     
@@ -109,10 +109,10 @@ extension LoginView {
         setupLogoImage()
         setupView(view: emailField)
         emailFieldTopConstraint = emailField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor)
-        emailFieldTopConstraint.constant = bounds.height * 0.1
+        emailFieldTopConstraint.constant = bounds.height * LoginViewConstants.emailFieldTopConstant
         
         setupView(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * 0.06).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * LoginViewConstants.passwordFieldTopMultiplier).isActive = true
         passwordField.isSecureTextEntry = true
         setupView(view: loginButton)
         loginButtonTopConstraint = loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor)
@@ -169,6 +169,11 @@ extension LoginView {
 
 struct LoginViewConstants {
     static let loginButtonTopConstant: CGFloat = 0.1
+    static let emailFieldTopConstant: CGFloat = 0.1
+    static let logoTopMultiplier: CGFloat = 0.12
+    static let logoWidthMultiplier: CGFloat = -0.3
+    static let logoHeightMultiplier: CGFloat = -0.93
+    static let passwordFieldTopMultiplier: CGFloat = 0.06
     struct Input {
         static let logoTopConstant: CGFloat = 0.05
         static let logoWidthConstant: CGFloat = 0.7
