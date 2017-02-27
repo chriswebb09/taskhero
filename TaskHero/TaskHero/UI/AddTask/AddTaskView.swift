@@ -1,17 +1,14 @@
 import UIKit
 
-
 enum FieldSelected {
     case nameField, descriptionBox
 }
 
-
 final class AddTaskView: UIView {
-    
-    // MARK: UI Elements
     
     var taskNameLabel: UILabel = {
         let taskNameLabel = UILabel()
+        taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
         taskNameLabel.textColor = UIColor.black
         taskNameLabel.text = "Add A New Task"
         taskNameLabel.font = Constants.Font.fontLarge
@@ -28,6 +25,7 @@ final class AddTaskView: UIView {
     
     var taskDescriptionBox: UITextView = {
         let taskDescriptionBox = UITextView()
+        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
         taskDescriptionBox.text = "Describe what you want to get done."
         taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
         taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
@@ -40,6 +38,7 @@ final class AddTaskView: UIView {
     
     var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
+        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.layer.borderWidth = Constants.Border.borderWidth
         addTaskButton.layer.borderColor = UIColor.white.cgColor
         addTaskButton.backgroundColor = Constants.Color.buttonColor.setColor
@@ -72,20 +71,27 @@ final class AddTaskView: UIView {
     }
     
     fileprivate func setupConstraints() {
+        
         configureView(view: taskNameLabel)
-        taskNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: bounds.height * AddTaskViewConstants.nameLabelTopMultiplier).isActive = true
+        taskNameLabel.topAnchor.constraint(equalTo: topAnchor,
+                                           constant: bounds.height * AddTaskViewConstants.nameLabelTopMultiplier).isActive = true
         configureView(view: taskNameField)
-        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: bounds.height * AddTaskViewConstants.nameLabelTopMultiplier).isActive = true
+        taskNameField.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor,
+                                           constant: bounds.height * AddTaskViewConstants.nameLabelTopMultiplier).isActive = true
+        
         addSubview(taskDescriptionBox)
-        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: AddTaskViewConstants.widthMultiplier).isActive = true
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: AddTaskViewConstants.descriptionBoxHeightMultiplier).isActive = true
+        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor,
+                                                  multiplier: AddTaskViewConstants.widthMultiplier).isActive = true
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor,
+                                                   multiplier: AddTaskViewConstants.descriptionBoxHeightMultiplier).isActive = true
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: bounds.height * Constants.Dimension.settingsOffset).isActive = true
+        
         addSubview(addTaskButton)
-        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: AddTaskViewConstants.addTaskButtonWidthMultiplier).isActive = true
-        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: AddTaskViewConstants.heightMultiplier).isActive = true
+        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor,
+                                             multiplier: AddTaskViewConstants.addTaskButtonWidthMultiplier).isActive = true
+        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor,
+                                              multiplier: AddTaskViewConstants.heightMultiplier).isActive = true
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: bounds.height *  AddTaskViewConstants.addTaskButtonTopOffset).isActive = true
     }
