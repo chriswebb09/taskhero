@@ -7,9 +7,9 @@ final class PhotoPickerPopover: BasePopoverAlert {
     lazy var searchLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = .black
+        searchLabel.textAlignment = .center
         searchLabel.text = "Become a Member"
         searchLabel.font = Constants.Font.fontLarge
-        searchLabel.textAlignment = .center
         return searchLabel
     }()
     
@@ -23,11 +23,11 @@ final class PhotoPickerPopover: BasePopoverAlert {
     // MARK: - Behavior methods
     
     func popViewSettings(popView: PhotoPickerView) {
-        popView.layer.borderColor = UIColor.black.cgColor
-        popView.layer.borderWidth = 1
-        popView.clipsToBounds = true
         popView.isOpaque = true
         popView.layer.opacity = 1
+        popView.clipsToBounds = true
+        popView.layer.borderWidth = 1
+        popView.layer.borderColor = UIColor.black.cgColor
     }
     
     func popViewCentered(popView: PhotoPickerView) {
