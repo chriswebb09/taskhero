@@ -116,7 +116,7 @@ extension LoginView {
         passwordField.isSecureTextEntry = true
         setupView(view: loginButton)
         loginButtonTopConstraint = loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor)
-        loginButtonTopConstraint.constant = bounds.height * 0.1
+        loginButtonTopConstraint.constant = bounds.height * LoginViewConstants.loginButtonTopConstant
         NSLayoutConstraint.activate([logoTopConstraint, logoWidthConstraint, logoHeightAnchor, emailFieldTopConstraint, loginButtonTopConstraint])
     }
     
@@ -158,12 +158,23 @@ extension LoginView {
     }
     
     func constraintsForInput() {
-        logoTopConstraint.constant = bounds.height * 0.05
-        logoWidthConstraint.constant = bounds.height * 0.7
-        emailFieldTopConstraint.constant = bounds.height * 0.06
-        loginButtonTopConstraint.constant = bounds.height * 0.04
+        logoTopConstraint.constant = bounds.height * LoginViewConstants.Input.logoTopConstant
+        logoWidthConstraint.constant = bounds.height * LoginViewConstants.Input.logoWidthConstant
+        emailFieldTopConstraint.constant = bounds.height * LoginViewConstants.Input.emailFieldTopConstant
+        loginButtonTopConstraint.constant = bounds.height * LoginViewConstants.Input.loginButtonTopConstants
     }
     
+}
+
+
+struct LoginViewConstants {
+    static let loginButtonTopConstant: CGFloat = 0.1
+    struct Input {
+        static let logoTopConstant: CGFloat = 0.05
+        static let logoWidthConstant: CGFloat = 0.7
+        static let emailFieldTopConstant: CGFloat = 0.06
+        static let loginButtonTopConstants: CGFloat = 0.04
+    }
 }
 
 
