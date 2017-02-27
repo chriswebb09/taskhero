@@ -16,6 +16,7 @@ struct LoginConstants {
     static let loginButtonTopOffset: CGFloat = 0.1
     static let passwordFieldTopOffset: CGFloat = 0.06
     
+    
     struct Input {
         static let logoTopOffset: CGFloat = 0.05
         static let logoWidth: CGFloat = 0.7
@@ -30,7 +31,10 @@ struct LoginConstants {
 
 
 struct LoginViewConstants {
-    
+    static let animatedImageViewHeight: CGFloat = 0.06
+    static let animatedImageViewHeightMultiplier: CGFloat = -0.02
+    static let borderWidth: CGFloat = 1
+    static let animatedBorderWidth: CGFloat = 1.2
     static let loginButtonTopConstant: CGFloat = 0.1
     static let emailFieldTopConstant: CGFloat = 0.1
     static let logoTopMultiplier: CGFloat = 0.12

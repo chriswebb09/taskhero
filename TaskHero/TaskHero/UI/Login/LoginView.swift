@@ -92,11 +92,14 @@ extension LoginView {
     private func setupLogoImage() {
         addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
         logoWidthConstraint = logoImageView.widthAnchor.constraint(equalTo: widthAnchor)
         logoWidthConstraint.constant = bounds.width * LoginViewConstants.logoWidthMultiplier
+        
         logoHeightAnchor = logoImageView.heightAnchor.constraint(equalTo: heightAnchor)
         logoHeightAnchor.constant = bounds.height * LoginViewConstants.logoHeightMultiplier
-        logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
         logoTopConstraint = logoImageView.topAnchor.constraint(equalTo: topAnchor)
         logoTopConstraint.constant = bounds.height * LoginViewConstants.logoTopMultiplier
         
@@ -110,8 +113,7 @@ extension LoginView {
         emailFieldTopConstraint.constant = bounds.height * LoginViewConstants.emailFieldTopConstant
         
         setupView(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor,
-                                           constant: bounds.height * LoginViewConstants.passwordFieldTopMultiplier).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * LoginViewConstants.passwordFieldTopMultiplier).isActive = true
         passwordField.isSecureTextEntry = true
         
         setupView(view: loginButton)
@@ -127,7 +129,7 @@ extension LoginView {
     func textInputAnimation() {
         if editState != true {
             UIView.animate(withDuration: 0.5) {
-                self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.06).constant = self.bounds.height * -0.02
+                self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: LoginViewConstants.animatedImageViewHeight).constant = self.bounds.height * LoginViewConstants.animatedImageViewHeightMultiplier
                 self.logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
                 self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
                 self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: self.bounds.height * 0.06).isActive = true
@@ -140,20 +142,30 @@ extension LoginView {
     // MARK: - Animation
     
     func textFieldAnimation() {
-        UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 3, initialSpringVelocity: 0.0,  options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.emailField.layer.borderWidth = 1.2
-                self.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
-                self.emailField.textColor =  Constants.Color.backgroundColor.setColor
-            } }, completion: { _ in
-                let when = DispatchTime.now() + 0.32
-                DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
-                    self.emailField.layer.borderWidth = 1
-                    self.emailField.font = Constants.signupFieldFont
-                    self.emailField.textColor = .lightGray
-                    self.emailField.layer.borderColor = Constants.Color.backgroundColor.setColor.cgColor
-                    self.emailField.layer.borderWidth = Constants.Border.borderWidth
-                }
+        UIView.animate(withDuration: 2,
+                       delay: 0.0,
+                       usingSpringWithDamping: 3,
+                       initialSpringVelocity: 0.0,
+                       options: [.curveEaseInOut, .transitionCrossDissolve],
+                       animations: { [unowned self] in
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            
+                            self.emailField.layer.borderWidth = LoginViewConstants.animatedBorderWidth
+                            self.emailField.font = UIFont(name: "HelveticaNeue" , size: 16)
+                            self.emailField.textColor =  Constants.Color.backgroundColor.setColor
+                            
+                        } }, completion: { _ in
+                            let when = DispatchTime.now() + 0.32
+                            DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
+                                
+                                self.emailField.layer.borderWidth = LoginViewConstants.borderWidth
+                                self.emailField.font = Constants.signupFieldFont
+                                self.emailField.textColor = .lightGray
+                                self.emailField.layer.borderColor = Constants.Color.backgroundColor.setColor.cgColor
+                                self.emailField.layer.borderWidth = Constants.Border.borderWidth
+                                
+                            }
         })
     }
     
