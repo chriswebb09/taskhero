@@ -19,8 +19,6 @@ final class UserDataStore {
     public var tasks: [Task] {
         didSet {
             currentUser.tasks = tasks
-            print("didSet")
-            print(currentUser.tasks)
         }
     }
     var profilePicture: UIImage!
