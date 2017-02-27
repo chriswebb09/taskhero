@@ -1,6 +1,12 @@
 import UIKit
 import SnapKit
 
+struct NotificationPopoverConstants {
+    static let originXY: CGFloat = 0
+    static let widthMultiplier: CGFloat = 0.8
+    static let heightMultiplier: CGFloat = 0.35
+}
+
 class NotificationPopover: BasePopoverAlert {
     
     lazy var notifyPopView: NotificationView = {
@@ -15,7 +21,7 @@ class NotificationPopover: BasePopoverAlert {
     override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
         
-        notifyPopView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.35)
+        notifyPopView.frame = CGRect(x: NotificationPopoverConstants.originXY, y: NotificationPopoverConstants.originXY, width: UIScreen.main.bounds.width * NotificationPopoverConstants.widthMultiplier, height: UIScreen.main.bounds.height * NotificationPopoverConstants.heightMultiplier)
         notifyPopView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY * 0.7)
         notifyPopView.clipsToBounds = true
         

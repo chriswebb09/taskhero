@@ -5,6 +5,10 @@ struct LoadingViewConstants {
     static let frameOriginY: CGFloat = 0
     static let frameWidth: CGFloat = 60
     static let frameHeight: CGFloat = 60
+    
+    struct ActivityIndication {
+        
+    }
 }
 
 class LoadingView: UIView {
@@ -47,16 +51,16 @@ class LoadingView: UIView {
     }
     
     func activityIndicatorSetup() {
-        activityIndicator.frame = CGRect(x:0.0, y:0.0, width:40.0, height:40.0)
+        activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
-        activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2,
-                                           y:loadingView.frame.size.height / 2)
+        activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2,
+                                           y: loadingView.frame.size.height / 2)
     }
     
     func showActivityIndicator(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
-        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2,
-                                       y: UIScreen.main.bounds.height/2.5)
+        containerView.center = CGPoint(x: UIScreen.main.bounds.width / 2,
+                                       y: UIScreen.main.bounds.height / 2.5)
         addLoadingView()
         activityIndicatorSetup()
         addSubviews(viewController: viewController)

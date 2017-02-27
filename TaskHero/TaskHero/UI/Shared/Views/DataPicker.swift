@@ -53,7 +53,7 @@ final class DataPickerView: BasePopView {
         picker.translatesAutoresizingMaskIntoConstraints = false
         
         picker.snp.makeConstraints { make in
-            make.centerY.equalTo(self).offset(bounds.height * -0.08)
+            make.centerY.equalTo(self).offset(bounds.height * DataPickerConstants.pickerCenterYOffset)
             make.centerX.equalTo(self)
             make.height.equalTo(self).multipliedBy(0.2)
             make.width.equalTo(self).multipliedBy(0.7)
@@ -65,10 +65,10 @@ final class DataPickerView: BasePopView {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.snp.makeConstraints { make in
-            make.bottom.equalTo(self).offset(bounds.height * -0.14)
+            make.bottom.equalTo(self).offset(bounds.height * DataPickerConstants.buttonBottomOffset)
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.2)
-            make.width.equalTo(self).multipliedBy(0.7)
+            make.height.equalTo(self).multipliedBy(DataPickerConstants.buttonHeightMultiplier)
+            make.width.equalTo(self).multipliedBy(DataPickerConstants.buttonWidthMultiplier)
         }
     }
     
@@ -77,10 +77,20 @@ final class DataPickerView: BasePopView {
         dataAlertLabel.translatesAutoresizingMaskIntoConstraints = false
         
         dataAlertLabel.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(10)
+            make.top.equalTo(self).offset(DataPickerConstants.dataLabelTopOffset)
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.25)
-            make.width.equalTo(self).multipliedBy(0.94)
+            make.height.equalTo(self).multipliedBy(DataPickerConstants.dataLabelHeightMultiplier)
+            make.width.equalTo(self).multipliedBy(DataPickerConstants.dataLabelWidthMultiplier)
         }
     }
+}
+
+struct DataPickerConstants {
+    static let dataLabelTopOffset: CGFloat = 10
+    static let dataLabelHeightMultiplier: CGFloat = 0.25
+    static let dataLabelWidthMultiplier: CGFloat = 0.94
+    static let buttonBottomOffset: CGFloat = -0.14
+    static let buttonHeightMultiplier: CGFloat = 0.2
+    static let buttonWidthMultiplier: CGFloat = 0.7
+    static let pickerCenterYOffset: CGFloat = -0.08
 }
