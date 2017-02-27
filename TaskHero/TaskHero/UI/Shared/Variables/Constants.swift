@@ -45,6 +45,37 @@ struct AddTaskViewConstants {
     static let taskDescriptionBoxHeightMultiplier: CGFloat = 0.2
 }
 
+struct LoadingViewConstants {
+    static let frameOriginX: CGFloat = 0
+    static let frameOriginY: CGFloat = 0
+    static let frameWidth: CGFloat = 60
+    static let frameHeight: CGFloat = 60
+    static let cornerRadius: CGFloat = 10
+    static let backgroundColor: UIColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
+    
+    struct ActivityIndicator {
+        static let originXY: CGFloat = 0
+        static let width: CGFloat = 40
+        static let height: CGFloat = 40
+        static let containerCenterX: CGFloat = UIScreen.main.bounds.width / 2
+        static let containerCenterY: CGFloat = UIScreen.main.bounds.height / 2.5
+    }
+}
+
+struct DataPickerConstants {
+    static let dataLabelTopOffset: CGFloat = 10
+    static let dataLabelHeightMultiplier: CGFloat = 0.25
+    static let dataLabelWidthMultiplier: CGFloat = 0.94
+    static let buttonBottomOffset: CGFloat = -0.14
+    static let buttonHeightMultiplier: CGFloat = 0.2
+    static let buttonWidthMultiplier: CGFloat = 0.7
+    static let pickerCenterYOffset: CGFloat = -0.08
+    static let pickerHeightMultiplier: CGFloat = 0.2
+    static let pickerWidthMultiplier: CGFloat = 0.7
+    static let borderRadius: CGFloat = 4
+    static let borderWidth: CGFloat = 1
+}
+
 public struct Constants {
     
     enum Color {

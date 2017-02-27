@@ -3,14 +3,12 @@ import SnapKit
 
 final class DataPickerView: BasePopView {
     
-    // MARK: - Properties
-    
     dynamic var dataAlertLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = Constants.Font.bolderFontMedium
-        label.textAlignment = .center
         label.numberOfLines = 2
+        label.textAlignment = .center
+        label.font = Constants.Font.bolderFontMedium
         label.text = "When would you like to complete your task?"
         return label
     }()
@@ -22,8 +20,8 @@ final class DataPickerView: BasePopView {
     
     var picker: UIPickerView = {
         let picker = UIPickerView()
-        picker.layer.borderColor = UIColor.clear.cgColor
         picker.layer.borderWidth = 0
+        picker.layer.borderColor = UIColor.clear.cgColor
         return picker
     }()
     
@@ -33,7 +31,6 @@ final class DataPickerView: BasePopView {
         super.layoutSubviews()
         backgroundColor = .white
         layer.borderColor = UIColor.black.cgColor
-        
         layer.borderWidth = DataPickerConstants.borderWidth
         layer.cornerRadius = DataPickerConstants.borderRadius
         
@@ -49,6 +46,7 @@ final class DataPickerView: BasePopView {
     }
     
     func addPicker(picker: UIPickerView) {
+        
         addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
         
@@ -61,6 +59,7 @@ final class DataPickerView: BasePopView {
     }
     
     func addButton(button: UIButton) {
+        
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -73,6 +72,7 @@ final class DataPickerView: BasePopView {
     }
     
     func addAlertLabel(dataAlertlabel: UILabel) {
+        
         addSubview(dataAlertLabel)
         dataAlertLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -83,18 +83,4 @@ final class DataPickerView: BasePopView {
             make.height.equalTo(self).multipliedBy(DataPickerConstants.dataLabelHeightMultiplier)
         }
     }
-}
-
-struct DataPickerConstants {
-    static let dataLabelTopOffset: CGFloat = 10
-    static let dataLabelHeightMultiplier: CGFloat = 0.25
-    static let dataLabelWidthMultiplier: CGFloat = 0.94
-    static let buttonBottomOffset: CGFloat = -0.14
-    static let buttonHeightMultiplier: CGFloat = 0.2
-    static let buttonWidthMultiplier: CGFloat = 0.7
-    static let pickerCenterYOffset: CGFloat = -0.08
-    static let pickerHeightMultiplier: CGFloat = 0.2
-    static let pickerWidthMultiplier: CGFloat = 0.7
-    static let borderRadius: CGFloat = 4
-    static let borderWidth: CGFloat = 1
 }
