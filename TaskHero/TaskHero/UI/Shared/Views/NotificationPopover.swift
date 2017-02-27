@@ -5,16 +5,19 @@ struct NotificationPopoverConstants {
     static let originXY: CGFloat = 0
     static let widthMultiplier: CGFloat = 0.8
     static let heightMultiplier: CGFloat = 0.35
+    static let centerMidYMultiplier: CGFloat = 0.7
+    static let cornerRadius: CGFloat = 10
+    static let borderWidth: CGFloat = 1
 }
 
 class NotificationPopover: BasePopoverAlert {
     
     lazy var notifyPopView: NotificationView = {
         let popView = NotificationView()
-        popView.layer.cornerRadius = 10
+        popView.layer.cornerRadius = NotificationPopoverConstants.cornerRadius
         popView.backgroundColor = .white
         popView.layer.borderColor = UIColor.black.cgColor
-        popView.layer.borderWidth = 1
+        popView.layer.borderWidth = NotificationPopoverConstants.borderWidth
         return popView
     }()
     
@@ -26,7 +29,8 @@ class NotificationPopover: BasePopoverAlert {
                                      width: UIScreen.main.bounds.width * NotificationPopoverConstants.widthMultiplier,
                                      height: UIScreen.main.bounds.height * NotificationPopoverConstants.heightMultiplier)
         
-        notifyPopView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY * 0.7)
+        notifyPopView.center = CGPoint(x: UIScreen.main.bounds.midX,
+                                       y: UIScreen.main.bounds.midY * NotificationPopoverConstants.centerMidYMultiplier)
         
         notifyPopView.clipsToBounds = true
         

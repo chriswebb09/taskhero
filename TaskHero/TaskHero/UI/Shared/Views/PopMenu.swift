@@ -18,9 +18,11 @@ class PopMenu: BasePopoverAlert {
         popupView.center = CGPoint(x: PopMenuConstants.screenMidX,
                                    y: PopMenuConstants.screenMidY * PopMenuConstants.popViewCenterYMultiplier)
         popupView.picker = pick!
+        
         popupView.picker.dataSource = viewController as! AddTaskViewController
         popupView.picker.delegate = viewController as! AddTaskViewController
         popupView.picker.showsSelectionIndicator = true
+        
         viewController.view.addSubview(popupView)
         viewController.view.bringSubview(toFront: popupView)
     }

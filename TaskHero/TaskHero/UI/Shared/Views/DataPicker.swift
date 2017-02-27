@@ -32,10 +32,10 @@ final class DataPickerView: BasePopView {
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = .white
+        layer.borderColor = UIColor.black.cgColor
         
         layer.borderWidth = DataPickerConstants.borderWidth
         layer.cornerRadius = DataPickerConstants.borderRadius
-        layer.borderColor = UIColor.black.cgColor
         
         setupConstraints()
     }
@@ -53,10 +53,10 @@ final class DataPickerView: BasePopView {
         picker.translatesAutoresizingMaskIntoConstraints = false
         
         picker.snp.makeConstraints { make in
-            make.centerY.equalTo(self).offset(bounds.height * DataPickerConstants.pickerCenterYOffset)
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(DataPickerConstants.pickerHeightMultiplier)
             make.width.equalTo(self).multipliedBy(DataPickerConstants.pickerWidthMultiplier)
+            make.height.equalTo(self).multipliedBy(DataPickerConstants.pickerHeightMultiplier)
+            make.centerY.equalTo(self).offset(bounds.height * DataPickerConstants.pickerCenterYOffset)
         }
     }
     
@@ -65,10 +65,10 @@ final class DataPickerView: BasePopView {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.snp.makeConstraints { make in
-            make.bottom.equalTo(self).offset(bounds.height * DataPickerConstants.buttonBottomOffset)
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(DataPickerConstants.buttonHeightMultiplier)
             make.width.equalTo(self).multipliedBy(DataPickerConstants.buttonWidthMultiplier)
+            make.height.equalTo(self).multipliedBy(DataPickerConstants.buttonHeightMultiplier)
+            make.bottom.equalTo(self).offset(bounds.height * DataPickerConstants.buttonBottomOffset)
         }
     }
     
@@ -77,10 +77,10 @@ final class DataPickerView: BasePopView {
         dataAlertLabel.translatesAutoresizingMaskIntoConstraints = false
         
         dataAlertLabel.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(DataPickerConstants.dataLabelTopOffset)
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(DataPickerConstants.dataLabelHeightMultiplier)
+            make.top.equalTo(self).offset(DataPickerConstants.dataLabelTopOffset)
             make.width.equalTo(self).multipliedBy(DataPickerConstants.dataLabelWidthMultiplier)
+            make.height.equalTo(self).multipliedBy(DataPickerConstants.dataLabelHeightMultiplier)
         }
     }
 }

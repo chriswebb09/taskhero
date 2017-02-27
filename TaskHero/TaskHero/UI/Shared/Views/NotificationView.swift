@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 final class NotificationView: BasePopView {
-
+    
     var doneButton: UIButton = {
         var button = ButtonType.system(title: "Okay", color: .white).newButton
         button.layer.cornerRadius = 0
@@ -13,9 +13,9 @@ final class NotificationView: BasePopView {
     var dataLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.textColor = .black
+        searchLabel.textAlignment = .center
         searchLabel.text = "Please try again later."
         searchLabel.font = Constants.Font.fontNormal
-        searchLabel.textAlignment = .center
         return searchLabel
     }()
     
@@ -30,9 +30,9 @@ final class NotificationView: BasePopView {
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
         dataLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(NotificationConstants.dataLabelHeightMultiplier)
             make.width.equalTo(self)
             make.top.equalTo(self).offset(bounds.height / 3)
+            make.height.equalTo(self).multipliedBy(NotificationConstants.dataLabelHeightMultiplier)
         }
     }
     
@@ -40,9 +40,9 @@ final class NotificationView: BasePopView {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.snp.makeConstraints { make in
             make.right.equalTo(self)
+            make.width.equalTo(self)
             make.bottom.equalTo(self)
             make.height.equalTo(self).multipliedBy(NotificationConstants.doneButtonHeightMultiplier)
-            make.width.equalTo(self)
         }
     }
     
