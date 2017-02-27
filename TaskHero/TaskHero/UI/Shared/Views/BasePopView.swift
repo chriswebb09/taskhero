@@ -17,7 +17,8 @@ class BasePopView: UIView {
         return searchLabel
     }()
     
-    private func addHeaderBanner(headBanner:UIView) {
+    private func addHeaderBanner(headBanner: UIView) {
+        
         addSubview(headBanner)
         headBanner.translatesAutoresizingMaskIntoConstraints = false
         
@@ -29,7 +30,8 @@ class BasePopView: UIView {
         }
     }
     
-    private func addAlertLabel(label:UILabel) {
+    private func addAlertLabel(label: UILabel) {
+        
         addSubview(alertLabel)
         alertLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -43,6 +45,6 @@ class BasePopView: UIView {
     
     open func setupConstraints() {
         addHeaderBanner(headBanner: headBanner)
-        addAlertLabel(label:alertLabel)
+        addAlertLabel(label: alertLabel)
     }
 }

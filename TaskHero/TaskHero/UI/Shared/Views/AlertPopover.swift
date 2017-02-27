@@ -1,6 +1,6 @@
 import UIKit
 
-class AlertPopover: BasePopoverAlert {
+final class AlertPopover: BasePopoverAlert {
     
     open lazy var alertPopView: AlertView = {
         let popView = AlertView()
@@ -21,6 +21,7 @@ class AlertPopover: BasePopoverAlert {
                                     y: UIScreen.main.bounds.height * AlertConstants.alartPopViewXY,
                                     width: UIScreen.main.bounds.width * AlertConstants.width,
                                     height: UIScreen.main.bounds.height * AlertConstants.height)
+        
         alertPopView.center = CGPoint(x: UIScreen.main.bounds.midX,
                                       y: UIScreen.main.bounds.midY)
         

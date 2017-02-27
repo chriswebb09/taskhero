@@ -28,6 +28,7 @@ final class NotificationView: BasePopView {
     
     private func addDataLabel() {
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         dataLabel.snp.makeConstraints { make in
             make.width.equalTo(self)
             make.centerX.equalTo(self)
@@ -38,6 +39,7 @@ final class NotificationView: BasePopView {
     
     private func addDoneButton() {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
+        
         doneButton.snp.makeConstraints { make in
             make.right.equalTo(self)
             make.width.equalTo(self)
