@@ -106,10 +106,14 @@ final class AddTaskView: UIView {
             taskDescriptionBox.layer.borderColor = UIColor.gray.cgColor
         }
         
-        taskNameField.topAnchor.constraint(equalTo: topAnchor, constant: self.bounds.height * AddTaskViewConstants.taskNameFieldTopMultiplier)
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: AddTaskViewConstants.taskDescriptionBoxHeightMultiplier)
-        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: self.bounds.height * AddTaskViewConstants.topOffset)
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: self.bounds.height * AddTaskViewConstants.topOffset)
+        taskNameField.topAnchor.constraint(equalTo: topAnchor,
+                                           constant: self.bounds.height * AddTaskViewConstants.taskNameFieldTopMultiplier)
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor,
+                                                   multiplier: AddTaskViewConstants.taskDescriptionBoxHeightMultiplier)
+        taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor,
+                                                constant: self.bounds.height * AddTaskViewConstants.topOffset)
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor,
+                                           constant: self.bounds.height * AddTaskViewConstants.topOffset)
         
         UIView.animate(withDuration: 0.5) {
             self.layoutIfNeeded()
