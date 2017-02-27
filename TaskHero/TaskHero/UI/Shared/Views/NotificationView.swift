@@ -29,8 +29,8 @@ final class NotificationView: BasePopView {
     private func addDataLabel() {
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
         dataLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(self)
             make.width.equalTo(self)
+            make.centerX.equalTo(self)
             make.top.equalTo(self).offset(bounds.height / 3)
             make.height.equalTo(self).multipliedBy(NotificationConstants.dataLabelHeightMultiplier)
         }
