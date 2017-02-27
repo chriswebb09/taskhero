@@ -1,27 +1,36 @@
 import UIKit
 
+struct BasePopoverConstants {
+    static let popViewBorderWidth: CGFloat = 1
+    static let popViewCornerRadius: CGFloat = 10
+    static let containerViewCenterX: CGFloat = UIScreen.main.bounds.width / 2
+    static let containerViewCenterY: CGFloat = UIScreen.main.bounds.height / 2
+    static let containerViewOpacity: CGFloat = 0.5
+}
+
 class BasePopoverAlert: UIView {
     
     public lazy var containerView: BasePopView = {
         let containerView = BasePopView()
         containerView.backgroundColor = .black
-        containerView.layer.opacity = 0.5
+        containerView.layer.opacity = BasePopoverConstants.containerViewOpacity
         return containerView
     }()
     
     public lazy var popView: BasePopView = {
         let popView = NotificationView()
-        popView.layer.cornerRadius = 10
+        popView.layer.borderWidth = BasePopoverConstants.popViewBorderWidth
+        popView.layer.cornerRadius = BasePopoverConstants.popViewCornerRadius
         popView.backgroundColor = .white
         popView.layer.borderColor = UIColor.black.cgColor
-        popView.layer.borderWidth = 1
+        
         return popView
     }()
     
     public func showPopView(viewController: UIViewController) {
         containerView.frame = UIScreen.main.bounds
-        containerView.center = CGPoint(x: UIScreen.main.bounds.width/2,
-                                       y: UIScreen.main.bounds.height/2)
+        containerView.center = CGPoint(x: BasePopoverConstants.containerViewCenterX,
+                                       y: BasePopoverConstants.containerViewCenterY)
         viewController.view.addSubview(containerView)
         popView.isHidden = false
         containerView.isHidden = false
