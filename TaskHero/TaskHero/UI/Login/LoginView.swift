@@ -4,6 +4,8 @@ final class LoginView: UIView {
     
     var editState: Bool = false
     
+    var initialLoad: Bool = true
+    
     var logoImageView: UIImageView = {
         let image = UIImage(named: "taskherologo2")
         let imageView = UIImageView(image: image)
@@ -40,29 +42,25 @@ final class LoginView: UIView {
         backgroundColor = .white
         frame = UIScreen.main.bounds
         setupConstraints()
-        initialOpacity()
+        initialLoad = false
+        animatedOpacity()
         animated()
     }
 }
 
 extension LoginView {
     
-    func initialOpacity() {
-        loginButton.layer.opacity = 0
-        emailField.layer.opacity = 0
-        passwordField.layer.opacity = 0
-        logoImageView.layer.opacity = 0
-    }
-    
     func animatedOpacity() {
-        loginButton.layer.opacity = 1
-        emailField.layer.opacity = 1
-        passwordField.layer.opacity = 1
-        logoImageView.layer.opacity = 1
+        
+        loginButton.layer.opacity = initialLoad == true ? 1 : 0
+        emailField.layer.opacity = initialLoad == true ? 1 : 0
+        passwordField.layer.opacity = initialLoad == true ? 1 : 0
+        logoImageView.layer.opacity = initialLoad == true ? 1 : 0
     }
     
     func animated() {
         UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.initialLoad = true
             self?.animatedOpacity()
         }
     }
@@ -73,9 +71,12 @@ extension LoginView {
         layoutSubviews()
         emailField.delegate = viewController
         passwordField.delegate = viewController
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController, action: #selector(viewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: viewController,
+                                                                 action: #selector(viewController.dismissKeyboard))
         viewController.view.addGestureRecognizer(tap)
-        loginButton.addTarget(viewController, action: #selector(viewController.handleLogin), for: .touchUpInside)
+        loginButton.addTarget(viewController,
+                              action: #selector(viewController.handleLogin),
+                              for: .touchUpInside)
     }
     
     // MARK: - Configuring UI
@@ -85,8 +86,10 @@ extension LoginView {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.Login.loginFieldWidth).isActive = true
-        view.heightAnchor.constraint(equalTo: heightAnchor, multiplier:Constants.Login.loginFieldHeight).isActive = true
+        view.widthAnchor.constraint(equalTo: widthAnchor,
+                                    multiplier: Constants.Login.loginFieldWidth).isActive = true
+        view.heightAnchor.constraint(equalTo: heightAnchor,
+                                     multiplier:Constants.Login.loginFieldHeight).isActive = true
     }
     
     private func setupLogoImage() {
@@ -113,7 +116,8 @@ extension LoginView {
         emailFieldTopConstraint.constant = bounds.height * LoginViewConstants.emailFieldTopConstant
         
         setupView(view: passwordField)
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: bounds.height * LoginViewConstants.passwordFieldTopMultiplier).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor,
+                                           constant: bounds.height * LoginViewConstants.passwordFieldTopMultiplier).isActive = true
         passwordField.isSecureTextEntry = true
         
         setupView(view: loginButton)
@@ -129,11 +133,16 @@ extension LoginView {
     func textInputAnimation() {
         if editState != true {
             UIView.animate(withDuration: 0.5) {
-                self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: LoginViewConstants.animatedImageViewHeight).constant = self.bounds.height * LoginViewConstants.animatedImageViewHeightMultiplier
-                self.logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-                self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
-                self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: self.bounds.height * 0.06).isActive = true
-                self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: self.bounds.height  * 0.04).isActive = true
+                self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor,
+                                                           multiplier: LoginViewConstants.animatedImageViewHeight).constant = self.bounds.height * LoginViewConstants.animatedImageViewHeightMultiplier
+                self.logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
+                                                          multiplier: LoginViewConstants.animatedImageViewWidthMultiplier).isActive = true
+                self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor,
+                                                        constant: self.bounds.height * LoginViewConstants.animatedImageViewTopOffset).isActive = true
+                self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor,
+                                                     constant: self.bounds.height * LoginViewConstants.animatedEmailFieldTopOffset).isActive = true
+                self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor,
+                                                      constant: self.bounds.height  * LoginViewConstants.animatedLoginButtonTopOffset).isActive = true
                 self.layoutIfNeeded()
             }
         }
