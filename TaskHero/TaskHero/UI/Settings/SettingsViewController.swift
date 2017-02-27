@@ -72,7 +72,7 @@ final class SettingsViewController: UITableViewController, Identifiable {
         register(tableView: tableView, cells: [SettingsCell.self])
         tableView.setupTableView(view:self.view)
         edgesForExtendedLayout = []
-        view.backgroundColor = .backgroundColor()
+        view.backgroundColor = .background
         tableView.separatorColor = .blue
     }
     

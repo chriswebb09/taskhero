@@ -7,10 +7,15 @@ struct TaskListViewModel {
     var sharedTaskMethods = SharedTaskMethods()
     
     var numberOfRows: Int {
-        if let user = store.currentUser, let tasks = user.tasks {
-            return tasks.count
+        var rows = 0
+        if let user = self.store.currentUser {
+            let taskList = self.store.currentUser.tasks
+            if let tasks = taskList?.count {
+                rows = tasks
+            }
+           
         }
-        return 0
+        return rows
     }
     
     var showTaskLabel: Bool {
@@ -31,10 +36,12 @@ struct TaskListViewModel {
     }()
     
     var tasks: [Task] {
-        if let tasks = store.currentUser.tasks {
-            return tasks
+        var taskList = [Task]()
+        if let user = self.store.currentUser {
+            taskList = self.store.currentUser.tasks!
+            
         }
-        return [Task]()
+        return taskList
     }
     
     func configureAddTaskLabel(label: UILabel) {

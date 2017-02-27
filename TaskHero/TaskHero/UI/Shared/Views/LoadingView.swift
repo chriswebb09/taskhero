@@ -1,5 +1,12 @@
 import UIKit
 
+struct LoadingViewConstants {
+    static let frameOriginX: CGFloat = 0
+    static let frameOriginY: CGFloat = 0
+    static let frameWidth: CGFloat = 60
+    static let frameHeight: CGFloat = 60
+}
+
 class LoadingView: UIView {
     
     lazy var activityIndicator: UIActivityIndicatorView = {
@@ -24,7 +31,10 @@ class LoadingView: UIView {
     }()
     
     func addLoadingView() {
-        loadingView.frame = CGRect(x:0, y:0, width:60, height:60)
+        loadingView.frame = CGRect(x: LoadingViewConstants.frameOriginX,
+                                   y: LoadingViewConstants.frameOriginY,
+                                   width: LoadingViewConstants.frameWidth,
+                                   height: LoadingViewConstants.frameHeight)
         loadingView.center = CGPoint(x: UIScreen.main.bounds.midX,
                                      y: UIScreen.main.bounds.midY)
         loadingView.clipsToBounds = true

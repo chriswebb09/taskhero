@@ -49,9 +49,9 @@ class ImageAPIClient {
         }
         
         if let selectedImage = selectedImageFromPicker {
-            uploadToFirebaseStorageUsingImage(selectedImage, completion: { imageUrl in
+            uploadToFirebaseStorageUsingImage(selectedImage) { imageUrl in
                 self.imageUrl(imageUrl, image: selectedImage)
-            })
+            }
         }
     }
     

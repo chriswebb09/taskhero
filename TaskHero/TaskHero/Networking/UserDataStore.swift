@@ -3,7 +3,9 @@ import Firebase
 
 final class UserDataStore {
     private static let _shared = UserDataStore()
-    private init() { }
+    private init() {
+        self.tasks = [Task]()
+    }
     public static var sharedInstance: UserDataStore { return _shared }
     
     public let firebaseAPI = APIClient()
@@ -14,7 +16,13 @@ final class UserDataStore {
         return uid
     }
     
-    public var tasks = [Task]()
+    public var tasks: [Task] {
+        didSet {
+            currentUser.tasks = tasks
+            print("didSet")
+            print(currentUser.tasks)
+        }
+    }
     var profilePicture: UIImage!
     var validUsernames = [String]()
     

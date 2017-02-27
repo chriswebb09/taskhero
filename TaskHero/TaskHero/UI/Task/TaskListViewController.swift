@@ -39,9 +39,10 @@ final class TaskListViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         listViewModel.initializeBackgroundUI(controller: self)
         listViewModel.configureAddTaskLabel(label: addTasksLabel)
-        tableView.reloadData()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,8 +54,7 @@ final class TaskListViewController: BaseTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         fetchUser(tableView: tableView)
-       // sharedTaskMethods.fetchUser(tableView: tableView)
-        tableView.reloadOnMain()
+       // tableView.reloadOnMain()
         addTasksLabel.isHidden = hidden
         DispatchQueue.main.async {
             self.listViewModel.emptyTableViewState(view: self.view, addTaskLabel: self.addTasksLabel)
@@ -69,7 +69,9 @@ final class TaskListViewController: BaseTableViewController {
 extension TaskListViewController: TaskCellDelegate {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listViewModel.numberOfRows
+        print(listViewModel.numberOfRows)
+        print(self.store.tasks)
+        return self.store.tasks.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

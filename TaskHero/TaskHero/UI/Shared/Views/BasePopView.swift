@@ -1,5 +1,9 @@
 import UIKit
 
+struct PopConstants {
+    static let heightMultiplier: CGFloat = 0.25
+}
+
 class BasePopView: UIView {
     
     open lazy var headBanner: UIView = {
@@ -23,7 +27,7 @@ class BasePopView: UIView {
         headBanner.snp.makeConstraints { make in
             make.top.equalTo(self)
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.25)
+            make.height.equalTo(self).multipliedBy(PopConstants.heightMultiplier)
             make.width.equalTo(self)
         }
     }
@@ -34,7 +38,7 @@ class BasePopView: UIView {
         alertLabel.snp.makeConstraints { make in
             make.top.equalTo(self)
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.25)
+            make.height.equalTo(self).multipliedBy(PopConstants.heightMultiplier)
             make.width.equalTo(self)
         }
     }

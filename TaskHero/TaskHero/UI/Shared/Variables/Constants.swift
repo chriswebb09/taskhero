@@ -20,6 +20,8 @@ public struct Constants {
     }
     
     public struct Dimension {
+        static let screenHeight = UIScreen.main.bounds.height
+        static let screenWidth = UIScreen.main.bounds.width
         public static let mainWidth:CGFloat = 0.4
         public static let mainOffset:CGFloat = 30
         public static let buttonHeight:CGFloat = 0.07

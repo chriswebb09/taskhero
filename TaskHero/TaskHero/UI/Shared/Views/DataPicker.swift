@@ -32,9 +32,11 @@ final class DataPickerView: BasePopView {
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = .white
+        
         layer.borderWidth = 1
         layer.cornerRadius = 4
         layer.borderColor = UIColor.black.cgColor
+        
         setupConstraints()
     }
     
@@ -49,6 +51,7 @@ final class DataPickerView: BasePopView {
     func addPicker(picker: UIPickerView) {
         addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
+        
         picker.snp.makeConstraints { make in
             make.centerY.equalTo(self).offset(bounds.height * -0.08)
             make.centerX.equalTo(self)
@@ -60,6 +63,7 @@ final class DataPickerView: BasePopView {
     func addButton(button: UIButton) {
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         button.snp.makeConstraints { make in
             make.bottom.equalTo(self).offset(bounds.height * -0.14)
             make.centerX.equalTo(self)
@@ -71,6 +75,7 @@ final class DataPickerView: BasePopView {
     func addAlertLabel(dataAlertlabel: UILabel) {
         addSubview(dataAlertLabel)
         dataAlertLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         dataAlertLabel.snp.makeConstraints { make in
             make.top.equalTo(self).offset(10)
             make.centerX.equalTo(self)
