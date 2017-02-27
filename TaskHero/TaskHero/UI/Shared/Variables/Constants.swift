@@ -76,6 +76,38 @@ struct DataPickerConstants {
     static let borderWidth: CGFloat = 1
 }
 
+struct PopMenuConstants {
+    static let popViewCenterYMultiplier: CGFloat = 0.8
+    static let frameOriginXMultiplier: CGFloat = 0.5
+    static let frameOriginYMultiplier: CGFloat = 0.7
+    static let frameWidthMultiplier: CGFloat = 0.96
+    static let frameHeightMultiplier: CGFloat = 0.4
+    static let screenMidX: CGFloat = UIScreen.main.bounds.midX
+    static let screenMidY: CGFloat = UIScreen.main.bounds.midY
+}
+
+struct NotificationConstants {
+    static let dataLabelHeightMultiplier: CGFloat = 0.25
+    static let doneButtonHeightMultiplier: CGFloat = 0.25
+}
+
+struct AlertConstants {
+    static let cornerRadius: CGFloat = 10
+    static let borderWidth: CGFloat = 1
+    static let alartPopViewXY: CGFloat = 0.5
+    static let width: CGFloat = 0.8
+    static let height: CGFloat = 0.35
+}
+
+struct PhotoPickerViewConstants {
+    static let centerYOffset: CGFloat = 20
+    static let heightMultiplier: CGFloat = 0.15
+}
+
+struct PopConstants {
+    static let heightMultiplier: CGFloat = 0.25
+}
+
 public struct Constants {
     
     enum Color {
@@ -149,7 +181,7 @@ public struct Constants {
     
     public struct Login {
         public static let loginSuccessColor = UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)
-       // public static let loginFieldHeight = CGFloat(0.07)
+        // public static let loginFieldHeight = CGFloat(0.07)
         public static let loginFieldHeight = CGFloat(0.075)
         public static let loginFieldEditColor: UIColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
         public static let loginFieldEditBorderColor: CGColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0).cgColor
@@ -186,7 +218,7 @@ public struct Constants {
     
     public struct Settings {
         public static let searchFieldButtonRadius: CGFloat = 2
-       // public static let rowHeight: CGFloat = 100
+        // public static let rowHeight: CGFloat = 100
         public static let tableViewHeight:CGFloat = 0.75
         public static let dismissedOpacity:Float = 0
         public static let centerYOffset:CGFloat = 0.1

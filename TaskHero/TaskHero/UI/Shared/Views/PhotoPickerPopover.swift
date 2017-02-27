@@ -44,8 +44,10 @@ class PhotoPickerPopover: BasePopoverAlert {
     
     override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
+        
         popViewCentered(popView: photoPopView)
         popViewSettings(popView: photoPopView)
+        
         viewController.view.addSubview(containerView)
         viewController.view.addSubview(photoPopView)
     }

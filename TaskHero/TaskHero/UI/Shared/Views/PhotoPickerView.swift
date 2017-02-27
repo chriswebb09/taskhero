@@ -1,8 +1,6 @@
 import UIKit
 
-class PhotoPickerView: BasePopView {
-    
-    // MARK: - UI Element
+final class PhotoPickerView: BasePopView {
     
     lazy var button: UIButton = {
         let button = ButtonType.system(title: "Change Profile Picture", color: .black)
@@ -13,10 +11,11 @@ class PhotoPickerView: BasePopView {
     
     func addButton(button: UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         button.snp.makeConstraints { make in
             make.centerX.equalTo(self)
-            make.centerY.equalTo(self).offset(PhotoPickerViewConstants.centerYOffset)
             make.width.equalTo(self).multipliedBy(Constants.Dimension.width)
+            make.centerY.equalTo(self).offset(PhotoPickerViewConstants.centerYOffset)
             make.height.equalTo(self).multipliedBy(PhotoPickerViewConstants.heightMultiplier)
         }
     }
@@ -30,7 +29,3 @@ class PhotoPickerView: BasePopView {
     }
 }
 
-struct PhotoPickerViewConstants {
-    static let centerYOffset: CGFloat = 20
-    static let heightMultiplier: CGFloat = 0.15
-}

@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class NotificationPopover: BasePopoverAlert {
+final class NotificationPopover: BasePopoverAlert {
     
     lazy var notifyPopView: NotificationView = {
         let popView = NotificationView()

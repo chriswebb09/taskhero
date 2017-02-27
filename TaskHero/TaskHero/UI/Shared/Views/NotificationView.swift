@@ -54,8 +54,3 @@ final class NotificationView: BasePopView {
         addDoneButton()
     }
 }
-
-struct NotificationConstants {
-    static let dataLabelHeightMultiplier: CGFloat = 0.25
-    static let doneButtonHeightMultiplier: CGFloat = 0.25
-}

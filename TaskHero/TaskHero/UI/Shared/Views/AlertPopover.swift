@@ -4,10 +4,13 @@ class AlertPopover: BasePopoverAlert {
     
     open lazy var alertPopView: AlertView = {
         let popView = AlertView()
+        
         popView.layer.cornerRadius = AlertConstants.cornerRadius
         popView.backgroundColor = .white
+        
         popView.layer.borderColor = UIColor.black.cgColor
         popView.layer.borderWidth = AlertConstants.borderWidth
+        
         return popView
     }()
     
@@ -20,8 +23,10 @@ class AlertPopover: BasePopoverAlert {
                                     height: UIScreen.main.bounds.height * AlertConstants.height)
         alertPopView.center = CGPoint(x: UIScreen.main.bounds.midX,
                                       y: UIScreen.main.bounds.midY)
+        
         alertPopView.clipsToBounds = true
         viewController.view.addSubview(alertPopView)
+        
         viewController.view.bringSubview(toFront: containerView)
         viewController.view.bringSubview(toFront: alertPopView)
     }
@@ -29,15 +34,8 @@ class AlertPopover: BasePopoverAlert {
     public override func hidePopView(viewController: UIViewController) {
         alertPopView.isHidden = true
         containerView.isHidden = true
+        
         viewController.view.sendSubview(toBack: alertPopView)
         viewController.view.sendSubview(toBack: containerView)
     }
-}
-
-struct AlertConstants {
-    static let cornerRadius: CGFloat = 10
-    static let borderWidth: CGFloat = 1
-    static let alartPopViewXY: CGFloat = 0.5
-    static let width: CGFloat = 0.8
-    static let height: CGFloat = 0.35
 }

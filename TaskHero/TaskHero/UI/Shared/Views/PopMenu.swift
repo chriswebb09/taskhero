@@ -27,13 +27,3 @@ class PopMenu: BasePopoverAlert {
         viewController.view.bringSubview(toFront: popupView)
     }
 }
-
-struct PopMenuConstants {
-    static let popViewCenterYMultiplier: CGFloat = 0.8
-    static let frameOriginXMultiplier: CGFloat = 0.5
-    static let frameOriginYMultiplier: CGFloat = 0.7
-    static let frameWidthMultiplier: CGFloat = 0.96
-    static let frameHeightMultiplier: CGFloat = 0.4
-    static let screenMidX: CGFloat = UIScreen.main.bounds.midX
-    static let screenMidY: CGFloat = UIScreen.main.bounds.midY
-}
