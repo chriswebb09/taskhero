@@ -5,9 +5,13 @@ struct LoadingViewConstants {
     static let frameOriginY: CGFloat = 0
     static let frameWidth: CGFloat = 60
     static let frameHeight: CGFloat = 60
+    static let cornerRadius: CGFloat = 10
+    static let backgroundColor: UIColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:0.8)
     
-    struct ActivityIndication {
-        
+    struct ActivityIndicator {
+        static let originXY: CGFloat = 0
+        static let width: CGFloat = 40
+        static let height: CGFloat = 40
     }
 }
 
@@ -26,11 +30,8 @@ class LoadingView: UIView {
     
     lazy var loadingView: UIView = {
         let loadingView = UIView()
-        loadingView.layer.cornerRadius = 10
-        loadingView.backgroundColor = UIColor(red:0.27,
-                                              green:0.27,
-                                              blue:0.27,
-                                              alpha:0.8)
+        loadingView.layer.cornerRadius = LoadingViewConstants.cornerRadius
+        loadingView.backgroundColor = LoadingViewConstants.backgroundColor
         return loadingView
     }()
     
@@ -51,7 +52,10 @@ class LoadingView: UIView {
     }
     
     func activityIndicatorSetup() {
-        activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
+        activityIndicator.frame = CGRect(x: LoadingViewConstants.ActivityIndicator.originXY,
+                                         y: LoadingViewConstants.ActivityIndicator.originXY,
+                                         width: LoadingViewConstants.ActivityIndicator.width,
+                                         height: LoadingViewConstants.ActivityIndicator.height)
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
         activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2,
                                            y: loadingView.frame.size.height / 2)

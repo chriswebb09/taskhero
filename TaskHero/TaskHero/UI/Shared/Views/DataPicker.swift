@@ -33,8 +33,8 @@ final class DataPickerView: BasePopView {
         super.layoutSubviews()
         backgroundColor = .white
         
-        layer.borderWidth = 1
-        layer.cornerRadius = 4
+        layer.borderWidth = DataPickerConstants.borderWidth
+        layer.cornerRadius = DataPickerConstants.borderRadius
         layer.borderColor = UIColor.black.cgColor
         
         setupConstraints()
@@ -55,8 +55,8 @@ final class DataPickerView: BasePopView {
         picker.snp.makeConstraints { make in
             make.centerY.equalTo(self).offset(bounds.height * DataPickerConstants.pickerCenterYOffset)
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.2)
-            make.width.equalTo(self).multipliedBy(0.7)
+            make.height.equalTo(self).multipliedBy(DataPickerConstants.pickerHeightMultiplier)
+            make.width.equalTo(self).multipliedBy(DataPickerConstants.pickerWidthMultiplier)
         }
     }
     
@@ -93,4 +93,8 @@ struct DataPickerConstants {
     static let buttonHeightMultiplier: CGFloat = 0.2
     static let buttonWidthMultiplier: CGFloat = 0.7
     static let pickerCenterYOffset: CGFloat = -0.08
+    static let pickerHeightMultiplier: CGFloat = 0.2
+    static let pickerWidthMultiplier: CGFloat = 0.7
+    static let borderRadius: CGFloat = 4
+    static let borderWidth: CGFloat = 1
 }

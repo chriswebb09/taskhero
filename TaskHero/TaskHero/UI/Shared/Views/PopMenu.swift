@@ -1,7 +1,6 @@
 import UIKit
 
 class PopMenu: BasePopoverAlert {
-
     
     dynamic lazy var popupView: DataPickerView = {
         let pick = DataPickerView()
@@ -11,13 +10,13 @@ class PopMenu: BasePopoverAlert {
     func showPopView(viewController: UIViewController, pick: UIPickerView?) {
         super.showPopView(viewController: viewController)
         
-        popupView.frame =  CGRect(x: Constants.Dimension.screenWidth * 0.5,
-                                  y: Constants.Dimension.screenHeight * 0.7,
-                                  width: Constants.Dimension.screenWidth * 0.96,
-                                  height: Constants.Dimension.screenHeight * 0.4)
+        popupView.frame =  CGRect(x: Constants.Dimension.screenWidth * PopMenuConstants.frameOriginXMultiplier,
+                                  y: Constants.Dimension.screenHeight * PopMenuConstants.frameOriginYMultiplier,
+                                  width: Constants.Dimension.screenWidth * PopMenuConstants.frameWidthMultiplier,
+                                  height: Constants.Dimension.screenHeight * PopMenuConstants.frameHeightMultiplier)
         
-        popupView.center = CGPoint(x: UIScreen.main.bounds.midX,
-                                   y: UIScreen.main.bounds.midY * 0.8)
+        popupView.center = CGPoint(x: PopMenuConstants.screenMidX,
+                                   y: PopMenuConstants.screenMidY * PopMenuConstants.popViewCenterYMultiplier)
         popupView.picker = pick!
         popupView.picker.dataSource = viewController as! AddTaskViewController
         popupView.picker.delegate = viewController as! AddTaskViewController
@@ -27,3 +26,12 @@ class PopMenu: BasePopoverAlert {
     }
 }
 
+struct PopMenuConstants {
+    static let popViewCenterYMultiplier: CGFloat = 0.8
+    static let frameOriginXMultiplier: CGFloat = 0.5
+    static let frameOriginYMultiplier: CGFloat = 0.7
+    static let frameWidthMultiplier: CGFloat = 0.96
+    static let frameHeightMultiplier: CGFloat = 0.4
+    static let screenMidX: CGFloat = UIScreen.main.bounds.midX
+    static let screenMidY: CGFloat = UIScreen.main.bounds.midY
+}
