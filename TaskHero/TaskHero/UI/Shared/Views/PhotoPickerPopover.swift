@@ -1,6 +1,6 @@
 import UIKit
 
-class PhotoPickerPopover: BasePopoverAlert {
+final class PhotoPickerPopover: BasePopoverAlert {
     
     // MARK: - UI Elements
     
@@ -58,13 +58,4 @@ class PhotoPickerPopover: BasePopoverAlert {
         photoPopView.layer.opacity = 0
         containerView.layer.opacity = 0
     }
-}
-
-
-struct PhotoPickerConstants {
-    static let multiplyX: CGFloat = 0.5
-    static let multiplyYFrame: CGFloat = 0.35
-    static let frameWidth: CGFloat = 0.75
-    static let frameHeight: CGFloat = 0.35
-    static let centerY: CGFloat = 0.4
 }

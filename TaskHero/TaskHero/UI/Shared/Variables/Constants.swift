@@ -108,6 +108,14 @@ struct PopConstants {
     static let heightMultiplier: CGFloat = 0.25
 }
 
+struct PhotoPickerConstants {
+    static let multiplyX: CGFloat = 0.5
+    static let multiplyYFrame: CGFloat = 0.35
+    static let frameWidth: CGFloat = 0.75
+    static let frameHeight: CGFloat = 0.35
+    static let centerY: CGFloat = 0.4
+}
+
 public struct Constants {
     
     enum Color {
