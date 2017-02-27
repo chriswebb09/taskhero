@@ -20,7 +20,8 @@ enum ButtonType {
     fileprivate func setupSystemButton(with title:String, color: UIColor?) -> UIButton {
         let button = TagButton()
         let buttonColor = color ?? .black
-        button.setAttributedTitle( NSAttributedString(string: title, attributes: [NSForegroundColorAttributeName: buttonColor, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
+        button.setAttributedTitle( NSAttributedString(string: title, attributes: [NSForegroundColorAttributeName: buttonColor,
+                                                                                  NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
         configureButton(button: button)
         return button as UIButton
     }
@@ -28,7 +29,9 @@ enum ButtonType {
     fileprivate func setupTagButton(with title:String, color: UIColor?, tag: Int, index: IndexPath) -> TagButton {
         let button = TagButton()
         let buttonColor = color ?? .black
-        button.setAttributedTitle( NSAttributedString(string: title, attributes: [NSForegroundColorAttributeName: buttonColor, NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
+        button.setAttributedTitle( NSAttributedString(string: title,
+                                                      attributes: [NSForegroundColorAttributeName: buttonColor,
+                                                                   NSFontAttributeName: Constants.Font.fontNormal!]), for: .normal)
         configureButton(button: button)
         button.buttonTag = tag
         button.index = index

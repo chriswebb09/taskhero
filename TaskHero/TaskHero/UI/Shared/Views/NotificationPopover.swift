@@ -5,9 +5,10 @@ final class NotificationPopover: BasePopoverAlert {
     
     lazy var notifyPopView: NotificationView = {
         let popView = NotificationView()
-        popView.layer.cornerRadius = NotificationPopoverConstants.cornerRadius
         popView.backgroundColor = .white
         popView.layer.borderColor = UIColor.black.cgColor
+        
+        popView.layer.cornerRadius = NotificationPopoverConstants.cornerRadius
         popView.layer.borderWidth = NotificationPopoverConstants.borderWidth
         return popView
     }()

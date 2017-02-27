@@ -53,23 +53,12 @@ extension Loginable {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
     }
-    
-    //    typealias B = BaseTableViewController
-    //
-    //    @discardableResult
-    //    static func barSetup<B: BaseTableViewController>(controller: B) -> B {
-    //        let rightBarImage: UIImage = SharedMethods.getAddTaskImage()
-    //        let leftItem = SharedMethods.getLeftBarItem(selector: #selector(controller.logoutButtonPressed), viewController: controller)
-    //        let rightItem = SharedMethods.getRightBarItem(image: rightBarImage, selector: #selector(controller.addTaskButtonTapped), viewController: controller)
-    //        SharedMethods.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
-    //        return controller
-    //    }
 }
 
 extension UIViewController {
     
     
-
+    
 }
 
 

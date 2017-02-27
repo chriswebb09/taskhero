@@ -17,6 +17,7 @@ final class AlertPopover: BasePopoverAlert {
     public override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
         alertPopView.isHidden = false
+        
         alertPopView.frame = CGRect(x: UIScreen.main.bounds.width * AlertConstants.alartPopViewXY,
                                     y: UIScreen.main.bounds.height * AlertConstants.alartPopViewXY,
                                     width: UIScreen.main.bounds.width * AlertConstants.width,

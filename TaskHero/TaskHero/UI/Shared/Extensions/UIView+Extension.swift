@@ -21,23 +21,23 @@ extension BaseViewController {
 extension UITableViewController {
     
     class func setupTableView(tableView: UITableView, view: UIView) {
-        tableView.tableFooterView = UIView(frame: .zero)
-        tableView.separatorStyle = .singleLineEtched
         tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = view.frame.height / 4
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorStyle = .singleLineEtched
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = view.frame.height / 4
     }
 }
 
 extension UITextView {
     
     func setupStyledTextView() -> UITextView {
-        layer.borderWidth = Constants.Dimension.mainWidth
-        layer.borderColor = UIColor.lightGray.cgColor
-        layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         font = Constants.signupFieldFont
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = Constants.Dimension.mainWidth
+        layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         contentInset = Constants.TaskCell.Description.boxInset
         return self
     }
@@ -50,22 +50,21 @@ extension UITextView {
     }
     
     func editTextViewStyle() {
-        print("Inside edit text view style")
-        layer.borderWidth = Constants.Dimension.mainWidth
-        backgroundColor = .white
         textColor = .black
-        layer.borderColor = UIColor.lightGray.cgColor
-        layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
+        backgroundColor = .white
         font = Constants.signupFieldFont
+        layer.borderColor = UIColor.gray.cgColor
+        layer.borderWidth = Constants.Dimension.mainWidth
+        layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
         contentInset = Constants.TaskCell.Description.boxInset
     }
     
     func labelTextViewStyle() {
-        backgroundColor = Constants.TaskCell.Description.descriptionLabelBackgroundColor
-        font = Constants.Font.fontMedium
         textColor = .white
         isEditable = false
         isSelectable = false
+        font = Constants.Font.fontMedium
+        backgroundColor = Constants.TaskCell.Description.descriptionLabelBackgroundColor
         isUserInteractionEnabled = false
     }
 }
@@ -74,13 +73,13 @@ extension UITextView {
 public extension UITableView {
     
     public func setupTableView(view: UIView) {
-        estimatedRowHeight = view.frame.height / 4
         layoutMargins = UIEdgeInsets.zero
         separatorInset = UIEdgeInsets.zero
         separatorStyle = .singleLineEtched
-        rowHeight = UITableViewAutomaticDimension
         tableFooterView = UIView(frame: .zero)
+        rowHeight = UITableViewAutomaticDimension
         tableHeaderView?.backgroundColor = .white
+        estimatedRowHeight = view.frame.height / 4
     }
     
     func reloadOnMain() {

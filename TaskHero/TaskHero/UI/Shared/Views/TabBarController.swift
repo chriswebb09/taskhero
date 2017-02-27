@@ -67,7 +67,8 @@ final class TabBarController: UITabBarController {
     }
     
     fileprivate func setupHomeTab(homeVC: HomeViewController) -> UINavigationController {
-        homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house-white-2")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "house-lightblue")?.withRenderingMode(.alwaysTemplate))
+        homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house-white-2")?.withRenderingMode(.alwaysOriginal),
+                                         selectedImage: UIImage(named: "house-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: homeVC.tabBarItem)
         let homeTab = UINavigationController(rootViewController: homeVC)
         configureNav(nav: homeTab.navigationBar, view:view)
@@ -76,7 +77,8 @@ final class TabBarController: UITabBarController {
     }
     
     fileprivate func setupProfileTab(profileVC: ProfileViewController) -> UINavigationController {
-        profileVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "avatar-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "avatar-lightblue")?.withRenderingMode(.alwaysTemplate))
+        profileVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "avatar-white")?.withRenderingMode(.alwaysOriginal),
+                                            selectedImage: UIImage(named: "avatar-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: profileVC.tabBarItem)
         let profileTab = UINavigationController(rootViewController: profileVC)
         configureNav(nav:profileTab.navigationBar, view:profileVC.view)
@@ -85,7 +87,8 @@ final class TabBarController: UITabBarController {
     }
     
     fileprivate func setupTaskTab(taskListVC: TaskListViewController) -> UINavigationController {
-        taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
+        taskListVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tasklist-white")?.withRenderingMode(.alwaysOriginal),
+                                             selectedImage: UIImage(named: "list-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: taskListVC.tabBarItem)
         let taskListTab = UINavigationController(rootViewController: taskListVC)
         configureNav(nav: taskListTab.navigationBar, view:taskListVC.view)
@@ -94,7 +97,8 @@ final class TabBarController: UITabBarController {
     }
     
     fileprivate func setupSettingsTab(settingsVC: SettingsViewController) -> UINavigationController {
-        settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-2-white-1")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "settings-lightblue")?.withRenderingMode(.alwaysTemplate))
+        settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "settings-2-white-1")?.withRenderingMode(.alwaysOriginal),
+                                             selectedImage: UIImage(named: "settings-lightblue")?.withRenderingMode(.alwaysTemplate))
         configureTabBarItem(item: settingsVC.tabBarItem)
         let settingsTab = UINavigationController(rootViewController: settingsVC)
         configureNav(nav: settingsTab.navigationBar, view:settingsVC.view)

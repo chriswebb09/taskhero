@@ -31,6 +31,7 @@ final class PhotoPickerPopover: BasePopoverAlert {
     }
     
     func popViewCentered(popView: PhotoPickerView) {
+        
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         
