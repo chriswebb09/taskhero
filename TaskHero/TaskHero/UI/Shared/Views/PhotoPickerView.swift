@@ -15,9 +15,9 @@ class PhotoPickerView: BasePopView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.snp.makeConstraints { make in
             make.centerX.equalTo(self)
-            make.centerY.equalTo(self).offset(20)
+            make.centerY.equalTo(self).offset(PhotoPickerViewConstants.centerYOffset)
             make.width.equalTo(self).multipliedBy(Constants.Dimension.width)
-            make.height.equalTo(self).multipliedBy(0.15)
+            make.height.equalTo(self).multipliedBy(PhotoPickerViewConstants.heightMultiplier)
         }
     }
     
@@ -28,4 +28,9 @@ class PhotoPickerView: BasePopView {
         backgroundColor = .white
         addButton(button: button)
     }
+}
+
+struct PhotoPickerViewConstants {
+    static let centerYOffset: CGFloat = 20
+    static let heightMultiplier: CGFloat = 0.15
 }

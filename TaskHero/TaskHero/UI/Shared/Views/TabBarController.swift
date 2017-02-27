@@ -104,7 +104,10 @@ final class TabBarController: UITabBarController {
     
     func configureNav(nav:UINavigationBar, view: UIView) {
         nav.titleTextAttributes = Constants.Tabbar.navbarAttributedText
-        nav.frame = CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height * 1.2)
+        nav.frame = CGRect(x: TabbarConstants.navXYOrigin,
+                           y: TabbarConstants.navXYOrigin,
+                           width: view.frame.width,
+                           height: view.frame.height * TabbarConstants.navHeightMultiplier)
     }
     
     func configureTabBarItem(item: UITabBarItem) {
@@ -112,4 +115,10 @@ final class TabBarController: UITabBarController {
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
         item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.41, green:0.72, blue:0.90, alpha:1.0)], for:.selected)
     }
+}
+
+
+struct TabbarConstants {
+    static let navXYOrigin: CGFloat = 0
+    static let navHeightMultiplier: CGFloat = 1.2
 }

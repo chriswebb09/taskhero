@@ -18,6 +18,7 @@ final class UserDataStore {
     
     public var tasks: [Task] {
         didSet {
+            setupStore()
             currentUser.tasks = tasks
         }
     }

@@ -30,7 +30,7 @@ final class NotificationView: BasePopView {
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
         dataLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.25)
+            make.height.equalTo(self).multipliedBy(NotificationConstants.dataLabelHeightMultiplier)
             make.width.equalTo(self)
             make.top.equalTo(self).offset(bounds.height / 3)
         }
@@ -41,7 +41,7 @@ final class NotificationView: BasePopView {
         doneButton.snp.makeConstraints { make in
             make.right.equalTo(self)
             make.bottom.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.25)
+            make.height.equalTo(self).multipliedBy(NotificationConstants.doneButtonHeightMultiplier)
             make.width.equalTo(self)
         }
     }
@@ -53,4 +53,9 @@ final class NotificationView: BasePopView {
         addDataLabel()
         addDoneButton()
     }
+}
+
+struct NotificationConstants {
+    static let dataLabelHeightMultiplier: CGFloat = 0.25
+    static let doneButtonHeightMultiplier: CGFloat = 0.25
 }

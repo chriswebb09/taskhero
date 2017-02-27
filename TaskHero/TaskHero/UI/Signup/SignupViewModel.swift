@@ -31,9 +31,4 @@ struct SignupViewModel {
         controller.signupView.loginButton.addTarget(self, action: #selector(controller.signupButtonTapped), for: .touchUpInside)
     }
     
-//    func setupUser(user: User) {
-//        store.firebaseAPI.registerUser(user: user)
-//        store.firebaseAPI.setupRefs()
-//        store.currentUser = user
-//    }
 }
