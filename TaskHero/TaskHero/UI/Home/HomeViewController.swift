@@ -135,5 +135,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         homeViewModel.profilePic = BaseViewController.photoForPicker(controller: self, info: info)
+        UserDataStore.sharedInstance.currentUser.userProfilePic = BaseViewController.photoForPicker(controller: self, info: info)
     }
 }

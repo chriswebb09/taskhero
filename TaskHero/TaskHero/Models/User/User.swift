@@ -11,7 +11,8 @@ class User: NSObject, NSCoding {
     var level: String = ""
     var joinDate: String = ""
     var tasks: [Task]?
-    var numberOfTasksCompleted: Int = 0 
+    var numberOfTasksCompleted: Int = 0
+    var userProfilePic: UIImage?
     
     init(uid: String,  email: String, firstName: String?, lastName: String?, profilePicture: String?, username: String, experiencePoints: Int, level: String, joinDate: String, tasks: [Task]?, numberOfTasksCompleted: Int) {
         self.uid = uid

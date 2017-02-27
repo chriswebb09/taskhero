@@ -44,7 +44,7 @@ extension UserDataProtocol {
 
 
 protocol Loginable {
-    //func getLoginViewController()
+   func setLoginViewController()
 }
 
 extension Loginable {

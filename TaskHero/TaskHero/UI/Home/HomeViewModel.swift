@@ -108,7 +108,8 @@ final class HomeViewModel: BaseModelProtocol {
             headerCell.delegate = tableViewController
             let tap = UIGestureRecognizer(target:self, action: #selector(tableViewController.profilePictureTapped(sender:)))
             headerCell.profilePicture.addGestureRecognizer(tap)
-            if profilePic != nil { headerCell.profilePicture.image = profilePic! }
+            if store.currentUser.userProfilePic != nil { headerCell.profilePicture.image = store.currentUser.userProfilePic! }
+           // if profilePic != nil { headerCell.profilePicture.image = profilePic! }
             return headerCell
         }
     }

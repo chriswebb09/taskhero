@@ -163,7 +163,11 @@ final class ProfileHeaderCell: BaseCell {
         usernameLabel.text = user.username
         levelLabel.text = "Level: \(user.level)"
         joinDateLabel.text = "Joined: \(user.joinDate)"
-        profilePicture.image = UIImage(named: "defaultUserImage")
+        if UserDataStore.sharedInstance.currentUser.userProfilePic != nil {
+            profilePicture.image = UserDataStore.sharedInstance.currentUser.userProfilePic
+        } else {
+            profilePicture.image = UIImage(named: "defaultUserImage")
+        }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePicture.addGestureRecognizer(tap)
         layoutIfNeeded()
