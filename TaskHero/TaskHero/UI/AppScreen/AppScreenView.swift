@@ -15,7 +15,8 @@ final class AppScreenView: UIView {
     }()
     
     var signupButton: UIButton = {
-        let button = ButtonType.system(title:"Register Now", color: Constants.Color.mainColor.setColor)
+        let button = ButtonType.system(title:"Register Now",
+                                       color: Constants.Color.mainColor.setColor)
         return button.newButton
     }()
     
@@ -33,23 +34,25 @@ final class AppScreenView: UIView {
     }
     
     private func setupConstraints() {
-        
         setupLogoImage(logoImageView: logoImageView)
         constraintSetup(views: [viewDivider, loginButton, signupButton])
         setupViewDivider(viewDivider: viewDivider)
+        
+        var loginButtonOffset = UIScreen.main.bounds.height * AppScreenConstants.loginButtonBottonOffset
+        var signInButtonOffset = UIScreen.main.bounds.height * AppScreenConstants.signupButtonTopOffset
         
         loginButton.snp.makeConstraints { make in
             make.centerX.equalTo(self)
             make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
             make.height.equalTo(self).multipliedBy(AppScreenConstants.heightMultiplier)
-            make.bottom.equalTo(viewDivider.snp.top).offset(UIScreen.main.bounds.height * AppScreenConstants.loginButtonBottonOffset)
+            make.bottom.equalTo(viewDivider.snp.top).offset(buttonOffset)
         }
         
         signupButton.snp.makeConstraints { make in
             make.centerX.equalTo(self)
             make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
             make.height.equalTo(self).multipliedBy(AppScreenConstants.heightMultiplier)
-            make.top.equalTo(viewDivider.snp.bottom).offset(UIScreen.main.bounds.height * AppScreenConstants.signupButtonTopOffset)
+            make.top.equalTo(viewDivider.snp.bottom).offset(signInButtonOffset)
         }
     }
     

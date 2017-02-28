@@ -23,7 +23,7 @@ final class AddTaskView: UIView {
         let taskDescriptionBox = UITextView.textBox(placeholderText: "Describe what you want to get done.")
         return taskDescriptionBox
     }()
-  
+    
     var addTaskButton: UIButton = {
         var taskButton = UIButton.taskButton()
         return taskButton
@@ -44,9 +44,12 @@ final class AddTaskView: UIView {
     fileprivate func configureView(view:UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         view.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        view.widthAnchor.constraint(equalTo: widthAnchor, multiplier: AddTaskViewConstants.widthMultiplier).isActive = true
-        view.heightAnchor.constraint(equalTo: heightAnchor, multiplier: AddTaskViewConstants.heightMultiplier).isActive = true
+        view.widthAnchor.constraint(equalTo: widthAnchor,
+                                    multiplier: AddTaskViewConstants.widthMultiplier).isActive = true
+        view.heightAnchor.constraint(equalTo: heightAnchor,
+                                     multiplier: AddTaskViewConstants.heightMultiplier).isActive = true
     }
     
     fileprivate func setupConstraints() {
@@ -63,18 +66,21 @@ final class AddTaskView: UIView {
         addSubview(taskDescriptionBox)
         taskDescriptionBox.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: boxTopOffset).isActive = true
-        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: AddTaskViewConstants.widthMultiplier).isActive = true
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: AddTaskViewConstants.descriptionBoxHeightMultiplier).isActive = true
+        taskDescriptionBox.widthAnchor.constraint(equalTo: widthAnchor,
+                                                  multiplier: AddTaskViewConstants.widthMultiplier).isActive = true
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor,
+                                                   multiplier: AddTaskViewConstants.descriptionBoxHeightMultiplier).isActive = true
         
         addSubview(addTaskButton)
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: buttonTopOffset).isActive = true
-        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: AddTaskViewConstants.heightMultiplier).isActive = true
-        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: AddTaskViewConstants.addTaskButtonWidthMultiplier).isActive = true
+        addTaskButton.heightAnchor.constraint(equalTo: heightAnchor,
+                                              multiplier: AddTaskViewConstants.heightMultiplier).isActive = true
+        addTaskButton.widthAnchor.constraint(equalTo: widthAnchor,
+                                             multiplier: AddTaskViewConstants.addTaskButtonWidthMultiplier).isActive = true
     }
     
     func animatedPosition() {
-        
         let buttonTop = bounds.height * AddTaskViewConstants.topOffset
         let descriptionBoxTop = bounds.height * AddTaskViewConstants.topOffset
         let taskNameFieldTop = bounds.height * AddTaskViewConstants.taskNameFieldTopMultiplier
