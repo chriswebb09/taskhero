@@ -19,10 +19,7 @@ final class NotificationPopover: BasePopoverAlert {
         let height = Constants.Dimension.screenHeight * NotificationPopoverConstants.heightMultiplier
         
         notifyPopView.frame = CGRect(x: NotificationPopoverConstants.originXY, y: NotificationPopoverConstants.originXY, width: width, height: height)
-        
-        notifyPopView.center = CGPoint(x: UIScreen.main.bounds.midX,
-                                       y: UIScreen.main.bounds.midY * NotificationPopoverConstants.centerMidYMultiplier)
-        
+        notifyPopView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY * NotificationPopoverConstants.centerMidYMultiplier)
         notifyPopView.clipsToBounds = true
         
         viewController.view.addSubview(notifyPopView)

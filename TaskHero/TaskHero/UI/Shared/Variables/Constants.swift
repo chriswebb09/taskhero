@@ -117,7 +117,8 @@ struct PhotoPickerConstants {
 }
 
 public struct Constants {
-    
+    static let screenHeight = UIScreen.main.bounds.height
+    static let screenWidth = UIScreen.main.bounds.width
     enum Color {
         case mainColor, backgroundColor, buttonColor, tableViewBackgroundColor
         
@@ -169,6 +170,7 @@ public struct Constants {
         public static let fontSmall = UIFont(name: "HelveticaNeue-Light", size: 12)
         public static let fontMedium = UIFont(name: "HelveticaNeue-Light", size: 16)
         public static let fontLarge = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        
         public static let bolderFontSmall = UIFont(name: "HelveticaNeue", size: 12)
         public static let bolderFontMediumSmall = UIFont(name: "HelveticaNeue", size: 14)
         public static let bolderFontMedium = UIFont(name: "HelveticaNeue", size: 16)

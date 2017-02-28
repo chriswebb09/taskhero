@@ -50,8 +50,7 @@ final class ProfileSettingsViewControllerDataSource {
         updatedUser.experiencePoints = store.currentUser.experiencePoints
         updatedUser.tasks = store.currentUser.tasks
         
-        updateUserProfile(userID: store.currentUser.uid,
-                          user: updatedUser)
+        updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
     }
     
     func updateUserProfile(userID: String, user:User) {

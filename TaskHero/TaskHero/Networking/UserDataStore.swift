@@ -2,14 +2,15 @@ import UIKit
 import Firebase
 
 final class UserDataStore {
+    
     private static let _shared = UserDataStore()
+    public static var sharedInstance: UserDataStore { return _shared }
+    public let firebaseAPI = APIClient()
+    public var currentUser: User!
+    
     private init() {
         self.tasks = [Task]()
     }
-    public static var sharedInstance: UserDataStore { return _shared }
-    
-    public let firebaseAPI = APIClient()
-    public var currentUser: User!
     
     public var currentUserString: String {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return "Unable to get UID" }

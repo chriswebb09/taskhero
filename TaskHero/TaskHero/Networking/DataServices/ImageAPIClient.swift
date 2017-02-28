@@ -110,8 +110,8 @@ class ImageAPIClient {
         let toId = UserDataStore.sharedInstance.currentUser.uid
         let fromId = FIRAuth.auth()!.currentUser!.uid
         let timestamp = NSNumber(value: Int(Date().timeIntervalSince1970))
-        
         var values: [String: AnyObject] = ["toId": toId as AnyObject, "fromId": fromId as AnyObject, "timestamp": timestamp]
+        
         properties.forEach({values[$0] = $1})
         
         childRef.updateChildValues(values) { error, ref in

@@ -38,8 +38,8 @@ final class AppScreenView: UIView {
         constraintSetup(views: [viewDivider, loginButton, signupButton])
         setupViewDivider(viewDivider: viewDivider)
         
-        var loginButtonOffset = UIScreen.main.bounds.height * AppScreenConstants.loginButtonBottonOffset
-        var signInButtonOffset = UIScreen.main.bounds.height * AppScreenConstants.signupButtonTopOffset
+        let loginButtonOffset = UIScreen.main.bounds.height * AppScreenConstants.loginButtonBottonOffset
+        let signInButtonOffset = UIScreen.main.bounds.height * AppScreenConstants.signupButtonTopOffset
         
         loginButton.snp.makeConstraints { make in
             make.centerX.equalTo(self)

@@ -10,15 +10,6 @@ import UIKit
 
 
 extension UILabel {
-//    var settingLabel: UILabel = {
-//        let textView = UILabel()
-//        textView.textColor = .white
-//        textView.textAlignment = .center
-//        textView.layer.masksToBounds = true
-//        textView.font = Constants.Font.fontNormal
-//        return textView
-//    }()
-    
     class func centerLabel(textColor: UIColor, font: UIFont) -> UILabel {
         let label = UILabel()
         label.textColor = textColor
