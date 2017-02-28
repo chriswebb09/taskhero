@@ -27,10 +27,8 @@ final class ProfileDataCell: BaseCell {
         return levelLabel
     }()
     
-    /*
-     Number of experience points for user - by adding together points of tasks completed
-     at this point tasksCompleted means by tasks deleted - will be improved upon
-     */
+     // Number of experience points for user - by adding together points of tasks completed
+     // at this point tasksCompleted means by tasks deleted - will be improved upon
     
     var experiencePointsLabel: UILabel = {
         let experiencePointsLabel = UILabel()

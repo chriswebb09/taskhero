@@ -11,12 +11,8 @@ final class SettingsCell: BaseCell {
     static let cellIdentifier = "SettingsCell"
     
     var settingLabel: UILabel = {
-        let textView = UILabel()
-        textView.textColor = .white
-        textView.textAlignment = .center
-        textView.layer.masksToBounds = true
-        textView.font = Constants.Font.fontNormal
-        return textView
+        let label = UILabel.centerLabel(textColor: .white, font: Constants.Font.fontNormal)
+        return label
     }()
     
     override func layoutSubviews() {
