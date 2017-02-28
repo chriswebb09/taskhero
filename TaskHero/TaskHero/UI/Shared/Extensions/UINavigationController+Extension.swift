@@ -17,7 +17,6 @@ extension UINavigationController {
         navigationItem.leftBarButtonItem?.setTitleTextAttributes(leftBarAttributes, for: .normal)
     }
     
-    
     class func photoTapped(controller: BaseProfileViewController) {
         controller.picker.allowsEditing = false
         controller.picker.sourceType = .photoLibrary
@@ -36,5 +35,4 @@ extension UINavigationController {
     class func getBarItemAttributes() -> [String: Any] {
         return [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: Constants.Font.fontMedium!]
     }
-    
 }

@@ -42,25 +42,16 @@ extension UserDataProtocol {
     }
 }
 
-
 protocol Loginable {
    func setLoginViewController()
 }
 
 extension Loginable {
-    
     func setLoginViewController() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = UINavigationController(rootViewController:LoginViewController())
     }
 }
-
-extension UIViewController {
-    
-    
-    
-}
-
 
 extension BaseViewController {
     class func profilePictureTapped(controller: BaseProfileViewController) {

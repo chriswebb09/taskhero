@@ -136,12 +136,16 @@ extension LoginView {
             UIView.animate(withDuration: 0.5) {
                 self.logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor,
                                                            multiplier: LoginViewConstants.animatedImageViewHeight).constant = self.bounds.height * LoginViewConstants.animatedImageViewHeightMultiplier
+                
                 self.logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                           multiplier: LoginViewConstants.animatedImageViewWidthMultiplier).isActive = true
+                
                 self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor,
                                                         constant: self.bounds.height * LoginViewConstants.animatedImageViewTopOffset).isActive = true
+                
                 self.emailField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor,
                                                      constant: self.bounds.height * LoginViewConstants.animatedEmailFieldTopOffset).isActive = true
+                
                 self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor,
                                                       constant: self.bounds.height  * LoginViewConstants.animatedLoginButtonTopOffset).isActive = true
                 self.layoutIfNeeded()

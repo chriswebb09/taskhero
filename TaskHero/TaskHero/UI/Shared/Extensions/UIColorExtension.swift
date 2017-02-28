@@ -11,18 +11,9 @@ extension UIColor {
     @nonobjc static let skyBlueColor: UIColor = UIColor(red:0.09, green:0.58, blue:0.82, alpha:1.0)
     @nonobjc static let signupButtonColor: UIColor = UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
     
-//    class func skyBlueColor() -> UIColor {
-//        return UIColor(red:0.09, green:0.58, blue:0.82, alpha:1.0)
-//    }
-//    
     class func babyBlueColor() -> UIColor {
         return UIColor(red:0.25, green:0.70, blue:1.00, alpha:1.0)
     }
-//    
-//    class func signupButtonColor() -> UIColor {
-//        return UIColor(red:0.21, green:0.22, blue:0.24, alpha:1.0)
-//    }
-//    
     class func navigationBarColor() -> UIColor {
         return UIColor(red:0.07, green:0.59, blue:1.00, alpha:1.0)
     }
@@ -30,5 +21,4 @@ extension UIColor {
     class func experienceBackground() -> UIColor {
         return UIColor(red:0.29, green:0.85, blue:0.39, alpha:1.0)
     }
-    
 }

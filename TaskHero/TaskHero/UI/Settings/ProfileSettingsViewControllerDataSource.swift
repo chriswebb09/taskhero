@@ -6,12 +6,14 @@ final class ProfileSettingsViewControllerDataSource {
     let store = UserDataStore.sharedInstance
     
     var options: [String] {
-        return [ self.store.currentUser.email, "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)", "Profile Picture", self.store.currentUser.username]
+        return [self.store.currentUser.email,
+                "\(self.store.currentUser.firstName!) \(self.store.currentUser.lastName!)",
+            "Profile Picture", self.store.currentUser.username]
     }
     
     func setupViews(profileSettingsView: ProfileSettingsView, tableView: UITableView, view:UIView) {
-        
         profileSettingsView.translatesAutoresizingMaskIntoConstraints = false
+        
         profileSettingsView.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top)
             make.width.equalTo(view.snp.width)
@@ -19,6 +21,7 @@ final class ProfileSettingsViewControllerDataSource {
         }
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         tableView.snp.makeConstraints { make in
             make.width.equalTo(view.snp.width)
             make.bottom.equalTo(view.snp.bottom)
@@ -30,6 +33,7 @@ final class ProfileSettingsViewControllerDataSource {
         let name = cell.profileSettingField.text?.components(separatedBy: " ")
         
         let updatedUser = User()
+        
         updatedUser.username = store.currentUser.username
         updatedUser.email = store.currentUser.email
         updatedUser.profilePicture = "None"
@@ -45,13 +49,19 @@ final class ProfileSettingsViewControllerDataSource {
         updatedUser.numberOfTasksCompleted = store.currentUser.numberOfTasksCompleted
         updatedUser.experiencePoints = store.currentUser.experiencePoints
         updatedUser.tasks = store.currentUser.tasks
-        updateUserProfile(userID: store.currentUser.uid, user: updatedUser)
+        
+        updateUserProfile(userID: store.currentUser.uid,
+                          user: updatedUser)
     }
     
     func updateUserProfile(userID: String, user:User) {
-        store.firebaseAPI.updateUserProfile(userID: userID, user: user, tasks:store.tasks)
+        store.firebaseAPI.updateUserProfile(userID: userID,
+                                            user: user,
+                                            tasks:store.tasks)
         store.tasks.forEach { task in
-            self.store.firebaseAPI.updateTask(ref: task.taskID, taskID: task.taskID, task: task)
+            self.store.firebaseAPI.updateTask(ref: task.taskID,
+                                              taskID: task.taskID,
+                                              task: task)
         }
     }
     

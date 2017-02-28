@@ -24,7 +24,6 @@ extension UIImage {
     }
 }
 
-
 extension UIImage {
     class func getAddTaskImage() -> UIImage? {
         if let image = UIImage(named: "add-white-2") {

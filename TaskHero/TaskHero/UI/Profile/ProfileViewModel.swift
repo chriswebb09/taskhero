@@ -40,8 +40,6 @@ class ProfileViewModel: BaseModelProtocol {
         BaseViewController.barSetup(controller: controller)
         controller.tableView.separatorStyle = .none
     }
-    
-    //var profilePic: UIImage?
 }
 
 

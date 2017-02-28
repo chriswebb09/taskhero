@@ -9,7 +9,6 @@
 import UIKit
 
 extension UITableViewController {
-    
     class func profilePictureTapped(controller: BaseProfileViewController) {
         controller.photoPopover.showPopView(viewController: controller)
         controller.photoPopover.photoPopView.button.addTarget(controller, action: #selector(controller.tapPickPhoto(_:)), for: .touchUpInside)
@@ -31,12 +30,9 @@ extension BaseTableViewController {
         controller.present(controller.picker, animated: true, completion: nil)
         controller.photoPopover.hideView(viewController: controller)
     }
-    
 }
 
 extension BaseTableViewController {
-    
-    
     typealias B = BaseTableViewController
     
     @discardableResult
@@ -47,5 +43,4 @@ extension BaseTableViewController {
         UINavigationController.setupNavItems(navigationItem: controller.navigationItem, leftBarItem: leftItem, rightItem: rightItem)
         return controller
     }
-    
 }

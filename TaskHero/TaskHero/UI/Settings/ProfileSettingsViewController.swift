@@ -33,9 +33,14 @@ extension ProfileSettingsViewController: UITableViewDataSource {
     func setupSubviews() {
         view.addSubview(tableView)
         view.addSubview(profileSettingsView)
+        
         profileSettingsView.layoutSubviews()
-        tableView.register(ProfileSettingsCell.self, forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
-        dataSource.setupViews(profileSettingsView: profileSettingsView, tableView: tableView, view: view)
+        
+        tableView.register(ProfileSettingsCell.self,
+                           forCellReuseIdentifier: ProfileSettingsCell.cellIdentifier)
+        
+        dataSource.setupViews(profileSettingsView: profileSettingsView,
+                              tableView: tableView, view: view)
         tableView.setupTableView(view: view)
         tableView.separatorColor = .black
     }
@@ -50,7 +55,8 @@ extension ProfileSettingsViewController: UITextFieldDelegate, ProfileSettingsCel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier, for: indexPath as IndexPath) as! ProfileSettingsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsCell.cellIdentifier,
+                                                 for: indexPath as IndexPath) as! ProfileSettingsCell
         cell.configureCell(setting: dataSource.options[indexPath.row], controller: self)
         cell.button.index = indexPath
         cell.button.tag = indexPath.row

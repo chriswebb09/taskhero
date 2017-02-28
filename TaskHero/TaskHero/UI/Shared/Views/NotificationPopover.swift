@@ -15,11 +15,10 @@ final class NotificationPopover: BasePopoverAlert {
     
     override func showPopView(viewController: UIViewController) {
         super.showPopView(viewController: viewController)
+        let width = Constants.Dimension.screenWidth * NotificationPopoverConstants.widthMultiplier
+        let height = Constants.Dimension.screenHeight * NotificationPopoverConstants.heightMultiplier
         
-        notifyPopView.frame = CGRect(x: NotificationPopoverConstants.originXY,
-                                     y: NotificationPopoverConstants.originXY,
-                                     width: UIScreen.main.bounds.width * NotificationPopoverConstants.widthMultiplier,
-                                     height: UIScreen.main.bounds.height * NotificationPopoverConstants.heightMultiplier)
+        notifyPopView.frame = CGRect(x: NotificationPopoverConstants.originXY, y: NotificationPopoverConstants.originXY, width: width, height: height)
         
         notifyPopView.center = CGPoint(x: UIScreen.main.bounds.midX,
                                        y: UIScreen.main.bounds.midY * NotificationPopoverConstants.centerMidYMultiplier)

@@ -21,6 +21,7 @@ final class ProfileSettingsView: UIView {
     private func setupConstraints() {
         addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         profileLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self)
             make.height.equalTo(self).multipliedBy(Constants.Dimension.height)

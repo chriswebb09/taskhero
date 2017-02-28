@@ -9,11 +9,11 @@ struct TaskListViewModel {
     var numberOfRows: Int {
         var rows = 0
         if let user = self.store.currentUser {
-            let taskList = self.store.currentUser.tasks
+            let taskList = user.tasks
             if let tasks = taskList?.count {
                 rows = tasks
             }
-           
+            
         }
         return rows
     }
@@ -38,8 +38,7 @@ struct TaskListViewModel {
     var tasks: [Task] {
         var taskList = [Task]()
         if let user = self.store.currentUser {
-            taskList = self.store.currentUser.tasks!
-            
+            taskList = user.tasks!
         }
         return taskList
     }
@@ -53,9 +52,11 @@ struct TaskListViewModel {
     func emptyTableViewState(view: UIView, addTaskLabel:UILabel) {
         if (store.tasks.count <= 1) && (!addTaskLabel.isHidden) {
             view.addSubview(addTaskLabel)
+            
             addTaskLabel.center = view.center
             addTaskLabel.text = taskLabelText
             addTaskLabel.translatesAutoresizingMaskIntoConstraints = false
+            
             addTaskLabel.snp.makeConstraints { make in
                 make.height.equalTo(view.snp.height).multipliedBy(Constants.Dimension.mainHeight)
                 make.width.equalTo(view.snp.width).multipliedBy(Constants.Dimension.width)
@@ -70,12 +71,13 @@ struct TaskListViewModel {
     
     func initializeBackgroundUI(controller: TaskListViewController) {
         controller.register(tableView: controller.tableView, cells: [TaskCell.self])
+        
         controller.edgesForExtendedLayout = []
         controller.view.backgroundColor = Constants.Color.tableViewBackgroundColor.setColor
-        UITableViewController.setupTableView(tableView: controller.tableView, view: controller.view)
-        
-        BaseViewController.barSetup(controller: controller)
         controller.addTasksLabel = UILabel()
         controller.addTasksLabel.isHidden = controller.hidden
+        
+        UITableViewController.setupTableView(tableView: controller.tableView, view: controller.view)
+        BaseViewController.barSetup(controller: controller)
     }
 }
