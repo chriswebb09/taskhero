@@ -11,7 +11,7 @@ final class SettingsCell: BaseCell {
     static let cellIdentifier = "SettingsCell"
     
     var settingLabel: UILabel = {
-        let label = UILabel.centerLabel(textColor: .white, font: Constants.Font.fontNormal)
+        let label = UILabel.centerLabel(textColor: .white, font: Constants.Font.fontNormal!)
         return label
     }()
     
