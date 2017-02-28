@@ -24,18 +24,10 @@ final class AddTaskView: UIView {
     }
     
     var taskDescriptionBox: UITextView = {
-        let taskDescriptionBox = UITextView()
-        taskDescriptionBox.textColor = .lightGray
-        taskDescriptionBox.font = Constants.signupFieldFont
-        taskDescriptionBox.text = "Describe what you want to get done."
-        taskDescriptionBox.layer.borderColor = UIColor.lightGray.cgColor
-        taskDescriptionBox.layer.borderWidth = Constants.Border.borderWidth
-        taskDescriptionBox.translatesAutoresizingMaskIntoConstraints = false
-        taskDescriptionBox.contentInset = Constants.TaskCell.Description.boxInset
-        taskDescriptionBox.layer.cornerRadius = Constants.Settings.searchFieldButtonRadius
+        let taskDescriptionBox = UITextView.textBox(placeholderText: "Describe what you want to get done.")
         return taskDescriptionBox
     }()
-    
+  
     var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
         addTaskButton.setTitle("Add Task", for: .normal)

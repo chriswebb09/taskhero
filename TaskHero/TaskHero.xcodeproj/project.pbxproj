@@ -79,6 +79,7 @@
 		A7A497D91E634F6D00F336C7 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A497D81E634F6D00F336C7 /* UINavigationController+Extension.swift */; };
 		A7AABD591E5C096B0052AF1B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABD581E5C096B0052AF1B /* ProfileViewModel.swift */; };
 		A7AFCDE11DF72C4B004D607C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFCDE01DF72C4B004D607C /* APIClient.swift */; };
+		A7B22DE91E65EFDF0087A028 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B22DE81E65EFDF0087A028 /* UITextView+Extension.swift */; };
 		A7C5A9C51E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */; };
 		A7DF774A1E37185800FB2DCE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF77491E37185800FB2DCE /* Secrets.swift */; };
 		A7E991181E5A8BE1001CE354 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E991171E5A8BE1001CE354 /* Reachability.swift */; };
@@ -179,6 +180,7 @@
 		A7A497D81E634F6D00F336C7 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		A7AABD581E5C096B0052AF1B /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A7AFCDE01DF72C4B004D607C /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		A7B22DE81E65EFDF0087A028 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewControllerDataSource.swift; sourceTree = "<group>"; };
 		A7DF77491E37185800FB2DCE /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A7E991171E5A8BE1001CE354 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				A709CAE11DE7723800877907 /* TextfieldExtension.swift */,
 				A709CADF1DE7722D00877907 /* UIColorExtension.swift */,
 				A709CAE31DE7724E00877907 /* UIView+Extension.swift */,
+				A7B22DE81E65EFDF0087A028 /* UITextView+Extension.swift */,
 				A78C87E41E5F13EB00C6D425 /* UIImage+Extension.swift */,
 				A7F9C62D1E60CD34000E5B3E /* UITableViewController+Extensions.swift */,
 				A7F9C62F1E60CD4C000E5B3E /* UIViewController+Extension.swift */,
@@ -964,6 +967,7 @@
 				A7346D7E1DE93688005E3A5E /* TaskButton.swift in Sources */,
 				A714E17B1E3BFE190014F990 /* TaskListViewModel.swift in Sources */,
 				A7E9911A1E5A8CBE001CE354 /* InternetStatus.swift in Sources */,
+				A7B22DE91E65EFDF0087A028 /* UITextView+Extension.swift in Sources */,
 				A7F9C6301E60CD4C000E5B3E /* UIViewController+Extension.swift in Sources */,
 				A70CD5D71E1AD1DC00324DC3 /* LoginViewModel.swift in Sources */,
 				A70840021DEABB2800055B72 /* ProfileSettingsViewController.swift in Sources */,

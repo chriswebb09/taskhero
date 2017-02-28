@@ -35,6 +35,7 @@ final class SettingsCell: BaseCell {
     
     func settingsLabelSetup() {
         settingLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         settingLabel.snp.makeConstraints { make in
             make.width.equalTo(contentView.snp.width)
             make.centerX.equalTo(contentView.snp.centerX)

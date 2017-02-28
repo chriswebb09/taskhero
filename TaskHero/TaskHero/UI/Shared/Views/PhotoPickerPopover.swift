@@ -34,12 +34,12 @@ final class PhotoPickerPopover: BasePopoverAlert {
         
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
+        let frameX = screenWidth * PhotoPickerConstants.multiplyX
+        let frameY = screenHeight * PhotoPickerConstants.multiplyYFrame
+        let frameWidth = screenWidth * PhotoPickerConstants.frameWidth
+        let frameHeight = screenHeight * PhotoPickerConstants.frameHeight
         
-        photoPopView.frame = CGRect(x: screenWidth * PhotoPickerConstants.multiplyX,
-                                    y: screenHeight * PhotoPickerConstants.multiplyYFrame,
-                                    width: screenWidth * PhotoPickerConstants.frameWidth,
-                                    height: screenHeight * PhotoPickerConstants.frameHeight)
-        
+        photoPopView.frame = CGRect(x: frameX, y: frameY, width: frameWidth, height: frameHeight)
         photoPopView.center = CGPoint(x: screenWidth * PhotoPickerConstants.multiplyX,
                                       y: screenHeight * PhotoPickerConstants.centerY)
     }

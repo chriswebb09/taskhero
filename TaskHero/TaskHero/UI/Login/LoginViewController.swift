@@ -193,7 +193,6 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    
      // When no longer using input fields textfield properties change back to original
     
     

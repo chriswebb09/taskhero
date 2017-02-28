@@ -47,6 +47,7 @@ class SignupView: UIView {
     private func setupView(view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         view.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
             make.height.equalTo(self).multipliedBy(Constants.Login.loginFieldHeight)
@@ -57,6 +58,7 @@ class SignupView: UIView {
     private func setupLogoImage() {
         addSubview(registerLabel)
         registerLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         registerLabel.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(Constants.Logo.logoImageWidth)
             make.height.equalTo(self).multipliedBy(Constants.Logo.logoImageHeight)
@@ -68,6 +70,7 @@ class SignupView: UIView {
     private func setupViewDivider(viewDivider: UIView) {
         addSubview(viewDivider)
         viewDivider.translatesAutoresizingMaskIntoConstraints = false
+        
         viewDivider.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(Constants.Login.dividerWidth)
             make.height.equalTo(self).multipliedBy(Constants.Login.dividerHeight)

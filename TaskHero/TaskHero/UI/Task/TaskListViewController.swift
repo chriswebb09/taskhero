@@ -2,12 +2,12 @@ import UIKit
 
 final class TaskListViewController: BaseTableViewController {
     
-    /* TaskListViewController is the viewController that presents just the tasks that the user has added */
+    // TaskListViewController is the viewController that presents just the tasks that the user has added
     
     // MARK: Properties
     
-    let store = UserDataStore.sharedInstance /* userData store for application user state */
-    var tapped: Bool = false /* tracks taps on taskcell completedView and button */
+    let store = UserDataStore.sharedInstance // userData store for application user state
+    var tapped: Bool = false // tracks taps on taskcell completedView and button
     var taskViewModel: TaskCellViewModel! 
     let sharedTaskMethods = SharedTaskMethods()
     var listViewModel = TaskListViewModel()
@@ -50,7 +50,7 @@ final class TaskListViewController: BaseTableViewController {
         store.firebaseAPI.tasksRef.removeObserver(withHandle: store.firebaseAPI.refHandle)
     }
     
-    /* Does setupfor tableview/emptytable view and navbar */
+    // Does setupfor tableview/emptytable view and navbar 
     
     override func viewWillAppear(_ animated: Bool) {
         fetchUser(tableView: tableView)

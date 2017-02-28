@@ -60,11 +60,7 @@ final class ProfileDataCell: BaseCell {
         super.layoutSubviews()
         isUserInteractionEnabled = false
         setupContentView()
-        let views = [levelLabel,
-                     experiencePointsLabel,
-                     tasksCompletedLabel,
-                     topDivider,
-                     bottomDivider]
+        let views = [levelLabel, experiencePointsLabel, tasksCompletedLabel, topDivider, bottomDivider]
         setupViewsForConfig(views: views)
         setupConstraints()
     }

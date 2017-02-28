@@ -83,7 +83,7 @@ final class TaskCell: BaseCell, Toggable {
     }
     
     // MARK: - Delegate Methods
-    /* Button toggle methods - changes taskCell UI based on editstate value */
+    // Button toggle methods - changes taskCell UI based on editstate value 
     
     func taskCell(didToggleEditState editState:Bool) {
         textViewToggle(state: editState, textView: taskDescriptionLabel)
@@ -105,14 +105,14 @@ final class TaskCell: BaseCell, Toggable {
         taskCompletedView.isUserInteractionEnabled = !state
     }
     
-    /* taskCompletedView delegate method */
+    // taskCompletedView delegate method
     
     func toggleForEditState(sender: UIGestureRecognizer) {
         toggled = toggleState(state: toggled)
         delegate?.toggleForEditState(sender)
     }
     
-    /* Button delegate method */
+    // Button delegate method
     
     func toggleForButtonState(sender: UIButton) {
         toggled = toggleState(state: toggled)
@@ -126,7 +126,7 @@ final class TaskCell: BaseCell, Toggable {
     }
     
     // MARK: - Configure cell subviews
-    /*  takes in textview returns configured textview */
+    //  takes in textview returns configured textview
     
     func configureTextView(label: UITextView) {
         label.textAlignment = .left
@@ -137,7 +137,7 @@ final class TaskCell: BaseCell, Toggable {
         label.layer.cornerRadius = Constants.TaskCell.Shadow.cornerRadius
     }
     
-    /* sets up taskNameLabel and taskDue label top, right and height constraints */
+    // sets up taskNameLabel and taskDue label top, right and height constraints
     
     func configureView(view: UIView) {
         contentView.addSubview(view)
@@ -149,7 +149,7 @@ final class TaskCell: BaseCell, Toggable {
         }
     }
     
-    /* taskDescription label configuration */
+    // taskDescription label configuration
     
     func setupDescriptionElements(element: UIView) {
         contentView.addSubview(element)
@@ -163,7 +163,7 @@ final class TaskCell: BaseCell, Toggable {
         }
     }
     
-    /* taskCompletedView and saveButton configuration */
+    // taskCompletedView and saveButton configuration
     
     func setupEditElements(element: UIView) {
         contentView.addSubview(element)
