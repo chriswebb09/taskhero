@@ -7,12 +7,8 @@ enum FieldSelected {
 final class AddTaskView: UIView {
     
     var taskNameLabel: UILabel = {
-        let taskNameLabel = UILabel()
-        taskNameLabel.textColor = .black
+        let taskNameLabel = UILabel.centerLabel(textColor: .black, font: Constants.Font.fontLarge)
         taskNameLabel.text = "Add A New Task"
-        taskNameLabel.textAlignment = .center
-        taskNameLabel.layer.masksToBounds = true
-        taskNameLabel.font = Constants.Font.fontLarge
         taskNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskNameLabel
     }()
