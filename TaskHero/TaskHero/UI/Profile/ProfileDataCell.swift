@@ -143,12 +143,14 @@ final class ProfileDataCell: BaseCell {
         addTasksCompletedLabel(tasksCompletedLabel:tasksCompletedLabel)
         
         configureDividers(view: topDivider)
+        
         topDivider.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top)
             make.centerX.equalTo(contentView.snp.centerX)
         }
         
         configureDividers(view: bottomDivider)
+        
         bottomDivider.snp.makeConstraints { make in
             make.bottom.equalTo(contentView.snp.bottom)
             make.centerX.equalTo(contentView.snp.centerX)
@@ -158,11 +160,11 @@ final class ProfileDataCell: BaseCell {
     /* ConfigureCell method - called in ParentViewController - in this case ProfileViewController */
     
     func configureCell() {
+        layoutSubviews()
+        layoutMargins = UIEdgeInsets.zero
         levelLabel.text = "Level: \(dataCellModel.level)"
         experiencePointsLabel.text = "Experience: \(String(describing: dataCellModel.experience))"
         tasksCompletedLabel.text = "Tasks Completed: \(String(describing: dataCellModel.tasksCompleted))"
-        layoutSubviews()
-        layoutMargins = UIEdgeInsets.zero
     }
     
     // MARK: - Reuse

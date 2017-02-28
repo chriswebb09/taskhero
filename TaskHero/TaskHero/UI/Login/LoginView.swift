@@ -123,6 +123,7 @@ extension LoginView {
         setupView(view: loginButton)
         loginButtonTopConstraint = loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor)
         loginButtonTopConstraint.constant = bounds.height * LoginViewConstants.loginButtonTopConstant
+        
         NSLayoutConstraint.activate([logoTopConstraint, logoWidthConstraint, logoHeightAnchor, emailFieldTopConstraint, loginButtonTopConstraint])
     }
     

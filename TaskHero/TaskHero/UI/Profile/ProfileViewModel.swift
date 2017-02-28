@@ -27,18 +27,18 @@ class ProfileViewModel: BaseModelProtocol {
     }
     
     func setupHeader(headerCell: ProfileHeaderCell, controller: ProfileViewController) {
-        headerCell.emailLabel.isHidden = true
-        headerCell.configureCell(user: user)
         let tap = UIGestureRecognizer(target:self, action: #selector(controller.profilePictureTapped(sender:)))
         headerCell.profilePicture.addGestureRecognizer(tap)
+        headerCell.emailLabel.isHidden = true
+        headerCell.configureCell(user: user)
         headerCell.delegate = controller
     }
     
     func setupTableViewUI(controller: ProfileViewController) {
-        controller.tableView.separatorStyle = .none
-        BaseViewController.barSetup(controller: controller)
-        controller.tableView.tableFooterView = UIView(frame: .zero)
         controller.tableView.estimatedRowHeight = controller.view.frame.height / 3
+        controller.tableView.tableFooterView = UIView(frame: .zero)
+        BaseViewController.barSetup(controller: controller)
+        controller.tableView.separatorStyle = .none
     }
     
     //var profilePic: UIImage?

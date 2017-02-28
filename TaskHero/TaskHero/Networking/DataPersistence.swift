@@ -31,9 +31,8 @@ class DataPeristence {
     /* incomplete - when finished method should remove currentUser and tasks from local storage when user taps logout */
     
     func logout() {
-        //var userDefaults = UserDefaults.standard
-        defaults.set(false, forKey: "hasLoggedIn")
         defaults.removeObject(forKey: "currentUser")
+        defaults.set(false, forKey: "hasLoggedIn")
         defaults.removeObject(forKey: "UID")
         defaults.synchronize()
     }

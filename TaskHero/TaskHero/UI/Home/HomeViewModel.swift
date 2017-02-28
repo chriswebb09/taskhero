@@ -109,7 +109,6 @@ final class HomeViewModel: BaseModelProtocol {
             let tap = UIGestureRecognizer(target:self, action: #selector(tableViewController.profilePictureTapped(sender:)))
             headerCell.profilePicture.addGestureRecognizer(tap)
             if store.currentUser.userProfilePic != nil { headerCell.profilePicture.image = store.currentUser.userProfilePic! }
-           // if profilePic != nil { headerCell.profilePicture.image = profilePic! }
             return headerCell
         }
     }
@@ -142,8 +141,10 @@ final class HomeViewModel: BaseModelProtocol {
     }
     
     func editTap(sender: UIGestureRecognizer, controller: HomeViewController) {
+        
         let tapLocation = sender.location(in: controller.tableView)
         let tapIndex = controller.tableView.indexPathForRow(at: tapLocation)
+        
         if let index = tapIndex {
             taskMethods.tapEdit(viewController: controller,
                                 tableView: controller.tableView,
@@ -156,6 +157,7 @@ final class HomeViewModel: BaseModelProtocol {
         let superview = sender.superview
         let cell = superview?.superview as! TaskCell
         let indexPath = controller.tableView.indexPath(for: cell)
+        
         if let index = indexPath {
             taskMethods.tapEdit(viewController: controller,
                                 tableView: controller.tableView,

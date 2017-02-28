@@ -10,14 +10,12 @@ final class ProfileViewController: BaseProfileViewController {
     
     var viewModel = ProfileViewModel()
     
-    // MARK: - Initialization
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMethods()
     }
     
-    /* On viewDidAppear ensure fresh user data from database is loaded and reloads TableView */
+    // On viewDidAppear ensure fresh user data from database is loaded and reloads TableView 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
@@ -25,9 +23,9 @@ final class ProfileViewController: BaseProfileViewController {
     }
     
     func setupMethods() {
-        edgesForExtendedLayout = []
         register(tableView: tableView, cells: [ProfileHeaderCell.self, ProfileDataCell.self])
         viewModel.setupTableViewUI(controller: self)
+        edgesForExtendedLayout = []
         tableView.reloadOnMain()
     }
     
@@ -37,7 +35,7 @@ final class ProfileViewController: BaseProfileViewController {
         return viewModel.numberOfRows
     }
     
-    /* Gives an automatic dimension to tableView based on given default value for rowheight*/
+    // Gives an automatic dimension to tableView based on given default value for rowheight
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         return viewModel.rowHeight
@@ -49,7 +47,9 @@ final class ProfileViewController: BaseProfileViewController {
         case .header:
             let headerCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for: indexPath as IndexPath) as! ProfileHeaderCell
             viewModel.setupHeader(headerCell: headerCell, controller: self)
-             if viewModel.profilePic != nil { headerCell.profilePicture.image = viewModel.profilePic! }
+            if viewModel.profilePic != nil {
+                headerCell.profilePicture.image = viewModel.profilePic!
+            }
             return headerCell
         case .data:
             let dataCell = tableView.dequeueReusableCell(withIdentifier: type.identifier, for:indexPath as IndexPath) as! ProfileDataCell

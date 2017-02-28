@@ -109,16 +109,15 @@ final class APIClient {
         guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return nil }
         
         if let fetchName = snapshotValue[Constants.API.Task.taskName] as? String,
-            let fetchDescription = snapshotValue[Constants.API.Task.taskDescription] as? String,
-            let fetchCreated = snapshotValue[Constants.API.Task.taskCreated] as? String,
             let fetchDue = snapshotValue[Constants.API.Task.taskDue] as? String,
+            let fetchCreated = snapshotValue[Constants.API.Task.taskCreated] as? String,
+            let fetchDescription = snapshotValue[Constants.API.Task.taskDescription] as? String,
             let fetchCompleted = snapshotValue[Constants.API.Task.taskCompleted] as? Bool {
-            
-            newTask.taskName = fetchName
-            newTask.taskDescription = fetchDescription
-            newTask.taskCreated = fetchCreated
             newTask.taskDue = fetchDue
+            newTask.taskName = fetchName
+            newTask.taskCreated = fetchCreated
             newTask.taskCompleted = fetchCompleted
+            newTask.taskDescription = fetchDescription
         }
         
         return Optional(newTask)
@@ -152,23 +151,23 @@ final class APIClient {
         
         if let snapshotName = snapshotValue[Constants.API.User.username] as? String,
             let snapshotEmail = snapshotValue[Constants.API.User.email] as? String,
-            let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String,
-            let snapshotLastName = snapshotValue[Constants.API.User.lastName] as? String,
             let snapshotLevel = snapshotValue[Constants.API.User.level] as? String,
+            let snapshotLastName = snapshotValue[Constants.API.User.lastName] as? String,
             let snapshotJoinDate = snapshotValue[Constants.API.User.joinDate] as? String,
-            let snapshotProfilePicture = snapshotValue[Constants.API.User.profilePicture] as? String,
+            let snapshotFirstName = snapshotValue[Constants.API.User.firstName] as? String,
             let snapshotTasksCompleted = snapshotValue[Constants.API.User.tasksCompleted] as? Int,
+            let snapshotProfilePicture = snapshotValue[Constants.API.User.profilePicture] as? String,
             let snapshotExperiencePoints = snapshotValue[Constants.API.User.experiencePoints] as? Int {
             
-            user.username = snapshotName
-            user.email = snapshotEmail
-            user.firstName = snapshotFirstName
-            user.lastName = snapshotLastName
             user.level = snapshotLevel
+            user.email = snapshotEmail
+            user.username = snapshotName
             user.joinDate = snapshotJoinDate
+            user.lastName = snapshotLastName
+            user.firstName = snapshotFirstName
             user.profilePicture = snapshotProfilePicture
-            user.numberOfTasksCompleted = snapshotTasksCompleted
             user.experiencePoints = snapshotExperiencePoints
+            user.numberOfTasksCompleted = snapshotTasksCompleted
         }
     }
     
@@ -193,7 +192,7 @@ final class APIClient {
         return NSDictionary(
             dictionary: [Constants.API.Task.taskName: task.taskName,
                          Constants.API.Task.taskDescription: task.taskDescription ,
-                         Constants.API.Task.taskCreated: task.taskCreated ,
+                         Constants.API.Task.taskCreated: task.taskCreated,
                          Constants.API.Task.taskDue: task.taskDue,
                          Constants.API.Task.taskCompleted: task.taskCompleted])
     }

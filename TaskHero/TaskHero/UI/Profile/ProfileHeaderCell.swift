@@ -110,6 +110,7 @@ final class ProfileHeaderCell: BaseCell {
     }
     
     private func addUsernameLabel() {
+        
         usernameLabel.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.mainHeight)
             make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Dimension.mainWidth)
@@ -118,6 +119,7 @@ final class ProfileHeaderCell: BaseCell {
     }
     
     private func addlevelLabel() {
+        
         levelLabel.snp.makeConstraints { make in
             make.bottom.equalTo(profilePicture.snp.bottom)
             make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.mainHeight)
@@ -126,6 +128,7 @@ final class ProfileHeaderCell: BaseCell {
     }
     
     private func addJoinDateLabel() {
+        
         joinDateLabel.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.height).multipliedBy(Constants.Dimension.mainHeight)
             make.width.equalTo(contentView.snp.width).multipliedBy(Constants.Dimension.mainWidth)
@@ -134,6 +137,7 @@ final class ProfileHeaderCell: BaseCell {
     }
     
     private func addProfilePicture() {
+        
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.snp.makeConstraints { make in
             make.height.equalTo(UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight)
@@ -182,12 +186,9 @@ final class ProfileHeaderCell: BaseCell {
     }
     
     private func setupShadow() {
-        let shadowOffset = CGSize(width:-0.45, height: 0.4)
-        let shadowRadius:CGFloat = 1.0
-        let shadowOpacity:Float = 0.4
-        layer.shadowRadius = shadowRadius
-        layer.shadowOffset = shadowOffset
-        layer.shadowOpacity = shadowOpacity
+        layer.shadowRadius = 1.0
+        layer.shadowOffset = CGSize(width:-0.45, height: 0.4)
+        layer.shadowOpacity = 0.4
     }
 }
 

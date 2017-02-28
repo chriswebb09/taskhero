@@ -23,8 +23,10 @@ final class LoginViewController: UIViewController {
     
     var loginViewModel: LoginViewModel = LoginViewModel(username:"check", password:"testpass") {
         didSet {
-            loginViewModel.username = loginView.emailField.text!
-            loginViewModel.password = loginView.passwordField.text!
+            if let emailText = loginView.emailField.text, let passwordText = loginView.passwordField.text {
+                loginViewModel.username = emailText
+                loginViewModel.password = passwordText
+            }
         }
     }
     
@@ -133,9 +135,8 @@ extension LoginViewController: UITextFieldDelegate {
     // MARK: - Load TabbarController
     
     fileprivate func setupTabBar() {
-        let tabBar = TabBarController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = tabBar
+        appDelegate.window?.rootViewController = TabBarController()
     }
     
     /* Checks that text has been entered and exceeds five characters in length */

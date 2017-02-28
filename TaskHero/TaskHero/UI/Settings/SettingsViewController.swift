@@ -7,8 +7,6 @@ struct SettingsViewConstants {
 
 final class SettingsViewController: UITableViewController, Identifiable {
     
-    // MARK: - Properties
-    
     let applicationSettings = ["Notifications"]
     let userSettings = ["Edit Profile", "Friends"]
     let segmentControl = UISegmentedControl(items: ["User Settings", "Application Settings"])
