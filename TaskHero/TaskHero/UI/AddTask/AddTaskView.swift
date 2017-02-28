@@ -73,7 +73,8 @@ final class AddTaskView: UIView {
         
         addSubview(addTaskButton)
         addTaskButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: buttonTopOffset).isActive = true
+        addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor,
+                                           constant: buttonTopOffset).isActive = true
         addTaskButton.heightAnchor.constraint(equalTo: heightAnchor,
                                               multiplier: AddTaskViewConstants.heightMultiplier).isActive = true
         addTaskButton.widthAnchor.constraint(equalTo: widthAnchor,
@@ -96,7 +97,8 @@ final class AddTaskView: UIView {
         }
         
         taskNameField.topAnchor.constraint(equalTo: topAnchor, constant: taskNameFieldTop)
-        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor, multiplier: AddTaskViewConstants.taskDescriptionBoxHeightMultiplier)
+        taskDescriptionBox.heightAnchor.constraint(equalTo: heightAnchor,
+                                                   multiplier: AddTaskViewConstants.taskDescriptionBoxHeightMultiplier)
         taskDescriptionBox.topAnchor.constraint(equalTo: taskNameField.bottomAnchor, constant: descriptionBoxTop)
         addTaskButton.topAnchor.constraint(equalTo: taskDescriptionBox.bottomAnchor, constant: buttonTop)
         

@@ -45,7 +45,7 @@ final class AppScreenView: UIView {
             make.centerX.equalTo(self)
             make.width.equalTo(self).multipliedBy(Constants.Login.loginFieldWidth)
             make.height.equalTo(self).multipliedBy(AppScreenConstants.heightMultiplier)
-            make.bottom.equalTo(viewDivider.snp.top).offset(buttonOffset)
+            make.bottom.equalTo(viewDivider.snp.top).offset(loginButtonOffset)
         }
         
         signupButton.snp.makeConstraints { make in
