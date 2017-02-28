@@ -54,19 +54,19 @@ final class HomeViewController: BaseProfileViewController, UINavigationControlle
 
 extension HomeViewController {
     
-    /* Get number of rows from viewModel - number of row is equal to number of tasks in currentUser plus one */
+    // Get number of rows from viewModel - number of row is equal to number of tasks in currentUser plus one
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeViewModel.numberOfRows
     }
     
-    /* Get rowheight from viewModel - rowheight is UITableViewAutomaticDimension */
+    // Get rowheight from viewModel - rowheight is UITableViewAutomaticDimension
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return homeViewModel.rowHeight
     }
     
-    /* first row returns profile headerCell all other rows are type taskCell -> cells configured within this controller using setupCell methods */
+    // first row returns profile headerCell all other rows are type taskCell -> cells configured within this controller using setupCell methods
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let type: HomeCellType = indexPath.row > 0 ? .task : .header
@@ -78,13 +78,13 @@ extension HomeViewController {
 
 extension HomeViewController {
     
-    /* Cannot edit cell at tableview index row 0 */
+    // Cannot edit cell at tableview index row 0
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.row != 0
     }
     
-    /* Logic for deleting tasks from database when user deletes tableview cell */
+    // Logic for deleting tasks from database when user deletes tableview cell
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -101,7 +101,7 @@ extension HomeViewController: TaskCellDelegate {
         homeViewModel.buttonTap(sender: sender, controller: self)
     }
     
-    /* Kicks off cycling between taskcell editing states */
+    // Kicks off cycling between taskcell editing states
     
     func toggleForEditState(_ sender:UIGestureRecognizer) {
         homeViewModel.editTap(sender: sender, controller: self)

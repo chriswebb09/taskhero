@@ -18,10 +18,10 @@ final class UserDataStore {
     
     public var tasks: [Task] {
         didSet {
-            //setupStore()
             currentUser.tasks = tasks
         }
     }
+    
     var profilePicture: UIImage!
     var validUsernames = [String]()
     

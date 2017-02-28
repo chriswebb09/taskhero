@@ -8,7 +8,7 @@ import Firebase
 
 final class AddTaskViewController: UIViewController  {
     
-    let store = UserDataStore.sharedInstance /* User state for application */
+    let store = UserDataStore.sharedInstance // User state for application
     
     let addTaskView = AddTaskView()
     var addTaskViewModel = AddTaskViewModel()
@@ -43,7 +43,7 @@ final class AddTaskViewController: UIViewController  {
 
 extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     
-    /* Adds UITextFieldDelegate and UITextViewDelege to AddTaskViewController */
+    // Adds UITextFieldDelegate and UITextViewDelege to AddTaskViewController
     
     func setupDelegates() {
         addTaskView.taskNameField.delegate = self
@@ -61,14 +61,14 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
         }
     }
     
-    /* On return-key press hides keyboard */
+    // On return-key press hides keyboard
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    /* If textfield input is equal to newline - return - hides keyboard */
+    // If textfield input is equal to newline - return - hides keyboard
     
     func textView(_ textView: UITextView, shouldChangeTextIn shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
         let shouldChangeText: Bool = replacementText.isEqual("\n")
@@ -76,7 +76,7 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
         return !shouldChangeText
     }
     
-    /* If user is done editting && user has not entered anything - sets taskdescription box default text */
+    // If user is done editting && user has not entered anything - sets taskdescription box default text
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -93,7 +93,7 @@ extension AddTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     }
 }
 
-/* MARK: - Extension UIPickerView Methods */
+// MARK: - Extension UIPickerView Methods
 
 extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -135,7 +135,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
     }
     
-    /* Sets UIPickerView data */
+    // Sets UIPickerView data
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         var type: ComponentType = (component == 0) ? .months : .days
@@ -152,7 +152,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
     }
     
-    /* When add task button pressed - data popover is show so user can pick task due data */
+    // When add task button pressed - data popover is show so user can pick task due data 
     
     dynamic func addTaskButtonTapped() {
         view.endEditing(true)
@@ -168,7 +168,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         pop.showPopView(viewController: self, pick: self.pick)
     }
     
-    /* Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion */
+    // Formats user input into task object using the chosen due date and sends it to database - hides datepopover and return to previous view controller on completion
     dynamic func formatTaskWithDate() {
         let uid = UUID.init()
         guard let taskName = addTaskView.taskNameField.text else { return }
@@ -189,7 +189,7 @@ extension AddTaskViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
     }
     
-    /* Hides keyboard */
+    // Hides keyboard
     
     func dismissKeyboard() {
         view.endEditing(true)

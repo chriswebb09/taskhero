@@ -60,7 +60,7 @@ extension LoginViewController: UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    /* Selector method that Pushes SignupViewController on button tap */
+    // Selector method that Pushes SignupViewController on button tap 
     
     public func signupButtonTapped() {
         navigationController?.pushViewController(SignupViewController(), animated: false)
@@ -139,7 +139,7 @@ extension LoginViewController: UITextFieldDelegate {
         appDelegate.window?.rootViewController = TabBarController()
     }
     
-    /* Checks that text has been entered and exceeds five characters in length */
+    // Checks that text has been entered and exceeds five characters in length
     
     fileprivate func checkForValidEmailInput() {
         if loginView.emailField.text == nil || (self.loginView.emailField.text?.characters.count)! < 5 {
@@ -172,7 +172,7 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    /* On beginning editting changes textfield UI properties */
+    // On beginning editting changes textfield UI properties
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.textColor = Constants.Color.backgroundColor.setColor
@@ -193,10 +193,9 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    /*
-     When no longer using input fields
-     textfield properties change back to original
-     */
+    
+     // When no longer using input fields textfield properties change back to original
+    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderWidth = 1

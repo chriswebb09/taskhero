@@ -93,6 +93,7 @@ final class AddTaskView: UIView {
     }
     
     func animatedPosition() {
+        
         let buttonTop = bounds.height * AddTaskViewConstants.topOffset
         let descriptionBoxTop = bounds.height * AddTaskViewConstants.topOffset
         let taskNameFieldTop = bounds.height * AddTaskViewConstants.taskNameFieldTopMultiplier
