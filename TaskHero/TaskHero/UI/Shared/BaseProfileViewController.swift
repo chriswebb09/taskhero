@@ -15,9 +15,9 @@ class BaseProfileViewController: BaseTableViewController, ProfileViewable{
     
     var picker: UIImagePickerController = UIImagePickerController()
     
-    override func addTaskButtonTapped() {
-        navigationController?.pushViewController(AddTaskViewController(), animated:false)
-    }
+//    override func addTaskButtonTapped() {
+//        navigationController?.pushViewController(AddTaskViewController(), animated:false)
+//    }
     
     internal func tapPickPhoto(_ sender: UIButton) {
         UINavigationController.photoTapped(controller: self)

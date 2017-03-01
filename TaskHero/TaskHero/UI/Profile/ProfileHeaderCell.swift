@@ -44,9 +44,13 @@ final class ProfileHeaderCell: BaseCell {
     
     var profilePicture: UIImageView = {
         let imageView = UIImageView()
+        //imageView.setRounded()
         imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.layer.borderWidth = Constants.Dimension.mainWidth
+        //imageView.layer.masksToBounds = false
+       // imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 2
         imageView.isUserInteractionEnabled = true
+        //imageView.layer.cornerRadius =  imageView.frame.height / 2.0
         return imageView
     }()
     
@@ -61,7 +65,7 @@ final class ProfileHeaderCell: BaseCell {
         selectionStyle = .none
         contentView.layoutIfNeeded()
         setupConstraints()
-        contentView.layer.masksToBounds = true
+       // contentView.layer.masksToBounds = true
     }
     
     private func configureLabel(label:UILabel) {
@@ -140,8 +144,8 @@ final class ProfileHeaderCell: BaseCell {
         
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.snp.makeConstraints { make in
-            make.height.equalTo(UIScreen.main.bounds.height * Constants.Profile.ProfilePicture.profilePictureHeight)
-            make.width.equalTo(UIScreen.main.bounds.width * Constants.Profile.ProfilePicture.profilePictureWidth)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.18)
+            make.width.equalTo(UIScreen.main.bounds.width * 0.32)
             make.top.equalTo(contentView.snp.top).offset(Constants.Profile.Offset.topOffset)
             make.left.equalTo(contentView.snp.left).offset(Constants.Dimension.topOffset)
         }
@@ -174,6 +178,7 @@ final class ProfileHeaderCell: BaseCell {
         }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePicture.addGestureRecognizer(tap)
+        profilePicture.setRounded()
         layoutIfNeeded()
     }
     

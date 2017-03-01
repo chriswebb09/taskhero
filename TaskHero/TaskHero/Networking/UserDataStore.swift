@@ -2,7 +2,6 @@ import UIKit
 import Firebase
 
 final class UserDataStore {
-    
     private static let _shared = UserDataStore()
     public static var sharedInstance: UserDataStore { return _shared }
     public let firebaseAPI = APIClient()

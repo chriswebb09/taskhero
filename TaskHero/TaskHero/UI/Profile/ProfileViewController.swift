@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import Firebase
 
 final class ProfileViewController: BaseProfileViewController {
     
@@ -26,6 +25,8 @@ final class ProfileViewController: BaseProfileViewController {
         register(tableView: tableView, cells: [ProfileHeaderCell.self, ProfileDataCell.self])
         viewModel.setupTableViewUI(controller: self)
         edgesForExtendedLayout = []
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 103
         tableView.reloadOnMain()
     }
     
@@ -38,7 +39,10 @@ final class ProfileViewController: BaseProfileViewController {
     // Gives an automatic dimension to tableView based on given default value for rowheight
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        return viewModel.rowHeight
+        if indexPath.row == 0 {
+            return UIScreen.main.bounds.height / 4
+        }
+        return UITableViewAutomaticDimension
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

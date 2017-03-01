@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import Firebase
 
 /* HomeViewController is the first tab in the tabbar. It is a subclass of UITableViewController. At index.row 0 the cell type returned is ProfileHeaderCell after that all other cells are of type TaskCell */
 
@@ -19,6 +18,8 @@ final class HomeViewController: BaseProfileViewController, UINavigationControlle
         super.viewDidLoad()
         homeViewModel.viewSetup(controller: self)
         BaseViewController.barSetup(controller: self)
+        tableView.estimatedRowHeight = UIScreen.main.bounds.height / 3
+        
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -63,7 +64,10 @@ extension HomeViewController {
     // Get rowheight from viewModel - rowheight is UITableViewAutomaticDimension
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return homeViewModel.rowHeight
+        if indexPath.row == 0 {
+            return UIScreen.main.bounds.height / 4
+        }
+        return UITableViewAutomaticDimension
     }
     
     // first row returns profile headerCell all other rows are type taskCell -> cells configured within this controller using setupCell methods

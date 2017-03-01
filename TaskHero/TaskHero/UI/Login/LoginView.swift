@@ -1,11 +1,8 @@
 import UIKit
 
 final class LoginView: UIView {
-    
     var editState: Bool = false
-    
     var initialLoad: Bool = true
-    
     var logoImageView: UIImageView = {
         let image = UIImage(named: "taskherologo2")
         let imageView = UIImageView(image: image)

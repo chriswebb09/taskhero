@@ -1,9 +1,7 @@
 import UIKit
 
 struct TaskListViewModel {
-    
     let store = UserDataStore.sharedInstance
-    
     var sharedTaskMethods = SharedTaskMethods()
     
     var numberOfRows: Int {

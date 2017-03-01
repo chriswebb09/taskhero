@@ -4,15 +4,11 @@
 //
 
 import UIKit
-import Firebase
 
 final class AddTaskViewController: UIViewController  {
-    
     let store = UserDataStore.sharedInstance // User state for application
-    
     let addTaskView = AddTaskView()
     var addTaskViewModel = AddTaskViewModel()
-    
     let pop = PopMenu()
     let pick = UIPickerView(frame: CGRect(x:0, y:200, width:290, height:290))
     let datePicker = UIDatePicker()

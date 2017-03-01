@@ -76,6 +76,10 @@
 		A77FBCCB1DEB78880014C380 /* BasePopoverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FBCCA1DEB78880014C380 /* BasePopoverAlert.swift */; };
 		A78C87DF1E5EF6EA00C6D425 /* LoginConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78C87DE1E5EF6EA00C6D425 /* LoginConstants.swift */; };
 		A78C87E51E5F13EB00C6D425 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78C87E41E5F13EB00C6D425 /* UIImage+Extension.swift */; };
+		A78C8D9D1E663A8500B6C901 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78C8D9C1E663A8500B6C901 /* Secrets.swift */; };
+		A78C8DA01E663A8C00B6C901 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78C8D9E1E663A8C00B6C901 /* GoogleService-Info.plist */; };
+		A78C8DA11E663A8C00B6C901 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78C8D9F1E663A8C00B6C901 /* Info.plist */; };
+		A78C8DA31E6648BA00B6C901 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78C8DA21E6648BA00B6C901 /* UIImageView+Extension.swift */; };
 		A7A497D91E634F6D00F336C7 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A497D81E634F6D00F336C7 /* UINavigationController+Extension.swift */; };
 		A7AABD591E5C096B0052AF1B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABD581E5C096B0052AF1B /* ProfileViewModel.swift */; };
 		A7AFCDE11DF72C4B004D607C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFCDE01DF72C4B004D607C /* APIClient.swift */; };
@@ -84,12 +88,10 @@
 		A7B22DED1E65F4600087A028 /* UITexfield+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B22DEC1E65F4600087A028 /* UITexfield+Extension.swift */; };
 		A7B22DEF1E65F47B0087A028 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B22DEE1E65F47B0087A028 /* UILabel+Extension.swift */; };
 		A7C5A9C51E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */; };
-		A7DF774A1E37185800FB2DCE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF77491E37185800FB2DCE /* Secrets.swift */; };
 		A7E991181E5A8BE1001CE354 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E991171E5A8BE1001CE354 /* Reachability.swift */; };
 		A7E9911A1E5A8CBE001CE354 /* InternetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E991191E5A8CBE001CE354 /* InternetStatus.swift */; };
 		A7F9C62E1E60CD34000E5B3E /* UITableViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9C62D1E60CD34000E5B3E /* UITableViewController+Extensions.swift */; };
 		A7F9C6301E60CD4C000E5B3E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9C62F1E60CD4C000E5B3E /* UIViewController+Extension.swift */; };
-		AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */; };
 		AFE277B51DB58CA2005C9AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */; };
 		AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */; };
 		AFE277BF1DB58CA2005C9AB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */; };
@@ -143,7 +145,6 @@
 		A709CB0F1DE7737100877907 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A709CB111DE7737800877907 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		A70CD5D61E1AD1DC00324DC3 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		A70DC53E1E15A90B00812FB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A714E1741E3BEA8E0014F990 /* AppScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenView.swift; path = AppScreen/AppScreenView.swift; sourceTree = "<group>"; };
 		A714E1761E3BEA980014F990 /* AppScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppScreenViewController.swift; path = AppScreen/AppScreenViewController.swift; sourceTree = "<group>"; };
 		A714E1781E3BF52E0014F990 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -180,6 +181,10 @@
 		A77FBCCA1DEB78880014C380 /* BasePopoverAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePopoverAlert.swift; sourceTree = "<group>"; };
 		A78C87DE1E5EF6EA00C6D425 /* LoginConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConstants.swift; sourceTree = "<group>"; };
 		A78C87E41E5F13EB00C6D425 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		A78C8D9C1E663A8500B6C901 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		A78C8D9E1E663A8C00B6C901 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A78C8D9F1E663A8C00B6C901 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A78C8DA21E6648BA00B6C901 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		A7A497D81E634F6D00F336C7 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		A7AABD581E5C096B0052AF1B /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A7AFCDE01DF72C4B004D607C /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -188,13 +193,11 @@
 		A7B22DEC1E65F4600087A028 /* UITexfield+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITexfield+Extension.swift"; sourceTree = "<group>"; };
 		A7B22DEE1E65F47B0087A028 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		A7C5A9C41E1B30F3003CBCC1 /* ProfileSettingsViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewControllerDataSource.swift; sourceTree = "<group>"; };
-		A7DF77491E37185800FB2DCE /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A7E991171E5A8BE1001CE354 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A7E991191E5A8CBE001CE354 /* InternetStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetStatus.swift; sourceTree = "<group>"; };
 		A7F9C62D1E60CD34000E5B3E /* UITableViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Extensions.swift"; sourceTree = "<group>"; };
 		A7F9C62F1E60CD4C000E5B3E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		ACD79247934EC1235C48C258 /* Pods-TaskHero-TaskHeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero-TaskHeroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero-TaskHeroTests/Pods-TaskHero-TaskHeroTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AFE277B11DB58CA2005C9AB5 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -337,6 +340,7 @@
 				A7B22DEA1E65F2B30087A028 /* UIButton+Extension.swift */,
 				A7B22DEC1E65F4600087A028 /* UITexfield+Extension.swift */,
 				A7B22DEE1E65F47B0087A028 /* UILabel+Extension.swift */,
+				A78C8DA21E6648BA00B6C901 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -682,10 +686,10 @@
 				AFA3CE8A1DB58DDB003266CA /* UI */,
 				AFE277B41DB58CA2005C9AB5 /* AppDelegate.swift */,
 				AFE277BB1DB58CA2005C9AB5 /* Assets.xcassets */,
-				AFA3CEB31DB58E58003266CA /* GoogleService-Info.plist */,
-				A70DC53E1E15A90B00812FB4 /* Info.plist */,
+				A78C8D9E1E663A8C00B6C901 /* GoogleService-Info.plist */,
+				A78C8D9F1E663A8C00B6C901 /* Info.plist */,
 				AFE277BD1DB58CA2005C9AB5 /* LaunchScreen.storyboard */,
-				A7DF77491E37185800FB2DCE /* Secrets.swift */,
+				A78C8D9C1E663A8500B6C901 /* Secrets.swift */,
 			);
 			path = TaskHero;
 			sourceTree = "<group>";
@@ -799,7 +803,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFE277BF1DB58CA2005C9AB5 /* LaunchScreen.storyboard in Resources */,
-				AFA3CEB41DB58E58003266CA /* GoogleService-Info.plist in Resources */,
+				A78C8DA01E663A8C00B6C901 /* GoogleService-Info.plist in Resources */,
+				A78C8DA11E663A8C00B6C901 /* Info.plist in Resources */,
 				AFE277BC1DB58CA2005C9AB5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -914,6 +919,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77FBCC91DEB74670014C380 /* BasePopView.swift in Sources */,
+				A78C8D9D1E663A8500B6C901 /* Secrets.swift in Sources */,
 				A71C97891DFF718C00F855AA /* AddTaskViewModel.swift in Sources */,
 				A709CACC1DE7718B00877907 /* LoginViewController.swift in Sources */,
 				A78C87E51E5F13EB00C6D425 /* UIImage+Extension.swift in Sources */,
@@ -922,6 +928,7 @@
 				A709CB0C1DE7735B00877907 /* SignupViewController.swift in Sources */,
 				A709CAD91DE7720200877907 /* TaskCell.swift in Sources */,
 				A709CAFC1DE7730D00877907 /* SignupView.swift in Sources */,
+				A78C8DA31E6648BA00B6C901 /* UIImageView+Extension.swift in Sources */,
 				A709CADE1DE7722300877907 /* String+Extension.swift in Sources */,
 				A752A3541E4B1CDF006FD395 /* DataPersistence.swift in Sources */,
 				A709CAE21DE7723800877907 /* TextfieldExtension.swift in Sources */,
@@ -966,7 +973,6 @@
 				A7E991181E5A8BE1001CE354 /* Reachability.swift in Sources */,
 				A709CAEE1DE7727E00877907 /* ProfileDataCellModel.swift in Sources */,
 				A752A3521E4AB587006FD395 /* SharedTaskMethods.swift in Sources */,
-				A7DF774A1E37185800FB2DCE /* Secrets.swift in Sources */,
 				A767FBA81E0836F7007767B6 /* SignupViewModel.swift in Sources */,
 				A709CB061DE7733C00877907 /* Task.swift in Sources */,
 				A709CB021DE7732800877907 /* UserDataStore.swift in Sources */,

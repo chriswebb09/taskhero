@@ -1,7 +1,6 @@
 import UIKit
 import SnapKit
 
-
 protocol Toggable {
     func toggleState(state:Bool) -> Bool
 }

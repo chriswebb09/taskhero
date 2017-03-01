@@ -1,9 +1,7 @@
 import UIKit
 
 struct SignupViewModel {
-    
     let store = UserDataStore.sharedInstance
-    
     var signupTitle: String = "Sign Up"
     var emailAddress: String = ""
     var confirmEmailAddress = ""

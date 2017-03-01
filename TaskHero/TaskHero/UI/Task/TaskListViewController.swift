@@ -2,8 +2,6 @@ import UIKit
 
 final class TaskListViewController: BaseTableViewController {
     
-    // TaskListViewController is the viewController that presents just the tasks that the user has added
-    
     // MARK: Properties
     
     let store = UserDataStore.sharedInstance // userData store for application user state
@@ -124,7 +122,7 @@ extension TaskListViewController: TaskCellDelegate {
     
     // MARK: - Task Actions
     
-    @objc override func addTaskButtonTapped() {
+    override func addTaskButtonTapped() {
         self.navigationController?.pushViewController(AddTaskViewController(), animated:false)
     }
     
